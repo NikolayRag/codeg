@@ -16,6 +16,9 @@ class AppWindow():
 
 	layout = Object()
 	layout.main = None
+	layout.canvas = None
+	layout.btnOpen = None
+
 
 	modulePath= path.abspath(path.dirname(__file__))
 
@@ -28,10 +31,11 @@ class AppWindow():
 		uiFile = path.join(self.modulePath,'AppWindow.ui')
 		cMain = self.layout.main = QUiLoader().load(uiFile)
 
+		cMain.setWindowTitle('codeg');
 
 		#capture widgets
-#		self.layout.drag= cMain.findChild(QWidget, "outerFrame")
-
+		self.layout.canvas = cMain.findChild(QWidget, "canvasSVG")
+		self.layout.btnOpen = cMain.findChild(QWidget, "btnLoad")
 		
 
 
