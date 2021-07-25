@@ -12,7 +12,7 @@ class Ui():
 
 
 		#init
-		self.appWindow = AppWindow()
+		self.appWindow = AppWindow(self.args)
 
 
 		self.appWindow.exec()

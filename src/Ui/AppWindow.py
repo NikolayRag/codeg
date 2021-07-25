@@ -14,6 +14,8 @@ class Object():
 class AppWindow():
 	qApp = None
 
+	args = None
+
 	layout = Object()
 	layout.main = None
 	layout.canvas = None
@@ -24,6 +26,8 @@ class AppWindow():
 
 
 
+	def __init__(self, _args):
+		self.args = _args
 
 	def __init__(self):
 		self.qApp = QApplication()
