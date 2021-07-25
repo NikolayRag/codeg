@@ -29,7 +29,6 @@ class AppWindow():
 	def __init__(self, _args):
 		self.args = _args
 
-	def __init__(self):
 		self.qApp = QApplication()
 		self.qApp.setStyle(QStyleFactory.create('plastique'))
 
