@@ -60,14 +60,34 @@
           <item>
            <widget class="QPushButton" name="btnLoad">
             <property name="text">
-             <string>load</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>resource/icon-add-image.svg</normaloff>resource/icon-add-image.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>48</width>
+              <height>48</height>
+             </size>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="btnSave">
             <property name="text">
-             <string>save</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>resource/icon-pack.svg</normaloff>resource/icon-pack.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>48</width>
+              <height>48</height>
+             </size>
             </property>
            </widget>
           </item>
