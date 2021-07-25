@@ -1,4 +1,4 @@
-from os import path
+import os, logging
 
 from PySide2.QtCore import *
 from PySide2.QtGui import *
@@ -20,7 +20,8 @@ class AppWindow():
 	layout.btnOpen = None
 
 
-	modulePath= path.abspath(path.dirname(__file__))
+	modulePath= os.path.abspath(os.path.dirname(__file__))
+
 
 
 
@@ -28,7 +29,7 @@ class AppWindow():
 		self.qApp = QApplication()
 		self.qApp.setStyle(QStyleFactory.create('plastique'))
 
-		uiFile = path.join(self.modulePath,'AppWindow.ui')
+		uiFile = os.path.join(self.modulePath,'AppWindow.ui')
 		cMain = self.layout.main = QUiLoader().load(uiFile)
 
 		cMain.setWindowTitle('codeg');
