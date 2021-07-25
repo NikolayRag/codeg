@@ -22,8 +22,17 @@ class Args():
 		if _reuseOld:
 			self.args = self.load()
 
-		self.args = self.parseCmdline(self.args)
-		
+		if not self.args:
+			self.args = {}
+
+
+		cArgs = self.parseCmdline()
+
+		if cArgs:
+			for cArg in cArgs:
+				if cArgs[cArg] != None:
+					self.args[cArg] = cArgs[cArg]
+
 
 
 
@@ -77,7 +86,7 @@ class Args():
 
 
 
-	def parseCmdline(self, _softDefs):
+	def parseCmdline(self):
 		cParser = argparse.ArgumentParser(description= 'codeg')
 
 		cParser.add_argument('-v', default=False, action='store_true', help='version 0')
@@ -85,13 +94,8 @@ class Args():
 #		cParser.add_argument('-num', type=int, choices=[1,2], help='number setting', help=argparse.SUPPRESS)
 
 		
-		try:
-			return vars(cParser.parse_args())
-
-		except:
-			logging.warning('Commandline arguments fail')
-
-			return _softDefs
-
-
-			
+		cArgs = cParser.parse_args()
+	
+		if cArgs:
+			return vars(cArgs)
+		
