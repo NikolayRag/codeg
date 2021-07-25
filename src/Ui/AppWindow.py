@@ -29,6 +29,7 @@ class AppWindow():
 	def __init__(self, _args):
 		self.args = _args
 
+		QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
 		self.qApp = QApplication()
 		self.qApp.setStyle(QStyleFactory.create('plastique'))
 
