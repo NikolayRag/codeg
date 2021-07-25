@@ -61,9 +61,16 @@ class AppWindow():
 
 
 
-	def openFile(self, path=""):
-		if path=="":
-			fileName = QFileDialog.getOpenFileName(self.layout.main, "Open SVG File", "C:/", "*.svg")[0]
-		else:
-			fileName = path
+	def openFile(self):
+		cRecentA = self.args.args["recentLoaded"] if ("recentLoaded" in self.args.args) else []
 
+		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
+		fileName = QFileDialog.getOpenFileName(self.layout.main, "Open SVG File", os.path.dirname(cLast), "*.svg")[0]
+
+		if fileName=="":
+			return
+
+		
+		if cRecentA.count(fileName): cRecentA.remove(fileName)
+
+		self.args.args["recentLoaded"] = cRecentA + [fileName]
