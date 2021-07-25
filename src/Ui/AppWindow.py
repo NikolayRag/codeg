@@ -38,6 +38,8 @@ class AppWindow():
 		self.layout.btnOpen = cMain.findChild(QWidget, "btnLoad")
 		
 
+		cMain.connect(self.layout.btnOpen, SIGNAL("clicked()"), self.openFile)
+
 
 
 
@@ -51,4 +53,13 @@ class AppWindow():
 		self.qApp.exec_()
 
 
+# =todo 1 (feature) +0: load SVG
+
+
+
+	def openFile(self, path=""):
+		if path=="":
+			fileName = QFileDialog.getOpenFileName(self.layout.main, "Open SVG File", "C:/", "*.svg")[0]
+		else:
+			fileName = path
 
