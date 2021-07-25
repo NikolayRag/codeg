@@ -17,3 +17,6 @@ class Ui():
 
 		self.appWindow.exec()
 
+
+		logging.warning('Exiting')
+		self.args.save()
