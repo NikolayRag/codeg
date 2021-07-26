@@ -116,3 +116,17 @@ class SvgNativeView(QFrame):
         if self.doc:
             return self.doc.defaultSize()
         return QWidget.sizeHint(self)
+
+    def wheelEvent(self, e):
+        diff = 0.1
+        size = QSize(self.doc.defaultSize())
+        width = size.width()
+        height = size.height()
+        if e.delta() > 0:
+            width = int(self.width() + self.width() * diff)
+            height = int(self.height() + self.height() * diff)
+        else:
+            width = int(self.width() - self.width() * diff)
+            height = int(self.height() - self.height() * diff)
+
+        self.resize(width, height)

@@ -154,8 +154,6 @@
           </property>
           <item row="0" column="0">
            <widget class="QScrollArea" name="scrollSVG">
-            <property name="widgetResizable">
-             <bool>true</bool>
             </property>
             <widget class="QWidget" name="scrollAreaWidgetContents">
              <property name="geometry">
