@@ -154,6 +154,14 @@
           </property>
           <item row="0" column="0">
            <widget class="QScrollArea" name="scrollSVG">
+            <property name="frameShape">
+             <enum>QFrame::Box</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="lineWidth">
+             <number>2</number>
             </property>
             <widget class="QWidget" name="scrollAreaWidgetContents">
              <property name="geometry">
