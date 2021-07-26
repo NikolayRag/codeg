@@ -117,6 +117,11 @@ class SvgNativeView(QFrame):
             return self.doc.defaultSize()
         return QWidget.sizeHint(self)
 
+
+#  todo 4 (svg, feature) +0: zoom by wheel
+#  todo 5 (svg, feature) +0: pan by mouse
+#  todo 6 (svg, feature) +0: smooth animated zoom
+
     def wheelEvent(self, e):
         diff = 0.1
         size = QSize(self.doc.defaultSize())
