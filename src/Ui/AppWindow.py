@@ -4,6 +4,7 @@ from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 from PySide2.QtUiTools import *
+from PySide2.QtSvg import *
 
 
 class Object():
@@ -18,7 +19,7 @@ class AppWindow():
 
 	layout = Object()
 	layout.main = None
-	layout.canvas = None
+	layout.frameSVG = None
 	layout.btnOpen = None
 
 
@@ -39,11 +40,19 @@ class AppWindow():
 		cMain.setWindowTitle('codeg');
 
 		#capture widgets
-		self.layout.canvas = cMain.findChild(QWidget, "canvasSVG")
+		self.layout.frameSVG = cMain.findChild(QScrollArea, "scrollSVG")
 		self.layout.btnOpen = cMain.findChild(QWidget, "btnLoad")
 		
 
 		cMain.connect(self.layout.btnOpen, SIGNAL("clicked()"), self.openFile)
+
+
+
+	def buildSVG(self, _fn):
+		view = SvgNativeView(_fn, self.layout.frameSVG)
+
+		self.layout.frameSVG.setWidget(view)
+		view.show()
 
 
 
@@ -72,6 +81,40 @@ class AppWindow():
 			return
 
 		
+		self.buildSVG(fileName)
+
+
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
 
 		self.args.args["recentLoaded"] = cRecentA + [fileName]
+
+
+
+
+
+
+'''
+PySide2 example code template
+'''
+class SvgNativeView(QFrame):
+
+    def __init__(self, path, parent):
+        QFrame.__init__(self, parent)
+
+        self.doc = QSvgRenderer(path, self)
+        self.connect(self.doc, SIGNAL("repaintNeeded()"),
+                     self, SLOT("update()"))
+
+
+
+    def paintEvent(self, e):
+        p = QPainter(self)
+        p.setViewport(0, 0, self.width(), self.height())
+        self.doc.render(p)
+
+
+
+    def sizeHint(self):
+        if self.doc:
+            return self.doc.defaultSize()
+        return QWidget.sizeHint(self)
