@@ -67,9 +67,7 @@ class AppWindow():
 		self.qApp.exec_()
 
 
-# =todo 1 (feature) +0: load SVG
-
-
+#  todo 3 (feature, file) +0: allow picking from Recent files list
 
 	def openFile(self):
 		cRecentA = self.args.args["recentLoaded"] if ("recentLoaded" in self.args.args) else []
