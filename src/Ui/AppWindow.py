@@ -95,43 +95,50 @@ class AppWindow():
 PySide2 example code template
 '''
 class SvgNativeView(QFrame):
-
-    def __init__(self, path, parent):
-        QFrame.__init__(self, parent)
-
-        self.doc = QSvgRenderer(path, self)
-        self.connect(self.doc, SIGNAL("repaintNeeded()"),
-                     self, SLOT("update()"))
+	scale = 1.
 
 
 
-    def paintEvent(self, e):
-        p = QPainter(self)
-        p.setViewport(0, 0, self.width(), self.height())
-        self.doc.render(p)
+	def __init__(self, path, parent):
+		QFrame.__init__(self, parent)
+
+		self.doc = QSvgRenderer(path, self)
+		cSize = self.doc.defaultSize()
+		self.docWidth = cSize.width()
+		self.docHeight = cSize.height()
+
+		self.connect(self.doc, SIGNAL("repaintNeeded()"),
+			self, SLOT("update()"))
 
 
 
-    def sizeHint(self):
-        if self.doc:
-            return self.doc.defaultSize()
-        return QWidget.sizeHint(self)
+	def paintEvent(self, e):
+		p = QPainter(self)
+		p.setViewport( QRect(QPoint(0, 0), self.sizeHint()) )
+		self.doc.render(p)
+
+
+
+	def sizeHint(self):
+		return QSize(
+			self.docWidth * self.scale,
+			self.docHeight * self.scale
+		)
+
 
 
 #  todo 4 (svg, feature) +0: zoom by wheel
 #  todo 5 (svg, feature) +0: pan by mouse
 #  todo 6 (svg, feature) +0: smooth animated zoom
 
-    def wheelEvent(self, e):
-        diff = 0.1
-        size = QSize(self.doc.defaultSize())
-        width = size.width()
-        height = size.height()
-        if e.delta() > 0:
-            width = int(self.width() + self.width() * diff)
-            height = int(self.height() + self.height() * diff)
-        else:
-            width = int(self.width() - self.width() * diff)
-            height = int(self.height() - self.height() * diff)
+	def wheelEvent(self, e):
+		diff = 1.1
+		self.setScale(self.scale * (diff if e.delta()> 0 else 1/diff))
 
-        self.resize(width, height)
+
+
+	def setScale(self, _scale):
+		self.scale = _scale
+
+		self.resize(self.sizeHint())
+
