@@ -1,3 +1,5 @@
+import xml.etree.ElementTree as XML
+
 import os, logging
 
 from PySide2.QtCore import *
@@ -79,7 +81,9 @@ class AppWindow():
 			return
 
 		
-		self.buildSVG(fileName)
+		cSvg = XML.parse(fileName)
+
+		self.buildSVG(XML.tostring(cSvg.getroot()))
 
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
