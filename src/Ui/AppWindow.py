@@ -48,8 +48,8 @@ class AppWindow():
 
 
 
-	def buildSVG(self, _fn):
-		view = SvgNativeView(_fn, self.layout.frameSVG)
+	def buildSVG(self, _xml):
+		view = SvgNativeView(_xml, self.layout.frameSVG)
 
 		self.layout.frameSVG.setWidget(view)
 		view.show()
@@ -99,10 +99,10 @@ class SvgNativeView(QFrame):
 
 
 
-	def __init__(self, path, parent):
+	def __init__(self, _xml, parent):
 		QFrame.__init__(self, parent)
 
-		self.doc = QSvgRenderer(path, self)
+		self.doc = QSvgRenderer(_xml, self)
 		cSize = self.doc.defaultSize()
 		self.docWidth = cSize.width()
 		self.docHeight = cSize.height()
