@@ -90,13 +90,13 @@ class AppWindow():
 			print('No cbFileLoad')
 			return
 
-
-
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
+		self.args.args["recentLoaded"] = cRecentA + [fileName]
+
+
 		cData = self.cbWFileLoad(fileName)
 		self.buildSVG(cData)
 
-		self.args.args["recentLoaded"] = cRecentA + [fileName]
 
 
 
