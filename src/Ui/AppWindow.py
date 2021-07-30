@@ -97,6 +97,7 @@ class AppWindow():
 		cData = self.cbWFileLoad(fileName)
 		self.buildSVG(cData)
 
+#  todo 20 (module-ui, error) +0: handle errors, maybe status string
 
 
 
