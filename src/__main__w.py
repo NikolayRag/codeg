@@ -7,3 +7,9 @@ if __name__ == '__main__':
 
 	if cArgs.args:
 		Ui.Ui(cArgs)
+		cUi.go()
+
+
+		logging.warning('Exiting')
+		cArgs.save()
+

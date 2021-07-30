@@ -15,8 +15,7 @@ class Ui():
 		self.appWindow = AppWindow(self.args)
 
 
+	def go(self):
 		self.appWindow.exec()
 
 
-		logging.warning('Exiting')
-		self.args.save()
