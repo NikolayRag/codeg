@@ -1,4 +1,5 @@
-import Ui
+from Ui import *
+from GGData import *
 from args import *
 
 
