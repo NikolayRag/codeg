@@ -6,7 +6,12 @@ if __name__ == '__main__':
 	cArgs= Args(True)
 
 	if cArgs.args:
-		Ui.Ui(cArgs)
+		cGG = GGData()
+
+		cUi = Ui(cArgs)
+		cUi.setUICB(cGG.cbUIFileLoad)
+
+
 		cUi.go()
 
 

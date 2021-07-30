@@ -1,5 +1,3 @@
-import xml.etree.ElementTree as XML
-
 import os, logging
 
 from PySide2.QtCore import *
@@ -15,6 +13,8 @@ class Object():
 
 
 class AppWindow():
+	cbWFileLoad = None
+
 	qApp = None
 
 	args = None
@@ -26,6 +26,11 @@ class AppWindow():
 
 
 	modulePath= os.path.abspath(os.path.dirname(__file__))
+
+
+
+	def setCBFileLoad(self, _cb):
+		self.cbWFileLoad = _cb
 
 
 
@@ -81,12 +86,15 @@ class AppWindow():
 			return
 
 		
-		cSvg = XML.parse(fileName)
+		if not self.cbWFileLoad:
+			print('No cbFileLoad')
+			return
 
-		self.buildSVG(XML.tostring(cSvg.getroot()))
 
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
+		cData = self.cbWFileLoad(fileName)
+		self.buildSVG(cData)
 
 		self.args.args["recentLoaded"] = cRecentA + [fileName]
 

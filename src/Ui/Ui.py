@@ -15,6 +15,12 @@ class Ui():
 		self.appWindow = AppWindow(self.args)
 
 
+	
+	def setUICB(self, _cbFL):
+		self.appWindow.setCBFileLoad(_cbFL);
+
+
+
 	def go(self):
 		self.appWindow.exec()
 
