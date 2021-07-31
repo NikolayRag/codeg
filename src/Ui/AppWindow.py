@@ -151,9 +151,6 @@ class SvgNativeView(QFrame):
 		self.docWidth = cSize.width()
 		self.docHeight = cSize.height()
 
-		self.connect(self.doc, SIGNAL("repaintNeeded()"),
-			self, SLOT("update()"))
-
 
 
 	def paintEvent(self, e):
