@@ -29,6 +29,8 @@ class AppWindow():
 	layout.btnStore = None
 
 
+	eventWheel = None
+
 	modulePath= os.path.abspath(os.path.dirname(__file__))
 
 
@@ -61,6 +63,9 @@ class AppWindow():
 		self.layout.btnStore = cMain.findChild(QWidget, "btnSave")
 		
 
+		self.eventWheel = EventFilter()
+		self.layout.frameSVG.viewport().installEventFilter(self.eventWheel);
+
 		cMain.connect(self.layout.btnOpen, SIGNAL("clicked()"), self.openFile)
 		cMain.connect(self.layout.btnStore, SIGNAL("clicked()"), self.storeFile)
 
@@ -68,9 +73,12 @@ class AppWindow():
 
 	def buildSVG(self, _xml):
 		view = SvgNativeView(_xml, self.layout.frameSVG)
-
 		self.layout.frameSVG.setWidget(view)
+
 		view.show()
+
+		
+		self.eventWheel.setTarget(view)
 
 
 
@@ -172,7 +180,7 @@ class SvgNativeView(QFrame):
 #  todo 5 (svg, feature) +0: pan by mouse
 #  todo 6 (svg, feature) +0: smooth animated zoom
 
-	def wheelEvent(self, e):
+	def wheelEventAlt(self, e):
 		diff = 1.1
 		self.setScale(self.scale * (diff if e.delta()> 0 else 1/diff))
 
@@ -183,3 +191,25 @@ class SvgNativeView(QFrame):
 
 		self.resize(self.sizeHint())
 
+
+
+class EventFilter(QObject):
+	trueTarget = None
+
+
+	def __init__(self):
+		QObject.__init__(self)
+
+
+
+	def setTarget(self, _target):
+		self.trueTarget = _target
+
+
+
+	def eventFilter(self, source, event):
+		if event.type() == QEvent.Wheel:
+			self.trueTarget and self.trueTarget.wheelEventAlt(event)
+			return True
+
+		return QWidget.eventFilter(self, source, event)
