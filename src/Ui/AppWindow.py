@@ -14,6 +14,7 @@ class Object():
 
 class AppWindow():
 	cbWFileLoad = None
+	cbWFileSave = None
 
 	qApp = None
 
@@ -23,6 +24,7 @@ class AppWindow():
 	layout.main = None
 	layout.frameSVG = None
 	layout.btnOpen = None
+	layout.btnStore = None
 
 
 	modulePath= os.path.abspath(os.path.dirname(__file__))
@@ -31,6 +33,11 @@ class AppWindow():
 
 	def setCBFileLoad(self, _cb):
 		self.cbWFileLoad = _cb
+
+
+
+	def setCBFileSave(self, _cb):
+		self.cbWFileSave = _cb
 
 
 
@@ -49,9 +56,11 @@ class AppWindow():
 		#capture widgets
 		self.layout.frameSVG = cMain.findChild(QScrollArea, "scrollSVG")
 		self.layout.btnOpen = cMain.findChild(QWidget, "btnLoad")
+		self.layout.btnStore = cMain.findChild(QWidget, "btnSave")
 		
 
 		cMain.connect(self.layout.btnOpen, SIGNAL("clicked()"), self.openFile)
+		cMain.connect(self.layout.btnStore, SIGNAL("clicked()"), self.storeFile)
 
 
 
@@ -101,6 +110,12 @@ class AppWindow():
 
 
 
+	def storeFile(self):
+		if not self.cbWFileSave:
+			print('No save CB')
+			return
+
+		self.cbWFileSave()
 
 
 

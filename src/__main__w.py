@@ -28,7 +28,7 @@ if __name__ == '__main__':
 		cGG = GGData()
 
 		cUi = Ui(cArgs)
-		cUi.setUICB(cGG.loadXML)
+		cUi.setUICB(cGG.loadXML, cGG.saveG)
 
 
 		cUi.go()
