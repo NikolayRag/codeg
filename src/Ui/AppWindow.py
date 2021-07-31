@@ -1,3 +1,5 @@
+#  todo 28 (module-ui) +0: add credits: About, License, Github
+
 import os, logging
 
 from PySide2.QtCore import *

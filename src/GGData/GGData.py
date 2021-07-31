@@ -1,3 +1,12 @@
+#  todo 9 (spec, module-data) +0: operate project data
+#  todo 10 (spec, module-data) +0: operate scene data
+# =todo 11 (spec, module-data) +0: read/save own format
+
+#  todo 18 (spec, module-data) +0: standalone dispatcher codegg
+#  todo 19 (spec, module-data) +0: send to codegg
+
+# =todo 25 (module-data, formats) +0: load .nc gcode
+
 import xml.etree.ElementTree as XML
 
 
