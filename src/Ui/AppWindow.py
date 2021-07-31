@@ -96,7 +96,7 @@ class AppWindow():
 
 		
 		if not self.cbWFileLoad:
-			print('No cbFileLoad')
+			print('No load CB')
 			return
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
