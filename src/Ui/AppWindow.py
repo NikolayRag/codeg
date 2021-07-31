@@ -115,7 +115,21 @@ class AppWindow():
 			print('No save CB')
 			return
 
-		self.cbWFileSave()
+		cRecentA = self.args.args["recentSaved"] if ("recentSaved" in self.args.args) else []
+
+		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
+		fileName = QFileDialog.getSaveFileName(self.layout.main, "Save G", os.path.dirname(cLast), "*.nc")[0]
+
+		
+		if fileName=="":
+			return
+
+
+		self.cbWFileSave(fileName)
+
+
+		if cRecentA.count(fileName): cRecentA.remove(fileName)
+		self.args.args["recentSaved"] = cRecentA + [fileName]
 
 
 
