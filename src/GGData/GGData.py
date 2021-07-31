@@ -6,7 +6,7 @@ class GGData():
 
 
 
-	def cbUIFileLoad(self, _fileName):
+	def loadXML(self, _fileName):
 		self.theGG = XML.parse(_fileName)
 
 		return XML.tostring(self.theGG.getroot())
