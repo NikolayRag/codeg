@@ -7,8 +7,8 @@
  feature, file 3: +0 "src\Ui\AppWindow.py" ki 21/07/26 05:38:40
 	allow picking from Recent files list
 
- svg, feature 4: +0 "src\Ui\AppWindow.py" ki 21/07/26 05:52:15
-	zoom by wheel
+ svg, feature 4: +0 "src\Ui\AppWindow.py" ki 21/07/31 19:59:33
+	zoom by wheel within center-mouse
 
  svg, feature 5: +0 "src\Ui\AppWindow.py" ki 21/07/26 05:52:31
 	pan by mouse
@@ -43,13 +43,13 @@
  spec, module-ui, viewport 15: +0 "src\__main__w.py" ki 21/07/31 02:59:36
 	basic mouse zoom, pan and reset
 
- spec, module-ui 16: +0 "src\__main__w.py" ki 21/07/28 06:14:53
+ spec, module-ui 16: +0 "src\Ui\Ui.py" ki 21/07/31 18:03:09
 	layers
 
-=spec, module-dispatch, proto 17: +0 "src\__main__w.py" ki 21/07/31 16:33:15
+=spec, module-dispatch, proto 17: +0 "src\__main__w.py" ki 21/07/31 18:03:09
 	send to serial-usb (arduino)
 
- spec, module-data 18: +0 "src\__main__w.py" ki 21/07/31 16:32:56
+ spec, module-data 18: +0 "src\GGData\GGData.py" ki 21/07/31 18:03:09
 	standalone dispatcher codegg
 
  spec, module-data 19: +0 "src\__main__w.py" ki 21/07/28 06:20:08
@@ -81,4 +81,10 @@
 
  module-ui 28: +0 "src\Ui\AppWindow.py" ki 21/07/31 16:35:02
 	add credits: About, License, Github
+
++module-ui, tech 29: -1 "src\Ui\AppWindow.py" ki 21/07/31 19:34:09
+	filter mouse events correctly
+
++module-ui, error 31: +1 "src\Ui\AppWindow.py" ki 21/07/31 19:26:37
+	Filter __init__ dont work
 

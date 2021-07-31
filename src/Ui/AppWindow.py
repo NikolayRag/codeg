@@ -176,7 +176,7 @@ class SvgNativeView(QFrame):
 
 
 
-#  todo 4 (svg, feature) +0: zoom by wheel
+#  todo 4 (svg, feature) +0: zoom by wheel within center-mouse
 #  todo 5 (svg, feature) +0: pan by mouse
 #  todo 6 (svg, feature) +0: smooth animated zoom
 
