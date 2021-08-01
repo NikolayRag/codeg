@@ -58,29 +58,27 @@ class AppWindow():
 		cMain.setWindowTitle('codeg');
 
 		#capture widgets
-		self.layout.frameSVG = cMain.findChild(QScrollArea, "scrollSVG")
+		holderViewport = cMain.findChild(QFrame, "wViewport")
+		self.layout.viewport = GGViewport(holderViewport)
+		holderViewport.layout().addWidget(self.layout.viewport)
+
 		self.layout.btnOpen = cMain.findChild(QWidget, "btnLoad")
 		self.layout.btnStore = cMain.findChild(QWidget, "btnSave")
 		
 
-		self.eventWheel = EventFilter()
-		self.layout.frameSVG.viewport().installEventFilter(self.eventWheel);
+#		self.eventWheel = EventFilter()
+#		self.layout.viewport.viewport().installEventFilter(self.eventWheel);
 
 		cMain.connect(self.layout.btnOpen, SIGNAL("clicked()"), self.openFile)
 		cMain.connect(self.layout.btnStore, SIGNAL("clicked()"), self.storeFile)
 
 
-		cCanvas = SvgCanvas(self.layout.frameSVG)
-		self.layout.frameSVG.setWidget(cCanvas)
-		cCanvas.show()
-
 
 
 	def buildSVG(self, _xml):
-		view = self.layout.frameSVG.widget()
-		view.addSVG(_xml)
+		self.layout.viewport.addSVG(_xml)
 		
-		self.eventWheel.setTarget(view)
+#		self.eventWheel.setTarget(self.layout.viewport)
 
 
 
@@ -178,7 +176,24 @@ class EventFilter(QObject):
 '''
 Main scene widget
 '''
-class SvgCanvas(QFrame):
+class GGViewport(QScrollArea):
+	def __init__(self, _parent):
+		QScrollArea.__init__(self, _parent)
+
+		self.setFrameShape(QFrame.NoFrame)
+
+
+
+	def addSVG(self, _xml):
+		self.canvas = SvgCanvas(self, _xml)
+		self.setWidget(self.canvas)
+
+
+
+'''
+Scene canvas 
+'''
+class SvgCanvas(QWidget):
 	doc = None
 	docWidth = 0
 	docHeight = 0
@@ -190,19 +205,13 @@ class SvgCanvas(QFrame):
 
 
 
-	def __init__(self, parent):
-		QFrame.__init__(self, parent)
+	def __init__(self, parent, _xml):
+		QWidget.__init__(self, parent)
 
-
-
-	def addSVG(self, _xml):
 		self.doc = QSvgRenderer(_xml, self)
 		cSize = self.doc.defaultSize()
 		self.docWidth = cSize.width()
 		self.docHeight = cSize.height()
-
-		self.scale = 1.
-		self.setScale(self.scale)
 
 
 
