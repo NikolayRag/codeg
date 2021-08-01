@@ -70,13 +70,15 @@ class AppWindow():
 		cMain.connect(self.layout.btnStore, SIGNAL("clicked()"), self.storeFile)
 
 
+		cCanvas = SvgCanvas(self.layout.frameSVG)
+		self.layout.frameSVG.setWidget(cCanvas)
+		cCanvas.show()
+
+
 
 	def buildSVG(self, _xml):
-		view = SvgCanvas(_xml, self.layout.frameSVG)
-		self.layout.frameSVG.setWidget(view)
-
-		view.show()
-
+		view = self.layout.frameSVG.widget()
+		view.addSVG(_xml)
 		
 		self.eventWheel.setTarget(view)
 
@@ -178,8 +180,8 @@ Main scene widget
 '''
 class SvgCanvas(QFrame):
 	doc = None
-	docWidth = None
-	docHeight = None
+	docWidth = 0
+	docHeight = 0
 
 
 	pos = QPoint(0, 0)
@@ -188,13 +190,19 @@ class SvgCanvas(QFrame):
 
 
 
-	def __init__(self, _xml, parent):
+	def __init__(self, parent):
 		QFrame.__init__(self, parent)
 
+
+
+	def addSVG(self, _xml):
 		self.doc = QSvgRenderer(_xml, self)
 		cSize = self.doc.defaultSize()
 		self.docWidth = cSize.width()
 		self.docHeight = cSize.height()
+
+		self.scale = 1.
+		self.setScale(self.scale)
 
 
 
