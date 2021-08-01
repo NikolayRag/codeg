@@ -164,6 +164,9 @@ class EventFilter(QObject):
 		if event.type() == QEvent.Wheel:
 			self.trueTarget and self.trueTarget.wheelEventAlt(event)
 			return True
+		if event.type() == QEvent.MouseButtonPress:
+			self.trueTarget and self.trueTarget.mousePressEventAlt(event)
+			return True
 
 		return QWidget.eventFilter(self, source, event)
 
@@ -179,6 +182,7 @@ class SvgWidget(QFrame):
 	docHeight = None
 
 
+	pos = QPoint(0, 0)
 	scale = 1.
 	diff = 1.1
 
@@ -222,3 +226,15 @@ class SvgWidget(QFrame):
 		self.scale = _scale
 
 		self.resize(self.sizeHint())
+
+
+
+	def mousePressEventAlt(self, _e):
+		self.setPos(_e.pos())
+
+
+
+	def setPos(self, _pos):
+		self.pos = _pos
+
+#		self.move(100/self.scale,100/self.scale)
