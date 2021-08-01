@@ -144,7 +144,34 @@ class AppWindow():
 
 
 '''
+Event filter
+'''
+class EventFilter(QObject):
+	trueTarget = None
 
+
+	def __init__(self):
+		QObject.__init__(self)
+
+
+
+	def setTarget(self, _target):
+		self.trueTarget = _target
+
+
+
+	def eventFilter(self, source, event):
+		if event.type() == QEvent.Wheel:
+			self.trueTarget and self.trueTarget.wheelEventAlt(event)
+			return True
+
+		return QWidget.eventFilter(self, source, event)
+
+
+
+
+'''
+Main scene widget
 '''
 class SvgWidget(QFrame):
 	scale = 1.
@@ -190,26 +217,3 @@ class SvgWidget(QFrame):
 		self.scale = _scale
 
 		self.resize(self.sizeHint())
-
-
-
-class EventFilter(QObject):
-	trueTarget = None
-
-
-	def __init__(self):
-		QObject.__init__(self)
-
-
-
-	def setTarget(self, _target):
-		self.trueTarget = _target
-
-
-
-	def eventFilter(self, source, event):
-		if event.type() == QEvent.Wheel:
-			self.trueTarget and self.trueTarget.wheelEventAlt(event)
-			return True
-
-		return QWidget.eventFilter(self, source, event)
