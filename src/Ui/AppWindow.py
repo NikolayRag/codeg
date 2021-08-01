@@ -174,6 +174,11 @@ class EventFilter(QObject):
 Main scene widget
 '''
 class SvgWidget(QFrame):
+	doc = None
+	docWidth = None
+	docHeight = None
+
+
 	scale = 1.
 	diff = 1.1
 
