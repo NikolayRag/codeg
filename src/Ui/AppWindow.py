@@ -133,33 +133,6 @@ class AppWindow():
 
 
 
-'''
-Event filter
-'''
-class EventFilter(QObject):
-	trueTarget = None
-
-
-	def __init__(self):
-		QObject.__init__(self)
-
-
-
-	def setTarget(self, _target):
-		self.trueTarget = _target
-
-
-
-	def eventFilter(self, source, event):
-		if event.type() == QEvent.Wheel:
-			self.trueTarget and self.trueTarget.wheelEventAlt(event)
-			return True
-		if event.type() == QEvent.MouseButtonPress:
-			self.trueTarget and self.trueTarget.mousePressEventAlt(event)
-			return True
-
-		return QWidget.eventFilter(self, source, event)
-
 
 
 
@@ -196,6 +169,8 @@ class GGViewport(QScrollArea):
 		self.setFrameShape(QFrame.NoFrame)
 
 
+
+#####PUBLIC#####
 
 	def addSVG(self, _xml):
 		self.canvas = SvgCanvas(self, _xml)
