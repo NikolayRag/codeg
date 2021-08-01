@@ -72,7 +72,7 @@ class AppWindow():
 
 
 	def buildSVG(self, _xml):
-		view = SvgNativeView(_xml, self.layout.frameSVG)
+		view = SvgWidget(_xml, self.layout.frameSVG)
 		self.layout.frameSVG.setWidget(view)
 
 		view.show()
@@ -144,10 +144,11 @@ class AppWindow():
 
 
 '''
-PySide2 example code template
+
 '''
-class SvgNativeView(QFrame):
+class SvgWidget(QFrame):
 	scale = 1.
+	diff = 1.1
 
 
 
@@ -181,8 +182,7 @@ class SvgNativeView(QFrame):
 #  todo 6 (svg, feature) +0: smooth animated zoom
 
 	def wheelEventAlt(self, e):
-		diff = 1.1
-		self.setScale(self.scale * (diff if e.delta()> 0 else 1/diff))
+		self.setScale(self.scale * (self.diff if e.delta()> 0 else 1/self.diff))
 
 
 
