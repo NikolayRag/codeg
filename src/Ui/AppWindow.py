@@ -29,8 +29,6 @@ class AppWindow():
 	layout.btnStore = None
 
 
-	eventWheel = None
-
 	modulePath= os.path.abspath(os.path.dirname(__file__))
 
 
@@ -66,8 +64,6 @@ class AppWindow():
 		self.layout.btnStore = cMain.findChild(QWidget, "btnSave")
 		
 
-#		self.eventWheel = EventFilter()
-#		self.layout.viewport.viewport().installEventFilter(self.eventWheel);
 
 		cMain.connect(self.layout.btnOpen, SIGNAL("clicked()"), self.openFile)
 		cMain.connect(self.layout.btnStore, SIGNAL("clicked()"), self.storeFile)
@@ -171,6 +167,29 @@ class EventFilter(QObject):
 Main scene widget
 '''
 class GGViewport(QScrollArea):
+	canvas = None
+
+	diff = 1.1
+
+
+
+	#mouse interaction
+	def wheelEvent(self, _e):
+		if self.canvas:
+			self.canvas.setScale(self.diff if _e.delta()> 0 else 1/self.diff)
+
+		return True
+
+
+
+	def mousePressEvent(self, _e):
+		if self.canvas:
+			self.canvas.setPos(_e.pos())
+
+		return True
+
+
+
 	def __init__(self, _parent):
 		QScrollArea.__init__(self, _parent)
 
@@ -195,7 +214,6 @@ class SvgCanvas(QWidget):
 
 	pos = QPoint(0, 0)
 	scale = 1.
-	diff = 1.1
 
 
 
@@ -228,20 +246,10 @@ class SvgCanvas(QWidget):
 #  todo 5 (svg, feature) +0: pan by mouse
 #  todo 6 (svg, feature) +0: smooth animated zoom
 
-	def wheelEventAlt(self, e):
-		self.setScale(self.scale * (self.diff if e.delta()> 0 else 1/self.diff))
-
-
-
 	def setScale(self, _scale):
-		self.scale = _scale
+		self.scale *= _scale
 
 		self.resize(self.sizeHint())
-
-
-
-	def mousePressEventAlt(self, _e):
-		self.setPos(_e.pos())
 
 
 
