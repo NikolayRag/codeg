@@ -75,14 +75,6 @@ class AppWindow():
 
 
 
-	def buildSVG(self, _xml):
-		self.layout.viewport.addSVG(_xml)
-		
-#		self.eventWheel.setTarget(self.layout.viewport)
-
-
-
-
 	'''
 	Display UI and enter QT app loop
 	'''
@@ -114,7 +106,9 @@ class AppWindow():
 
 
 		cData = self.cbWFileLoad(fileName)
-		self.buildSVG(cData)
+		self.layout.viewport.addSVG(cData)
+		
+
 
 #  todo 20 (module-ui, error) +0: handle errors, maybe status string
 
