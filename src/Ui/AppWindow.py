@@ -72,7 +72,7 @@ class AppWindow():
 
 
 	def buildSVG(self, _xml):
-		view = SvgWidget(_xml, self.layout.frameSVG)
+		view = SvgCanvas(_xml, self.layout.frameSVG)
 		self.layout.frameSVG.setWidget(view)
 
 		view.show()
@@ -176,7 +176,7 @@ class EventFilter(QObject):
 '''
 Main scene widget
 '''
-class SvgWidget(QFrame):
+class SvgCanvas(QFrame):
 	doc = None
 	docWidth = None
 	docHeight = None
