@@ -22,28 +22,26 @@ class SvgViewport(QWidget):
 
 	#mouse interaction
 	def wheelEvent(self, _e):
-		if self.canvas:
-			scaleMul = self.diff if _e.delta()> 0 else 1/self.diff
+		scaleMul = self.diff if _e.delta()> 0 else 1/self.diff
 
-			self.viewportSize(self.scale*scaleMul)
+		self.viewportSize(self.scale*scaleMul)
 
-			posDelta = _e.pos() - self.pos
-			posDelta *= (1-scaleMul)
-			self.viewportPlace( self.pos + posDelta )
-
-		return True
+		posDelta = _e.pos() - self.pos
+		posDelta *= (1-scaleMul)
+		self.viewportPlace( self.pos + posDelta )
 
 
 
 	def mousePressEvent(self, _e):
-		if self.canvas:
-			self.viewportPlace( _e.pos() )
-
-		return True
+		self.viewportPlace( _e.pos() )
 
 
 
 	def viewportSize(self, _scale):
+		if not self.canvas:
+			return
+
+
 		self.canvas.canvasSize(_scale, _scale)
 
 		self.scale = _scale
@@ -51,6 +49,10 @@ class SvgViewport(QWidget):
 
 
 	def viewportPlace(self, _pos):
+		if not self.canvas:
+			return
+
+
 		cSize = self.canvas.sizeHint()
 
 		if _pos.x()>(self.width()-50):
