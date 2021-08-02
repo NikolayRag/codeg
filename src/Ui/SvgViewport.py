@@ -25,10 +25,7 @@ class SvgViewport(QWidget):
 		if self.canvas:
 			scaleMul = self.diff if _e.delta()> 0 else 1/self.diff
 
-
-			self.scale *= scaleMul
-			self.canvas.canvasSize(self.scale, self.scale)
-
+			self.viewportSize(self.scale*scaleMul)
 
 			posDelta = _e.pos() - self.pos
 			posDelta *= (1-scaleMul)
@@ -43,6 +40,14 @@ class SvgViewport(QWidget):
 			self.viewportPlace( _e.pos() )
 
 		return True
+
+
+
+	def viewportSize(self, _scale):
+		self.canvas.canvasSize(_scale, _scale)
+
+		self.scale = _scale
+
 
 
 	def viewportPlace(self, _pos):
