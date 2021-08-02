@@ -1,6 +1,6 @@
 #  todo 33 (module-ui, widgets) +0: zoom slider
 #  todo 34 (module-ui, widgets) +0: transform reset
-# -todo 28 (module-ui) +0: add credits: About, License, Github
+
 
 
 import os, logging

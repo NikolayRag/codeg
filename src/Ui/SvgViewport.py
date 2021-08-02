@@ -1,9 +1,12 @@
+#  todo 36 (module-ui, API) +0: make viewport interaction callbacks
+
 from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 from PySide2.QtSvg import *
 
-# =todo 32 (module-ui, spec, layout) +1: make isolated viewport widget
+# -todo 37 (module-ui, viewport) +0: make custom scrollbars out of SvgViewport
+
 '''
 Main scene widget
 '''
@@ -28,10 +31,8 @@ class SvgViewport(QWidget):
 
 
 
+#  todo 6 (module-ui, feature) +0: smooth animated zoom
 
-# =todo 4 (svg, feature) +0: zoom by wheel within center-mouse
-# =todo 5 (svg, feature) +0: pan by mouse
-#  todo 6 (svg, feature) +0: smooth animated zoom
 	def resizeEvent(self, _e):
 		if not self.canvas:
 			return

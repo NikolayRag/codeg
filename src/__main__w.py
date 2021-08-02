@@ -1,5 +1,5 @@
-# =todo 17 (spec, module-dispatch, proto) +0: send to serial-usb (arduino)
 
+# =todo 17 (spec, module-dispatch) +0: send to serial-usb (arduino)
 #todo
 
 from Ui import *
