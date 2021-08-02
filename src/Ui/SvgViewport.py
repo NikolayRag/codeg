@@ -32,8 +32,7 @@ class SvgViewport(QWidget):
 
 			posDelta = _e.pos() - self.pos
 			posDelta *= (1-scaleMul)
-			self.pos += posDelta
-			self.viewportPlace( self.pos )
+			self.viewportPlace( self.pos + posDelta )
 
 		return True
 
@@ -47,7 +46,21 @@ class SvgViewport(QWidget):
 
 
 	def viewportPlace(self, _pos):
-		self.canvas.canvasPlace( _e.pos() )
+		cSize = self.canvas.sizeHint()
+
+		if _pos.x()>(self.width()-50):
+			_pos.setX(self.width()-50)
+		if _pos.y()>(self.height()-50):
+			_pos.setY(self.height()-50)
+
+		if _pos.x()<(50-cSize.width()):
+			_pos.setX(50-cSize.width())
+		if _pos.y()<(50-cSize.height()):
+			_pos.setY(50-cSize.height())
+
+
+		self.pos = _pos
+		self.canvas.canvasPlace( _pos )
 
 
 
