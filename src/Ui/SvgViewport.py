@@ -85,11 +85,7 @@ class SvgViewport(QWidget):
 
 		self.canvas.canvasSize(self.scale, self.scale)
 
-		cSize = self.canvas.sizeHint()
-		self.viewportPlace(QPoint(
-			(self.width()-cSize.width())/2,
-			(self.height()-cSize.height())/2
-		))
+		self.canvasCenter()
 
 		self.canvas.show()
 
