@@ -9,6 +9,9 @@ Main scene widget
 '''
 class SvgViewport(QWidget):
 	panMargins = 50
+	scaleMinPx = 10
+	scaleMax = 10000
+
 
 	canvas = None
 
@@ -45,9 +48,22 @@ class SvgViewport(QWidget):
 			return
 
 
-		self.canvas.canvasSize(_scale, _scale)
+		#max clip
+		if _scale>self.scaleMax:
+			_scale = self.scaleMax
+
+
+		#min clip
+		cSize = self.canvas.sizeHint()
+		cWidth, cHeight = cSize.width(), cSize.height()
+		newSize = (cWidth if cWidth<cHeight else cHeight) * _scale/self.scale
+
+		if self.scaleMinPx > newSize:
+			_scale *= (self.scaleMinPx / newSize)
+
 
 		self.scale = _scale
+		self.canvas.canvasSize(_scale, _scale)
 
 
 
