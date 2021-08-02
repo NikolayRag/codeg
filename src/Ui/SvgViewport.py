@@ -127,3 +127,5 @@ class SvgCanvas(QWidget):
 		self.update()
 
 
+	def getDocSize(self):
+		return QSize(self.docWidth, self.docHeight)
