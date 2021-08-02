@@ -103,8 +103,8 @@ class SvgViewport(QWidget):
 		fitWidth = self.width() / cSize.width()
 		fitHeight = self.height() / cSize.height()
 
-		self.scale = fitHeight if fitHeight<fitWidth else fitWidth
-		self.viewportSize(self.scale)
+		cScale = fitHeight if fitHeight<fitWidth else fitWidth
+		self.viewportSize(cScale)
 
 
 
