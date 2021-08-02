@@ -57,7 +57,7 @@ class AppWindow():
 
 		QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
 		self.qApp = QApplication()
-		self.qApp.setStyle(QStyleFactory.create('plastique'))
+		self.qApp.setStyle(QStyleFactory.create('fusion'))
 
 		uiFile = os.path.join(self.modulePath,'AppWindow.ui')
 		cMain = self.layout.main = QUiLoader().load(uiFile)
