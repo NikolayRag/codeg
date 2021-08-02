@@ -8,6 +8,8 @@ from PySide2.QtSvg import *
 Main scene widget
 '''
 class SvgViewport(QWidget):
+	panOrigin = None
+
 	panMargins = 50
 	scaleMinPx = 10
 	scaleMax = 10000
@@ -69,7 +71,20 @@ class SvgViewport(QWidget):
 
 
 	def mousePressEvent(self, _e):
-		self.viewportPlace( _e.pos() )
+		if _e.button() == Qt.MouseButton.MiddleButton:
+			self.panOrigin = self.pos - _e.pos()
+
+
+
+	def mouseMoveEvent(self, _e):
+		if self.panOrigin:
+			self.viewportPlace( self.panOrigin + _e.pos() )
+
+
+
+	def mouseReleaseEvent(self, _e):
+		if _e.button() == Qt.MouseButton.MiddleButton:
+			self.panOrigin = None
 
 
 
