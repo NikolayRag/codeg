@@ -95,6 +95,18 @@ class SvgViewport(QWidget):
 
 
 
+	def canvasCenter(self):
+		if not self.canvas:
+			return
+
+		cSize = self.canvas.sizeHint()
+		self.viewportPlace(QPoint(
+			(self.width()-cSize.width())/2,
+			(self.height()-cSize.height())/2
+		))
+
+
+
 '''
 Scene canvas 
 '''
