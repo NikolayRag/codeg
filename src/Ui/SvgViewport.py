@@ -26,10 +26,11 @@ class SvgViewport(QWidget):
 	def wheelEvent(self, _e):
 		scaleMul = self.diff if _e.delta()> 0 else 1/self.diff
 
+		oldScale = self.scale
 		self.viewportSize(self.scale*scaleMul)
 
 		posDelta = _e.pos() - self.pos
-		posDelta *= (1-scaleMul)
+		posDelta *= (1-self.scale/oldScale)
 		self.viewportPlace( self.pos + posDelta )
 
 
