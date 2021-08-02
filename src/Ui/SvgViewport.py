@@ -33,16 +33,22 @@ class SvgViewport(QWidget):
 			posDelta = _e.pos() - self.pos
 			posDelta *= (1-scaleMul)
 			self.pos += posDelta
-			self.canvas.canvasPlace( self.pos )
+			self.viewportPlace( self.pos )
+
 		return True
 
 
 
 	def mousePressEvent(self, _e):
 		if self.canvas:
-			self.canvas.canvasPlace( _e.pos() )
+			self.viewportPlace( _e.pos() )
 
 		return True
+
+
+	def viewportPlace(self, _pos):
+		self.canvas.canvasPlace( _e.pos() )
+
 
 
 
