@@ -53,13 +53,11 @@ class SvgViewport(QWidget):
 		self.scale = 1.
 
 
-		cLay = self.layout()
 		if self.canvas:
-			cLay.takeAt(0).widget().deleteLater()
+			self.canvas.deleteLater()
 
 		self.canvas = SvgCanvas(self, _xml)
-		cLay.addWidget(self.canvas)
-
+		self.canvas.show()
 
 
 
@@ -88,6 +86,8 @@ class SvgCanvas(QWidget):
 		cSize = self.doc.defaultSize()
 		self.docWidth = cSize.width()
 		self.docHeight = cSize.height()
+
+		self.update()
 
 
 
