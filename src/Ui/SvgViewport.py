@@ -92,9 +92,6 @@ class SvgCanvas(QWidget):
 
 
 	def paintEvent(self, e):
-		self.resize(self.sizeHint())
-		self.move(self.offsetX, self.offsetY)
-
 		p = QPainter(self)
 		p.setViewport( QRect(QPoint(0, 0), self.sizeHint()) )
 		self.doc.render(p)
@@ -106,6 +103,14 @@ class SvgCanvas(QWidget):
 			self.docWidth * self.scaleX,
 			self.docHeight * self.scaleY
 		)
+
+
+
+	def update(self):
+		self.resize(self.sizeHint())
+		self.move(self.offsetX, self.offsetY)
+
+		QWidget.update(self)
 
 
 
