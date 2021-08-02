@@ -34,7 +34,7 @@ class SvgViewport(QWidget):
 
 	def mousePressEvent(self, _e):
 		if self.canvas:
-			self.canvas.canvasPlace( _e.pos().x(), _e.pos().y() )
+			self.canvas.canvasPlace( _e.pos() )
 
 		return True
 
@@ -70,8 +70,7 @@ class SvgCanvas(QWidget):
 	docHeight = 0
 
 	
-	offsetX = 0
-	offsetY = 0
+	offset = QPoint(0,0)
 
 	scaleX = 1.
 	scaleY = 1.
@@ -108,7 +107,7 @@ class SvgCanvas(QWidget):
 
 	def update(self):
 		self.resize(self.sizeHint())
-		self.move(self.offsetX, self.offsetY)
+		self.move(self.offset)
 
 		QWidget.update(self)
 
@@ -122,9 +121,8 @@ class SvgCanvas(QWidget):
 		self.update()
 
 
-	def canvasPlace(self, _offsetX, _offsetY):
-		self.offsetX = _offsetX
-		self.offsetY = _offsetY
+	def canvasPlace(self, _offset):
+		self.offset = _offset
 
 		self.update()
 
