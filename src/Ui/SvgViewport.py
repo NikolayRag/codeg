@@ -33,8 +33,8 @@ class SvgViewport(QScrollArea):
 
 
 	def mousePressEvent(self, _e):
-		self.horizontalScrollBar().setValue( _e.pos().x() )
-		self.verticalScrollBar().setValue( _e.pos().y() )
+		if self.canvas:
+			self.canvas.canvasPlace( _e.pos().x(), _e.pos().y() )
 
 		return True
 
@@ -63,6 +63,10 @@ class SvgCanvas(QWidget):
 	docWidth = 0
 	docHeight = 0
 
+	
+	offsetX = 0
+	offsetY = 0
+
 	scaleX = 1.
 	scaleY = 1.
 
@@ -80,6 +84,9 @@ class SvgCanvas(QWidget):
 
 
 	def paintEvent(self, e):
+		self.resize(self.sizeHint())
+		self.move(self.offsetX, self.offsetY)
+
 		p = QPainter(self)
 		p.setViewport( QRect(QPoint(0, 0), self.sizeHint()) )
 		self.doc.render(p)
@@ -99,7 +106,13 @@ class SvgCanvas(QWidget):
 		self.scaleX = _factorX
 		self.scaleY = _factorY
 
-		self.resize(self.sizeHint())
+		self.update()
 
+
+	def canvasPlace(self, _offsetX, _offsetY):
+		self.offsetX = _offsetX
+		self.offsetY = _offsetY
+
+		self.update()
 
 
