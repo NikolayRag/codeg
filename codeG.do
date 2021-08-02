@@ -7,10 +7,10 @@
  feature, file 3: +0 "src\Ui\AppWindow.py" ki 21/07/26 05:38:40
 	allow picking from Recent files list
 
- svg, feature 4: +0 "src\Ui\AppWindow.py" ki 21/07/31 19:59:33
+=svg, feature 4: +0 "src\Ui\AppWindow.py" ki 21/08/02 01:07:18
 	zoom by wheel within center-mouse
 
- svg, feature 5: +0 "src\Ui\AppWindow.py" ki 21/07/26 05:52:31
+=svg, feature 5: +0 "src\Ui\AppWindow.py" ki 21/08/02 01:07:18
 	pan by mouse
 
  svg, feature 6: +0 "src\Ui\AppWindow.py" ki 21/07/26 05:53:10
@@ -79,7 +79,7 @@
 =module-ui, ux 27: +0 "src\Ui\Ui.py" ki 21/07/31 16:32:14
 	allow append gcode from text field (paste)
 
- module-ui 28: +0 "src\Ui\AppWindow.py" ki 21/07/31 16:35:02
+-module-ui 28: +0 "src\Ui\AppWindow.py" ki 21/08/02 05:05:37
 	add credits: About, License, Github
 
 +module-ui, tech 29: -1 "src\Ui\AppWindow.py" ki 21/07/31 19:34:09
@@ -87,4 +87,16 @@
 
 +module-ui, error 31: +1 "src\Ui\AppWindow.py" ki 21/07/31 19:26:37
 	Filter __init__ dont work
+
+=module-ui, spec, layout 32: +1 "src\Ui\AppWindow.py" ki 21/08/02 01:07:17
+	make isolated viewport widget
+
+ module-ui, widgets 33: +0 "src\Ui\AppWindow.py" ki 21/08/02 05:05:03
+	zoom slider
+
+ module-ui, widgets 34: +0 "src\Ui\AppWindow.py" ki 21/08/02 05:05:28
+	transform reset
+
+!module-ui, widgets 35: +0 "src\Ui\AppWindow.py" ki 21/08/02 05:10:07
+	zoom factor 
 

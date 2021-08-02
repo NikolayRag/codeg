@@ -1,4 +1,7 @@
-#  todo 28 (module-ui) +0: add credits: About, License, Github
+#  todo 33 (module-ui, widgets) +0: zoom slider
+#  todo 34 (module-ui, widgets) +0: transform reset
+# -todo 28 (module-ui) +0: add credits: About, License, Github
+
 
 import os, logging
 
@@ -136,6 +139,7 @@ class AppWindow():
 
 
 
+# =todo 32 (module-ui, spec, layout) +1: make isolated viewport widget
 '''
 Main scene widget
 '''
@@ -147,6 +151,10 @@ class GGViewport(QScrollArea):
 	diff = 1.1
 
 
+
+# =todo 4 (svg, feature) +0: zoom by wheel within center-mouse
+# =todo 5 (svg, feature) +0: pan by mouse
+#  todo 6 (svg, feature) +0: smooth animated zoom
 
 	#mouse interaction
 	def wheelEvent(self, _e):
@@ -219,10 +227,6 @@ class SvgCanvas(QWidget):
 		)
 
 
-
-#  todo 4 (svg, feature) +0: zoom by wheel within center-mouse
-#  todo 5 (svg, feature) +0: pan by mouse
-#  todo 6 (svg, feature) +0: smooth animated zoom
 
 #####PUBLIC#####
 	def canvasSize(self, _factorX, _factorY):
