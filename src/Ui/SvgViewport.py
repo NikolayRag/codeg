@@ -160,6 +160,7 @@ class SvgViewport(QWidget):
 		QHBoxLayout(self)
 
 
+
 #####PUBLIC#####
 
 	def addSVG(self, _xml=None):
@@ -262,10 +263,12 @@ class SvgCanvas(QWidget):
 		self.update()
 
 
+
 	def canvasPlace(self, _offset):
 		self.offset = _offset
 
 		self.update()
+
 
 
 	def getDocSize(self):
