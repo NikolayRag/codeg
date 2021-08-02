@@ -8,6 +8,8 @@ from PySide2.QtSvg import *
 Main scene widget
 '''
 class SvgViewport(QWidget):
+	panMargins = 50
+
 	canvas = None
 
 	pos = QPoint(0, 0)
@@ -55,15 +57,15 @@ class SvgViewport(QWidget):
 
 		cSize = self.canvas.sizeHint()
 
-		if _pos.x()>(self.width()-50):
-			_pos.setX(self.width()-50)
-		if _pos.y()>(self.height()-50):
-			_pos.setY(self.height()-50)
+		if _pos.x()>(self.width()-self.panMargins):
+			_pos.setX(self.width()-self.panMargins)
+		if _pos.y()>(self.height()-self.panMargins):
+			_pos.setY(self.height()-self.panMargins)
 
-		if _pos.x()<(50-cSize.width()):
-			_pos.setX(50-cSize.width())
-		if _pos.y()<(50-cSize.height()):
-			_pos.setY(50-cSize.height())
+		if _pos.x()<(self.panMargins-cSize.width()):
+			_pos.setX(self.panMargins-cSize.width())
+		if _pos.y()<(self.panMargins-cSize.height()):
+			_pos.setY(self.panMargins-cSize.height())
 
 
 		self.pos = _pos
