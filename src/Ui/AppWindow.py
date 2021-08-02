@@ -159,8 +159,8 @@ class GGViewport(QScrollArea):
 
 
 	def mousePressEvent(self, _e):
-		if self.canvas:
-			self.canvas.move(_e.pos())
+		self.horizontalScrollBar().setValue( _e.pos().x() )
+		self.verticalScrollBar().setValue( _e.pos().y() )
 
 		return True
 
