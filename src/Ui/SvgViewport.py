@@ -19,6 +19,12 @@ class SvgViewport(QWidget):
 	scale = 1.
 	diff = 1.1
 
+	#screen space
+	anchorCanvasX = .5
+	anchorCanvasY = .5
+
+
+
 
 
 # =todo 4 (svg, feature) +0: zoom by wheel within center-mouse
@@ -34,8 +40,15 @@ class SvgViewport(QWidget):
 		else:
 			cScale = ( (newW/oldW)+(newH/oldH) ) /2.
 		
+		self.viewportSize(self.scale*cScale, False)
 
-		self.viewportSize(self.scale*cScale)
+
+		#compensate center position against viewport center
+		newHint = self.canvas.sizeHint()
+		self.viewportPlace( QPoint(
+			round(self.anchorCanvasX*newW - newHint.width()*.5),
+			round(self.anchorCanvasY*newH - newHint.height()*.5)
+		), False)
 
 
 
@@ -57,7 +70,7 @@ class SvgViewport(QWidget):
 
 
 
-	def viewportSize(self, _scale):
+	def viewportSize(self, _scale, _updateAnchor=True):
 		if not self.canvas:
 			return
 
@@ -80,8 +93,12 @@ class SvgViewport(QWidget):
 		self.canvas.canvasSize(_scale, _scale)
 
 
+		if _updateAnchor:
+			self.anchorCanvas()
 
-	def viewportPlace(self, _pos):
+
+
+	def viewportPlace(self, _pos, _updateAnchor=True):
 		if not self.canvas:
 			return
 
@@ -101,6 +118,19 @@ class SvgViewport(QWidget):
 
 		self.pos = _pos
 		self.canvas.canvasPlace( _pos )
+
+
+		if _updateAnchor:
+			self.anchorCanvas()
+
+
+
+	#hold canvas's midpoint in SvgViewport screen space
+	# as cache for window resize
+	def anchorCanvas(self):
+			cHint = self.canvas.sizeHint()
+			self.anchorCanvasX = ( self.pos.x()+cHint.width()*.5 ) /self.width()
+			self.anchorCanvasY = ( self.pos.y()+cHint.height()*.5 ) /self.height()
 
 
 
