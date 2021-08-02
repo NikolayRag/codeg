@@ -7,7 +7,7 @@ from PySide2.QtSvg import *
 '''
 Main scene widget
 '''
-class SvgViewport(QScrollArea):
+class SvgViewport(QWidget):
 	canvas = None
 
 	pos = QPoint(0, 0)
@@ -41,17 +41,25 @@ class SvgViewport(QScrollArea):
 
 
 	def __init__(self, _parent):
-		QScrollArea.__init__(self, _parent)
+		QWidget.__init__(self, _parent)
 
-		self.setFrameShape(QFrame.NoFrame)
-
+		QHBoxLayout(self)
 
 
 #####PUBLIC#####
 
 	def addSVG(self, _xml):
+		self.pos = QPoint(0, 0)
+		self.scale = 1.
+
+
+		cLay = self.layout()
+		if self.canvas:
+			cLay.takeAt(0).widget().deleteLater()
+
 		self.canvas = SvgCanvas(self, _xml)
-		self.setWidget(self.canvas)
+		cLay.addWidget(self.canvas)
+
 
 
 
