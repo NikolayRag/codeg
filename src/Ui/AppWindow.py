@@ -33,6 +33,7 @@ class AppWindow():
 	layout = Object()
 	layout.main = None
 	layout.frameSVG = None
+	layout.btnCaption = None
 	layout.btnOpen = None
 	layout.btnStore = None
 
