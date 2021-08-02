@@ -83,11 +83,26 @@ class SvgViewport(QWidget):
 
 		self.canvas = SvgCanvas(self, _xml)
 
-		self.canvas.canvasSize(self.scale, self.scale)
+		self.canvasFit()
 
 		self.canvasCenter()
 
 		self.canvas.show()
+
+
+
+	def canvasFit(self):
+		if not self.canvas:
+			return
+
+
+		cSize = self.canvas.sizeHint()
+		fitWidth = self.width() / cSize.width()
+		fitHeight = self.height() / cSize.height()
+
+		self.scale = fitHeight if fitHeight<fitWidth else fitWidth
+
+		self.canvas.canvasSize(self.scale, self.scale)
 
 
 
