@@ -142,6 +142,8 @@ Main scene widget
 class GGViewport(QScrollArea):
 	canvas = None
 
+	pos = QPoint(0, 0)
+	scale = 1.
 	diff = 1.1
 
 
@@ -149,7 +151,8 @@ class GGViewport(QScrollArea):
 	#mouse interaction
 	def wheelEvent(self, _e):
 		if self.canvas:
-			self.canvas.setScale(self.diff if _e.delta()> 0 else 1/self.diff)
+			self.scale *= self.diff if _e.delta()> 0 else 1/self.diff
+			self.canvas.canvasSize(self.scale, self.scale)
 
 		return True
 
@@ -157,7 +160,7 @@ class GGViewport(QScrollArea):
 
 	def mousePressEvent(self, _e):
 		if self.canvas:
-			self.canvas.setPos(_e.pos())
+			self.canvas.move(_e.pos())
 
 		return True
 
@@ -186,9 +189,9 @@ class SvgCanvas(QWidget):
 	docWidth = 0
 	docHeight = 0
 
+	scaleX = 1.
+	scaleY = 1.
 
-	pos = QPoint(0, 0)
-	scale = 1.
 
 
 
@@ -211,8 +214,8 @@ class SvgCanvas(QWidget):
 
 	def sizeHint(self):
 		return QSize(
-			self.docWidth * self.scale,
-			self.docHeight * self.scale
+			self.docWidth * self.scaleX,
+			self.docHeight * self.scaleY
 		)
 
 
@@ -221,14 +224,12 @@ class SvgCanvas(QWidget):
 #  todo 5 (svg, feature) +0: pan by mouse
 #  todo 6 (svg, feature) +0: smooth animated zoom
 
-	def setScale(self, _scale):
-		self.scale *= _scale
+#####PUBLIC#####
+	def canvasSize(self, _factorX, _factorY):
+		self.scaleX = _factorX
+		self.scaleY = _factorY
 
 		self.resize(self.sizeHint())
 
 
 
-	def setPos(self, _pos):
-		self.pos = _pos
-
-#		self.move(100/self.scale,100/self.scale)
