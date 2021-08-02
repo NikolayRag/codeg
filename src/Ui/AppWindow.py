@@ -4,6 +4,7 @@
 
 
 import os, logging
+import webbrowser
 
 from PySide2.QtCore import *
 from PySide2.QtGui import *
@@ -20,6 +21,8 @@ class Object():
 
 
 class AppWindow():
+	aboutHref = "https://github.com/NikolayRag/codeg"
+
 	cbWFileLoad = None
 	cbWFileSave = None
 
@@ -65,11 +68,12 @@ class AppWindow():
 		self.layout.viewport = SvgViewport(holderViewport)
 		holderViewport.layout().addWidget(self.layout.viewport)
 
+		self.layout.btnCaption = cMain.findChild(QWidget, "btnCaption")
 		self.layout.btnOpen = cMain.findChild(QWidget, "btnLoad")
 		self.layout.btnStore = cMain.findChild(QWidget, "btnSave")
 		
 
-
+		cMain.connect(self.layout.btnCaption, SIGNAL("clicked()"), self.about)
 		cMain.connect(self.layout.btnOpen, SIGNAL("clicked()"), self.openFile)
 		cMain.connect(self.layout.btnStore, SIGNAL("clicked()"), self.storeFile)
 
@@ -84,6 +88,12 @@ class AppWindow():
 
 
 		self.qApp.exec_()
+
+
+
+	def about(self):
+		webbrowser.open(self.aboutHref)
+
 
 
 #  todo 3 (feature, file) +0: allow picking from Recent files list
