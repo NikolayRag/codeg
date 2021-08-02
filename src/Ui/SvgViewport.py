@@ -24,6 +24,20 @@ class SvgViewport(QWidget):
 # =todo 4 (svg, feature) +0: zoom by wheel within center-mouse
 # =todo 5 (svg, feature) +0: pan by mouse
 #  todo 6 (svg, feature) +0: smooth animated zoom
+	def resizeEvent(self, _e):
+		oldW, oldH, newW, newH = _e.oldSize().width(), _e.oldSize().height(), _e.size().width(), _e.size().height()
+
+
+		#portrait/landscape didnt change, use smallest side scale factor
+		if (oldW-oldH)*(newW-newH)>0:
+			cScale = (newW/oldW) if oldW<oldH else (newH/oldH)
+		else:
+			cScale = ( (newW/oldW)+(newH/oldH) ) /2.
+		
+
+		self.viewportSize(self.scale*cScale)
+
+
 
 	#mouse interaction
 	def wheelEvent(self, _e):
