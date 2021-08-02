@@ -31,8 +31,11 @@ class SvgViewport(QWidget):
 # =todo 5 (svg, feature) +0: pan by mouse
 #  todo 6 (svg, feature) +0: smooth animated zoom
 	def resizeEvent(self, _e):
-		oldW, oldH, newW, newH = _e.oldSize().width(), _e.oldSize().height(), _e.size().width(), _e.size().height()
+		if not self.canvas:
+			return
 
+
+		oldW, oldH, newW, newH = _e.oldSize().width(), _e.oldSize().height(), _e.size().width(), _e.size().height()
 
 		#portrait/landscape didnt change, use smallest side scale factor
 		if (oldW-oldH)*(newW-newH)>0:
