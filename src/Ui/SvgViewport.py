@@ -73,16 +73,17 @@ class SvgViewport(QWidget):
 
 #####PUBLIC#####
 
-	def addSVG(self, _xml):
+	def addSVG(self, _xml=None):
 		if self.canvas:
 			self.canvas.deleteLater()
 			self.canvas = None
 
 
-		self.canvas = SvgCanvas(self, _xml)
-		self.canvasFit()
-		self.canvasCenter()
-		self.canvas.show()
+		if _xml:
+			self.canvas = SvgCanvas(self, _xml)
+			self.canvasFit()
+			self.canvasCenter()
+			self.canvas.show()
 
 
 
