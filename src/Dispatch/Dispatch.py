@@ -17,8 +17,12 @@ class Dispatch():
 
 
 	def getDevices(self):
+		cPortsA = serial.tools.list_ports.comports()
+		self.listPorts = {port.device: port for port in cPortsA}
+
+		return({port.device: port.description for port in cPortsA})
+
 
 		cPortsA = serial.tools.list_ports.comports()
 		self.listPorts = {port.device: port for port in cPortsA}
 
-		return(self.listPorts.keys())
