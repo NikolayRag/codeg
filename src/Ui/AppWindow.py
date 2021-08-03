@@ -1,6 +1,6 @@
 #  todo 33 (module-ui, widgets) +0: zoom slider
 #  todo 34 (module-ui, widgets) +0: transform reset
-
+# =todo 51 (module-ui, ux) +0: layer control
 
 
 import os, logging
@@ -74,6 +74,9 @@ class AppWindow():
 		QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
 		self.qApp = QApplication()
 		self.qApp.setStyle(QStyleFactory.create('fusion'))
+#  todo 50 (module-ui) +0: add style
+#		with open('Ui/style.qss') as fQss:
+#			self.qApp.setStyleSheet(fQss.read())
 
 		uiFile = os.path.join(self.modulePath,'AppWindow.ui')
 		cMain = self.layout.main = QUiLoader().load(uiFile)
@@ -92,8 +95,11 @@ class AppWindow():
 		self.layout.frameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
 		self.layout.frameDispatcher.setVisible(False)
 #  todo 47 (module-dispatch, module-ui, ux) +0: change device list to button+list
+#  todo 48 (module-ui) +0: update device list
+# =todo 49 (module-ui, ux) +0: save/restore active device between sessions
 		self.layout.ddPorts = cMain.findChild(QWidget, "ddPorts")
 		self.layout.btnProccess = cMain.findChild(QWidget, "btnProccess")
+
 
 
 		cMain.connect(self.layout.btnCaption, SIGNAL("clicked()"), self.about)
@@ -171,6 +177,3 @@ class AppWindow():
 
 		if not self.cbWDispatch(self.layout.ddPorts.currentText()):
 			print("Device " + _dev + " disconnected")
-
-
-#  todo 48 (module-ui) +0: update device list

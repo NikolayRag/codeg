@@ -46,7 +46,7 @@
  module-ui, viewport 16: +0 "src\Ui\Ui.py" ki 21/08/03 02:42:06
 	layers
 
-=spec, module-dispatch 17: +0 "src\__main__w.py" kii 21/08/02 21:56:41
+=spec, module-dispatch 17: +0 "" ki 21/08/03 19:41:21
 	send to serial-usb (arduino)
 
  spec, module-dispatch 18: +0 "src\GGData\GGData.py" kii 21/08/02 21:19:55
@@ -130,9 +130,18 @@
 =module-ui 46: +0 "" ki 21/08/03 13:39:59
 	fill connection port list
 
- module-dispatch, module-ui, ux 47: +0 "src\Ui\AppWindow.py" ki 21/08/03 13:41:54
+ module-dispatch, module-ui, ux 47: +0 "src\Ui\AppWindow.py" ki 21/08/03 19:25:49
 	change device list to button+list
 
  module-ui 48: +0 "src\Dispatch\Dispatch.py" ki 21/08/03 13:12:51
 	update device list
+
+=module-ui, ux 49: +0 "src\Ui\AppWindow.py" ki 21/08/03 19:53:40
+	save/restore active device between sessions
+
+ module-ui 50: +0 "src\Ui\AppWindow.py" ki 21/08/03 19:31:08
+	add style
+
+=module-ui, ux 51: +0 "src\Ui\AppWindow.py" ki 21/08/03 19:42:19
+	layer control
 
