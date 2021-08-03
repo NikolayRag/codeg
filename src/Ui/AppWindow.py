@@ -170,7 +170,9 @@ class AppWindow():
 # =todo 46 (module-ui) +0: fill connection port list
 	def connList(self):
 		if not self.cbWConnList:
+			print('No connList CB')
 			return
+
 
 		portsA = self.cbWConnList()
 
@@ -180,6 +182,11 @@ class AppWindow():
 
 
 	def dispatchRun(self):
+		if not self.cbWDispatch:
+			print('No dispatch CB')
+			return
+
+
 		if not self.cbWDispatch(self.layout.ddPorts.currentText()):
 			print("Device " + _dev + " disconnected")
 
