@@ -28,7 +28,7 @@
  spec, module-data 10: +0 "src\__main__w.py" kii 21/07/28 03:36:06
 	operate scene data
 
--spec, module-data 11: +0 "src\GGData\GGData.py" kii 21/08/02 21:20:38
+-spec, module-data 11: +0 "src\GGData\GGData.py" ki 21/08/03 02:42:06
 	read/save own format
 
 +spec, module-ui 12: +1 "src\__main__w.py" kii 21/07/31 02:59:35
@@ -43,7 +43,7 @@
 +module-ui, viewport, ux 15: +0 "src\Ui\SvgViewport.py" ki 21/08/03 02:38:35
 	basic mouse navigation
 
- module-ui, viewport 16: +0 "src\Ui\Ui.py" kii 21/08/02 22:07:04
+ module-ui, viewport 16: +0 "src\Ui\Ui.py" ki 21/08/03 02:42:06
 	layers
 
 =spec, module-dispatch 17: +0 "src\__main__w.py" kii 21/08/02 21:56:41
@@ -126,4 +126,13 @@
 
 +module-ui, ux 45: +0 "src\Ui\SvgViewport.py" kii 21/08/02 20:34:09
 	stop scale-moving beyond limits
+
+=module-ui 46: +0 "" ki 21/08/03 13:39:59
+	fill connection port list
+
+ module-dispatch, module-ui 47: +0 "src\Ui\AppWindow.py" ki 21/08/03 12:51:25
+	update device list at some reason
+
+ module-ui 48: +0 "src\Dispatch\Dispatch.py" ki 21/08/03 13:12:51
+	update device list
 
