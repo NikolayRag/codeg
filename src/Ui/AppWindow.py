@@ -88,6 +88,9 @@ class AppWindow():
 		self.layout.btnCaption = cMain.findChild(QWidget, "btnCaption")
 		self.layout.btnOpen = cMain.findChild(QWidget, "btnLoad")
 		self.layout.btnStore = cMain.findChild(QWidget, "btnSave")
+
+		self.layout.frameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
+		self.layout.frameDispatcher.setVisible(False)
 #  todo 47 (module-dispatch, module-ui, ux) +0: change device list to button+list
 		self.layout.ddPorts = cMain.findChild(QWidget, "ddPorts")
 		self.layout.btnProccess = cMain.findChild(QWidget, "btnProccess")
