@@ -122,24 +122,12 @@ class AppWindow():
 #  todo 3 (feature, file) +0: allow picking from Recent files list
 
 	def openFile(self):
-		cRecentA = self.args.args["recentLoaded"] if ("recentLoaded" in self.args.args) else []
-
-		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
-		fileName = QFileDialog.getOpenFileName(self.layout.main, "Open SVG File", os.path.dirname(cLast), "*.svg")[0]
-
-		if fileName=="":
-			return
-
-		
 		if not self.cbWFileLoad:
 			print('No load CB')
 			return
 
-		if cRecentA.count(fileName): cRecentA.remove(fileName)
-		self.args.args["recentLoaded"] = cRecentA + [fileName]
 
-
-		cData = self.cbWFileLoad(fileName)
+		cData = self.cbWFileLoad()
 		self.layout.viewport.addSVG(cData)
 		
 
@@ -155,20 +143,7 @@ class AppWindow():
 
 		cRecentA = self.args.args["recentSaved"] if ("recentSaved" in self.args.args) else []
 
-		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
-		fileName = QFileDialog.getSaveFileName(self.layout.main, "Save G", os.path.dirname(cLast), "*.nc")[0]
-
-		
-		if fileName=="":
-			return
-
-
-		with open(fileName, 'w') as f:
-			f.write(self.cbWFileSave())
-
-
-		if cRecentA.count(fileName): cRecentA.remove(fileName)
-		self.args.args["recentSaved"] = cRecentA + [fileName]
+		self.cbWFileSave()
 
 
 

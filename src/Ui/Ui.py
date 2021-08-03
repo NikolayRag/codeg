@@ -15,6 +15,10 @@ class Ui():
 
 	appWindow = None
 
+	cbFileLoad = None
+	cbFileSave = None
+
+
 
 	def __init__(self, _args):
 		self.args = _args
@@ -26,8 +30,12 @@ class Ui():
 
 	
 	def setUICB(self, _cbFL, _cbFS, _cbConnList, _cbDispatch):
-		self.appWindow.setCBFileLoad(_cbFL);
-		self.appWindow.setCBFileSave(_cbFS);
+		self.cbFileLoad = _cbFL
+		self.cbFileSave = _cbFS
+
+
+		self.appWindow.setCBFileLoad(self.openFile);
+		self.appWindow.setCBFileSave(self.storeFile);
 		self.appWindow.setCBConnList(_cbConnList);
 		self.appWindow.setCBDispatch(_cbDispatch);
 
@@ -35,5 +43,53 @@ class Ui():
 
 	def go(self):
 		self.appWindow.exec()
+
+
+
+	def openFile(self):
+		cRecentA = self.args.args["recentLoaded"] if ("recentLoaded" in self.args.args) else []
+
+		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
+		fileName = QFileDialog.getOpenFileName(None, "Open SVG File", os.path.dirname(cLast), "*.svg")[0]
+
+		if fileName=="":
+			return
+
+		
+		if cRecentA.count(fileName): cRecentA.remove(fileName)
+		self.args.args["recentLoaded"] = cRecentA + [fileName]
+
+
+		return self.cbFileLoad(fileName)
+		
+
+
+#  todo 20 (module-ui, error) +0: handle errors, maybe status string
+
+
+
+	def storeFile(self):
+		cData = self.cbFileSave()
+		if not cData:
+			print("No scene data")
+			return
+
+
+		cRecentA = self.args.args["recentSaved"] if ("recentSaved" in self.args.args) else []
+
+		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
+		fileName = QFileDialog.getSaveFileName(None, "Save G", os.path.dirname(cLast), "*.nc")[0]
+
+		
+		if fileName=="":
+			return
+
+
+		with open(fileName, 'w') as f:
+			f.write(cData)
+
+
+		if cRecentA.count(fileName): cRecentA.remove(fileName)
+		self.args.args["recentSaved"] = cRecentA + [fileName]
 
 
