@@ -141,7 +141,6 @@ class AppWindow():
 			print('No save CB')
 			return
 
-		cRecentA = self.args.args["recentSaved"] if ("recentSaved" in self.args.args) else []
 
 		self.cbWFileSave()
 
