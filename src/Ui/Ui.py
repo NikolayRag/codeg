@@ -25,9 +25,10 @@ class Ui():
 
 
 	
-	def setUICB(self, _cbFL, _cbFS):
+	def setUICB(self, _cbFL, _cbFS, _cbConnList):
 		self.appWindow.setCBFileLoad(_cbFL);
 		self.appWindow.setCBFileSave(_cbFS);
+		self.appWindow.setCBConnList(_cbConnList);
 
 
 
