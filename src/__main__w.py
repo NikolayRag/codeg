@@ -8,6 +8,7 @@ https://github.com/NikolayRag/codeg
 
 from Ui import *
 from GGData import *
+from Dispatch import *
 from args import *
 
 
@@ -16,9 +17,11 @@ if __name__ == '__main__':
 
 	if cArgs.args:
 		cGG = GGData()
+		cDis = Dispatch(cGG)
+
 
 		cUi = Ui(cArgs)
-		cUi.setUICB(cGG.loadXML, cGG.saveG)
+		cUi.setUICB(cGG.loadXML, cGG.saveG, cDis.getDevices)
 
 
 		cUi.go()

@@ -25,6 +25,7 @@ class AppWindow():
 
 	cbWFileLoad = None
 	cbWFileSave = None
+	cbWConnList = None
 
 	qApp = None
 
@@ -36,6 +37,7 @@ class AppWindow():
 	layout.btnCaption = None
 	layout.btnOpen = None
 	layout.btnStore = None
+	layout.ddPorts = None
 
 
 	modulePath= os.path.abspath(os.path.dirname(__file__))
@@ -49,6 +51,14 @@ class AppWindow():
 
 	def setCBFileSave(self, _cb):
 		self.cbWFileSave = _cb
+
+
+
+	def setCBConnList(self, _cb):
+		self.cbWConnList = _cb
+
+		self.connList()
+
 
 
 
@@ -72,12 +82,13 @@ class AppWindow():
 		self.layout.btnCaption = cMain.findChild(QWidget, "btnCaption")
 		self.layout.btnOpen = cMain.findChild(QWidget, "btnLoad")
 		self.layout.btnStore = cMain.findChild(QWidget, "btnSave")
-		
+		self.layout.ddPorts = cMain.findChild(QWidget, "ddPorts")
+
 
 		cMain.connect(self.layout.btnCaption, SIGNAL("clicked()"), self.about)
 		cMain.connect(self.layout.btnOpen, SIGNAL("clicked()"), self.openFile)
 		cMain.connect(self.layout.btnStore, SIGNAL("clicked()"), self.storeFile)
-
+#		cMain.connect(self.layout.ddPorts, SIGNAL("clicked()"), self.connList)
 
 
 
@@ -149,3 +160,12 @@ class AppWindow():
 
 
 
+# =todo 46 (module-ui) +0: fill connection port list
+	def connList(self):
+		if not self.cbWConnList:
+			return
+
+		portsA = self.cbWConnList()
+
+		for port in portsA:
+			self.layout.ddPorts.insertItem(0,port)
