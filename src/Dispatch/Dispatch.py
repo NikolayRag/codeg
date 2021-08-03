@@ -24,3 +24,14 @@ class Dispatch():
 
 
 
+	def runDevice(self, _dev):
+		cPortsA = serial.tools.list_ports.comports()
+		self.listPorts = {port.device: port for port in cPortsA}
+
+		if _dev not in self.listPorts:
+			return False
+
+
+		print(self.listPorts[_dev])
+
+		return True

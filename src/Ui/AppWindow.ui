@@ -83,6 +83,23 @@
            <widget class="QComboBox" name="ddPorts"/>
           </item>
           <item>
+           <widget class="QPushButton" name="btnProccess">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>resource/icon-deliver.svg</normaloff>resource/icon-deliver.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="horizontalSpacer">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>

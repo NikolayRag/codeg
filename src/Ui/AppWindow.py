@@ -26,6 +26,8 @@ class AppWindow():
 	cbWFileLoad = None
 	cbWFileSave = None
 	cbWConnList = None
+	cbWDispatch = None
+
 
 	qApp = None
 
@@ -61,6 +63,10 @@ class AppWindow():
 
 
 
+	def setCBDispatch(self, _cb):
+		self.cbWDispatch = _cb
+
+
 
 	def __init__(self, _args):
 		self.args = _args
@@ -83,12 +89,13 @@ class AppWindow():
 		self.layout.btnOpen = cMain.findChild(QWidget, "btnLoad")
 		self.layout.btnStore = cMain.findChild(QWidget, "btnSave")
 		self.layout.ddPorts = cMain.findChild(QWidget, "ddPorts")
+		self.layout.btnProccess = cMain.findChild(QWidget, "btnProccess")
 
 
 		cMain.connect(self.layout.btnCaption, SIGNAL("clicked()"), self.about)
 		cMain.connect(self.layout.btnOpen, SIGNAL("clicked()"), self.openFile)
 		cMain.connect(self.layout.btnStore, SIGNAL("clicked()"), self.storeFile)
-#		cMain.connect(self.layout.ddPorts, SIGNAL("clicked()"), self.connList)
+		cMain.connect(self.layout.btnProccess, SIGNAL("clicked()"), self.dispatchRun)
 
 
 
@@ -169,3 +176,12 @@ class AppWindow():
 
 		for port in portsA:
 			self.layout.ddPorts.insertItem(0,port)
+
+
+
+	def dispatchRun(self):
+		if not self.cbWDispatch(self.layout.ddPorts.currentText()):
+			print("Device " + _dev + " disconnected")
+
+
+#  todo 48 (module-ui) +0: update device list

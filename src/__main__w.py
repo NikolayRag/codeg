@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
 
 		cUi = Ui(cArgs)
-		cUi.setUICB(cGG.loadXML, cGG.saveG, cDis.getDevices)
+		cUi.setUICB(cGG.loadXML, cGG.saveG, cDis.getDevices, cDis.runDevice)
 
 
 		cUi.go()
