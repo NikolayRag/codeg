@@ -128,7 +128,11 @@ class AppWindow():
 
 
 		cData = self.cbWFileLoad()
-		self.layout.viewport.addSVG(cData)
+		if cData:
+			self.layout.btnStore.setEnabled(True)
+			self.layout.btnProccess.setEnabled(True)
+
+			self.layout.viewport.addSVG(cData)
 		
 
 
