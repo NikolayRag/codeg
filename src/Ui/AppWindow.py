@@ -96,7 +96,7 @@ class AppWindow():
 		self.layout.frameDispatcher.setVisible(False)
 #  todo 47 (module-dispatch, module-ui, ux) +0: change device list to button+list
 #  todo 48 (module-ui) +0: update device list
-# =todo 49 (module-ui, ux) +0: save/restore active device between sessions
+#  todo 49 (module-ui, ux) +0: save/restore active device between sessions
 		self.layout.ddPorts = cMain.findChild(QWidget, "ddPorts")
 		self.layout.btnProccess = cMain.findChild(QWidget, "btnProccess")
 

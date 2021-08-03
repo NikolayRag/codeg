@@ -136,7 +136,7 @@
  module-ui 48: +0 "src\Dispatch\Dispatch.py" ki 21/08/03 13:12:51
 	update device list
 
-=module-ui, ux 49: +0 "src\Ui\AppWindow.py" ki 21/08/03 19:53:40
+ module-ui, ux 49: +0 "src\Ui\AppWindow.py" ki 21/08/03 21:23:43
 	save/restore active device between sessions
 
  module-ui 50: +0 "src\Ui\AppWindow.py" ki 21/08/03 19:31:08
