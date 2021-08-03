@@ -130,8 +130,8 @@
 =module-ui 46: +0 "" ki 21/08/03 13:39:59
 	fill connection port list
 
- module-dispatch, module-ui 47: +0 "src\Ui\AppWindow.py" ki 21/08/03 12:51:25
-	update device list at some reason
+ module-dispatch, module-ui, ux 47: +0 "src\Ui\AppWindow.py" ki 21/08/03 13:41:54
+	change device list to button+list
 
  module-ui 48: +0 "src\Dispatch\Dispatch.py" ki 21/08/03 13:12:51
 	update device list
