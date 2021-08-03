@@ -23,6 +23,4 @@ class Dispatch():
 		return({port.device: port.description for port in cPortsA})
 
 
-		cPortsA = serial.tools.list_ports.comports()
-		self.listPorts = {port.device: port for port in cPortsA}
 
