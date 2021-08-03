@@ -13,7 +13,7 @@ Main scene widget
 class SvgViewport(QWidget):
 	panOrigin = None
 
-	panMargins = 50
+	panMargins = .2
 	scaleMinPx = 10
 	scaleMax = 10000
 
@@ -124,15 +124,19 @@ class SvgViewport(QWidget):
 
 		cSize = self.canvas.sizeHint()
 
-		if _pos.x()>(self.width()-self.panMargins):
-			_pos.setX(self.width()-self.panMargins)
-		if _pos.y()>(self.height()-self.panMargins):
-			_pos.setY(self.height()-self.panMargins)
+		cMarginX = self.width() * self.panMargins
+		cMarginY = self.height() * self.panMargins
 
-		if _pos.x()<(self.panMargins-cSize.width()):
-			_pos.setX(self.panMargins-cSize.width())
-		if _pos.y()<(self.panMargins-cSize.height()):
-			_pos.setY(self.panMargins-cSize.height())
+		if _pos.x()>(self.width()-cMarginX):
+			_pos.setX(self.width()-cMarginX)
+		if _pos.y()>(self.height()-cMarginY):
+			_pos.setY(self.height()-cMarginY)
+
+
+		if _pos.x()<(cMarginX-cSize.width()):
+			_pos.setX(cMarginX-cSize.width())
+		if _pos.y()<(cMarginY-cSize.height()):
+			_pos.setY(cMarginY-cSize.height())
 
 
 		self.pos = _pos
