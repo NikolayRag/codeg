@@ -15,25 +15,23 @@ class Ui():
 
 	appWindow = None
 
+	data = None
 	cbFileLoad = None
 	cbFileSave = None
 
 
 
-	def __init__(self, _args):
+	def __init__(self, _args, _data):
 		self.args = _args
 
+		self.data = _data
 
 		#init
 		self.appWindow = AppWindow(self.args)
 
 
 	
-	def setUICB(self, _cbFL, _cbFS, _cbConnList, _cbDispatch):
-		self.cbFileLoad = _cbFL
-		self.cbFileSave = _cbFS
-
-
+	def setUICB(self, _cbConnList, _cbDispatch):
 		self.appWindow.setCBFileLoad(self.openFile);
 		self.appWindow.setCBFileSave(self.storeFile);
 		self.appWindow.setCBConnList(_cbConnList);
@@ -60,7 +58,7 @@ class Ui():
 		self.args.args["recentLoaded"] = cRecentA + [fileName]
 
 
-		return self.cbFileLoad(fileName)
+		return self.data.loadXML(fileName)
 		
 
 
@@ -69,8 +67,7 @@ class Ui():
 
 
 	def storeFile(self):
-		cData = self.cbFileSave()
-		if not cData:
+		if not self.data.info():
 			print("No scene data")
 			return
 
@@ -86,7 +83,7 @@ class Ui():
 
 
 		with open(fileName, 'w') as f:
-			f.write(cData)
+			f.write(self.data.getG())
 
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)

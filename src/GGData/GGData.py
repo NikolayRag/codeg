@@ -27,6 +27,14 @@ class GGData():
 
 
 
+	def info(self):
+		if not self.theGG:
+			return False
+
+		return True
+
+
+
 	def getG(self):
 		if not self.theGG:
 			return
