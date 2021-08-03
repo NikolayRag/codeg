@@ -163,7 +163,8 @@ class AppWindow():
 			return
 
 
-		self.cbWFileSave(fileName)
+		with open(fileName, 'w') as f:
+			f.write(self.cbWFileSave())
 
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)

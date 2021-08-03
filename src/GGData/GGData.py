@@ -27,7 +27,7 @@ class GGData():
 
 
 
-	def saveG(self, _fileName):
+	def getG(self):
 		if not self.theGG:
 			return
 
@@ -40,6 +40,5 @@ class GGData():
 		cGcode = gcode_compiler.compile()
 
 
-		with open(_fileName, 'w') as f:
-			f.write(cGcode)
+		return cGcode
 
