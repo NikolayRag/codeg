@@ -154,3 +154,6 @@
 -module-ui, ux 54: +0 "src\Ui\AppWindow.py" ki 21/08/04 07:10:28
 	mouse hover layers
 
+ fix, module-ui 55: +0 "src\Ui\AppWindow.py" ki 21/08/04 14:31:02
+	generalize case
+
