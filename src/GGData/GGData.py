@@ -37,8 +37,8 @@ class GGData():
 				None
 
 			if aTag in [ 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path' ]:
-				a.set('originalFill', a.get('fill') or '#000')
-				a.set('originalOpacity', a.get('opacity') or '1')
+				a.set('originalFill', a.get('fill') or '')
+				a.set('originalOpacity', a.get('opacity') or '')
 				a.set('originalDisplay', a.get('display') or '')
 				self.namedRef[aTag +str(i)] = a
 				i += 1
