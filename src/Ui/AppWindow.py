@@ -210,6 +210,7 @@ class AppWindow():
 
 
 
+# -todo 54 (module-ui, ux) +0: mouse hover layers
 	def layerHover(self, _row, _col):
 		print('Hover from', self.recentLayerHover, 'to', _row)
 

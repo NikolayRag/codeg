@@ -46,7 +46,7 @@
 !module-ui, viewport 16: +0 "" ki 21/08/04 06:11:58
 	dup
 
-=spec, module-dispatch 17: +0 "" ki 21/08/04 06:38:14
+=spec, module-dispatch 17: +0 "src\Dispatch\Dispatch.py" ki 21/08/04 06:46:08
 	send to serial-usb (arduino)
 
  spec, module-dispatch 18: +0 "src\GGData\GGData.py" kii 21/08/02 21:19:55
@@ -150,4 +150,7 @@
 
 +fix, module-ui 53: +0 "src\Ui\AppWindow.py" ki 21/08/04 06:40:29
 	reset layers selection at reload
+
+-module-ui, ux 54: +0 "src\Ui\AppWindow.py" ki 21/08/04 07:10:28
+	mouse hover layers
 
