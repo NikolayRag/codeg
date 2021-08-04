@@ -23,20 +23,24 @@ class GGData():
 
 	def loadXML(self, _fileName):
 		self.theGG = XML.parse(_fileName)
+		self.namedRef = {}
+
 
 		i = 1
 		for a in self.theGG.iter():
-			if a.tag == '{http://www.w3.org/2000/svg}xml':
+			aTag = a.tag[28:]
+
+			if aTag == 'xml':
 				None
 
-			if a.tag == '{http://www.w3.org/2000/svg}g':
+			if aTag == 'g':
 				None
 
-			if a.tag == '{http://www.w3.org/2000/svg}path':
+			if aTag in [ 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path' ]:
 				a.set('originalFill', a.get('fill') or '#000')
 				a.set('originalOpacity', a.get('opacity') or '1')
 				a.set('originalDisplay', a.get('display') or '')
-				self.namedRef["path" +str(i)] = a
+				self.namedRef[aTag +str(i)] = a
 				i += 1
 
 
