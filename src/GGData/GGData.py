@@ -8,6 +8,7 @@
 #  todo 25 (module-data, formats) +0: load .nc gcode
 
 import xml.etree.ElementTree as XML
+import re
 
 
 from svg_to_gcode import svg_parser
@@ -23,7 +24,21 @@ class GGData():
 	def loadXML(self, _fileName):
 		self.theGG = XML.parse(_fileName)
 
-		return XML.tostring(self.theGG.getroot())
+		i = 1
+		pathsA = list()
+		for a in self.theGG.iter():
+			if a.tag == '{http://www.w3.org/2000/svg}xml':
+				None
+
+			if a.tag == '{http://www.w3.org/2000/svg}g':
+				None
+
+			if a.tag == '{http://www.w3.org/2000/svg}path':
+				pathsA.append( "path" +str(i) )
+				i += 1
+
+
+		return {'meta': pathsA, 'xml':XML.tostring(self.theGG.getroot())}
 
 
 

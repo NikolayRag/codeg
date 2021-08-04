@@ -35,6 +35,8 @@ class AppWindow():
 
 	layout = Object()
 	layout.main = None
+	layout.viewport = None
+	layout.listLayers = None
 	layout.frameSVG = None
 	layout.btnCaption = None
 	layout.btnOpen = None
@@ -84,6 +86,9 @@ class AppWindow():
 		cMain.setWindowTitle('codeg');
 
 		#capture widgets
+		self.layout.listLayers = cMain.findChild(QTableWidget, "listLayers")
+		self.layout.listLayers.setEditTriggers(QAbstractItemView.NoEditTriggers);
+
 		holderViewport = cMain.findChild(QFrame, "wViewport")
 		self.layout.viewport = SvgViewport(holderViewport)
 		holderViewport.layout().addWidget(self.layout.viewport)
@@ -138,7 +143,20 @@ class AppWindow():
 			self.layout.btnStore.setEnabled(True)
 			self.layout.btnProccess.setEnabled(True)
 
-			self.layout.viewport.addSVG(cData)
+			self.layout.viewport.addSVG(cData['xml'])
+
+
+			cList = self.layout.listLayers
+			cList.setRowCount(0)
+			cRow = 0
+
+			for cItem in cData['meta']:
+				cList.insertRow(cRow)
+
+				cList.setItem(cRow, 0, QTableWidgetItem(cItem))
+
+				cRow += 1
+
 		
 
 
