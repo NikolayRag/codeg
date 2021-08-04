@@ -1,5 +1,3 @@
-#  todo 16 (module-ui, viewport) +0: layers
-
 # -todo 22 (module-ui, ux) +0: make time consuming functions, like saveload, interruptable
 # -todo 23 (module-ui, ux) +0: show progress for time consuming operations
 #  todo 27 (module-data, module-ui, ux) +0: allow append gcode from text buffer
@@ -93,6 +91,7 @@ class Ui():
 
 
 	def layerPick(self, _name=None, _state=False):
+#  todo 52 (fix) +0: odd branching solution
 		if _name:
 			self.data.highlight(_name, _state)
 			return

@@ -1,6 +1,5 @@
 #  todo 33 (module-ui, widgets) +0: zoom slider
 #  todo 34 (module-ui, widgets) +0: transform reset
-# =todo 51 (module-ui, ux) +0: layer control
 
 
 import os, logging

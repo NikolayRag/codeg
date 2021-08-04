@@ -43,8 +43,8 @@
 +module-ui, viewport, ux 15: +0 "src\Ui\SvgViewport.py" ki 21/08/03 02:38:35
 	basic mouse navigation
 
- module-ui, viewport 16: +0 "src\Ui\Ui.py" ki 21/08/03 02:42:06
-	layers
+!module-ui, viewport 16: +0 "" ki 21/08/04 06:11:58
+	dup
 
 =spec, module-dispatch 17: +0 "" ki 21/08/03 19:41:21
 	send to serial-usb (arduino)
@@ -61,7 +61,7 @@
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
 	dup
 
--module-ui, ux 22: +0 "src\Ui\Ui.py" kii 21/08/02 21:18:31
+-module-ui, ux 22: +0 "src\Ui\Ui.py" ki 21/08/04 06:11:59
 	make time consuming functions, like saveload, interruptable
 
 -module-ui, ux 23: +0 "src\Ui\Ui.py" kii 21/08/02 21:18:43
@@ -136,12 +136,15 @@
  module-ui 48: +0 "src\Dispatch\Dispatch.py" ki 21/08/03 13:12:51
 	update device list
 
- module-ui, ux 49: +0 "src\Ui\AppWindow.py" ki 21/08/03 21:23:43
+ module-ui, ux 49: +0 "" ki 21/08/04 06:11:17
 	save/restore active device between sessions
 
  module-ui 50: +0 "src\Ui\AppWindow.py" ki 21/08/03 19:31:08
 	add style
 
-=module-ui, ux 51: +0 "src\Ui\AppWindow.py" ki 21/08/03 19:42:19
++module-ui, ux 51: +0 "src\Ui\AppWindow.py" ki 21/08/04 06:12:06
 	layer control
+
+ fix 52: +0 "src\Ui\Ui.py" ki 21/08/04 06:08:23
+	odd branching solution
 
