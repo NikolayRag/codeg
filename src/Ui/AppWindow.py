@@ -146,6 +146,8 @@ class AppWindow():
 			return
 
 
+		self.recentLayersSelected = list()
+
 		cData = self.cbWFileLoad()
 		if cData:
 			self.layout.btnStore.setEnabled(True)
