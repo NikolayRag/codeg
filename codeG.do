@@ -142,7 +142,7 @@
  module-ui 50: +0 "src\Ui\AppWindow.py" ki 21/08/03 19:31:08
 	add style
 
-+module-ui, ux 51: +0 "src\Ui\AppWindow.py" ki 21/08/04 06:12:06
+=module-ui, ux 51: +0 "" ki 21/08/04 06:13:01
 	layer control
 
  fix 52: +0 "src\Ui\Ui.py" ki 21/08/04 06:08:23
