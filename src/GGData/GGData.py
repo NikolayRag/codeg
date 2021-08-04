@@ -33,9 +33,9 @@ class GGData():
 				None
 
 			if a.tag == '{http://www.w3.org/2000/svg}path':
-				a.set('originalFill', a.get('fill') or "#000")
-				a.set('originalOpacity', a.get('opacity') or "1")
-				a.set('originalDisplay', a.get('display') or "")
+				a.set('originalFill', a.get('fill') or '#000')
+				a.set('originalOpacity', a.get('opacity') or '1')
+				a.set('originalDisplay', a.get('display') or '')
 				self.namedRef["path" +str(i)] = a
 				i += 1
 
