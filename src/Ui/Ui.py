@@ -92,7 +92,10 @@ class Ui():
 
 
 
-	def layerPick(self, _name, _state):
-		self.data.highlight(_name, _state)
+	def layerPick(self, _name=None, _state=False):
+		if _name:
+			self.data.highlight(_name, _state)
+			return
 
-		return self.data.xml()
+
+		return self.data.getXML()

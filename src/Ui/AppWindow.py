@@ -48,6 +48,9 @@ class AppWindow():
 	modulePath= os.path.abspath(os.path.dirname(__file__))
 
 
+	recentLayersSelected = list()
+
+
 
 	def setCBFileLoad(self, _cb):
 		self.cbWFileLoad = _cb
@@ -115,7 +118,7 @@ class AppWindow():
 		cMain.connect(self.layout.btnCaption, SIGNAL("clicked()"), self.about)
 		cMain.connect(self.layout.btnOpen, SIGNAL("clicked()"), self.openFile)
 		cMain.connect(self.layout.btnStore, SIGNAL("clicked()"), self.storeFile)
-		cMain.connect(self.layout.listLayers, SIGNAL("currentCellChanged(int,int,int,int)"), self.layerPick)
+		cMain.connect(self.layout.listLayers, SIGNAL("itemSelectionChanged()"), self.layerPick)
 		cMain.connect(self.layout.btnProccess, SIGNAL("clicked()"), self.dispatchRun)
 
 
@@ -178,20 +181,27 @@ class AppWindow():
 
 
 
-	def layerPick(self, _newRow, _newCell, _oldRow, _oldCell):
+	def layerPick(self):
 		if not self.cbWLayerPick:
 			print('No layer CB')
 			return
 
 
-		if _oldRow > -1:
-			cName = self.layout.listLayers.item(_oldRow,0)
-			self.cbWLayerPick(cName.text(), False)
+		for cRange in self.recentLayersSelected:
+			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
+				cName = self.layout.listLayers.item(cRow,0)
+				self.cbWLayerPick(cName.text(), False)
 
-		cName = self.layout.listLayers.item(_newRow,0)
+
+		self.recentLayersSelected = self.layout.listLayers.selectedRanges()
 		
+		for cRange in self.recentLayersSelected:
+			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
+				cName = self.layout.listLayers.item(cRow,0)
+				self.cbWLayerPick(cName.text(), True)
 
-		cXml = self.cbWLayerPick(cName.text(), True)
+
+		cXml = self.cbWLayerPick()
 		self.layout.viewport.changeSVG(cXml)
 
 
