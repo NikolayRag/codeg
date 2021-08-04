@@ -18,10 +18,12 @@ class Object():
 	None
 
 
+
 class CoverFilter(QObject):
 	def eventFilter(self, _o, _e):
 		if _e.type() == QEvent.Type.Leave:
-			print('out')
+			_o.appW.layerHover()
+
 		return False
 
 
@@ -106,6 +108,7 @@ class AppWindow():
 		#capture widgets
 		self.layout.listLayers = cMain.findChild(QTableWidget, "listLayers")
 		self.layout.listLayers.setEditTriggers(QAbstractItemView.NoEditTriggers);
+		self.layout.listLayers.appW = self
 
 		holderViewport = cMain.findChild(QFrame, "wViewport")
 		self.layout.viewport = SvgViewport(holderViewport)
@@ -197,6 +200,7 @@ class AppWindow():
 
 
 
+
 	def layerPick(self):
 		if not self.cbWLayerPick:
 			print('No layer CB')
@@ -222,8 +226,8 @@ class AppWindow():
 
 
 
-# -todo 54 (module-ui, ux) +0: mouse hover layers
-	def layerHover(self, _row, _col):
+# =todo 54 (module-ui, ux) +0: mouse hover layers
+	def layerHover(self, _row=-1, _col=-1):
 		print('Hover from', self.recentLayerHover, 'to', _row)
 
 		self.recentLayerHover = _row
