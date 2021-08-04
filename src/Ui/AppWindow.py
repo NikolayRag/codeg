@@ -48,6 +48,7 @@ class AppWindow():
 
 
 	recentLayersSelected = list()
+	recentLayerHover = -1
 
 
 
@@ -118,6 +119,7 @@ class AppWindow():
 		cMain.connect(self.layout.btnOpen, SIGNAL("clicked()"), self.openFile)
 		cMain.connect(self.layout.btnStore, SIGNAL("clicked()"), self.storeFile)
 		cMain.connect(self.layout.listLayers, SIGNAL("itemSelectionChanged()"), self.layerPick)
+		cMain.connect(self.layout.listLayers, SIGNAL("cellEntered(int,int)"), self.layerHover)
 		cMain.connect(self.layout.btnProccess, SIGNAL("clicked()"), self.dispatchRun)
 
 
@@ -147,6 +149,7 @@ class AppWindow():
 
 
 		self.recentLayersSelected = list()
+		self.recentLayerHover = -1
 
 		cData = self.cbWFileLoad()
 		if cData:
@@ -205,6 +208,12 @@ class AppWindow():
 		cXml = self.cbWLayerPick()
 		self.layout.viewport.changeSVG(cXml)
 
+
+
+	def layerHover(self, _row, _col):
+		print('Hover from', self.recentLayerHover, 'to', _row)
+
+		self.recentLayerHover = _row
 
 
 
