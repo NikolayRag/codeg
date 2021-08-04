@@ -181,6 +181,11 @@ class SvgViewport(QWidget):
 
 
 
+	def changeSVG(self, _xml):
+		self.canvas and self.canvas.replace(_xml)
+
+
+
 	def canvasFit(self):
 		if not self.canvas:
 			return
@@ -233,6 +238,13 @@ class SvgCanvas(QWidget):
 		self.docHeight = cSize.height()
 
 		self.update()
+
+
+
+	def replace(self, _xml):
+		self.doc.load(_xml)
+
+		self.repaint()
 
 
 

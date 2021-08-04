@@ -34,6 +34,7 @@ class Ui():
 	def setUICB(self, _cbConnList, _cbDispatch):
 		self.appWindow.setCBFileLoad(self.openFile);
 		self.appWindow.setCBFileSave(self.storeFile);
+		self.appWindow.setCBLayerPick(self.layerPick);
 		self.appWindow.setCBConnList(_cbConnList);
 		self.appWindow.setCBDispatch(_cbDispatch);
 
@@ -90,3 +91,8 @@ class Ui():
 		self.args.args["recentSaved"] = cRecentA + [fileName]
 
 
+
+	def layerPick(self, _name, _state):
+		self.data.highlight(_name, _state)
+
+		return self.data.xml()

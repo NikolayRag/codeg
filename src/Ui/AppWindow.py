@@ -27,6 +27,7 @@ class AppWindow():
 	cbWFileSave = None
 	cbWConnList = None
 	cbWDispatch = None
+	cbWLayerPick = None
 
 
 	qApp = None
@@ -55,6 +56,11 @@ class AppWindow():
 
 	def setCBFileSave(self, _cb):
 		self.cbWFileSave = _cb
+
+
+
+	def setCBLayerPick(self, _cb):
+		self.cbWLayerPick = _cb
 
 
 
@@ -109,6 +115,7 @@ class AppWindow():
 		cMain.connect(self.layout.btnCaption, SIGNAL("clicked()"), self.about)
 		cMain.connect(self.layout.btnOpen, SIGNAL("clicked()"), self.openFile)
 		cMain.connect(self.layout.btnStore, SIGNAL("clicked()"), self.storeFile)
+		cMain.connect(self.layout.listLayers, SIGNAL("currentCellChanged(int,int,int,int)"), self.layerPick)
 		cMain.connect(self.layout.btnProccess, SIGNAL("clicked()"), self.dispatchRun)
 
 
@@ -168,6 +175,25 @@ class AppWindow():
 
 
 		self.cbWFileSave()
+
+
+
+	def layerPick(self, _newRow, _newCell, _oldRow, _oldCell):
+		if not self.cbWLayerPick:
+			print('No layer CB')
+			return
+
+
+		if _oldRow > -1:
+			cName = self.layout.listLayers.item(_oldRow,0)
+			self.cbWLayerPick(cName.text(), False)
+
+		cName = self.layout.listLayers.item(_newRow,0)
+		
+
+		cXml = self.cbWLayerPick(cName.text(), True)
+		self.layout.viewport.changeSVG(cXml)
+
 
 
 

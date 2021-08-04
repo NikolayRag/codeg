@@ -40,7 +40,12 @@ class GGData():
 				i += 1
 
 
-		return {'meta': self.namedRef.keys(), 'xml':XML.tostring(self.theGG.getroot())}
+		return {'meta': self.namedRef.keys(), 'xml':self.getXML()}
+
+
+
+	def getXML(self):
+		return XML.tostring(self.theGG.getroot())
 
 
 
@@ -67,3 +72,10 @@ class GGData():
 
 		return cGcode
 
+
+
+	def highlight(self, _name, _state):
+		cEl = self.namedRef[_name]
+		cEl.set('display', '' if _state else cEl.get('originalDisplay'))
+		cEl.set('opacity', '1' if _state else cEl.get('originalOpacity'))
+		cEl.set('fill', '#f00' if _state else cEl.get('originalFill'))
