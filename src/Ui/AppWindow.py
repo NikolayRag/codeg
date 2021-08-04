@@ -229,10 +229,29 @@ class AppWindow():
 
 # =todo 54 (module-ui, ux) +0: mouse hover layers
 	def layerHover(self, _row=-1, _col=-1):
+		if _row == self.recentLayerHover:
+			return
+			
+
 		print('Hover from', self.recentLayerHover, 'to', _row)
+
+
+		cRow = self.recentLayerHover
+		if cRow >- 1:
+			cName = self.layout.listLayers.item(cRow,0)
+			self.cbWLayerPick(cName.text(), False)
+
 
 		self.recentLayerHover = _row
 
+		cRow = self.recentLayerHover
+		if cRow >- 1:
+			cName = self.layout.listLayers.item(cRow,0)
+			self.cbWLayerPick(cName.text(), True)
+
+
+		cXml = self.cbWLayerPick()
+		self.layout.viewport.changeSVG(cXml)
 
 
 	def connList(self):
