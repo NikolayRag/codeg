@@ -46,7 +46,7 @@
 !module-ui, viewport 16: +0 "" ki 21/08/04 06:11:58
 	dup
 
-=spec, module-dispatch 17: +0 "" ki 21/08/03 19:41:21
+=spec, module-dispatch 17: +0 "src\Dispatch\Dispatch.py" ki 21/08/04 06:16:04
 	send to serial-usb (arduino)
 
  spec, module-dispatch 18: +0 "src\GGData\GGData.py" kii 21/08/02 21:19:55
@@ -61,7 +61,7 @@
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
 	dup
 
--module-ui, ux 22: +0 "src\Ui\Ui.py" ki 21/08/04 06:11:59
+-module-ui, ux 22: +0 "src\Ui\Ui.py" ki 21/08/04 06:16:04
 	make time consuming functions, like saveload, interruptable
 
 -module-ui, ux 23: +0 "src\Ui\Ui.py" kii 21/08/02 21:18:43
@@ -147,4 +147,7 @@
 
  fix 52: +0 "src\Ui\Ui.py" ki 21/08/04 06:08:23
 	odd branching solution
+
+ fix, module-ui 53: +0 "src\Ui\AppWindow.py" ki 21/08/04 06:30:15
+	reset layers selection at reload
 

@@ -186,6 +186,7 @@ class AppWindow():
 			return
 
 
+#  todo 53 (fix, module-ui) +0: reset layers selection at reload
 		for cRange in self.recentLayersSelected:
 			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
 				cName = self.layout.listLayers.item(cRow,0)
