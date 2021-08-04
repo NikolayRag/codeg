@@ -108,7 +108,6 @@ class AppWindow():
 		#capture widgets
 		self.layout.listLayers = cMain.findChild(QTableWidget, "listLayers")
 		self.layout.listLayers.setEditTriggers(QAbstractItemView.NoEditTriggers);
-#  todo 55 (fix, module-ui) +0: generalize case
 
 		holderViewport = cMain.findChild(QFrame, "wViewport")
 		self.layout.viewport = SvgViewport(holderViewport)

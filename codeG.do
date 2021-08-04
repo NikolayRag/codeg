@@ -46,7 +46,7 @@
 !module-ui, viewport 16: +0 "" ki 21/08/04 06:11:58
 	dup
 
-=spec, module-dispatch 17: +0 "src\Dispatch\Dispatch.py" ki 21/08/04 06:46:08
+=spec, module-dispatch 17: +0 "src\Dispatch\Dispatch.py" ki 21/08/04 14:06:56
 	send to serial-usb (arduino)
 
  spec, module-dispatch 18: +0 "src\GGData\GGData.py" kii 21/08/02 21:19:55
@@ -91,7 +91,7 @@
 +module-ui, spec, viewport 32: +1 "src\Ui\SvgViewport.py" kii 21/08/02 21:57:55
 	make isolated viewport widget
 
- module-ui, widgets 33: +0 "src\Ui\AppWindow.py" kii 21/08/02 05:05:03
+ module-ui, widgets 33: +0 "src\Ui\AppWindow.py" ki 21/08/04 14:07:26
 	zoom slider
 
  module-ui, widgets 34: +0 "src\Ui\AppWindow.py" kii 21/08/02 05:05:28
@@ -151,9 +151,9 @@
 +fix, module-ui 53: +0 "src\Ui\AppWindow.py" ki 21/08/04 06:40:29
 	reset layers selection at reload
 
--module-ui, ux 54: +0 "src\Ui\AppWindow.py" ki 21/08/04 07:10:28
+=module-ui, ux 54: +0 "src\Ui\AppWindow.py" ki 21/08/04 14:18:43
 	mouse hover layers
 
- fix, module-ui 55: +0 "src\Ui\AppWindow.py" ki 21/08/04 14:31:02
++fix, module-ui 55: +0 "src\Ui\AppWindow.py" ki 21/08/04 14:44:55
 	generalize case
 
