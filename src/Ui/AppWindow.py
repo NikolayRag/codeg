@@ -18,6 +18,13 @@ class Object():
 	None
 
 
+class CoverFilter(QObject):
+	def eventFilter(self, _o, _e):
+		if _e.type() == QEvent.Type.Leave:
+			print('out')
+		return False
+
+
 
 class AppWindow():
 	aboutHref = "https://github.com/NikolayRag/codeg"
@@ -46,6 +53,8 @@ class AppWindow():
 
 	modulePath= os.path.abspath(os.path.dirname(__file__))
 
+
+	coverFilter = None
 
 	recentLayersSelected = list()
 	recentLayerHover = -1
@@ -121,6 +130,9 @@ class AppWindow():
 		cMain.connect(self.layout.listLayers, SIGNAL("itemSelectionChanged()"), self.layerPick)
 		cMain.connect(self.layout.listLayers, SIGNAL("cellEntered(int,int)"), self.layerHover)
 		cMain.connect(self.layout.btnProccess, SIGNAL("clicked()"), self.dispatchRun)
+
+		self.coverFilter = CoverFilter()
+		self.layout.listLayers.installEventFilter(self.coverFilter)
 
 
 
