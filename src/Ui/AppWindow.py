@@ -106,7 +106,6 @@ class AppWindow():
 		self.layout.btnProccess = cMain.findChild(QWidget, "btnProccess")
 
 
-
 		cMain.connect(self.layout.btnCaption, SIGNAL("clicked()"), self.about)
 		cMain.connect(self.layout.btnOpen, SIGNAL("clicked()"), self.openFile)
 		cMain.connect(self.layout.btnStore, SIGNAL("clicked()"), self.storeFile)
@@ -152,9 +151,7 @@ class AppWindow():
 
 			for cItem in cData['meta']:
 				cList.insertRow(cRow)
-
 				cList.setItem(cRow, 0, QTableWidgetItem(cItem))
-
 				cRow += 1
 
 		
