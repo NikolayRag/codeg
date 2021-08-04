@@ -22,7 +22,7 @@ class Object():
 class CoverFilter(QObject):
 	def eventFilter(self, _o, _e):
 		if _e.type() == QEvent.Type.Leave:
-			_o.appW.layerHover()
+			_o.leaveEventAlt()
 
 		return False
 
@@ -109,7 +109,6 @@ class AppWindow():
 		self.layout.listLayers = cMain.findChild(QTableWidget, "listLayers")
 		self.layout.listLayers.setEditTriggers(QAbstractItemView.NoEditTriggers);
 #  todo 55 (fix, module-ui) +0: generalize case
-		self.layout.listLayers.appW = self
 
 		holderViewport = cMain.findChild(QFrame, "wViewport")
 		self.layout.viewport = SvgViewport(holderViewport)
@@ -137,6 +136,7 @@ class AppWindow():
 
 		self.coverFilter = CoverFilter()
 		self.layout.listLayers.installEventFilter(self.coverFilter)
+		self.layout.listLayers.leaveEventAlt = self.layerHover
 
 
 
@@ -231,7 +231,7 @@ class AppWindow():
 	def layerHover(self, _row=-1, _col=-1):
 		if _row == self.recentLayerHover:
 			return
-			
+
 
 		print('Hover from', self.recentLayerHover, 'to', _row)
 
