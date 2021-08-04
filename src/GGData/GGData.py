@@ -18,14 +18,13 @@ from svg_to_gcode.compiler import Compiler, interfaces
 
 class GGData():
 	theGG = None
-
+	namedRef = {}
 
 
 	def loadXML(self, _fileName):
 		self.theGG = XML.parse(_fileName)
 
 		i = 1
-		pathsA = list()
 		for a in self.theGG.iter():
 			if a.tag == '{http://www.w3.org/2000/svg}xml':
 				None
@@ -34,11 +33,14 @@ class GGData():
 				None
 
 			if a.tag == '{http://www.w3.org/2000/svg}path':
-				pathsA.append( "path" +str(i) )
+				a.set('originalFill', a.get('fill') or "#000")
+				a.set('originalOpacity', a.get('opacity') or "1")
+				a.set('originalDisplay', a.get('display') or "")
+				self.namedRef["path" +str(i)] = a
 				i += 1
 
 
-		return {'meta': pathsA, 'xml':XML.tostring(self.theGG.getroot())}
+		return {'meta': self.namedRef.keys(), 'xml':XML.tostring(self.theGG.getroot())}
 
 
 
