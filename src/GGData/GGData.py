@@ -78,8 +78,9 @@ class GGData():
 
 
 
-	def highlight(self, _name, _state):
+	def override(self, _name, _style):
 		cEl = self.namedRef[_name]
-		cEl.set('display', '' if _state else cEl.get('originalDisplay'))
-		cEl.set('opacity', '1' if _state else cEl.get('originalOpacity'))
-		cEl.set('fill', '#f00' if _state else cEl.get('originalFill'))
+		cEl.set('display', _style['display'] if _style else cEl.get('originalDisplay'))
+		cEl.set('opacity', _style['opacity'] if _style else cEl.get('originalOpacity'))
+		cEl.set('fill', _style['fill'] if _style else cEl.get('originalFill'))
+
