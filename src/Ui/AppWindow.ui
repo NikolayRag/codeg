@@ -321,6 +321,9 @@
             <attribute name="verticalHeaderMinimumSectionSize">
              <number>12</number>
             </attribute>
+            <attribute name="verticalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
             <column>
              <property name="text">
               <string>name</string>

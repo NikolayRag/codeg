@@ -176,6 +176,13 @@ class AppWindow():
 				cList.setItem(cRow, 0, QTableWidgetItem(cItem))
 				cRow += 1
 
+			#blank
+			cList.insertRow(cRow)
+			cItem = QTableWidgetItem()
+			cItem.setFlags(Qt.NoItemFlags)
+			cList.setItem(cRow, 0, cItem)
+
+
 		
 
 
@@ -204,9 +211,10 @@ class AppWindow():
 
 		for cRange in self.layout.listLayers.selectedRanges():
 			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
-				cName = self.layout.listLayers.item(cRow,0)
+				if cRow < self.layout.listLayers.rowCount()-1:
+					cName = self.layout.listLayers.item(cRow,0)
 
-				selectionNamesA.append( cName.text() )
+					selectionNamesA.append( cName.text() )
 
 
 		cXml = self.cbWLayerSet(selection=selectionNamesA)
@@ -226,7 +234,7 @@ class AppWindow():
 
 
 		hoverName = None
-		if _row >- 1:
+		if (_row > -1) and (_row < self.layout.listLayers.rowCount()-1):
 			hoverName = self.layout.listLayers.item(_row,0).text()
 
 
