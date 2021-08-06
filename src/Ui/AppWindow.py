@@ -58,10 +58,6 @@ class AppWindow():
 
 	coverFilter = None
 
-	recentLayersSelected = list()
-	recentLayerHover = -1
-
-
 
 	def setCBFileLoad(self, _cb):
 		self.cbWFileLoad = _cb
@@ -163,9 +159,6 @@ class AppWindow():
 			return
 
 
-		self.recentLayersSelected = list()
-		self.recentLayerHover = -1
-
 		cData = self.cbWFileLoad()
 		if cData:
 			self.layout.btnStore.setEnabled(True)
@@ -207,21 +200,16 @@ class AppWindow():
 			return
 
 
-		for cRange in self.recentLayersSelected:
+		selectionNamesA = []
+
+		for cRange in self.layout.listLayers.selectedRanges():
 			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
 				cName = self.layout.listLayers.item(cRow,0)
-				self.cbWLayerPick(cName.text(), False)
+
+				selectionNamesA.append( cName.text() )
 
 
-		self.recentLayersSelected = self.layout.listLayers.selectedRanges()
-		
-		for cRange in self.recentLayersSelected:
-			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
-				cName = self.layout.listLayers.item(cRow,0)
-				self.cbWLayerPick(cName.text(), True)
-
-
-		cXml = self.cbWLayerSet()
+		cXml = self.cbWLayerSet(selection=selectionNamesA)
 		if cXml:
 			self.layout.viewport.changeSVG(cXml)
 
@@ -229,30 +217,20 @@ class AppWindow():
 
 # =todo 54 (module-ui, ux) +0: mouse hover layers
 	def layerHover(self, _row=-1, _col=-1):
-		if _row == self.recentLayerHover:
+		if not self.layout.viewport.isLoaded():
 			return
 
-
-		print('Hover from', self.recentLayerHover, 'to', _row)
-
-
-		cRow = self.recentLayerHover
-		if cRow >- 1:
-			cName = self.layout.listLayers.item(cRow,0)
-			self.cbWLayerPick(cName.text(), False)
 		if not self.cbWLayerSet:
 			print('No layerSet CB')
 			return
 
 
-		self.recentLayerHover = _row
+		hoverName = ''
+		if _row >- 1:
+			hoverName = self.layout.listLayers.item(_row,0).text()
 
-		cRow = self.recentLayerHover
-		if cRow >- 1:
-			cName = self.layout.listLayers.item(cRow,0)
-			self.cbWLayerPick(cName.text(), True)
 
-		cXml = self.cbWLayerSet()
+		cXml = self.cbWLayerSet(hover=hoverName)
 		if cXml:
 			self.layout.viewport.changeSVG(cXml)
 

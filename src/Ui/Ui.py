@@ -100,10 +100,18 @@ class Ui():
 
 
 #  todo 52 (fix) +0: odd branching solution
-		if _name:
-			self.data.highlight(_name, _state)
-	def layerSet(self, _name=None, _state=False):
+
+	def layerSet(self, hover=False, selection=False):
+		if not self.data:
+			print ('No data')
 			return
+
+
+		if hover != False:
+			None
+
+		if selection != False:
+			None
 
 
 		return self.data.getXML()
