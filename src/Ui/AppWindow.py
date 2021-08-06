@@ -35,7 +35,7 @@ class AppWindow():
 	cbWFileSave = None
 	cbWConnList = None
 	cbWDispatch = None
-	cbWLayerPick = None
+	cbWLayerSet = None
 
 
 	qApp = None
@@ -73,8 +73,8 @@ class AppWindow():
 
 
 
-	def setCBLayerPick(self, _cb):
-		self.cbWLayerPick = _cb
+	def setCBLayerSet(self, _cb):
+		self.cbWLayerSet = _cb
 
 
 
@@ -129,7 +129,7 @@ class AppWindow():
 		cMain.connect(self.layout.btnCaption, SIGNAL("clicked()"), self.about)
 		cMain.connect(self.layout.btnOpen, SIGNAL("clicked()"), self.openFile)
 		cMain.connect(self.layout.btnStore, SIGNAL("clicked()"), self.storeFile)
-		cMain.connect(self.layout.listLayers, SIGNAL("itemSelectionChanged()"), self.layerPick)
+		cMain.connect(self.layout.listLayers, SIGNAL("itemSelectionChanged()"), self.layerSelect)
 		cMain.connect(self.layout.listLayers, SIGNAL("cellEntered(int,int)"), self.layerHover)
 		cMain.connect(self.layout.btnProccess, SIGNAL("clicked()"), self.dispatchRun)
 
@@ -201,9 +201,9 @@ class AppWindow():
 
 
 
-	def layerPick(self):
-		if not self.cbWLayerPick:
-			print('No layer CB')
+	def layerSelect(self):
+		if not self.cbWLayerSet:
+			print('No layerSet CB')
 			return
 
 
@@ -221,8 +221,9 @@ class AppWindow():
 				self.cbWLayerPick(cName.text(), True)
 
 
-		cXml = self.cbWLayerPick()
-		self.layout.viewport.changeSVG(cXml)
+		cXml = self.cbWLayerSet()
+		if cXml:
+			self.layout.viewport.changeSVG(cXml)
 
 
 
@@ -239,6 +240,9 @@ class AppWindow():
 		if cRow >- 1:
 			cName = self.layout.listLayers.item(cRow,0)
 			self.cbWLayerPick(cName.text(), False)
+		if not self.cbWLayerSet:
+			print('No layerSet CB')
+			return
 
 
 		self.recentLayerHover = _row
@@ -248,9 +252,10 @@ class AppWindow():
 			cName = self.layout.listLayers.item(cRow,0)
 			self.cbWLayerPick(cName.text(), True)
 
+		cXml = self.cbWLayerSet()
+		if cXml:
+			self.layout.viewport.changeSVG(cXml)
 
-		cXml = self.cbWLayerPick()
-		self.layout.viewport.changeSVG(cXml)
 
 
 	def connList(self):

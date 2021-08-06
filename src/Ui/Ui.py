@@ -40,7 +40,7 @@ class Ui():
 
 		self.appWindow.setCBFileLoad(self.openFile)
 		self.appWindow.setCBFileSave(self.storeFile)
-		self.appWindow.setCBLayerPick(self.layersUpdate)
+		self.appWindow.setCBLayerSet(self.layerSet)
 
 		self.appWindow.setCBConnList(self.dispatchGetList)
 		self.appWindow.setCBDispatch(self.dispatchSend)
@@ -99,10 +99,10 @@ class Ui():
 
 
 
-	def layerPick(self, _name=None, _state=False):
 #  todo 52 (fix) +0: odd branching solution
 		if _name:
 			self.data.highlight(_name, _state)
+	def layerSet(self, _name=None, _state=False):
 			return
 
 
