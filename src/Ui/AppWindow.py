@@ -122,13 +122,13 @@ class AppWindow():
 		self.layout.btnProccess = cMain.findChild(QWidget, "btnProccess")
 
 
-		cMain.connect(self.layout.btnCaption, SIGNAL("clicked()"), self.about)
-		cMain.connect(self.layout.btnOpen, SIGNAL("clicked()"), self.openFile)
-		cMain.connect(self.layout.btnStore, SIGNAL("clicked()"), self.storeFile)
-		cMain.connect(self.layout.listLayers, SIGNAL("itemSelectionChanged()"), self.layerSelect)
-		cMain.connect(self.layout.listLayers, SIGNAL("cellEntered(int,int)"), self.layerHover)
-		cMain.connect(self.layout.btnProccess, SIGNAL("clicked()"), self.dispatchRun)
+		self.layout.btnCaption.clicked.connect(self.about)
+		self.layout.btnOpen.clicked.connect(self.openFile)
+		self.layout.btnStore.clicked.connect(self.storeFile)
+		self.layout.btnProccess.clicked.connect(self.dispatchRun)
 
+		self.layout.listLayers.itemSelectionChanged.connect(self.layerSelect)
+		self.layout.listLayers.cellEntered.connect(self.layerHover)
 		self.coverFilter = CoverFilter()
 		self.layout.listLayers.installEventFilter(self.coverFilter)
 		self.layout.listLayers.leaveEventAlt = self.layerHover

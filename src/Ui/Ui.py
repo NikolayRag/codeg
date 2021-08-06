@@ -126,16 +126,12 @@ class Ui():
 
 
 		if (hover != False):
-			print('new hov:', hover)
-
 			self.data.override(self.layerHover)
 
 			self.layerHover = hover
 
 
 		if selection != False:
-			print('new sel:' ,selection)
-
 			for l in self.layersSelection:
 				self.data.override(l)
 
