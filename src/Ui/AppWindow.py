@@ -215,7 +215,7 @@ class AppWindow():
 
 
 
-# =todo 54 (module-ui, ux) +0: mouse hover layers
+# =todo 57 (module-ui, fix) +0: catch out of hover on short layers
 	def layerHover(self, _row=-1, _col=-1):
 		if not self.layout.viewport.isLoaded():
 			return
@@ -236,6 +236,7 @@ class AppWindow():
 
 
 
+# -todo 59 (module-ui, ux, clean) +0: make updatable connections list
 	def connList(self):
 		if not self.cbWConnList:
 			print('No connList CB')

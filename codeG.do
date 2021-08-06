@@ -10,7 +10,7 @@
 +svg, feature 4: +0 "src\Ui\SvgViewport.py" kii 21/08/02 19:14:43
 	zoom by wheel within center-mouse
 
-=module-ui, feature 5: +0 "" ki 21/08/03 02:38:56
+=module-ui, feature 5: +0 "" kii 21/08/03 02:38:56
 	pan by mouse
 
  module-ui, feature 6: +0 "src\Ui\SvgViewport.py" kii 21/08/02 21:02:22
@@ -28,7 +28,7 @@
  spec, module-data 10: +0 "src\__main__w.py" kii 21/07/28 03:36:06
 	operate scene data
 
--spec, module-data 11: +0 "src\GGData\GGData.py" ki 21/08/03 02:42:06
+-spec, module-data 11: +0 "src\GGData\GGData.py" kii 21/08/03 02:42:06
 	read/save own format
 
 +spec, module-ui 12: +1 "src\__main__w.py" kii 21/07/31 02:59:35
@@ -40,13 +40,13 @@
 +spec, module-ui 14: +0 "src\__main__w.py" kii 21/07/31 02:58:53
 	render from module-data
 
-+module-ui, viewport, ux 15: +0 "src\Ui\SvgViewport.py" ki 21/08/03 02:38:35
++module-ui, viewport, ux 15: +0 "src\Ui\SvgViewport.py" kii 21/08/03 02:38:35
 	basic mouse navigation
 
-!module-ui, viewport 16: +0 "" ki 21/08/04 06:11:58
+!module-ui, viewport 16: +0 "" kii 21/08/04 06:11:58
 	dup
 
-=spec, module-dispatch 17: +0 "src\Dispatch\Dispatch.py" ki 21/08/04 14:06:56
+=spec, module-dispatch 17: +0 "src\Dispatch\Dispatch.py" kii 21/08/04 14:06:56
 	send to serial-usb (arduino)
 
  spec, module-dispatch 18: +0 "src\GGData\GGData.py" kii 21/08/02 21:19:55
@@ -61,7 +61,7 @@
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
 	dup
 
--module-ui, ux 22: +0 "src\Ui\Ui.py" ki 21/08/04 06:16:04
+-module-ui, ux 22: +0 "src\Ui\Ui.py" kii 21/08/04 06:16:04
 	make time consuming functions, like saveload, interruptable
 
 -module-ui, ux 23: +0 "src\Ui\Ui.py" kii 21/08/02 21:18:43
@@ -91,7 +91,7 @@
 +module-ui, spec, viewport 32: +1 "src\Ui\SvgViewport.py" kii 21/08/02 21:57:55
 	make isolated viewport widget
 
- module-ui, widgets 33: +0 "src\Ui\AppWindow.py" ki 21/08/04 14:07:26
+ module-ui, widgets 33: +0 "src\Ui\AppWindow.py" kii 21/08/04 14:07:26
 	zoom slider
 
  module-ui, widgets 34: +0 "src\Ui\AppWindow.py" kii 21/08/02 05:05:28
@@ -121,39 +121,48 @@
 +module-ui, viewport, ux 42: +0 "src\Ui\SvgViewport.py" kii 21/08/02 19:11:21
 	fit Svg on load
 
-+module-ui, viewport, ux 44: +0 "src\Ui\SvgViewport.py" ki 21/08/03 02:17:12
++module-ui, viewport, ux 44: +0 "src\Ui\SvgViewport.py" kii 21/08/03 02:17:12
 	react on window resize
 
 +module-ui, ux 45: +0 "src\Ui\SvgViewport.py" kii 21/08/02 20:34:09
 	stop scale-moving beyond limits
 
-=module-ui 46: +0 "" ki 21/08/03 13:39:59
+=module-ui 46: +0 "" kii 21/08/03 13:39:59
 	fill connection port list
 
- module-dispatch, module-ui, ux 47: +0 "src\Ui\AppWindow.py" ki 21/08/03 19:25:49
+ module-dispatch, module-ui, ux 47: +0 "src\Ui\AppWindow.py" kii 21/08/03 19:25:49
 	change device list to button+list
 
- module-ui 48: +0 "src\Dispatch\Dispatch.py" ki 21/08/03 13:12:51
+ module-ui 48: +0 "src\Dispatch\Dispatch.py" kii 21/08/03 13:12:51
 	update device list
 
- module-ui, ux 49: +0 "" ki 21/08/04 06:11:17
+ module-ui, ux 49: +0 "" kii 21/08/04 06:11:17
 	save/restore active device between sessions
 
- module-ui 50: +0 "src\Ui\AppWindow.py" ki 21/08/03 19:31:08
+ module-ui 50: +0 "src\Ui\AppWindow.py" kii 21/08/03 19:31:08
 	add style
 
-=module-ui, ux 51: +0 "" ki 21/08/04 06:13:01
+=module-ui, ux 51: +0 "" kii 21/08/04 06:13:01
 	layer control
 
- fix 52: +0 "src\Ui\Ui.py" ki 21/08/04 06:08:23
-	odd branching solution
++fix 52: +0 "src\Ui\Ui.py" ki 21/08/06 17:05:36
+	odd branching optimisation
 
-+fix, module-ui 53: +0 "src\Ui\AppWindow.py" ki 21/08/04 06:40:29
++fix, module-ui 53: +0 "src\Ui\AppWindow.py" kii 21/08/04 06:40:29
 	reset layers selection at reload
 
-=module-ui, ux 54: +0 "src\Ui\AppWindow.py" ki 21/08/04 14:18:43
++module-ui, ux 54: +0 "src\Ui\AppWindow.py" ki 21/08/06 23:45:33
 	mouse hover layers
 
-+fix, module-ui 55: +0 "src\Ui\AppWindow.py" ki 21/08/04 14:44:55
++fix, module-ui 55: +0 "src\Ui\AppWindow.py" kii 21/08/04 14:44:55
 	generalize case
+
+=module-ui, fix 57: +0 "src\Ui\AppWindow.py" ki 21/08/06 15:32:47
+	catch out of hover on short layers
+
++fix 58: +0 "src\Ui\Ui.py" ki 21/08/06 17:23:41
+	isolate
+
+-module-ui, ux, clean 59: +0 "src\Ui\AppWindow.py" ki 21/08/06 17:22:09
+	make updatable connections list
 

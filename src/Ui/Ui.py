@@ -118,7 +118,6 @@ class Ui():
 
 
 
-#  todo 52 (fix) +0: odd branching solution
 
 	def layerSet(self, hover=False, selection=False):
 		if not self.data:
