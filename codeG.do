@@ -157,7 +157,7 @@
 +fix, module-ui 55: +0 "src\Ui\AppWindow.py" kii 21/08/04 14:44:55
 	generalize case
 
-=module-ui, fix 57: +0 "src\Ui\AppWindow.py" ki 21/08/06 15:32:47
++module-ui, fix 57: +0 "src\Ui\AppWindow.py" ki 21/08/07 00:14:59
 	catch out of hover on short layers
 
 +fix 58: +0 "src\Ui\Ui.py" ki 21/08/06 17:23:41

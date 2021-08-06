@@ -223,7 +223,6 @@ class AppWindow():
 
 
 
-# =todo 57 (module-ui, fix) +0: catch out of hover on short layers
 	def layerHover(self, _row=-1, _col=-1):
 		if not self.layout.viewport.isLoaded():
 			return
