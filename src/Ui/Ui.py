@@ -19,22 +19,31 @@ class Ui():
 
 
 
-	def __init__(self, _args, _data):
+	def dispatchGetList(self):
+		return self.dispatch.getDevices()
+
+
+	def dispatchSend(self, _name):
+		return self.dispatch.runDevice(_name)
+
+
+
+	def __init__(self, _args, _data, _dispatch):
 		self.args = _args
 
 		self.data = _data
+		self.dispatch = _dispatch
 
 		#init
 		self.appWindow = AppWindow(self.args)
 
 
-	
-	def setUICB(self, _cbConnList, _cbDispatch):
-		self.appWindow.setCBFileLoad(self.openFile);
-		self.appWindow.setCBFileSave(self.storeFile);
-		self.appWindow.setCBLayerPick(self.layerPick);
-		self.appWindow.setCBConnList(_cbConnList);
-		self.appWindow.setCBDispatch(_cbDispatch);
+		self.appWindow.setCBFileLoad(self.openFile)
+		self.appWindow.setCBFileSave(self.storeFile)
+		self.appWindow.setCBLayerPick(self.layersUpdate)
+
+		self.appWindow.setCBConnList(self.dispatchGetList)
+		self.appWindow.setCBDispatch(self.dispatchSend)
 
 
 

@@ -17,8 +17,7 @@ if __name__ == '__main__':
 		cDis = Dispatch(cGG)
 
 
-		cUi = Ui(cArgs, cGG)
-		cUi.setUICB(cDis.getDevices, cDis.runDevice)
+		cUi = Ui(cArgs, cGG, cDis)
 
 
 		cUi.go()
