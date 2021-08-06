@@ -9,6 +9,18 @@ from .AppWindow import *
 
 
 class Ui():
+	styleSelect = {
+		'display':'',
+		'opacity':'1',
+		'fill':'#f80'
+	}
+	styleHover = {
+		'display':'',
+		'opacity':'1',
+		'fill':'#f00'
+	}
+
+
 	args = None
 
 	appWindow = None
@@ -16,6 +28,10 @@ class Ui():
 	data = None
 	cbFileLoad = None
 	cbFileSave = None
+
+
+	layerHover = None
+	layersSelection = []
 
 
 
@@ -66,6 +82,9 @@ class Ui():
 		self.args.args["recentLoaded"] = cRecentA + [fileName]
 
 
+		self.layerHover = None
+		self.layersSelection = []
+
 		return self.data.loadXML(fileName)
 		
 
@@ -107,11 +126,27 @@ class Ui():
 			return
 
 
-		if hover != False:
-			None
+		if (hover != False):
+			print('new hov:', hover)
+
+			self.data.override(self.layerHover)
+
+			self.layerHover = hover
+
 
 		if selection != False:
-			None
+			print('new sel:' ,selection)
+
+			for l in self.layersSelection:
+				self.data.override(l)
+
+			self.layersSelection = selection
+
+
+		for a in self.layersSelection:
+			self.data.override(a, self.styleSelect)
+
+		self.data.override(self.layerHover, self.styleHover)
 
 
 		return self.data.getXML()

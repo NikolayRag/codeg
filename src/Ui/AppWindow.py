@@ -225,7 +225,7 @@ class AppWindow():
 			return
 
 
-		hoverName = ''
+		hoverName = None
 		if _row >- 1:
 			hoverName = self.layout.listLayers.item(_row,0).text()
 

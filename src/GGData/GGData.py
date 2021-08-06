@@ -78,9 +78,13 @@ class GGData():
 
 
 
-	def override(self, _name, _style):
+	def override(self, _name, _style={}):
+		if not _name:
+			return
+
 		cEl = self.namedRef[_name]
-		cEl.set('display', _style['display'] if _style else cEl.get('originalDisplay'))
-		cEl.set('opacity', _style['opacity'] if _style else cEl.get('originalOpacity'))
-		cEl.set('fill', _style['fill'] if _style else cEl.get('originalFill'))
+
+		cEl.set('display', _style['display'] if 'display' in _style else cEl.get('originalDisplay'))
+		cEl.set('opacity', _style['opacity'] if 'opacity' in _style else cEl.get('originalOpacity'))
+		cEl.set('fill', _style['fill'] if 'fill' in _style else cEl.get('originalFill'))
 
