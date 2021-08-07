@@ -263,5 +263,4 @@ class AppWindow():
 			return
 
 
-		if not self.cbWDispatch(self.layout.ddPorts.currentText()):
-			print("Device " + _dev + " disconnected")
+		self.cbWDispatch( self.layout.ddPorts.currentText() )

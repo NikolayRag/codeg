@@ -24,14 +24,42 @@ class Dispatch():
 
 
 
+
+
 	def runDevice(self, _dev):
-		cPortsA = serial.tools.list_ports.comports()
-		self.listPorts = {port.device: port for port in cPortsA}
-
 		if _dev not in self.listPorts:
-			return False
+			print('Invalid port', _dev)
+			return
+
+		try:
+			port = serial.Serial(_dev, 115200)
+		except Exception as e:
+			print("Port ", _dev, " error")
+
+			return
 
 
-		print(self.listPorts[_dev])
+		port.readline().decode()
+
+		toSendString = self.data.getG()
+
+		cursorChar = '>'
+		cursorLen = 1
+
+		        
+		gLines = toSendString.splitlines()+['']
+
+		for cLine in gLines:
+			inString = ''
+
+			inString = port.readline().decode()
+			if inString.strip():
+				print('<', inString)
+
+			print('>', cLine)
+			port.write(str.encode(cLine + '\n'))
+
+
+		port.close()
 
 		return True
