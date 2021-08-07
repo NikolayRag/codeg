@@ -24,6 +24,27 @@ class Dispatch():
 
 
 
+	def deviceInfo(_dev):
+		if _dev not in self.listPorts:
+			return
+
+		return[
+			self.listPorts[_dev].device,
+			self.listPorts[_dev].apply_usb_info(),
+			self.listPorts[_dev].description,
+			self.listPorts[_dev].hwid,
+			self.listPorts[_dev].interface,
+			self.listPorts[_dev].location,
+			self.listPorts[_dev].manufacturer,
+			self.listPorts[_dev].name,
+			self.listPorts[_dev].pid,
+			self.listPorts[_dev].product,
+			self.listPorts[_dev].serial_number,
+			self.listPorts[_dev].usb_description(),
+			self.listPorts[_dev].usb_info(),
+			self.listPorts[_dev].vid
+		]
+
 
 
 	def runDevice(self, _dev):
