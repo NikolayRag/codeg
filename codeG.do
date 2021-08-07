@@ -151,7 +151,7 @@
 +fix, module-ui 53: +0 "src\Ui\AppWindow.py" kii 21/08/04 06:40:29
 	reset layers selection at reload
 
-+module-ui, ux 54: +0 "src\Ui\AppWindow.py" ki 21/08/06 23:45:33
+=module-ui, ux 54: +0 "" ki 21/08/07 00:20:03
 	mouse hover layers
 
 +fix, module-ui 55: +0 "src\Ui\AppWindow.py" kii 21/08/04 14:44:55
