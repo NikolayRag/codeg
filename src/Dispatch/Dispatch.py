@@ -1,9 +1,12 @@
-# =todo 17 (spec, module-dispatch) +0: send to serial-usb (arduino)
 import serial
 import serial.tools.list_ports
 
 
 
+# =todo 60 (module-dispatch) +0: show gcodes live proto
+# =todo 61 (module-dispatch) +0: CNC control
+# =todo 62 (module-dispatch) +0: live control
+# =todo 64 (module-dispatch) +0: dispatch queue
 class Dispatch():
 	listPorts = []
 	port = None
