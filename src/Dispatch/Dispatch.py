@@ -47,7 +47,7 @@ class Dispatch():
 
 
 
-	def runDevice(self, _dev):
+	def runDevice(self, _dev, _logCB=None):
 		if _dev not in self.listPorts:
 			print('Invalid port', _dev)
 			return
@@ -73,11 +73,11 @@ class Dispatch():
 		for cLine in gLines:
 			inString = ''
 
-			inString = port.readline().decode()
-			if inString.strip():
-				print('<', inString)
+			inString = port.readline().decode().strip()
+			if inString:
+				_logCB and _logCB('<' + inString)
 
-			print('>', cLine)
+			_logCB and _logCB('>' + cLine)
 			port.write(str.encode(cLine + '\n'))
 
 

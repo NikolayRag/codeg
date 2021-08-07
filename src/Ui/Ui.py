@@ -39,8 +39,9 @@ class Ui():
 		return self.dispatch.getDevices()
 
 
+
 	def dispatchSend(self, _name):
-		return self.dispatch.runDevice(_name)
+		return self.dispatch.runDevice(_name, self.appWindow.dispatchLog)
 
 
 

@@ -51,7 +51,8 @@ class AppWindow():
 	layout.btnOpen = None
 	layout.btnStore = None
 	layout.ddPorts = None
-
+	layout.btnProccess = None
+	layout.logDev = None
 
 	modulePath= os.path.abspath(os.path.dirname(__file__))
 
@@ -120,7 +121,7 @@ class AppWindow():
 #  todo 49 (module-ui, ux) +0: save/restore active device between sessions
 		self.layout.ddPorts = cMain.findChild(QWidget, "ddPorts")
 		self.layout.btnProccess = cMain.findChild(QWidget, "btnProccess")
-
+		self.layout.logDev = cMain.findChild(QTextEdit, "logDev")
 
 		self.layout.btnCaption.clicked.connect(self.about)
 		self.layout.btnOpen.clicked.connect(self.openFile)
@@ -264,3 +265,8 @@ class AppWindow():
 
 
 		self.cbWDispatch( self.layout.ddPorts.currentText() )
+
+
+
+	def dispatchLog(self, _txt):
+		self.layout.logDev.insertPlainText(_txt)

@@ -202,7 +202,7 @@
               <widget class="QComboBox" name="ddPorts"/>
              </item>
              <item row="0" column="0" colspan="3">
-              <widget class="QTextEdit" name="textEdit">
+              <widget class="QTextEdit" name="logDev">
                <property name="maximumSize">
                 <size>
                  <width>150</width>
