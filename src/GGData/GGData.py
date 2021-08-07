@@ -66,7 +66,7 @@ class GGData():
 			return
 
 
-		gcode_compiler = Compiler(interfaces.Gcode, movement_speed=1000, cutting_speed=100, pass_depth=1)
+		gcode_compiler = Compiler(interfaces.Gcode, movement_speed=10000, cutting_speed=10000, pass_depth=1)
 
 		ggCurves = svg_parser.parse_root(self.theGG.getroot(), True, 100)
 		gcode_compiler.append_curves(ggCurves)
