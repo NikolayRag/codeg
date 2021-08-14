@@ -22,7 +22,7 @@
 +spec, module-data 8: +0 "src\GGData\GGData.py" kii 21/07/31 16:30:49
 	save gcode
 
- spec, module-data 9: +0 "src\__main__w.py" kii 21/07/28 03:36:44
+ spec, module-data 9: +0 "src\GGData\GGData.py" kii 21/08/10 05:28:32
 	operate project data
 
  spec, module-data 10: +0 "src\__main__w.py" kii 21/07/28 03:36:06
@@ -46,7 +46,7 @@
 !module-ui, viewport 16: +0 "" kii 21/08/04 06:11:58
 	dup
 
-+spec, module-dispatch 17: +0 "src\Dispatch\Dispatch.py" ki 21/08/07 03:43:10
+=spec, module-dispatch 17: +0 "" kii 21/08/10 05:55:57
 	send to serial-usb (arduino)
 
  spec, module-dispatch 18: +0 "src\GGData\GGData.py" kii 21/08/02 21:19:55
@@ -64,7 +64,7 @@
 -module-ui, ux 22: +0 "src\Ui\Ui.py" kii 21/08/04 06:16:04
 	make time consuming functions, like saveload, interruptable
 
--module-ui, ux 23: +0 "src\Ui\Ui.py" ki 21/08/07 05:06:07
+-module-ui, ux 23: +0 "src\Ui\Ui.py" kii 21/08/07 05:06:07
 	show progress for time consuming operations
 
 !module-data, formats 24: +0 "" kii 21/07/31 16:33:32
@@ -145,42 +145,78 @@
 =module-ui, ux 51: +0 "" kii 21/08/04 06:13:01
 	layer control
 
-+fix 52: +0 "src\Ui\Ui.py" ki 21/08/06 17:05:36
++fix 52: +0 "src\Ui\Ui.py" kii 21/08/06 17:05:36
 	odd branching optimisation
 
 +fix, module-ui 53: +0 "src\Ui\AppWindow.py" kii 21/08/04 06:40:29
 	reset layers selection at reload
 
-=module-ui, ux 54: +0 "" ki 21/08/07 00:20:03
+=module-ui, ux 54: +0 "" kii 21/08/07 00:20:03
 	mouse hover layers
 
 +fix, module-ui 55: +0 "src\Ui\AppWindow.py" kii 21/08/04 14:44:55
 	generalize case
 
-+module-ui, fix 57: +0 "src\Ui\AppWindow.py" ki 21/08/07 00:14:59
++module-ui, fix 57: +0 "src\Ui\AppWindow.py" kii 21/08/07 00:14:59
 	catch out of hover on short layers
 
-+fix 58: +0 "src\Ui\Ui.py" ki 21/08/06 17:23:41
++fix 58: +0 "src\Ui\Ui.py" kii 21/08/06 17:23:41
 	isolate
 
--module-ui, ux, clean 59: +0 "src\Ui\AppWindow.py" ki 21/08/06 17:22:09
+-module-ui, ux, clean 59: +0 "src\Ui\AppWindow.py" kii 21/08/06 17:22:09
 	make updatable connections list
 
-=module-dispatch 60: +0 "src\Dispatch\Dispatch.py" ki 21/08/07 05:10:08
+=module-dispatch 60: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:10:08
 	show gcodes live proto
 
-=module-dispatch 61: +0 "src\Dispatch\Dispatch.py" ki 21/08/07 03:45:15
+=module-dispatch 61: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 03:45:15
 	CNC control
 
-=module-dispatch 62: +0 "src\Dispatch\Dispatch.py" ki 21/08/07 05:03:48
+=module-dispatch 62: +0 "" kii 21/08/12 05:08:32
 	live control
 
-=module-ui, ux 63: +0 "src\Ui\Ui.py" ki 21/08/07 05:07:38
+=module-ui, ux 63: +0 "src\Ui\Ui.py" kii 21/08/07 05:07:38
 	basic layer control, on-off
 
-=module-dispatch 64: +0 "src\Dispatch\Dispatch.py" ki 21/08/07 05:09:07
+=module-dispatch 64: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:09:07
 	dispatch queue
 
-!module-dispatch 65: +0 "src\Dispatch\Dispatch.py" ki 21/08/07 05:38:19
+!module-dispatch 65: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:38:19
 	
+
+ module-data 66: +0 "src\GGData\GGData.py" kii 21/08/10 04:01:00
+	use progress callbacks Gcode gen
+
+-API 67: +1 "src\__main__w.py" kii 21/08/12 05:08:54
+	change callbacks to signals-slots
+
+=module-dispatch 68: +0 "src\Dispatch\Dispatch.py" kii 21/08/10 06:02:21
+	queue control
+
+ gcode 69: +0 "src\GGen\GGen.py" kii 21/08/12 04:40:26
+	check min tolerance
+
+!general 70: +0 "src\GGen\GGen.py" kii 21/08/12 04:33:11
+	
+
+=gcode, fix 71: +0 "src\GGen\GGen.py" kii 21/08/12 04:44:40
+	clean gcode scale
+
+-gcode 72: +0 "src\GGen\GGen.py" kii 21/08/12 04:43:22
+	use different inlines from SVG
+
+=gcode 73: +0 "src\GGen\GGen.py" kii 21/08/12 04:44:33
+	decorate shapes begin/end
+
+=fix, gcode 74: +0 "src\GGen\GGen.py" ki 21/08/14 20:23:48
+	detect multishape
+
+!fix, gcode 75: +0 "src\GGen\GGen.py" ki 21/08/14 20:12:11
+	
+
+=fix, gcode 76: +0 "src\GGen\GGen.py" ki 21/08/14 20:24:19
+	respect shapes clipping
+
+-fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" ki 21/08/14 20:43:27
+	duplicate hover element topmost
 

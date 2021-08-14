@@ -7,6 +7,7 @@ import serial.tools.list_ports
 # =todo 61 (module-dispatch) +0: CNC control
 # =todo 62 (module-dispatch) +0: live control
 # =todo 64 (module-dispatch) +0: dispatch queue
+# =todo 68 (module-dispatch) +0: queue control
 class Dispatch():
 	listPorts = []
 	port = None

@@ -143,6 +143,7 @@ class Ui():
 		for a in self.layersSelection:
 			self.data.override(a, self.styleSelect)
 
+# -todo 77 (fix, module-ui, viewport) +0: duplicate hover element topmost
 		self.data.override(self.layerHover, self.styleHover)
 
 

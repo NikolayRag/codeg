@@ -1,3 +1,7 @@
+#  todo 66 (module-data) +0: use progress callbacks Gcode gen
+
+
+
 #  todo 9 (spec, module-data) +0: operate project data
 #  todo 10 (spec, module-data) +0: operate scene data
 # -todo 11 (spec, module-data) +0: read/save own format
