@@ -11,8 +11,7 @@ import xml.etree.ElementTree as XML
 import re
 
 
-from svg_to_gcode import svg_parser
-from svg_to_gcode.compiler import Compiler, interfaces
+from GGen import *
 
 
 
@@ -66,15 +65,18 @@ class GGData():
 			return
 
 
-		gcode_compiler = Compiler(interfaces.Gcode, movement_speed=10000, cutting_speed=10000, pass_depth=1)
-
-		ggCurves = svg_parser.parse_root(self.theGG.getroot(), True, 100)
-		gcode_compiler.append_curves(ggCurves)
-
-		cGcode = gcode_compiler.compile()
 
 
-		return cGcode
+		cGG = GGen(self.theGG.getroot())
+		#cGG.set(shapePreamble=shapePre, shapePostamble=shapePost)
+		cGG.set(
+			preamble = 'G90 M4 S0',
+			shapePre = 'G0',
+			shapeIn = 'S100 G1',
+			shapePost = 'S0',
+			postamble = 'M5 G0 X0Y0'
+		)
+		return cGG.build(True)
 
 
 
