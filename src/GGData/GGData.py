@@ -72,10 +72,7 @@ class GGData():
 			return
 
 
-
-
 		cGG = GGen(self.theGG.getroot())
-		#cGG.set(shapePreamble=shapePre, shapePostamble=shapePost)
 		cGG.set(
 			preamble = 'G90 M4 S0',
 			shapePre = 'G0',
@@ -83,6 +80,7 @@ class GGData():
 			shapePost = 'S0',
 			postamble = 'M5 G0 X0Y0'
 		)
+
 		return cGG.build(True)
 
 
