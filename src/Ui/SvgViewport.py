@@ -179,7 +179,7 @@ class SvgViewport(QWidget):
 
 
 		if _xml:
-			self.canvas = SvgCanvas(self, _xml)
+			self.canvas = SvgCanvas(self, _xml, draw=False)
 			self.canvasFit()
 			self.canvasCenter()
 			self.canvas.show()
@@ -234,7 +234,7 @@ class SvgCanvas(QWidget):
 
 
 
-	def __init__(self, parent, _xml):
+	def __init__(self, parent, _xml, draw=True):
 		QWidget.__init__(self, parent)
 
 		self.doc = QSvgRenderer(_xml, self)
@@ -242,7 +242,8 @@ class SvgCanvas(QWidget):
 		self.docWidth = cSize.width()
 		self.docHeight = cSize.height()
 
-		self.update()
+		if draw:
+			self.update()
 
 
 
