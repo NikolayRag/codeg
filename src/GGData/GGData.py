@@ -77,11 +77,15 @@ class GGData():
 			preamble = 'G90 M4 S0',
 			shapePre = 'G0',
 			shapeIn = 'S100 G1',
-			shapePost = 'S0',
+			shapeOut = 'S0',
 			postamble = 'M5 G0 X0Y0'
 		)
 
-		return cGG.build(True)
+		def shapeInHook(_element, _point):
+		    return( "S100 G1" )
+		cGG.set(shapeIn = shapeInHook)
+
+		return cGG.generate(True)
 
 
 

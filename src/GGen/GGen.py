@@ -21,7 +21,8 @@ class GGen():
     preamble = ''
     shapePre = ''
     shapeIn = ''
-    shapePost = ''
+    shapeOut = ''
+    shapeFinal = ''
     postamble = ''
 
 
@@ -45,7 +46,8 @@ class GGen():
         preamble = None,
         shapePre = None,
         shapeIn = None,
-        shapePost = None,
+        shapeOut = None,
+        shapeFinal = None,
         postamble = None
     ):
         if smoothness != None: self.smoothness = smoothness
@@ -58,7 +60,8 @@ class GGen():
         if preamble != None: self.preamble = preamble
         if shapePre != None: self.shapePre = shapePre
         if shapeIn != None: self.shapeIn = shapeIn
-        if shapePost != None: self.shapePost = shapePost
+        if shapeOut != None: self.shapeOut = shapeOut
+        if shapeFinal != None: self.shapeFinal = shapeFinal
         if postamble != None: self.postamble = postamble
 
 
@@ -75,33 +78,16 @@ class GGen():
 
             scale_x = self.maxX / max(width, height)
             scale_y = self.maxY / max(width, height)
-            self.scale = min(scale_x, scale_y)
+#            self.scale = min(scale_x, scale_y)
 
         else:
             print("Unable to get width and height for the svg")
 
 
     
-    def build(self, join=False):
-        out = (
-            self.gHead()
-            + [self.preamble]
-            + self.gCode()
-            + [self.postamble]
-            + self.gTail()
-        )
+    def generate(self, join=False):
+        outGCode = self.buildHead()
 
-        if join:
-            out = "\n".join(out)
-
-
-        return out
-
-
-
-
-    def gCode(self):
-        outGCode = []
 
         for elem in self.rootET.iter():
             try:
@@ -112,73 +98,95 @@ class GGen():
 
             if tag_suffix in self.svg_shapes:
                 shape_class = getattr(shapes_pkg, tag_suffix)
+                shapesA = self.shapeGen(shape_class(elem))
 
-                outGCode += self.gShape( shape_class(elem) )
-
-
-        return outGCode
+                self.shapeDecorate(elem, shapesA, outGCode)
 
 
+        outGCode += self.buildTail()
 
-    def gShape(self, _shape):
+
+        return "\n".join(outGCode) if join else outGCode
+
+
+
+    def shapeGen(self, _shape):
         d = _shape.d_path()
         m = _shape.transformation_matrix()
 
-        outGShape = []
-
         if not d:
-            return outGShape
+            return []
 
+
+        gShapesA = []
 
 # =todo 76 (fix, gcode) +0: respect shapes clipping
 # =todo 74 (fix, gcode) +0: detect multishape
+        cGShape = []
         p = point_generator(d, m, self.smoothness)
-        for x,y in p:
-            if x > 0 and x < self.maxX and y > 0 and y < self.maxY:  
-                outGShape.append( (self.scale*x, self.scale*y) )
+        for x,y,start in p:
+            if start:
+                cGShape = []
+                gShapesA.append(cGShape)
+
+            cGShape.append( (self.scale*x, self.scale*y) )
 
 
-        injectPre = self.shapePre
-        if callable(injectPre):
-            injectPre = injectPre(_shape.__str__())
-        if not isinstance(injectPre, str):
-            injectPre = ''
-
-
-        injectIn = self.shapeIn
-        if callable(injectIn):
-            injectIn = injectIn(_shape.__str__(), outGShape[0])
-        if not isinstance(injectIn, str):
-            injectIn = ''
-
-
-        injectPost = self.shapePost
-        if callable(injectPost):
-            injectPost = injectPost(_shape.__str__(), outGShape)
-        if not isinstance(injectPost, str):
-            injectPost = ''
-
-        return (
-            [injectPre]
-            + self.gMove(outGShape[0])
-            + [injectIn]
-            + self.gMove(outGShape[1:])
-            + [injectPost]
-        )
+        return gShapesA
 
 
 
-    def gMove(self, _coords):
+    def shapeDecorate(self, _cEl, _shapes, _outCode=[]):
+        injectPre = self.buildInline(self.shapePre, _cEl)
+        injectFinal = self.buildInline(self.shapeFinal, _cEl, _shapes)
+
+
+        for cShape in _shapes:
+            if len(cShape):
+                injectIn = self.buildInline(self.shapeIn, _cEl, cShape[0])
+                injectOut = self.buildInline(self.shapeOut, _cEl, cShape)
+
+                if injectPre: _outCode += [injectPre]
+                _outCode += self.buildMove(cShape[0])
+                if injectIn: _outCode += [injectIn]
+                _outCode += self.buildMove(cShape[1:])
+                if injectOut: _outCode += [injectOut]
+
+        if injectFinal: _outCode += [injectFinal]
+
+
+        return _outCode
+
+
+
+    def buildInline(self, _tmpl, _el, _arg=None):
+        if callable(_tmpl):
+            if _arg:
+                _tmpl = _tmpl(_el, _arg)
+            else:
+                _tmpl = _tmpl(_el)
+
+        if not isinstance(_tmpl, str):
+            _tmpl = ''
+
+        return _tmpl
+
+
+
+    def buildMove(self, _coords):
         if not isinstance(_coords[0], tuple):
             _coords = (_coords,)
 
         p = self.precision
-        return [f"X{_xy[0]:.{p}f}Y{_xy[1]:.{p}f}" for _xy in _coords]
+        return [f"X{round(_x,p)}Y{round(_y,p)}" for _x,_y in _coords]
 
 
 
-    def gHead(self):
+    def buildHead(self):
         out = []
+
+        out.append(self.preamble)
+
         if self.feedRate:
             out.append( f'F{self.feedRate}' )
 
@@ -186,12 +194,13 @@ class GGen():
 
 
 
-    def gTail(self):
+    def buildTail(self):
         out = []
 
         if self.park:
-            out.append( self.gMove((0,0)) )
+            out.append( self.buildMove((0,0)) )
 
+        out.append(self.postamble)
 
         return out
 

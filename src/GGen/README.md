@@ -1,12 +1,6 @@
 SVG to GCode converter
 ----------------------
-Forked from [vishpat/svg2gcode](https://github.com/vishpat/svg2gcode) without Inkscape branch.
 
-
-Most notable changes:
-* Python 3 compatable
-* Is importable module
-* GGen class as interface
 
 Source provided is an SVG within xml.etree.ElementTree root Element, as used widely.
 
@@ -32,35 +26,46 @@ ggObject.set(
     preamble = '',
     shapePre = '',
     shapeIn = '',
-    shapePost = '',
+    shapeOut = '',
+    shapeFinal = '',
     postamble = ''
 )
-ggRows = ggObject.build(
+ggRows = ggObject.generate(
 	join = False
 )
 ```
 
-In addition to being strings, **shapePre**, **shapeIn** and **shapePost** passed can be hook functions to generate inline: before segment 1, after segment 1 and after last segment respectively.
-Arguments provided are:
-* **shapePre(currentSvgElement)**
-* **shapeIn(currentSvgElement, pointZero)**
-* **shapePost(currentSvgEelement, pointsList)**
+In addition to being strings, **shapePre**, **shapeIn**, **shapeOut** and **shapeFinal** passed can be hook functions to generate inline:
+
+* **shapePre(currentSvgElement)**  
+    called once, inlined before starting point of each sub-shape
+* **shapeIn(currentSvgElement, pointZero)**  
+    called for each sub-shape, inlined after starting point
+* **shapeOut(currentSvgElement, pointsList)**  
+    called for each sub-shape and inlined after last point
+* **shapeFinal(currentSvgEelement, shapesList)**  
+    called once, inlined once at end of all sub-shapes
+
 
 ```python
 def shapePreHook(_element):
-	return( f"(preamble for {_element.tag})" )
+    return( f"(pre for {_element.tag})" )
 
-def shapeInHook(_element, _point0):
-    return( f"(postamble for {_element.tag}, starting at {_point0})" )
+def shapeInHook(_element, _point):
+    return( f"(in for {_element.tag}, starting at {_point})" )
 
-def shapePostHook(_element, _points):
-	return( f"(postamble for {_element.tag}, {len(_points)} points)" )
+def shapeOutHook(_element, _shape):
+    return( f"(post for {_element.tag}, {len(_shape)} points)" )
+
+def shapeFinalHook(_element, _shapes):
+	return( f"(final for {_element.tag}, {len(_shapes)} sub-shapes)" )
 
 
 ggObject.set(
     shapePre = shapePreHook,
     shapeIn = shapeInHook,
-    shapePost = shapePostHook
+    shapeOut = shapeOutHook,
+    shapeFinal = shapeFinalHook
 )
 ```
 
@@ -70,13 +75,26 @@ ggObject.set(
     preamble = 'G90 M4 S0',
     shapePre = 'G0',
     shapeIn = 'S100 G1',
-    shapePost = 'S0',
+    shapeOut = 'S0',
     postamble = 'M5 G0 X0Y0'
 )
 ```
 
 
+
+Original project:
+-----------------
+
+Forked from [vishpat/svg2gcode](https://github.com/vishpat/svg2gcode) without Inkscape branch.
+
+Most notable changes:
+* Python 3 compatable
+* Is importable module
+* GGen class as interface
+* Fix: curved shapes collected with wrong points
+* Fix: multishapes pre/in/post -decorated separately
+
+
 Original project terms:
------------------------
 
 The compiler is based on the eggbot project and it basically converts all of the SVG shapes into bezier curves. The bezier curves are then recursively sub divided until desired smoothness is achieved. The sub curves are then approximated as lines which are then converted into g-code. 
