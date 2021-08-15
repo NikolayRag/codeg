@@ -24,15 +24,17 @@ class BindFilter(QObject):
 	cb = None
 
 
-	def __init__(self, _etype, _cb):
+	def __init__(self, _etypes, _cb):
 		QObject.__init__(self)
 
-		self.eType = _etype
+		if not hasattr(_etypes, '__iter__'):
+			_etypes = (_etypes,)
+		self.eTypes = _etypes
 		self.cb = _cb
 
 
 	def eventFilter(self, _o, _e):
-		if _e.type() == self.eType:
+		if _e.type() in self.eTypes:
 			self.cb(event=_e)
 
 		return False
