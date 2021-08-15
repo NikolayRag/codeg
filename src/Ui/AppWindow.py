@@ -43,8 +43,6 @@ class AppWindow():
 	args = None
 
 	layout = Object()
-	modulePath= os.path.abspath(os.path.dirname(__file__))
-
 
 
 
@@ -85,7 +83,8 @@ class AppWindow():
 #		with open('Ui/style.qss') as fQss:
 #			self.qApp.setStyleSheet(fQss.read())
 
-		uiFile = os.path.join(self.modulePath,'AppWindow.ui')
+		selfPath= os.path.abspath(os.path.dirname(__file__))
+		uiFile = os.path.join(selfPath,'AppWindow.ui')
 		cMain = self.layout.main = QUiLoader().load(uiFile)
 
 		cMain.setWindowTitle('codeg');
