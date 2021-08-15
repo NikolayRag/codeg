@@ -175,6 +175,7 @@ class AppWindow():
 
 
 
+#  todo 79 (module-ui, ux, fix) +0: make size ignored on maximize
 	def resized(self, event):
 		if not self.cbWResize:
 			print('No resize CB')

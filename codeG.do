@@ -139,7 +139,7 @@
  module-ui, ux 49: +0 "" kii 21/08/04 06:11:17
 	save/restore active device between sessions
 
- module-ui 50: +0 "src\Ui\AppWindow.py" kii 21/08/03 19:31:08
+ module-ui 50: +0 "src\Ui\AppWindow.py" ki 21/08/15 19:36:41
 	add style
 
 =module-ui, ux 51: +0 "" kii 21/08/04 06:13:01
@@ -172,10 +172,10 @@
 =module-dispatch 61: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 03:45:15
 	CNC control
 
-=module-dispatch 62: +0 "" kii 21/08/12 05:08:32
+=module-dispatch 62: +0 "" ki 21/08/15 16:43:56
 	live control
 
-=module-ui, ux 63: +0 "" ki 21/08/15 16:12:18
+=module-ui, ux 63: +0 "src\Ui\Ui.py" ki 21/08/15 22:10:52
 	basic layer control, on-off
 
 =module-dispatch 64: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:09:07
@@ -219,4 +219,10 @@
 
 -fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" kii 21/08/14 20:43:27
 	duplicate hover element topmost
+
++module-ui, ux 78: +0 "src\Ui\Ui.py" ki 21/08/15 22:10:50
+	store/restore window size
+
+ module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" ki 21/08/15 22:10:27
+	make size ignored on maximize
 
