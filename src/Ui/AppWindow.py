@@ -156,6 +156,11 @@ class AppWindow():
 
 
 
+	def resize(self, _x, _y):
+		self.layout.main.resize(_x,_y)
+
+
+
 	def about(self):
 		webbrowser.open(self.aboutHref)
 
