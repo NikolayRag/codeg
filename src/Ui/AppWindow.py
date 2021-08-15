@@ -19,10 +19,21 @@ class Object():
 
 
 
-class CoverFilter(QObject):
+class BindFilter(QObject):
+	eType = None
+	cb = None
+
+
+	def __init__(self, _etype, _cb):
+		QObject.__init__(self)
+
+		self.eType = _etype
+		self.cb = _cb
+
+
 	def eventFilter(self, _o, _e):
-		if _e.type() == QEvent.Type.Leave:
-			_o.leaveEventAlt()
+		if _e.type() == self.eType:
+			self.cb(event=_e)
 
 		return False
 
@@ -117,9 +128,9 @@ class AppWindow():
 
 		self.layout.listLayers.itemSelectionChanged.connect(self.layerSelect)
 		self.layout.listLayers.cellEntered.connect(self.layerHover)
-		self.coverFilter = CoverFilter()
-		self.layout.listLayers.installEventFilter(self.coverFilter)
-		self.layout.listLayers.leaveEventAlt = self.layerHover
+		self.tmpFilterLayersLeave = BindFilter(QEvent.Type.Leave, self.layerHover)
+		self.layout.listLayers.installEventFilter( self.tmpFilterLayersLeave )
+
 
 
 
@@ -211,7 +222,7 @@ class AppWindow():
 
 
 
-	def layerHover(self, _row=-1, _col=-1):
+	def layerHover(self, _row=-1, _col=-1, event=None):
 		if not self.layout.viewport.isLoaded():
 			return
 
