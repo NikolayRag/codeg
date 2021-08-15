@@ -102,9 +102,14 @@ class AppWindow():
 
 		cMain.setWindowTitle('codeg');
 
-		#capture widgets
+		#widgets time
 		self.layout.listLayers = cMain.findChild(QTableWidget, "listLayers")
 		self.layout.listLayers.setEditTriggers(QAbstractItemView.NoEditTriggers);
+
+		self.layout.listLayers.itemSelectionChanged.connect(self.layerSelect)
+		self.layout.listLayers.cellEntered.connect(self.layerHover)
+		self.tmpFilterLayersLeave = BindFilter(QEvent.Type.Leave, self.layerHover)
+		self.layout.listLayers.installEventFilter(self.tmpFilterLayersLeave)
 
 
 		holderViewport = cMain.findChild(QWidget, "wViewport")
@@ -115,8 +120,8 @@ class AppWindow():
 		def filtereViewportResize(event):
 			self.layout.viewport.resize(event.size())
 
-		self.filterViewResize = BindFilter(QEvent.Type.Resize, filtereViewportResize)
-		holderViewport.installEventFilter(self.filterViewResize)
+		self.tmpFilterViewResize = BindFilter(QEvent.Type.Resize, filtereViewportResize)
+		holderViewport.installEventFilter(self.tmpFilterViewResize)
 
 
 		self.layout.btnCaption = cMain.findChild(QWidget, "btnCaption")
@@ -132,16 +137,11 @@ class AppWindow():
 		self.layout.btnProccess = cMain.findChild(QWidget, "btnProccess")
 		self.layout.logDev = cMain.findChild(QTextEdit, "logDev")
 
+
 		self.layout.btnCaption.clicked.connect(self.about)
 		self.layout.btnOpen.clicked.connect(self.openFile)
 		self.layout.btnStore.clicked.connect(self.storeFile)
 		self.layout.btnProccess.clicked.connect(self.dispatchRun)
-
-		self.layout.listLayers.itemSelectionChanged.connect(self.layerSelect)
-		self.layout.listLayers.cellEntered.connect(self.layerHover)
-		self.tmpFilterLayersLeave = BindFilter(QEvent.Type.Leave, self.layerHover)
-		self.layout.listLayers.installEventFilter( self.tmpFilterLayersLeave )
-
 
 
 
