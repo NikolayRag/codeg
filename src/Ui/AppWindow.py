@@ -43,21 +43,9 @@ class AppWindow():
 	args = None
 
 	layout = Object()
-	layout.main = None
-	layout.viewport = None
-	layout.listLayers = None
-	layout.frameSVG = None
-	layout.btnCaption = None
-	layout.btnOpen = None
-	layout.btnStore = None
-	layout.ddPorts = None
-	layout.btnProccess = None
-	layout.logDev = None
-
 	modulePath= os.path.abspath(os.path.dirname(__file__))
 
 
-	coverFilter = None
 
 
 	def setCBFileLoad(self, _cb):
