@@ -84,6 +84,10 @@ class AppWindow():
 
 
 
+	def setCBResize(self, _cb):
+		self.cbWResize = _cb
+
+
 
 	def __init__(self):
 		QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
@@ -98,6 +102,12 @@ class AppWindow():
 		cMain = self.layout.main = QUiLoader().load(uiFile)
 
 		cMain.setWindowTitle('codeg');
+		self.tmpFilterWindowResize = BindFilter(
+			(QEvent.Type.Resize, QEvent.Type.WindowStateChange),
+			self.resized
+		)
+		cMain.installEventFilter(self.tmpFilterWindowResize)
+
 
 		#widgets time
 		self.layout.listLayers = cMain.findChild(QTableWidget, "listLayers")
@@ -153,8 +163,28 @@ class AppWindow():
 
 
 
-	def resize(self, _x, _y):
-		self.layout.main.resize(_x,_y)
+	def resize(self, _size, maximize=None):
+		self.layout.main.resize(
+			QSize(*_size)
+			if _size else
+			QApplication.primaryScreen().size() *.8
+		)
+
+		if maximize:
+			self.layout.main.showMaximized()
+
+
+
+	def resized(self, event):
+		if not self.cbWResize:
+			print('No resize CB')
+			return
+
+		wSize = self.layout.main.size()
+		self.cbWResize(
+			wSize,
+			self.layout.main.isMaximized()
+		)
 
 
 

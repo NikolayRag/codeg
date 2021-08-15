@@ -46,6 +46,13 @@ class Ui():
 
 
 
+	def storeWindow(self, _size, _maximized):
+		self.args.set('wMaxi', _maximized)
+		if not _maximized:
+			self.args.set('wSize', (_size.width(),_size.height()) )
+
+
+
 	def __init__(self, _args, _data, _dispatch):
 		self.args = _args
 
@@ -54,6 +61,12 @@ class Ui():
 
 		#init
 		self.appWindow = AppWindow()
+
+		self.appWindow.setCBResize(self.storeWindow)
+		self.appWindow.resize(
+			self.args.get('wSize'),
+			self.args.get('wMaxi')
+		)
 
 
 		self.appWindow.setCBFileLoad(self.openFile)
