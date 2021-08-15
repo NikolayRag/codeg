@@ -9,7 +9,7 @@ from Dispatch import *
 from args import *
 
 
-# -todo 67 (API) +1: change callbacks to signals-slots
+# -todo 67 (api) +1: change callbacks to signals-slots
 if __name__ == '__main__':
 	cArgs= Args(True)
 

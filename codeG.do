@@ -175,7 +175,7 @@
 =module-dispatch 62: +0 "" kii 21/08/12 05:08:32
 	live control
 
-=module-ui, ux 63: +0 "src\Ui\Ui.py" kii 21/08/07 05:07:38
+=module-ui, ux 63: +0 "" ki 21/08/15 16:12:18
 	basic layer control, on-off
 
 =module-dispatch 64: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:09:07
@@ -187,7 +187,7 @@
  module-data 66: +0 "src\GGData\GGData.py" kii 21/08/10 04:01:00
 	use progress callbacks Gcode gen
 
--API 67: +1 "src\__main__w.py" kii 21/08/12 05:08:54
+-api 67: +1 "src\__main__w.py" ki 21/08/15 05:15:39
 	change callbacks to signals-slots
 
 =module-dispatch 68: +0 "src\Dispatch\Dispatch.py" kii 21/08/10 06:02:21
@@ -208,15 +208,15 @@
 =gcode 73: +0 "src\GGen\GGen.py" kii 21/08/12 04:44:33
 	decorate shapes begin/end
 
-=fix, gcode 74: +0 "src\GGen\GGen.py" ki 21/08/14 20:23:48
++fix, gcode 74: +0 "src\GGen\GGen.py" ki 21/08/15 04:01:51
 	detect multishape
 
-!fix, gcode 75: +0 "src\GGen\GGen.py" ki 21/08/14 20:12:11
+!fix, gcode 75: +0 "src\GGen\GGen.py" kii 21/08/14 20:12:11
 	
 
-=fix, gcode 76: +0 "src\GGen\GGen.py" ki 21/08/14 20:24:19
-	respect shapes clipping
+-fix, gcode 76: +0 "src\GGData\GGData.py" ki 21/08/15 04:03:06
+	gcode crop and scale
 
--fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" ki 21/08/14 20:43:27
+-fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" kii 21/08/14 20:43:27
 	duplicate hover element topmost
 

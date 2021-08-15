@@ -120,8 +120,6 @@ class GGen():
 
         gShapesA = []
 
-# =todo 76 (fix, gcode) +0: respect shapes clipping
-# =todo 74 (fix, gcode) +0: detect multishape
         cGShape = []
         p = point_generator(d, m, self.smoothness)
         for x,y,start in p:
