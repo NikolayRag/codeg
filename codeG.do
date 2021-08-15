@@ -139,7 +139,7 @@
  module-ui, ux 49: +0 "" kii 21/08/04 06:11:17
 	save/restore active device between sessions
 
- module-ui 50: +0 "src\Ui\AppWindow.py" ki 21/08/15 19:36:41
+ module-ui 50: +0 "src\Ui\AppWindow.py" kii 21/08/15 19:36:41
 	add style
 
 =module-ui, ux 51: +0 "" kii 21/08/04 06:13:01
@@ -172,10 +172,10 @@
 =module-dispatch 61: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 03:45:15
 	CNC control
 
-=module-dispatch 62: +0 "" ki 21/08/15 16:43:56
-	live control
+=module-dispatch 62: +0 "src\Dispatch\Dispatch.py" kii 21/08/15 22:52:53
+	live device control
 
-=module-ui, ux 63: +0 "src\Ui\Ui.py" ki 21/08/15 22:10:52
+=module-ui, ux 63: +0 "src\Ui\Ui.py" kii 21/08/15 22:10:52
 	basic layer control, on-off
 
 =module-dispatch 64: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:09:07
@@ -187,7 +187,7 @@
  module-data 66: +0 "src\GGData\GGData.py" kii 21/08/10 04:01:00
 	use progress callbacks Gcode gen
 
--api 67: +1 "src\__main__w.py" ki 21/08/15 05:15:39
+-API 67: +1 "src\__main__w.py" kii 21/08/15 05:15:39
 	change callbacks to signals-slots
 
 =module-dispatch 68: +0 "src\Dispatch\Dispatch.py" kii 21/08/10 06:02:21
@@ -208,21 +208,21 @@
 =gcode 73: +0 "src\GGen\GGen.py" kii 21/08/12 04:44:33
 	decorate shapes begin/end
 
-+fix, gcode 74: +0 "src\GGen\GGen.py" ki 21/08/15 04:01:51
++fix, gcode 74: +0 "src\GGen\GGen.py" kii 21/08/15 04:01:51
 	detect multishape
 
 !fix, gcode 75: +0 "src\GGen\GGen.py" kii 21/08/14 20:12:11
 	
 
--fix, gcode 76: +0 "src\GGData\GGData.py" ki 21/08/15 04:03:06
+-fix, gcode 76: +0 "src\GGData\GGData.py" kii 21/08/15 04:03:06
 	gcode crop and scale
 
 -fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" kii 21/08/14 20:43:27
 	duplicate hover element topmost
 
-+module-ui, ux 78: +0 "src\Ui\Ui.py" ki 21/08/15 22:10:50
++module-ui, ux 78: +0 "src\Ui\Ui.py" kii 21/08/15 22:10:50
 	store/restore window size
 
- module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" ki 21/08/15 22:10:27
+ module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" kii 21/08/15 22:52:53
 	make size ignored on maximize
 
