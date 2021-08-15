@@ -41,7 +41,7 @@ class Args():
 
 
 
-	def set(self, _field, _val, save=true):
+	def set(self, _field, _val, save=True):
 		self.args[_field] = _val
 
 		if save:
