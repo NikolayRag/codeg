@@ -106,9 +106,18 @@ class AppWindow():
 		self.layout.listLayers = cMain.findChild(QTableWidget, "listLayers")
 		self.layout.listLayers.setEditTriggers(QAbstractItemView.NoEditTriggers);
 
-		holderViewport = cMain.findChild(QFrame, "wViewport")
+
+		holderViewport = cMain.findChild(QWidget, "wViewport")
 		self.layout.viewport = SvgViewport(holderViewport)
-		holderViewport.layout().addWidget(self.layout.viewport)
+		self.layout.viewport.lower()
+		self.layout.viewport.show()
+
+		def filtereViewportResize(event):
+			self.layout.viewport.resize(event.size())
+
+		self.filterViewResize = BindFilter(QEvent.Type.Resize, filtereViewportResize)
+		holderViewport.installEventFilter(self.filterViewResize)
+
 
 		self.layout.btnCaption = cMain.findChild(QWidget, "btnCaption")
 		self.layout.btnOpen = cMain.findChild(QWidget, "btnLoad")
