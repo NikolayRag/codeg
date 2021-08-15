@@ -36,6 +36,19 @@ class Args():
 
 
 
+	def get(self, _field, default=None):
+		return self.args[_field] if (_field in self.args) else default
+
+
+
+	def set(self, _field, _val, save=true):
+		self.args[_field] = _val
+
+		if save:
+			self.save()
+
+
+
 	'''
 	Save current settings to application related file.
 	'''

@@ -71,7 +71,7 @@ class Ui():
 
 
 	def openFile(self):
-		cRecentA = self.args.args["recentLoaded"] if ("recentLoaded" in self.args.args) else []
+		cRecentA = self.args.get("recentLoaded", [])
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
 		fileName = QFileDialog.getOpenFileName(None, "Open SVG File", os.path.dirname(cLast), "*.svg")[0]
@@ -81,7 +81,7 @@ class Ui():
 
 		
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
-		self.args.args["recentLoaded"] = cRecentA + [fileName]
+		self.args.set("recentLoaded", cRecentA+[fileName])
 
 
 		self.layerHover = None
@@ -101,7 +101,7 @@ class Ui():
 			return
 
 
-		cRecentA = self.args.args["recentSaved"] if ("recentSaved" in self.args.args) else []
+		cRecentA = self.args.get("recentSaved", [])
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
 		fileName = QFileDialog.getSaveFileName(None, "Save G", os.path.dirname(cLast), "*.nc")[0]
@@ -116,7 +116,7 @@ class Ui():
 
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
-		self.args.args["recentSaved"] = cRecentA + [fileName]
+		self.args.set("recentSaved", cRecentA+[fileName])
 
 
 
