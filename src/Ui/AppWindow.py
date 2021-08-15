@@ -53,8 +53,6 @@ class AppWindow():
 
 	qApp = None
 
-	args = None
-
 	layout = Object()
 
 
@@ -86,9 +84,8 @@ class AppWindow():
 
 
 
-	def __init__(self, _args):
-		self.args = _args
 
+	def __init__(self):
 		QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
 		self.qApp = QApplication()
 		self.qApp.setStyle(QStyleFactory.create('fusion'))

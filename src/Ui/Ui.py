@@ -53,7 +53,7 @@ class Ui():
 		self.dispatch = _dispatch
 
 		#init
-		self.appWindow = AppWindow(self.args)
+		self.appWindow = AppWindow()
 
 
 		self.appWindow.setCBFileLoad(self.openFile)
