@@ -3,7 +3,6 @@
 #  todo 27 (module-data, module-ui, ux) +0: allow append gcode from text buffer
 
 
-
 # =todo 63 (module-ui, ux) +0: basic layer control, on-off
 
 from .AppWindow import *
