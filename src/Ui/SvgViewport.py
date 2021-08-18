@@ -205,7 +205,7 @@ Scene canvas
 '''
 # =todo 80 (module-ui, svg, feature) +0: make SvgCanvas multilayered
 class SvgCanvas(QWidget):
-	layers = [None]
+	layers = None
 	docWidth = 100
 	docHeight = 100
 
@@ -221,7 +221,8 @@ class SvgCanvas(QWidget):
 	def __init__(self, parent):
 		QWidget.__init__(self, parent)
 
-		self.layers[0] = QSvgRenderer(self)
+		self.layers = []
+		self.layers.append( QSvgRenderer(self) )
 
 
 
