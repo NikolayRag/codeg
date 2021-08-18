@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
 import sys
-from . import shapes as shapes_pkg
-from .shapes import point_generator
+from . import shapes
 
 
 
@@ -11,22 +10,21 @@ class GGen():
 
 
     rootET = None
+
+    scaleX = 1.
+    scaleY = 1.
     smoothness = 0.02
+    precision = 4
+
     feedRate = 0
     park = False
-    maxX = 200
-    maxY = 300
 
-    precision = 4
     preamble = ''
     shapePre = ''
     shapeIn = ''
     shapeOut = ''
     shapeFinal = ''
     postamble = ''
-
-
-    scale = 1.
 
 
 
@@ -36,27 +34,28 @@ class GGen():
 
 
     def set(self,
+        scale = None,
         smoothness = None,
+        precision = None,
+
         feedRate = None,
         park = None,
-        maxX = None,
-        maxY = None,
 
-        precision = None,
         preamble = None,
         shapePre = None,
         shapeIn = None,
         shapeOut = None,
         shapeFinal = None,
-        postamble = None
+        postamble = None,
     ):
+        if scale != None:
+            self.scaleXX, self.scaleXY = scale if hasattr(scale,'__iter__') else (scale,scale)
         if smoothness != None: self.smoothness = smoothness
+        if precision != None: self.precision = precision
+
         if feedRate != None: self.feedRate = feedRate
         if park != None: self.park = park
-        if maxX != None: self.maxX = maxX
-        if maxY != None: self.maxY = maxY
 
-        if precision != None: self.precision = precision
         if preamble != None: self.preamble = preamble
         if shapePre != None: self.shapePre = shapePre
         if shapeIn != None: self.shapeIn = shapeIn
@@ -65,29 +64,18 @@ class GGen():
         if postamble != None: self.postamble = postamble
 
 
-        width = self.rootET.get('width')
-        height = self.rootET.get('height')
-        if width == None or height == None:
-            viewbox = self.rootET.get('viewBox')
-            if viewbox:
-                _, _, width, height = viewbox.split()                
-
-        if width != None and height != None:
-            width = float(width)
-            height = float(height)
-
-            scale_x = self.maxX / max(width, height)
-            scale_y = self.maxY / max(width, height)
-#            self.scale = min(scale_x, scale_y)
-
-        else:
-            print("Unable to get width and height for the svg")
-
-
     
-    def generate(self, join=False):
-        outGCode = self.buildHead()
+    def generate(self,
+        join=False,
 
+        scale = None,
+        smoothness = None,
+        precision = None,
+    ):
+        self.set(scale=scale, smoothness=smoothness, precision=precision)
+
+
+        outGCode = self.buildHead()
 
         for elem in self.rootET.iter():
             try:
@@ -97,7 +85,7 @@ class GGen():
                 continue
 
             if tag_suffix in self.svg_shapes:
-                shape_class = getattr(shapes_pkg, tag_suffix)
+                shape_class = getattr(shapes, tag_suffix)
                 shapesA = self.shapeGen(shape_class(elem))
 
                 self.shapeDecorate(elem, shapesA, outGCode)
@@ -111,23 +99,16 @@ class GGen():
 
 
     def shapeGen(self, _shape):
-        d = _shape.d_path()
-        m = _shape.transformation_matrix()
-
-        if not d:
-            return []
-
-
         gShapesA = []
 
         cGShape = []
-        p = point_generator(d, m, self.smoothness)
+        p = _shape.point_generator(self.smoothness)
         for x,y,start in p:
             if start:
                 cGShape = []
                 gShapesA.append(cGShape)
 
-            cGShape.append( (self.scale*x, self.scale*y) )
+            cGShape.append((x, y))
 
 
         return gShapesA
@@ -176,7 +157,7 @@ class GGen():
             _coords = (_coords,)
 
         p = self.precision
-        return [f"X{round(_x,p)}Y{round(_y,p)}" for _x,_y in _coords]
+        return [f"X{round(self.scaleX*_x,p)}Y{round(self.scaleY*_y,p)}" for _x,_y in _coords]
 
 
 
