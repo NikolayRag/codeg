@@ -181,7 +181,7 @@ class SvgViewport(QWidget):
 
 
 
-	def changeSVG(self, _xml):
+	def canvasUpdate(self, _xml):
 		self.canvas.replace(_xml, quick=True)
 
 

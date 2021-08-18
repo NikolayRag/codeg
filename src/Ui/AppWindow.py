@@ -263,7 +263,7 @@ class AppWindow():
 
 		cXml = self.cbWLayerSet(selection=selectionNamesA)
 		if cXml:
-			self.layout.viewport.changeSVG(cXml)
+			self.layout.viewport.canvasUpdate(cXml)
 
 
 
@@ -283,7 +283,7 @@ class AppWindow():
 
 		cXml = self.cbWLayerSet(hover=hoverName)
 		if cXml:
-			self.layout.viewport.changeSVG(cXml)
+			self.layout.viewport.canvasUpdate(cXml)
 
 
 
