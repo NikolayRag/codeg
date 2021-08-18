@@ -166,7 +166,7 @@
 -module-ui, ux, clean 59: +0 "src\Ui\AppWindow.py" kii 21/08/06 17:22:09
 	make updatable connections list
 
-=module-dispatch 60: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:10:08
+=module-dispatch 60: +0 "" ki 21/08/17 15:27:39
 	show gcodes live proto
 
 =module-dispatch 61: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 03:45:15
@@ -178,7 +178,7 @@
 =module-ui, ux 63: +0 "src\Ui\Ui.py" kii 21/08/15 22:10:52
 	basic layer control, on-off
 
-=module-dispatch 64: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:09:07
+-module-dispatch 64: +0 "src\Dispatch\Dispatch.py" ki 21/08/17 15:28:44
 	dispatch queue
 
 !module-dispatch 65: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:38:19
@@ -190,7 +190,7 @@
 -API 67: +1 "src\__main__w.py" kii 21/08/15 05:15:39
 	change callbacks to signals-slots
 
-=module-dispatch 68: +0 "src\Dispatch\Dispatch.py" kii 21/08/10 06:02:21
+-module-dispatch 68: +0 "src\Dispatch\Dispatch.py" ki 21/08/17 15:28:48
 	queue control
 
  gcode 69: +0 "src\GGen\GGen.py" kii 21/08/12 04:40:26
@@ -225,4 +225,10 @@
 
  module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" kii 21/08/15 22:52:53
 	make size ignored on maximize
+
+=module-ui, svg, feature 80: +0 "src\Ui\SvgViewport.py" ki 21/08/18 18:25:49
+	make SvgCanvas multilayered
+
+=module-ui, svg, feature 81: +0 "src\Ui\AppWindow.py" ki 21/08/18 18:26:37
+	show grid
 
