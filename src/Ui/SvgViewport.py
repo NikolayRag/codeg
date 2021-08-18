@@ -165,17 +165,18 @@ class SvgViewport(QWidget):
 			self.canvas.deleteLater()
 			self.canvas = None
 
-
+		self.canvas = SvgCanvas(self)
 		if _xml:
-			self.canvas = SvgCanvas(self, _xml, draw=False)
+			self.canvas.replace(_xml)
+
 			self.canvasFit(.8)
 			self.canvasCenter()
-			self.canvas.show()
 
+		self.canvas.show()
 
 
 	def changeSVG(self, _xml):
-		self.canvas and self.canvas.replace(_xml)
+		self.canvas.replace(_xml, quick=True)
 
 
 
@@ -203,8 +204,8 @@ Scene canvas
 '''
 class SvgCanvas(QWidget):
 	doc = None
-	docWidth = 0
-	docHeight = 0
+	docWidth = 100
+	docHeight = 100
 
 	
 	offset = QPoint(0,0)
@@ -215,23 +216,24 @@ class SvgCanvas(QWidget):
 
 
 
-	def __init__(self, parent, _xml, draw=True):
+	def __init__(self, parent):
 		QWidget.__init__(self, parent)
 
-		self.doc = QSvgRenderer(_xml, self)
-		cSize = self.doc.defaultSize()
-		self.docWidth = cSize.width()
-		self.docHeight = cSize.height()
-
-		if draw:
-			self.update()
+		self.doc = QSvgRenderer(self)
 
 
 
-	def replace(self, _xml):
+	def replace(self, _xml, quick=False):
 		self.doc.load(_xml)
 
-		self.repaint()
+		if quick:
+			self.repaint()
+		else:
+			cSize = self.doc.defaultSize()
+			self.docWidth = cSize.width()
+			self.docHeight = cSize.height()
+
+			self.update()
 
 
 
