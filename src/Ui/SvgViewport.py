@@ -34,10 +34,6 @@ class SvgViewport(QWidget):
 #  todo 6 (module-ui, feature) +0: smooth animated zoom
 
 	def resizeEvent(self, _e):
-		if not self.canvas:
-			return
-
-
 		oldW, oldH, newW, newH = _e.oldSize().width(), _e.oldSize().height(), _e.size().width(), _e.size().height()
 
 		#portrait/landscape didnt change, use smallest side scale factor
@@ -90,10 +86,6 @@ class SvgViewport(QWidget):
 
 
 	def viewportSize(self, _scale, _updateAnchor=True):
-		if not self.canvas:
-			return
-
-
 		#max clip
 		if _scale>self.scaleMax:
 			_scale = self.scaleMax
@@ -118,10 +110,6 @@ class SvgViewport(QWidget):
 
 
 	def viewportPlace(self, _pos, _updateAnchor=True):
-		if not self.canvas:
-			return
-
-
 		cSize = self.canvas.sizeHint()
 
 		cMarginX = self.width() * self.panMargins
@@ -192,10 +180,6 @@ class SvgViewport(QWidget):
 
 
 	def canvasFit(self, multiply=1.):
-		if not self.canvas:
-			return
-
-
 		cSize = self.canvas.sizeHint()
 		fitWidth = self.width() / cSize.width()
 		fitHeight = self.height() / cSize.height()
@@ -206,9 +190,6 @@ class SvgViewport(QWidget):
 
 
 	def canvasCenter(self):
-		if not self.canvas:
-			return
-
 		cSize = self.canvas.sizeHint()
 		self.viewportPlace(QPoint(
 			(self.width()-cSize.width())/2,
