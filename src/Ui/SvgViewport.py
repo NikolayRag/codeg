@@ -151,6 +151,8 @@ class SvgViewport(QWidget):
 
 		QHBoxLayout(self)
 
+		self.canvasNew()
+
 
 
 #####PUBLIC#####
@@ -160,19 +162,23 @@ class SvgViewport(QWidget):
 
 
 
-	def addSVG(self, _xml=None):
+	def canvasNew(self):
 		if self.canvas:
 			self.canvas.deleteLater()
 			self.canvas = None
 
 		self.canvas = SvgCanvas(self)
-		if _xml:
-			self.canvas.replace(_xml)
+		self.canvas.show()
 
+
+
+	def canvasAdd(self, _xml, fit=False):
+		self.canvas.replace(_xml)
+
+		if fit:
 			self.canvasFit(.8)
 			self.canvasCenter()
 
-		self.canvas.show()
 
 
 	def changeSVG(self, _xml):

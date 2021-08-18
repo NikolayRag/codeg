@@ -207,7 +207,8 @@ class AppWindow():
 			self.layout.btnStore.setEnabled(True)
 			self.layout.btnProccess.setEnabled(True)
 
-			self.layout.viewport.addSVG(cData['xml'])
+			self.layout.viewport.canvasNew()
+			self.layout.viewport.canvasAdd(cData['xml'], fit=True)
 
 
 			cList = self.layout.listLayers
