@@ -204,7 +204,7 @@ class SvgViewport(QWidget):
 Scene canvas 
 '''
 class SvgCanvas(QWidget):
-	doc = None
+	layers = [None]
 	docWidth = 100
 	docHeight = 100
 
@@ -220,17 +220,17 @@ class SvgCanvas(QWidget):
 	def __init__(self, parent):
 		QWidget.__init__(self, parent)
 
-		self.doc = QSvgRenderer(self)
+		self.layers[0] = QSvgRenderer(self)
 
 
 
 	def replace(self, _xml, quick=False):
-		self.doc.load(_xml)
+		self.layers[0].load(_xml)
 
 		if quick:
 			self.repaint()
 		else:
-			cSize = self.doc.defaultSize()
+			cSize = self.layers[0].defaultSize()
 			self.docWidth = cSize.width()
 			self.docHeight = cSize.height()
 
@@ -241,7 +241,7 @@ class SvgCanvas(QWidget):
 	def paintEvent(self, e):
 		p = QPainter(self)
 		p.setViewport( QRect(QPoint(0, 0), self.sizeHint()) )
-		self.doc.render(p)
+		self.layers[0].render(p)
 
 
 
