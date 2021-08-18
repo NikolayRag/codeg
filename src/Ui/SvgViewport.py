@@ -157,11 +157,6 @@ class SvgViewport(QWidget):
 
 #####PUBLIC#####
 
-	def isLoaded(self):
-		return True if self.canvas else False
-
-
-
 	def canvasNew(self):
 		if self.canvas:
 			self.canvas.deleteLater()

@@ -268,9 +268,6 @@ class AppWindow():
 
 
 	def layerHover(self, _row=-1, _col=-1, event=None):
-		if not self.layout.viewport.isLoaded():
-			return
-
 		if not self.cbWLayerSet:
 			print('No layerSet CB')
 			return

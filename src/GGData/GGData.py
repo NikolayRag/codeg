@@ -55,6 +55,9 @@ class GGData():
 
 
 	def getXML(self):
+		if not self.theGG:
+			return False
+
 		return XML.tostring(self.theGG.getroot())
 
 
