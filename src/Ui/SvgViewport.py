@@ -253,8 +253,6 @@ class SvgCanvas(QWidget):
 	scaleY = 1.
 
 
-
-
 	def __init__(self, parent):
 		QWidget.__init__(self, parent)
 
@@ -309,7 +307,6 @@ class SvgCanvas(QWidget):
 
 
 
-#####PUBLIC#####
 	def canvasSize(self, _factorX, _factorY):
 		self.scaleX = _factorX
 		self.scaleY = _factorY
