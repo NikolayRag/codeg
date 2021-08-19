@@ -167,13 +167,10 @@ class SvgViewport(QWidget):
 
 
 
-	def canvasAdd(self, _xml, fit=False):
+
+	def canvasAdd(self, _xml):
 		self.layerId = self.canvas.layerNew()
 		self.canvas.layerSet(self.layerId, _xml)
-
-		if fit:
-			self.canvasFit(.8)
-			self.canvasCenter()
 
 
 
@@ -182,13 +179,16 @@ class SvgViewport(QWidget):
 
 
 
-	def canvasFit(self, multiply=1.):
+	def canvasFit(self, multiply=1., center=True):
 		cSize = self.canvas.sizeHint()
 		fitWidth = self.width() / cSize.width()
 		fitHeight = self.height() / cSize.height()
 
 		cScale = fitHeight if fitHeight<fitWidth else fitWidth
 		self.viewportSize(cScale*multiply)
+
+		if center:
+			self.canvasCenter()
 
 
 

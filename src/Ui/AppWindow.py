@@ -209,7 +209,8 @@ class AppWindow():
 			self.layout.btnProccess.setEnabled(True)
 
 			self.layout.viewport.canvasNew()
-			self.layout.viewport.canvasAdd(cData['xml'], fit=True)
+			self.layout.viewport.canvasAdd(cData['xml'])
+			self.layout.viewport.canvasFit(.8)
 
 
 			cList = self.layout.listLayers
