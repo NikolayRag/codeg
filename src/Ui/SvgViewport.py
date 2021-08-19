@@ -168,7 +168,8 @@ class SvgViewport(QWidget):
 
 
 	def canvasAdd(self, _xml, fit=False):
-		self.canvas.replace(_xml)
+		self.layerId = self.canvas.layerNew()
+		self.canvas.layerSet(self.layerId, _xml)
 
 		if fit:
 			self.canvasFit(.8)
@@ -177,7 +178,7 @@ class SvgViewport(QWidget):
 
 
 	def canvasUpdate(self, _xml):
-		self.canvas.replace(_xml, quick=True)
+		self.canvas.layerSet(self.layerId, _xml, quick=True)
 
 
 
@@ -204,6 +205,41 @@ class SvgViewport(QWidget):
 Scene canvas 
 '''
 # -todo 80 (module-ui, svg, feature) +0: make SvgCanvas multilayered
+class SvgCanvasLayer():
+	data = None
+
+	name = ''
+	ghost = False
+	display = True
+	lod = 1.
+
+	holdSize = None
+
+
+	def __init__(self, _parent):
+		self.data = QSvgRenderer(_parent)
+
+
+	def update(self, _xml):
+		self.data.load(_xml)
+
+		self.holdSize = self.data.defaultSize()
+
+
+	def size(self):
+		return self.holdSize
+
+
+	def render(self, _painter):
+		if not self.data:
+			return
+
+		self.data.render(_painter)
+
+		return True
+
+
+
 class SvgCanvas(QWidget):
 	layers = None
 	docWidth = 100
@@ -222,17 +258,25 @@ class SvgCanvas(QWidget):
 		QWidget.__init__(self, parent)
 
 		self.layers = []
-		self.layers.append( QSvgRenderer(self) )
 
 
 
-	def replace(self, _xml, quick=False):
-		self.layers[0].load(_xml)
+	def layerNew(self):
+		cId = len(self.layers)
+		self.layers.append( SvgCanvasLayer(self) )
+
+		return cId
+
+
+
+	def layerSet(self, _idx, _xml, quick=False):
+		cLayer = self.layers[_idx]
+		cLayer.update(_xml)
 
 		if quick:
 			self.repaint()
 		else:
-			cSize = self.layers[0].defaultSize()
+			cSize = cLayer.size()
 			self.docWidth = cSize.width()
 			self.docHeight = cSize.height()
 
@@ -243,7 +287,8 @@ class SvgCanvas(QWidget):
 	def paintEvent(self, e):
 		p = QPainter(self)
 		p.setViewport( QRect(QPoint(0, 0), self.sizeHint()) )
-		self.layers[0].render(p)
+		for cLayer in self.layers:
+			cLayer.render(p)
 
 
 
