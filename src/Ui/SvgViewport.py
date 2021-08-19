@@ -203,7 +203,7 @@ class SvgViewport(QWidget):
 '''
 Scene canvas 
 '''
-# =todo 80 (module-ui, svg, feature) +0: make SvgCanvas multilayered
+# -todo 80 (module-ui, svg, feature) +0: make SvgCanvas multilayered
 class SvgCanvas(QWidget):
 	layers = None
 	docWidth = 100

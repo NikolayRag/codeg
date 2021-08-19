@@ -120,7 +120,7 @@ class AppWindow():
 
 
 		holderViewport = cMain.findChild(QWidget, "wViewport")
-# =todo 81 (module-ui, svg, feature) +0: show grid
+# -todo 81 (module-ui, svg, feature) +0: show grid
 		self.layout.viewport = SvgViewport(holderViewport)
 		self.layout.viewport.lower()
 		self.layout.viewport.show()

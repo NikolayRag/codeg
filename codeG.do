@@ -226,9 +226,9 @@
  module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" kii 21/08/15 22:52:53
 	make size ignored on maximize
 
-=module-ui, svg, feature 80: +0 "src\Ui\SvgViewport.py" ki 21/08/18 18:25:49
+-module-ui, svg, feature 80: +0 "src\Ui\SvgViewport.py" ki 21/08/19 02:48:35
 	make SvgCanvas multilayered
 
-=module-ui, svg, feature 81: +0 "src\Ui\AppWindow.py" ki 21/08/18 18:26:37
+-module-ui, svg, feature 81: +0 "src\Ui\AppWindow.py" ki 21/08/19 02:48:46
 	show grid
 
