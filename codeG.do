@@ -103,7 +103,7 @@
  module-ui, API 36: +0 "src\Ui\SvgViewport.py" kii 21/08/02 06:13:19
 	make viewport interaction callbacks
 
--module-ui, viewport 37: +0 "src\Ui\SvgViewport.py" kii 21/08/02 21:57:59
+ module-ui, viewport 37: +0 "src\Ui\SvgViewport.py" ki 21/08/19 16:55:33
 	make custom scrollbars out of SvgViewport
 
 +module-ui, API 38: +0 "src\Ui\SvgViewport.py" kii 21/08/02 19:14:34
@@ -226,7 +226,7 @@
  module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" kii 21/08/15 22:52:53
 	make size ignored on maximize
 
--module-ui, svg, feature 80: +0 "src\Ui\SvgViewport.py" ki 21/08/19 02:48:35
+=module-ui, svg, feature 80: +0 "src\Ui\SvgViewport.py" ki 21/08/19 19:29:53
 	make SvgCanvas multilayered
 
 -module-ui, svg, feature 81: +0 "src\Ui\AppWindow.py" ki 21/08/19 02:48:46

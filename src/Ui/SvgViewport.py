@@ -5,7 +5,7 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 from PySide2.QtSvg import *
 
-# -todo 37 (module-ui, viewport) +0: make custom scrollbars out of SvgViewport
+#  todo 37 (module-ui, viewport) +0: make custom scrollbars out of SvgViewport
 
 '''
 Main scene widget
@@ -205,7 +205,7 @@ class SvgViewport(QWidget):
 '''
 Scene canvas 
 '''
-# -todo 80 (module-ui, svg, feature) +0: make SvgCanvas multilayered
+# =todo 80 (module-ui, svg, feature) +0: make SvgCanvas multilayered
 class SvgCanvasLayer():
 	data = None
 
