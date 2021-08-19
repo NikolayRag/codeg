@@ -44,6 +44,8 @@ class BindFilter(QObject):
 class AppWindow():
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
+	defaultFit = 0.8
+
 	cbWFileLoad = None
 	cbWFileSave = None
 	cbWConnList = None
@@ -132,6 +134,8 @@ class AppWindow():
 		holderViewport.installEventFilter(self.tmpFilterViewResize)
 
 
+		self.layout.btnFit = cMain.findChild(QWidget, "btnFit")
+
 		self.layout.btnCaption = cMain.findChild(QWidget, "btnCaption")
 		self.layout.btnOpen = cMain.findChild(QWidget, "btnLoad")
 		self.layout.btnStore = cMain.findChild(QWidget, "btnSave")
@@ -146,6 +150,7 @@ class AppWindow():
 		self.layout.logDev = cMain.findChild(QTextEdit, "logDev")
 
 
+		self.layout.btnFit.clicked.connect(lambda: self.layout.viewport.canvasFit(self.defaultFit))
 		self.layout.btnCaption.clicked.connect(self.about)
 		self.layout.btnOpen.clicked.connect(self.openFile)
 		self.layout.btnStore.clicked.connect(self.storeFile)
@@ -210,7 +215,7 @@ class AppWindow():
 
 			self.layout.viewport.canvasNew()
 			self.layout.viewport.canvasAdd(cData['xml'])
-			self.layout.viewport.canvasFit(.8)
+			self.layout.viewport.canvasFit(self.defaultFit)
 
 
 			cList = self.layout.listLayers
