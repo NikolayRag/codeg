@@ -165,6 +165,7 @@ class SvgViewport(QWidget):
 		self.canvas = SvgCanvas(self)
 		self.canvas.show()
 
+		self.canvasFit()
 
 
 
