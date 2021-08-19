@@ -125,10 +125,10 @@ class AppWindow():
 		self.layout.viewport.lower()
 		self.layout.viewport.show()
 
-		def filtereViewportResize(event):
-			self.layout.viewport.resize(event.size())
-
-		self.tmpFilterViewResize = BindFilter(QEvent.Type.Resize, filtereViewportResize)
+		self.tmpFilterViewResize = BindFilter(
+			QEvent.Type.Resize,
+			lambda event: self.layout.viewport.resize(event.size())
+		)
 		holderViewport.installEventFilter(self.tmpFilterViewResize)
 
 
