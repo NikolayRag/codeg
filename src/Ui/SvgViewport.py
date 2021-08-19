@@ -180,9 +180,9 @@ class SvgViewport(QWidget):
 
 
 	def canvasFit(self, multiply=1., center=True):
-		cSize = self.canvas.sizeHint()
-		fitWidth = self.width() / cSize.width()
-		fitHeight = self.height() / cSize.height()
+		fitWidth = self.width() / self.canvas.docWidth
+		fitHeight = self.height() / self.canvas.docHeight
+
 
 		cScale = fitHeight if fitHeight<fitWidth else fitWidth
 		self.viewportSize(cScale*multiply)
