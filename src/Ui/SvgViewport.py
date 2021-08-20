@@ -152,7 +152,7 @@ class SvgViewport(QWidget):
 		QHBoxLayout(self)
 
 		self.canvasReset()
-
+		self.canvasAdd(None)
 
 
 #####PUBLIC#####
@@ -269,6 +269,9 @@ class SvgCanvas(QWidget):
 
 
 	def layerSet(self, _idx, _xml, quick=False):
+		if not _xml:
+			return
+
 		cLayer = self.layers[_idx]
 		cLayer.update(_xml)
 
