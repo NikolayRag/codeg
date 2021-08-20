@@ -18,6 +18,7 @@ class SvgViewport(QWidget):
 	scaleMax = 10000
 
 
+	gridXml = None
 	canvas = None
 
 	layerId = -1
@@ -148,10 +149,12 @@ class SvgViewport(QWidget):
 
 
 
-	def __init__(self, _parent):
+	def __init__(self, _parent, _gridXml=None):
 		QWidget.__init__(self, _parent)
 
 		QHBoxLayout(self)
+
+		self.gridXml = _gridXml
 
 		self.canvasReset()
 
@@ -166,6 +169,8 @@ class SvgViewport(QWidget):
 		self.canvas = SvgCanvas(self)
 		self.canvas.show()
 
+		if self.gridXml:
+			self.canvas.layerSet(self.canvas.layerNew(), self.gridXml)
 
 
 
