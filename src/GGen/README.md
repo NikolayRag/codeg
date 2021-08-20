@@ -33,12 +33,18 @@ ggObject.set(
     shapeFinal = '',
     postamble = ''
 )
-ggRows = ggObject.generate(
+
+for gEntity in ggObject.generate(
     scale = None,
     smoothness = None,
     precision = None
-)
+):
+    do_something_with( gEntity )
 ```
+where **gEntity** will be complete list of G-commands one for head, each shape, and tail.
+
+Converting to string explicitely with ```str(ggObject)``` or implicitely like in ```print(ggObject)``` is allowed, obvoiusly resulting in complete g-code within one string.
+
 
 In addition to being strings, **shapePre**, **shapeIn**, **shapeOut** and **shapeFinal** passed can be hook functions to generate inline:
 
@@ -96,6 +102,7 @@ Most notable changes:
 * Python 3 compatable
 * Is importable module
 * GGen class as interface
+* Used as generator
 * Fix: curved shapes collected with wrong points [#2733998](https://github.com/NikolayRag/svg2gcode_ggen/commit/2733998fb56177be35ea0a91014296366bd2bd3a)
 * Fix: proccess multishapes per-shape [#43d4dba](https://github.com/NikolayRag/svg2gcode_ggen/commit/43d4dba31fd7cfb5d92c99fd018b30991fcd4d90)
 * Fix: complex curves out or recursion limits [#33737f2](https://github.com/NikolayRag/svg2gcode_ggen/commit/33737f2b23cd614b60b2f5b16a2896b5cdddc1d3)
