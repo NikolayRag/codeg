@@ -154,7 +154,6 @@ class SvgViewport(QWidget):
 		QHBoxLayout(self)
 
 		self.canvasReset()
-		self.canvasAdd(None)
 
 
 #####PUBLIC#####
