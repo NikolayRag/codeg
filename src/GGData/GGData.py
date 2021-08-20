@@ -91,7 +91,7 @@ class GGData():
 		    return( "S100 G1" )
 		cGG.set(shapeIn = shapeInHook)
 
-		return cGG.generate(True)
+		return str(cGG)
 
 
 
