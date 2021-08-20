@@ -47,7 +47,9 @@ class GGData():
 				a.set('originalFill', a.get('fill') or '')
 				a.set('originalOpacity', a.get('opacity') or '')
 				a.set('originalDisplay', a.get('display') or '')
+
 				self.namedRef[aTag +str(i)] = a
+
 				i += 1
 
 

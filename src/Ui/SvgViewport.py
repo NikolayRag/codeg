@@ -159,6 +159,7 @@ class SvgViewport(QWidget):
 		self.canvasReset()
 
 
+
 #####PUBLIC#####
 
 	def canvasReset(self):
