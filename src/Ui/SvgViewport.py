@@ -20,6 +20,8 @@ class SvgViewport(QWidget):
 
 	canvas = None
 
+	layerId = -1
+
 	pos = QPoint(0, 0)
 	scale = 1.
 	diff = 1.1
