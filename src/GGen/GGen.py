@@ -33,13 +33,19 @@ class GGen():
 
 
 
+    def setDevice(self,
+        feedRate = None,
+        park = None,
+    ):
+        if feedRate != None: self.feedRate = feedRate
+        if park != None: self.park = park
+
+
+
     def set(self,
         scale = None,
         smoothness = None,
         precision = None,
-
-        feedRate = None,
-        park = None,
 
         preamble = None,
         shapePre = None,
@@ -49,12 +55,9 @@ class GGen():
         postamble = None,
     ):
         if scale != None:
-            self.scaleXX, self.scaleXY = scale if hasattr(scale,'__iter__') else (scale,scale)
+            self.scaleX, self.scaleY = scale if hasattr(scale,'__iter__') else (scale,scale)
         if smoothness != None: self.smoothness = smoothness
         if precision != None: self.precision = precision
-
-        if feedRate != None: self.feedRate = feedRate
-        if park != None: self.park = park
 
         if preamble != None: self.preamble = preamble
         if shapePre != None: self.shapePre = shapePre
@@ -95,6 +98,10 @@ class GGen():
 
 
         return "\n".join(outGCode) if join else outGCode
+
+
+
+###private###
 
 
 
