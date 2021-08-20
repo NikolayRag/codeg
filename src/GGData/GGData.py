@@ -91,7 +91,11 @@ class GGData():
 		    return( "S100 G1" )
 		cGG.set(shapeIn = shapeInHook)
 
-		return str(cGG)
+		gFlat = []
+		for g in cGG.generate():
+			gFlat += g
+
+		return "\n".join(gFlat)
 
 
 
