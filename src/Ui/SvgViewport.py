@@ -151,13 +151,13 @@ class SvgViewport(QWidget):
 
 		QHBoxLayout(self)
 
-		self.canvasNew()
+		self.canvasReset()
 
 
 
 #####PUBLIC#####
 
-	def canvasNew(self):
+	def canvasReset(self):
 		if self.canvas:
 			self.canvas.deleteLater()
 			self.canvas = None

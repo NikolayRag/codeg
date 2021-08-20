@@ -213,7 +213,7 @@ class AppWindow():
 			self.layout.btnStore.setEnabled(True)
 			self.layout.btnProccess.setEnabled(True)
 
-			self.layout.viewport.canvasNew()
+			self.layout.viewport.canvasReset()
 			self.layout.viewport.canvasAdd(cData['xml'])
 			self.layout.viewport.canvasFit(self.defaultFit)
 
