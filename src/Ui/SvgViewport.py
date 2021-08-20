@@ -149,18 +149,23 @@ class SvgViewport(QWidget):
 
 
 
-	def __init__(self, _parent, _gridXml=None):
+	def __init__(self, _parent):
 		QWidget.__init__(self, _parent)
 
 		QHBoxLayout(self)
-
-		self.gridXml = _gridXml
 
 		self.canvasReset()
 
 
 
 #####PUBLIC#####
+
+
+
+	def setGrid(self, _gridXml=None):
+		self.gridXml = _gridXml
+
+
 
 	def canvasReset(self):
 		if self.canvas:
