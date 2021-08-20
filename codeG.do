@@ -61,8 +61,8 @@
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
 	dup
 
-=module-dispatch, ux 22: +0 "src\Dispatch\Dispatch.py" ki 21/08/20 16:57:48
-	gcode convert in background and interruptable
+=module-dispatch, ux 22: +0 "src\GGData\GGData.py" ki 21/08/20 17:55:42
+	make dispatch interruptable
 
 -module-ui, ux 23: +0 "src\Ui\Ui.py" ki 21/08/20 16:57:48
 	show progress for time consuming operations
@@ -166,7 +166,7 @@
 -module-ui, ux, clean 59: +0 "src\Ui\AppWindow.py" kii 21/08/06 17:22:09
 	make updatable connections list
 
-=module-dispatch 60: +0 "src\Dispatch\Dispatch.py" ki 21/08/20 13:46:48
+=module-dispatch 60: +0 "src\Dispatch\Dispatch.py" ki 21/08/20 17:53:36
 	show gcodes live proto
 
 =module-dispatch 61: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 03:45:15
@@ -184,10 +184,10 @@
 !module-dispatch 65: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:38:19
 	
 
- module-data 66: +0 "src\GGData\GGData.py" ki 21/08/20 05:23:26
-	use progress callbacks Gcode gen
+-module-ui 66: +0 "src\GGData\GGData.py" ki 21/08/20 17:54:50
+	show dispatch progress
 
--API 67: +1 "src\__main__w.py" kii 21/08/15 05:15:39
+-api 67: +1 "src\__main__w.py" ki 21/08/20 17:52:48
 	change callbacks to signals-slots
 
 -module-dispatch 68: +0 "src\Dispatch\Dispatch.py" ki 21/08/20 02:57:25
@@ -240,4 +240,7 @@
 
  module-data 84: +0 "src\GGData\GGData.py" ki 21/08/20 17:07:44
 	make file load (save) plugin system
+
+=module-dispatch 85: +0 "src\GGData\GGData.py" ki 21/08/20 17:54:21
+	Gcode generate in background
 

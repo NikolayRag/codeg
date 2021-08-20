@@ -70,6 +70,9 @@ class GGData():
 
 
 
+# =todo 22 (module-dispatch, ux) +0: make dispatch interruptable
+# =todo 85 (module-dispatch) +0: Gcode generate in background
+# -todo 66 (module-ui) +0: show dispatch progress
 	def getG(self):
 		if not self.theGG:
 			return
@@ -88,7 +91,7 @@ class GGData():
 		    return( "S100 G1" )
 		cGG.set(shapeIn = shapeInHook)
 
-#  todo 66 (module-data) +0: use progress callbacks Gcode gen
+
 		gFlat = []
 		for g in cGG.generate():
 			gFlat += g
