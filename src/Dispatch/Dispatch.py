@@ -3,6 +3,7 @@ import serial.tools.list_ports
 
 
 
+# =todo 22 (module-dispatch, ux) +0: gcode convert in background and interruptable
 # =todo 60 (module-dispatch) +0: show gcodes live proto
 # =todo 61 (module-dispatch) +0: CNC control
 # =todo 62 (module-dispatch) +0: live device control

@@ -22,7 +22,7 @@
 +spec, module-data 8: +0 "src\GGData\GGData.py" kii 21/07/31 16:30:49
 	save gcode
 
- spec, module-data 9: +0 "src\GGData\GGData.py" kii 21/08/10 05:28:32
+ spec, module-data 9: +0 "src\GGData\GGData.py" ki 21/08/20 17:03:49
 	operate project data
 
  spec, module-data 10: +0 "src\__main__w.py" kii 21/07/28 03:36:06
@@ -61,10 +61,10 @@
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
 	dup
 
--module-ui, ux 22: +0 "src\Ui\Ui.py" kii 21/08/04 06:16:04
-	make time consuming functions, like saveload, interruptable
+=module-dispatch, ux 22: +0 "src\Dispatch\Dispatch.py" ki 21/08/20 16:57:48
+	gcode convert in background and interruptable
 
--module-ui, ux 23: +0 "src\Ui\Ui.py" kii 21/08/07 05:06:07
+-module-ui, ux 23: +0 "src\Ui\Ui.py" ki 21/08/20 16:57:48
 	show progress for time consuming operations
 
 !module-data, formats 24: +0 "" kii 21/07/31 16:33:32
@@ -166,7 +166,7 @@
 -module-ui, ux, clean 59: +0 "src\Ui\AppWindow.py" kii 21/08/06 17:22:09
 	make updatable connections list
 
-=module-dispatch 60: +0 "" ki 21/08/17 15:27:39
+=module-dispatch 60: +0 "src\Dispatch\Dispatch.py" ki 21/08/20 13:46:48
 	show gcodes live proto
 
 =module-dispatch 61: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 03:45:15
@@ -214,8 +214,8 @@
 !fix, gcode 75: +0 "src\GGen\GGen.py" kii 21/08/14 20:12:11
 	
 
--fix, gcode 76: +0 "src\GGData\GGData.py" kii 21/08/15 04:03:06
-	gcode crop and scale
+=fix, gcode 76: +0 "src\GGData\GGData.py" ki 21/08/20 17:12:45
+	gcode move, scale and crop
 
 -fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" kii 21/08/14 20:43:27
 	duplicate hover element topmost
@@ -237,4 +237,7 @@
 
  ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" ki 21/08/20 05:18:48
 	fit at init dont work due to obsolete size 
+
+ module-data 84: +0 "src\GGData\GGData.py" ki 21/08/20 17:07:44
+	make file load (save) plugin system
 

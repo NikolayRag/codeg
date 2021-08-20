@@ -1,7 +1,3 @@
-#  todo 66 (module-data) +0: use progress callbacks Gcode gen
-
-
-
 #  todo 9 (spec, module-data) +0: operate project data
 #  todo 10 (spec, module-data) +0: operate scene data
 # -todo 11 (spec, module-data) +0: read/save own format
@@ -24,6 +20,7 @@ class GGData():
 	namedRef = {}
 
 
+#  todo 84 (module-data) +0: make file load (save) plugin system
 	def loadXML(self, _fileName):
 		self.theGG = XML.parse(_fileName)
 		self.namedRef = {}
@@ -77,7 +74,7 @@ class GGData():
 		if not self.theGG:
 			return
 
-# -todo 76 (fix, gcode) +0: gcode crop and scale
+# =todo 76 (fix, gcode) +0: gcode move, scale and crop
 		cGG = GGen(self.theGG.getroot())
 		cGG.set(
 			preamble = 'G90 M4 S0',
@@ -91,6 +88,7 @@ class GGData():
 		    return( "S100 G1" )
 		cGG.set(shapeIn = shapeInHook)
 
+#  todo 66 (module-data) +0: use progress callbacks Gcode gen
 		gFlat = []
 		for g in cGG.generate():
 			gFlat += g
