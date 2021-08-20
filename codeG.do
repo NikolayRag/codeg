@@ -190,7 +190,7 @@
 -API 67: +1 "src\__main__w.py" kii 21/08/15 05:15:39
 	change callbacks to signals-slots
 
--module-dispatch 68: +0 "src\Dispatch\Dispatch.py" ki 21/08/17 15:28:48
+-module-dispatch 68: +0 "src\Dispatch\Dispatch.py" ki 21/08/20 02:57:25
 	queue control
 
  gcode 69: +0 "src\GGen\GGen.py" kii 21/08/12 04:40:26
@@ -231,4 +231,7 @@
 
 -module-ui, svg, feature 81: +0 "src\Ui\AppWindow.py" ki 21/08/19 02:48:46
 	show grid
+
+ module-data, ux 82: +0 "src\GGData\GGData.py" ki 21/08/20 03:48:29
+	parse groups
 

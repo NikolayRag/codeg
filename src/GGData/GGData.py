@@ -36,6 +36,7 @@ class GGData():
 			if aTag == 'xml':
 				None
 
+#  todo 82 (module-data, ux) +0: parse groups
 			if aTag == 'g':
 				None
 
