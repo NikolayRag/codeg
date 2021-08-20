@@ -184,7 +184,7 @@
 !module-dispatch 65: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:38:19
 	
 
- module-data 66: +0 "src\GGData\GGData.py" kii 21/08/10 04:01:00
+ module-data 66: +0 "src\GGData\GGData.py" ki 21/08/20 05:23:26
 	use progress callbacks Gcode gen
 
 -API 67: +1 "src\__main__w.py" kii 21/08/15 05:15:39
@@ -226,7 +226,7 @@
  module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" kii 21/08/15 22:52:53
 	make size ignored on maximize
 
-=module-ui, svg, feature 80: +0 "src\Ui\SvgViewport.py" ki 21/08/19 19:29:53
++module-ui, svg, feature 80: +0 "src\Ui\SvgViewport.py" ki 21/08/20 05:30:30
 	make SvgCanvas multilayered
 
 -module-ui, svg, feature 81: +0 "src\Ui\AppWindow.py" ki 21/08/19 02:48:46
