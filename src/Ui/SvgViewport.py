@@ -155,7 +155,7 @@ class SvgViewport(QWidget):
 		QHBoxLayout(self)
 
 		self.canvasReset()
-
+#  todo 83 (ux, module-ui, fix) +0: fit at init dont work due to obsolete size 
 
 
 #####PUBLIC#####

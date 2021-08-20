@@ -235,3 +235,6 @@
  module-data, ux 82: +0 "src\GGData\GGData.py" ki 21/08/20 03:48:29
 	parse groups
 
+ ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" ki 21/08/20 05:18:48
+	fit at init dont work due to obsolete size 
+
