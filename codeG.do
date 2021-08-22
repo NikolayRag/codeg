@@ -61,7 +61,7 @@
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
 	dup
 
-=module-dispatch, ux 22: +0 "src\GGData\GGData.py" ki 21/08/20 17:55:42
+=module-dispatch, ux 22: +0 "src\GGData\GGData.py" ki 21/08/22 06:09:44
 	make dispatch interruptable
 
 -module-ui, ux 23: +0 "src\Ui\Ui.py" ki 21/08/20 16:57:48
@@ -214,7 +214,7 @@
 !fix, gcode 75: +0 "src\GGen\GGen.py" kii 21/08/14 20:12:11
 	
 
-=fix, gcode 76: +0 "src\GGData\GGData.py" ki 21/08/20 17:12:45
++fix, gcode 76: +0 "src\GGData\GGData.py" ki 21/08/22 20:19:54
 	gcode move, scale and crop
 
 -fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" kii 21/08/14 20:43:27
@@ -243,4 +243,13 @@
 
 =module-dispatch 85: +0 "src\GGData\GGData.py" ki 21/08/20 17:54:21
 	Gcode generate in background
+
+!fix, gcode 86: +1 "src\Ui\Ui.py" ki 21/08/22 20:19:01
+	
+
+=fix, gcode 87: +0 "src\Dispatch\Dispatch.py" ki 21/08/22 20:24:13
+	place svg layers more generally
+
+=fix, gcode 88: +0 "src\Ui\Ui.py" ki 21/08/22 20:25:29
+	use dispatch both for file save
 

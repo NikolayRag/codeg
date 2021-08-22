@@ -39,6 +39,8 @@ class Ui():
 
 
 
+# =todo 88 (fix, gcode) +0: use dispatch both for file save
+# =todo 87 (fix, gcode) +0: place svg layers more generally
 	def dispatchSend(self, _name):
 		return self.dispatch.runDevice(_name, self.appWindow.dispatchLog)
 

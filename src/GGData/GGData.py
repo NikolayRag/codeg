@@ -77,7 +77,6 @@ class GGData():
 		if not self.theGG:
 			return
 
-# =todo 76 (fix, gcode) +0: gcode move, scale and crop
 		cGG = GGen(self.theGG.getroot())
 		cGG.set(
 			preamble = 'G90 M4 S0',
