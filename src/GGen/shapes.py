@@ -9,7 +9,7 @@ from . import cubicsuperpath
 from . import cspsubdiv
 
 
-class svgshape(object):
+class SvgTag(object):
     
     def __init__(self, xml_node):
         self.xml_node = xml_node 
@@ -22,24 +22,34 @@ class svgshape(object):
         return simpletransform.parseTransform(t) if t is not None else None
 
     def svg_path(self):
-        return "<path d=\"" + self.d_path() + "\"/>"
+        dPath = self.d_path()
+        if not dPath:
+            return
 
-    def __str__(self):
-        return self.xml_node        
+        return "<path d=\"" + dPath + "\"/>"
 
-
-    def cubicPath(self):
-        cubicP = cubicsuperpath.parsePath( self.d_path() )
-        mat = self.transformation_matrix()
-
-        if mat:
-            simpletransform.applyTransformToPath(mat, cubicP)
-
-        return cubicP or []
+    def xml(self):
+        return self.xml_node
 
 
-    def point_generator(self, flatness):
-        for sp in self.cubicPath():
+    def cubicPath(self, xform=True):
+        dPath = self.d_path()
+        if not dPath:
+            return []
+
+        cubicP = cubicsuperpath.parsePath(dPath)
+
+        if xform == True:
+            xform = self.transformation_matrix()
+
+        if xform:
+            simpletransform.applyTransformToPath(xform, cubicP)
+
+        return cubicP
+
+
+    def divide(self, flatness, xform=True):
+        for sp in self.cubicPath(xform):
             start = True
             prevsp = sp[0]
             for csp in sp[1:]:
@@ -57,7 +67,15 @@ class svgshape(object):
                 prevsp = csp
 
 
-class path(svgshape):
+class g(SvgTag):
+     def __init__(self, xml_node):
+        super(g, self).__init__(xml_node)
+
+     def d_path(self):
+        return False
+
+
+class path(SvgTag):
      def __init__(self, xml_node):
         super(path, self).__init__(xml_node)
 
@@ -71,7 +89,7 @@ class path(svgshape):
      def d_path(self):
         return self.d     
 
-class rect(svgshape):
+class rect(SvgTag):
   
     def __init__(self, xml_node):
         super(rect, self).__init__(xml_node)
@@ -97,7 +115,7 @@ class rect(svgshape):
         a.append( [' Z', []] )
         return simplepath.formatPath(a)     
 
-class ellipse(svgshape):
+class ellipse(SvgTag):
 
     def __init__(self, xml_node):
         super(ellipse, self).__init__(xml_node)
@@ -136,7 +154,7 @@ class circle(ellipse):
             self.cx = self.cy = self.r = 0
             logging.error("Circle: Unable to get the attributes for %s", self.xml_node)
 
-class line(svgshape):
+class line(SvgTag):
 
     def __init__(self, xml_node):
         super(line, self).__init__(xml_node)
@@ -157,7 +175,7 @@ class line(svgshape):
         a.append( ['L ', [self.x2, self.y2]] )
         return simplepath.formatPath(a)
 
-class polycommon(svgshape):
+class polycommon(SvgTag):
 
     def __init__(self, xml_node, polytype):
         super(polycommon, self).__init__(xml_node)

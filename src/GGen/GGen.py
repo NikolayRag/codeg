@@ -2,17 +2,17 @@
 
 import sys
 from . import shapes
+from . import simpletransform 
 
 
 
 class GGen():
-    svg_shapes = ('rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path')
+    svg_shapes = ('g', 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path')
 
 
     rootET = None
 
-    scaleX = 1.
-    scaleY = 1.
+    xform = [[1.0, 0.0, 0.0], [0.0, -1.0, 0.0]]
     smoothness = 0.02
     precision = 4
 
@@ -43,7 +43,7 @@ class GGen():
 
 
     def set(self,
-        scale = None,
+        xform = None,
         smoothness = None,
         precision = None,
 
@@ -54,8 +54,7 @@ class GGen():
         shapeFinal = None,
         postamble = None,
     ):
-        if scale != None:
-            self.scaleX, self.scaleY = scale if hasattr(scale,'__iter__') else (scale,scale)
+        if xform != None: self.xform = xform
         if smoothness != None: self.smoothness = smoothness
         if precision != None: self.precision = precision
 
@@ -69,29 +68,38 @@ class GGen():
 
     
     def generate(self,
-        scale = None,
+        xform = None,
         smoothness = None,
         precision = None,
     ):
-        self.set(scale=scale, smoothness=smoothness, precision=precision)
+        self.set(xform=xform, smoothness=smoothness, precision=precision)
 
 
         el = self.buildHead()
         yield el
 
-        for elem in self.rootET.iter():
-            try:
-                _, tag_suffix = elem.tag.split('}')
-            except ValueError:
-                print('Skip tag:', elem.tag)
-                continue
 
-            if tag_suffix in self.svg_shapes:
-                shape_class = getattr(shapes, tag_suffix)
-                shapesA = self.shapeGen(shape_class(elem))
+        matrixAcc = []
+        prevDep = 0
+        cTree = []
+        self.iterateTree(self.rootET, cTree)
+        for cDep, cShape in cTree:
+            if cDep <= prevDep: #out of branch
+                matrixAcc = matrixAcc[:(cDep-prevDep-1)]
+            prevDep = cDep
 
-                el = self.shapeDecorate(elem, shapesA)
-                yield el
+            matrixAcc.append(cShape.transformation_matrix())
+
+
+            cXform = self.xform
+            for m in matrixAcc:
+                if m:
+                    cXform = simpletransform.composeTransform(cXform, m)
+
+            shapesA = self.shapeGen(cShape, cXform)
+
+            el = self.shapeDecorate(cShape.xml(), shapesA)
+            yield el
 
 
         el = self.buildTail()
@@ -112,11 +120,34 @@ class GGen():
 
 
 
-    def shapeGen(self, _shape):
+    def iterateTree(self, _el, _treeA, _dep=0,):
+        try:
+            _, cTag = _el.tag.split('}')
+        except ValueError:
+            print('Skip tag:', _el.tag)
+            return
+
+
+        if cTag in self.svg_shapes:
+            shape_class = getattr(shapes, cTag)
+            cShape = shape_class(_el)
+
+            _treeA.append([_dep, cShape])
+
+        else:
+            _dep -= 1 #roll back unknown tag
+
+
+        for cEl in _el.getchildren():
+            self.iterateTree(cEl, _treeA, _dep+1)
+
+
+
+    def shapeGen(self, _shape, _xform):
         gShapesA = []
 
         cGShape = []
-        p = _shape.point_generator(self.smoothness)
+        p = _shape.divide(self.smoothness, _xform)
         for x,y,start in p:
             if start:
                 cGShape = []
@@ -174,7 +205,7 @@ class GGen():
             _coords = (_coords,)
 
         p = self.precision
-        return [f"X{round(self.scaleX*_x,p)}Y{round(self.scaleY*_y,p)}" for _x,_y in _coords]
+        return [f"X{round(_x,p)}Y{round(_y,p)}" for _x,_y in _coords]
 
 
 
