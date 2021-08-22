@@ -73,7 +73,7 @@ class GGData():
 # =todo 22 (module-dispatch, ux) +0: make dispatch interruptable
 # =todo 85 (module-dispatch) +0: Gcode generate in background
 # -todo 66 (module-ui) +0: show dispatch progress
-	def getG(self):
+	def getG(self, x=0, y=0):
 		if not self.theGG:
 			return
 
@@ -93,7 +93,7 @@ class GGData():
 
 
 		gFlat = []
-		for g in cGG.generate():
+		for g in cGG.generate( xform=[[1,0,0], [0,-1,y]] ):
 			gFlat += g
 
 		return "\n".join(gFlat)

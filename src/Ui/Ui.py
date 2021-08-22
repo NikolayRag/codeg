@@ -122,8 +122,9 @@ class Ui():
 			return
 
 
+		h = self.appWindow.layout.viewport.canvas.docHeight
 		with open(fileName, 'w') as f:
-			f.write(self.data.getG())
+			f.write(self.data.getG(0, h))
 
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
