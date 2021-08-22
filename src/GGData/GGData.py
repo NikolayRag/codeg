@@ -93,7 +93,7 @@ class GGData():
 
 
 		gFlat = []
-		for g in cGG.generate( xform=[[1,0,0], [0,-1,y]] ):
+		for g in cGG.generate( xform=[[1,0,x], [0,-1,y]] ):
 			gFlat += g
 
 		return "\n".join(gFlat)
