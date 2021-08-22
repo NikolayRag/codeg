@@ -235,7 +235,7 @@
  module-data, ux 82: +0 "src\GGData\GGData.py" ki 21/08/20 03:48:29
 	parse groups
 
- ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" ki 21/08/20 05:18:48
+ ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" ki 21/08/22 20:27:29
 	fit at init dont work due to obsolete size 
 
  module-data 84: +0 "src\GGData\GGData.py" ki 21/08/20 17:07:44
@@ -252,4 +252,10 @@
 
 =fix, gcode 88: +0 "src\Ui\Ui.py" ki 21/08/22 20:25:29
 	use dispatch both for file save
+
+=ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" ki 21/08/22 20:27:54
+	place grid correctly
+
+=ux, module-ui, fix 90: +0 "src\Ui\SvgViewport.py" ki 21/08/22 20:28:26
+	respect units - both svg and device
 

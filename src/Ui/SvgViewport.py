@@ -155,6 +155,8 @@ class SvgViewport(QWidget):
 		QHBoxLayout(self)
 
 		self.canvasReset()
+# =todo 89 (ux, module-ui, fix) +0: place grid correctly
+# =todo 90 (ux, module-ui, fix) +0: respect units - both svg and device
 #  todo 83 (ux, module-ui, fix) +0: fit at init dont work due to obsolete size 
 
 
