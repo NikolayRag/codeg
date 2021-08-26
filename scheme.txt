@@ -1,0 +1,22 @@
+Ui
+1 Basic window management
+2 Viewport
+2a As widget module
+2b Viewport control
+2c Layers
+2c+ Select/hover
+-3 Layer management
+
+Data
+1 Load file
+-2 Project meta data
+-3 Vis/power/etc assignment
+
+Dispatch
+1 File save
+2 Device
+-2a Detect
+-2b Communicate
+-2c Profile (units/speed/etc)
+-2d Control
+-2e Async, interruptable

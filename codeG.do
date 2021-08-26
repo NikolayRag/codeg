@@ -103,7 +103,7 @@
  module-ui, API 36: +0 "src\Ui\SvgViewport.py" kii 21/08/02 06:13:19
 	make viewport interaction callbacks
 
- module-ui, viewport 37: +0 "src\Ui\SvgViewport.py" ki 21/08/19 16:55:33
+ module-ui, viewport 37: +0 "src\Ui\SvgViewport.py" ki 21/08/24 17:44:42
 	make custom scrollbars out of SvgViewport
 
 +module-ui, API 38: +0 "src\Ui\SvgViewport.py" kii 21/08/02 19:14:34
@@ -214,7 +214,7 @@
 !fix, gcode 75: +0 "src\GGen\GGen.py" kii 21/08/14 20:12:11
 	
 
-+fix, gcode 76: +0 "src\GGData\GGData.py" ki 21/08/22 20:19:54
+=fix, gcode 76: +0 "" ki 21/08/25 22:58:28
 	gcode move, scale and crop
 
 -fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" kii 21/08/14 20:43:27
@@ -229,7 +229,7 @@
 +module-ui, svg, feature 80: +0 "src\Ui\SvgViewport.py" ki 21/08/20 05:30:30
 	make SvgCanvas multilayered
 
--module-ui, svg, feature 81: +0 "src\Ui\AppWindow.py" ki 21/08/19 02:48:46
++module-ui, svg, feature 81: +0 "src\Ui\AppWindow.py" ki 21/08/25 23:02:02
 	show grid
 
  module-data, ux 82: +0 "src\GGData\GGData.py" ki 21/08/20 03:48:29
@@ -253,9 +253,18 @@
 =fix, gcode 88: +0 "src\Ui\Ui.py" ki 21/08/22 20:25:29
 	use dispatch both for file save
 
-=ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" ki 21/08/22 20:27:54
+=ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" ki 21/08/25 13:35:01
 	place grid correctly
 
 =ux, module-ui, fix 90: +0 "src\Ui\SvgViewport.py" ki 21/08/22 20:28:26
 	respect units - both svg and device
+
+-viewport, api 91: +0 "src\Ui\SvgViewport.py" ki 21/08/25 23:00:57
+	add class-level SVG runtime generator signal/slot
+
+ feature 92: +0 "src\__main__w.py" ki 21/08/25 23:03:22
+	multiple sources scene
+
+=feature 93: +0 "src\__main__w.py" ki 21/08/25 23:07:18
+	store scene layer and layout state
 

@@ -10,6 +10,8 @@ from args import *
 
 
 # -todo 67 (api) +1: change callbacks to signals-slots
+#  todo 92 (feature) +0: multiple sources scene
+# =todo 93 (feature) +0: store scene layer and layout state
 if __name__ == '__main__':
 	cArgs= Args(True)
 
