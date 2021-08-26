@@ -23,8 +23,10 @@ class GGen():
     shapePre = ''
     shapeIn = ''
     shapeOut = ''
-    shapeFinal = ''
     postamble = ''
+
+
+    templateG = 'X{x}Y{y}]'
 
 
 
@@ -51,7 +53,6 @@ class GGen():
         shapePre = None,
         shapeIn = None,
         shapeOut = None,
-        shapeFinal = None,
         postamble = None,
     ):
         if xform != None: self.xform = xform
@@ -62,7 +63,6 @@ class GGen():
         if shapePre != None: self.shapePre = shapePre
         if shapeIn != None: self.shapeIn = shapeIn
         if shapeOut != None: self.shapeOut = shapeOut
-        if shapeFinal != None: self.shapeFinal = shapeFinal
         if postamble != None: self.postamble = postamble
 
 
@@ -107,9 +107,13 @@ class GGen():
 
 
 
-    def __str__(self):
+    def str(self,
+        xform = None,
+        smoothness = None,
+        precision = None,
+    ):
         gFlat = []
-        for g in self.generate():
+        for g in self.generate(xform=xform, smoothness=smoothness, precision=precision):
             gFlat += g
 
         return "\n".join(gFlat)
@@ -165,13 +169,13 @@ class GGen():
 
 
         injectPre = self.buildInline(self.shapePre, _cEl)
-        injectFinal = self.buildInline(self.shapeFinal, _cEl, _shapes)
 
 
+        cI = 0
         for cShape in _shapes:
             if len(cShape):
                 injectIn = self.buildInline(self.shapeIn, _cEl, cShape[0])
-                injectOut = self.buildInline(self.shapeOut, _cEl, cShape)
+                injectOut = self.buildInline(self.shapeOut, _cEl, [_shapes, cI])
 
                 if injectPre: _outCode += [injectPre]
                 _outCode += self.buildMove(cShape[0])
@@ -179,7 +183,7 @@ class GGen():
                 _outCode += self.buildMove(cShape[1:])
                 if injectOut: _outCode += [injectOut]
 
-        if injectFinal: _outCode += [injectFinal]
+            cI += 1
 
 
         return _outCode
@@ -205,7 +209,7 @@ class GGen():
             _coords = (_coords,)
 
         p = self.precision
-        return [f"X{round(_x,p)}Y{round(_y,p)}" for _x,_y in _coords]
+        return [self.templateG.format(x=round(x,p), y=round(y,p)) for x,y in _coords]
 
 
 
