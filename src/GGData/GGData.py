@@ -1,4 +1,4 @@
-#  todo 9 (spec, module-data) +0: operate project data
+# -todo 9 (spec, module-data) +1: operate project data
 #  todo 10 (spec, module-data) +0: operate scene data
 # -todo 11 (spec, module-data) +0: read/save own format
 

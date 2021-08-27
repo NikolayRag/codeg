@@ -22,7 +22,7 @@
 +spec, module-data 8: +0 "src\GGData\GGData.py" kii 21/07/31 16:30:49
 	save gcode
 
- spec, module-data 9: +0 "src\GGData\GGData.py" ki 21/08/20 17:03:49
+-spec, module-data 9: +1 "src\GGData\GGData.py" ki 21/08/27 03:15:24
 	operate project data
 
  spec, module-data 10: +0 "src\__main__w.py" kii 21/07/28 03:36:06
@@ -229,7 +229,7 @@
 +module-ui, svg, feature 80: +0 "src\Ui\SvgViewport.py" ki 21/08/20 05:30:30
 	make SvgCanvas multilayered
 
-+module-ui, svg, feature 81: +0 "src\Ui\AppWindow.py" ki 21/08/25 23:02:02
+-module-ui, svg, feature 81: +0 "" ki 21/08/27 03:13:26
 	show grid
 
  module-data, ux 82: +0 "src\GGData\GGData.py" ki 21/08/20 03:48:29

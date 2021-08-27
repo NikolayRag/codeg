@@ -9,8 +9,7 @@ Ui
 
 Data
 1 Load file
--2 Project meta data
--3 Vis/power/etc assignment
+-2 Vis/power/etc assignment
 
 Dispatch
 1 File save
