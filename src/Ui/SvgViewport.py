@@ -219,15 +219,11 @@ class SvgViewport(QWidget):
 '''
 Scene canvas 
 '''
-	data = None
-
-	name = ''
 class SvgCanvasLayer(QSvgRenderer):
+#	name = ''
 	ghost = False
-	display = True
-	lod = 1.
-
-	holdSize = None
+#	display = True
+#	lod = 1.
 
 
 	def __init__(self, _parent):
@@ -250,8 +246,8 @@ class SvgCanvas(QWidget):
 	scaleY = 1.
 
 
-	def __init__(self, parent, size=(1,1)):
-		QWidget.__init__(self, parent)
+	def __init__(self, _parent, size=(1,1)):
+		QWidget.__init__(self, _parent)
 
 		self.layers = []
 
