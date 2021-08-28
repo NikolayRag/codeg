@@ -223,7 +223,7 @@ Scene canvas
 class SvgCanvasLayer(QSvgRenderer):
 #	name = ''
 	ghost = False
-#	display = True
+	display = True
 #	lod = 1.
 
 
@@ -290,7 +290,7 @@ class SvgCanvas(QWidget):
 			self.docHeight = 0
 
 			for l in self.layers:
-				if not l.ghost:
+				if l.display and not l.ghost:
 					cSize = l.defaultSize()
 					self.docWidth = max(self.docWidth, cSize.width())
 					self.docHeight = max(self.docHeight, cSize.height())
@@ -305,8 +305,12 @@ class SvgCanvas(QWidget):
 
 	def paintEvent(self, e):
 		p = QPainter(self)
-		p.setViewport( QRect(QPoint(0, 0), self.sizeHint()) )
+
 		for l in self.layers:
+			if not l.display:
+				continue
+
+			p.setViewport( QRect(QPoint(0, 0), self.sizeHint()) )
 			l.render(p)
 
 
