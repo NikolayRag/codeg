@@ -261,7 +261,7 @@ class SvgCanvas(QWidget):
 
 	def layerNew(self, isGhost=False):
 		cLayer = SvgCanvasLayer(self)
-		cLayer.isGhost = isGhost
+		cLayer.ghost = isGhost
 
 		cId = len(self.layers)
 		self.layers.append(cLayer)
