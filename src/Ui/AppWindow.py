@@ -283,6 +283,7 @@ class AppWindow():
 
 		for cRange in self.layout.listLayers.selectedRanges():
 			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
+				self.layout.listLayers.item(cRow,1).setSelected(False)
 
 				cName = self.layout.listLayers.item(cRow,0)
 				selectionNamesA.append( cName.text() )
