@@ -306,8 +306,8 @@ class SvgCanvas(QWidget):
 	def paintEvent(self, e):
 		p = QPainter(self)
 		p.setViewport( QRect(QPoint(0, 0), self.sizeHint()) )
-		for cLayer in self.layers:
-			cLayer.render(p)
+		for l in self.layers:
+			l.render(p)
 
 
 
