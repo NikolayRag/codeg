@@ -120,6 +120,9 @@ class AppWindow():
 		self.tmpFilterLayersLeave = BindFilter(QEvent.Type.Leave, self.layerHover)
 		self.layout.listLayers.installEventFilter(self.tmpFilterLayersLeave)
 
+		
+		self.layout.checkLayerOn = cMain.findChild(QLineEdit, "checkLayerOn")
+
 
 		holderViewport = cMain.findChild(QWidget, "wViewport")
 		self.layout.viewport = SvgViewport(holderViewport)

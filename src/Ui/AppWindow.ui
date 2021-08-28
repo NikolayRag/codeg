@@ -396,6 +396,16 @@ gridline-color: rgba(0, 0, 0, 32);</string>
                        </property>
                       </spacer>
                      </item>
+                     <item>
+                      <widget class="QCheckBox" name="checkLayerOn">
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="tristate">
+                        <bool>false</bool>
+                       </property>
+                      </widget>
+                     </item>
                     </layout>
                    </item>
                   </layout>
