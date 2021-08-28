@@ -179,7 +179,7 @@ class SvgViewport(QWidget):
 		self.canvas.show()
 
 		if self.gridXml:
-			self.canvas.layerSet(self.canvas.layerNew(), self.gridXml)
+			self.canvas.layerSet(self.canvas.layerNew(True), self.gridXml)
 
 
 
@@ -280,10 +280,13 @@ class SvgCanvas(QWidget):
 		self.recompute()
 
 
-	def layerNew(self):
-		cId = len(self.layers)
-		self.layers.append( SvgCanvasLayer(self) )
 
+	def layerNew(self, isGhost=False):
+		cLayer = SvgCanvasLayer(self)
+		cLayer.isGhost = isGhost
+
+		cId = len(self.layers)
+		self.layers.append(cLayer)
 		return cId
 
 
@@ -309,9 +312,10 @@ class SvgCanvas(QWidget):
 			self.docHeight = 0
 
 			for l in self.layers:
-				cSize = l.size()
-				self.docWidth = max(self.docWidth, cSize.width())
-				self.docHeight = max(self.docHeight, cSize.height())
+				if not l.ghost:
+					cSize = l.size()
+					self.docWidth = max(self.docWidth, cSize.width())
+					self.docHeight = max(self.docHeight, cSize.height())
 
 
 			if not self.docWidth:
