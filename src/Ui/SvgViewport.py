@@ -255,9 +255,12 @@ class SvgCanvasLayer():
 
 
 class SvgCanvas(QWidget):
+	defaultWidth = 0
+	defaultHeight = 0
+
 	layers = None
-	docWidth = 100
-	docHeight = 100
+	docWidth = 0
+	docHeight = 0
 
 	
 	offset = QPoint(0,0)
@@ -266,11 +269,15 @@ class SvgCanvas(QWidget):
 	scaleY = 1.
 
 
-	def __init__(self, parent):
+	def __init__(self, parent, size=(1,1)):
 		QWidget.__init__(self, parent)
 
 		self.layers = []
 
+		self.defaultWidth = size[0]
+		self.defaultHeight = size[1]
+
+		self.recompute()
 
 
 	def layerNew(self):
@@ -291,11 +298,26 @@ class SvgCanvas(QWidget):
 		if quick:
 			self.repaint()
 		else:
-			cSize = cLayer.size()
-			self.docWidth = cSize.width()
-			self.docHeight = cSize.height()
+			self.recompute()
 
 			self.update()
+
+
+
+	def recompute(self):
+			self.docWidth = 0
+			self.docHeight = 0
+
+			for l in self.layers:
+				cSize = l.size()
+				self.docWidth = max(self.docWidth, cSize.width())
+				self.docHeight = max(self.docHeight, cSize.height())
+
+
+			if not self.docWidth:
+				self.docWidth = self.defaultWidth
+			if not self.docHeight:
+				self.docHeight = self.defaultHeight
 
 
 
