@@ -268,3 +268,6 @@
 =feature 93: +0 "src\__main__w.py" ki 21/08/25 23:07:18
 	store scene layer and layout state
 
+ viewport, fix 95: +0 "src\Ui\SvgViewport.py" ki 21/08/28 15:52:23
+	clip max scale by render limit
+

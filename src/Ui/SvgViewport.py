@@ -88,6 +88,7 @@ class SvgViewport(QWidget):
 
 
 
+#  todo 95 (viewport, fix) +0: clip max scale by render limit
 	def viewportSize(self, _scale, _updateAnchor=True):
 		#max clip
 		if _scale>self.scaleMax:
