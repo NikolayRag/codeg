@@ -231,6 +231,14 @@ class SvgCanvasLayer(QSvgRenderer):
 		QSvgRenderer.__init__(self, _parent)
 
 
+	def setGhost(self, _ghost):
+		self.ghost = _ghost
+
+
+	def setDisplay(self, _display):
+		self.display = _display
+
+
 
 class SvgCanvas(QWidget):
 	defaultWidth = 0
@@ -261,7 +269,7 @@ class SvgCanvas(QWidget):
 
 	def layerNew(self, isGhost=False):
 		cLayer = SvgCanvasLayer(self)
-		cLayer.ghost = isGhost
+		cLayer.setGhost(isGhost)
 
 		cId = len(self.layers)
 		self.layers.append(cLayer)
