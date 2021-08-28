@@ -26,6 +26,8 @@ class GGData():
 		self.namedRef = {}
 
 
+		meta = {}
+
 		i = 1
 		for a in self.theGG.iter():
 			aTag = a.tag[28:]
@@ -46,11 +48,12 @@ class GGData():
 				a.set('originalDisplay', a.get('display') or '')
 
 				self.namedRef[aTag +str(i)] = a
+				meta[aTag +str(i)] = {'on':True}
 
 				i += 1
 
 
-		return {'meta': self.namedRef.keys(), 'xml':self.getXML()}
+		return {'meta': meta, 'xml':self.getXML()}
 
 
 

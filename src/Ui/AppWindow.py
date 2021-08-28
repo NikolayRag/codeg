@@ -229,9 +229,11 @@ class AppWindow():
 			cList.setRowCount(0)
 			cRow = 0
 
-			for cItem in cData['meta']:
+			cMeta = cData['meta']
+			for cName in cMeta:
 				cList.insertRow(cRow)
-				cList.setItem(cRow, 0, QTableWidgetItem(cItem))
+				cList.setItem(cRow, 0, QTableWidgetItem(cName))
+				cList.setItem(cRow, 1, QTableWidgetItem('v' if cMeta[cName]['on'] else ''))
 				cRow += 1
 
 			#blank
