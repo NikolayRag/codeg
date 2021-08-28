@@ -113,8 +113,8 @@ class AppWindow():
 
 		#widgets time
 		self.layout.listLayers = cMain.findChild(QTableWidget, "listLayers")
-		self.layout.listLayers.setEditTriggers(QAbstractItemView.NoEditTriggers);
 
+		self.layout.listLayers.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
 		self.layout.listLayers.itemSelectionChanged.connect(self.layerSelect)
 		self.layout.listLayers.cellEntered.connect(self.layerHover)
 		self.tmpFilterLayersLeave = BindFilter(QEvent.Type.Leave, self.layerHover)
@@ -229,9 +229,10 @@ class AppWindow():
 
 			#blank
 			cList.insertRow(cRow)
-			cItem = QTableWidgetItem()
-			cItem.setFlags(Qt.NoItemFlags)
-			cList.setItem(cRow, 0, cItem)
+			for i in range(cList.columnCount()):
+				cItem = QTableWidgetItem()
+				cItem.setFlags(Qt.NoItemFlags)
+				cList.setItem(cRow, i, cItem)
 
 
 		
