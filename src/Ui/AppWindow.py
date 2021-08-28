@@ -207,6 +207,17 @@ class AppWindow():
 
 
 
+	def styleLayerOn(self, _on):
+		c = QColor('#4c4')
+		if not _on:
+			c.setAlpha(0)
+		q = QTableWidgetItem()
+		q.setBackground(QBrush(c))
+
+		return q
+
+
+
 #  todo 3 (feature, file) +0: allow picking from Recent files list
 
 	def openFile(self):
@@ -233,7 +244,7 @@ class AppWindow():
 			for cName in cMeta:
 				cList.insertRow(cRow)
 				cList.setItem(cRow, 0, QTableWidgetItem(cName))
-				cList.setItem(cRow, 1, QTableWidgetItem('v' if cMeta[cName]['on'] else ''))
+				cList.setItem(cRow, 1, self.styleLayerOn(cMeta[cName]['on']))
 				cRow += 1
 
 			#blank
