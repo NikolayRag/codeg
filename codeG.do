@@ -22,7 +22,7 @@
 +spec, module-data 8: +0 "src\GGData\GGData.py" kii 21/07/31 16:30:49
 	save gcode
 
--spec, module-data 9: +1 "src\GGData\GGData.py" ki 21/08/27 03:15:24
+-spec, module-data 9: +1 "src\GGData\GGData.py" ki 21/08/28 18:00:05
 	operate project data
 
  spec, module-data 10: +0 "src\__main__w.py" kii 21/07/28 03:36:06
@@ -61,7 +61,7 @@
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
 	dup
 
-=module-dispatch, ux 22: +0 "src\GGData\GGData.py" ki 21/08/22 06:09:44
+=module-dispatch, ux 22: +0 "src\GGData\GGData.py" ki 21/08/28 18:00:30
 	make dispatch interruptable
 
 -module-ui, ux 23: +0 "src\Ui\Ui.py" ki 21/08/20 16:57:48
@@ -166,7 +166,7 @@
 -module-ui, ux, clean 59: +0 "src\Ui\AppWindow.py" kii 21/08/06 17:22:09
 	make updatable connections list
 
-=module-dispatch 60: +0 "src\Dispatch\Dispatch.py" ki 21/08/20 17:53:36
+=module-dispatch 60: +0 "src\Dispatch\Dispatch.py" ki 21/08/28 18:03:33
 	show gcodes live proto
 
 =module-dispatch 61: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 03:45:15
@@ -184,7 +184,7 @@
 !module-dispatch 65: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:38:19
 	
 
--module-ui 66: +0 "src\GGData\GGData.py" ki 21/08/20 17:54:50
+-module-ui 66: +0 "src\GGData\GGData.py" ki 21/08/28 18:00:26
 	show dispatch progress
 
 -api 67: +1 "src\__main__w.py" ki 21/08/20 17:52:48
@@ -241,22 +241,22 @@
  module-data 84: +0 "src\GGData\GGData.py" ki 21/08/20 17:07:44
 	make file load (save) plugin system
 
-=module-dispatch 85: +0 "src\GGData\GGData.py" ki 21/08/20 17:54:21
++module-dispatch 85: +0 "src\GGData\GGData.py" ki 21/08/28 18:00:25
 	Gcode generate in background
 
 !fix, gcode 86: +1 "src\Ui\Ui.py" ki 21/08/22 20:19:01
 	
 
-=fix, gcode 87: +0 "src\Dispatch\Dispatch.py" ki 21/08/22 20:24:13
++fix, gcode 87: +0 "src\Ui\Ui.py" ki 21/08/28 18:02:01
 	place svg layers more generally
 
-=fix, gcode 88: +0 "src\Ui\Ui.py" ki 21/08/22 20:25:29
+-fix, gcode 88: +0 "src\Ui\Ui.py" ki 21/08/28 18:01:16
 	use dispatch both for file save
 
-=ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" ki 21/08/25 13:35:01
+-ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" ki 21/08/28 18:03:13
 	place grid correctly
 
-=ux, module-ui, fix 90: +0 "src\Ui\SvgViewport.py" ki 21/08/22 20:28:26
+-ux, module-ui, fix 90: +0 "src\Ui\SvgViewport.py" ki 21/08/28 18:05:48
 	respect units - both svg and device
 
 -viewport, api 91: +0 "src\Ui\SvgViewport.py" ki 21/08/25 23:00:57
