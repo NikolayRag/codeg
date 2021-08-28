@@ -219,10 +219,10 @@ class SvgViewport(QWidget):
 '''
 Scene canvas 
 '''
-class SvgCanvasLayer():
 	data = None
 
 	name = ''
+class SvgCanvasLayer(QSvgRenderer):
 	ghost = False
 	display = True
 	lod = 1.
@@ -231,26 +231,7 @@ class SvgCanvasLayer():
 
 
 	def __init__(self, _parent):
-		self.data = QSvgRenderer(_parent)
-
-
-	def update(self, _xml):
-		self.data.load(_xml)
-
-		self.holdSize = self.data.defaultSize()
-
-
-	def size(self):
-		return self.holdSize
-
-
-	def render(self, _painter):
-		if not self.data:
-			return
-
-		self.data.render(_painter)
-
-		return True
+		QSvgRenderer.__init__(self, _parent)
 
 
 
@@ -296,7 +277,7 @@ class SvgCanvas(QWidget):
 			return
 
 		cLayer = self.layers[_idx]
-		cLayer.update(_xml)
+		cLayer.load(_xml)
 
 		if quick:
 			self.repaint()
@@ -313,7 +294,7 @@ class SvgCanvas(QWidget):
 
 			for l in self.layers:
 				if not l.ghost:
-					cSize = l.size()
+					cSize = l.defaultSize()
 					self.docWidth = max(self.docWidth, cSize.width())
 					self.docHeight = max(self.docHeight, cSize.height())
 
