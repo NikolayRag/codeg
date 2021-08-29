@@ -14,11 +14,6 @@ from .SvgViewport import *
 
 
 
-class Object():
-	None
-
-
-
 class BindFilter(QObject):
 	eType = None
 	cb = None
@@ -54,8 +49,6 @@ class AppWindow():
 
 
 	qApp = None
-
-	layout = Object()
 
 
 
@@ -101,7 +94,7 @@ class AppWindow():
 
 		selfPath= os.path.abspath(os.path.dirname(__file__))
 		uiFile = os.path.join(selfPath,'AppWindow.ui')
-		cMain = self.layout.main = QUiLoader().load(uiFile)
+		cMain = self.lMain = QUiLoader().load(uiFile)
 
 		cMain.setWindowTitle('codeg');
 		self.tmpFilterWindowResize = BindFilter(
@@ -112,56 +105,56 @@ class AppWindow():
 
 
 		#widgets time
-		self.layout.listLayers = cMain.findChild(QTableWidget, "listLayers")
+		self.lListLayers = cMain.findChild(QTableWidget, "listLayers")
 
-		self.layout.listLayers.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
-		self.layout.listLayers.itemSelectionChanged.connect(self.layerSelect)
-		self.layout.listLayers.cellEntered.connect(self.layerHover)
+		self.lListLayers.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
+		self.lListLayers.itemSelectionChanged.connect(self.layerSelect)
+		self.lListLayers.cellEntered.connect(self.layerHover)
 		self.tmpFilterLayersLeave = BindFilter(QEvent.Type.Leave, self.layerHover)
-		self.layout.listLayers.installEventFilter(self.tmpFilterLayersLeave)
+		self.lListLayers.installEventFilter(self.tmpFilterLayersLeave)
 
 		
-		self.layout.checkLayerOn = cMain.findChild(QLineEdit, "checkLayerOn")
+		self.lCheckLayerOn = cMain.findChild(QLineEdit, "checkLayerOn")
 
 
-		self.layout.lineLayerPower = cMain.findChild(QLineEdit, "lineLayerPower")
-		self.layout.lineLayerPower.setValidator( QIntValidator(0,1000) );
+		self.lLineLayerPower = cMain.findChild(QLineEdit, "lineLayerPower")
+		self.lLineLayerPower.setValidator( QIntValidator(0,1000) );
 
 
 		holderViewport = cMain.findChild(QWidget, "wViewport")
-		self.layout.viewport = SvgViewport(holderViewport)
-		self.layout.viewport.setGrid('resource\\grid.svg')
-		self.layout.viewport.lower()
-		self.layout.viewport.show()
+		self.lViewport = SvgViewport(holderViewport)
+		self.lViewport.setGrid('resource\\grid.svg')
+		self.lViewport.lower()
+		self.lViewport.show()
 
 		self.tmpFilterViewResize = BindFilter(
 			QEvent.Type.Resize,
-			lambda event: self.layout.viewport.resize(event.size())
+			lambda event: self.lViewport.resize(event.size())
 		)
 		holderViewport.installEventFilter(self.tmpFilterViewResize)
 
 
-		self.layout.btnFit = cMain.findChild(QWidget, "btnFit")
+		self.lBtnFit = cMain.findChild(QWidget, "btnFit")
 
-		self.layout.btnCaption = cMain.findChild(QWidget, "btnCaption")
-		self.layout.btnOpen = cMain.findChild(QWidget, "btnLoad")
-		self.layout.btnStore = cMain.findChild(QWidget, "btnSave")
+		self.lBtnCaption = cMain.findChild(QWidget, "btnCaption")
+		self.lBtnOpen = cMain.findChild(QWidget, "btnLoad")
+		self.lBtnStore = cMain.findChild(QWidget, "btnSave")
 
-		self.layout.frameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
-		self.layout.frameDispatcher.setVisible(False)
+		self.lFrameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
+		self.lFrameDispatcher.setVisible(False)
 #  todo 47 (module-dispatch, module-ui, ux) +0: change device list to button+list
 #  todo 48 (module-ui) +0: update device list
 #  todo 49 (module-ui, ux) +0: save/restore active device between sessions
-		self.layout.ddPorts = cMain.findChild(QWidget, "ddPorts")
-		self.layout.btnProccess = cMain.findChild(QWidget, "btnProccess")
-		self.layout.logDev = cMain.findChild(QTextEdit, "logDev")
+		self.lDdPorts = cMain.findChild(QWidget, "ddPorts")
+		self.lBtnProccess = cMain.findChild(QWidget, "btnProccess")
+		self.lLogDev = cMain.findChild(QTextEdit, "logDev")
 
 
-		self.layout.btnFit.clicked.connect(lambda: self.layout.viewport.canvasFit(self.defaultFit))
-		self.layout.btnCaption.clicked.connect(self.about)
-		self.layout.btnOpen.clicked.connect(self.openFile)
-		self.layout.btnStore.clicked.connect(self.storeFile)
-		self.layout.btnProccess.clicked.connect(self.dispatchRun)
+		self.lBtnFit.clicked.connect(lambda: self.lViewport.canvasFit(self.defaultFit))
+		self.lBtnCaption.clicked.connect(self.about)
+		self.lBtnOpen.clicked.connect(self.openFile)
+		self.lBtnStore.clicked.connect(self.storeFile)
+		self.lBtnProccess.clicked.connect(self.dispatchRun)
 
 
 
@@ -169,7 +162,7 @@ class AppWindow():
 	Display UI and enter QT app loop
 	'''
 	def exec(self):
-		self.layout.main.show()
+		self.lMain.show()
 
 
 		self.qApp.exec_()
@@ -177,14 +170,14 @@ class AppWindow():
 
 
 	def resize(self, _size, maximize=None):
-		self.layout.main.resize(
+		self.lMain.resize(
 			QSize(*_size)
 			if _size else
 			QApplication.primaryScreen().size() *.8
 		)
 
 		if maximize:
-			self.layout.main.showMaximized()
+			self.lMain.showMaximized()
 
 
 
@@ -194,10 +187,10 @@ class AppWindow():
 			print('No resize CB')
 			return
 
-		wSize = self.layout.main.size()
+		wSize = self.lMain.size()
 		self.cbWResize(
 			wSize,
-			self.layout.main.isMaximized()
+			self.lMain.isMaximized()
 		)
 
 
@@ -245,15 +238,15 @@ class AppWindow():
 
 		cData = self.cbWFileLoad()
 		if cData:
-			self.layout.btnStore.setEnabled(True)
-			self.layout.btnProccess.setEnabled(True)
+			self.lBtnStore.setEnabled(True)
+			self.lBtnProccess.setEnabled(True)
 
-			self.layout.viewport.canvasReset()
-			self.layout.viewport.canvasAdd(cData['xml'])
-			self.layout.viewport.canvasFit(self.defaultFit)
+			self.lViewport.canvasReset()
+			self.lViewport.canvasAdd(cData['xml'])
+			self.lViewport.canvasFit(self.defaultFit)
 
 
-			cList = self.layout.listLayers
+			cList = self.lListLayers
 			cList.setRowCount(0)
 
 			cMeta = cData['meta']
@@ -290,15 +283,15 @@ class AppWindow():
 
 		selectionNamesA = []
 
-		for cRange in self.layout.listLayers.selectedRanges():
+		for cRange in self.lListLayers.selectedRanges():
 			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
-				cName = self.layout.listLayers.item(cRow,0)
+				cName = self.lListLayers.item(cRow,0)
 				selectionNamesA.append( cName.text() )
 
 
 		cXml = self.cbWLayerSet(selection=selectionNamesA)
 		if cXml:
-			self.layout.viewport.canvasUpdate(cXml)
+			self.lViewport.canvasUpdate(cXml)
 
 
 
@@ -310,12 +303,12 @@ class AppWindow():
 
 		hoverName = None
 		if _row >= 0:
-			hoverName = self.layout.listLayers.item(_row,0).text()
+			hoverName = self.lListLayers.item(_row,0).text()
 
 
 		cXml = self.cbWLayerSet(hover=hoverName)
 		if cXml:
-			self.layout.viewport.canvasUpdate(cXml)
+			self.lViewport.canvasUpdate(cXml)
 
 
 
@@ -329,7 +322,7 @@ class AppWindow():
 		portsA = self.cbWConnList()
 
 		for port in portsA:
-			self.layout.ddPorts.insertItem(0,port)
+			self.lDdPorts.insertItem(0,port)
 
 
 
@@ -339,9 +332,9 @@ class AppWindow():
 			return
 
 
-		self.cbWDispatch( self.layout.ddPorts.currentText() )
+		self.cbWDispatch( self.lDdPorts.currentText() )
 
 
 
 	def dispatchLog(self, _txt):
-		self.layout.logDev.insertPlainText(_txt)
+		self.lLogDev.insertPlainText(_txt)

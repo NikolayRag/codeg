@@ -123,7 +123,7 @@ class Ui():
 			return
 
 
-		h = self.appWindow.layout.viewport.canvas.docHeight
+		h = self.appWindow.lViewport.canvas.docHeight
 		with open(fileName, 'w') as f:
 			f.write(self.data.getG(0, h))
 
