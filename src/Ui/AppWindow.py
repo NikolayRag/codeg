@@ -215,14 +215,12 @@ class AppWindow():
 		if _meta:
 			_list.setItem(cRow, 0, QTableWidgetItem(_name))
 		
-
-			c = QColor('#4c4')
+			item = QTableWidgetItem()
+			item.setBackground(QColor('#4c4'))
 			if not _meta[_name]['on']:
-				c.setAlpha(0)
-			q = QTableWidgetItem()
-			q.setBackground(QBrush(c))
+				item.background.setAlpha(0)
 
-			_list.setItem(cRow, 1, q)
+			_list.setItem(cRow, 1, item)
 
 		else:
 			for i in range(_list.columnCount()):
