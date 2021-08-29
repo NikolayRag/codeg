@@ -84,17 +84,8 @@ class AppWindow():
 
 
 
-	def __init__(self):
-		QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
-		self.qApp = QApplication()
-		self.qApp.setStyle(QStyleFactory.create('fusion'))
-#  todo 50 (module-ui) +0: add style
-#		with open('Ui/style.qss') as fQss:
-#			self.qApp.setStyleSheet(fQss.read())
-
-		selfPath= os.path.abspath(os.path.dirname(__file__))
-		uiFile = os.path.join(selfPath,'AppWindow.ui')
-		cMain = self.lMain = QUiLoader().load(uiFile)
+	def __init__(self, _uiFile):
+		cMain = self.lMain = QUiLoader().load(_uiFile)
 
 		cMain.setWindowTitle('codeg');
 		self.tmpFilterWindowResize = BindFilter(
@@ -158,14 +149,8 @@ class AppWindow():
 
 
 
-	'''
-	Display UI and enter QT app loop
-	'''
-	def exec(self):
+	def show(self):
 		self.lMain.show()
-
-
-		self.qApp.exec_()
 
 
 

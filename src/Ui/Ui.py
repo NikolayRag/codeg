@@ -59,7 +59,16 @@ class Ui():
 		self.dispatch = _dispatch
 
 		#init
-		self.appWindow = AppWindow()
+		QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
+		self.qApp = QApplication()
+		self.qApp.setStyle(QStyleFactory.create('fusion'))
+#  todo 50 (module-ui) +0: add style
+#		with open('Ui/style.qss') as fQss:
+#			self.qApp.setStyleSheet(fQss.read())
+
+
+		uiFile = ('./Ui/AppWindow.ui')
+		self.appWindow = AppWindow(uiFile)
 
 		self.appWindow.setCBResize(self.storeWindow)
 		self.appWindow.resize(
@@ -77,8 +86,12 @@ class Ui():
 
 
 
-	def go(self):
-		self.appWindow.exec()
+	def exec(self):
+		self.appWindow.show()
+
+
+		self.qApp.exec_()
+
 
 
 

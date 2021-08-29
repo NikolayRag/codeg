@@ -22,8 +22,7 @@ if __name__ == '__main__':
 
 		cUi = Ui(cArgs, cGG, cDis)
 
-
-		cUi.go()
+		cUi.exec()
 
 
 		logging.warning('Exiting')
