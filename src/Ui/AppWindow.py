@@ -207,14 +207,28 @@ class AppWindow():
 
 
 
-	def styleLayerOn(self, _on):
-		c = QColor('#4c4')
-		if not _on:
-			c.setAlpha(0)
-		q = QTableWidgetItem()
-		q.setBackground(QBrush(c))
+	def layerAddItem(self, _list, _meta=None, _name=None):
+		cRow = _list.rowCount()
 
-		return q
+		_list.insertRow(cRow)
+
+		if _meta:
+			_list.setItem(cRow, 0, QTableWidgetItem(_name))
+		
+
+			c = QColor('#4c4')
+			if not _meta[_name]['on']:
+				c.setAlpha(0)
+			q = QTableWidgetItem()
+			q.setBackground(QBrush(c))
+
+			_list.setItem(cRow, 1, q)
+
+		else:
+			for i in range(_list.columnCount()):
+				cItem = QTableWidgetItem()
+				cItem.setFlags(Qt.NoItemFlags)
+				_list.setItem(cRow, i, cItem)
 
 
 
@@ -238,21 +252,13 @@ class AppWindow():
 
 			cList = self.layout.listLayers
 			cList.setRowCount(0)
-			cRow = 0
 
 			cMeta = cData['meta']
 			for cName in cMeta:
-				cList.insertRow(cRow)
-				cList.setItem(cRow, 0, QTableWidgetItem(cName))
-				cList.setItem(cRow, 1, self.styleLayerOn(cMeta[cName]['on']))
-				cRow += 1
+				self.layerAddItem(cList, cMeta, cName)
 
 			#blank
-			cList.insertRow(cRow)
-			for i in range(cList.columnCount()):
-				cItem = QTableWidgetItem()
-				cItem.setFlags(Qt.NoItemFlags)
-				cList.setItem(cRow, i, cItem)
+			self.layerAddItem(cList)
 
 
 		
