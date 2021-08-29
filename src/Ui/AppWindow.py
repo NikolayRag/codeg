@@ -207,6 +207,13 @@ class AppWindow():
 
 
 
+	def layerSetItem(self, _item, _on):
+		c = QColor('#4c4')
+		c.setAlpha(255 if _on else 0)
+		_item.setBackground(c)
+
+
+
 	def layerAddItem(self, _list, _meta=None, _name=None):
 		cRow = _list.rowCount()
 
@@ -216,10 +223,8 @@ class AppWindow():
 			_list.setItem(cRow, 0, QTableWidgetItem(_name))
 		
 			item = QTableWidgetItem()
-			item.setBackground(QColor('#4c4'))
-			if not _meta[_name]['on']:
-				item.background.setAlpha(0)
-
+			item.setFlags(Qt.NoItemFlags)
+			self.layerSetItem(item, _meta[_name]['on'])
 			_list.setItem(cRow, 1, item)
 
 		else:
@@ -287,8 +292,6 @@ class AppWindow():
 
 		for cRange in self.layout.listLayers.selectedRanges():
 			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
-				self.layout.listLayers.item(cRow,1).setSelected(False)
-
 				cName = self.layout.listLayers.item(cRow,0)
 				selectionNamesA.append( cName.text() )
 
