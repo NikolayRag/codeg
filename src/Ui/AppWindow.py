@@ -36,7 +36,10 @@ class BindFilter(QObject):
 
 
 
-class AppWindow():
+class AppWindow(QObject):
+	sigWResize = Signal(QSize, bool)
+
+
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
 	defaultFit = 0.8
@@ -79,12 +82,9 @@ class AppWindow():
 
 
 
-	def setCBResize(self, _cb):
-		self.cbWResize = _cb
-
-
-
 	def __init__(self, _uiFile):
+		QObject.__init__(self)
+
 		cMain = self.lMain = QUiLoader().load(_uiFile)
 
 		cMain.setWindowTitle('codeg');
@@ -168,12 +168,8 @@ class AppWindow():
 
 #  todo 79 (module-ui, ux, fix) +0: make size ignored on maximize
 	def resized(self, event):
-		if not self.cbWResize:
-			print('No resize CB')
-			return
-
 		wSize = self.lMain.size()
-		self.cbWResize(
+		self.sigWResize.emit(
 			wSize,
 			self.lMain.isMaximized()
 		)

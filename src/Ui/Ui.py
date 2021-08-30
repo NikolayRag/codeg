@@ -70,7 +70,7 @@ class Ui():
 		uiFile = ('./Ui/AppWindow.ui')
 		self.appWindow = AppWindow(uiFile)
 
-		self.appWindow.setCBResize(self.storeWindow)
+		self.appWindow.sigWResize.connect(self.storeWindow)
 		self.appWindow.resize(
 			self.args.get('wSize'),
 			self.args.get('wMaxi')
