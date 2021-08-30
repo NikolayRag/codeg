@@ -25,9 +25,7 @@ class Ui():
 	appWindow = None
 
 	data = None
-	cbFileLoad = None
-	cbFileSave = None
-
+	qApp = None
 
 	layerHover = None
 	layersSelection = []
@@ -70,7 +68,7 @@ class Ui():
 		uiFile = ('./Ui/AppWindow.ui')
 		self.appWindow = AppWindow(uiFile)
 
-		self.appWindow.sigWResize.connect(self.storeWindow)
+		self.appWindow.sigResize.connect(self.storeWindow)
 		self.appWindow.resize(
 			self.args.get('wSize'),
 			self.args.get('wMaxi')

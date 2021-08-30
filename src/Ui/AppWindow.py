@@ -37,7 +37,7 @@ class BindFilter(QObject):
 
 
 class AppWindow(QObject):
-	sigWResize = Signal(QSize, bool)
+	sigResize = Signal(QSize, bool)
 
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
@@ -49,10 +49,6 @@ class AppWindow(QObject):
 	cbWConnList = None
 	cbWDispatch = None
 	cbWLayerSet = None
-
-
-	qApp = None
-
 
 
 	def setCBFileLoad(self, _cb):
@@ -169,7 +165,7 @@ class AppWindow(QObject):
 #  todo 79 (module-ui, ux, fix) +0: make size ignored on maximize
 	def resized(self, event):
 		wSize = self.lMain.size()
-		self.sigWResize.emit(
+		self.sigResize.emit(
 			wSize,
 			self.lMain.isMaximized()
 		)
