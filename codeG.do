@@ -4,7 +4,7 @@
 +feature, file 2: +0 "src\Ui\AppWindow.py" kii 21/07/25 16:29:21
 	deal with recent files
 
- feature, file 3: +0 "src\Ui\AppWindow.py" kii 21/08/02 21:40:49
+ feature, file 3: +0 "src\Ui\AppWindow.py" ki 21/08/29 01:31:14
 	allow picking from Recent files list
 
 +svg, feature 4: +0 "src\Ui\SvgViewport.py" kii 21/08/02 19:14:43
@@ -187,7 +187,7 @@
 -module-ui 66: +0 "src\GGData\GGData.py" ki 21/08/28 18:00:26
 	show dispatch progress
 
--api 67: +1 "src\__main__w.py" ki 21/08/20 17:52:48
++api 67: +1 "src\__main__w.py" ki 21/08/30 08:48:48
 	change callbacks to signals-slots
 
 -module-dispatch 68: +0 "src\Dispatch\Dispatch.py" ki 21/08/20 02:57:25
@@ -250,7 +250,7 @@
 +fix, gcode 87: +0 "src\Ui\Ui.py" ki 21/08/28 18:02:01
 	place svg layers more generally
 
--fix, gcode 88: +0 "src\Ui\Ui.py" ki 21/08/28 18:01:16
+-fix, gcode 88: +0 "src\Ui\Ui.py" ki 21/08/30 08:05:46
 	use dispatch both for file save
 
 -ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" ki 21/08/28 18:03:13
@@ -262,7 +262,7 @@
 -viewport, api 91: +0 "src\Ui\SvgViewport.py" ki 21/08/25 23:00:57
 	add class-level SVG runtime generator signal/slot
 
- feature 92: +0 "src\__main__w.py" ki 21/08/25 23:03:22
+ feature 92: +0 "src\__main__w.py" ki 21/08/30 08:48:49
 	multiple sources scene
 
 =feature 93: +0 "src\__main__w.py" ki 21/08/25 23:07:18
@@ -270,4 +270,7 @@
 
  viewport, fix 95: +0 "src\Ui\SvgViewport.py" ki 21/08/28 15:52:23
 	clip max scale by render limit
+
+!module-ui, ux, scene 96: +0 "src\Ui\AppWindow.py" ki 21/08/29 16:52:03
+	
 
