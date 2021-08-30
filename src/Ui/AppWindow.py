@@ -199,23 +199,23 @@ class AppWindow(QObject):
 #  todo 3 (feature, file) +0: allow picking from Recent files list
 
 	def reactAddFile(self, _data):
-			self.lBtnStore.setEnabled(True)
-			self.lBtnProccess.setEnabled(True)
+		self.lBtnStore.setEnabled(True)
+		self.lBtnProccess.setEnabled(True)
 
-			self.lViewport.canvasReset()
-			self.lViewport.canvasAdd(_data['xml'])
-			self.lViewport.canvasFit(self.defaultFit)
+		self.lViewport.canvasReset()
+		self.lViewport.canvasAdd(_data['xml'])
+		self.lViewport.canvasFit(self.defaultFit)
 
 
-			cList = self.lListLayers
-			cList.setRowCount(0)
+		cList = self.lListLayers
+		cList.setRowCount(0)
 
-			cMeta = _data['meta']
-			for cName in cMeta:
-				self.layerAddItem(cList, cMeta, cName)
+		cMeta = _data['meta']
+		for cName in cMeta:
+			self.layerAddItem(cList, cMeta, cName)
 
-			#blank
-			self.layerAddItem(cList)
+		#blank
+		self.layerAddItem(cList)
 
 
 		
