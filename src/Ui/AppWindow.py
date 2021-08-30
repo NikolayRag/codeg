@@ -39,21 +39,16 @@ class BindFilter(QObject):
 class AppWindow(QObject):
 	sigResize = Signal(QSize, bool)
 	sigAddFile = Signal()
+	sigStoreG = Signal()
 
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
 	defaultFit = 0.8
 
-	cbWFileSave = None
 	cbWConnList = None
 	cbWDispatch = None
 	cbWLayerSet = None
-
-
-
-	def setCBFileSave(self, _cb):
-		self.cbWFileSave = _cb
 
 
 
@@ -136,7 +131,7 @@ class AppWindow(QObject):
 		self.lBtnFit.clicked.connect(lambda: self.lViewport.canvasFit(self.defaultFit))
 		self.lBtnCaption.clicked.connect(self.about)
 		self.lBtnOpen.clicked.connect(self.sigAddFile)
-		self.lBtnStore.clicked.connect(self.storeFile)
+		self.lBtnStore.clicked.connect(self.sigStoreG)
 		self.lBtnProccess.clicked.connect(self.dispatchRun)
 
 
@@ -230,13 +225,8 @@ class AppWindow(QObject):
 
 
 
-	def storeFile(self):
-		if not self.cbWFileSave:
-			print('No save CB')
-			return
-
-
-		self.cbWFileSave()
+	def reactStoreG(self):
+		None
 
 
 

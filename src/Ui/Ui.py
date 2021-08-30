@@ -76,7 +76,7 @@ class Ui():
 
 
 		self.appWindow.sigAddFile.connect(self.addFile)
-		self.appWindow.setCBFileSave(self.storeFile)
+		self.appWindow.sigStoreG.connect(self.storeG)
 		self.appWindow.setCBLayerSet(self.layerSet)
 
 		self.appWindow.setCBConnList(self.dispatchGetList)
@@ -120,7 +120,7 @@ class Ui():
 
 
 
-	def storeFile(self):
+	def storeG(self):
 		if not self.data.info():
 			print("No scene data")
 			return
