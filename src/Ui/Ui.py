@@ -32,11 +32,6 @@ class Ui():
 
 
 
-	def dispatchGetList(self):
-		return self.dispatch.getDevices()
-
-
-
 # -todo 88 (fix, gcode) +0: use dispatch both for file save
 	def dispatchSend(self, _name):
 		return self.dispatch.runDevice(_name, self.appWindow.dispatchLog)
@@ -79,7 +74,7 @@ class Ui():
 		self.appWindow.sigStoreG.connect(self.storeG)
 		self.appWindow.setCBLayerSet(self.layerSet)
 
-		self.appWindow.setCBConnList(self.dispatchGetList)
+		self.appWindow.connList(self.dispatch.getDevices())
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
 
 

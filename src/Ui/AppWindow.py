@@ -47,20 +47,12 @@ class AppWindow(QObject):
 
 	defaultFit = 0.8
 
-	cbWConnList = None
 	cbWLayerSet = None
 
 
 
 	def setCBLayerSet(self, _cb):
 		self.cbWLayerSet = _cb
-
-
-
-	def setCBConnList(self, _cb):
-		self.cbWConnList = _cb
-
-		self.connList()
 
 
 
@@ -264,15 +256,8 @@ class AppWindow(QObject):
 
 
 # -todo 59 (module-ui, ux, clean) +0: make updatable connections list
-	def connList(self):
-		if not self.cbWConnList:
-			print('No connList CB')
-			return
-
-
-		portsA = self.cbWConnList()
-
-		for port in portsA:
+	def connList(self, _portsA):
+		for port in _portsA:
 			self.lDdPorts.insertItem(0,port)
 
 
