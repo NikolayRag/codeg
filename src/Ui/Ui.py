@@ -72,7 +72,8 @@ class Ui():
 
 		self.appWindow.sigAddFile.connect(self.addFile)
 		self.appWindow.sigStoreG.connect(self.storeG)
-		self.appWindow.setCBLayerSet(self.layerSet)
+		self.appWindow.sigLayerSelect.connect(self.layerSetSelect)
+		self.appWindow.sigLayerHover.connect(self.layerSetHover)
 
 		self.appWindow.connList(self.dispatch.getDevices())
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
@@ -142,13 +143,19 @@ class Ui():
 
 
 
+	def layerSetSelect(self, selection):
+		self.layerSet(selection=selection)
+
+	def layerSetHover(self, hover):
+		self.layerSet(hover=hover)
+
 	def layerSet(self, hover=False, selection=False):
 		if not self.data:
 			print ('No data')
 			return
 
 
-		if (hover != False):
+		if hover != False:
 			self.data.override(self.layerHover)
 
 			self.layerHover = hover
@@ -168,4 +175,6 @@ class Ui():
 		self.data.override(self.layerHover, self.styleHover)
 
 
-		return self.data.getXML()
+		cXml = self.data.getXML()
+		if cXml:
+			self.appWindow.canvasUpdate(cXml)

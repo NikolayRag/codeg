@@ -41,18 +41,13 @@ class AppWindow(QObject):
 	sigAddFile = Signal()
 	sigStoreG = Signal()
 	sigDispatch = Signal(str)
+	sigLayerSelect = Signal(list)
+	sigLayerHover = Signal(str)
 
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
 	defaultFit = 0.8
-
-	cbWLayerSet = None
-
-
-
-	def setCBLayerSet(self, _cb):
-		self.cbWLayerSet = _cb
 
 
 
@@ -217,13 +212,12 @@ class AppWindow(QObject):
 
 
 
+	def canvasUpdate(self, _xml):
+		self.lViewport.canvasUpdate(_xml)
+
+
 
 	def layerSelect(self):
-		if not self.cbWLayerSet:
-			print('No layerSet CB')
-			return
-
-
 		selectionNamesA = []
 
 		for cRange in self.lListLayers.selectedRanges():
@@ -232,26 +226,17 @@ class AppWindow(QObject):
 				selectionNamesA.append( cName.text() )
 
 
-		cXml = self.cbWLayerSet(selection=selectionNamesA)
-		if cXml:
-			self.lViewport.canvasUpdate(cXml)
+		self.sigLayerSelect.emit(selectionNamesA)
 
 
 
 	def layerHover(self, _row=-1, _col=-1, event=None):
-		if not self.cbWLayerSet:
-			print('No layerSet CB')
-			return
-
-
 		hoverName = None
 		if _row >= 0:
 			hoverName = self.lListLayers.item(_row,0).text()
 
 
-		cXml = self.cbWLayerSet(hover=hoverName)
-		if cXml:
-			self.lViewport.canvasUpdate(cXml)
+		self.sigLayerHover.emit(hoverName)
 
 
 
