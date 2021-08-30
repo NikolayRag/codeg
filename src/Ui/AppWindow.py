@@ -38,21 +38,17 @@ class BindFilter(QObject):
 
 class AppWindow(QObject):
 	sigResize = Signal(QSize, bool)
+	sigAddFile = Signal()
 
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
 	defaultFit = 0.8
 
-	cbWFileLoad = None
 	cbWFileSave = None
 	cbWConnList = None
 	cbWDispatch = None
 	cbWLayerSet = None
-
-
-	def setCBFileLoad(self, _cb):
-		self.cbWFileLoad = _cb
 
 
 
@@ -139,7 +135,7 @@ class AppWindow(QObject):
 
 		self.lBtnFit.clicked.connect(lambda: self.lViewport.canvasFit(self.defaultFit))
 		self.lBtnCaption.clicked.connect(self.about)
-		self.lBtnOpen.clicked.connect(self.openFile)
+		self.lBtnOpen.clicked.connect(self.sigAddFile)
 		self.lBtnStore.clicked.connect(self.storeFile)
 		self.lBtnProccess.clicked.connect(self.dispatchRun)
 
@@ -207,26 +203,19 @@ class AppWindow(QObject):
 
 #  todo 3 (feature, file) +0: allow picking from Recent files list
 
-	def openFile(self):
-		if not self.cbWFileLoad:
-			print('No load CB')
-			return
-
-
-		cData = self.cbWFileLoad()
-		if cData:
+	def addFileReact(self, _data):
 			self.lBtnStore.setEnabled(True)
 			self.lBtnProccess.setEnabled(True)
 
 			self.lViewport.canvasReset()
-			self.lViewport.canvasAdd(cData['xml'])
+			self.lViewport.canvasAdd(_data['xml'])
 			self.lViewport.canvasFit(self.defaultFit)
 
 
 			cList = self.lListLayers
 			cList.setRowCount(0)
 
-			cMeta = cData['meta']
+			cMeta = _data['meta']
 			for cName in cMeta:
 				self.layerAddItem(cList, cMeta, cName)
 

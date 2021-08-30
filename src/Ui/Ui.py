@@ -75,7 +75,7 @@ class Ui():
 		)
 
 
-		self.appWindow.setCBFileLoad(self.openFile)
+		self.appWindow.sigAddFile.connect(self.addFile)
 		self.appWindow.setCBFileSave(self.storeFile)
 		self.appWindow.setCBLayerSet(self.layerSet)
 
@@ -93,7 +93,7 @@ class Ui():
 
 
 
-	def openFile(self):
+	def addFile(self):
 		cRecentA = self.args.get("recentLoaded", [])
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
@@ -110,7 +110,9 @@ class Ui():
 		self.layerHover = None
 		self.layersSelection = []
 
-		return self.data.loadXML(fileName)
+		cData = self.data.loadXML(fileName)
+		if cData:
+			self.appWindow.addFileReact(cData)
 		
 
 
