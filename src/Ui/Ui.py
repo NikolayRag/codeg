@@ -80,7 +80,7 @@ class Ui():
 		self.appWindow.setCBLayerSet(self.layerSet)
 
 		self.appWindow.setCBConnList(self.dispatchGetList)
-		self.appWindow.setCBDispatch(self.dispatchSend)
+		self.appWindow.sigDispatch.connect(self.dispatchSend)
 
 
 

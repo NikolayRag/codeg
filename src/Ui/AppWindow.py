@@ -40,6 +40,7 @@ class AppWindow(QObject):
 	sigResize = Signal(QSize, bool)
 	sigAddFile = Signal()
 	sigStoreG = Signal()
+	sigDispatch = Signal(str)
 
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
@@ -47,7 +48,6 @@ class AppWindow(QObject):
 	defaultFit = 0.8
 
 	cbWConnList = None
-	cbWDispatch = None
 	cbWLayerSet = None
 
 
@@ -61,11 +61,6 @@ class AppWindow(QObject):
 		self.cbWConnList = _cb
 
 		self.connList()
-
-
-
-	def setCBDispatch(self, _cb):
-		self.cbWDispatch = _cb
 
 
 
@@ -283,12 +278,7 @@ class AppWindow(QObject):
 
 
 	def dispatchRun(self):
-		if not self.cbWDispatch:
-			print('No dispatch CB')
-			return
-
-
-		self.cbWDispatch( self.lDdPorts.currentText() )
+		self.sigDispatch.emit( self.lDdPorts.currentText() )
 
 
 
