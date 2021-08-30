@@ -203,7 +203,7 @@ class AppWindow(QObject):
 
 #  todo 3 (feature, file) +0: allow picking from Recent files list
 
-	def addFileReact(self, _data):
+	def reactAddFile(self, _data):
 			self.lBtnStore.setEnabled(True)
 			self.lBtnProccess.setEnabled(True)
 

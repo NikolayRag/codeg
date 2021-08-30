@@ -112,7 +112,7 @@ class Ui():
 
 		cData = self.data.loadXML(fileName)
 		if cData:
-			self.appWindow.addFileReact(cData)
+			self.appWindow.reactAddFile(cData)
 		
 
 
