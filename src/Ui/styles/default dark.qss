@@ -1,0 +1,16 @@
+* {
+	background-color: #222;
+	color: #dde;
+}
+
+#frameViewport {
+	color: #666;
+}
+
+#widgetToolbar {
+	background-color: rgba(64, 64, 64, 192);
+}
+
+#listLayers {
+	gridline-color: rgba(255, 255, 255, 24);
+}
