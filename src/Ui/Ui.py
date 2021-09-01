@@ -9,7 +9,7 @@ from .AppWindow import *
 
 class Ui():
 	defUi = './Ui/AppWindow.ui'
-	defStyle = './Ui/styles/default dark.qss'
+	defStyle = './Ui/schemes/default dark.qss'
 
 
 	styleSelect = {
