@@ -139,7 +139,7 @@
  module-ui, ux 49: +0 "" kii 21/08/04 06:11:17
 	save/restore active device between sessions
 
-+module-ui 50: +0 "src\Ui\AppWindow.py" ki 21/09/01 21:55:04
+ module-ui 50: +0 "src\Ui\AppWindow.py" ki 21/09/01 21:59:23
 	add style
 
 =module-ui, ux 51: +0 "" kii 21/08/04 06:13:01
@@ -274,6 +274,6 @@
 !module-ui, ux, scene 96: +0 "src\Ui\AppWindow.py" kii 21/08/29 16:52:03
 	
 
- viewport, fix, solve 97: +0 "src\Ui\SvgViewport.py" ki 21/09/01 21:50:26
+ viewport, fix, solve 97: +0 "src\Ui\SvgViewport.py" ki 21/09/01 21:59:23
 	decide how to paint different layer sizes
 
