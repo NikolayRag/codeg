@@ -81,6 +81,7 @@ class AppWindow(QObject):
 		self.lListLayers = cMain.findChild(QTableWidget, "listLayers")
 
 		self.lListLayers.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
+		self.lListLayers.cacheSelection = []
 		self.lListLayers.itemSelectionChanged.connect(self.layerSelect)
 		self.lListLayers.cellEntered.connect(self.layerHover)
 		self.tmpFilterLayersLeave = BindFilter(QEvent.Type.Leave, self.layerHover)
@@ -241,10 +242,13 @@ class AppWindow(QObject):
 	def layerSelect(self):
 		selectionNamesA = []
 
+		self.lListLayers.cacheSelection = []
 		for cRange in self.lListLayers.selectedRanges():
 			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
 				cName = self.lListLayers.item(cRow, self.LayerColumnName)
 				selectionNamesA.append( cName.data(self.LdataName) )
+
+				self.lListLayers.cacheSelection.append(cRow)
 
 
 		self.sigLayerSelect.emit(selectionNamesA)
@@ -278,12 +282,9 @@ class AppWindow(QObject):
 				return
 
 
-			for cRange in self.lListLayers.selectedRanges():
-				for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
-					if cState == self.lListLayers.item(cRow, _col).data(self.LdataOn):
-						self.layerCtrlTrigger( cRow, _col, False )
-
-
+			for cRow in self.lListLayers.cacheSelection:
+				if cState == self.lListLayers.item(cRow, _col).data(self.LdataOn):
+					self.layerCtrlTrigger( cRow, _col, False )
 
 
 
