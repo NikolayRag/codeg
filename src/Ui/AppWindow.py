@@ -196,7 +196,7 @@ class AppWindow(QObject):
 
 
 
-### LAYERS ###
+######### LAYERS #########
 
 	def layerSetItem(self, _item, _on):
 		c = QColor('#4c4')
