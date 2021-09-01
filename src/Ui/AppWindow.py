@@ -51,10 +51,15 @@ class AppWindow(QObject):
 
 
 
-	def __init__(self, _uiFile):
+	def __init__(self, _uiFile, _styleFile=None):
 		QObject.__init__(self)
 
 		cMain = self.lMain = QUiLoader().load(_uiFile)
+#  todo 50 (module-ui) +0: add style
+#		if _styleFile:
+#			with open(_styleFile) as fQss:
+#				cMain.setStyleSheet(fQss.read())
+
 
 		cMain.setWindowTitle('codeg');
 		self.tmpFilterWindowResize = BindFilter(
