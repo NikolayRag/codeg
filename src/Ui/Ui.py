@@ -151,7 +151,7 @@ class Ui():
 
 
 
-
+#  todo 98 (module-ui, optimize) -1: prevent doubling by difference change
 	def layerSetSelect(self, selection):
 		for l in self.layersSelection:
 			self.data.override(l)

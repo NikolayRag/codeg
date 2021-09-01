@@ -4,7 +4,7 @@
 +feature, file 2: +0 "src\Ui\AppWindow.py" kii 21/07/25 16:29:21
 	deal with recent files
 
- feature, file 3: +0 "src\Ui\AppWindow.py" kii 21/08/29 01:31:14
+ feature, file 3: +0 "src\Ui\AppWindow.py" ki 21/09/02 00:47:26
 	allow picking from Recent files list
 
 +svg, feature 4: +0 "src\Ui\SvgViewport.py" kii 21/08/02 19:14:43
@@ -55,7 +55,7 @@
  spec, module-dispatch 19: +0 "src\GGData\GGData.py" kii 21/08/02 21:16:57
 	send to codegg
 
- module-ui, error 20: +0 "src\Ui\AppWindow.py" kii 21/07/31 02:32:41
+ module-ui, error 20: +0 "src\Ui\AppWindow.py" ki 21/09/02 00:47:53
 	handle errors, maybe status string
 
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
@@ -250,7 +250,7 @@
 +fix, gcode 87: +0 "src\Ui\Ui.py" kii 21/08/28 18:02:01
 	place svg layers more generally
 
--fix, gcode 88: +0 "src\Ui\Ui.py" kii 21/08/30 08:05:46
+-fix, gcode 88: +0 "src\Ui\Ui.py" ki 21/09/02 00:32:50
 	use dispatch both for file save
 
 -ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" kii 21/08/28 18:03:13
@@ -276,4 +276,7 @@
 
  viewport, fix, solve 97: +0 "src\Ui\SvgViewport.py" ki 21/09/01 21:59:23
 	decide how to paint different layer sizes
+
+ module-ui, optimize 98: -1 "src\Ui\Ui.py" ki 21/09/02 01:04:33
+	prevent doubling by difference change
 
