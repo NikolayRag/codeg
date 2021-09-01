@@ -259,10 +259,21 @@ class AppWindow(QObject):
 
 
 	def layerCtrlTrigger(self, _el, _user=True):
-		self.sigLayerCtrlOn.emit(
-			_el.data(self.LdataName),
-			_el.data(self.LdataOn)
-		)
+		if _el.data(self.LdataOn) != None:
+			if not _user:
+				self.sigLayerCtrlOn.emit(
+					_el.data(self.LdataName),
+					_el.data(not self.LdataOn)
+				)
+
+				return
+
+
+			for cRange in self.lListLayers.selectedRanges():
+				for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
+					self.layerCtrlTrigger( self.lListLayers.item(cRow,1), False )
+
+
 
 
 
