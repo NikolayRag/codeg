@@ -46,7 +46,7 @@ class AppWindow(QObject):
 	sigDispatch = Signal(str)
 	sigLayerSelect = Signal(list)
 	sigLayerHover = Signal(str)
-	sigLayerCtrlOn = Signal(object, bool)
+	sigLayerCtrlOn = Signal(str, bool)
 
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
@@ -221,7 +221,8 @@ class AppWindow(QObject):
 			_list.setItem(cRow, 0, itemName)
 		
 			itemOn = QTableWidgetItem()
-			itemName.setData(self.LdataName, _name)
+			itemOn.setData(self.LdataName, _name)
+
 			itemOn.setFlags(Qt.NoItemFlags)
 			self.layerSetItem(itemOn, _meta[_name]['on'])
 			_list.setItem(cRow, 1, itemOn)
@@ -259,8 +260,8 @@ class AppWindow(QObject):
 
 	def layerCtrlTrigger(self, _el, _user=True):
 		self.sigLayerCtrlOn.emit(
-			_el,
-			True
+			_el.data(self.LdataName),
+			_el.data(self.LdataOn)
 		)
 
 
