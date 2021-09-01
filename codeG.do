@@ -4,7 +4,7 @@
 +feature, file 2: +0 "src\Ui\AppWindow.py" kii 21/07/25 16:29:21
 	deal with recent files
 
- feature, file 3: +0 "src\Ui\AppWindow.py" ki 21/08/29 01:31:14
+ feature, file 3: +0 "src\Ui\AppWindow.py" kii 21/08/29 01:31:14
 	allow picking from Recent files list
 
 +svg, feature 4: +0 "src\Ui\SvgViewport.py" kii 21/08/02 19:14:43
@@ -22,7 +22,7 @@
 +spec, module-data 8: +0 "src\GGData\GGData.py" kii 21/07/31 16:30:49
 	save gcode
 
--spec, module-data 9: +1 "src\GGData\GGData.py" ki 21/08/28 18:00:05
+-spec, module-data 9: +1 "src\GGData\GGData.py" kii 21/08/28 18:00:05
 	operate project data
 
  spec, module-data 10: +0 "src\__main__w.py" kii 21/07/28 03:36:06
@@ -61,10 +61,10 @@
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
 	dup
 
-=module-dispatch, ux 22: +0 "src\GGData\GGData.py" ki 21/08/28 18:00:30
+=module-dispatch, ux 22: +0 "src\GGData\GGData.py" kii 21/08/28 18:00:30
 	make dispatch interruptable
 
--module-ui, ux 23: +0 "src\Ui\Ui.py" ki 21/08/20 16:57:48
+-module-ui, ux 23: +0 "src\Ui\Ui.py" kii 21/08/20 16:57:48
 	show progress for time consuming operations
 
 !module-data, formats 24: +0 "" kii 21/07/31 16:33:32
@@ -103,7 +103,7 @@
  module-ui, API 36: +0 "src\Ui\SvgViewport.py" kii 21/08/02 06:13:19
 	make viewport interaction callbacks
 
- module-ui, viewport 37: +0 "src\Ui\SvgViewport.py" ki 21/08/24 17:44:42
+ module-ui, viewport 37: +0 "src\Ui\SvgViewport.py" kii 21/08/24 17:44:42
 	make custom scrollbars out of SvgViewport
 
 +module-ui, API 38: +0 "src\Ui\SvgViewport.py" kii 21/08/02 19:14:34
@@ -139,7 +139,7 @@
  module-ui, ux 49: +0 "" kii 21/08/04 06:11:17
 	save/restore active device between sessions
 
- module-ui 50: +0 "src\Ui\AppWindow.py" kii 21/08/15 19:36:41
++module-ui 50: +0 "src\Ui\AppWindow.py" ki 21/09/01 21:55:04
 	add style
 
 =module-ui, ux 51: +0 "" kii 21/08/04 06:13:01
@@ -166,7 +166,7 @@
 -module-ui, ux, clean 59: +0 "src\Ui\AppWindow.py" kii 21/08/06 17:22:09
 	make updatable connections list
 
-=module-dispatch 60: +0 "src\Dispatch\Dispatch.py" ki 21/08/28 18:03:33
+=module-dispatch 60: +0 "src\Dispatch\Dispatch.py" kii 21/08/28 18:03:33
 	show gcodes live proto
 
 =module-dispatch 61: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 03:45:15
@@ -178,19 +178,19 @@
 =module-ui, ux 63: +0 "src\Ui\Ui.py" kii 21/08/15 22:10:52
 	basic layer control, on-off
 
--module-dispatch 64: +0 "src\Dispatch\Dispatch.py" ki 21/08/17 15:28:44
+-module-dispatch 64: +0 "src\Dispatch\Dispatch.py" kii 21/08/17 15:28:44
 	dispatch queue
 
 !module-dispatch 65: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:38:19
 	
 
--module-ui 66: +0 "src\GGData\GGData.py" ki 21/08/28 18:00:26
+-module-ui 66: +0 "src\GGData\GGData.py" kii 21/08/28 18:00:26
 	show dispatch progress
 
-+api 67: +1 "src\__main__w.py" ki 21/08/30 08:48:48
++API 67: +1 "src\__main__w.py" kii 21/08/30 08:48:48
 	change callbacks to signals-slots
 
--module-dispatch 68: +0 "src\Dispatch\Dispatch.py" ki 21/08/20 02:57:25
+-module-dispatch 68: +0 "src\Dispatch\Dispatch.py" kii 21/08/20 02:57:25
 	queue control
 
  gcode 69: +0 "src\GGen\GGen.py" kii 21/08/12 04:40:26
@@ -214,7 +214,7 @@
 !fix, gcode 75: +0 "src\GGen\GGen.py" kii 21/08/14 20:12:11
 	
 
-=fix, gcode 76: +0 "" ki 21/08/25 22:58:28
+=fix, gcode 76: +0 "" kii 21/08/25 22:58:28
 	gcode move, scale and crop
 
 -fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" kii 21/08/14 20:43:27
@@ -226,51 +226,54 @@
  module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" kii 21/08/15 22:52:53
 	make size ignored on maximize
 
-+module-ui, svg, feature 80: +0 "src\Ui\SvgViewport.py" ki 21/08/20 05:30:30
++module-ui, svg, feature 80: +0 "src\Ui\SvgViewport.py" kii 21/08/20 05:30:30
 	make SvgCanvas multilayered
 
--module-ui, svg, feature 81: +0 "" ki 21/08/27 03:13:26
+-module-ui, svg, feature 81: +0 "" kii 21/08/27 03:13:26
 	show grid
 
- module-data, ux 82: +0 "src\GGData\GGData.py" ki 21/08/20 03:48:29
+ module-data, ux 82: +0 "src\GGData\GGData.py" kii 21/08/20 03:48:29
 	parse groups
 
- ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" ki 21/08/22 20:27:29
+ ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" kii 21/08/22 20:27:29
 	fit at init dont work due to obsolete size 
 
- module-data 84: +0 "src\GGData\GGData.py" ki 21/08/20 17:07:44
+ module-data 84: +0 "src\GGData\GGData.py" kii 21/08/20 17:07:44
 	make file load (save) plugin system
 
-+module-dispatch 85: +0 "src\GGData\GGData.py" ki 21/08/28 18:00:25
++module-dispatch 85: +0 "src\GGData\GGData.py" kii 21/08/28 18:00:25
 	Gcode generate in background
 
-!fix, gcode 86: +1 "src\Ui\Ui.py" ki 21/08/22 20:19:01
+!fix, gcode 86: +1 "src\Ui\Ui.py" kii 21/08/22 20:19:01
 	
 
-+fix, gcode 87: +0 "src\Ui\Ui.py" ki 21/08/28 18:02:01
++fix, gcode 87: +0 "src\Ui\Ui.py" kii 21/08/28 18:02:01
 	place svg layers more generally
 
--fix, gcode 88: +0 "src\Ui\Ui.py" ki 21/08/30 08:05:46
+-fix, gcode 88: +0 "src\Ui\Ui.py" kii 21/08/30 08:05:46
 	use dispatch both for file save
 
--ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" ki 21/08/28 18:03:13
+-ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" kii 21/08/28 18:03:13
 	place grid correctly
 
--ux, module-ui, fix 90: +0 "src\Ui\SvgViewport.py" ki 21/08/28 18:05:48
+-ux, module-ui, fix 90: +0 "src\Ui\SvgViewport.py" kii 21/08/28 18:05:48
 	respect units - both svg and device
 
--viewport, api 91: +0 "src\Ui\SvgViewport.py" ki 21/08/25 23:00:57
+-viewport, API 91: +0 "src\Ui\SvgViewport.py" kii 21/08/25 23:00:57
 	add class-level SVG runtime generator signal/slot
 
- feature 92: +0 "src\__main__w.py" ki 21/08/30 08:48:49
+ feature 92: +0 "src\__main__w.py" kii 21/08/30 08:48:49
 	multiple sources scene
 
-=feature 93: +0 "src\__main__w.py" ki 21/08/25 23:07:18
+=feature 93: +0 "src\__main__w.py" kii 21/08/25 23:07:18
 	store scene layer and layout state
 
- viewport, fix 95: +0 "src\Ui\SvgViewport.py" ki 21/08/28 15:52:23
+ viewport, fix 95: +0 "src\Ui\SvgViewport.py" kii 21/08/28 15:52:23
 	clip max scale by render limit
 
-!module-ui, ux, scene 96: +0 "src\Ui\AppWindow.py" ki 21/08/29 16:52:03
+!module-ui, ux, scene 96: +0 "src\Ui\AppWindow.py" kii 21/08/29 16:52:03
 	
+
+ viewport, fix, solve 97: +0 "src\Ui\SvgViewport.py" ki 21/09/01 21:50:26
+	decide how to paint different layer sizes
 

@@ -317,7 +317,7 @@ class SvgCanvas(QWidget):
 		for l in self.layers:
 			if not l.display:
 				continue
-
+#  todo 97 (viewport, fix, solve) +0: decide how to paint different layer sizes
 			p.setViewport( QRect(QPoint(0, 0), self.sizeHint()) )
 			l.render(p)
 
