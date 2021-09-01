@@ -43,6 +43,7 @@ class AppWindow(QObject):
 	sigDispatch = Signal(str)
 	sigLayerSelect = Signal(list)
 	sigLayerHover = Signal(str)
+	sigLayerCtrlOn = Signal(str, bool)
 
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
@@ -243,6 +244,14 @@ class AppWindow(QObject):
 
 
 		self.sigLayerHover.emit(hoverName)
+
+
+
+	def layerCtrlTrigger(self, _el, _user=True):
+		self.sigLayerCtrlOn.emit(
+			_el,
+			True
+		)
 
 
 

@@ -61,6 +61,7 @@ class Ui():
 		self.appWindow.sigStoreG.connect(self.storeG)
 		self.appWindow.sigLayerSelect.connect(self.layerSetSelect)
 		self.appWindow.sigLayerHover.connect(self.layerSetHover)
+		self.appWindow.sigLayerCtrlOn.connect(self.triggerLayerOn)
 
 		self.appWindow.connList(self.dispatch.getDevices())
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
@@ -76,6 +77,11 @@ class Ui():
 
 
 ### PRIVATE ###
+
+
+
+	def triggerLayerOn(self, _el, _on):
+		print(_el, _on)
 
 
 
