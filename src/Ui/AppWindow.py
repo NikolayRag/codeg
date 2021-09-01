@@ -142,6 +142,10 @@ class AppWindow(QObject):
 
 
 
+### PRIVATE ###
+
+
+
 #  todo 79 (module-ui, ux, fix) +0: make size ignored on maximize
 	def resized(self, event):
 		wSize = self.lMain.size()
@@ -156,6 +160,41 @@ class AppWindow(QObject):
 		webbrowser.open(self.aboutHref)
 
 
+
+#  todo 3 (feature, file) +0: allow picking from Recent files list
+	def reactAddFile(self, _data):
+		self.lBtnStore.setEnabled(True)
+		self.lBtnProccess.setEnabled(True)
+
+		self.lViewport.canvasReset()
+		self.lViewport.canvasAdd(_data['xml'])
+		self.lViewport.canvasFit(self.defaultFit)
+
+
+		cList = self.lListLayers
+		cList.setRowCount(0)
+
+		cMeta = _data['meta']
+		for cName in cMeta:
+			self.layerAddItem(cList, cMeta, cName)
+
+		#blank
+		self.layerAddItem(cList)
+
+
+
+#  todo 20 (module-ui, error) +0: handle errors, maybe status string
+	def reactStoreG(self):
+		None
+
+
+
+	def canvasUpdate(self, _xml):
+		self.lViewport.canvasUpdate(_xml)
+
+
+
+### LAYERS ###
 
 	def layerSetItem(self, _item, _on):
 		c = QColor('#4c4')
@@ -182,45 +221,6 @@ class AppWindow(QObject):
 				cItem = QTableWidgetItem()
 				cItem.setFlags(Qt.NoItemFlags)
 				_list.setItem(cRow, i, cItem)
-
-
-
-#  todo 3 (feature, file) +0: allow picking from Recent files list
-
-	def reactAddFile(self, _data):
-		self.lBtnStore.setEnabled(True)
-		self.lBtnProccess.setEnabled(True)
-
-		self.lViewport.canvasReset()
-		self.lViewport.canvasAdd(_data['xml'])
-		self.lViewport.canvasFit(self.defaultFit)
-
-
-		cList = self.lListLayers
-		cList.setRowCount(0)
-
-		cMeta = _data['meta']
-		for cName in cMeta:
-			self.layerAddItem(cList, cMeta, cName)
-
-		#blank
-		self.layerAddItem(cList)
-
-
-		
-
-
-#  todo 20 (module-ui, error) +0: handle errors, maybe status string
-
-
-
-	def reactStoreG(self):
-		None
-
-
-
-	def canvasUpdate(self, _xml):
-		self.lViewport.canvasUpdate(_xml)
 
 
 
@@ -254,6 +254,8 @@ class AppWindow(QObject):
 		)
 
 
+
+### DISPATCH ###
 
 # -todo 59 (module-ui, ux, clean) +0: make updatable connections list
 	def connList(self, _portsA):
