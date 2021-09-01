@@ -144,30 +144,28 @@ class Ui():
 
 
 	def layerSetSelect(self, selection):
-		self.layerSet(selection=selection)
+		for l in self.layersSelection:
+			self.data.override(l)
+
+		self.layersSelection = selection
+
+
+		self.layerUpdate()
+
+
 
 	def layerSetHover(self, hover):
-		self.layerSet(hover=hover)
+		self.data.override(self.layerHover)
 
-	def layerSet(self, hover=False, selection=False):
-		if not self.data:
-			print ('No data')
-			return
+		self.layerHover = hover
 
 
-		if hover != False:
-			self.data.override(self.layerHover)
-
-			self.layerHover = hover
+		self.layerUpdate()
 
 
-		if selection != False:
-			for l in self.layersSelection:
-				self.data.override(l)
 
-			self.layersSelection = selection
-
-
+	#update all at once to avoid interferences
+	def layerUpdate(self):
 		for a in self.layersSelection:
 			self.data.override(a, self.styleSelect)
 
