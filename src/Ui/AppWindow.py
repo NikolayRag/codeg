@@ -37,6 +37,9 @@ class BindFilter(QObject):
 
 
 class AppWindow(QObject):
+	LdataName = Qt.UserRole +0
+	LdataOn = Qt.UserRole +1
+
 	sigResize = Signal(QSize, bool)
 	sigAddFile = Signal()
 	sigStoreG = Signal()
@@ -199,6 +202,8 @@ class AppWindow(QObject):
 ######### LAYERS #########
 
 	def layerSetItem(self, _item, _on):
+		_item.setData(self.LdataOn, _on)
+
 		c = QColor('#4c4')
 		c.setAlpha(255 if _on else 0)
 		_item.setBackground(c)
@@ -211,12 +216,15 @@ class AppWindow(QObject):
 		_list.insertRow(cRow)
 
 		if _meta:
-			_list.setItem(cRow, 0, QTableWidgetItem(_name))
+			itemName = QTableWidgetItem(_name)
+			itemName.setData(self.LdataName, _name)
+			_list.setItem(cRow, 0, itemName)
 		
-			item = QTableWidgetItem()
-			item.setFlags(Qt.NoItemFlags)
-			self.layerSetItem(item, _meta[_name]['on'])
-			_list.setItem(cRow, 1, item)
+			itemOn = QTableWidgetItem()
+			itemName.setData(self.LdataName, _name)
+			itemOn.setFlags(Qt.NoItemFlags)
+			self.layerSetItem(itemOn, _meta[_name]['on'])
+			_list.setItem(cRow, 1, itemOn)
 
 		else:
 			for i in range(_list.columnCount()):
@@ -232,7 +240,7 @@ class AppWindow(QObject):
 		for cRange in self.lListLayers.selectedRanges():
 			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
 				cName = self.lListLayers.item(cRow,0)
-				selectionNamesA.append( cName.text() )
+				selectionNamesA.append( cName.data(self.LdataName) )
 
 
 		self.sigLayerSelect.emit(selectionNamesA)
@@ -242,7 +250,7 @@ class AppWindow(QObject):
 	def layerHover(self, _row=-1, _col=-1, event=None):
 		hoverName = None
 		if _row >= 0:
-			hoverName = self.lListLayers.item(_row,0).text()
+			hoverName = self.lListLayers.item(_row,0).data(self.LdataName)
 
 
 		self.sigLayerHover.emit(hoverName)
