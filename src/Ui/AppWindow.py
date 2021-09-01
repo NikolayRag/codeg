@@ -263,11 +263,16 @@ class AppWindow(QObject):
 
 	def layerCtrlTrigger(self, _row, _col, _user=True):
 		if _col == self.LayerColumnSwitch:
+			cEl = self.lListLayers.item(_row, _col)
+			cState = cEl.data(self.LdataOn)
+
+
 			if not _user:
-				_el = self.lListLayers.item(_row, _col)
+				self.layerSetItem(cEl, not cState)
+
 				self.sigLayerCtrlOn.emit(
-					_el.data(self.LdataName),
-					_el.data(not self.LdataOn)
+					cEl.data(self.LdataName),
+					not cState
 				)
 
 				return
@@ -275,7 +280,8 @@ class AppWindow(QObject):
 
 			for cRange in self.lListLayers.selectedRanges():
 				for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
-					self.layerCtrlTrigger( cRow, _col, False )
+					if cState == self.lListLayers.item(cRow, _col).data(self.LdataOn):
+						self.layerCtrlTrigger( cRow, _col, False )
 
 
 
