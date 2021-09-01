@@ -43,7 +43,7 @@ class AppWindow(QObject):
 	sigDispatch = Signal(str)
 	sigLayerSelect = Signal(list)
 	sigLayerHover = Signal(str)
-	sigLayerCtrlOn = Signal(str, bool)
+	sigLayerCtrlOn = Signal(object, bool)
 
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
@@ -79,6 +79,8 @@ class AppWindow(QObject):
 		self.lListLayers.cellEntered.connect(self.layerHover)
 		self.tmpFilterLayersLeave = BindFilter(QEvent.Type.Leave, self.layerHover)
 		self.lListLayers.installEventFilter(self.tmpFilterLayersLeave)
+
+		self.lListLayers.itemClicked.connect(self.layerCtrlTrigger)
 
 		
 		self.lCheckLayerOn = cMain.findChild(QLineEdit, "checkLayerOn")
