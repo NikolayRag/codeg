@@ -55,10 +55,6 @@ class AppWindow(QObject):
 		QObject.__init__(self)
 
 		cMain = self.lMain = QUiLoader().load(_uiFile)
-#  todo 50 (module-ui) +0: add style
-#		if _styleFile:
-#			with open(_styleFile) as fQss:
-#				cMain.setStyleSheet(fQss.read())
 
 
 		if _styleFile:

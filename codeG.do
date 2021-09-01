@@ -139,7 +139,7 @@
  module-ui, ux 49: +0 "" kii 21/08/04 06:11:17
 	save/restore active device between sessions
 
- module-ui 50: +0 "src\Ui\AppWindow.py" ki 21/09/01 21:59:23
++module-ui 50: +0 "src\Ui\AppWindow.py" ki 21/09/01 22:53:30
 	add style
 
 =module-ui, ux 51: +0 "" kii 21/08/04 06:13:01
@@ -259,7 +259,7 @@
 -ux, module-ui, fix 90: +0 "src\Ui\SvgViewport.py" kii 21/08/28 18:05:48
 	respect units - both svg and device
 
--viewport, API 91: +0 "src\Ui\SvgViewport.py" kii 21/08/25 23:00:57
+-viewport, api 91: +0 "src\Ui\SvgViewport.py" ki 21/09/01 22:45:56
 	add class-level SVG runtime generator signal/slot
 
  feature 92: +0 "src\__main__w.py" kii 21/08/30 08:48:49
