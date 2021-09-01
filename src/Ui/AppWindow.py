@@ -37,6 +37,9 @@ class BindFilter(QObject):
 
 
 class AppWindow(QObject):
+	LayerColumnName = 0
+	LayerColumnSwitch = 1
+
 	LdataName = Qt.UserRole +0
 	LdataOn = Qt.UserRole +1
 
@@ -83,7 +86,7 @@ class AppWindow(QObject):
 		self.tmpFilterLayersLeave = BindFilter(QEvent.Type.Leave, self.layerHover)
 		self.lListLayers.installEventFilter(self.tmpFilterLayersLeave)
 
-		self.lListLayers.itemClicked.connect(self.layerCtrlTrigger)
+		self.lListLayers.cellClicked.connect(self.layerCtrlTrigger)
 
 		
 		self.lCheckLayerOn = cMain.findChild(QLineEdit, "checkLayerOn")
@@ -218,14 +221,14 @@ class AppWindow(QObject):
 		if _meta:
 			itemName = QTableWidgetItem(_name)
 			itemName.setData(self.LdataName, _name)
-			_list.setItem(cRow, 0, itemName)
+			_list.setItem(cRow, self.LayerColumnName, itemName)
 		
 			itemOn = QTableWidgetItem()
 			itemOn.setData(self.LdataName, _name)
 
 			itemOn.setFlags(Qt.NoItemFlags)
 			self.layerSetItem(itemOn, _meta[_name]['on'])
-			_list.setItem(cRow, 1, itemOn)
+			_list.setItem(cRow, self.LayerColumnSwitch, itemOn)
 
 		else:
 			for i in range(_list.columnCount()):
@@ -240,7 +243,7 @@ class AppWindow(QObject):
 
 		for cRange in self.lListLayers.selectedRanges():
 			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
-				cName = self.lListLayers.item(cRow,0)
+				cName = self.lListLayers.item(cRow, self.LayerColumnName)
 				selectionNamesA.append( cName.data(self.LdataName) )
 
 
@@ -251,16 +254,17 @@ class AppWindow(QObject):
 	def layerHover(self, _row=-1, _col=-1, event=None):
 		hoverName = None
 		if _row >= 0:
-			hoverName = self.lListLayers.item(_row,0).data(self.LdataName)
+			hoverName = self.lListLayers.item(_row, self.LayerColumnName).data(self.LdataName)
 
 
 		self.sigLayerHover.emit(hoverName)
 
 
 
-	def layerCtrlTrigger(self, _el, _user=True):
-		if _el.data(self.LdataOn) != None:
+	def layerCtrlTrigger(self, _row, _col, _user=True):
+		if _col == self.LayerColumnSwitch:
 			if not _user:
+				_el = self.lListLayers.item(_row, _col)
 				self.sigLayerCtrlOn.emit(
 					_el.data(self.LdataName),
 					_el.data(not self.LdataOn)
@@ -271,7 +275,7 @@ class AppWindow(QObject):
 
 			for cRange in self.lListLayers.selectedRanges():
 				for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
-					self.layerCtrlTrigger( self.lListLayers.item(cRow,1), False )
+					self.layerCtrlTrigger( cRow, _col, False )
 
 
 
