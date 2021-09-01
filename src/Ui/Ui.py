@@ -8,6 +8,10 @@ from .AppWindow import *
 
 
 class Ui():
+	defUi = './Ui/AppWindow.ui'
+	defStyle = './Ui/styles/default light.qss'
+
+
 	styleSelect = {
 		'display':'',
 		'opacity':'1',
@@ -55,13 +59,9 @@ class Ui():
 		QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
 		self.qApp = QApplication()
 		self.qApp.setStyle(QStyleFactory.create('fusion'))
-#  todo 50 (module-ui) +0: add style
-#		with open('Ui/style.qss') as fQss:
-#			self.qApp.setStyleSheet(fQss.read())
 
 
-		uiFile = ('./Ui/AppWindow.ui')
-		self.appWindow = AppWindow(uiFile)
+		self.appWindow = AppWindow(self.defUi, self.defStyle)
 
 		self.appWindow.sigResize.connect(self.storeWindow)
 		self.appWindow.resize(

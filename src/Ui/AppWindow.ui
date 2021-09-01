@@ -10,9 +10,6 @@
     <height>218</height>
    </rect>
   </property>
-  <property name="styleSheet">
-   <string notr="true">background-color: rgb(240, 240, 240);</string>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <property name="leftMargin">
@@ -32,9 +29,6 @@
     </property>
     <item row="0" column="0">
      <widget class="QFrame" name="outerFrame">
-      <property name="styleSheet">
-       <string notr="true">color: rgb(160,160,220);</string>
-      </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <property name="spacing">
         <number>12</number>
@@ -53,9 +47,6 @@
        </property>
        <item>
         <widget class="QFrame" name="frameCaption">
-         <property name="styleSheet">
-          <string notr="true">color: rgb(106, 110, 127);</string>
-         </property>
          <layout class="QHBoxLayout" name="horizontalLayout_5">
           <property name="spacing">
            <number>12</number>
@@ -160,9 +151,6 @@
        </item>
        <item>
         <widget class="QFrame" name="lay_appWindow">
-         <property name="styleSheet">
-          <string notr="true">color: rgb(39, 39, 88);</string>
-         </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
          </property>
@@ -278,15 +266,12 @@
                  </layout>
                 </item>
                 <item row="0" column="0" rowspan="2">
-                 <widget class="QWidget" name="widget" native="true">
+                 <widget class="QWidget" name="widgetToolbar" native="true">
                   <property name="maximumSize">
                    <size>
                     <width>100</width>
                     <height>16777215</height>
                    </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgba(255, 255, 255, 192);</string>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_4">
                    <property name="leftMargin">
@@ -315,8 +300,7 @@
                       <bool>true</bool>
                      </property>
                      <property name="styleSheet">
-                      <string notr="true">background-color: rgba(255, 255, 255, 0);
-gridline-color: rgba(0, 0, 0, 32);</string>
+                      <string notr="true">background-color: rgba(0,0,0,0);</string>
                      </property>
                      <property name="frameShape">
                       <enum>QFrame::NoFrame</enum>
