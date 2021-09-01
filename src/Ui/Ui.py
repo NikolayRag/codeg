@@ -36,19 +36,6 @@ class Ui():
 
 
 
-# -todo 88 (fix, gcode) +0: use dispatch both for file save
-	def dispatchSend(self, _name):
-		return self.dispatch.runDevice(_name, self.appWindow.dispatchLog)
-
-
-
-	def storeWindow(self, _size, _maximized):
-		self.args.set('wMaxi', _maximized)
-		if not _maximized:
-			self.args.set('wSize', (_size.width(),_size.height()) )
-
-
-
 	def __init__(self, _args, _data, _dispatch):
 		self.args = _args
 
@@ -86,6 +73,22 @@ class Ui():
 
 		self.qApp.exec_()
 
+
+
+### PRIVATE ###
+
+
+
+# -todo 88 (fix, gcode) +0: use dispatch both for file save
+	def dispatchSend(self, _name):
+		return self.dispatch.runDevice(_name, self.appWindow.dispatchLog)
+
+
+
+	def storeWindow(self, _size, _maximized):
+		self.args.set('wMaxi', _maximized)
+		if not _maximized:
+			self.args.set('wSize', (_size.width(),_size.height()) )
 
 
 
