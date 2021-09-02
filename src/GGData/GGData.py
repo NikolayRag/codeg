@@ -16,6 +16,16 @@ from GGen import *
 
 
 class GGData():
+	CachedFields = {
+		'stroke': 'originalStroke',
+		'stroke-width': 'originalStrokeWidth',
+		'stroke-dasharray': 'originalStrokeDash',
+		'fill': 'originalFill',
+		'opacity': 'originalOpacity',
+		'display': 'originalDisplay'
+	}
+
+
 	theGG = None
 	namedRef = {}
 
@@ -40,12 +50,9 @@ class GGData():
 				None
 
 			if aTag in [ 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path' ]:
-				a.set('originalStroke', a.get('stroke') or '')
-				a.set('originalStrokeWidth', a.get('stroke-width') or '')
-				a.set('originalStrokeDash', a.get('stroke-dasharray') or '')
-				a.set('originalFill', a.get('fill') or '')
-				a.set('originalOpacity', a.get('opacity') or '')
-				a.set('originalDisplay', a.get('display') or '')
+				for cField in self.CachedFields:
+					a.set(self.CachedFields[cField], a.get(cField) or '')
+
 
 				self.namedRef[aTag +str(i)] = a
 				meta[aTag +str(i)] = {'on':True}
@@ -106,9 +113,6 @@ class GGData():
 
 		cEl = self.namedRef[_name]
 
-		cEl.set('display', _style['display'] if 'display' in _style else cEl.get('originalDisplay'))
-		cEl.set('opacity', _style['opacity'] if 'opacity' in _style else cEl.get('originalOpacity'))
-		cEl.set('fill', _style['fill'] if 'fill' in _style else cEl.get('originalFill'))
-		cEl.set('stroke', _style['stroke'] if 'stroke' in _style else cEl.get('originalStroke'))
-		cEl.set('stroke-width', _style['stroke-width'] if 'stroke-width' in _style else cEl.get('originalStrokeWidth'))
-		cEl.set('stroke-dasharray', _style['stroke-dasharray'] if 'stroke-dasharray' in _style else cEl.get('originalStrokeDash'))
+		for cField in _style:
+			newVal = _style[cField] or cEl.get(self.CachedFields[cField])
+			cEl.set(cField, newVal)
