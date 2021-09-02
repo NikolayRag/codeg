@@ -58,7 +58,7 @@ class Ui():
 		self.appWindow.sigStoreG.connect(self.storeG)
 		self.appWindow.sigLayerSelect.connect(self.layerSetSelect)
 		self.appWindow.sigLayerHover.connect(self.layerSetHover)
-		self.appWindow.sigLayerCtrlOn.connect(self.triggerLayerOn)
+		self.appWindow.sigCtrlLayerSet.connect(self.ctrlLayerSet)
 		self.appWindow.sigNeedRedraw.connect(self.reloadXml)
 
 		self.appWindow.connList(self.dispatch.getDevices())
@@ -85,7 +85,7 @@ class Ui():
 
 
 
-	def triggerLayerOn(self, _el, _on):
+	def ctrlLayerSet(self, _el, _on):
 		self.data.override(_el, {'display':('' if _on else 'none'),} )
 
 

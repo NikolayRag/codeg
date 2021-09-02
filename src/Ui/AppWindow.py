@@ -49,7 +49,7 @@ class AppWindow(QObject):
 	sigDispatch = Signal(str)
 	sigLayerSelect = Signal(list)
 	sigLayerHover = Signal(str)
-	sigLayerCtrlOn = Signal(str, bool)
+	sigCtrlLayerSet = Signal(str, bool)
 
 	sigNeedRedraw = Signal()
 
@@ -89,7 +89,7 @@ class AppWindow(QObject):
 		self.tmpFilterLayersLeave = BindFilter(QEvent.Type.Leave, self.layerHover)
 		self.lListLayers.installEventFilter(self.tmpFilterLayersLeave)
 
-		self.lListLayers.cellClicked.connect(self.layerCtrlTrigger)
+		self.lListLayers.cellClicked.connect(self.ctrlTrigger)
 
 		
 		self.lCheckLayerOn = cMain.findChild(QLineEdit, "checkLayerOn")
@@ -267,25 +267,25 @@ class AppWindow(QObject):
 
 
 
-	def layerCtrlTriggerShot(self, _row, _col):
+	def ctrlTriggerOne(self, _row, _col):
 		cEl = self.lListLayers.item(_row, _col)
 		cState = cEl.data(self.LdataOn)
 
 
 		self.layerSetItem(cEl, not cState)
 
-		self.sigLayerCtrlOn.emit(
+		self.sigCtrlLayerSet.emit(
 			cEl.data(self.LdataName),
 			not cState
 		)
 
 
 
-	def layerCtrlTrigger(self, _row, _col):
+	def ctrlTrigger(self, _row, _col):
 		if _col == self.LayerColumnSwitch:
 			if _row not in self.lListLayers.cacheSelection:
 				self.lListLayers.selectRow(_row)
-				self.layerCtrlTriggerShot( _row, _col )
+				self.ctrlTriggerOne( _row, _col )
 
 				self.sigNeedRedraw.emit()
 
@@ -296,7 +296,7 @@ class AppWindow(QObject):
 
 			for cRow in self.lListLayers.cacheSelection:
 				if cState == self.lListLayers.item(cRow, _col).data(self.LdataOn):
-					self.layerCtrlTriggerShot( cRow, _col )
+					self.ctrlTriggerOne( cRow, _col )
 
 			self.sigNeedRedraw.emit()
 
