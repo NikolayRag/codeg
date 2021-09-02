@@ -51,6 +51,8 @@ class AppWindow(QObject):
 	sigLayerHover = Signal(str)
 	sigLayerCtrlOn = Signal(str, bool)
 
+	sigNeedRedraw = Signal()
+
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
@@ -285,6 +287,8 @@ class AppWindow(QObject):
 				self.lListLayers.selectRow(_row)
 				self.layerCtrlTriggerShot( _row, _col )
 
+				self.sigNeedRedraw.emit()
+
 				return
 
 
@@ -293,6 +297,8 @@ class AppWindow(QObject):
 			for cRow in self.lListLayers.cacheSelection:
 				if cState == self.lListLayers.item(cRow, _col).data(self.LdataOn):
 					self.layerCtrlTriggerShot( cRow, _col )
+
+			self.sigNeedRedraw.emit()
 
 
 

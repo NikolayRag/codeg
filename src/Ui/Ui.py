@@ -60,6 +60,7 @@ class Ui():
 		self.appWindow.sigLayerSelect.connect(self.layerSetSelect)
 		self.appWindow.sigLayerHover.connect(self.layerSetHover)
 		self.appWindow.sigLayerCtrlOn.connect(self.triggerLayerOn)
+		self.appWindow.sigNeedRedraw.connect(self.reloadXml)
 
 		self.appWindow.connList(self.dispatch.getDevices())
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
@@ -78,12 +79,15 @@ class Ui():
 
 
 
-	def triggerLayerOn(self, _el, _on):
-		self.data.override(_el, {'display':('' if _on else 'none'),} )
-
+	def reloadXml(self):
 		cXml = self.data.getXML()
 		if cXml:
 			self.appWindow.canvasUpdate(cXml)
+
+
+
+	def triggerLayerOn(self, _el, _on):
+		self.data.override(_el, {'display':('' if _on else 'none'),} )
 
 
 
@@ -186,6 +190,4 @@ class Ui():
 		self.data.override(self.layerHover, self.styleHover)
 
 
-		cXml = self.data.getXML()
-		if cXml:
-			self.appWindow.canvasUpdate(cXml)
+		self.reloadXml()
