@@ -280,3 +280,9 @@
  module-ui, optimize 98: -1 "src\Ui\Ui.py" ki 21/09/02 01:04:33
 	prevent doubling by difference change
 
+!module-ui, optimize 99: +0 "src\GGen\GGen.py" ki 21/09/02 03:40:33
+	
+
+ gcode, feature 100: +0 "src\GGData\GGData.py" ki 21/09/02 03:42:23
+	allow flexible filters
+

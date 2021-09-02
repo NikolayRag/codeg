@@ -85,6 +85,7 @@ class GGData():
 		if not self.theGG:
 			return
 
+#  todo 100 (gcode, feature) +0: allow flexible filters
 		cGG = GGen(self.theGG.getroot())
 		cGG.set(
 			preamble = 'G90 M4 S0',
