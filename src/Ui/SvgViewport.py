@@ -313,6 +313,7 @@ class SvgCanvas(QWidget):
 
 	def paintEvent(self, e):
 		p = QPainter(self)
+		p.setRenderHint(QPainter.Antialiasing)
 
 		for l in self.layers:
 			if not l.display:
