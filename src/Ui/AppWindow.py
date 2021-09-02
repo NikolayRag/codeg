@@ -89,7 +89,7 @@ class AppWindow(QObject):
 		self.tmpFilterLayersLeave = BindFilter(QEvent.Type.Leave, self.layerHover)
 		self.lListLayers.installEventFilter(self.tmpFilterLayersLeave)
 
-		self.lListLayers.cellClicked.connect(self.ctrlTrigger)
+		self.lListLayers.cellClicked.connect(self.ctrlLayerVis)
 
 		
 		self.lCheckLayerOn = cMain.findChild(QLineEdit, "checkLayerOn")
@@ -267,7 +267,7 @@ class AppWindow(QObject):
 
 
 
-	def ctrlTriggerOne(self, _row, _col):
+	def ctrlLayerVisOne(self, _row, _col):
 		cEl = self.lListLayers.item(_row, _col)
 		cState = cEl.data(self.LdataOn)
 
@@ -281,11 +281,11 @@ class AppWindow(QObject):
 
 
 
-	def ctrlTrigger(self, _row, _col):
+	def ctrlLayerVis(self, _row, _col):
 		if _col == self.LayerColumnSwitch:
 			if _row not in self.lListLayers.cacheSelection:
 				self.lListLayers.selectRow(_row)
-				self.ctrlTriggerOne( _row, _col )
+				self.ctrlLayerVisOne( _row, _col )
 
 				self.sigNeedRedraw.emit()
 
@@ -296,7 +296,7 @@ class AppWindow(QObject):
 
 			for cRow in self.lListLayers.cacheSelection:
 				if cState == self.lListLayers.item(cRow, _col).data(self.LdataOn):
-					self.ctrlTriggerOne( cRow, _col )
+					self.ctrlLayerVisOne( cRow, _col )
 
 			self.sigNeedRedraw.emit()
 
