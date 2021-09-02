@@ -175,7 +175,7 @@
 =module-dispatch 62: +0 "src\Dispatch\Dispatch.py" kii 21/08/15 22:52:53
 	live device control
 
-=module-ui, ux 63: +0 "src\Ui\Ui.py" kii 21/08/15 22:10:52
++module-ui, ux 63: +0 "src\Ui\Ui.py" ki 21/09/02 03:50:54
 	basic layer control, on-off
 
 -module-dispatch 64: +0 "src\Dispatch\Dispatch.py" kii 21/08/17 15:28:44
@@ -285,4 +285,10 @@
 
  gcode, feature 100: +0 "src\GGData\GGData.py" ki 21/09/02 03:42:23
 	allow flexible filters
+
+=module-ui 101: +0 "src\Ui\Ui.py" ki 21/09/02 03:52:57
+	styles for selected-hovered-visible matrix
+
++module-ui, fix 102: +0 "src\Ui\Ui.py" ki 21/09/02 04:05:16
+	bulk update layer change
 

@@ -2,8 +2,6 @@
 #  todo 27 (module-data, module-ui, ux) +0: allow append gcode from text buffer
 
 
-# =todo 63 (module-ui, ux) +0: basic layer control, on-off
-
 from .AppWindow import *
 
 
@@ -12,6 +10,7 @@ class Ui():
 	defStyle = './Ui/schemes/default dark.qss'
 
 
+# =todo 101 (module-ui) +0: styles for selected-hovered-visible matrix
 	styleSelect = {
 		'opacity':'1',
 		'fill':'#f80'
