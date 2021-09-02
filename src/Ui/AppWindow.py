@@ -265,26 +265,27 @@ class AppWindow(QObject):
 
 
 
-	def layerCtrlTrigger(self, _row, _col, _user=True):
+	def layerCtrlTriggerShot(self, _row, _col):
+		cEl = self.lListLayers.item(_row, _col)
+		cState = cEl.data(self.LdataOn)
+
+
+		self.layerSetItem(cEl, not cState)
+
+		self.sigLayerCtrlOn.emit(
+			cEl.data(self.LdataName),
+			not cState
+		)
+
+
+
+	def layerCtrlTrigger(self, _row, _col):
 		if _col == self.LayerColumnSwitch:
-			cEl = self.lListLayers.item(_row, _col)
-			cState = cEl.data(self.LdataOn)
-
-
-			if not _user:
-				self.layerSetItem(cEl, not cState)
-
-				self.sigLayerCtrlOn.emit(
-					cEl.data(self.LdataName),
-					not cState
-				)
-
-				return
-
+			cState = self.lListLayers.item(_row, _col).data(self.LdataOn)
 
 			for cRow in self.lListLayers.cacheSelection:
 				if cState == self.lListLayers.item(cRow, _col).data(self.LdataOn):
-					self.layerCtrlTrigger( cRow, _col, False )
+					self.layerCtrlTriggerShot( cRow, _col )
 
 
 
