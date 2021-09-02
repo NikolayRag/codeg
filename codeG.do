@@ -259,7 +259,7 @@
 -ux, module-ui, fix 90: +0 "src\Ui\SvgViewport.py" kii 21/08/28 18:05:48
 	respect units - both svg and device
 
--viewport, api 91: +0 "src\Ui\SvgViewport.py" ki 21/09/01 22:45:56
+-viewport, api 91: +0 "src\Ui\SvgViewport.py" ki 21/09/02 04:16:45
 	add class-level SVG runtime generator signal/slot
 
  feature 92: +0 "src\__main__w.py" kii 21/08/30 08:48:49

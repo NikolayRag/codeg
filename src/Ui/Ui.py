@@ -159,7 +159,7 @@ class Ui():
 #  todo 98 (module-ui, optimize) -1: prevent doubling by difference change
 	def layerSetSelect(self, selection):
 		for l in self.layersSelection:
-			clean = {a:'' for a in self.styleSelect.keys()}
+			clean = {field:'' for field in self.styleSelect.keys()}
 			self.data.override(l, clean)
 
 		self.layersSelection = selection
@@ -170,7 +170,7 @@ class Ui():
 
 
 	def layerSetHover(self, hover):
-		clean = {a:'' for a in self.styleHover.keys()}
+		clean = {field:'' for field in self.styleHover.keys()}
 		self.data.override(self.layerHover, clean)
 
 		self.layerHover = hover
