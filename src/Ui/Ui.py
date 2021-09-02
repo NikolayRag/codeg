@@ -13,12 +13,10 @@ class Ui():
 
 
 	styleSelect = {
-		'display':'',
 		'opacity':'1',
 		'fill':'#f80'
 	}
 	styleHover = {
-		'display':'',
 		'opacity':'1',
 		'fill':'#f00'
 	}
@@ -81,7 +79,11 @@ class Ui():
 
 
 	def triggerLayerOn(self, _el, _on):
-		print(_el, _on)
+		self.data.override(_el, {'display':('' if _on else 'none'),} )
+
+		cXml = self.data.getXML()
+		if cXml:
+			self.appWindow.canvasUpdate(cXml)
 
 
 
