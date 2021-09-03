@@ -291,9 +291,11 @@ class AppWindow(QObject):
 
 		for cRow in cSelection:
 			cItem = self.lListLayers.item(cRow, _col)
-			if newState != cItem.data(self.LdataOn):
-				self.layerSetItem(cItem, newState)
-				namesA.append( cItem.data(self.LdataName) )
+			if newState == cItem.data(self.LdataOn):
+				continue
+
+			self.layerSetItem(cItem, newState)
+			namesA.append( cItem.data(self.LdataName) )
 
 
 		self.sigCtrlLayersSet.emit(
