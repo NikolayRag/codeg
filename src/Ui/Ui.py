@@ -78,18 +78,6 @@ class Ui():
 
 
 
-	def reloadXml(self):
-		cXml = self.data.getXML()
-		if cXml:
-			self.appWindow.canvasUpdate(cXml)
-
-
-
-	def ctrlLayerSet(self, _el, _on):
-		self.data.override(_el, {'display':('' if _on else 'none'),} )
-
-
-
 # -todo 88 (fix, gcode) +0: use dispatch both for file save
 	def dispatchSend(self, _name):
 		return self.dispatch.runDevice(_name, self.appWindow.dispatchLog)
@@ -190,3 +178,15 @@ class Ui():
 
 
 		self.reloadXml()
+
+
+
+	def ctrlLayerSet(self, _el, _on):
+		self.data.override(_el, {'display':('' if _on else 'none'),} )
+
+
+
+	def reloadXml(self):
+		cXml = self.data.getXML()
+		if cXml:
+			self.appWindow.canvasUpdate(cXml)
