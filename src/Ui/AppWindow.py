@@ -86,7 +86,7 @@ class AppWindow(QObject):
 		self.tmpFilterLayersLeave = BindFilter(QEvent.Type.Leave, self.layerHover)
 		self.lListLayers.installEventFilter(self.tmpFilterLayersLeave)
 
-		self.lListLayers.cellClicked.connect(self.ctrlLayerVis)
+		self.lListLayers.cellClicked.connect(self.layerClick)
 
 		
 		self.lCheckLayerOn = cMain.findChild(QLineEdit, "checkLayerOn")
@@ -271,7 +271,7 @@ class AppWindow(QObject):
 
 
 
-	def ctrlLayerVis(self, _row, _col):
+	def layerClick(self, _row, _col):
 		if _col == self.LayerColumnSwitch:
 			cSelection = self.layerSelection()
 
