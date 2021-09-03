@@ -58,8 +58,7 @@ class Ui():
 		self.appWindow.sigStoreG.connect(self.storeG)
 		self.appWindow.sigLayerSelect.connect(self.layerSetSelect)
 		self.appWindow.sigLayerHover.connect(self.layerSetHover)
-		self.appWindow.sigCtrlLayerSet.connect(self.ctrlLayerSet)
-		self.appWindow.sigNeedRedraw.connect(self.reloadXml)
+		self.appWindow.sigCtrlLayersSet.connect(self.ctrlLayersSet)
 
 		self.appWindow.connList(self.dispatch.getDevices())
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
@@ -181,8 +180,11 @@ class Ui():
 
 
 
-	def ctrlLayerSet(self, _el, _on):
-		self.data.override(_el, {'display':('' if _on else 'none'),} )
+	def ctrlLayersSet(self, _elA, _on):
+		for cEl in _elA:
+			self.data.override(cEl, {'display':('' if _on else 'none'),} )
+
+		self.reloadXml()
 
 
 

@@ -49,9 +49,7 @@ class AppWindow(QObject):
 	sigDispatch = Signal(str)
 	sigLayerSelect = Signal(list)
 	sigLayerHover = Signal(str)
-	sigCtrlLayerSet = Signal(str, bool)
-
-	sigNeedRedraw = Signal()
+	sigCtrlLayersSet = Signal(list, bool)
 
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
@@ -273,41 +271,30 @@ class AppWindow(QObject):
 
 
 
-	def ctrlLayerVisOne(self, _row, _col):
-		cEl = self.lListLayers.item(_row, _col)
-		cState = cEl.data(self.LdataOn)
-
-
-		self.layerSetItem(cEl, not cState)
-
-		self.sigCtrlLayerSet.emit(
-			cEl.data(self.LdataName),
-			not cState
-		)
-
-
-
 	def ctrlLayerVis(self, _row, _col):
 		if _col == self.LayerColumnSwitch:
 			cSelection = self.layerSelection()
 
+			namesA = []
+			newState = not self.lListLayers.item(_row, _col).data(self.LdataOn)
+
 
 			if _row not in cSelection:
 				self.lListLayers.selectRow(_row)
-				self.ctrlLayerVisOne( _row, _col )
+				cSelection = [_row]
 
-				self.sigNeedRedraw.emit()
-
-				return
-
-
-			cState = self.lListLayers.item(_row, _col).data(self.LdataOn)
 
 			for cRow in cSelection:
-				if cState == self.lListLayers.item(cRow, _col).data(self.LdataOn):
-					self.ctrlLayerVisOne( cRow, _col )
+				cItem = self.lListLayers.item(cRow, _col)
+				if newState != cItem.data(self.LdataOn):
+					self.layerSetItem(cItem, newState)
+					namesA.append( cItem.data(self.LdataName) )
 
-			self.sigNeedRedraw.emit()
+
+			self.sigCtrlLayersSet.emit(
+				namesA,
+				newState
+			)
 
 
 
