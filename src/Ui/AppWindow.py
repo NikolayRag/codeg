@@ -273,6 +273,11 @@ class AppWindow(QObject):
 
 	def layerClick(self, _row, _col):
 		if _col == self.LayerColumnSwitch:
+			self.layersSwitchVis(_row, _col)
+
+
+
+	def layersSwitchVis(self, _row, _col):
 			cSelection = self.layerSelection()
 
 			namesA = []
