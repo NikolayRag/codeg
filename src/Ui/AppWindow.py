@@ -278,28 +278,28 @@ class AppWindow(QObject):
 
 
 	def layersSwitchVis(self, _row, _col):
-			cSelection = self.layerSelection()
+		cSelection = self.layerSelection()
 
-			namesA = []
-			newState = not self.lListLayers.item(_row, _col).data(self.LdataOn)
-
-
-			if _row not in cSelection:
-				self.lListLayers.selectRow(_row)
-				cSelection = [_row]
+		namesA = []
+		newState = not self.lListLayers.item(_row, _col).data(self.LdataOn)
 
 
-			for cRow in cSelection:
-				cItem = self.lListLayers.item(cRow, _col)
-				if newState != cItem.data(self.LdataOn):
-					self.layerSetItem(cItem, newState)
-					namesA.append( cItem.data(self.LdataName) )
+		if _row not in cSelection:
+			self.lListLayers.selectRow(_row)
+			cSelection = [_row]
 
 
-			self.sigCtrlLayersSet.emit(
-				namesA,
-				newState
-			)
+		for cRow in cSelection:
+			cItem = self.lListLayers.item(cRow, _col)
+			if newState != cItem.data(self.LdataOn):
+				self.layerSetItem(cItem, newState)
+				namesA.append( cItem.data(self.LdataName) )
+
+
+		self.sigCtrlLayersSet.emit(
+			namesA,
+			newState
+		)
 
 
 
