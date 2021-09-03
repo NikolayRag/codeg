@@ -83,7 +83,6 @@ class AppWindow(QObject):
 		self.lListLayers = cMain.findChild(QTableWidget, "listLayers")
 
 		self.lListLayers.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
-		self.lListLayers.cacheSelection = []
 		self.lListLayers.itemSelectionChanged.connect(self.layerSelect)
 		self.lListLayers.cellEntered.connect(self.layerHover)
 		self.tmpFilterLayersLeave = BindFilter(QEvent.Type.Leave, self.layerHover)
@@ -241,16 +240,23 @@ class AppWindow(QObject):
 
 
 
+	def layerSelection(self):
+		cacheSelection = []
+
+		for cRange in self.lListLayers.selectedRanges():
+			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
+				cacheSelection.append(cRow)
+
+		return cacheSelection
+
+
+
 	def layerSelect(self):
 		selectionNamesA = []
 
-		self.lListLayers.cacheSelection = []
-		for cRange in self.lListLayers.selectedRanges():
-			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
-				cName = self.lListLayers.item(cRow, self.LayerColumnName)
-				selectionNamesA.append( cName.data(self.LdataName) )
-
-				self.lListLayers.cacheSelection.append(cRow)
+		for cRow in self.layerSelection():
+			cName = self.lListLayers.item(cRow, self.LayerColumnName)
+			selectionNamesA.append( cName.data(self.LdataName) )
 
 
 		self.sigLayerSelect.emit(selectionNamesA)
@@ -283,7 +289,10 @@ class AppWindow(QObject):
 
 	def ctrlLayerVis(self, _row, _col):
 		if _col == self.LayerColumnSwitch:
-			if _row not in self.lListLayers.cacheSelection:
+			cSelection = self.layerSelection()
+
+
+			if _row not in cSelection:
 				self.lListLayers.selectRow(_row)
 				self.ctrlLayerVisOne( _row, _col )
 
@@ -294,7 +303,7 @@ class AppWindow(QObject):
 
 			cState = self.lListLayers.item(_row, _col).data(self.LdataOn)
 
-			for cRow in self.lListLayers.cacheSelection:
+			for cRow in cSelection:
 				if cState == self.lListLayers.item(cRow, _col).data(self.LdataOn):
 					self.ctrlLayerVisOne( cRow, _col )
 
