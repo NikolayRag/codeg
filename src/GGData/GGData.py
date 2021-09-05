@@ -17,12 +17,13 @@ from GGen import *
 
 class GGData():
 	CachedFields = {
-		'stroke': 'originalStroke',
-		'stroke-width': 'originalStrokeWidth',
-		'stroke-dasharray': 'originalStrokeDash',
-		'fill': 'originalFill',
-		'opacity': 'originalOpacity',
-		'display': 'originalDisplay'
+		'vector-effect': 'svg-vector-effect',
+		'stroke': 'svg-stroke',
+		'stroke-width': 'svg-stroke-width',
+		'stroke-dasharray': 'svg-stroke-dasharray',
+		'fill': 'svg-fill',
+		'opacity': 'svg-opacity',
+		'display': 'svg-display'
 	}
 
 
