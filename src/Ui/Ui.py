@@ -147,7 +147,7 @@ class Ui():
 	def layerSetSelect(self, selection):
 		for l in self.layersSelection:
 			clean = {field:'' for field in self.styleSelect.keys()}
-			self.data.override(l, clean)
+			self.data.setTags(l, clean)
 
 		self.layersSelection = selection
 
@@ -158,7 +158,7 @@ class Ui():
 
 	def layerSetHover(self, hover):
 		clean = {field:'' for field in self.styleHover.keys()}
-		self.data.override(self.layerHover, clean)
+		self.data.setTags(self.layerHover, clean)
 
 		self.layerHover = hover
 
@@ -170,10 +170,10 @@ class Ui():
 	#update all at once to avoid interferences
 	def layerUpdate(self):
 		for a in self.layersSelection:
-			self.data.override(a, self.styleSelect)
+			self.data.setTags(a, self.styleSelect)
 
 # -todo 77 (fix, module-ui, viewport) +0: duplicate hover element topmost
-		self.data.override(self.layerHover, self.styleHover)
+		self.data.setTags(self.layerHover, self.styleHover)
 
 
 		self.reloadXml()
@@ -182,7 +182,7 @@ class Ui():
 
 	def ctrlLayersSet(self, _elA, _on):
 		for cEl in _elA:
-			self.data.override(cEl, {'display':('' if _on else 'none'),} )
+			self.data.setTags(cEl, {'display':('' if _on else 'none')} )
 
 		self.reloadXml()
 

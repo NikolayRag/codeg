@@ -109,12 +109,10 @@ class GGData():
 
 
 
-	def override(self, _name, _style={}):
-		if not _name:
+	def setTags(self, _tag, _val=None):
+		if not _tag:
 			return
 
-		cEl = self.namedRef[_name]
-
-		for cField in _style:
-			newVal = _style[cField] or cEl.get(self.CachedFields[cField])
-			cEl.set(cField, newVal)
+		for cName in _val:
+			cEl = self.namedRef[_tag]
+			cEl.set(cName, _val[cName])
