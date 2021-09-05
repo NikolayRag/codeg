@@ -28,6 +28,7 @@ class Ui():
 	data = None
 	qApp = None
 
+# =todo 103 (module-ui, module-data, filter, API) +0: move geo decorators to data (filter)
 	layerHover = None
 	layersSelection = []
 

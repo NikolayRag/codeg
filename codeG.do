@@ -4,7 +4,7 @@
 +feature, file 2: +0 "src\Ui\AppWindow.py" kii 21/07/25 16:29:21
 	deal with recent files
 
- feature, file 3: +0 "src\Ui\AppWindow.py" ki 21/09/02 00:47:26
+ feature, file 3: +0 "src\Ui\AppWindow.py" kii 21/09/02 00:47:26
 	allow picking from Recent files list
 
 +svg, feature 4: +0 "src\Ui\SvgViewport.py" kii 21/08/02 19:14:43
@@ -55,7 +55,7 @@
  spec, module-dispatch 19: +0 "src\GGData\GGData.py" kii 21/08/02 21:16:57
 	send to codegg
 
- module-ui, error 20: +0 "src\Ui\AppWindow.py" ki 21/09/02 00:47:53
+ module-ui, error 20: +0 "src\Ui\AppWindow.py" kii 21/09/02 00:47:53
 	handle errors, maybe status string
 
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
@@ -64,7 +64,7 @@
 =module-dispatch, ux 22: +0 "src\GGData\GGData.py" kii 21/08/28 18:00:30
 	make dispatch interruptable
 
--module-ui, ux 23: +0 "src\Ui\Ui.py" ki 21/09/02 04:24:57
+-module-ui, ux 23: +0 "src\Ui\Ui.py" kii 21/09/02 04:24:57
 	show progress for time consuming operations
 
 !module-data, formats 24: +0 "" kii 21/07/31 16:33:32
@@ -139,7 +139,7 @@
  module-ui, ux 49: +0 "" kii 21/08/04 06:11:17
 	save/restore active device between sessions
 
-+module-ui 50: +0 "src\Ui\AppWindow.py" ki 21/09/01 22:53:30
++module-ui 50: +0 "src\Ui\AppWindow.py" kii 21/09/01 22:53:30
 	add style
 
 =module-ui, ux 51: +0 "" kii 21/08/04 06:13:01
@@ -175,7 +175,7 @@
 =module-dispatch 62: +0 "src\Dispatch\Dispatch.py" kii 21/08/15 22:52:53
 	live device control
 
-+module-ui, ux 63: +0 "src\Ui\Ui.py" ki 21/09/02 03:50:54
++module-ui, ux 63: +0 "src\Ui\Ui.py" kii 21/09/02 03:50:54
 	basic layer control, on-off
 
 -module-dispatch 64: +0 "src\Dispatch\Dispatch.py" kii 21/08/17 15:28:44
@@ -184,7 +184,7 @@
 !module-dispatch 65: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:38:19
 	
 
--module-ui 66: +0 "src\GGData\GGData.py" kii 21/08/28 18:00:26
+ module-ui, module-dispatch 66: +0 "src\GGData\GGData.py" ki 21/09/05 21:16:18
 	show dispatch progress
 
 +API 67: +1 "src\__main__w.py" kii 21/08/30 08:48:48
@@ -238,7 +238,7 @@
  ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" kii 21/08/22 20:27:29
 	fit at init dont work due to obsolete size 
 
- module-data 84: +0 "src\GGData\GGData.py" kii 21/08/20 17:07:44
+ module-data 84: +0 "src\GGData\GGData.py" ki 21/09/05 21:12:35
 	make file load (save) plugin system
 
 +module-dispatch 85: +0 "src\GGData\GGData.py" kii 21/08/28 18:00:25
@@ -250,7 +250,7 @@
 +fix, gcode 87: +0 "src\Ui\Ui.py" kii 21/08/28 18:02:01
 	place svg layers more generally
 
--fix, gcode 88: +0 "src\Ui\Ui.py" ki 21/09/02 00:32:50
+-fix, gcode 88: +0 "src\Ui\Ui.py" kii 21/09/03 02:02:12
 	use dispatch both for file save
 
 -ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" kii 21/08/28 18:03:13
@@ -259,7 +259,7 @@
 -ux, module-ui, fix 90: +0 "src\Ui\SvgViewport.py" kii 21/08/28 18:05:48
 	respect units - both svg and device
 
--viewport, api 91: +0 "src\Ui\SvgViewport.py" ki 21/09/02 04:16:45
+-viewport, API 91: +0 "src\Ui\SvgViewport.py" kii 21/09/02 04:16:45
 	add class-level SVG runtime generator signal/slot
 
  feature 92: +0 "src\__main__w.py" kii 21/08/30 08:48:49
@@ -274,21 +274,27 @@
 !module-ui, ux, scene 96: +0 "src\Ui\AppWindow.py" kii 21/08/29 16:52:03
 	
 
- viewport, fix, solve 97: +0 "src\Ui\SvgViewport.py" ki 21/09/01 21:59:23
+ viewport, fix, solve 97: +0 "src\Ui\SvgViewport.py" kii 21/09/01 21:59:23
 	decide how to paint different layer sizes
 
- module-ui, optimize 98: -1 "src\Ui\Ui.py" ki 21/09/02 01:04:33
+ module-ui, optimize 98: -1 "src\Ui\Ui.py" kii 21/09/02 01:04:33
 	prevent doubling by difference change
 
-!module-ui, optimize 99: +0 "src\GGen\GGen.py" ki 21/09/02 03:40:33
+!module-ui, optimize 99: +0 "src\GGen\GGen.py" kii 21/09/02 03:40:33
 	
 
- gcode, feature 100: +0 "src\GGData\GGData.py" ki 21/09/02 03:42:23
+ gcode, feature 100: +0 "src\GGData\GGData.py" kii 21/09/02 03:42:23
 	allow flexible filters
 
-=module-ui 101: +0 "src\Ui\Ui.py" ki 21/09/02 03:52:57
+=module-ui 101: +0 "src\Ui\Ui.py" kii 21/09/02 03:52:57
 	styles for selected-hovered-visible matrix
 
-+module-ui, fix 102: +0 "src\Ui\Ui.py" ki 21/09/02 04:05:16
++module-ui, fix 102: +0 "src\Ui\Ui.py" kii 21/09/02 04:05:16
 	bulk update layer change
+
+=module-ui, module-data, filter, API 103: +0 "src\Ui\Ui.py" ki 21/09/05 20:16:20
+	move geo decorators to data (filter)
+
+=module-dispatch 104: +0 "src\GGData\GGData.py" ki 21/09/05 21:16:25
+	move to dispatch
 
