@@ -129,13 +129,16 @@ class GGData():
 
 
 
-	def decorSet(self, _dec, _elA):
-		_dec.assign(_elA)
+	def decorSet(self, _dec, _elA, add=None):
+		if add==None:
+			_dec.assign(_elA)
 
+		elif add:
+			_dec.add(_elA)
 
+		else:
+			_dec.sub(_elA)
 
-	def decorChange(self, _dec, _elA, add=True):
-		_dec.replace(_elA, add)
 
 
 
@@ -154,9 +157,11 @@ class Decorator():
 
 
 	def assign(self, _namesA):
-		print('set', self.tags, _namesA or '--')
+		print('set', self.tags, self.assigned)
+	def add(self, _namesA):
+		print('add', self.tags, self.assigned)
+	def sub(self, _namesA):
+		print('sub', self.tags, self.assigned)
 
 
 
-	def replace(self, _namesA, add=True):
-		print('add' if add else 'sub', self.tags, _namesA or '--')

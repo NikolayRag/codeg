@@ -165,7 +165,7 @@ class Ui():
 
 
 	def ctrlLayersSet(self, _elA, _on):
-		self.data.decorChange(self.decorOff, _elA, not _on)
+		self.data.decorSet(self.decorOff, _elA, not _on)
 
 
 		self.reloadXml()
