@@ -117,3 +117,44 @@ class GGData():
 		for cName in _val:
 			cEl = self.namedRef[_tag]
 			cEl.set(cName, _val[cName])
+
+
+
+
+# -todo 105 (module-data, filter, API) +0: split to Filter class
+	def decorNew(self, _tags, _priority=0):
+		return Decorator(_tags, _priority)
+
+
+
+	def decorSet(self, _dec, _elA):
+		_dec.assign(_elA)
+
+
+
+	def decorChange(self, _dec, _elA, add=True):
+		_dec.replace(_elA, add)
+
+
+
+# SVG tags override class
+class Decorator():
+	allDecorators = []
+
+
+	def __init__(self, _tags, _priority=0):
+		self.tags = _tags
+		self.priority = _priority
+		self.assigned = []
+
+
+		Decorator.allDecorators.append(self)
+
+
+	def assign(self, _namesA):
+		print('set', self.tags, _namesA or '--')
+
+
+
+	def replace(self, _namesA, add=True):
+		print('add' if add else 'sub', self.tags, _namesA or '--')

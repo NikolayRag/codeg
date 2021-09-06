@@ -11,14 +11,6 @@ class Ui():
 
 
 # =todo 101 (module-ui) +0: styles for selected-hovered-visible matrix
-	styleSelect = {
-		'opacity':'1',
-		'fill':'#f80'
-	}
-	styleHover = {
-		'opacity':'1',
-		'fill':'#f00'
-	}
 
 
 	args = None
@@ -29,9 +21,6 @@ class Ui():
 	qApp = None
 
 # =todo 103 (module-ui, module-data, filter, API) +0: move geo decorators to data (filter)
-	layerHover = None
-	layersSelection = []
-
 
 
 	def __init__(self, _args, _data, _dispatch):
@@ -63,6 +52,24 @@ class Ui():
 
 		self.appWindow.connList(self.dispatch.getDevices())
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
+
+
+		self.decorDefault = self.data.decorNew({
+			'vector-effect': 'non-scaling-stroke',
+			'stroke-width':'2px',
+			'stroke':'#bbb',
+			'fill':'#888',
+			'opacity': 1
+		}, -1)
+		self.decorSelect = self.data.decorNew({
+			'fill':'#bbb',
+		})
+		self.decorHover = self.data.decorNew({
+			'stroke':'#fe9',
+		}, 1)
+		self.decorOff = self.data.decorNew({
+			'opacity': .2
+		}, 1)
 
 
 
@@ -105,9 +112,6 @@ class Ui():
 		self.args.set("recentLoaded", cRecentA+[fileName])
 
 
-		self.layerHover = None
-		self.layersSelection = []
-
 		cData = self.data.loadXML(fileName)
 		if cData:
 			self.appWindow.reactAddFile(cData)
@@ -145,45 +149,24 @@ class Ui():
 
 
 #  todo 98 (module-ui, optimize) -1: prevent doubling by difference change
-	def layerSetSelect(self, selection):
-		for l in self.layersSelection:
-			clean = {field:'' for field in self.styleSelect.keys()}
-			self.data.setTags(l, clean)
+	def layerSetSelect(self, _selection):
+		self.data.decorSet(self.decorSelect, _selection)
 
-		self.layersSelection = selection
+		self.reloadXml()
 
 
-		self.layerUpdate()
-
-
-
-	def layerSetHover(self, hover):
-		clean = {field:'' for field in self.styleHover.keys()}
-		self.data.setTags(self.layerHover, clean)
-
-		self.layerHover = hover
-
-
-		self.layerUpdate()
-
-
-
-	#update all at once to avoid interferences
-	def layerUpdate(self):
-		for a in self.layersSelection:
-			self.data.setTags(a, self.styleSelect)
 
 # -todo 77 (fix, module-ui, viewport) +0: duplicate hover element topmost
-		self.data.setTags(self.layerHover, self.styleHover)
-
+	def layerSetHover(self, _hover):
+		self.data.decorSet(self.decorHover, _hover)
 
 		self.reloadXml()
 
 
 
 	def ctrlLayersSet(self, _elA, _on):
-		for cEl in _elA:
-			self.data.setTags(cEl, {'display':('' if _on else 'none')} )
+		self.data.decorChange(self.decorOff, _elA, not _on)
+
 
 		self.reloadXml()
 
