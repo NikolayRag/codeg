@@ -144,16 +144,17 @@ class GGData():
 
 # SVG tags override class
 class Decorator():
-	allDecorators = []
+	decorators = {}
 
 
 	def __init__(self, _tags, _priority=0):
 		self.tags = _tags
-		self.priority = _priority
 		self.assigned = []
 
+		if _priority not in Decorator.decorators:
+			Decorator.decorators[_priority] = []
+		Decorator.decorators[_priority].append(self)
 
-		Decorator.allDecorators.append(self)
 
 
 	def assign(self, _namesA):
