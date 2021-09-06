@@ -149,8 +149,8 @@ class Ui():
 
 
 #  todo 98 (module-ui, optimize) -1: prevent doubling by difference change
-	def layerSetSelect(self, _selection):
-		self.data.decorSet(self.decorSelect, _selection)
+	def layerSetSelect(self, _selectionA):
+		self.data.decorSet(self.decorSelect, _selectionA)
 
 		self.reloadXml()
 
@@ -158,7 +158,7 @@ class Ui():
 
 # -todo 77 (fix, module-ui, viewport) +0: duplicate hover element topmost
 	def layerSetHover(self, _hover):
-		self.data.decorSet(self.decorHover, _hover)
+		self.data.decorSet(self.decorHover, [_hover])
 
 		self.reloadXml()
 
