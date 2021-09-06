@@ -158,11 +158,18 @@ class Decorator():
 
 
 	def assign(self, _namesA):
-		print('set', self.tags, self.assigned)
+		self.assigned = list(_namesA)
+
+
+
 	def add(self, _namesA):
-		print('add', self.tags, self.assigned)
+		self.assigned = list(set(self.assigned + _namesA))
+
+
+
 	def sub(self, _namesA):
-		print('sub', self.tags, self.assigned)
+		self.assigned = list(set(self.assigned).difference(_namesA))
+
 
 
 
