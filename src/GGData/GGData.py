@@ -32,7 +32,7 @@ class GGData():
 
 
 #  todo 84 (module-data) +0: make file load (save) plugin system
-	def loadXML(self, _fileName):
+	def loadXML(self, _fileName, defaultDecor=None):
 		self.theGG = XML.parse(_fileName)
 		self.namedRef = {}
 
@@ -60,6 +60,8 @@ class GGData():
 
 				i += 1
 
+		if defaultDecor:
+			self.decorSet(defaultDecor, meta.keys())
 
 		return {'meta': meta, 'xml':self.getXML()}
 

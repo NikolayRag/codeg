@@ -112,7 +112,7 @@ class Ui():
 		self.args.set("recentLoaded", cRecentA+[fileName])
 
 
-		cData = self.data.loadXML(fileName)
+		cData = self.data.loadXML(fileName, self.decorDefault)
 		if cData:
 			self.appWindow.reactAddFile(cData)
 		
