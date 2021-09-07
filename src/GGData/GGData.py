@@ -111,6 +111,7 @@ class GGData():
 
 
 
+# -todo 111 (decorator, optimize) +0: dramatically slow
 	def setTags(self, _name, _tags):
 		cEl = self.namedRef[_name]
 		for cTag in _tags:
@@ -145,6 +146,7 @@ class GGData():
 
 
 # SVG tags override class
+#  todo 109 (decorator, optimize) +0: too weird entire Decorator flow
 class Decorator():
 	decorators = []
 

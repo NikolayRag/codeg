@@ -184,7 +184,7 @@
 !module-dispatch 65: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:38:19
 	
 
- module-ui, module-dispatch 66: +0 "src\GGData\GGData.py" ki 21/09/05 21:16:18
+ module-ui, module-dispatch 66: +0 "src\GGData\GGData.py" kii 21/09/05 21:16:18
 	show dispatch progress
 
 +API 67: +1 "src\__main__w.py" kii 21/08/30 08:48:48
@@ -217,7 +217,7 @@
 =fix, gcode 76: +0 "" kii 21/08/25 22:58:28
 	gcode move, scale and crop
 
--fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" kii 21/08/14 20:43:27
+-fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" kii 21/09/06 01:26:31
 	duplicate hover element topmost
 
 +module-ui, ux 78: +0 "src\Ui\Ui.py" kii 21/08/15 22:10:50
@@ -238,7 +238,7 @@
  ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" kii 21/08/22 20:27:29
 	fit at init dont work due to obsolete size 
 
- module-data 84: +0 "src\GGData\GGData.py" ki 21/09/05 21:12:35
+ module-data 84: +0 "src\GGData\GGData.py" kii 21/09/05 21:12:35
 	make file load (save) plugin system
 
 +module-dispatch 85: +0 "src\GGData\GGData.py" kii 21/08/28 18:00:25
@@ -283,7 +283,7 @@
 !module-ui, optimize 99: +0 "src\GGen\GGen.py" kii 21/09/02 03:40:33
 	
 
- gcode, feature 100: +0 "src\GGData\GGData.py" kii 21/09/02 03:42:23
+ gcode, feature 100: +0 "src\GGData\GGData.py" kii 21/09/05 22:03:42
 	allow flexible filters
 
 =module-ui 101: +0 "src\Ui\Ui.py" kii 21/09/02 03:52:57
@@ -292,9 +292,27 @@
 +module-ui, fix 102: +0 "src\Ui\Ui.py" kii 21/09/02 04:05:16
 	bulk update layer change
 
-=module-ui, module-data, filter, API 103: +0 "src\Ui\Ui.py" ki 21/09/05 20:16:20
+=module-ui, module-data, filter, API 103: +0 "src\Ui\Ui.py" kii 21/09/05 20:16:20
 	move geo decorators to data (filter)
 
-=module-dispatch 104: +0 "src\GGData\GGData.py" ki 21/09/05 21:16:25
+=module-dispatch 104: +0 "src\GGData\GGData.py" kii 21/09/05 22:03:47
 	move to dispatch
+
+-module-data, filter, API 105: +0 "src\GGData\GGData.py" kii 21/09/06 00:07:11
+	split to Filter class
+
+!module-data, module-dispatch, device, API 106: +0 "" kii 21/09/05 21:54:01
+	--
+
++decorator, module-data 108: +0 "src\GGData\GGData.py" ki 21/09/08 02:43:01
+	get only affected since last request names
+
+ decorator, optimize 109: +0 "src\GGData\GGData.py" ki 21/09/07 23:10:14
+	too weird entire Decorator flow
+
++clean 110: +0 "src\GGData\GGData.py" kii 21/09/07 22:45:38
+	use namedRef
+
+-decorator, optimize 111: +0 "src\GGData\GGData.py" ki 21/09/08 02:15:26
+	dramatically slow
 
