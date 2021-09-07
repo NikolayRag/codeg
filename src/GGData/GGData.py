@@ -58,6 +58,10 @@ class GGData():
 				i += 1
 
 
+		for cDec in Decorator.decorators:
+			cDec.reset()
+
+
 		return {cN:{'on':True} for cN in self.namedRef}
 
 
@@ -169,6 +173,12 @@ class Decorator():
 
 		Decorator.decorators.append(self)
 		Decorator.sort()
+
+
+
+	def reset(self):
+		self.assigned = []
+		self.updatedA = []
 
 
 
