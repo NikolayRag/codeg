@@ -147,6 +147,22 @@ class Decorator():
 	decorators = []
 
 
+
+#Decorators sorted by priority ascending
+	def sort():
+		levels = sorted(set( [cDec.priority for cDec in Decorator.decorators] ))
+
+		outDec = []
+
+		for cLev in levels:
+			for d in Decorator.decorators:
+				if d.priority==cLev:
+					outDec.append(d)
+
+		return outDec
+
+
+
 	def __init__(self, _tags, _priority=0):
 		self.tags = _tags
 		self.priority = _priority
