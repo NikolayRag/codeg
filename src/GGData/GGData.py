@@ -144,12 +144,10 @@ class GGData():
 
 
 
-
 # SVG tags override class
 #  todo 109 (decorator, optimize) +0: too weird entire Decorator flow
 class Decorator():
 	decorators = []
-
 
 
 #Decorators sorted by priority ascending
