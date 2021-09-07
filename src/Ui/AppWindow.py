@@ -271,6 +271,12 @@ class AppWindow(QObject):
 
 
 	def layerClick(self, _row, _col):
+		if _row == self.lListLayers.rowCount()-1:
+			self.lListLayers.clearSelection()
+
+			return
+			
+
 		if _col == self.LayerColumnSwitch:
 			self.layersSwitchVis(_row, _col)
 
