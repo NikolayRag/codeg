@@ -63,7 +63,7 @@ class GGData():
 		if defaultDecor:
 			self.decorSet(defaultDecor, meta.keys())
 
-		return {'meta': meta, 'xml':self.getXML()}
+		return meta
 
 
 

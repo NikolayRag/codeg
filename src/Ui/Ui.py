@@ -113,8 +113,9 @@ class Ui():
 
 
 		cData = self.data.loadXML(fileName, self.decorDefault)
-		if cData:
-			self.appWindow.reactAddFile(cData)
+		cXml = self.data.getXML()
+		if cXml:
+			self.appWindow.reactAddFile(cData, cXml)
 		
 
 
