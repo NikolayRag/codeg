@@ -204,12 +204,17 @@ class Decorator():
 		outDec = {}
 
 		for cName in _names:
+			decList = []
+			updated = False
+
 			for cDec in Decorator.decorators:
 				if cName in cDec.assigned:
-					if cName not in outDec:
-						outDec[cName] = []
+					decList.append(cDec)
 
-					outDec[cName].append(cDec)
+					updated = True
+
+			if updated:
+				outDec[cName] = decList
 
 
 		return outDec
