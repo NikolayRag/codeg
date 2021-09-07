@@ -37,8 +37,6 @@ class GGData():
 		self.namedRef = {}
 
 
-		meta = {}
-
 		i = 1
 		for cTag in self.theGG.iter():
 			tagType = cTag.tag[28:]
@@ -56,12 +54,11 @@ class GGData():
 
 
 				self.namedRef[tagType +str(i)] = cTag
-				meta[tagType +str(i)] = {'on':True}
 
 				i += 1
 
 
-		return meta
+		return {cN:{'on':True} for cN in self.namedRef}
 
 
 
