@@ -169,6 +169,7 @@ class Decorator():
 		self.assigned = []
 
 		Decorator.decorators.append(self)
+		Decorator.sort()
 
 
 
