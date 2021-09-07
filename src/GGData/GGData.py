@@ -210,9 +210,17 @@ class Decorator():
 
 # Get {name:(decorator,)} array, sorted by decorators priority
 	def order(_names, all=False):
+		upNames = []
+
+		for cDec in Decorator.decorators:
+			upNames += cDec.updatedA
+
+			cDec.cdown()
+
+
 		outDec = {}
 
-		for cName in _names:
+		for cName in set(upNames).intersection(_names):
 			decList = []
 			updated = False
 
