@@ -40,23 +40,23 @@ class GGData():
 		meta = {}
 
 		i = 1
-		for a in self.theGG.iter():
-			aTag = a.tag[28:]
+		for cTag in self.theGG.iter():
+			tagType = cTag.tag[28:]
 
 			if aTag == 'xml':
 				None
 
 #  todo 82 (module-data, ux) +0: parse groups
-			if aTag == 'g':
+			if tagType == 'g':
 				None
 
-			if aTag in [ 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path' ]:
+			if tagType in [ 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path' ]:
 				for cField in self.CachedFields:
-					a.set(self.CachedFields[cField], a.get(cField) or '')
+					cTag.set(self.CachedFields[cField], cTag.get(cField) or '')
 
 
-				self.namedRef[aTag +str(i)] = a
-				meta[aTag +str(i)] = {'on':True}
+				self.namedRef[tagType +str(i)] = cTag
+				meta[tagType +str(i)] = {'on':True}
 
 				i += 1
 
