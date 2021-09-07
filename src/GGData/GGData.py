@@ -137,7 +137,6 @@ class GGData():
 			for cDec in toDecorate[cName]:
 				self.setTags(cName, cDec.tags)
 
-				cDec.cdown()
 
 
 
@@ -166,7 +165,7 @@ class Decorator():
 		self.tags = _tags
 		self.priority = _priority
 		self.assigned = []
-		self.updated = False
+		self.updatedA = []
 
 		Decorator.decorators.append(self)
 		Decorator.sort()
@@ -174,28 +173,28 @@ class Decorator():
 
 
 	def assign(self, _namesA):
-		self.assigned = list(_namesA)
-
-		self.updated = True
+		self.wup( list(_namesA) )
 
 
 
 	def add(self, _namesA):
-		self.assigned = list(set(self.assigned + _namesA))
-
-		self.updated = True
+		self.wup( list(set(self.assigned + _namesA)) )
 
 
 
 	def sub(self, _namesA):
-		self.assigned = list(set(self.assigned).difference(_namesA))
+		self.wup( list(set(self.assigned).difference(_namesA)) )
 
-		self.updated = True
+
+
+	def wup(self, _namesA):
+		self.updatedA = list(set(self.assigned).symmetric_difference(_namesA) )
+		self.assigned = _namesA
 
 
 
 	def cdown(self):
-		self.updated = False
+		self.updatedA = []
 
 
 
@@ -205,7 +204,6 @@ class Decorator():
 
 		for cName in _names:
 			decList = []
-			updated = False
 
 			for cDec in Decorator.decorators:
 				if cName in cDec.assigned:
