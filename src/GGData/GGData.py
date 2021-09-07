@@ -137,6 +137,8 @@ class GGData():
 			for cDec in toDecorate[cName]:
 				self.setTags(cName, cDec.tags)
 
+				cDec.cdown()
+
 
 
 # SVG tags override class
@@ -164,6 +166,7 @@ class Decorator():
 		self.tags = _tags
 		self.priority = _priority
 		self.assigned = []
+		self.updated = False
 
 		Decorator.decorators.append(self)
 		Decorator.sort()
@@ -173,16 +176,26 @@ class Decorator():
 	def assign(self, _namesA):
 		self.assigned = list(_namesA)
 
+		self.updated = True
+
 
 
 	def add(self, _namesA):
 		self.assigned = list(set(self.assigned + _namesA))
+
+		self.updated = True
 
 
 
 	def sub(self, _namesA):
 		self.assigned = list(set(self.assigned).difference(_namesA))
 
+		self.updated = True
+
+
+
+	def cdown(self):
+		self.updated = False
 
 
 
