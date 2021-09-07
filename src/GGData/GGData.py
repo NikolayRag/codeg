@@ -198,10 +198,7 @@ class Decorator():
 
 
 	def wup(self, _namesA):
-		self.updatedA = list(set(
-			self.updatedA
-			+ list( set(self.assigned).symmetric_difference(_namesA) )
-		))
+		self.updatedA += list( set(self.assigned).symmetric_difference(_namesA) )
 		self.assigned = _namesA
 
 
