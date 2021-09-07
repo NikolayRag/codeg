@@ -187,3 +187,17 @@ class Decorator():
 
 
 
+# Get {name:(decorator,)} array, sorted by decorators priority
+	def order(_names, all=False):
+		outDec = {}
+
+		for cName in _names:
+			for cDec in Decorator.decorators:
+				if cName in cDec.assigned:
+					if cName not in outDec:
+						outDec[cName] = []
+
+					outDec[cName].append(cDec)
+
+
+		return outDec
