@@ -57,18 +57,18 @@ class Ui():
 		self.decorDefault = self.data.decorNew({
 			'vector-effect': 'non-scaling-stroke',
 			'stroke-width':'2px',
-			'stroke':'#bbb',
-			'fill':'#888',
-			'opacity': 1
+			'stroke':'#555',
+			'fill':'#111',
+			'opacity': '.8'
 		}, -1)
 		self.decorSelect = self.data.decorNew({
-			'fill':'#bbb',
+			'fill':'#f10',
 		})
 		self.decorHover = self.data.decorNew({
-			'stroke':'#fe9',
+			'stroke':'#fe0',
 		}, 1)
 		self.decorOff = self.data.decorNew({
-			'opacity': .2
+			'opacity': '.3'
 		}, 1)
 
 
