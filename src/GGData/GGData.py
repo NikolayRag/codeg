@@ -214,6 +214,7 @@ class Decorator():
 
 		for cName in _names:
 			decList = []
+			updated = False
 
 			for cDec in Decorator.decorators:
 				if cName in cDec.assigned:
