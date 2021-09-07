@@ -10,9 +10,6 @@ class Ui():
 	defStyle = './Ui/schemes/default dark.qss'
 
 
-# =todo 101 (module-ui) +0: styles for selected-hovered-visible matrix
-
-
 	args = None
 
 	appWindow = None
@@ -20,7 +17,6 @@ class Ui():
 	data = None
 	qApp = None
 
-# =todo 103 (module-ui, module-data, filter, API) +0: move geo decorators to data (filter)
 
 
 	def __init__(self, _args, _data, _dispatch):
