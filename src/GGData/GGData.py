@@ -110,13 +110,10 @@ class GGData():
 
 
 
-	def setTags(self, _tag, _val=None):
-		if not _tag:
-			return
-
-		for cName in _val:
-			cEl = self.namedRef[_tag]
-			cEl.set(cName, _val[cName])
+	def setTags(self, _name, _tags):
+		cEl = self.namedRef[_name]
+		for cTag in _tags:
+			cEl.set(cTag, _tags[cTag])
 
 
 
