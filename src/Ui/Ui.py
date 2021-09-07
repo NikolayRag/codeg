@@ -112,7 +112,9 @@ class Ui():
 		self.args.set("recentLoaded", cRecentA+[fileName])
 
 
-		cMeta = self.data.loadXML(fileName, self.decorDefault)
+		cMeta = self.data.loadXML(fileName)
+		self.data.decorSet(self.decorDefault, cMeta.keys())
+
 		cXml = self.data.getXML()
 		if cXml:
 			self.appWindow.reactAddFile(cMeta, cXml)
