@@ -135,6 +135,11 @@ class GGData():
 			_dec.sub(_elA)
 
 
+		toDecorate = Decorator.order(self.namedRef.keys())
+		for cName in toDecorate:
+			for cDec in toDecorate[cName]:
+				self.setTags(cName, cDec.tags)
+
 
 
 # SVG tags override class
