@@ -152,14 +152,14 @@ class Decorator():
 	def sort():
 		levels = sorted(set( [cDec.priority for cDec in Decorator.decorators] ))
 
-		outDec = []
+		newDec = []
 
 		for cLev in levels:
 			for d in Decorator.decorators:
 				if d.priority==cLev:
-					outDec.append(d)
+					newDec.append(d)
 
-		return outDec
+		Decorator.decorators = newDec
 
 
 
