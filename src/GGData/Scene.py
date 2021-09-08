@@ -10,14 +10,14 @@ class Scene():
 
 
 
-	def __init__(self):
+	def __init__(self, _defDecs=[]):
 		self.decorators = []
 
 
-
-	def reset(self):
-		for cDec in self.decorators:
+		for cDec in _defDecs:
 			cDec.reset()
+
+			self.decoratorAdd(cDec)
 
 
 

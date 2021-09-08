@@ -108,13 +108,21 @@ class Ui():
 
 #  todo 112 (decorator, feature) +0: complex Decorator
 		self.decorDefault = self.data.decorNew(
-			self.styleSVG[self.styleSet]['default'], -1)
+			self.styleSVG[self.styleSet]['default'], -1,
+			persistent=True
+		)
 		self.decorOff = self.data.decorNew(
-			self.styleSVG[self.styleSet]['off'], 0)
+			self.styleSVG[self.styleSet]['off'], 0,
+			persistent=True
+		)
 		self.decorSelect = self.data.decorNew(
-			self.styleSVG[self.styleSet]['select'], 1)
+			self.styleSVG[self.styleSet]['select'], 1,
+			persistent=True
+		)
 		self.decorHover = self.data.decorNew(
-			self.styleSVG[self.styleSet]['hover'], 2)
+			self.styleSVG[self.styleSet]['hover'], 2,
+			persistent=True
+		)
 
 
 
@@ -157,7 +165,7 @@ class Ui():
 		self.args.set("recentLoaded", cRecentA+[fileName])
 
 
-		cMeta = self.data.loadXML(fileName)
+		cMeta = self.data.newScene(fileName)
 		self.data.decorSet(self.decorDefault, cMeta.keys())
 
 		cXml = self.data.getXML()

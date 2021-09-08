@@ -38,17 +38,17 @@ class GGData():
 	namedRef = {}
 
 	scene = None
-
+	decorators = []
 
 
 	def __init__(self):
-		self.scene = Scene()
+		self.decorators = []
 
 
 
 #  todo 84 (module-data) +0: make file load (save) plugin system
-	def loadXML(self, _fileName):
-		self.scene.reset()
+	def newScene(self, _fileName):
+		self.scene = Scene(self.decorators)
 
 
 		self.theGG = XML.parse(_fileName)
@@ -135,9 +135,13 @@ class GGData():
 
 
 # -todo 105 (module-data, filter, API) +0: split to Filter class
-	def decorNew(self, _tags, _priority=0):
+	def decorNew(self, _tags, _priority=0, persistent=False):
 		cDec = Decorator(_tags, _priority)
-		self.scene.decoratorAdd(cDec)
+		if persistent:
+			self.decorators.append(cDec)
+
+		if self.scene:
+			self.scene.decoratorAdd(cDec)
 
 		return(cDec)
 
@@ -152,6 +156,10 @@ class GGData():
 
 		else:
 			_dec.sub(_elA)
+
+
+		if not self.scene:
+			return
 
 
 		toDecorate = self.scene.order(self.namedRef.keys())
