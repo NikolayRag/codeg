@@ -17,6 +17,7 @@ import re
 
 
 from GGen import *
+from .Scene import *
 from .Decorator import *
 
 
@@ -36,9 +37,20 @@ class GGData():
 	theGG = None
 	namedRef = {}
 
+	scene = None
+
+
+
+	def __init__(self):
+		self.scene = Scene()
+
+
 
 #  todo 84 (module-data) +0: make file load (save) plugin system
 	def loadXML(self, _fileName):
+		self.scene.reset()
+
+
 		self.theGG = XML.parse(_fileName)
 		self.namedRef = {}
 
@@ -62,10 +74,6 @@ class GGData():
 				self.namedRef[tagType +str(i)] = cTag
 
 				i += 1
-
-
-		for cDec in Decorator.decorators:
-			cDec.reset()
 
 
 		return {cN:{'on':True} for cN in self.namedRef}
@@ -128,7 +136,10 @@ class GGData():
 
 # -todo 105 (module-data, filter, API) +0: split to Filter class
 	def decorNew(self, _tags, _priority=0):
-		return Decorator(_tags, _priority)
+		cDec = Decorator(_tags, _priority)
+		self.scene.decoratorAdd(cDec)
+
+		return(cDec)
 
 
 
@@ -143,7 +154,7 @@ class GGData():
 			_dec.sub(_elA)
 
 
-		toDecorate = Decorator.order(self.namedRef.keys())
+		toDecorate = self.scene.order(self.namedRef.keys())
 		for cName in toDecorate:
 			for cDec in toDecorate[cName]:
 				self.setTags(cName, cDec.tags)
