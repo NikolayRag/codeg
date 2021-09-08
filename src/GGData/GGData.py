@@ -143,7 +143,7 @@ class GGData():
 		if self.scene:
 			self.scene.decoratorAdd(cDec)
 
-		return(cDec)
+		return cDec
 
 
 
