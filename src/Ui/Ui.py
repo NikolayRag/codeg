@@ -1,6 +1,7 @@
 # -todo 23 (module-ui, ux) +0: show progress for time consuming operations
 #  todo 27 (module-data, module-ui, ux) +0: allow append gcode from text buffer
 
+# =todo 117 (ux, module-ui) +0: add app settings
 
 from .AppWindow import *
 
@@ -61,6 +62,8 @@ class Ui():
 		}
 	}
 	styleSet = 'light'
+#  todo 115 (ux) -1: allow to choose style by commandline
+# =todo 116 (ux, module-ui) +0: choose style in app settings
 
 
 	args = None

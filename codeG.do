@@ -325,3 +325,12 @@
 =module-ui, fix 114: +0 "src\Ui\AppWindow.py" ki 21/09/08 13:42:53
 	change vis for select-all case
 
+ ux 115: -1 "src\Ui\Ui.py" ki 21/09/08 18:41:16
+	allow to choose style by commandline
+
+=ux, module-ui 116: +0 "src\Ui\Ui.py" ki 21/09/08 18:41:48
+	choose style in app settings
+
+=ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/09/08 18:42:04
+	add app settings
+
