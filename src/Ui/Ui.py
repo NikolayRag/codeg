@@ -61,9 +61,9 @@ class Ui():
 			}
 		}
 	}
-	styleSet = 'light'
 #  todo 115 (ux) -1: allow to choose style by commandline
 # =todo 116 (ux, module-ui) +0: choose style in app settings
+	styleSet = 'dark'
 
 
 	args = None
