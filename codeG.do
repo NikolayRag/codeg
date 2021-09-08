@@ -22,7 +22,7 @@
 +spec, module-data 8: +0 "src\GGData\GGData.py" kii 21/07/31 16:30:49
 	save gcode
 
-=scene, spec, module-data 9: +1 "src\GGData\GGData.py" ki 21/09/08 19:02:21
+=scene, spec, module-data 9: +1 "src\GGData\GGData.py" ki 21/09/08 21:11:30
 	operate project data
 
  spec, module-data 10: +0 "src\GGData\GGData.py" ki 21/09/08 19:02:00
@@ -262,7 +262,7 @@
 -viewport, API 91: +0 "src\Ui\SvgViewport.py" kii 21/09/02 04:16:45
 	add class-level SVG runtime generator signal/slot
 
- feature 92: +0 "src\__main__w.py" kii 21/08/30 08:48:49
+ feature 92: +0 "src\GGData\GGData.py" ki 21/09/08 21:11:27
 	multiple sources scene
 
 =scene, feature 93: +0 "src\__main__w.py" ki 21/09/08 19:01:42
@@ -283,8 +283,8 @@
 !module-ui, optimize 99: +0 "src\GGen\GGen.py" kii 21/09/02 03:40:33
 	
 
- gcode, feature 100: +0 "src\GGData\GGData.py" kii 21/09/05 22:03:42
-	allow flexible filters
+ gcode, feature 100: +0 "src\GGData\GGData.py" ki 21/09/08 21:40:03
+	allow flexible filters for gcode
 
 +module-ui 101: +0 "src\Ui\Ui.py" ki 21/09/08 02:52:08
 	styles for selected-hovered-visible matrix
@@ -298,8 +298,8 @@
  module-dispatch, decide 104: +0 "src\GGData\GGData.py" ki 21/09/08 02:53:26
 	move to dispatch
 
--module-data, filter, API 105: +0 "src\GGData\GGData.py" kii 21/09/06 00:07:11
-	split to Filter class
+ module-data, filter, API 105: +0 "src\GGData\GGData.py" ki 21/09/08 21:39:29
+	add geo Filter class
 
 !module-data, module-dispatch, device, API 106: +0 "" kii 21/09/05 21:54:01
 	--
@@ -307,8 +307,8 @@
 +decorator, module-data 108: +0 "src\GGData\GGData.py" ki 21/09/08 02:43:01
 	get only affected since last request names
 
- decorator, optimize 109: +0 "src\GGData\GGData.py" ki 21/09/07 23:10:14
-	too weird entire Decorator flow
+!decorator, optimize 109: +0 "" ki 21/09/08 21:13:58
+	obsolete
 
 +clean 110: +0 "src\GGData\GGData.py" kii 21/09/07 22:45:38
 	use namedRef

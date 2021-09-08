@@ -1,8 +1,4 @@
 # =todo 90 (ux, module-ui, fix) +0: respect units - both svg and device
-# =todo 9 (scene, spec, module-data) +1: operate project data
-# =todo 113 (scene, module-ui, ux) +0: assignable layer decorator marks holding control data
-# =todo 93 (scene, feature) +0: store scene layer and layout state
-#  todo 92 (feature) +0: multiple sources scene
 
 #  todo 10 (spec, module-data) +0: operate scene data
 # -todo 11 (spec, module-data) +0: read/save own format
@@ -11,6 +7,8 @@
 #  todo 19 (spec, module-dispatch) +0: send to codegg
 
 #  todo 25 (module-data, formats) +0: load .nc gcode
+
+#  todo 105 (module-data, filter, API) +0: add geo Filter class
 
 import xml.etree.ElementTree as XML
 import re
@@ -102,7 +100,7 @@ class GGData():
 		if not self.theGG:
 			return
 
-#  todo 100 (gcode, feature) +0: allow flexible filters
+#  todo 100 (gcode, feature) +0: allow flexible filters for gcode
 		cGG = GGen(self.theGG.getroot())
 		cGG.set(
 			preamble = 'G90 M4 S0',
@@ -134,7 +132,6 @@ class GGData():
 
 
 
-# -todo 105 (module-data, filter, API) +0: split to Filter class
 	def decorNew(self, _tags, _priority=0, persistent=False):
 		cDec = Decorator(_tags, _priority)
 		if persistent:
