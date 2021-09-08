@@ -133,6 +133,7 @@ class GGData():
 
 	def decorNew(self, _tags, _priority=0, persistent=False):
 		cDec = Decorator(_tags, _priority)
+
 		if persistent:
 			self.staticDecor.append(cDec)
 
@@ -154,12 +155,9 @@ class GGData():
 			_dec.sub(_elA)
 
 
-		if not self.scene:
-			return
-
-
-		toDecorate = self.scene.decoratorsOrder(self.namedRef.keys())
-		for cName in toDecorate:
-			for cDec in toDecorate[cName]:
-				self.setTags(cName, cDec.tags)
+		if self.scene:
+			toDecorate = self.scene.decoratorsOrder(self.namedRef.keys())
+			for cName in toDecorate:
+				for cDec in toDecorate[cName]:
+					self.setTags(cName, cDec.tags)
 
