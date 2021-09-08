@@ -1,4 +1,9 @@
-# -todo 9 (spec, module-data) +1: operate project data
+# =todo 90 (ux, module-ui, fix) +0: respect units - both svg and device
+# =todo 9 (scene, spec, module-data) +1: operate project data
+# =todo 113 (scene, module-ui, ux) +0: assignable layer decorator marks holding control data
+# =todo 93 (scene, feature) +0: store scene layer and layout state
+#  todo 92 (feature) +0: multiple sources scene
+
 #  todo 10 (spec, module-data) +0: operate scene data
 # -todo 11 (spec, module-data) +0: read/save own format
 
