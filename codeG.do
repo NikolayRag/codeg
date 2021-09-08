@@ -28,7 +28,7 @@
 !spec, module-data 10: +0 "" ki 21/09/08 21:55:55
 	dup
 
-=spec, module-data 11: +0 "src\GGData\GGData.py" ki 21/09/08 21:55:31
+=spec, module-data 11: +0 "src\GGData\GGData.py" ki 21/09/08 22:03:53
 	read/save own format
 
 +spec, module-ui 12: +1 "src\__main__w.py" kii 21/07/31 02:59:35
@@ -187,7 +187,7 @@
  module-ui, module-dispatch 66: +0 "src\GGData\GGData.py" kii 21/09/05 21:16:18
 	show dispatch progress
 
-+API 67: +1 "src\__main__w.py" kii 21/08/30 08:48:48
+-api 67: +1 "src\__main__w.py" ki 21/09/08 21:59:33
 	change callbacks to signals-slots
 
 -module-dispatch 68: +0 "src\Dispatch\Dispatch.py" kii 21/08/20 02:57:25
@@ -223,7 +223,7 @@
 +module-ui, ux 78: +0 "src\Ui\Ui.py" kii 21/08/15 22:10:50
 	store/restore window size
 
- module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" ki 21/09/08 18:58:56
+ module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" ki 21/09/08 22:00:28
 	make size ignored on maximize
 
 +module-ui, svg, feature 80: +0 "src\Ui\SvgViewport.py" kii 21/08/20 05:30:30
@@ -235,7 +235,7 @@
  module-data, ux 82: +0 "src\GGData\GGData.py" kii 21/08/20 03:48:29
 	parse groups
 
- ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" ki 21/09/08 19:00:22
+ ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" ki 21/09/08 22:00:28
 	fit at init dont work due to obsolete size 
 
  module-data 84: +0 "src\GGData\GGData.py" kii 21/09/05 21:12:35
@@ -256,7 +256,7 @@
 -ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" kii 21/08/28 18:03:13
 	place grid correctly
 
-=ux, module-ui, fix 90: +0 "src\Ui\SvgViewport.py" ki 21/09/08 19:00:18
+=ux, module-ui, fix 90: +0 "src\GGData\GGData.py" ki 21/09/08 22:03:51
 	respect units - both svg and device
 
 -viewport, API 91: +0 "src\Ui\SvgViewport.py" kii 21/09/02 04:16:45
