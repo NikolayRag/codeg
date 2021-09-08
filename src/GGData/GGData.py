@@ -36,17 +36,17 @@ class GGData():
 	namedRef = {}
 
 	scene = None
-	decorators = []
+	staticDecor = []
 
 
 	def __init__(self):
-		self.decorators = []
+		self.staticDecor = []
 
 
 
 #  todo 84 (module-data) +0: make file load (save) plugin system
 	def newScene(self, _fileName):
-		self.scene = Scene(self.decorators)
+		self.scene = Scene(self.staticDecor)
 
 
 		self.theGG = XML.parse(_fileName)
@@ -135,7 +135,7 @@ class GGData():
 	def decorNew(self, _tags, _priority=0, persistent=False):
 		cDec = Decorator(_tags, _priority)
 		if persistent:
-			self.decorators.append(cDec)
+			self.staticDecor.append(cDec)
 
 		if self.scene:
 			self.scene.decoratorAdd(cDec)
