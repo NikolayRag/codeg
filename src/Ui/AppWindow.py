@@ -92,10 +92,6 @@ class AppWindow(QObject):
 		self.lCheckLayerOn = cMain.findChild(QLineEdit, "checkLayerOn")
 
 
-		self.lLineLayerPower = cMain.findChild(QLineEdit, "lineLayerPower")
-		self.lLineLayerPower.setValidator( QIntValidator(0,1000) );
-
-
 		holderViewport = cMain.findChild(QWidget, "wViewport")
 		self.lViewport = SvgViewport(holderViewport)
 		self.lViewport.setGrid('resource\\grid.svg')
