@@ -50,6 +50,7 @@ class Ui():
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
 
 
+#  todo 112 (decorator, feature) +0: complex Decorator
 		self.decorDefault = self.data.decorNew({
 			'vector-effect': 'non-scaling-stroke',
 			'stroke-width':'2px',

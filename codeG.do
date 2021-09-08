@@ -316,3 +316,6 @@
 -decorator, optimize 111: +0 "src\GGData\GGData.py" ki 21/09/08 02:15:26
 	dramatically slow
 
+ decorator, feature 112: +0 "src\Ui\Ui.py" ki 21/09/08 03:07:04
+	complex Decorator
+
