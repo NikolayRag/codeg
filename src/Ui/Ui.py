@@ -7,7 +7,12 @@ from .AppWindow import *
 
 class Ui():
 	defUi = './Ui/AppWindow.ui'
-	defStyle = './Ui/schemes/default dark.qss'
+
+	styleList = {
+		'dark':'./Ui/schemes/default dark.qss',
+		'light':'./Ui/schemes/default light.qss',
+	}
+	styleSet = 'dark'
 
 
 	args = None
@@ -31,7 +36,7 @@ class Ui():
 		self.qApp.setStyle(QStyleFactory.create('fusion'))
 
 
-		self.appWindow = AppWindow(self.defUi, self.defStyle)
+		self.appWindow = AppWindow(self.defUi, self.styleList[self.styleSet])
 
 		self.appWindow.sigResize.connect(self.storeWindow)
 		self.appWindow.resize(
