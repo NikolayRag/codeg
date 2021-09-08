@@ -53,20 +53,24 @@ class Ui():
 #  todo 112 (decorator, feature) +0: complex Decorator
 		self.decorDefault = self.data.decorNew({
 			'vector-effect': 'non-scaling-stroke',
-			'stroke-width':'2px',
-			'stroke':'#555',
-			'fill':'#111',
+			'stroke-width':'1.5px',
+			'stroke':'#888',
+			'fill':'#181818',
 			'opacity': '.8'
 		}, -1)
+		self.decorOff = self.data.decorNew({
+			'fill':'#282828',
+			'stroke':'#444',
+			'opacity': '.4'
+		}, 0)
 		self.decorSelect = self.data.decorNew({
-			'fill':'#f10',
-		})
+			'fill':'#820',
+			'stroke':'#f44',
+		}, 1)
 		self.decorHover = self.data.decorNew({
 			'stroke':'#fe0',
-		}, 1)
-		self.decorOff = self.data.decorNew({
-			'opacity': '.3'
-		}, 1)
+			'opacity': '.8'
+		}, 2)
 
 
 
