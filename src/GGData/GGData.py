@@ -20,15 +20,15 @@ from .Decorator import *
 
 
 class GGData():
-	CachedFields = {
-		'vector-effect': 'svg-vector-effect',
-		'stroke': 'svg-stroke',
-		'stroke-width': 'svg-stroke-width',
-		'stroke-dasharray': 'svg-stroke-dasharray',
-		'fill': 'svg-fill',
-		'opacity': 'svg-opacity',
-		'display': 'svg-display'
-	}
+	CachedFields = [
+		'vector-effect',
+		'stroke',
+		'stroke-width',
+		'stroke-dasharray',
+		'fill',
+		'opacity',
+		'display'
+	]
 
 
 	theGG = None
@@ -65,7 +65,7 @@ class GGData():
 
 			if tagType in [ 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path' ]:
 				for cField in self.CachedFields:
-					cTag.set(self.CachedFields[cField], cTag.get(cField) or '')
+					cTag.set('cache-'+cField, cTag.get(cField) or '')
 
 
 				self.namedRef[tagType +str(i)] = cTag
