@@ -25,10 +25,10 @@
 =scene, spec, module-data 9: +1 "src\GGData\GGData.py" ki 21/09/08 21:11:30
 	operate project data
 
- spec, module-data 10: +0 "src\GGData\GGData.py" ki 21/09/08 19:02:00
-	operate scene data
+!spec, module-data 10: +0 "" ki 21/09/08 21:55:55
+	dup
 
--spec, module-data 11: +0 "src\GGData\GGData.py" kii 21/08/03 02:42:06
+=spec, module-data 11: +0 "src\GGData\GGData.py" ki 21/09/08 21:55:31
 	read/save own format
 
 +spec, module-ui 12: +1 "src\__main__w.py" kii 21/07/31 02:59:35

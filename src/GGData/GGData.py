@@ -1,7 +1,6 @@
 # =todo 90 (ux, module-ui, fix) +0: respect units - both svg and device
 
-#  todo 10 (spec, module-data) +0: operate scene data
-# -todo 11 (spec, module-data) +0: read/save own format
+# =todo 11 (spec, module-data) +0: read/save own format
 
 #  todo 18 (spec, module-dispatch) +0: standalone dispatcher codegg
 #  todo 19 (spec, module-dispatch) +0: send to codegg
