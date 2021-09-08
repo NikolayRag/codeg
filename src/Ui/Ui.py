@@ -68,6 +68,7 @@ class Ui():
 			'stroke':'#f44',
 		}, 1)
 		self.decorHover = self.data.decorNew({
+			'stroke-width':'2.5px',
 			'stroke':'#fe0',
 			'opacity': '.8'
 		}, 2)
