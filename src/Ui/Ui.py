@@ -35,9 +35,32 @@ class Ui():
 				'stroke':'#fe0',
 				'opacity': '.8'
 			}
+		},
+		'light': {
+			'default': {
+				'vector-effect': 'non-scaling-stroke',
+				'stroke-width':'1.5px',
+				'stroke':'#444',
+				'fill':'#fdfdfd',
+				'opacity': '.8'
+			},
+			'off': {
+				'fill':'#f8f8f8',
+				'stroke':'#888',
+				'opacity': '.4'
+			},
+			'select': {
+				'fill':'#fe8',
+				'stroke':'#861',
+			},
+			'hover': {
+				'stroke-width':'2.5px',
+				'stroke':'#f00',
+				'opacity': '.8'
+			}
 		}
 	}
-	styleSet = 'dark'
+	styleSet = 'light'
 
 
 	args = None
