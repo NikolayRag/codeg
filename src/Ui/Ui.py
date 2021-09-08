@@ -12,6 +12,31 @@ class Ui():
 		'dark':'./Ui/schemes/default dark.qss',
 		'light':'./Ui/schemes/default light.qss',
 	}
+	styleSVG = {
+		'dark': {
+			'default': {
+				'vector-effect': 'non-scaling-stroke',
+				'stroke-width':'1.5px',
+				'stroke':'#888',
+				'fill':'#181818',
+				'opacity': '.8'
+			},
+			'off': {
+				'fill':'#282828',
+				'stroke':'#444',
+				'opacity': '.4'
+			},
+			'select': {
+				'fill':'#820',
+				'stroke':'#f44',
+			},
+			'hover': {
+				'stroke-width':'2.5px',
+				'stroke':'#fe0',
+				'opacity': '.8'
+			}
+		}
+	}
 	styleSet = 'dark'
 
 
@@ -56,27 +81,14 @@ class Ui():
 
 
 #  todo 112 (decorator, feature) +0: complex Decorator
-		self.decorDefault = self.data.decorNew({
-			'vector-effect': 'non-scaling-stroke',
-			'stroke-width':'1.5px',
-			'stroke':'#888',
-			'fill':'#181818',
-			'opacity': '.8'
-		}, -1)
-		self.decorOff = self.data.decorNew({
-			'fill':'#282828',
-			'stroke':'#444',
-			'opacity': '.4'
-		}, 0)
-		self.decorSelect = self.data.decorNew({
-			'fill':'#820',
-			'stroke':'#f44',
-		}, 1)
-		self.decorHover = self.data.decorNew({
-			'stroke-width':'2.5px',
-			'stroke':'#fe0',
-			'opacity': '.8'
-		}, 2)
+		self.decorDefault = self.data.decorNew(
+			self.styleSVG[self.styleSet]['default'], -1)
+		self.decorOff = self.data.decorNew(
+			self.styleSVG[self.styleSet]['off'], 0)
+		self.decorSelect = self.data.decorNew(
+			self.styleSVG[self.styleSet]['select'], 1)
+		self.decorHover = self.data.decorNew(
+			self.styleSVG[self.styleSet]['hover'], 2)
 
 
 
