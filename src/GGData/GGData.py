@@ -20,6 +20,7 @@ from .Decorator import *
 
 
 class GGData():
+	# Should contain fields affected by Decorators
 	CachedFields = [
 		'vector-effect',
 		'stroke',
