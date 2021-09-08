@@ -159,7 +159,7 @@ class GGData():
 			return
 
 
-		toDecorate = self.scene.order(self.namedRef.keys())
+		toDecorate = self.scene.decoratorsOrder(self.namedRef.keys())
 		for cName in toDecorate:
 			for cDec in toDecorate[cName]:
 				self.setTags(cName, cDec.tags)

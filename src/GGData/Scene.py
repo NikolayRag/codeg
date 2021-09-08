@@ -37,7 +37,7 @@ class Scene():
 
 
 # Get {name:(decorator,)} array, sorted by decorators priority
-	def order(self, _names):
+	def decoratorsOrder(self, _names):
 		upNames = []
 
 		for cDec in self.decorators:
