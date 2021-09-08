@@ -217,7 +217,7 @@
 =fix, gcode 76: +0 "" kii 21/08/25 22:58:28
 	gcode move, scale and crop
 
--fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" kii 21/09/06 01:26:31
+ fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" ki 21/09/08 13:43:18
 	duplicate hover element topmost
 
 +module-ui, ux 78: +0 "src\Ui\Ui.py" kii 21/08/15 22:10:50
@@ -265,7 +265,7 @@
  feature 92: +0 "src\__main__w.py" kii 21/08/30 08:48:49
 	multiple sources scene
 
-=feature 93: +0 "src\__main__w.py" ki 21/09/08 04:06:08
+=feature 93: +0 "" ki 21/09/08 13:42:58
 	store scene layer and layout state
 
  viewport, fix 95: +0 "src\Ui\SvgViewport.py" kii 21/08/28 15:52:23
@@ -321,4 +321,7 @@
 
 =module-ui, ux 113: +0 "src\__main__w.py" ki 21/09/08 04:49:55
 	assignable layer decorator marks holding control data
+
+=module-ui, fix 114: +0 "src\Ui\AppWindow.py" ki 21/09/08 13:42:53
+	change vis for select-all case
 

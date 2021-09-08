@@ -290,6 +290,7 @@ class AppWindow(QObject):
 			cSelection = [_row]
 
 
+# =todo 114 (module-ui, fix) +0: change vis for select-all case
 		for cRow in cSelection:
 			cItem = self.lListLayers.item(cRow, _col)
 			if newState == cItem.data(self.LdataOn):

@@ -160,7 +160,7 @@ class Ui():
 
 
 
-# -todo 77 (fix, module-ui, viewport) +0: duplicate hover element topmost
+#  todo 77 (fix, module-ui, viewport) +0: duplicate hover element topmost
 	def layerSetHover(self, _hover):
 		self.data.decorSet(self.decorHover, [_hover] if _hover else [])
 
