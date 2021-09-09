@@ -67,7 +67,7 @@ class Scene():
 
 
 # Get {name:(decorator,)} array, sorted by decorators priority
-	def decoratorsOrder(self, _names):
+	def decoratorsOrder(self, _namesLimit):
 		upNames = []
 
 		for cDec in self.decorators:
@@ -78,7 +78,7 @@ class Scene():
 
 		outDec = {}
 
-		for cName in set(upNames).intersection(_names):
+		for cName in set(upNames).intersection(_namesLimit):
 			decList = []
 			updated = False
 
