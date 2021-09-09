@@ -52,7 +52,7 @@ class GGData():
 
 
 
-#  todo 104 (module-dispatch, decide) +0: move to dispatch
+# -todo 104 (module-dispatch, decide) +0: move to dispatch
 #  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
 	def getG(self, x=0, y=0):
 		if not self.scene:
