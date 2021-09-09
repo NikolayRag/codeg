@@ -165,7 +165,8 @@ class Ui():
 		self.args.set("recentLoaded", cRecentA+[fileName])
 
 
-		cMeta = self.data.newScene(fileName)
+		self.data.newScene()
+		cMeta = self.data.loadGeo(fileName, 'svg')
 		self.data.decorApply(self.decorDefault, cMeta.keys())
 
 		cXml = self.data.getXML()
@@ -179,7 +180,7 @@ class Ui():
 
 
 	def storeG(self):
-		if not self.data.info():
+		if not self.data.available():
 			print("No scene data")
 			return
 

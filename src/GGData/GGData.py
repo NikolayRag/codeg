@@ -9,10 +9,6 @@
 
 #  todo 105 (module-data, filter, API) +0: add geo Filter class
 
-import xml.etree.ElementTree as XML
-import re
-
-
 from GGen import *
 from .Scene import *
 from .Decorator import *
@@ -20,21 +16,6 @@ from .Decorator import *
 
 
 class GGData():
-	# Should contain fields affected by Decorators
-	CachedFields = [
-		'vector-effect',
-		'stroke',
-		'stroke-width',
-		'stroke-dasharray',
-		'fill',
-		'opacity',
-		'display'
-	]
-
-
-	theGG = None
-	namedRef = {}
-
 	scene = None
 	staticDecor = []
 
@@ -44,64 +25,41 @@ class GGData():
 
 
 
-#  todo 84 (module-data) +0: make file load (save) plugin system
-	def newScene(self, _fileName):
+	def newScene(self):
 		self.scene = Scene(self.staticDecor)
 
 
-		self.theGG = XML.parse(_fileName)
-		self.namedRef = {}
 
+# -todo 84 (module-data) +0: make file load (save) plugin system
+	def loadGeo(self, _fileName, _type='svg'):
+		if _type=='svg':
+			cGeo = XML.parse(_fileName)
 
-		i = 1
-		for cTag in self.theGG.iter():
-			tagType = cTag.tag[28:]
+		if cGeo:
+			self.scene.geoAdd(cGeo)
 
-			if tagType == 'xml':
-				None
-
-#  todo 82 (module-data, ux) +0: parse groups
-			if tagType == 'g':
-				None
-
-			if tagType in [ 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path' ]:
-				for cField in self.CachedFields:
-					cTag.set('cache-'+cField, cTag.get(cField) or '')
-
-
-				self.namedRef[tagType +str(i)] = cTag
-
-				i += 1
-
-
-		return {cN:{'on':True} for cN in self.namedRef}
+		return self.scene.geoMeta()
 
 
 
 	def getXML(self):
-		if not self.theGG:
-			return False
-
-		return XML.tostring(self.theGG.getroot())
+		return (self.scene and self.scene.getSceneXML(True))
 
 
 
-	def info(self):
-		if not self.theGG:
-			return False
-
-		return True
+	def available(self):
+		return bool(self.scene)
 
 
 
 #  todo 104 (module-dispatch, decide) +0: move to dispatch
 #  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
 	def getG(self, x=0, y=0):
-		if not self.theGG:
+		if not self.scene:
 			return
 
 #  todo 100 (gcode, feature) +0: allow flexible filters for gcode
-		cGG = GGen(self.theGG.getroot())
+		cGG = GGen(self.scene.getSceneXML())
 		cGG.set(
 			preamble = 'G90 M4 S0',
 			shapePre = 'G0',
@@ -120,15 +78,6 @@ class GGData():
 			gFlat += g
 
 		return "\n".join(gFlat)
-
-
-
-# -todo 111 (decorator, optimize) +0: dramatically slow
-	def setTags(self, _name, _tags):
-		cEl = self.namedRef[_name]
-		for cTag in _tags:
-			cEl.set(cTag, _tags[cTag])
-
 
 
 
@@ -156,9 +105,4 @@ class GGData():
 			_dec.sub(_elA)
 
 
-		if self.scene:
-			toDecorate = self.scene.decoratorsOrder(self.namedRef.keys())
-			for cName in toDecorate:
-				for cDec in toDecorate[cName]:
-					self.setTags(cName, cDec.tags)
-
+		self.scene and self.scene.decoratorReapply()
