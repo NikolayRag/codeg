@@ -166,7 +166,7 @@ class Ui():
 
 
 		cMeta = self.data.newScene(fileName)
-		self.data.decorSet(self.decorDefault, cMeta.keys())
+		self.data.decorApply(self.decorDefault, cMeta.keys())
 
 		cXml = self.data.getXML()
 		if cXml:
@@ -206,7 +206,7 @@ class Ui():
 
 #  todo 98 (module-ui, optimize) -1: prevent doubling by difference change
 	def layerSetSelect(self, _selectionA):
-		self.data.decorSet(self.decorSelect, _selectionA)
+		self.data.decorApply(self.decorSelect, _selectionA)
 
 		self.reloadXml()
 
@@ -214,14 +214,14 @@ class Ui():
 
 #  todo 77 (fix, module-ui, viewport) +0: duplicate hover element topmost
 	def layerSetHover(self, _hover):
-		self.data.decorSet(self.decorHover, [_hover] if _hover else [])
+		self.data.decorApply(self.decorHover, [_hover] if _hover else [])
 
 		self.reloadXml()
 
 
 
 	def ctrlLayersSet(self, _elA, _on):
-		self.data.decorSet(self.decorOff, _elA, not _on)
+		self.data.decorApply(self.decorOff, _elA, not _on)
 
 		self.reloadXml()
 

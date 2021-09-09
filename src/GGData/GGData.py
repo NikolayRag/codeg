@@ -145,7 +145,7 @@ class GGData():
 
 
 
-	def decorSet(self, _dec, _elA, add=None):
+	def decorApply(self, _dec, _elA, add=None):
 		if add==None:
 			_dec.assign(_elA)
 
