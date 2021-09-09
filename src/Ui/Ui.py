@@ -1,3 +1,4 @@
+#  todo 20 (module-ui, error) +0: handle errors, maybe status string
 # -todo 23 (module-ui, ux) +0: show progress for time consuming operations
 #  todo 27 (module-data, module-ui, ux) +0: allow append gcode from text buffer
 
@@ -144,13 +145,14 @@ class Ui():
 
 
 
+#  todo 120 (refactor, module-ui, module-data) +0: clean, previous size
 	def storeWindow(self, _size, _maximized):
 		self.args.set('wMaxi', _maximized)
 		if not _maximized:
 			self.args.set('wSize', (_size.width(),_size.height()) )
 
 
-
+# -todo 118 (refactor, module-ui, module-data) +0: clean for minor import
 	def addFile(self):
 		cRecentA = self.args.get("recentLoaded", [])
 
@@ -175,10 +177,7 @@ class Ui():
 		
 
 
-#  todo 20 (module-ui, error) +0: handle errors, maybe status string
-
-
-
+# -todo 119 (refactor, module-ui, module-data) +0: clean for dispatch
 	def storeG(self):
 		if not self.data.available():
 			print("No scene data")

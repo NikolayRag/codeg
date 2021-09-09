@@ -64,7 +64,7 @@
 =module-dispatch, ux 22: +0 "src\GGData\GGData.py" kii 21/08/28 18:00:30
 	make dispatch interruptable
 
--module-ui, ux 23: +0 "src\Ui\Ui.py" ki 21/09/08 18:58:56
+-module-ui, ux 23: +0 "src\Ui\Ui.py" ki 21/09/09 21:27:51
 	show progress for time consuming operations
 
 !module-data, formats 24: +0 "" kii 21/07/31 16:33:32
@@ -238,7 +238,7 @@
  ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" ki 21/09/08 22:00:28
 	fit at init dont work due to obsolete size 
 
- module-data 84: +0 "src\GGData\GGData.py" kii 21/09/05 21:12:35
+-module-data 84: +0 "src\GGData\GGData.py" ki 21/09/09 17:42:29
 	make file load (save) plugin system
 
 +module-dispatch 85: +0 "src\GGData\GGData.py" kii 21/08/28 18:00:25
@@ -333,4 +333,13 @@
 
 =ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/09/08 18:42:04
 	add app settings
+
+-refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" ki 21/09/09 21:26:33
+	clean for minor import
+
+-refactor, module-ui, module-data 119: +0 "src\Ui\Ui.py" ki 21/09/09 21:27:02
+	clean for dispatch
+
+ refactor, module-ui, module-data 120: +0 "src\Ui\Ui.py" ki 21/09/09 21:27:41
+	clean, previous size
 
