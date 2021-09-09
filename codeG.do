@@ -343,3 +343,6 @@
  refactor, module-ui, module-data 120: +0 "src\Ui\Ui.py" ki 21/09/09 21:27:41
 	clean, previous size
 
++module-data, fix 121: +0 "src\GGen\GGen.py" ki 21/09/09 22:20:25
+	go to .items() for ElementTree
+
