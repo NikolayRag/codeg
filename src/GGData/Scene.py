@@ -11,6 +11,7 @@ import re
 class Scene():
 	# Should contain fields affected by Decorators
 	CachedFields = [
+		'id',
 		'vector-effect',
 		'stroke',
 		'stroke-width',
@@ -118,7 +119,7 @@ class Scene():
 				for cField in Scene.CachedFields:
 					cTag.set('cache-'+cField, cTag.get(cField) or '')
 
-
+				cTag.set('id', tagType +str(i))
 				self.geoNamed[tagType +str(i)] = cTag
 
 				i += 1
