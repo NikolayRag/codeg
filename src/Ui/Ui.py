@@ -21,12 +21,12 @@ class Ui():
 				'stroke-width':'1.5px',
 				'stroke':'#888',
 				'fill':'#181818',
-				'opacity': '.8'
+				'opacity': '.9'
 			},
 			'off': {
 				'fill':'#282828',
 				'stroke':'#444',
-				'opacity': '.4'
+				'opacity': '.3'
 			},
 			'select': {
 				'fill':'#820',
@@ -35,7 +35,7 @@ class Ui():
 			'hover': {
 				'stroke-width':'2.5px',
 				'stroke':'#fe0',
-				'opacity': '.8'
+				'opacity': '.9'
 			}
 		},
 		'light': {
@@ -44,12 +44,12 @@ class Ui():
 				'stroke-width':'1.5px',
 				'stroke':'#444',
 				'fill':'#fdfdfd',
-				'opacity': '.8'
+				'opacity': '.9'
 			},
 			'off': {
 				'fill':'#f8f8f8',
 				'stroke':'#888',
-				'opacity': '.4'
+				'opacity': '.3'
 			},
 			'select': {
 				'fill':'#fe8',
@@ -58,13 +58,13 @@ class Ui():
 			'hover': {
 				'stroke-width':'2.5px',
 				'stroke':'#f00',
-				'opacity': '.8'
+				'opacity': '.9'
 			}
 		}
 	}
 #  todo 115 (ux) -1: allow to choose style by commandline
 # =todo 116 (ux, module-ui) +0: choose style in app settings
-	styleSet = 'dark'
+	styleSet = 'light'
 
 
 	args = None
