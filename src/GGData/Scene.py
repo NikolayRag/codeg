@@ -4,30 +4,17 @@
 #  todo 92 (feature) +0: multiple sources scene
 
 
-import xml.etree.ElementTree as XML
-import re
 
 
 class Scene():
-	# Should contain fields affected by Decorators
-	CachedFields = [
-		'id',
-		'vector-effect',
-		'stroke',
-		'stroke-width',
-		'stroke-dasharray',
-		'fill',
-		'opacity',
-		'display'
-	]
-
-
-	decorators = None
+	geoList = None
+	decList = None
 
 
 
 	def __init__(self, _defDecs=[]):
 		self.decorators = []
+		self.geoList = []
 
 
 		for cDec in _defDecs:
@@ -38,17 +25,10 @@ class Scene():
 
 
 	def decoratorReapply(self):
-		toDecorate = self.decoratorsOrder(self.geoNamed.keys())
+		toDecorate = self.decoratorsOrder(self.geoList[0].names())
 		for cName in toDecorate:
 			for cDec in toDecorate[cName]:
-				self.setTags(self.geoNamed[cName], cDec.tags)
-
-
-
-# -todo 111 (decorator, optimize) +0: dramatically slow
-	def setTags(self, _el, _tags):
-		for cTag in _tags:
-			_el.set(cTag, _tags[cTag])
+				self.geoList[0].setTags(cName, cDec.tags)
 
 
 
@@ -100,37 +80,16 @@ class Scene():
 
 
 	def geoAdd(self, _geo):
-		self.geoXML = _geo
-		self.geoNamed = {}
+		self.geoList.append(_geo)
 
-
-		i = 1
-		for cTag in self.geoXML.iter():
-			tagType = cTag.tag[28:]
-
-			if tagType == 'xml':
-				None
-
-#  todo 82 (module-data, ux) +0: parse groups
-			if tagType == 'g':
-				None
-
-			if tagType in [ 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path' ]:
-				for cField in Scene.CachedFields:
-					cTag.set('cache-'+cField, cTag.get(cField) or '')
-
-				cTag.set('id', tagType +str(i))
-				self.geoNamed[tagType +str(i)] = cTag
-
-				i += 1
+		return len(self.geoList) -1
 
 
 
 	def geoMeta(self):
-		return {cN:{'on':True} for cN in self.geoNamed}
+		return {cN:{'on':True} for cN in self.geoList[0].names()}
 
 
 
 	def getSceneXML(self, toString=False):
-		cRoot = self.geoXML.getroot()
-		return (XML.tostring(cRoot) if toString else cRoot)
+		return self.geoList[0].xmlRoot(toString)

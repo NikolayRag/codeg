@@ -12,6 +12,7 @@
 from GGen import *
 from .Scene import *
 from .Decorator import *
+from .Geoblock import *
 
 
 
@@ -31,12 +32,8 @@ class GGData():
 
 
 # -todo 84 (module-data) +0: make file load (save) plugin system
-	def loadGeo(self, _fileName, _type='svg'):
-		if _type=='svg':
-			cGeo = XML.parse(_fileName)
-
-		if cGeo:
-			self.scene.geoAdd(cGeo)
+	def loadGeo(self, _source, _type='svg'):
+		self.scene.geoAdd( Geoblock(_source, _type) )
 
 		return self.scene.geoMeta()
 
