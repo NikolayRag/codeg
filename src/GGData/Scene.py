@@ -13,8 +13,8 @@ class Scene():
 
 
 	def __init__(self, _defDecs=[]):
-		self.decorators = []
 		self.geoList = []
+		self.decList = []
 
 
 		for cDec in _defDecs:
@@ -33,7 +33,7 @@ class Scene():
 
 
 	def decoratorAdd(self, _newDec):
-		decList = self.decorators + [_newDec]
+		decList = self.decList + [_newDec]
 		levels = sorted(set( [cDec.priority for cDec in decList] ))
 
 		newDecSorted = []
@@ -43,7 +43,7 @@ class Scene():
 				if d.priority==cLev:
 					newDecSorted.append(d)
 
-		self.decorators = newDecSorted
+		self.decList = newDecSorted
 
 
 
@@ -51,7 +51,7 @@ class Scene():
 	def decoratorsOrder(self, _namesLimit):
 		upNames = []
 
-		for cDec in self.decorators:
+		for cDec in self.decList:
 			upNames += cDec.updatedA
 
 			cDec.cdown()
@@ -63,7 +63,7 @@ class Scene():
 			decList = []
 			updated = False
 
-			for cDec in self.decorators:
+			for cDec in self.decList:
 				if cName in cDec.assigned:
 					decList.append(cDec)
 
