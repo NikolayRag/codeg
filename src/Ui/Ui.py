@@ -107,7 +107,6 @@ class Ui():
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
 
 
-#  todo 112 (decorator, feature) +0: complex Decorator
 		self.markDefault = self.data.markNew(
 			self.styleSVG[self.styleSet]['default'], -1,
 			persistent=True

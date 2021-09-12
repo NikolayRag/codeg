@@ -3,7 +3,7 @@ import re
 
 
 class Geoblock():
-	# Should contain fields affected by Decorators
+	# Should contain fields affected by Marks
 	CachedFields = [
 		'id',
 		'vector-effect',
@@ -54,7 +54,7 @@ class Geoblock():
 
 
 
-# -todo 111 (decorator, optimize) +0: dramatically slow
+# -todo 111 (mark, optimize) +0: dramatically slow apply
 	def setTags(self, _name, _tags):
 		cEl = self.geoNamed[_name]
 

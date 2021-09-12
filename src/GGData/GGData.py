@@ -15,6 +15,7 @@ from .Geomark import *
 from .Geoblock import *
 
 
+# =todo 112 (mark, feature) +0: complex mark
 
 class GGData():
 	scene = None

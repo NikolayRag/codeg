@@ -22,13 +22,13 @@
 +spec, module-data 8: +0 "src\GGData\GGData.py" kii 21/07/31 16:30:49
 	save gcode
 
-=scene, spec, module-data 9: +1 "src\GGData\GGData.py" ki 21/09/08 21:11:30
+=scene, spec, module-data 9: +1 "src\GGData\GGData.py" kii 21/09/08 21:11:30
 	operate project data
 
-!spec, module-data 10: +0 "" ki 21/09/08 21:55:55
+!spec, module-data 10: +0 "" kii 21/09/08 21:55:55
 	dup
 
-=spec, module-data 11: +0 "src\GGData\GGData.py" ki 21/09/08 22:03:53
+=spec, module-data 11: +0 "src\GGData\GGData.py" kii 21/09/08 22:03:53
 	read/save own format
 
 +spec, module-ui 12: +1 "src\__main__w.py" kii 21/07/31 02:59:35
@@ -64,7 +64,7 @@
 =module-dispatch, ux 22: +0 "src\GGData\GGData.py" kii 21/08/28 18:00:30
 	make dispatch interruptable
 
--module-ui, ux 23: +0 "src\Ui\Ui.py" ki 21/09/09 21:27:51
+-module-ui, ux 23: +0 "src\Ui\Ui.py" kii 21/09/09 21:27:51
 	show progress for time consuming operations
 
 !module-data, formats 24: +0 "" kii 21/07/31 16:33:32
@@ -187,7 +187,7 @@
  module-ui, module-dispatch 66: +0 "src\GGData\GGData.py" kii 21/09/05 21:16:18
 	show dispatch progress
 
--api 67: +1 "src\__main__w.py" ki 21/09/08 21:59:33
+-API 67: +1 "src\__main__w.py" kii 21/09/08 21:59:33
 	change callbacks to signals-slots
 
 -module-dispatch 68: +0 "src\Dispatch\Dispatch.py" kii 21/08/20 02:57:25
@@ -217,13 +217,13 @@
 =fix, gcode 76: +0 "" kii 21/08/25 22:58:28
 	gcode move, scale and crop
 
- fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" ki 21/09/08 13:43:18
+ fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" kii 21/09/08 13:43:18
 	duplicate hover element topmost
 
 +module-ui, ux 78: +0 "src\Ui\Ui.py" kii 21/08/15 22:10:50
 	store/restore window size
 
- module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" ki 21/09/08 22:00:28
+ module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" kii 21/09/08 22:00:28
 	make size ignored on maximize
 
 +module-ui, svg, feature 80: +0 "src\Ui\SvgViewport.py" kii 21/08/20 05:30:30
@@ -235,10 +235,10 @@
  module-data, ux 82: +0 "src\GGData\GGData.py" kii 21/08/20 03:48:29
 	parse groups
 
- ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" ki 21/09/08 22:00:28
+ ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" kii 21/09/08 22:00:28
 	fit at init dont work due to obsolete size 
 
--module-data 84: +0 "src\GGData\GGData.py" ki 21/09/09 17:42:29
+-module-data 84: +0 "src\GGData\GGData.py" kii 21/09/09 17:42:29
 	make file load (save) plugin system
 
 +module-dispatch 85: +0 "src\GGData\GGData.py" kii 21/08/28 18:00:25
@@ -256,16 +256,16 @@
 -ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" kii 21/08/28 18:03:13
 	place grid correctly
 
-=ux, module-ui, fix 90: +0 "src\GGData\GGData.py" ki 21/09/08 22:03:51
+=ux, module-ui, fix 90: +0 "src\GGData\GGData.py" kii 21/09/08 22:03:51
 	respect units - both svg and device
 
 -viewport, API 91: +0 "src\Ui\SvgViewport.py" kii 21/09/02 04:16:45
 	add class-level SVG runtime generator signal/slot
 
- feature 92: +0 "src\GGData\GGData.py" ki 21/09/08 21:11:27
+ feature 92: +0 "src\GGData\GGData.py" kii 21/09/08 21:11:27
 	multiple sources scene
 
-=scene, feature 93: +0 "src\__main__w.py" ki 21/09/08 19:01:42
+=scene, feature 93: +0 "src\__main__w.py" kii 21/09/08 19:01:42
 	store scene layer and layout state
 
  viewport, fix 95: +0 "src\Ui\SvgViewport.py" kii 21/08/28 15:52:23
@@ -283,66 +283,66 @@
 !module-ui, optimize 99: +0 "src\GGen\GGen.py" kii 21/09/02 03:40:33
 	
 
- gcode, feature 100: +0 "src\GGData\GGData.py" ki 21/09/08 21:40:03
+ gcode, feature 100: +0 "src\GGData\GGData.py" kii 21/09/08 21:40:03
 	allow flexible filters for gcode
 
-+module-ui 101: +0 "src\Ui\Ui.py" ki 21/09/08 02:52:08
++module-ui 101: +0 "src\Ui\Ui.py" kii 21/09/08 02:52:08
 	styles for selected-hovered-visible matrix
 
 +module-ui, fix 102: +0 "src\Ui\Ui.py" kii 21/09/02 04:05:16
 	bulk update layer change
 
-+module-ui, module-data, API 103: +0 "src\Ui\Ui.py" ki 21/09/08 02:52:25
++module-ui, module-data, API 103: +0 "src\Ui\Ui.py" kii 21/09/08 02:52:25
 	move geo decorators to data
 
--module-dispatch, decide 104: +0 "src\GGData\GGData.py" ki 21/09/09 23:33:23
+-module-dispatch, decide 104: +0 "src\GGData\GGData.py" kii 21/09/09 23:33:23
 	move to dispatch
 
- module-data, filter, API 105: +0 "src\GGData\GGData.py" ki 21/09/08 21:39:29
+ module-data, filter, API 105: +0 "src\GGData\GGData.py" kii 21/09/08 21:39:29
 	add geo Filter class
 
 !module-data, module-dispatch, device, API 106: +0 "" kii 21/09/05 21:54:01
 	--
 
-+decorator, module-data 108: +0 "src\GGData\GGData.py" ki 21/09/08 02:43:01
++decorator, module-data 108: +0 "src\GGData\GGData.py" kii 21/09/08 02:43:01
 	get only affected since last request names
 
-!decorator, optimize 109: +0 "" ki 21/09/08 21:13:58
+!decorator, optimize 109: +0 "" kii 21/09/08 21:13:58
 	obsolete
 
 +clean 110: +0 "src\GGData\GGData.py" kii 21/09/07 22:45:38
 	use namedRef
 
--decorator, optimize 111: +0 "src\GGData\GGData.py" ki 21/09/08 02:15:26
-	dramatically slow
+-mark, optimize 111: +0 "src\GGData\Geoblock.py" ki 21/09/12 18:27:51
+	dramatically slow apply
 
- decorator, feature 112: +0 "src\Ui\Ui.py" ki 21/09/08 03:07:04
-	complex Decorator
+=mark, feature 112: +0 "src\GGData\GGData.py" ki 21/09/12 18:26:55
+	complex mark
 
-=scene, module-ui, ux 113: +0 "src\GGData\GGData.py" ki 21/09/08 19:02:05
-	assignable layer decorator marks holding control data
+=scene, module-ui, ux 113: +0 "src\GGData\Scene.py" ki 21/09/12 18:21:41
+	assignable layer marks holding control data
 
-=module-ui, fix 114: +0 "src\Ui\AppWindow.py" ki 21/09/08 13:42:53
+=module-ui, fix 114: +0 "src\Ui\AppWindow.py" kii 21/09/08 13:42:53
 	change vis for select-all case
 
- ux 115: -1 "src\Ui\Ui.py" ki 21/09/08 18:41:16
+ ux 115: -1 "src\Ui\Ui.py" kii 21/09/08 18:41:16
 	allow to choose style by commandline
 
-=ux, module-ui 116: +0 "src\Ui\Ui.py" ki 21/09/08 18:41:48
+=ux, module-ui 116: +0 "src\Ui\Ui.py" kii 21/09/08 18:41:48
 	choose style in app settings
 
-=ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/09/08 18:42:04
+=ux, module-ui 117: +0 "src\Ui\Ui.py" kii 21/09/08 18:42:04
 	add app settings
 
--refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" ki 21/09/09 21:26:33
+-refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" kii 21/09/09 21:26:33
 	clean for minor import
 
--refactor, module-ui, module-data 119: +0 "src\Ui\Ui.py" ki 21/09/09 21:27:02
+-refactor, module-ui, module-data 119: +0 "src\Ui\Ui.py" kii 21/09/09 21:27:02
 	clean for dispatch
 
- refactor, module-ui, module-data 120: +0 "src\Ui\Ui.py" ki 21/09/09 21:27:41
+ refactor, module-ui, module-data 120: +0 "src\Ui\Ui.py" kii 21/09/09 21:27:41
 	clean, previous size
 
-+module-data, fix 121: +0 "src\GGen\GGen.py" ki 21/09/09 22:20:25
++module-data, fix 121: +0 "src\GGen\GGen.py" kii 21/09/09 22:20:25
 	go to .items() for ElementTree
 
