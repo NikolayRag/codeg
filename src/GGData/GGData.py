@@ -19,16 +19,16 @@ from .Geoblock import *
 
 class GGData():
 	scene = None
-	staticMark = []
+	staticMarks = []
 
 
 	def __init__(self):
-		self.staticMark = []
+		self.staticMarks = []
 
 
 
 	def newScene(self):
-		self.scene = Scene(self.staticMark)
+		self.scene = Scene(self.staticMarks)
 
 
 
@@ -83,7 +83,7 @@ class GGData():
 		cDec = Geomark(_tags, _priority)
 
 		if persistent:
-			self.staticMark.append(cDec)
+			self.staticMarks.append(cDec)
 
 		if self.scene:
 			self.scene.markAdd(cDec)
