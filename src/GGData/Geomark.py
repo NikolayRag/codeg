@@ -1,4 +1,5 @@
 # Scene element marks class
+# =todo 112 (mark, feature) +0: complex mark
 
 class Geomark():
 

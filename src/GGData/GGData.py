@@ -1,6 +1,6 @@
 # =todo 90 (ux, module-ui, fix) +0: respect units - both svg and device
 
-# =todo 11 (spec, module-data) +0: read/save own format
+# =todo 11 (spec, module-data) +0: read/save scene format
 
 #  todo 18 (spec, module-dispatch) +0: standalone dispatcher codegg
 #  todo 19 (spec, module-dispatch) +0: send to codegg
@@ -15,7 +15,6 @@ from .Geomark import *
 from .Geoblock import *
 
 
-# =todo 112 (mark, feature) +0: complex mark
 
 class GGData():
 	scene = None

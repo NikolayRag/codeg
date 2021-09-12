@@ -28,8 +28,8 @@
 !spec, module-data 10: +0 "" kii 21/09/08 21:55:55
 	dup
 
-=spec, module-data 11: +0 "src\GGData\GGData.py" kii 21/09/08 22:03:53
-	read/save own format
+=spec, module-data 11: +0 "src\GGData\GGData.py" ki 21/09/12 18:39:07
+	read/save scene format
 
 +spec, module-ui 12: +1 "src\__main__w.py" kii 21/07/31 02:59:35
 	show scene
