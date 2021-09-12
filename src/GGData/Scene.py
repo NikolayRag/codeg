@@ -8,42 +8,42 @@
 
 class Scene():
 	geoList = None
-	decList = None
+	markList = None
 
 
 
-	def __init__(self, _defDecs=[]):
+	def __init__(self, _defaultMarks=[]):
 		self.geoList = []
-		self.decList = []
+		self.markList = []
 
 
-		for cDec in _defDecs:
-			cDec.reset()
+		for cMark in _defaultMarks:
+			cMark.reset()
 
-			self.markAdd(cDec)
+			self.markAdd(cMark)
 
 
 
 	def markReapply(self):
 		toMark = self.marksOrder(self.geoList[0].names())
 		for cName in toMark:
-			for cDec in toMark[cName]:
-				self.geoList[0].setTags(cName, cDec.tags)
+			for cMark in toMark[cName]:
+				self.geoList[0].setTags(cName, cMark.tags)
 
 
 
-	def markAdd(self, _newDec):
-		decList = self.decList + [_newDec]
-		levels = sorted(set( [cDec.priority for cDec in decList] ))
+	def markAdd(self, _newMark):
+		marksA = self.markList + [_newMark]
+		levels = sorted(set( [cMark.priority for cMark in marksA] ))
 
-		newDecSorted = []
+		markSortedA = []
 
 		for cLev in levels:
-			for d in decList:
+			for d in marksA:
 				if d.priority==cLev:
-					newDecSorted.append(d)
+					markSortedA.append(d)
 
-		self.decList = newDecSorted
+		self.markList = markSortedA
 
 
 
@@ -51,29 +51,29 @@ class Scene():
 	def marksOrder(self, _namesLimit):
 		upNames = []
 
-		for cDec in self.decList:
-			upNames += cDec.updatedA
+		for cMark in self.markList:
+			upNames += cMark.updatedA
 
-			cDec.cdown()
+			cMark.cdown()
 
 
-		outDec = {}
+		outMark = {}
 
 		for cName in set(upNames).intersection(_namesLimit):
-			decList = []
+			marksA = []
 			updated = False
 
-			for cDec in self.decList:
-				if cName in cDec.assigned:
-					decList.append(cDec)
+			for cMark in self.markList:
+				if cName in cMark.assigned:
+					marksA.append(cMark)
 
 					updated = True
 
 			if updated:
-				outDec[cName] = decList
+				outMark[cName] = marksA
 
 
-		return outDec
+		return outMark
 
 
 ### GEO ###

@@ -80,27 +80,27 @@ class GGData():
 
 
 	def markNew(self, _tags, _priority=0, persistent=False):
-		cDec = Geomark(_tags, _priority)
+		cMark = Geomark(_tags, _priority)
 
 		if persistent:
-			self.staticMarks.append(cDec)
+			self.staticMarks.append(cMark)
 
 		if self.scene:
-			self.scene.markAdd(cDec)
+			self.scene.markAdd(cMark)
 
-		return cDec
+		return cMark
 
 
 
-	def markApply(self, _dec, _elA, add=None):
+	def markApply(self, _mark, _elA, add=None):
 		if add==None:
-			_dec.assign(_elA)
+			_mark.assign(_elA)
 
 		elif add:
-			_dec.add(_elA)
+			_mark.add(_elA)
 
 		else:
-			_dec.sub(_elA)
+			_mark.sub(_elA)
 
 
 		self.scene and self.scene.markReapply()
