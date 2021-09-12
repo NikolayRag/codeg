@@ -11,7 +11,7 @@
 
 from GGen import *
 from .Scene import *
-from .Decorator import *
+from .Geomark import *
 from .Geoblock import *
 
 
@@ -79,13 +79,13 @@ class GGData():
 
 
 	def decorNew(self, _tags, _priority=0, persistent=False):
-		cDec = Decorator(_tags, _priority)
+		cDec = Geomark(_tags, _priority)
 
 		if persistent:
 			self.staticDecor.append(cDec)
 
 		if self.scene:
-			self.scene.decoratorAdd(cDec)
+			self.scene.markAdd(cDec)
 
 		return cDec
 
@@ -102,4 +102,4 @@ class GGData():
 			_dec.sub(_elA)
 
 
-		self.scene and self.scene.decoratorReapply()
+		self.scene and self.scene.markReapply()

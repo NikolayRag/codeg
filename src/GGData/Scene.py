@@ -1,5 +1,5 @@
 # =todo 9 (scene, spec, module-data) +1: operate project data
-# =todo 113 (scene, module-ui, ux) +0: assignable layer decorator marks holding control data
+# =todo 113 (scene, module-ui, ux) +0: assignable layer marks holding control data
 # =todo 93 (scene, feature) +0: store scene layer and layout state
 #  todo 92 (feature) +0: multiple sources scene
 
@@ -20,19 +20,19 @@ class Scene():
 		for cDec in _defDecs:
 			cDec.reset()
 
-			self.decoratorAdd(cDec)
+			self.markAdd(cDec)
 
 
 
-	def decoratorReapply(self):
-		toDecorate = self.decoratorsOrder(self.geoList[0].names())
+	def markReapply(self):
+		toDecorate = self.marksOrder(self.geoList[0].names())
 		for cName in toDecorate:
 			for cDec in toDecorate[cName]:
 				self.geoList[0].setTags(cName, cDec.tags)
 
 
 
-	def decoratorAdd(self, _newDec):
+	def markAdd(self, _newDec):
 		decList = self.decList + [_newDec]
 		levels = sorted(set( [cDec.priority for cDec in decList] ))
 
@@ -47,8 +47,8 @@ class Scene():
 
 
 
-# Get {name:(decorator,)} array, sorted by decorators priority
-	def decoratorsOrder(self, _namesLimit):
+# Get {name:(mark,)} array, sorted by marks priority
+	def marksOrder(self, _namesLimit):
 		upNames = []
 
 		for cDec in self.decList:

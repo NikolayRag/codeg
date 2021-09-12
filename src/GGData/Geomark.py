@@ -1,6 +1,6 @@
 # Scene element marks class
 
-class Decorator():
+class Geomark():
 
 	def __init__(self, _tags, _priority=0):
 		self.tags = _tags
