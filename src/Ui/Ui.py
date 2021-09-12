@@ -108,19 +108,19 @@ class Ui():
 
 
 #  todo 112 (decorator, feature) +0: complex Decorator
-		self.decorDefault = self.data.decorNew(
+		self.markDefault = self.data.markNew(
 			self.styleSVG[self.styleSet]['default'], -1,
 			persistent=True
 		)
-		self.decorOff = self.data.decorNew(
+		self.markOff = self.data.markNew(
 			self.styleSVG[self.styleSet]['off'], 0,
 			persistent=True
 		)
-		self.decorSelect = self.data.decorNew(
+		self.markSelect = self.data.markNew(
 			self.styleSVG[self.styleSet]['select'], 1,
 			persistent=True
 		)
-		self.decorHover = self.data.decorNew(
+		self.markHover = self.data.markNew(
 			self.styleSVG[self.styleSet]['hover'], 2,
 			persistent=True
 		)
@@ -169,7 +169,7 @@ class Ui():
 
 		self.data.newScene()
 		cMeta = self.data.loadGeo(fileName, 'svg')
-		self.data.decorApply(self.decorDefault, cMeta.keys())
+		self.data.markApply(self.markDefault, cMeta.keys())
 
 		cXml = self.data.getXML()
 		if cXml:
@@ -206,7 +206,7 @@ class Ui():
 
 #  todo 98 (module-ui, optimize) -1: prevent doubling by difference change
 	def layerSetSelect(self, _selectionA):
-		self.data.decorApply(self.decorSelect, _selectionA)
+		self.data.markApply(self.markSelect, _selectionA)
 
 		self.reloadXml()
 
@@ -214,14 +214,14 @@ class Ui():
 
 #  todo 77 (fix, module-ui, viewport) +0: duplicate hover element topmost
 	def layerSetHover(self, _hover):
-		self.data.decorApply(self.decorHover, [_hover] if _hover else [])
+		self.data.markApply(self.markHover, [_hover] if _hover else [])
 
 		self.reloadXml()
 
 
 
 	def ctrlLayersSet(self, _elA, _on):
-		self.data.decorApply(self.decorOff, _elA, not _on)
+		self.data.markApply(self.markOff, _elA, not _on)
 
 		self.reloadXml()
 

@@ -25,9 +25,9 @@ class Scene():
 
 
 	def markReapply(self):
-		toDecorate = self.marksOrder(self.geoList[0].names())
-		for cName in toDecorate:
-			for cDec in toDecorate[cName]:
+		toMark = self.marksOrder(self.geoList[0].names())
+		for cName in toMark:
+			for cDec in toMark[cName]:
 				self.geoList[0].setTags(cName, cDec.tags)
 
 

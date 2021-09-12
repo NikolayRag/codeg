@@ -18,16 +18,16 @@ from .Geoblock import *
 
 class GGData():
 	scene = None
-	staticDecor = []
+	staticMark = []
 
 
 	def __init__(self):
-		self.staticDecor = []
+		self.staticMark = []
 
 
 
 	def newScene(self):
-		self.scene = Scene(self.staticDecor)
+		self.scene = Scene(self.staticMark)
 
 
 
@@ -78,11 +78,11 @@ class GGData():
 
 
 
-	def decorNew(self, _tags, _priority=0, persistent=False):
+	def markNew(self, _tags, _priority=0, persistent=False):
 		cDec = Geomark(_tags, _priority)
 
 		if persistent:
-			self.staticDecor.append(cDec)
+			self.staticMark.append(cDec)
 
 		if self.scene:
 			self.scene.markAdd(cDec)
@@ -91,7 +91,7 @@ class GGData():
 
 
 
-	def decorApply(self, _dec, _elA, add=None):
+	def markApply(self, _dec, _elA, add=None):
 		if add==None:
 			_dec.assign(_elA)
 
