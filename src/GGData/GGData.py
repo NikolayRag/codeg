@@ -102,4 +102,4 @@ class GGData():
 			_mark.sub(_elA)
 
 
-		self.scene and self.scene.markReapply()
+		self.scene and self.scene.marksReapply()

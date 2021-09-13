@@ -24,7 +24,7 @@ class Scene():
 
 
 
-	def markReapply(self):
+	def marksReapply(self):
 		toMark = self.marksOrder(self.geoList[0].names())
 		for cName in toMark:
 			for cMark in toMark[cName]:
