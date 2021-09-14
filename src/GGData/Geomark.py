@@ -12,6 +12,7 @@ Filter roadpoint is one of several known origins:
 
 
 # =todo 112 (mark, feature) +0: complex mark
+# =todo 124 (filter, module-data) +0: make set svg tag as system filter
 
 class Geomark():
 

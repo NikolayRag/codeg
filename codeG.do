@@ -346,3 +346,6 @@
 +module-data, fix 121: +0 "src\GGen\GGen.py" kii 21/09/09 22:20:25
 	go to .items() for ElementTree
 
+=filter, module-data 124: +0 "src\GGData\Geomark.py" ki 21/09/13 01:19:14
+	make set svg tag as system filter
+
