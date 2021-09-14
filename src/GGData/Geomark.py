@@ -1,13 +1,38 @@
-# Scene element marks class
+'''
+Filter container class
+Holds filter function, filter roadpoint and supply data to be applied
+to object layer
+
+Filter roadpoint is one of several known origins:
+- at creation/load
+- at user explicit action
+- at output
+'''
+
+
+
 # =todo 112 (mark, feature) +0: complex mark
 
 class Geomark():
 
-	def __init__(self, _tags, _priority=0):
-		self.tags = _tags
+	FORNEW = 10
+	FOREXPLICIT = 20
+	FOROUT = 30
+
+	filtersDict = None
+
+
+
+	def __init__(self, _data, _priority=0, filters=None):
+		self.tags = _data
 		self.priority = _priority
 		self.assigned = []
 		self.updatedA = []
+
+
+		for cFilt in filters:
+			if cFilt in (FORNEW, FOREXPLICIT, FOROUT):
+				self.filtersDict = filters[cFilt]
 
 
 
