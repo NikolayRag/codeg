@@ -11,12 +11,16 @@
 
 from GGen import *
 from .Scene import *
+from .Geofilter import *
 from .Geomark import *
 from .Geoblock import *
 
 
 
 class GGData():
+	prefilterSVGTags = 1
+
+
 	scene = None
 	staticMarks = []
 

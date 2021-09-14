@@ -24,8 +24,7 @@ class Geomark():
 
 
 
-	def __init__(self, _data, _priority=0, filters=None):
-		self.tags = _data
+	def __init__(self, _data, _priority=0, filters={}):
 		self.priority = _priority
 		self.assigned = []
 		self.updatedA = []
@@ -34,6 +33,8 @@ class Geomark():
 		for cFilt in filters:
 			if cFilt in (FORNEW, FOREXPLICIT, FOROUT):
 				self.filtersDict = filters[cFilt]
+
+		self.tags = _data
 
 
 
