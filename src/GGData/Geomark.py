@@ -26,8 +26,7 @@ class Geomark():
 
 	def __init__(self, _data, _priority=0, filters={}):
 		self.priority = _priority
-		self.assigned = []
-		self.updatedA = []
+		self.reset()
 
 
 		for cFilt in filters:
