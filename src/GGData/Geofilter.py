@@ -3,17 +3,13 @@ Applied to Geoblock by Geomark,
 '''
 
 class Geofilter():
-	filterCB = None
+	def __init__(self):
+		self.isSystem = True
 
 
-
-	def __init__(self, _filterCB):
-		self.filterCB = _filterCB
-
-
-
-	def filtered(self, _geo):
-		return filterCB(_geo) if filterCB else _geo
+	# return False, new geo, or True if provided geo is modified
+	def proccess(self, _geo, _data):
+		return False
 
 
 
@@ -21,14 +17,10 @@ class Geofilter():
 
 class FilterSetSVG(Geofilter):
 
-	def __init__(self, _filterCB):
-		Geofilter.__init__(self, _filterCB)
-
-
-
 # -todo 111 (mark, optimize) +0: dramatically slow apply
-	def setTags(self, _name, _tags):
-		cEl = self.geoNamed[_name]
+	def proccess(self, _geo, _data):
+		for cTag in _data:
+			_geo.set(cTag, _data[cTag])
 
-		for cTag in _tags:
-			cEl.set(cTag, _tags[cTag])
+
+		return True
