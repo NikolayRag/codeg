@@ -32,16 +32,15 @@ class GGData():
 
 
 	scene = None
-	staticMarks = []
 
 
 	def __init__(self):
-		self.staticMarks = []
+		None
 
 
 
 	def newScene(self):
-		self.scene = Scene(self.staticMarks)
+		self.scene = Scene()
 
 
 
@@ -92,17 +91,13 @@ class GGData():
 
 
 
-	def markNew(self, _tags, _priority=0, persistent=False):
+	def markNew(self, _tags, _priority=0):
 		filterProc = FilterSetSVG()
 		filterAt = 'UI'
 
-		cMark = Geomark(_tags, _priority, filterProc, filterAt)
+		return Geomark(_tags, _priority, filterProc, filterAt)
 
 
-		if persistent:
-			self.staticMarks.append(cMark)
-
-		return cMark
 
 
 

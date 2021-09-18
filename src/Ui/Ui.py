@@ -108,21 +108,13 @@ class Ui():
 
 
 		self.markDefault = self.data.markNew(
-			self.styleSVG[self.styleSet]['default'], -1,
-			persistent=True
-		)
+			self.styleSVG[self.styleSet]['default'], -1)
 		self.markOff = self.data.markNew(
-			self.styleSVG[self.styleSet]['off'], 0,
-			persistent=True
-		)
+			self.styleSVG[self.styleSet]['off'], 0)
 		self.markSelect = self.data.markNew(
-			self.styleSVG[self.styleSet]['select'], 1,
-			persistent=True
-		)
+			self.styleSVG[self.styleSet]['select'], 1)
 		self.markHover = self.data.markNew(
-			self.styleSVG[self.styleSet]['hover'], 2,
-			persistent=True
-		)
+			self.styleSVG[self.styleSet]['hover'], 2)
 
 
 

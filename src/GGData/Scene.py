@@ -13,11 +13,11 @@ class Scene():
 
 
 
-	def __init__(self, _defaultMarks=[]):
+	def __init__(self):
 		self.geoList = []
 
 
-		for cMark in _defaultMarks:
+		for cMark in Geomark.allMarks:
 			cMark.reset(True)
 
 
