@@ -168,7 +168,7 @@ class Ui():
 
 		self.data.newScene()
 		cMeta = self.data.loadGeo(fileName, 'svg')
-		self.data.markApply(self.markDefault, cMeta.keys())
+		self.data.markApply(self.markDefault, cMeta.keys(), at=self.data.FILTERATUI)
 
 		cXml = self.data.getXML()
 		if cXml:
@@ -205,7 +205,7 @@ class Ui():
 
 #  todo 98 (module-ui, optimize) -1: prevent doubling by difference change
 	def layerSetSelect(self, _selectionA):
-		self.data.markApply(self.markSelect, _selectionA)
+		self.data.markApply(self.markSelect, _selectionA, at=self.data.FILTERATUI)
 
 		self.reloadXml()
 
@@ -213,14 +213,14 @@ class Ui():
 
 #  todo 77 (fix, module-ui, viewport) +0: duplicate hover element topmost
 	def layerSetHover(self, _hover):
-		self.data.markApply(self.markHover, [_hover] if _hover else [])
+		self.data.markApply(self.markHover, [_hover] if _hover else [], at=self.data.FILTERATUI)
 
 		self.reloadXml()
 
 
 
 	def ctrlLayersSet(self, _elA, _on):
-		self.data.markApply(self.markOff, _elA, not _on)
+		self.data.markApply(self.markOff, _elA, add=(not _on), at=self.data.FILTERATUI)
 
 		self.reloadXml()
 
