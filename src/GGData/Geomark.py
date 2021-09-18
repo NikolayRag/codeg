@@ -18,7 +18,6 @@ class Geomark():
 
 	markData = None
 	markFilter = None
-
 	markAt = 0
 	priority = 0
 
@@ -63,10 +62,10 @@ class Geomark():
 
 	def __init__(self, _data, _priority=0, _filter=None, _at=None):
 		self.markData = _data
-		self.priority = _priority
-
 		self.markFilter = _filter
 		self.markAt = _at
+
+		self.priority = _priority
 
 
 		self.reset(True)

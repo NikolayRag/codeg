@@ -1,5 +1,6 @@
 '''
-Applied to Geoblock by Geomark, 
+Object proccessing functions.
+Applied to provided goemetry with provided data
 '''
 
 class Geofilter():
