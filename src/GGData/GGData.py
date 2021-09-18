@@ -9,6 +9,16 @@
 
 #  todo 105 (module-data, filter, API) +0: add geo Filter class
 
+'''
+GGData
+* Scene
+  * Geoblock
+  * Geomark
+    * GeoFilter
+
+'''
+
+
 from GGen import *
 from .Scene import *
 from .Geofilter import *
