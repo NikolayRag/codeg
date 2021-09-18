@@ -41,8 +41,8 @@ class Scene():
 
 
 
-	def marksReapply(self):
-		toMark = self.marksOrder(self.geoList[0].names())
+	def marksReapply(self, level=0):
+		toMark = self.marksOrder(self.geoList[0].names(), level)
 		for cName in toMark:
 			for cMark in toMark[cName]:
 				self.geoList[0].setTags(cName, cMark.tags)
@@ -50,10 +50,13 @@ class Scene():
 
 
 # Get {name:(mark,)} array, sorted by marks priority
-	def marksOrder(self, _namesLimit):
+	def marksOrder(self, _namesLimit, _level):
 		upNames = []
 
 		for cMark in self.markList:
+			if _level != cMark.level:
+				continue
+				
 			upNames += cMark.updatedList
 
 			cMark.reset()

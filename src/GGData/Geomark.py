@@ -23,6 +23,9 @@ class Geomark():
 	filtersDict = None
 
 
+	level = 0
+
+
 	assignedList = []
 	updatedList = []
 
