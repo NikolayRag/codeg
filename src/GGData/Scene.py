@@ -26,14 +26,6 @@ class Scene():
 ### MARKS ###
 
 
-	def marksReapply(self):
-		toMark = self.marksOrder(self.geoList[0].names())
-		for cName in toMark:
-			for cMark in toMark[cName]:
-				self.geoList[0].setTags(cName, cMark.tags)
-
-
-
 	def markAdd(self, _newMark):
 		marksA = self.markList + [_newMark]
 		levels = sorted(set( [cMark.priority for cMark in marksA] ))
@@ -46,6 +38,14 @@ class Scene():
 					markSortedA.append(d)
 
 		self.markList = markSortedA
+
+
+
+	def marksReapply(self):
+		toMark = self.marksOrder(self.geoList[0].names())
+		for cName in toMark:
+			for cMark in toMark[cName]:
+				self.geoList[0].setTags(cName, cMark.tags)
 
 
 
