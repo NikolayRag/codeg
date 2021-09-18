@@ -18,10 +18,12 @@ class Geoblock():
 
 	geoXML = None
 	geoNamed = None
+	namespace = ''
 
 
 
 	def __init__(self, _source, _type):
+		self.namespace = _source
 		self.geoXML = XML.parse(_source)
 		self.geoNamed = {}
 
