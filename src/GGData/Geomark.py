@@ -27,14 +27,16 @@ class Geomark():
 	updatedList = []
 
 
-	def __init__(self, _data, _priority=0, _filter=None, _at=0):
+	def __init__(self, _data, _priority=0, _filter=None, _at=None):
 		self.markData = _data
 		self.priority = _priority
-		self.reset(True)
-
 
 		self.markFilter = _filter
 		self.markAt = _at
+
+
+		self.reset(True)
+
 
 
 	def reset(self, _hard=False):

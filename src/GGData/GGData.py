@@ -28,9 +28,6 @@ from .Geoblock import *
 
 
 class GGData():
-	FILTERATUI = 20
-
-
 	prefilterSVGTags = 1
 
 
@@ -97,7 +94,7 @@ class GGData():
 
 	def markNew(self, _tags, _priority=0, persistent=False):
 		filterProc = FilterSetSVG()
-		filterAt = self.FILTERATUI
+		filterAt = 'UI'
 
 		cMark = Geomark(_tags, _priority, filterProc, filterAt)
 
