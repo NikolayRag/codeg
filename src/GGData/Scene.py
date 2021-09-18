@@ -17,10 +17,6 @@ class Scene():
 		self.geoList = []
 
 
-		for cMark in Geomark.allMarks:
-			cMark.reset(True)
-
-
 
 ### MARKS ###
 

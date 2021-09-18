@@ -42,6 +42,10 @@ class GGData():
 	def newScene(self):
 		self.scene = Scene()
 
+		for cMark in Geomark.allMarks:
+			cMark.reset(True)
+
+
 
 
 # -todo 84 (module-data) +0: make file load (save) plugin system
