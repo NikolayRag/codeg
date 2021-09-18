@@ -102,9 +102,6 @@ class GGData():
 		if persistent:
 			self.staticMarks.append(cMark)
 
-		if self.scene:
-			self.scene.markAdd(cMark)
-
 		return cMark
 
 

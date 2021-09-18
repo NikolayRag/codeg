@@ -15,6 +15,8 @@ Filter roadpoint is one of several known origins:
 # =todo 124 (filter, module-data) +0: make set svg tag as system filter
 
 class Geomark():
+	allMarks = []
+
 
 	markData = None
 	markFilter = None
@@ -27,11 +29,26 @@ class Geomark():
 
 
 
+	def add(_newMark):
+		marksA = Geomark.allMarks + [_newMark]
+		levels = sorted(set( [cMark.priority for cMark in marksA] ))
+
+		markSortedA = []
+
+		for cLev in levels:
+			for d in marksA:
+				if d.priority==cLev:
+					markSortedA.append(d)
+
+		Geomark.allMarks = markSortedA
+
+
+		
 # Get {name:(mark,)} array, sorted by marks priority
-	def getOrdered(_markList, _namesLimit, _at):
+	def getOrdered(_namesLimit, _at):
 		upNames = []
 
-		for cMark in _markList:
+		for cMark in Geomark.allMarks:
 			if _at != cMark.markAt:
 				continue
 
@@ -46,7 +63,7 @@ class Geomark():
 			marksA = []
 			updated = False
 
-			for cMark in _markList:
+			for cMark in Geomark.allMarks:
 				if cName in cMark.assignedList:
 					marksA.append(cMark)
 
@@ -69,6 +86,9 @@ class Geomark():
 
 
 		self.reset(True)
+
+
+		Geomark.add(self)
 
 
 
