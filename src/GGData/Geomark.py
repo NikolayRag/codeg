@@ -27,6 +27,40 @@ class Geomark():
 	updatedList = []
 
 
+
+# Get {name:(mark,)} array, sorted by marks priority
+	def getOrdered(_markList, _namesLimit, _at):
+		upNames = []
+
+		for cMark in _markList:
+			if _at != cMark.markAt:
+				continue
+
+			upNames += cMark.updatedList
+
+			cMark.reset()
+
+
+		outMark = {}
+
+		for cName in set(upNames).intersection(_namesLimit):
+			marksA = []
+			updated = False
+
+			for cMark in _markList:
+				if cName in cMark.assignedList:
+					marksA.append(cMark)
+
+					updated = True
+
+			if updated:
+				outMark[cName] = marksA
+
+
+		return outMark
+
+
+
 	def __init__(self, _data, _priority=0, _filter=None, _at=None):
 		self.markData = _data
 		self.priority = _priority

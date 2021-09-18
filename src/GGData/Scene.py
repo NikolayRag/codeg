@@ -4,6 +4,8 @@
 #  todo 92 (feature) +0: multiple sources scene
 
 
+from .Geomark import *
+
 
 
 class Scene():
@@ -43,43 +45,10 @@ class Scene():
 
 # -todo 111 (mark, optimize) +0: dramatically slow apply
 	def marksReapply(self, _at):
-		toMarksA = self.marksOrder(self.geoList[0].names(), _at)
+		toMarksA = Geomark.getOrdered(self.markList, self.geoList[0].names(), _at)
 		for cName in toMarksA:
 			for cMark in toMarksA[cName]:
 				cMark.applyFilter(self.geoList[0].geo(cName))
-
-
-
-# Get {name:(mark,)} array, sorted by marks priority
-	def marksOrder(self, _namesLimit, _at):
-		upNames = []
-
-		for cMark in self.markList:
-			if _at != cMark.markAt:
-				continue
-
-			upNames += cMark.updatedList
-
-			cMark.reset()
-
-
-		outMark = {}
-
-		for cName in set(upNames).intersection(_namesLimit):
-			marksA = []
-			updated = False
-
-			for cMark in self.markList:
-				if cName in cMark.assignedList:
-					marksA.append(cMark)
-
-					updated = True
-
-			if updated:
-				outMark[cName] = marksA
-
-
-		return outMark
 
 
 ### GEO ###
