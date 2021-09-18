@@ -23,10 +23,13 @@ class Geomark():
 	filtersDict = None
 
 
+	assignedList = []
+	updatedList = []
+
 
 	def __init__(self, _data, _priority=0, filters={}):
 		self.priority = _priority
-		self.reset()
+		self.reset(True)
 
 
 		for cFilt in filters:
@@ -37,33 +40,16 @@ class Geomark():
 
 
 
-	def reset(self):
-		self.assigned = []
-		self.updatedA = []
+	def reset(self, _hard=False):
+		self.updatedList = []
+
+		if _hard:
+			self.assignedList = []
 
 
 
-	def assign(self, _namesA):
-		self.wup( list(_namesA) )
+	def assignGeo(self, _namesA):
+		_namesA = list(_namesA)
 
-
-
-	def add(self, _namesA):
-		self.wup( list(set(self.assigned + _namesA)) )
-
-
-
-	def sub(self, _namesA):
-		self.wup( list(set(self.assigned).difference(_namesA)) )
-
-
-
-	def wup(self, _namesA):
-		self.updatedA += list( set(self.assigned).symmetric_difference(_namesA) )
-		self.assigned = _namesA
-
-
-
-	def cdown(self):
-		self.updatedA = []
-
+		self.updatedList += list( set(self.assignedList).symmetric_difference(_namesA) )
+		self.assignedList = _namesA

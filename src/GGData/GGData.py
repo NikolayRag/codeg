@@ -95,15 +95,16 @@ class GGData():
 
 
 
+	# add: None to reset, True/False to add/sub
 	def markApply(self, _mark, _elA, add=None):
 		if add==None:
-			_mark.assign(_elA)
+			_mark.assignGeo( _elA )
 
 		elif add:
-			_mark.add(_elA)
+			_mark.assignGeo( set(_mark.assignedList + _elA) )
 
 		else:
-			_mark.sub(_elA)
+			_mark.assignGeo( set(_mark.assignedList).difference(_elA) )
 
 
 		self.scene and self.scene.marksReapply()

@@ -18,10 +18,12 @@ class Scene():
 
 
 		for cMark in _defaultMarks:
-			cMark.reset()
+			cMark.reset(True)
 
 			self.markAdd(cMark)
 
+
+### MARKS ###
 
 
 	def marksReapply(self):
@@ -52,9 +54,9 @@ class Scene():
 		upNames = []
 
 		for cMark in self.markList:
-			upNames += cMark.updatedA
+			upNames += cMark.updatedList
 
-			cMark.cdown()
+			cMark.reset()
 
 
 		outMark = {}
@@ -64,7 +66,7 @@ class Scene():
 			updated = False
 
 			for cMark in self.markList:
-				if cName in cMark.assigned:
+				if cName in cMark.assignedList:
 					marksA.append(cMark)
 
 					updated = True
