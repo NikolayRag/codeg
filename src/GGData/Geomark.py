@@ -26,6 +26,7 @@ class Geomark():
 	markLevel = 0
 	priority = 0
 
+#  todo 126 (mark, optimize) +0: chage to {geo:state} dict
 	assignedList = []
 	updatedList = []
 

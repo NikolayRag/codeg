@@ -54,7 +54,7 @@ class Geoblock():
 
 
 
-# -todo 111 (mark, optimize) +0: dramatically slow apply
+# -todo 111 (mark, optimize) +0: dramatically slow mark reapply
 	def geo(self, _name):
 		return self.geoNamed[_name]
 

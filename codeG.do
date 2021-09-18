@@ -313,8 +313,8 @@
 +clean 110: +0 "src\GGData\GGData.py" kii 21/09/07 22:45:38
 	use namedRef
 
--mark, optimize 111: +0 "src\GGData\Geoblock.py" ki 21/09/12 18:27:51
-	dramatically slow apply
+-mark, optimize 111: +0 "src\GGData\Geoblock.py" ki 21/09/18 05:41:53
+	dramatically slow mark reapply
 
 =mark, feature 112: +0 "src\GGData\GGData.py" ki 21/09/12 18:26:55
 	complex mark
@@ -348,4 +348,7 @@
 
 =filter, module-data 124: +0 "src\GGData\Geomark.py" ki 21/09/13 01:19:14
 	make set svg tag as system filter
+
+ mark, optimize 126: +0 "src\GGData\Geomark.py" ki 21/09/18 04:41:34
+	chage to {geo:state} dict
 
