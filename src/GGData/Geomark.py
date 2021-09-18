@@ -23,6 +23,7 @@ class Geomark():
 	markAt = 0
 	priority = 0
 
+# -todo 127 (mark, optimize, decide) +10: Move marks assignment to Geoblock WTF?!
 #  todo 126 (mark, optimize) +0: chage to {geo:state} dict
 	assignedList = []
 	updatedList = []

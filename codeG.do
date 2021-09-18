@@ -349,6 +349,12 @@
 =filter, module-data 124: +0 "src\GGData\Geomark.py" ki 21/09/13 01:19:14
 	make set svg tag as system filter
 
- mark, optimize 126: +0 "src\GGData\Geomark.py" ki 21/09/18 04:41:34
+ mark, optimize 126: +0 "src\GGData\Geomark.py" ki 21/09/18 20:07:29
 	chage to {geo:state} dict
+
+-mark, optimize, decide 127: +10 "src\GGData\Geomark.py" ki 21/09/18 20:09:03
+	Move marks assignment to Geoblock WTF?!
+
+-mark, optimize, decide 128: +10 "src\GGData\Geoblock.py" ki 21/09/18 20:29:13
+	Move marks assignment to geo dict WTF?!
 
