@@ -19,6 +19,7 @@ class Geomark():
 	FORNEW = 10
 	FOREXPLICIT = 20
 	FOROUT = 30
+	markData = None
 	markFilter = None
 
 
@@ -30,11 +31,11 @@ class Geomark():
 
 
 	def __init__(self, _data, _priority=0, _filter=None):
+		self.markData = _data
 		self.priority = _priority
 		self.reset(True)
 
 
-		self.tags = _data
 		self.markFilter = _filter
 
 
@@ -52,3 +53,8 @@ class Geomark():
 
 		self.updatedList += list( set(self.assignedList).symmetric_difference(_namesA) )
 		self.assignedList = _namesA
+
+
+
+	def applyFilter(self, _geo):
+		self.markFilter.proccess(_geo, self.markData)

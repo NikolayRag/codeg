@@ -55,11 +55,9 @@ class Geoblock():
 
 
 # -todo 111 (mark, optimize) +0: dramatically slow apply
-	def setTags(self, _name, _tags):
-		cEl = self.geoNamed[_name]
+	def geo(self, _name):
+		return self.geoNamed[_name]
 
-		for cTag in _tags:
-			cEl.set(cTag, _tags[cTag])
 
 
 	def names(self):

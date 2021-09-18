@@ -42,10 +42,10 @@ class Scene():
 
 
 	def marksReapply(self, level=0):
-		toMark = self.marksOrder(self.geoList[0].names(), level)
-		for cName in toMark:
-			for cMark in toMark[cName]:
-				self.geoList[0].setTags(cName, cMark.tags)
+		toMarksA = self.marksOrder(self.geoList[0].names(), level)
+		for cName in toMarksA:
+			for cMark in toMarksA[cName]:
+				cMark.applyFilter(self.geoList[0].geo(cName))
 
 
 

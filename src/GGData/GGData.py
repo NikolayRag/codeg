@@ -83,7 +83,10 @@ class GGData():
 
 
 	def markNew(self, _tags, _priority=0, persistent=False):
-		cMark = Geomark(_tags, _priority)
+		filterProc = FilterSetSVG()
+
+		cMark = Geomark(_tags, _priority, filterProc)
+
 
 		if persistent:
 			self.staticMarks.append(cMark)
