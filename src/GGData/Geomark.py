@@ -1,5 +1,5 @@
 '''
-Filter container class
+Geometry applied set of data
 Holds filter function, filter roadpoint and supply data to be applied
 to object layer
 

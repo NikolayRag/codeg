@@ -98,7 +98,7 @@ class GGData():
 
 
 
-	# add: None to reset, True/False to add/sub
+	# add: True/False to add/sub, other to reset
 	def markApply(self, _mark, _elA, add=None):
 		if add==True:
 			_elA = set(_mark.assignedList + _elA)

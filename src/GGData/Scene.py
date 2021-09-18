@@ -56,7 +56,7 @@ class Scene():
 		for cMark in self.markList:
 			if _level != cMark.markLevel:
 				continue
-				
+
 			upNames += cMark.updatedList
 
 			cMark.reset()
