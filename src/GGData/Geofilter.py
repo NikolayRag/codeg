@@ -3,8 +3,20 @@ Applied to Geoblock by Geomark,
 '''
 
 class Geofilter():
+	allFilters = []
+
+
+
+	def list(system=False):
+		return [f for f in Geofilter.allFilters if f.isSystem==system]
+
+
+
 	def __init__(self):
 		self.isSystem = True
+
+		Geofilter.allFilters.append(self)
+
 
 
 	# return False, new geo, or True if provided geo is modified
