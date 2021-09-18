@@ -13,6 +13,7 @@ Filter roadpoint is one of several known origins:
 
 # =todo 112 (mark, feature) +0: complex mark
 # =todo 124 (filter, module-data) +0: make set svg tag as system filter
+#
 
 class Geomark():
 	allMarks = []
@@ -44,7 +45,7 @@ class Geomark():
 		Geomark.allMarks = markSortedA
 
 
-		
+
 # Get {name:(mark,)} array, sorted by marks priority
 	def getOrdered(_namesLimit, _at):
 		upNames = []
@@ -77,6 +78,8 @@ class Geomark():
 		return outMark
 
 
+
+### ###
 
 	def __init__(self, _data, _priority=0, _filter=None, _at=None):
 		self.markData = _data
