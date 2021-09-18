@@ -17,7 +17,6 @@ class Geofilter():
 
 class FilterSetSVG(Geofilter):
 
-# -todo 111 (mark, optimize) +0: dramatically slow apply
 	def proccess(self, _geo, _data):
 		for cTag in _data:
 			_geo.set(cTag, _data[cTag])
