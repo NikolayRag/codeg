@@ -19,27 +19,23 @@ class Geomark():
 	FORNEW = 10
 	FOREXPLICIT = 20
 	FOROUT = 30
+	markFilter = None
 
-	filtersDict = None
 
-
-	level = 0
-
+	markLevel = 0
+	priority = 0
 
 	assignedList = []
 	updatedList = []
 
 
-	def __init__(self, _data, _priority=0, filters={}):
+	def __init__(self, _data, _priority=0, _filter=None):
 		self.priority = _priority
 		self.reset(True)
 
 
-		for cFilt in filters:
-			if cFilt in (FORNEW, FOREXPLICIT, FOROUT):
-				self.filtersDict = filters[cFilt]
-
 		self.tags = _data
+		self.markFilter = _filter
 
 
 
