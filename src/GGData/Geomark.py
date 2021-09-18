@@ -16,12 +16,8 @@ Filter roadpoint is one of several known origins:
 
 class Geomark():
 
-	FORNEW = 10
-	FOREXPLICIT = 20
-	FOROUT = 30
 	markData = None
 	markFilter = None
-
 
 	markLevel = 0
 	priority = 0
