@@ -19,7 +19,7 @@ class Geomark():
 	markData = None
 	markFilter = None
 
-	markLevel = 0
+	markAt = 0
 	priority = 0
 
 #  todo 126 (mark, optimize) +0: chage to {geo:state} dict
@@ -27,14 +27,14 @@ class Geomark():
 	updatedList = []
 
 
-	def __init__(self, _data, _priority=0, _filter=None):
+	def __init__(self, _data, _priority=0, _filter=None, _at=0):
 		self.markData = _data
 		self.priority = _priority
 		self.reset(True)
 
 
 		self.markFilter = _filter
-
+		self.markAt = _at
 
 
 	def reset(self, _hard=False):

@@ -42,8 +42,8 @@ class Scene():
 
 
 # -todo 111 (mark, optimize) +0: dramatically slow apply
-	def marksReapply(self, level=0):
-		toMarksA = self.marksOrder(self.geoList[0].names(), level)
+	def marksReapply(self, _at):
+		toMarksA = self.marksOrder(self.geoList[0].names(), _at)
 		for cName in toMarksA:
 			for cMark in toMarksA[cName]:
 				cMark.applyFilter(self.geoList[0].geo(cName))
@@ -51,11 +51,11 @@ class Scene():
 
 
 # Get {name:(mark,)} array, sorted by marks priority
-	def marksOrder(self, _namesLimit, _level):
+	def marksOrder(self, _namesLimit, _at):
 		upNames = []
 
 		for cMark in self.markList:
-			if _level != cMark.markLevel:
+			if _at != cMark.markAt:
 				continue
 
 			upNames += cMark.updatedList
