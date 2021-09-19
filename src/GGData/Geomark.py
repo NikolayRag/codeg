@@ -19,11 +19,6 @@ class Geomark():
 	allMarks = []
 
 
-	markData = None
-	markFilter = None
-	markAt = 0
-	priority = 0
-
 # -todo 127 (mark, optimize, decide) +10: Move marks assignment to Geoblock WTF?!
 #  todo 126 (mark, optimize) +0: chage to {geo:state} dict
 	assignedList = []
@@ -80,6 +75,14 @@ class Geomark():
 
 
 ### ###
+
+# -todo 129 (mark) +0: store custom fields data list
+	markData = None
+	markFilter = None
+	markAt = 0
+	priority = 0
+
+
 
 	def __init__(self, _data, _priority=0, _filter=None, _at=None):
 		self.markData = _data
