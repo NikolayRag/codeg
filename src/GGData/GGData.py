@@ -83,7 +83,7 @@ class GGData():
 		)
 
 		def shapeInHook(_element, _point):
-		    return( "S100 G1" )
+			return( "S100 G1" )
 		cGG.set(shapeIn = shapeInHook)
 
 
