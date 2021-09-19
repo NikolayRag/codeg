@@ -95,11 +95,13 @@ class GGData():
 
 
 
-	def markNew(self, _tags, _priority=0):
-		filterProc = FilterSetSVG()
-		filterAt = 'UI'
+	def markNew(self, data=None, filterData=None, priority=0, filterAt=None):
+		filterProc = None
 
-		return Geomark(_tags, _priority, filterProc, filterAt)
+		if filterAt=='UI':
+			filterProc = FilterSetSVG(filterData)
+
+		return Geomark(data, priority, filterProc, filterAt)
 
 
 

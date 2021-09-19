@@ -7,14 +7,20 @@ class Geofilter():
 	allFilters = []
 
 
+	ownData = None
+
+
 
 	def list(system=False):
 		return [f for f in Geofilter.allFilters if f.isSystem==system]
 
 
 
-	def __init__(self):
+	def __init__(self, _data):
 		self.isSystem = True
+
+		self.ownData = _data
+
 
 		Geofilter.allFilters.append(self)
 
@@ -31,8 +37,8 @@ class Geofilter():
 class FilterSetSVG(Geofilter):
 
 	def proccess(self, _geo, _data):
-		for cTag in _data:
-			_geo.set(cTag, _data[cTag])
+		for cTag in self.ownData:
+			_geo.set(cTag, self.ownData[cTag])
 
 
 		return True
