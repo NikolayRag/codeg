@@ -358,3 +358,9 @@
 -mark, optimize, decide 128: +10 "src\GGData\Geoblock.py" ki 21/09/18 20:29:13
 	Move marks assignment to geo dict WTF?!
 
+-mark 129: +0 "src\GGData\Geomark.py" ki 21/09/18 20:47:54
+	store custom fields data list
+
++mark 130: +0 "src\GGData\Geomark.py" ki 21/09/19 03:24:15
+	move filter data to Geofilter
+
