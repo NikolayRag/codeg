@@ -107,6 +107,7 @@ class Ui():
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
 
 
+# -todo 131 (app, refactor) +1: move default Marks creation to App-level
 		self.markDefault = self.data.markNew(
 			filterAt='UI',
 			filterData=self.styleSVG[self.styleSet]['default'],
