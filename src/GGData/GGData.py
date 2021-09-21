@@ -11,8 +11,6 @@
 
 '''
 Data scope:
-
-Application
 	(Filter,) +data
 	(Scene,)
 		(Mark,) +data
