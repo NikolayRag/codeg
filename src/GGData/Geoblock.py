@@ -17,7 +17,7 @@ class Geoblock():
 
 
 	geoXML = None
-# -todo 128 (mark, optimize, decide) +10: Move marks assignment to geo dict WTF?!
+# =todo 128 (mark, optimize, decide) +10: Move marks assignment to geo dict WTF?!
 	geoNamed = None
 	namespace = ''
 

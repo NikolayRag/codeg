@@ -352,10 +352,10 @@
  mark, optimize 126: +0 "src\GGData\Geomark.py" ki 21/09/18 20:07:29
 	chage to {geo:state} dict
 
--mark, optimize, decide 127: +10 "src\GGData\Geomark.py" ki 21/09/18 20:09:03
+=mark, optimize, decide 127: +10 "src\GGData\Geomark.py" ki 21/09/19 04:18:13
 	Move marks assignment to Geoblock WTF?!
 
--mark, optimize, decide 128: +10 "src\GGData\Geoblock.py" ki 21/09/18 20:29:13
+=mark, optimize, decide 128: +10 "src\GGData\Geoblock.py" ki 21/09/19 04:18:27
 	Move marks assignment to geo dict WTF?!
 
 -mark 129: +0 "src\GGData\Geomark.py" ki 21/09/18 20:47:54
