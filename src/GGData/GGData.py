@@ -10,11 +10,15 @@
 #  todo 105 (module-data, filter, API) +0: add geo Filter class
 
 '''
-GGData
-* Scene
-  * Geoblock
-  * Geomark
-    * GeoFilter
+Data scope:
+
+Application
+	(Filter,) +data
+	(Scene,)
+		(Mark,) +data
+			*Filter link
+		(Geoblock,)/(Geo,) +data
+			*Mark link
 
 '''
 
