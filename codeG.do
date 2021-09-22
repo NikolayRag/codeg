@@ -364,3 +364,9 @@
 +mark 130: +0 "src\GGData\Geomark.py" ki 21/09/19 03:24:15
 	move filter data to Geofilter
 
+-app, refactor 131: +1 "src\Ui\Ui.py" ki 21/09/22 01:15:21
+	move default Marks creation to App-level
+
+=module-data, refactor 132: +0 "src\Ui\Ui.py" ki 21/09/22 01:32:07
+	unify Filter creation
+

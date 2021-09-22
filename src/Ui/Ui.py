@@ -108,6 +108,7 @@ class Ui():
 
 
 # -todo 131 (app, refactor) +1: move default Marks creation to App-level
+# =todo 132 (module-data, refactor) +0: unify Filter creation
 		self.markDefault = self.data.markNew(
 			filterAt='UI',
 			filterData=self.styleSVG[self.styleSet]['default'],
