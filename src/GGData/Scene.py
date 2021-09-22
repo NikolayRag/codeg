@@ -5,6 +5,7 @@
 
 
 from .Geomark import *
+from .Geoblock import *
 
 
 
@@ -32,8 +33,8 @@ class Scene():
 ### GEO ###
 
 
-	def geoAdd(self, _geo):
-		self.geoList.append(_geo)
+	def geoAdd(self, _source, _type):
+		self.geoList.append( Geoblock(_source, _type) )
 
 		return len(self.geoList) -1
 
