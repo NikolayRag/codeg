@@ -51,7 +51,7 @@ class Geomark():
 
 			upNames += cMark.updatedList
 
-			cMark.reset()
+			cMark.resetAssigned()
 
 
 		outMark = {}
@@ -90,14 +90,14 @@ class Geomark():
 		self.priority = _priority
 
 
-		self.reset(True)
+		self.resetAssigned(True)
 
 
 		Geomark.add(self)
 
 
 
-	def reset(self, _hard=False):
+	def resetAssigned(self, _hard=False):
 		self.updatedList = []
 
 		if _hard:
