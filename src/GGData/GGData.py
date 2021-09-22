@@ -35,9 +35,12 @@ class GGData():
 	sceneList = []
 	sceneActive = -1
 
+	filterList = {}
+
+
 
 	def __init__(self):
-		None
+		self.filterList = {a.name:a for a in Geofilter.__subclasses__()}
 
 
 
