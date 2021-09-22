@@ -110,23 +110,23 @@ class Ui():
 # -todo 131 (app, refactor) +1: move default Marks creation to App-level
 # =todo 132 (module-data, refactor) +0: unify Filter creation
 		self.markDefault = self.data.markNew(
-			filterAt='UI',
+			filterName='setSVG',
 			filterData=self.styleSVG[self.styleSet]['default'],
 			priority=-1,
 		)
 		self.markOff = self.data.markNew(
-			filterAt='UI',
+			filterName='setSVG',
 			filterData=self.styleSVG[self.styleSet]['off'],
 			priority=0,
 			data={'visible':False}
 		)
 		self.markSelect = self.data.markNew(
-			filterAt='UI',
+			filterName='setSVG',
 			filterData=self.styleSVG[self.styleSet]['select'],
 			priority=1,
 		)
 		self.markHover = self.data.markNew(
-			filterAt='UI',
+			filterName='setSVG',
 			filterData=self.styleSVG[self.styleSet]['hover'],
 			priority=2,
 		)

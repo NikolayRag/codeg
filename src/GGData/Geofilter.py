@@ -7,6 +7,7 @@ class Geofilter():
 	allFilters = []
 
 
+	name = ''
 	step = ''
 	ownData = None
 
@@ -36,6 +37,7 @@ class Geofilter():
 
 
 class FilterSetSVG(Geofilter):
+	name = 'setSVG'
 	step = 'UI'
 
 	def proccess(self, _geo, _data):
