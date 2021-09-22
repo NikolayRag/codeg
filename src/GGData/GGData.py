@@ -110,7 +110,7 @@ class GGData():
 		if filterAt=='UI':
 			filterProc = FilterSetSVG(filterData)
 
-		return Geomark(data, priority, filterProc, filterAt)
+		return Geomark(data, priority, filterProc)
 
 
 
