@@ -32,7 +32,8 @@ class GGData():
 	prefilterSVGTags = 1
 
 
-	scene = None
+	sceneList = []
+	sceneActive = -1
 
 
 	def __init__(self):
@@ -41,40 +42,47 @@ class GGData():
 
 
 	def newScene(self):
-		self.scene = Scene()
+		self.sceneList.clear()
+
+		self.sceneList.append( Scene() )
+		self.sceneActive = len(self.sceneList) -1
 
 		for cMark in Geomark.allMarks:
 			cMark.reset(True)
+
+
+	def getScene(self):
+		return self.sceneActive>=0 and self.sceneList[self.sceneActive]
 
 
 
 
 # -todo 84 (module-data) +0: make file load (save) plugin system
 	def loadGeo(self, _source, _type='svg'):
-		self.scene.geoAdd(_source, _type)
+		self.getScene().geoAdd(_source, _type)
 
-		return self.scene.geoMeta()
+		return self.getScene().geoMeta()
 
 
 
 	def getXML(self):
-		return (self.scene and self.scene.getSceneXML(True))
+		return (self.getScene() and self.getScene().getSceneXML(True))
 
 
 
 	def available(self):
-		return bool(self.scene)
+		return bool(self.getScene())
 
 
 
 # -todo 104 (module-dispatch, decide) +0: move to dispatch
 #  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
 	def getG(self, x=0, y=0):
-		if not self.scene:
+		if not self.getScene():
 			return
 
 #  todo 100 (gcode, feature) +0: allow flexible filters for gcode
-		cGG = GGen(self.scene.getSceneXML())
+		cGG = GGen(self.getScene().getSceneXML())
 		cGG.set(
 			preamble = 'G90 M4 S0',
 			shapePre = 'G0',
@@ -120,4 +128,4 @@ class GGData():
 		_mark.assignGeo(_elA)
 
 
-		self.scene and self.scene.marksReapply(filterLevel)
+		self.getScene() and self.getScene().marksReapply(filterLevel)
