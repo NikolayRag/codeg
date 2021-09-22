@@ -42,7 +42,7 @@ class Ui():
 			'default': {
 				'vector-effect': 'non-scaling-stroke',
 				'stroke-width':'1.5px',
-				'stroke':'#444',
+				'stroke':'#666',
 				'fill':'#fdfdfd',
 				'opacity': '.9'
 			},
@@ -52,8 +52,8 @@ class Ui():
 				'opacity': '.3'
 			},
 			'select': {
-				'fill':'#fe8',
-				'stroke':'#861',
+				'fill':'#8cf',
+				'stroke':'#04f',
 			},
 			'hover': {
 				'stroke-width':'2.5px',
