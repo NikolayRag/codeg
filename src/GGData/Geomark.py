@@ -46,7 +46,7 @@ class Geomark():
 		upNames = []
 
 		for cMark in Geomark.allMarks:
-			if cMark.markFilter.level != _at:
+			if cMark.markFilter.step != _at:
 				continue
 
 			upNames += cMark.updatedList
