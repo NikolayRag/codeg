@@ -46,7 +46,7 @@ class Geomark():
 		upNames = []
 
 		for cMark in Geomark.allMarks:
-			if _at != cMark.markAt:
+			if cMark.markFilter.level != _at:
 				continue
 
 			upNames += cMark.updatedList
@@ -79,15 +79,13 @@ class Geomark():
 # -todo 129 (mark) +0: store custom fields data list
 	markData = None
 	markFilter = None
-	markAt = 0
 	priority = 0
 
 
 
-	def __init__(self, _data, _priority=0, _filter=None, _at=None):
+	def __init__(self, _data, _priority=0, _filter=None):
 		self.markData = _data
 		self.markFilter = _filter
-		self.markAt = _at
 
 		self.priority = _priority
 

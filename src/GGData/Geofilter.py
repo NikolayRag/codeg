@@ -7,6 +7,7 @@ class Geofilter():
 	allFilters = []
 
 
+	level = ''
 	ownData = None
 
 
@@ -35,6 +36,7 @@ class Geofilter():
 
 
 class FilterSetSVG(Geofilter):
+	level = 'UI'
 
 	def proccess(self, _geo, _data):
 		for cTag in self.ownData:

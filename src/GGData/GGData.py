@@ -110,7 +110,7 @@ class GGData():
 
 
 	# add: True/False to add/sub, other to reset
-	def markApply(self, _mark, _elA, add=None, at=None):
+	def markApply(self, _mark, _elA, add=None, filterLevel=None):
 		if add==True:
 			_elA = set(_mark.assignedList + _elA)
 
@@ -121,4 +121,4 @@ class GGData():
 		_mark.assignGeo(_elA)
 
 
-		self.scene and self.scene.marksReapply(at)
+		self.scene and self.scene.marksReapply(filterLevel)
