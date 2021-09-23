@@ -26,7 +26,7 @@ class Geomark():
 
 
 
-	def add(_newMark):
+	def add___(_newMark):
 		marksA = Geomark.allMarks___ + [_newMark]
 		priorityList = set( [cMark.priority for cMark in marksA] )
 
@@ -42,7 +42,7 @@ class Geomark():
 
 
 # Get {name:(mark,)} array, sorted by marks priority
-	def getOrdered(_namesLimit, _at):
+	def getOrdered___(_namesLimit, _at):
 		upNames = []
 
 		for cMark in Geomark.allMarks___:
@@ -51,7 +51,7 @@ class Geomark():
 
 			upNames += cMark.updatedList___
 
-			cMark.resetAssigned()
+			cMark.resetAssigned___()
 
 
 		outMark = {}
@@ -90,14 +90,14 @@ class Geomark():
 		self.priority = _priority
 
 
-		self.resetAssigned(True)
+		self.resetAssigned___(True)
 
 
-		Geomark.add(self)
+		Geomark.add___(self)
 
 
 
-	def resetAssigned(self, _hard=False):
+	def resetAssigned___(self, _hard=False):
 		self.updatedList___ = []
 
 		if _hard:
@@ -105,7 +105,7 @@ class Geomark():
 
 
 
-	def assignGeo(self, _namesA):
+	def assignGeo___(self, _namesA):
 		_namesA = list(_namesA)
 
 		self.updatedList___ += list( set(self.assignedList___).symmetric_difference(_namesA) )

@@ -24,8 +24,8 @@ class Scene():
 
 
 # -todo 111 (mark, optimize) +0: dramatically slow apply
-	def marksReapply(self, _at):
-		toMarksA = Geomark.getOrdered(self.allGeo[0].names(), _at)
+	def marksReapply___(self, _at):
+		toMarksA = Geomark.getOrdered___(self.allGeo[0].names(), _at)
 		for cName in toMarksA:
 			for cMark in toMarksA[cName]:
 				cMark.applyFilter(self.allGeo[0].geo(cName))
