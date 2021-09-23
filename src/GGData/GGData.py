@@ -29,8 +29,6 @@ from .Geomark import *
 
 
 class GGData():
-	prefilterSVGTags = 1
-
 
 	filterList = {}
 
