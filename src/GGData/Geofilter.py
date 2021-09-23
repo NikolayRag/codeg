@@ -14,13 +14,11 @@ class Geofilter():
 
 
 	def list(system=False):
-		return [f for f in Geofilter.allFilters if f.isSystem==system]
+		return [f for f in Geofilter.allFilters]
 
 
 
 	def __init__(self, _data):
-		self.isSystem = True
-
 		self.ownData = _data
 
 
