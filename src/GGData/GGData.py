@@ -48,7 +48,7 @@ class GGData():
 		self.sceneList.append( Scene() )
 		self.sceneActive = len(self.sceneList) -1
 
-		for cMark in Geomark.allMarks:
+		for cMark in Geomark.allMarks___:
 			cMark.resetAssigned(True)
 
 
@@ -121,10 +121,10 @@ class GGData():
 	# add: True/False to add/sub, other to reset
 	def markApply(self, _mark, _elA, add=None, step=None):
 		if add==True:
-			_elA = set(_mark.assignedList + _elA)
+			_elA = set(_mark.assignedList___ + _elA)
 
 		if add==False:
-			_elA = set(_mark.assignedList).difference(_elA)
+			_elA = set(_mark.assignedList___).difference(_elA)
 
 
 		_mark.assignGeo(_elA)

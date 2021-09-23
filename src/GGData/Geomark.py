@@ -16,18 +16,18 @@ Filter roadpoint is one of several known origins:
 #
 
 class Geomark():
-	allMarks = []
+	allMarks___ = []
 
 
 # =todo 127 (mark, optimize, decide) +10: Move marks assignment to Geoblock WTF?!
 #  todo 126 (mark, optimize) +0: chage to {geo:state} dict
-	assignedList = []
-	updatedList = []
+	assignedList___ = []
+	updatedList___ = []
 
 
 
 	def add(_newMark):
-		marksA = Geomark.allMarks + [_newMark]
+		marksA = Geomark.allMarks___ + [_newMark]
 		priorityList = set( [cMark.priority for cMark in marksA] )
 
 		markSortedA = []
@@ -37,7 +37,7 @@ class Geomark():
 				if d.priority==cLev:
 					markSortedA.append(d)
 
-		Geomark.allMarks = markSortedA
+		Geomark.allMarks___ = markSortedA
 
 
 
@@ -45,11 +45,11 @@ class Geomark():
 	def getOrdered(_namesLimit, _at):
 		upNames = []
 
-		for cMark in Geomark.allMarks:
+		for cMark in Geomark.allMarks___:
 			if cMark.markFilter.step != _at:
 				continue
 
-			upNames += cMark.updatedList
+			upNames += cMark.updatedList___
 
 			cMark.resetAssigned()
 
@@ -60,8 +60,8 @@ class Geomark():
 			marksA = []
 			updated = False
 
-			for cMark in Geomark.allMarks:
-				if cName in cMark.assignedList:
+			for cMark in Geomark.allMarks___:
+				if cName in cMark.assignedList___:
 					marksA.append(cMark)
 
 					updated = True
@@ -98,18 +98,18 @@ class Geomark():
 
 
 	def resetAssigned(self, _hard=False):
-		self.updatedList = []
+		self.updatedList___ = []
 
 		if _hard:
-			self.assignedList = []
+			self.assignedList___ = []
 
 
 
 	def assignGeo(self, _namesA):
 		_namesA = list(_namesA)
 
-		self.updatedList += list( set(self.assignedList).symmetric_difference(_namesA) )
-		self.assignedList = _namesA
+		self.updatedList___ += list( set(self.assignedList___).symmetric_difference(_namesA) )
+		self.assignedList___ = _namesA
 
 
 
