@@ -30,30 +30,30 @@ from .Geomark import *
 
 class GGData():
 
-	filterList = {}
+	allFilters = {}
 
-	sceneList = []
+	allScenes = []
 	sceneActive = -1
 
 
 
 	def __init__(self):
-		self.filterList = {a.name:a for a in Geofilter.__subclasses__()}
+		self.allFilters = {a.name:a for a in Geofilter.__subclasses__()}
 
 
 
 	def newScene(self):
-		self.sceneList.clear()
+		self.allScenes.clear()
 
-		self.sceneList.append( Scene() )
-		self.sceneActive = len(self.sceneList) -1
+		self.allScenes.append( Scene() )
+		self.sceneActive = len(self.allScenes) -1
 
 		for cMark in Geomark.allMarks___:
 			cMark.resetAssigned(True)
 
 
 	def getScene(self):
-		return self.sceneActive>=0 and self.sceneList[self.sceneActive]
+		return self.sceneActive>=0 and self.allScenes[self.sceneActive]
 
 
 
@@ -106,7 +106,7 @@ class GGData():
 
 
 	def markNew(self, data=None, filterName=None, filterData=None, priority=0, scene=False):
-		filterProc = (filterName in self.filterList) and self.filterList[filterName](filterData)
+		filterProc = (filterName in self.allFilters) and self.allFilters[filterName](filterData)
 
 		cMark = Geomark(data, priority, filterProc)
 		if scene and self.getScene():

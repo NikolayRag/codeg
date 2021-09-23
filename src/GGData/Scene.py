@@ -10,13 +10,13 @@ from .Geoblock import *
 
 
 class Scene():
-	geoList = []
-	markList = []
+	allGeo = []
+	allMarks = []
 
 
 	def __init__(self):
-		self.geoList = []
-		self.markList = []
+		self.allGeo = []
+		self.allMarks = []
 
 
 
@@ -25,15 +25,15 @@ class Scene():
 
 # -todo 111 (mark, optimize) +0: dramatically slow apply
 	def marksReapply(self, _at):
-		toMarksA = Geomark.getOrdered(self.geoList[0].names(), _at)
+		toMarksA = Geomark.getOrdered(self.allGeo[0].names(), _at)
 		for cName in toMarksA:
 			for cMark in toMarksA[cName]:
-				cMark.applyFilter(self.geoList[0].geo(cName))
+				cMark.applyFilter(self.allGeo[0].geo(cName))
 
 
 
 	def markAdd(self, _mark):
-		self.markList.append( _mark )
+		self.allMarks.append( _mark )
 
 
 
@@ -42,16 +42,16 @@ class Scene():
 
 
 	def geoAdd(self, _source, _type):
-		self.geoList.append( Geoblock(_source, _type) )
+		self.allGeo.append( Geoblock(_source, _type) )
 
-		return len(self.geoList) -1
+		return len(self.allGeo) -1
 
 
 
 	def geoMeta(self):
-		return {cN:{'on':True} for cN in self.geoList[0].names()}
+		return {cN:{'on':True} for cN in self.allGeo[0].names()}
 
 
 
 	def getSceneXML(self, toString=False):
-		return self.geoList[0].xmlRoot(toString)
+		return self.allGeo[0].xmlRoot(toString)
