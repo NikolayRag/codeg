@@ -123,7 +123,7 @@ class GGData():
 
 
 		if part==True:
-			self.getScene().markApply(_mark, _elA)
+			self.getScene().markAppend(_mark, _elA)
 
 		if part==False:
 			self.getScene().markRemove(_mark, _elA)
