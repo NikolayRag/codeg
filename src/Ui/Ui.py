@@ -112,23 +112,23 @@ class Ui():
 		self.markDefault = self.data.markNew(
 			filterName='setSVG',
 			filterData=self.styleSVG[self.styleSet]['default'],
-			priority=-1,
+			priority=-4,
 		)
 		self.markOff = self.data.markNew(
 			filterName='setSVG',
 			filterData=self.styleSVG[self.styleSet]['off'],
-			priority=0,
+			priority=-3,
 			data={'visible':False}
 		)
 		self.markSelect = self.data.markNew(
 			filterName='setSVG',
 			filterData=self.styleSVG[self.styleSet]['select'],
-			priority=1,
+			priority=-2,
 		)
 		self.markHover = self.data.markNew(
 			filterName='setSVG',
 			filterData=self.styleSVG[self.styleSet]['hover'],
-			priority=2,
+			priority=-1,
 		)
 
 
