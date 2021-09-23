@@ -11,10 +11,12 @@ from .Geoblock import *
 
 class Scene():
 	geoList = []
+	markList = []
 
 
 	def __init__(self):
 		self.geoList = []
+		self.markList = []
 
 
 
@@ -27,6 +29,13 @@ class Scene():
 		for cName in toMarksA:
 			for cMark in toMarksA[cName]:
 				cMark.applyFilter(self.geoList[0].geo(cName))
+
+
+
+	def markAdd(self, _mark):
+		self.markList.append( _mark )
+
+
 
 
 ### GEO ###

@@ -107,10 +107,14 @@ class GGData():
 
 
 
-	def markNew(self, data=None, filterName=None, filterData=None, priority=0):
+	def markNew(self, data=None, filterName=None, filterData=None, priority=0, scene=False):
 		filterProc = (filterName in self.filterList) and self.filterList[filterName](filterData)
 
-		return Geomark(data, priority, filterProc)
+		cMark = Geomark(data, priority, filterProc)
+		if scene and self.getScene():
+			self.getScene().markAdd(cMark)
+
+		return cMark
 
 
 
