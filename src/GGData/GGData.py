@@ -32,10 +32,10 @@ class GGData():
 	prefilterSVGTags = 1
 
 
+	filterList = {}
+
 	sceneList = []
 	sceneActive = -1
-
-	filterList = {}
 
 
 

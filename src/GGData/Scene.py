@@ -10,8 +10,7 @@ from .Geoblock import *
 
 
 class Scene():
-	geoList = None
-
+	geoList = []
 
 
 	def __init__(self):
