@@ -11,11 +11,11 @@
 
 '''
 Data scope:
-	(Filter,) +data
+	(Filter,)
 	(Scene,)
-		(Mark,) +data
+		(Mark,)
 			*Filter link
-		(Geoblock,)/(Geo,) +data
+		(Geoblock,)/(Geo,)
 			*Mark link
 
 '''
@@ -113,8 +113,6 @@ class GGData():
 			self.getScene().markAdd(cMark)
 
 		return cMark
-
-
 
 
 
