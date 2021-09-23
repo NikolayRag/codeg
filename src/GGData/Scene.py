@@ -37,6 +37,20 @@ class Scene():
 
 
 
+	def markApply(self, _mark, _elA):
+		None
+
+
+
+	def markRemove(self, _mark, _elA):
+		None
+
+
+
+	def markSet(self, _mark, _elA):
+		None
+
+
 
 ### GEO ###
 

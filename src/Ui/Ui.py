@@ -227,7 +227,7 @@ class Ui():
 
 
 	def ctrlLayersSet(self, _elA, _on):
-		self.data.markApply(self.markOff, _elA, add=(not _on), step='UI')
+		self.data.markApply(self.markOff, _elA, part=(not _on), step='UI')
 
 		self.reloadXml()
 

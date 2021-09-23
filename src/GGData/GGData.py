@@ -116,12 +116,28 @@ class GGData():
 
 
 
-	# add: True/False to add/sub, other to reset
-	def markApply(self, _mark, _elA, add=None, step=None):
-		if add==True:
+	# part: True/False/None points to add/sub/reset
+	def markApply(self, _mark, _elA, part=None, step=None):
+		if not self.getScene():
+			return
+
+
+		if part==True:
+			self.getScene().markApply(_mark, _elA)
+
+		if part==False:
+			self.getScene().markRemove(_mark, _elA)
+
+		if part==None:
+			self.getScene().markSet(_mark, _elA)
+
+
+
+
+		if part==True:
 			_elA = set(_mark.assignedList___ + _elA)
 
-		if add==False:
+		if part==False:
 			_elA = set(_mark.assignedList___).difference(_elA)
 
 
