@@ -28,11 +28,11 @@ class Geomark():
 
 	def add(_newMark):
 		marksA = Geomark.allMarks + [_newMark]
-		levels = sorted(set( [cMark.priority for cMark in marksA] ))
+		priorityList = set( [cMark.priority for cMark in marksA] )
 
 		markSortedA = []
 
-		for cLev in levels:
+		for cLev in sorted(priorityList):
 			for d in marksA:
 				if d.priority==cLev:
 					markSortedA.append(d)
