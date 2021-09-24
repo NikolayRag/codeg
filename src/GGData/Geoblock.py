@@ -18,7 +18,7 @@ class Geoblock():
 
 	geoXML = None
 # =todo 128 (mark, optimize, decide) +10: Move marks assignment to geo dict WTF?!
-	geoNamed = None
+	namedLayers = {}
 	namespace = ''
 
 
@@ -26,7 +26,7 @@ class Geoblock():
 	def __init__(self, _source, _type):
 		self.namespace = _source
 		self.geoXML = XML.parse(_source)
-		self.geoNamed = {}
+		self.namedLayers = {}
 
 
 		i = 1
@@ -45,7 +45,7 @@ class Geoblock():
 					cTag.set('cache-'+cField, cTag.get(cField) or '')
 
 				cTag.set('id', tagType +str(i))
-				self.geoNamed[tagType +str(i)] = cTag
+				self.namedLayers[tagType +str(i)] = cTag
 
 				i += 1
 
@@ -59,9 +59,9 @@ class Geoblock():
 
 # -todo 111 (mark, optimize) +0: dramatically slow mark reapply
 	def geo(self, _name):
-		return self.geoNamed[_name]
+		return self.namedLayers[_name]
 
 
 
 	def names(self):
-		return self.geoNamed.keys()
+		return self.namedLayers.keys()
