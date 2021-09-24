@@ -45,7 +45,7 @@ class Geoblock():
 					cTag.set('cache-'+cField, cTag.get(cField) or '')
 
 				cTag.set('id', tagType +str(i))
-				self.namedLayers[tagType +str(i)] = cTag
+				self.namedLayers[tagType +str(i)] = Geolayer(cTag)
 
 				i += 1
 
@@ -58,10 +58,25 @@ class Geoblock():
 
 
 # -todo 111 (mark, optimize) +0: dramatically slow mark reapply
-	def geo(self, _name):
+	def getObj(self, _name):
 		return self.namedLayers[_name]
 
 
 
 	def names(self):
 		return self.namedLayers.keys()
+
+
+
+class Geolayer():
+	obj = None
+	mark = None
+
+
+	def __init__(self, _obj):
+		self.obj = _obj
+
+
+
+	def setTag(self, _tag, _data):
+		self.obj.set(_tag, _data)
