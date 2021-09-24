@@ -44,8 +44,8 @@ class Geoblock():
 				for cField in Geoblock.CachedFields:
 					cTag.set('cache-'+cField, cTag.get(cField) or '')
 
-				cTag.set('id', tagType +str(i))
-				self.namedLayers[tagType +str(i)] = Geolayer(cTag)
+				cName = tagType +str(i)
+				self.namedLayers[cName] = Geolayer(cTag, cName)
 
 				i += 1
 
@@ -70,11 +70,13 @@ class Geoblock():
 
 class Geolayer():
 	obj = None
+	name = ''
 	mark = None
 
 
-	def __init__(self, _obj):
+	def __init__(self, _obj, _name=''):
 		self.obj = _obj
+		self.name = _name
 
 
 
