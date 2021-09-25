@@ -134,17 +134,3 @@ class GGData():
 
 
 		self.getScene().marksReapply(step)
-		
-
-
-		if part==True:
-			_elA = set(_mark.assignedList___ + _elA)
-
-		if part==False:
-			_elA = set(_mark.assignedList___).difference(_elA)
-
-
-		_mark.assignGeo___(_elA)
-
-
-		self.getScene() and self.getScene().marksReapply___(step)
