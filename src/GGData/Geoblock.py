@@ -127,5 +127,7 @@ class Geolayer():
 		self.isMarked = False
 
 
-		for cMark in self.marks:
+		markSortedA = sorted(self.marks, key=lambda m: m.priority)
+
+		for cMark in markSortedA:
 			cMark.applyFilter(self, filterStep)
