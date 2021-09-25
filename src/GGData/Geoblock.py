@@ -58,7 +58,11 @@ class Geoblock():
 
 
 # -todo 111 (mark, optimize) +0: dramatically slow mark reapply
-	def getObj(self, _nameA):
+	def getObj(self, _nameA=None):
+		if not _nameA:
+			_nameA = self.namedLayers.keys()
+
+
 		return [self.namedLayers[n] for n in _nameA]
 
 

@@ -44,10 +44,6 @@ class Scene():
 
 
 	def markRemove(self, _mark, _elA=None):
-		if not _elA:
-			_elA = self.allGeo[0].names()
-
-
 		for cObj in self.allGeo[0].getObj(_elA):
 			cObj.markSub(_mark)
 
