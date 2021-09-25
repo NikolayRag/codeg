@@ -11,9 +11,7 @@ Filter roadpoint is one of several known origins:
 
 
 class Geomark():
-#  todo 126 (mark, optimize) +0: chage to {geo:state} dict
-
-# -todo 129 (mark) +0: store custom fields data list
+#  todo 129 (mark) +0: store custom fields data list
 	markData = None
 	markFilter = None
 	priority = 0

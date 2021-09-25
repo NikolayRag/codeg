@@ -253,16 +253,16 @@
 -fix, gcode 88: +0 "src\Ui\Ui.py" kii 21/09/03 02:02:12
 	use dispatch both for file save
 
--ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" kii 21/08/28 18:03:13
+-ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" ki 21/09/25 22:54:19
 	place grid correctly
 
 =ux, module-ui, fix 90: +0 "src\GGData\GGData.py" kii 21/09/08 22:03:51
 	respect units - both svg and device
 
--viewport, API 91: +0 "src\Ui\SvgViewport.py" kii 21/09/02 04:16:45
+-viewport, api 91: +0 "" ki 21/09/25 22:57:27
 	add class-level SVG runtime generator signal/slot
 
- feature 92: +0 "src\GGData\GGData.py" kii 21/09/08 21:11:27
+ feature 92: +0 "src\GGData\Scene.py" ki 21/09/25 22:54:19
 	multiple sources scene
 
 =scene, feature 93: +0 "src\GGData\Scene.py" ki 21/09/25 22:40:19
@@ -349,8 +349,8 @@
 +filter, module-data 124: +0 "src\GGData\Geomark.py" ki 21/09/25 22:41:33
 	make set svg tag as system filter
 
- mark, optimize 126: +0 "src\GGData\Geomark.py" ki 21/09/25 22:42:09
-	chage to {geo:state} dict
+=mark, optimize 126: +0 "src\GGData\Geoblock.py" ki 21/09/25 22:59:11
+	manage object-level attributes
 
 +mark, optimize, decide 127: +10 "src\GGData\Geomark.py" ki 21/09/25 22:42:08
 	Move marks assignment to Geoblock WTF?!
@@ -358,7 +358,7 @@
 +mark, optimize, decide 128: +10 "src\GGData\Geoblock.py" ki 21/09/25 22:40:45
 	Move marks assignment to geo dict WTF?!
 
--mark 129: +0 "src\GGData\Geomark.py" ki 21/09/18 20:47:54
+ mark 129: +0 "src\GGData\Geomark.py" ki 21/09/25 22:57:54
 	store custom fields data list
 
 +mark 130: +0 "src\GGData\Geomark.py" ki 21/09/19 03:24:15

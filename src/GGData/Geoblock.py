@@ -72,7 +72,7 @@ class Geoblock():
 
 
 
-
+# =todo 126 (mark, optimize) +0: manage object-level attributes
 class Geolayer():
 	obj = None
 	name = ''
