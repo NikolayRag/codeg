@@ -71,14 +71,25 @@ class Geoblock():
 class Geolayer():
 	obj = None
 	name = ''
-	mark = None
+	marks = []
 
 
 	def __init__(self, _obj, _name=''):
 		self.obj = _obj
 		self.name = _name
+		self.marks = []
 
 
 
 	def setTag(self, _tag, _data):
 		self.obj.set(_tag, _data)
+
+	
+
+	def markAdd(self, _mark):
+		None
+
+
+
+	def markSub(self, _mark):
+		None
