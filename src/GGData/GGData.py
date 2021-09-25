@@ -133,6 +133,8 @@ class GGData():
 			self.getScene().markAppend(_mark, _elA)
 
 
+		self.getScene().marksReapply(step)
+		
 
 
 		if part==True:

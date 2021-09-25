@@ -117,3 +117,6 @@ class Geolayer():
 		self.isChanged = True
 
 
+
+	def marksApply(self, _at):
+		None

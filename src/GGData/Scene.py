@@ -49,6 +49,12 @@ class Scene():
 
 
 
+	def marksReapply(self, _at):
+		for cObj in self.allGeo[0].getObj():
+			cObj.marksApply(_at)
+
+
+
 ### GEO ###
 
 
