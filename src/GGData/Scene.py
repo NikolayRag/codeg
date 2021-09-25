@@ -47,9 +47,6 @@ class Scene():
 
 
 
-	def markSet(self, _mark, _elA):
-		None
-
 
 
 ### GEO ###

@@ -129,7 +129,8 @@ class GGData():
 			self.getScene().markRemove(_mark, _elA)
 
 		if part==None:
-			self.getScene().markSet(_mark, _elA)
+			self.getScene().markRemove(_mark)
+			self.getScene().markAppend(_mark, _elA)
 
 
 
