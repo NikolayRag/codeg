@@ -313,8 +313,8 @@
 +clean 110: +0 "src\GGData\GGData.py" kii 21/09/07 22:45:38
 	use namedRef
 
--mark, optimize 111: +0 "src\GGData\Scene.py" ki 21/09/24 00:15:15
-	dramatically slow apply
+-mark, optimize 111: +0 "src\GGData\Scene.py" ki 21/09/25 13:19:33
+	dramatically slow mark reapply
 
 =mark, feature 112: +0 "src\GGData\GGData.py" ki 21/09/12 18:26:55
 	complex mark
