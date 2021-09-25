@@ -49,9 +49,9 @@ class Scene():
 
 
 
-	def marksReapply(self, _at):
+	def marksReapply(self, _step):
 		for cObj in self.allGeo[0].getObj():
-			cObj.marksApply(_at)
+			cObj.marksSolve(filterStep=_step)
 
 
 
