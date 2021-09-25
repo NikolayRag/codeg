@@ -118,8 +118,6 @@ class Geolayer():
 
 
 
-	def marksApply(self, _at):
-		None
 	def marksSolve(self, filterStep=None):
 		for cMark in self.marks:
 			if filterStep:
