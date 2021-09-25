@@ -87,9 +87,17 @@ class Geolayer():
 	
 
 	def markAdd(self, _mark):
-		None
+		if _mark in self.marks:
+			return
+
+
+		self.marks.append(_mark)
 
 
 
 	def markSub(self, _mark):
-		None
+		if _mark not in self.marks:
+			return
+
+
+		self.marks.remove(_mark)
