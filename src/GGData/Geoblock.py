@@ -78,7 +78,7 @@ class Geolayer():
 	obj = None
 	name = ''
 	marks = []
-	isChanged = False
+	isMarked = False
 
 
 
@@ -86,6 +86,8 @@ class Geolayer():
 		self.obj = _obj
 		self.name = _name
 		self.marks = []
+
+		self.isMarked = False
 
 
 
@@ -102,7 +104,7 @@ class Geolayer():
 		self.marks.append(_mark)
 
 
-		self.isChanged = True
+		self.isMarked = True
 
 
 
@@ -114,10 +116,16 @@ class Geolayer():
 		self.marks.remove(_mark)
 
 
-		self.isChanged = True
+		self.isMarked = True
 
 
 
 	def marksSolve(self, filterStep=None):
+		if not self.isMarked:
+			return
+
+		self.isMarked = False
+
+
 		for cMark in self.marks:
 			cMark.applyFilter(self, filterStep)
