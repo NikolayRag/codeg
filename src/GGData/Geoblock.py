@@ -78,6 +78,8 @@ class Geolayer():
 	obj = None
 	name = ''
 	marks = []
+	isChanged = False
+
 
 
 	def __init__(self, _obj, _name=''):
@@ -100,6 +102,9 @@ class Geolayer():
 		self.marks.append(_mark)
 
 
+		self.isChanged = True
+
+
 
 	def markSub(self, _mark):
 		if _mark not in self.marks:
@@ -107,3 +112,8 @@ class Geolayer():
 
 
 		self.marks.remove(_mark)
+
+
+		self.isChanged = True
+
+
