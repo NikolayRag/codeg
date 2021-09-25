@@ -79,6 +79,8 @@ class Geolayer():
 	marks = []
 	isMarked = False
 
+	data = {}
+
 
 
 	def __init__(self, _obj, _name=''):
@@ -87,6 +89,9 @@ class Geolayer():
 		self.marks = []
 
 		self.isMarked = False
+
+
+		self.data = {}
 
 
 
