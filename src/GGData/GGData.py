@@ -48,8 +48,6 @@ class GGData():
 		self.allScenes.append( Scene() )
 		self.sceneActive = len(self.allScenes) -1
 
-		for cMark in Geomark.allMarks___:
-			cMark.resetAssigned___(True)
 
 
 	def getScene(self):

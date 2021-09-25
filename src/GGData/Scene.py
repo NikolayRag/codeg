@@ -23,14 +23,6 @@ class Scene():
 ### MARKS ###
 
 
-	def marksReapply___(self, _at):
-		toMarksA = Geomark.getOrdered___(self.allGeo[0].names(), _at)
-		for cName in toMarksA:
-			for cMark in toMarksA[cName]:
-				cMark.applyFilter(self.allGeo[0].getObj([cName])[0])
-
-
-
 	def markAdd(self, _mark):
 		self.allMarks.append( _mark )
 
