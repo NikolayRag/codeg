@@ -235,7 +235,7 @@
  module-data, ux 82: +0 "src\GGData\GGData.py" kii 21/08/20 03:48:29
 	parse groups
 
- ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" kii 21/09/08 22:00:28
+ ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" ki 21/09/22 23:33:54
 	fit at init dont work due to obsolete size 
 
 -module-data 84: +0 "src\GGData\GGData.py" kii 21/09/09 17:42:29
@@ -313,7 +313,7 @@
 +clean 110: +0 "src\GGData\GGData.py" kii 21/09/07 22:45:38
 	use namedRef
 
--mark, optimize 111: +0 "src\GGData\Scene.py" ki 21/09/18 19:46:00
+-mark, optimize 111: +0 "src\GGData\Scene.py" ki 21/09/24 00:15:15
 	dramatically slow apply
 
 =mark, feature 112: +0 "src\GGData\GGData.py" ki 21/09/12 18:26:55
@@ -367,6 +367,6 @@
 -app, refactor 131: +1 "src\Ui\Ui.py" ki 21/09/22 01:15:21
 	move default Marks creation to App-level
 
-=module-data, refactor 132: +0 "src\Ui\Ui.py" ki 21/09/22 01:32:07
+=module-data, refactor 132: +0 "src\Ui\Ui.py" ki 21/09/24 00:15:15
 	unify Filter creation
 

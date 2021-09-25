@@ -37,6 +37,7 @@ class Scene():
 
 
 
+# -todo 111 (mark, optimize) +0: dramatically slow mark reapply
 	def markAppend(self, _mark, _elA):
 		for cObj in self.allGeo[0].getObj(_elA):
 			cObj.markAdd(_mark)
