@@ -107,8 +107,6 @@ class Ui():
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
 
 
-# -todo 131 (app, refactor) +1: move default Marks creation to App-level
-# =todo 132 (module-data, refactor) +0: unify Filter creation
 		self.markDefault = self.data.markNew(
 			filterName='setSVG',
 			filterData=self.styleSVG[self.styleSet]['default'],
@@ -151,14 +149,14 @@ class Ui():
 
 
 
-#  todo 120 (refactor, module-ui, module-data) +0: clean, previous size
+#  todo 120 (refactor, module-ui, module-data) +0: hold pre-maximize size
 	def storeWindow(self, _size, _maximized):
 		self.args.set('wMaxi', _maximized)
 		if not _maximized:
 			self.args.set('wSize', (_size.width(),_size.height()) )
 
 
-# -todo 118 (refactor, module-ui, module-data) +0: clean for minor import
+#  todo 118 (refactor, module-ui, module-data) +0: clean for minor import
 	def addFile(self):
 		cRecentA = self.args.get("recentLoaded", [])
 
@@ -218,7 +216,7 @@ class Ui():
 
 
 
-#  todo 77 (fix, module-ui, viewport) +0: duplicate hover element topmost
+#  todo 77 (fix, module-ui, viewport, decide) -1: duplicate hover element topmost
 	def layerSetHover(self, _hover):
 		self.data.markApply(self.markHover, [_hover] if _hover else [], step='UI')
 

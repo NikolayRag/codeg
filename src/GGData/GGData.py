@@ -1,13 +1,10 @@
 # =todo 90 (ux, module-ui, fix) +0: respect units - both svg and device
 
-# =todo 11 (spec, module-data) +0: read/save scene format
-
 #  todo 18 (spec, module-dispatch) +0: standalone dispatcher codegg
 #  todo 19 (spec, module-dispatch) +0: send to codegg
 
 #  todo 25 (module-data, formats) +0: load .nc gcode
 
-#  todo 105 (module-data, filter, API) +0: add geo Filter class
 
 '''
 Data scope:
@@ -56,7 +53,7 @@ class GGData():
 
 
 
-# -todo 84 (module-data) +0: make file load (save) plugin system
+# -todo 84 (module-data) +0: make file load plugin system
 	def loadGeo(self, _source, _type='svg'):
 		self.getScene().geoAdd(_source, _type)
 

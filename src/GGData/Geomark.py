@@ -10,13 +10,7 @@ Filter roadpoint is one of several known origins:
 '''
 
 
-
-# =todo 112 (mark, feature) +0: complex mark
-# =todo 124 (filter, module-data) +0: make set svg tag as system filter
-#
-
 class Geomark():
-# =todo 127 (mark, optimize, decide) +10: Move marks assignment to Geoblock WTF?!
 #  todo 126 (mark, optimize) +0: chage to {geo:state} dict
 
 # -todo 129 (mark) +0: store custom fields data list

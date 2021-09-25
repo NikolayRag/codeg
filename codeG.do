@@ -22,7 +22,7 @@
 +spec, module-data 8: +0 "src\GGData\GGData.py" kii 21/07/31 16:30:49
 	save gcode
 
-=scene, spec, module-data 9: +1 "src\GGData\GGData.py" kii 21/09/08 21:11:30
+=scene, spec, module-data 9: +1 "src\GGData\Scene.py" ki 21/09/25 22:40:22
 	operate project data
 
 !spec, module-data 10: +0 "" kii 21/09/08 21:55:55
@@ -49,7 +49,7 @@
 =spec, module-dispatch 17: +0 "" kii 21/08/10 05:55:57
 	send to serial-usb (arduino)
 
- spec, module-dispatch 18: +0 "src\GGData\GGData.py" kii 21/08/02 21:19:55
+ spec, module-dispatch 18: +0 "src\GGData\GGData.py" ki 21/09/25 22:37:20
 	standalone dispatcher codegg
 
  spec, module-dispatch 19: +0 "src\GGData\GGData.py" kii 21/08/02 21:16:57
@@ -217,7 +217,7 @@
 =fix, gcode 76: +0 "" kii 21/08/25 22:58:28
 	gcode move, scale and crop
 
- fix, module-ui, viewport 77: +0 "src\Ui\Ui.py" kii 21/09/08 13:43:18
+ fix, module-ui, viewport, decide 77: -1 "src\Ui\Ui.py" ki 21/09/25 22:46:34
 	duplicate hover element topmost
 
 +module-ui, ux 78: +0 "src\Ui\Ui.py" kii 21/08/15 22:10:50
@@ -238,8 +238,8 @@
  ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" ki 21/09/22 23:33:54
 	fit at init dont work due to obsolete size 
 
--module-data 84: +0 "src\GGData\GGData.py" kii 21/09/09 17:42:29
-	make file load (save) plugin system
+-module-data 84: +0 "src\GGData\GGData.py" ki 21/09/25 22:39:20
+	make file load plugin system
 
 +module-dispatch 85: +0 "src\GGData\GGData.py" kii 21/08/28 18:00:25
 	Gcode generate in background
@@ -265,7 +265,7 @@
  feature 92: +0 "src\GGData\GGData.py" kii 21/09/08 21:11:27
 	multiple sources scene
 
-=scene, feature 93: +0 "src\__main__w.py" kii 21/09/08 19:01:42
+=scene, feature 93: +0 "src\GGData\Scene.py" ki 21/09/25 22:40:19
 	store scene layer and layout state
 
  viewport, fix 95: +0 "src\Ui\SvgViewport.py" kii 21/08/28 15:52:23
@@ -298,7 +298,7 @@
 -module-dispatch, decide 104: +0 "src\GGData\GGData.py" kii 21/09/09 23:33:23
 	move to dispatch
 
- module-data, filter, API 105: +0 "src\GGData\GGData.py" kii 21/09/08 21:39:29
++module-data, filter, API 105: +0 "src\GGData\GGData.py" ki 21/09/25 22:38:42
 	add geo Filter class
 
 !module-data, module-dispatch, device, API 106: +0 "" kii 21/09/05 21:54:01
@@ -316,10 +316,10 @@
 -mark, optimize 111: +0 "src\GGData\Scene.py" ki 21/09/25 13:19:33
 	dramatically slow mark reapply
 
-=mark, feature 112: +0 "src\GGData\GGData.py" ki 21/09/12 18:26:55
++mark, feature 112: +0 "src\GGData\Geomark.py" ki 21/09/25 22:41:32
 	complex mark
 
-=scene, module-ui, ux 113: +0 "src\GGData\Scene.py" ki 21/09/12 18:21:41
++scene, module-ui, ux 113: +0 "src\GGData\Scene.py" ki 21/09/25 22:40:14
 	assignable layer marks holding control data
 
 =module-ui, fix 114: +0 "src\Ui\AppWindow.py" kii 21/09/08 13:42:53
@@ -334,28 +334,28 @@
 =ux, module-ui 117: +0 "src\Ui\Ui.py" kii 21/09/08 18:42:04
 	add app settings
 
--refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" kii 21/09/09 21:26:33
+ refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" ki 21/09/25 22:45:12
 	clean for minor import
 
 -refactor, module-ui, module-data 119: +0 "src\Ui\Ui.py" kii 21/09/09 21:27:02
 	clean for dispatch
 
- refactor, module-ui, module-data 120: +0 "src\Ui\Ui.py" kii 21/09/09 21:27:41
-	clean, previous size
+ refactor, module-ui, module-data 120: +0 "src\Ui\Ui.py" ki 21/09/25 22:44:55
+	hold pre-maximize size
 
 +module-data, fix 121: +0 "src\GGen\GGen.py" kii 21/09/09 22:20:25
 	go to .items() for ElementTree
 
-=filter, module-data 124: +0 "src\GGData\Geomark.py" ki 21/09/13 01:19:14
++filter, module-data 124: +0 "src\GGData\Geomark.py" ki 21/09/25 22:41:33
 	make set svg tag as system filter
 
- mark, optimize 126: +0 "src\GGData\Geomark.py" ki 21/09/18 20:07:29
+ mark, optimize 126: +0 "src\GGData\Geomark.py" ki 21/09/25 22:42:09
 	chage to {geo:state} dict
 
-=mark, optimize, decide 127: +10 "src\GGData\Geomark.py" ki 21/09/19 04:18:13
++mark, optimize, decide 127: +10 "src\GGData\Geomark.py" ki 21/09/25 22:42:08
 	Move marks assignment to Geoblock WTF?!
 
-=mark, optimize, decide 128: +10 "src\GGData\Geoblock.py" ki 21/09/19 04:18:27
++mark, optimize, decide 128: +10 "src\GGData\Geoblock.py" ki 21/09/25 22:40:45
 	Move marks assignment to geo dict WTF?!
 
 -mark 129: +0 "src\GGData\Geomark.py" ki 21/09/18 20:47:54
@@ -364,9 +364,9 @@
 +mark 130: +0 "src\GGData\Geomark.py" ki 21/09/19 03:24:15
 	move filter data to Geofilter
 
--app, refactor 131: +1 "src\Ui\Ui.py" ki 21/09/22 01:15:21
+!app, refactor 131: +1 "src\Ui\Ui.py" ki 21/09/25 22:44:00
 	move default Marks creation to App-level
 
-=module-data, refactor 132: +0 "src\Ui\Ui.py" ki 21/09/24 00:15:15
+=module-data, refactor 132: +0 "" ki 21/09/25 22:47:48
 	unify Filter creation
 
