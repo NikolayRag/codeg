@@ -113,5 +113,6 @@ class Geomark():
 
 
 
-	def applyFilter(self, _geo):
-		self.markFilter.proccess(_geo, self.markData)
+	def applyFilter(self, _geo, _step):
+		if self.markFilter.step == _step:
+			self.markFilter.proccess(_geo, self.markData)

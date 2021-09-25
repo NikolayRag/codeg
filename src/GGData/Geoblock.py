@@ -120,5 +120,4 @@ class Geolayer():
 
 	def marksSolve(self, filterStep=None):
 		for cMark in self.marks:
-			if filterStep:
-				cMark.applyFilter(self)
+			cMark.applyFilter(self, filterStep)
