@@ -125,6 +125,7 @@ class Geolayer():
 
 
 
+#  todo 133 (mark, optimize, decide) -1: Need to cache data?
 	def marksSolve(self, filterStep=None):
 		self.dataApplied = dict(self.dataOwn)
 

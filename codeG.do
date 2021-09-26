@@ -370,3 +370,6 @@
 =module-data, refactor 132: +0 "" ki 21/09/25 22:47:48
 	unify Filter creation
 
+ mark, optimize, decide 133: -1 "src\GGData\Geoblock.py" ki 21/09/26 23:50:36
+	Need to cache data?
+
