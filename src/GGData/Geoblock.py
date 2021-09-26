@@ -60,8 +60,7 @@ class Geoblock():
 		if not _nameA:
 			_nameA = self.names()
 
-
-		return [self.namedLayers[n] for n in _nameA]
+		return [self.namedLayers[n] for n in _nameA if (n in self.namedLayers)]
 
 
 
