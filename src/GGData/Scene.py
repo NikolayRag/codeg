@@ -64,3 +64,7 @@ class Scene():
 
 	def getSceneXML(self, toString=False):
 		return self.allGeo[0].xmlRoot(toString)
+
+
+	def getSceneObjs(self, _name):
+		return self.allGeo[0].getObj(_name)
