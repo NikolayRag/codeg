@@ -12,7 +12,7 @@ Filter roadpoint is one of several known origins:
 
 class Geomark():
 #  todo 129 (mark) +0: store custom fields data list
-	markData = None
+	markData = {}
 	markFilter = None
 	priority = 0
 
@@ -27,5 +27,14 @@ class Geomark():
 
 
 	def applyFilter(self, _geo, _step):
-		if self.markFilter.step == _step:
-			self.markFilter.proccess(_geo, self.markData)
+		outData = dict(self.markData)
+
+
+		if _step and self.markFilter and (self.markFilter.step == _step):
+			filterData = self.markFilter.proccess(_geo, self.markData)
+
+			for cData in filterData:
+				outData[cData] = filterData[cData]
+
+
+		return outData

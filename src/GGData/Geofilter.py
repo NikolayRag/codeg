@@ -38,9 +38,11 @@ class FilterSetSVG(Geofilter):
 	name = 'setSVG'
 	step = 'UI'
 
+
+
 	def proccess(self, _geo, _data):
 		for cTag in self.ownData:
 			_geo.setTag(cTag, self.ownData[cTag])
 
 
-		return True
+		return self.ownData

@@ -79,11 +79,11 @@ class Geolayer():
 	marks = []
 	isMarked = False
 
+	dataOrig = {}
 	data = {}
 
 
-
-	def __init__(self, _obj, _name=''):
+	def __init__(self, _obj, _name='', _data={}):
 		self.obj = _obj
 		self.name = _name
 		self.marks = []
@@ -91,7 +91,8 @@ class Geolayer():
 		self.isMarked = False
 
 
-		self.data = {}
+		self.dataOrig = _data
+		self.data = dict(self.dataOrig)
 
 
 
@@ -125,13 +126,16 @@ class Geolayer():
 
 
 	def marksSolve(self, filterStep=None):
-		if not self.isMarked:
-			return
-
-		self.isMarked = False
-
+		self.data = dict(self.dataOrig)
 
 		markSortedA = sorted(self.marks, key=lambda m: m.priority)
 
+
 		for cMark in markSortedA:
-			cMark.applyFilter(self, filterStep)
+			filterData = cMark.applyFilter(self, self.isMarked and filterStep)
+
+			for cData in filterData:
+				self.data[cData] = filterData[cData]
+
+
+		self.isMarked = False
