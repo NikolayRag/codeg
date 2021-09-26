@@ -1,12 +1,4 @@
 '''
-Geometry applied set of data
-Holds filter function, filter roadpoint and supply data to be applied
-to object layer
-
-Filter roadpoint is one of several known origins:
-- at creation/load
-- at user explicit action
-- at output
 '''
 
 
