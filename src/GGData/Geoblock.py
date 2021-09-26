@@ -39,11 +39,12 @@ class Geoblock():
 			if tagType == 'g':
 				None
 
-			if tagType in [ 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path' ]:
+			if tagType in ['rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path' ]:
 				for cField in Geoblock.CachedFields:
 					cTag.set('cache-'+cField, cTag.get(cField) or '')
 
 				cName = tagType +str(i)
+				cTag.set('id', cName)
 				self.namedLayers[cName] = Geolayer(cTag, cName)
 
 				i += 1
