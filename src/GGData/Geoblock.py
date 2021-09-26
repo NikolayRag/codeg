@@ -69,6 +69,11 @@ class Geoblock():
 		return self.namedLayers.keys()
 
 
+	def dataSet(self, _el, _data):
+		if not _el in self.namedLayers:
+			return
+
+		self.namedLayers[_el].dataSet(_data)
 
 
 
@@ -99,7 +104,7 @@ class Geolayer():
 	def setTag(self, _tag, _data):
 		self.obj.set(_tag, _data)
 
-	
+
 
 	def markAdd(self, _mark):
 		if _mark in self.marks:
@@ -156,3 +161,9 @@ class Geolayer():
 
 
 		return _default
+
+
+
+	def dataSet(self, _data):
+		for dName in _data:
+			self.dataOwn[dName] = _data[dName]
