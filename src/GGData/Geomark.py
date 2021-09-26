@@ -30,8 +30,12 @@ class Geomark():
 		outData = dict(self.data)
 
 
-		if _step and self.gfilter and (self.gfilter.step == _step):
-			filterData = self.gfilter.proccess(_geo, self.data)
+		if self.gfilter and (self.gfilter.step == _step):
+			if _step:
+				self.gfilter.proccess(_geo, self.data)
+
+			
+			filterData = self.gfilter.dataGet()
 
 			for cData in filterData:
 				outData[cData] = filterData[cData]

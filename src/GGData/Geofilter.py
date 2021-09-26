@@ -6,11 +6,11 @@ Applied to provided geometry with provided data.
 class Geofilter():
 	name = ''
 	step = ''
-	data = None
+	data = {}
 
 
 
-	def __init__(self, _data):
+	def __init__(self, _data={}):
 		self.data = _data
 
 
@@ -19,6 +19,11 @@ class Geofilter():
 	# Data used is own-defined format
 	def proccess(self, _geo, _data):
 		return False
+
+
+
+	def dataGet(self):
+		return dict(self.data)
 
 
 
@@ -34,4 +39,4 @@ class FilterSetSVG(Geofilter):
 			_geo.setTag(cTag, self.data[cTag])
 
 
-		return self.data
+		return True
