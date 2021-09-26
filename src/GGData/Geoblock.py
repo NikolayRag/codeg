@@ -141,4 +141,9 @@ class Geolayer():
 		self.isMarked = False
 
 
+
+	def dataGet(self):
+		self.marksSolve()
+
+
 		return dict(self.dataApplied)
