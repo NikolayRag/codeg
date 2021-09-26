@@ -116,6 +116,7 @@ class Ui():
 			filterName='setSVG',
 			filterData=self.styleSVG[self.styleSet]['off'],
 			priority=-3
+#			data={'visible':False} #mark-level visibility for example
 		)
 		self.markSelect = self.data.markNew(
 			filterName='setSVG',
