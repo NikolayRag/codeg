@@ -105,7 +105,7 @@ class GGData():
 
 		cMark = Geomark(data, priority, filterProc)
 		if scene and self.getScene():
-			self.getScene().markAdd(cMark)
+			self.getScene().markAppend(cMark)
 
 		return cMark
 
@@ -118,15 +118,15 @@ class GGData():
 
 
 		if part==True:
-			self.getScene().markAppend(_mark, _elA)
+			self.getScene().markGeoAdd(_mark, _elA)
 
 		if part==False:
-			self.getScene().markRemove(_mark, _elA)
+			self.getScene().markGeoSub(_mark, _elA)
 
 		if part==None:
-			self.getScene().markRemove(_mark)
+			self.getScene().markGeoSub(_mark)
 			if _elA:
-				self.getScene().markAppend(_mark, _elA)
+				self.getScene().markGeoAdd(_mark, _elA)
 
 
 		self.getScene().marksReapply(step)

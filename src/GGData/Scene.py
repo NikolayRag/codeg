@@ -23,19 +23,19 @@ class Scene():
 ### MARKS ###
 
 
-	def markAdd(self, _mark):
+	def markAppend(self, _mark):
 		self.allMarks.append( _mark )
 
 
 
 # -todo 111 (mark, optimize) +0: dramatically slow mark reapply
-	def markAppend(self, _mark, _elA):
+	def markGeoAdd(self, _mark, _elA):
 		for cObj in self.allGeo[0].getObj(_elA):
 			cObj.markAdd(_mark)
 
 
 
-	def markRemove(self, _mark, _elA=None):
+	def markGeoSub(self, _mark, _elA=None):
 		for cObj in self.allGeo[0].getObj(_elA):
 			cObj.markSub(_mark)
 
