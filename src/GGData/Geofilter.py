@@ -4,25 +4,14 @@ Applied to provided geometry with provided data.
 '''
 
 class Geofilter():
-	allFilters = []
-
-
 	name = ''
 	step = ''
 	data = None
 
 
 
-	def list(system=False):
-		return [f for f in Geofilter.allFilters]
-
-
-
 	def __init__(self, _data):
 		self.data = _data
-
-
-		Geofilter.allFilters.append(self)
 
 
 
