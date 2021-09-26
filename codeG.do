@@ -349,7 +349,7 @@
 +filter, module-data 124: +0 "src\GGData\Geomark.py" ki 21/09/25 22:41:33
 	make set svg tag as system filter
 
-=mark, optimize 126: +0 "src\GGData\Geoblock.py" ki 21/09/25 22:59:11
++mark, optimize 126: +0 "src\GGData\Geoblock.py" ki 21/09/26 23:59:12
 	manage object-level attributes
 
 +mark, optimize, decide 127: +10 "src\GGData\Geomark.py" ki 21/09/25 22:42:08
@@ -358,7 +358,7 @@
 +mark, optimize, decide 128: +10 "src\GGData\Geoblock.py" ki 21/09/25 22:40:45
 	Move marks assignment to geo dict WTF?!
 
- mark 129: +0 "src\GGData\Geomark.py" ki 21/09/25 22:57:54
++mark 129: +0 "src\GGData\Geomark.py" ki 21/09/26 23:57:45
 	store custom fields data list
 
 +mark 130: +0 "src\GGData\Geomark.py" ki 21/09/19 03:24:15

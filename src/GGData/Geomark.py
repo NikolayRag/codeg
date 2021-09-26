@@ -3,7 +3,6 @@
 
 
 class Geomark():
-#  todo 129 (mark) +0: store custom fields data list
 	data = {}
 	gfilter = None
 	priority = 0
