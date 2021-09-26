@@ -91,7 +91,7 @@ class Geolayer():
 		self.marks = []
 		self.isMarked = False
 
-		self.dataOwn = _data
+		self.dataOwn = dict(_data)
 		self.dataApplied = dict(self.dataOwn)
 
 
