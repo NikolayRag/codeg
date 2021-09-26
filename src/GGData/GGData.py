@@ -87,9 +87,23 @@ class GGData():
 			postamble = 'M5 G0 X0Y0'
 		)
 
+		def shapePreHook(_element):
+			refGeo = self.getScene().getSceneObjs([_element.get('id')])
+
+			if not refGeo:
+				return False
+
+			if refGeo[0].dataGet('visible')==False:
+				return False
+
+
+			return 'G0'
+
+
 		def shapeInHook(_element, _point):
 			return( "S100 G1" )
-		cGG.set(shapeIn = shapeInHook)
+
+		cGG.set(shapeIn=shapeInHook, shapePre=shapePreHook)
 
 
 		gFlat = []
