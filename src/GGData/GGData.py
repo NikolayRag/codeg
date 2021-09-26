@@ -144,3 +144,12 @@ class GGData():
 
 
 		self.getScene().marksReapply(step)
+
+
+
+	def objectApply(self, _elA, _data={}):
+		if not self.getScene():
+			return
+
+
+		self.getScene().geoDataSet(_elA, _data)

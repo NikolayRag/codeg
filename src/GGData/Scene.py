@@ -66,5 +66,12 @@ class Scene():
 		return self.allGeo[0].xmlRoot(toString)
 
 
+
 	def getSceneObjs(self, _name):
 		return self.allGeo[0].getObj(_name)
+
+
+
+	def geoDataSet(self, _elA, _data):
+		for cEl in _elA:
+			self.allGeo[0].dataSet(cEl, _data)

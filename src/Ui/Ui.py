@@ -115,8 +115,7 @@ class Ui():
 		self.markOff = self.data.markNew(
 			filterName='setSVG',
 			filterData=self.styleSVG[self.styleSet]['off'],
-			priority=-3,
-			data={'visible':False}
+			priority=-3
 		)
 		self.markSelect = self.data.markNew(
 			filterName='setSVG',
@@ -226,6 +225,7 @@ class Ui():
 
 	def ctrlLayersSet(self, _elA, _on):
 		self.data.markApply(self.markOff, _elA, part=(not _on), step='UI')
+		self.data.objectApply(_elA, {'visible':_on})
 
 		self.reloadXml()
 
