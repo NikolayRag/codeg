@@ -143,8 +143,16 @@ class Geolayer():
 
 
 
-	def dataGet(self):
+	def dataGet(self, _field=None, _default=None):
 		self.marksSolve()
 
 
-		return dict(self.dataApplied)
+		if not _field:
+			return dict(self.dataApplied)
+
+
+		if _field in self.dataApplied:
+			return self.dataApplied[_field]
+
+
+		return _default
