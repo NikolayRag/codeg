@@ -140,3 +140,6 @@ class Geolayer():
 
 
 		self.isMarked = False
+
+
+		return dict(self.dataApplied)
