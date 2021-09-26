@@ -12,26 +12,26 @@ Filter roadpoint is one of several known origins:
 
 class Geomark():
 #  todo 129 (mark) +0: store custom fields data list
-	markData = {}
-	markFilter = None
+	data = {}
+	gfilter = None
 	priority = 0
 
 
 
 	def __init__(self, _data, _priority=0, _filter=None):
-		self.markData = _data
-		self.markFilter = _filter
+		self.data = _data
+		self.gfilter = _filter
 
 		self.priority = _priority
 
 
 
 	def applyFilter(self, _geo, _step):
-		outData = dict(self.markData)
+		outData = dict(self.data)
 
 
-		if _step and self.markFilter and (self.markFilter.step == _step):
-			filterData = self.markFilter.proccess(_geo, self.markData)
+		if _step and self.gfilter and (self.gfilter.step == _step):
+			filterData = self.gfilter.proccess(_geo, self.data)
 
 			for cData in filterData:
 				outData[cData] = filterData[cData]

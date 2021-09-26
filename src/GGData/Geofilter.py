@@ -9,7 +9,7 @@ class Geofilter():
 
 	name = ''
 	step = ''
-	ownData = None
+	data = None
 
 
 
@@ -19,7 +19,7 @@ class Geofilter():
 
 
 	def __init__(self, _data):
-		self.ownData = _data
+		self.data = _data
 
 
 		Geofilter.allFilters.append(self)
@@ -41,8 +41,8 @@ class FilterSetSVG(Geofilter):
 
 
 	def proccess(self, _geo, _data):
-		for cTag in self.ownData:
-			_geo.setTag(cTag, self.ownData[cTag])
+		for cTag in self.data:
+			_geo.setTag(cTag, self.data[cTag])
 
 
-		return self.ownData
+		return self.data
