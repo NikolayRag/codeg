@@ -93,7 +93,7 @@ class GGData():
 			if not refGeo:
 				return False
 
-			if refGeo[0].dataGet('visible')==False:
+			if not refGeo[0].dataGet('visible', True):
 				return False
 
 
