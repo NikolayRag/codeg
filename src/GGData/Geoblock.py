@@ -80,7 +80,7 @@ class Geolayer():
 	marks = []
 	isMarked = False
 
-	dataOrig = {}
+	dataOwn = {}
 	dataApplied = {}
 
 
@@ -92,8 +92,8 @@ class Geolayer():
 		self.marks = []
 		self.isMarked = False
 
-		self.dataOrig = _data
-		self.dataApplied = dict(self.dataOrig)
+		self.dataOwn = _data
+		self.dataApplied = dict(self.dataOwn)
 
 
 
@@ -127,7 +127,7 @@ class Geolayer():
 
 
 	def marksSolve(self, filterStep=None):
-		self.dataApplied = dict(self.dataOrig)
+		self.dataApplied = dict(self.dataOwn)
 
 		markSortedA = sorted(self.marks, key=lambda m: m.priority)
 
