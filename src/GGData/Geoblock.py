@@ -76,23 +76,24 @@ class Geoblock():
 class Geolayer():
 	obj = None
 	name = ''
+
 	marks = []
 	isMarked = False
 
 	dataOrig = {}
-	data = {}
+	dataApplied = {}
+
 
 
 	def __init__(self, _obj, _name='', _data={}):
 		self.obj = _obj
 		self.name = _name
-		self.marks = []
 
+		self.marks = []
 		self.isMarked = False
 
-
 		self.dataOrig = _data
-		self.data = dict(self.dataOrig)
+		self.dataApplied = dict(self.dataOrig)
 
 
 
@@ -126,7 +127,7 @@ class Geolayer():
 
 
 	def marksSolve(self, filterStep=None):
-		self.data = dict(self.dataOrig)
+		self.dataApplied = dict(self.dataOrig)
 
 		markSortedA = sorted(self.marks, key=lambda m: m.priority)
 
@@ -135,7 +136,7 @@ class Geolayer():
 			filterData = cMark.applyFilter(self, self.isMarked and filterStep)
 
 			for cData in filterData:
-				self.data[cData] = filterData[cData]
+				self.dataApplied[cData] = filterData[cData]
 
 
 		self.isMarked = False
