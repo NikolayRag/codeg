@@ -18,7 +18,6 @@ class Geofilter():
 
 
 	# return False, new geo, or True if provided geo is modified
-	# Data used is own-defined format
 	def proccess(self, _geo, _data):
 		return False
 
