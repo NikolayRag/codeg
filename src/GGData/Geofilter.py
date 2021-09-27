@@ -39,5 +39,3 @@ class FilterSetSVG(Geofilter):
 		for cTag in self.dataOwn:
 			_geo.setTag(cTag, self.dataOwn[cTag], dirty=False)
 
-
-		return True
