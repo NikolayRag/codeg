@@ -82,11 +82,13 @@ class Geolayer():
 	name = ''
 
 	marks = []
-	isMarked = False
 
 	dataOwn = {}
 	dataApplied = {}
 
+	dirtyGeo = False
+	dirtyData = False
+	dirtyMark = False
 
 
 	def __init__(self, _obj, _name='', _data={}):
@@ -94,15 +96,22 @@ class Geolayer():
 		self.name = _name
 
 		self.marks = []
-		self.isMarked = False
 
 		self.dataOwn = dict(_data)
 		self.dataApplied = dict(self.dataOwn)
 
+		self.dirtyGeo = False
+		self.dirtyData = False
+		self.dirtyMark = False
 
 
-	def setTag(self, _tag, _data):
+
+	def setTag(self, _tag, _data, dirty=True):
 		self.obj.set(_tag, _data)
+
+
+		if dirty:
+			self.dirtyGeo = True
 
 
 
@@ -114,7 +123,7 @@ class Geolayer():
 		self.marks.append(_mark)
 
 
-		self.isMarked = True
+		self.dirtyMark = True
 
 
 
@@ -126,7 +135,7 @@ class Geolayer():
 		self.marks.remove(_mark)
 
 
-		self.isMarked = True
+		self.dirtyMark = True
 
 
 
@@ -138,13 +147,13 @@ class Geolayer():
 
 
 		for cMark in markSortedA:
-			filterData = cMark.applyFilter(self, self.isMarked and filterStep)
+			filterData = cMark.applyFilter(self, self.dirtyMark and filterStep)
 
 			for cData in filterData:
 				self.dataApplied[cData] = filterData[cData]
 
 
-		self.isMarked = False
+		self.dirtyMark = False
 
 
 
@@ -167,3 +176,6 @@ class Geolayer():
 	def dataSet(self, _data):
 		for dName in _data:
 			self.dataOwn[dName] = _data[dName]
+
+
+		self.dirtyData = True
