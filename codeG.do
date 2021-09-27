@@ -28,8 +28,8 @@
 !spec, module-data 10: +0 "" kii 21/09/08 21:55:55
 	dup
 
-=spec, module-data 11: +0 "src\GGData\GGData.py" ki 21/09/12 18:39:07
-	read/save scene format
+=spec, module-data 11: +0 "src\GGData\Scene.py" ki 21/09/27 02:38:56
+	read/save scene data
 
 +spec, module-ui 12: +1 "src\__main__w.py" kii 21/07/31 02:59:35
 	show scene
@@ -262,11 +262,11 @@
 -viewport, api 91: +0 "" ki 21/09/25 22:57:27
 	add class-level SVG runtime generator signal/slot
 
- feature 92: +0 "src\GGData\Scene.py" ki 21/09/25 22:54:19
+ feature 92: +0 "src\GGData\Scene.py" ki 21/09/27 02:39:16
 	multiple sources scene
 
-=scene, feature 93: +0 "src\GGData\Scene.py" ki 21/09/25 22:40:19
-	store scene layer and layout state
+!scene, feature 93: +0 "" ki 21/09/27 02:39:14
+	redundant
 
  viewport, fix 95: +0 "src\Ui\SvgViewport.py" kii 21/08/28 15:52:23
 	clip max scale by render limit
@@ -283,7 +283,7 @@
 !module-ui, optimize 99: +0 "src\GGen\GGen.py" kii 21/09/02 03:40:33
 	
 
- gcode, feature 100: +0 "src\GGData\GGData.py" kii 21/09/08 21:40:03
+ gcode, feature 100: +0 "src\GGData\GGData.py" ki 21/09/27 02:22:22
 	allow flexible filters for gcode
 
 +module-ui 101: +0 "src\Ui\Ui.py" kii 21/09/08 02:52:08
