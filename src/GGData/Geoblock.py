@@ -156,6 +156,8 @@ class Geolayer():
 		self.dirtyMark = False
 
 
+### DATA ###
+
 
 	def dataGet(self, _field=None, _default=None):
 		self.marksSolve()
