@@ -10,7 +10,7 @@ class Geomark():
 
 
 	def __init__(self, _data, _priority=0, _filter=None):
-		self.data = _data
+		self.data = dict(_data)
 		self.gfilter = _filter
 
 		self.priority = _priority
