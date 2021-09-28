@@ -5,7 +5,6 @@ Used internally, have no public access.
 '''
 
 class Geofilter():
-	name = ''	# Reference name for creation by GGData.markNew()
 	step = ''	# Step of executution (TO BE FILLED)
 	dataOwn = {}	# Internal data provided at init
 	dataPublic = {}	# Data to be returned on Geolayer.marksSolve() cycle, respecting step

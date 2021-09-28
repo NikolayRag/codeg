@@ -37,7 +37,7 @@ class GGData():
 
 
 	def __init__(self):
-		self.allFilters = {a.name:a for a in Geofilter.__subclasses__()}
+		self.allFilters = {a.__name__:a for a in Geofilter.__subclasses__()}
 
 
 

@@ -3,7 +3,6 @@ from ..Geofilter import *
 
 
 class FilterSetSVG(Geofilter):
-	name = 'SetSVG'
 	step = 'UI'
 
 
