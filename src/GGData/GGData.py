@@ -66,6 +66,8 @@ class GGData():
 
 
 
+	def getScenes(self, _id=0):
+		return dict(self.allScenes)
 
 
 
