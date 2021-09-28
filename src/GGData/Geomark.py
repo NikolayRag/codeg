@@ -21,11 +21,10 @@ class Geomark():
 		outData = dict(self.data)
 
 
-		if self.gfilter and self.gfilter.isStep(_step):
-			self.gfilter.proccess(_geo, self.data)
+		if self.gfilter:
+			self.gfilter.proccess(_step, _geo, self.data)
 
-			
-			filterData = self.gfilter.dataGet()
+			filterData = self.gfilter.getData(_step)
 
 			for cData in filterData:
 				outData[cData] = filterData[cData]
