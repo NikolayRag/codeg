@@ -14,11 +14,10 @@ if __name__ == '__main__':
 
 	if cArgs.args:
 		cGG = GGData()
+		
 		cDis = Dispatch(cGG)
 
-
 		cUi = Ui(cArgs, cGG, cDis)
-
 		cUi.exec()
 
 
