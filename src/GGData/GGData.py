@@ -117,6 +117,10 @@ class GGData():
 
 	def markNew(self, data={}, filterName=None, filterData={}, priority=0, scene=False):
 		filterProc = (filterName in self.allFilters) and self.allFilters[filterName](filterData)
+		
+		if filterName and not filterProc:
+			print('Warning: filter', filterName, 'is unknown')
+
 
 		cMark = Geomark(data, priority, filterProc)
 		if scene and self.getScene():
