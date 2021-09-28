@@ -34,7 +34,7 @@ class Geofilter():
 		return dict(self.dataPublic)
 
 
-### ###
+### OVERLOAD ###
 
 
 # Main proccess function for overload in derived filters.
