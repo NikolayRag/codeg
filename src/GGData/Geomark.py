@@ -12,6 +12,14 @@ class Geomark():
 
 
 
+	def __init__(self, _data, _priority=0, _filter=None):
+		self.data = dict(_data)
+		self.gfilter = _filter
+
+		self.priority = _priority
+
+
+
 # -todo 136 (module-data, decide) +0: step is ambiguous
 	def applyFilter(self, _geo, _step):
 		outData = dict(self.data)
@@ -29,13 +37,7 @@ class Geomark():
 		return outData
 
 
-
-	def __init__(self, _data, _priority=0, _filter=None):
-		self.data = dict(_data)
-		self.gfilter = _filter
-
-		self.priority = _priority
-
+### ###
 
 
 	def setPriority(self, _priority):
