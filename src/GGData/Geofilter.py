@@ -1,6 +1,7 @@
 '''
 Object proccessing functions.
 Applied to provided geometry with provided data.
+Used internally, have no public access.
 '''
 
 class Geofilter():
