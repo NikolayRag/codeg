@@ -41,6 +41,7 @@ class GGData():
 
 
 
+#  todo 137 (module-data, scene) +0: multiscene
 	def sceneClear(self, _id=-1):
 		if _id == -1:
 			self.allScenes.clear()
