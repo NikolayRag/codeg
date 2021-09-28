@@ -19,7 +19,7 @@ Data scope:
 '''
 
 
-from GGen import *
+from .GGen import *
 from .Scene import *
 from .Geomark import *
 from .Geofilter import *
