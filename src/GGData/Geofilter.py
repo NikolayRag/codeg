@@ -4,10 +4,10 @@ Applied to provided geometry with provided data.
 '''
 
 class Geofilter():
-	name = ''
-	step = ''
-	dataOwn = {}
-	dataPublic = {}
+	name = ''	# Reference name for creation by GGData.markNew()
+	step = ''	# Step of executution (TO BE FILLED)
+	dataOwn = {}	# Internal data provided at init
+	dataPublic = {}	# Data to be returned on Geolayer.marksSolve() cycle, respecting step
 
 
 
@@ -18,6 +18,7 @@ class Geofilter():
 
 
 
+# Return public output data, which is blank if not filled by overloaded .run()
 	def proccess(self, _step, _geo, _data):
 		if _step != self.step:
 			return
@@ -32,6 +33,8 @@ class Geofilter():
 
 		return dict(self.dataPublic)
 
+
+### ###
 
 
 # Main proccess function for overload in derived filters.
