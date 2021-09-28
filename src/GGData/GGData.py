@@ -41,9 +41,13 @@ class GGData():
 
 
 
-	def newScene(self):
-		self.allScenes.clear()
+	def sceneClear(self, _id=-1):
+		if _id == -1:
+			self.allScenes.clear()
 
+
+
+	def newScene(self):
 		self.allScenes.append( Scene() )
 		self.sceneActive = len(self.allScenes) -1
 
