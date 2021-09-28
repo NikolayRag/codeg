@@ -30,9 +30,7 @@ from .Filters import *
 class GGData():
 
 	allFilters = {}
-
-	allScenes = []
-	sceneActive = -1
+	allScenes = {}
 
 
 
@@ -44,18 +42,29 @@ class GGData():
 #  todo 137 (module-data, scene) +0: multiscene
 	def sceneClear(self, _id=-1):
 		if _id == -1:
-			self.allScenes.clear()
+			self.allScenes = {}
+
+			return
+
+
+		del self.allScenes[_id]
 
 
 
 	def sceneNew(self):
-		self.allScenes.append( Scene() )
-		self.sceneActive = len(self.allScenes) -1
+		i = 0
+		
+		if self.allScenes:
+			i = max(self.allScenes, key=int) +1
+
+		self.allScenes[i] = Scene()
 
 
 
-	def getScene(self):
-		return self.sceneActive>=0 and self.allScenes[self.sceneActive]
+	def getScene(self, _id=0):
+		return self.allScenes and self.allScenes[_id]
+
+
 
 
 
