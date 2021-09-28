@@ -21,9 +21,8 @@ class Geomark():
 		outData = dict(self.data)
 
 
-		if self.gfilter and (self.gfilter.step == _step):
-			if _step:
-				self.gfilter.proccess(_geo, self.data)
+		if self.gfilter and self.gfilter.isStep(_step):
+			self.gfilter.proccess(_geo, self.data)
 
 			
 			filterData = self.gfilter.dataGet()

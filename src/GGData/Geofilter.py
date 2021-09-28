@@ -18,6 +18,11 @@ class Geofilter():
 
 
 
+	def isStep(self, _step):
+		return _step == self.step
+
+
+
 # Main proccess function for overload in derived filters.
 # Called from Geomark.
 #
