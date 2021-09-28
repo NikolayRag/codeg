@@ -13,7 +13,7 @@ class Geofilter():
 
 # Init filter with provided data dict to be private
 	def __init__(self, _data={}):
-		self.dataOwn = _data
+		self.dataOwn = dict(_data)
 		self.dataPublic = {}
 
 
