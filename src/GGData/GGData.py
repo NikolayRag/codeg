@@ -20,8 +20,9 @@ Data scope:
 
 from GGen import *
 from .Scene import *
-from .Geofilter import *
 from .Geomark import *
+from .Geofilter import *
+from .Filters import *
 
 
 
