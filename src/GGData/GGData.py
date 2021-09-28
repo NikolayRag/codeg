@@ -66,7 +66,7 @@ class GGData():
 
 
 
-	def getScenes(self, _id=0):
+	def sceneList(self, _id=0):
 		return dict(self.allScenes)
 
 
