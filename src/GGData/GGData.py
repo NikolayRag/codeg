@@ -5,6 +5,7 @@
 
 #  todo 25 (module-data, formats) +0: load .nc gcode
 
+# =todo 134 (module-data, api) -1: Clean Scene and further classes to be used as a GGData API part
 
 '''
 Data scope:

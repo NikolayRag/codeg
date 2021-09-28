@@ -373,3 +373,9 @@
  mark, optimize, decide 133: -1 "src\GGData\Geoblock.py" ki 21/09/26 23:50:36
 	Need to cache data?
 
+=module-data, api 134: -1 "src\GGData\GGData.py" ki 21/09/28 01:21:18
+	Clean Scene and further classes to be used as a GGData API part
+
++module-data, api, filters 135: +0 "src\GGData\GGData.py" ki 21/09/28 13:42:23
+	add fallback dummy filter on fly
+
