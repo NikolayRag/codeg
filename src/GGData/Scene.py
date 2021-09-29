@@ -32,6 +32,17 @@ class Scene():
 
 
 
+	def markRemove(self, _mark):
+		if _mark not in self.allMarks:
+			return
+
+		
+		self.allMarks.remove( _mark )
+
+		return True
+
+
+
 # -todo 111 (mark, optimize) +0: dramatically slow mark reapply
 
 #  todo 139 (clean) +0: Clean mark to object appending
