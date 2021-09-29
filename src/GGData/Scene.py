@@ -39,7 +39,7 @@ class Scene():
 
 
 
-	def markGeoSub(self, _mark, _elA=None):
+	def markGeoSub(self, _mark, _elA=True):
 		for cObj in self.allGeo[0].getObj(_elA):
 			cObj.markSub(_mark)
 
