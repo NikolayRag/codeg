@@ -244,7 +244,7 @@ class Ui():
 			return
 
 
-		cScene.markApply(self.markOff, _elA, part=(not _on), step='UI')
+		cScene.markApply(self.markOff, _elA, mode=(not _on), step='UI')
 		cScene.geoDataSet(_elA, {'visible':_on})
 
 		self.reloadXml()
