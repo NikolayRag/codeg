@@ -65,7 +65,7 @@ class GGData():
 
 
 
-	def getScene(self, _id=-1):
+	def sceneGet(self, _id=-1):
 		if _id == -1:
 			_id = self.currentScene
 
@@ -90,30 +90,30 @@ class GGData():
 
 # -todo 84 (module-data) +0: make file load plugin system
 	def loadGeo(self, _source, _type='svg'):
-		self.getScene().geoAdd(_source, _type)
+		self.sceneGet().geoAdd(_source, _type)
 
-		return self.getScene().geoMeta()
+		return self.sceneGet().geoMeta()
 
 
 
 	def getXML(self):
-		return (self.getScene() and self.getScene().getSceneXML(True))
+		return (self.sceneGet() and self.sceneGet().getSceneXML(True))
 
 
 
 	def available(self):
-		return bool(self.getScene())
+		return bool(self.sceneGet())
 
 
 
 # -todo 104 (module-data, decide) +0: move to filter
 #  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
 	def getG(self, x=0, y=0):
-		if not self.getScene():
+		if not self.sceneGet():
 			return
 
 #  todo 100 (gcode, feature) +0: allow flexible filters for gcode
-		cGG = GGen(self.getScene().getSceneXML())
+		cGG = GGen(self.sceneGet().getSceneXML())
 		cGG.set(
 			preamble = 'G90 M4 S0',
 			shapePre = 'G0',
@@ -123,7 +123,7 @@ class GGData():
 		)
 
 		def shapePreHook(_element):
-			refGeo = self.getScene().getSceneObjs([_element.get('id')])
+			refGeo = self.sceneGet().getSceneObjs([_element.get('id')])
 
 			if not refGeo:
 				return False
@@ -161,8 +161,8 @@ class GGData():
 
 
 		cMark = Geomark(data, priority, filterProc)
-		if scene and self.getScene():
-			self.getScene().markAppend(cMark)
+		if scene and self.sceneGet():
+			self.sceneGet().markAppend(cMark)
 
 		return cMark
 
@@ -170,29 +170,29 @@ class GGData():
 
 	# part: True/False/None points to add/sub/reset
 	def markApply(self, _mark, _elA, part=None, step=None):
-		if not self.getScene():
+		if not self.sceneGet():
 			return
 
 
 		if part==True:
-			self.getScene().markGeoAdd(_mark, _elA)
+			self.sceneGet().markGeoAdd(_mark, _elA)
 
 		if part==False:
-			self.getScene().markGeoSub(_mark, _elA)
+			self.sceneGet().markGeoSub(_mark, _elA)
 
 		if part==None:
-			self.getScene().markGeoSub(_mark)
+			self.sceneGet().markGeoSub(_mark)
 			if _elA:
-				self.getScene().markGeoAdd(_mark, _elA)
+				self.sceneGet().markGeoAdd(_mark, _elA)
 
 
-		self.getScene().marksReapply(step)
+		self.sceneGet().marksReapply(step)
 
 
 
 	def objectApply(self, _elA, _data={}):
-		if not self.getScene():
+		if not self.sceneGet():
 			return
 
 
-		self.getScene().geoDataSet(_elA, _data)
+		self.sceneGet().geoDataSet(_elA, _data)
