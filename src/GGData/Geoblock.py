@@ -122,8 +122,10 @@ class Geolayer():
 
 		self.marks.append(_mark)
 
-
 		self.dirtyMark = True
+
+
+		return True
 
 
 
@@ -134,8 +136,10 @@ class Geolayer():
 
 		self.marks.remove(_mark)
 
-
 		self.dirtyMark = True
+
+
+		return True
 
 
 
