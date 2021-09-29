@@ -175,7 +175,9 @@ class Ui():
 		sId = self.data.sceneNew()
 		self.data.sceneFocus(sId)
 
-		cMeta = self.data.loadGeo(fileName, 'svg')
+
+		self.data.sceneGet().geoAdd(fileName, 'svg')
+		cMeta = self.data.sceneGet().geoMeta()
 		self.data.markApply(self.markDefault, cMeta.keys(), step='UI')
 
 		cXml = self.data.getXML()

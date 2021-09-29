@@ -88,13 +88,6 @@ class GGData():
 
 
 # -todo 84 (module-data) +0: make file load plugin system
-	def loadGeo(self, _source, _type='svg'):
-		self.sceneGet().geoAdd(_source, _type)
-
-		return self.sceneGet().geoMeta()
-
-
-
 	def getXML(self):
 		return (self.sceneGet() and self.sceneGet().getSceneXML(True))
 

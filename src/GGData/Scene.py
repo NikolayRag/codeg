@@ -49,7 +49,7 @@ class Scene():
 ### GEO ###
 
 
-	def geoAdd(self, _source, _type):
+	def geoAdd(self, _source, _type='svg'):
 		self.allGeo.append( Geoblock(_source, _type) )
 
 		return len(self.allGeo) -1
