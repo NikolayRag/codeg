@@ -238,7 +238,7 @@
  ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" ki 21/09/22 23:33:54
 	fit at init dont work due to obsolete size 
 
--module-data 84: +0 "src\GGData\GGData.py" ki 21/09/25 22:39:20
+ module-data 84: +0 "src\GGData\GGData.py" ki 21/09/29 03:36:45
 	make file load plugin system
 
 +module-dispatch 85: +0 "src\GGData\GGData.py" kii 21/08/28 18:00:25
@@ -295,7 +295,7 @@
 +module-ui, module-data, API 103: +0 "src\Ui\Ui.py" kii 21/09/08 02:52:25
 	move geo decorators to data
 
--module-data, decide 104: +0 "src\GGData\GGData.py" ki 21/09/28 16:55:43
+-module-data, decide 104: +0 "src\GGData\GGData.py" ki 21/09/29 03:33:28
 	move to filter
 
 +module-data, filter, API 105: +0 "src\GGData\GGData.py" ki 21/09/25 22:38:42

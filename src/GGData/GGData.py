@@ -91,7 +91,7 @@ class GGData():
 
 
 
-# -todo 84 (module-data) +0: make file load plugin system
+#  todo 84 (module-data) +0: make file load plugin system
 
 
 # -todo 104 (module-data, decide) +0: move to filter
