@@ -188,7 +188,7 @@ class Ui():
 
 # -todo 119 (refactor, module-ui, module-data) +0: clean for dispatch
 	def storeG(self):
-		if not self.data.available():
+		if not self.data.sceneGet():
 			print("No scene data")
 			return
 
