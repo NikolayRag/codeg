@@ -37,6 +37,19 @@ class Geofilter():
 		return dict(self.dataPublic)
 
 
+
+	def setData(self, _data, clean=False):
+		if clean:
+			self.data = dict(_data)
+
+			return
+
+
+		for n in _data:
+			self.data[n] = _data[n]
+
+
+
 ### OVERLOAD ###
 
 
