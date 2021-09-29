@@ -6,6 +6,7 @@ Hold arbitrary data and optional Geofilter to be applied
 
 
 class Geomark():
+	isDirty = False
 	data = {}
 	gfilter = None
 	priority = 0
@@ -13,6 +14,8 @@ class Geomark():
 
 
 	def __init__(self, _data, _priority=0, _filter=None):
+		self.isDirty = False
+
 		self.data = dict(_data)
 		self.gfilter = _filter
 
@@ -26,7 +29,8 @@ class Geomark():
 
 
 		if self.gfilter:
-			self.gfilter.proccess(_step, _geo, self.data)
+			if self.gfilter.proccess(_step, _geo, self.data):
+				self.isDirty = True
 
 			filterData = self.gfilter.getData(_step)
 

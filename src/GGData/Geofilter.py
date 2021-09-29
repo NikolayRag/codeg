@@ -43,6 +43,6 @@ class Geofilter():
 # Main proccess function for overload in derived filters.
 # Called from Geomark.
 #
-# Return True if provided geometry is modified inline
+# Return True if provided geometry is modified inline or dataPublic is updated
 	def run(self, _geo, _data):
 		return False
