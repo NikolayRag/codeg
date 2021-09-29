@@ -171,7 +171,7 @@ class Ui():
 		self.args.set("recentLoaded", cRecentA+[fileName])
 
 
-		self.data.sceneClear()
+		self.data.sceneRemove()
 		self.data.sceneNew(focus=True)
 		cScene = self.data.sceneGet()
 

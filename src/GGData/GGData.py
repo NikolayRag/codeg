@@ -40,7 +40,7 @@ class GGData():
 
 
 
-	def sceneClear(self, _id=-1):
+	def sceneRemove(self, _id=-1):
 		if _id == -1:
 			self.allScenes = {}
 
