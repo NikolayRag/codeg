@@ -51,7 +51,7 @@ class GGData():
 
 
 
-	def sceneNew(self):
+	def sceneNew(self, focus=False):
 		i = 0
 		
 		if self.allScenes:
@@ -60,6 +60,10 @@ class GGData():
 		self.allScenes[i] = Scene()
 
 
+		if focus:
+			self.sceneFocus(i)
+
+			
 		return i
 
 

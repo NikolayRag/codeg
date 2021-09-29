@@ -172,12 +172,11 @@ class Ui():
 
 
 		self.data.sceneClear()
-		sId = self.data.sceneNew()
-		self.data.sceneFocus(sId)
+		self.data.sceneNew(focus=True)
+		cScene = self.data.sceneGet()
 
-
-		self.data.sceneGet().geoAdd(fileName, 'svg')
-		cMeta = self.data.sceneGet().geoMeta()
+		cScene.geoAdd(fileName, 'svg')
+		cMeta = cScene.geoMeta()
 		self.data.markApply(self.markDefault, cMeta.keys(), step='UI')
 
 		cXml = self.data.getXML()
