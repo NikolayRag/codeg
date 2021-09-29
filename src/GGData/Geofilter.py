@@ -2,12 +2,15 @@
 Object proccessing functions.
 Applied to provided geometry with provided data.
 Used internally, have no public access.
+
+Base class for deriving filters.
+Derived class should override .run() function, and fill out dataPublic.
 '''
 
 class Geofilter():
 	step = ''	# Step of executution (TO BE FILLED)
 	dataOwn = {}	# Internal data provided at init
-	dataPublic = {}	# Data to be returned on Geolayer.marksSolve() cycle, respecting step
+	dataPublic = {}	# Data to be returned on Geolayer.marksSolve() cycle, at particular step
 
 
 
