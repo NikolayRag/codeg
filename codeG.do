@@ -388,3 +388,6 @@
 -module-data, clean 138: +0 "src\GGData\GGData.py" ki 21/09/29 13:30:27
 	cleanup root scene functions
 
+ clean 139: +0 "src\GGData\Scene.py" ki 21/09/29 13:34:57
+	Clean mark to object appending
+

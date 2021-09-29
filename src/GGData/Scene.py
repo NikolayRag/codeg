@@ -44,7 +44,7 @@ class Scene():
 			cObj.markSub(_mark)
 
 
-
+#  todo 139 (clean) +0: Clean mark to object appending
 	# part: True/False/None points to add/sub/reset
 	def markApply(self, _mark, _elA, part=None, step=None):
 		if part==True:
