@@ -33,33 +33,31 @@ class Scene():
 
 
 # -todo 111 (mark, optimize) +0: dramatically slow mark reapply
-	def markGeoAdd(self, _mark, _elA):
-		for cObj in self.allGeo[0].getObj(_elA):
+
+#  todo 139 (clean) +0: Clean mark to object appending
+	# part: True/False/None points to add/sub/set
+	def markApply(self, _mark, _elA, part=None, step=None):
+		elAll = elSub = elAdd = self.allGeo[0].getObj(_elA)
+
+
+		if part==True:
+			elSub = []
+
+		if part==False:
+			elAdd = []
+
+		if part==None:
+			elAll = elSub = self.allGeo[0].getObj()
+
+
+		for cObj in elSub:
+			cObj.markSub(_mark)
+
+		for cObj in elAdd:
 			cObj.markAdd(_mark)
 
 
-
-	def markGeoSub(self, _mark, _elA=True):
-		for cObj in self.allGeo[0].getObj(_elA):
-			cObj.markSub(_mark)
-
-
-#  todo 139 (clean) +0: Clean mark to object appending
-	# part: True/False/None points to add/sub/reset
-	def markApply(self, _mark, _elA, part=None, step=None):
-		if part==True:
-			self.markGeoAdd(_mark, _elA)
-
-		if part==False:
-			self.markGeoSub(_mark, _elA)
-
-		if part==None:
-			self.markGeoSub(_mark)
-			if _elA:
-				self.markGeoAdd(_mark, _elA)
-
-
-		for cObj in self.allGeo[0].getObj():
+		for cObj in elAll:
 			cObj.marksSolve(filterStep=step)
 
 
