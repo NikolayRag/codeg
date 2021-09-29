@@ -40,6 +40,7 @@ class GGData():
 
 
 
+# -todo 138 (module-data, clean) +0: cleanup root scene functions
 	def sceneRemove(self, _id=-1):
 		if _id == -1:
 			self.allScenes = {}
