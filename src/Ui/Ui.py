@@ -229,8 +229,9 @@ class Ui():
 
 
 	def ctrlLayersSet(self, _elA, _on):
+		cScene = self.data.sceneGet()
 		self.data.markApply(self.markOff, _elA, part=(not _on), step='UI')
-		self.data.objectApply(_elA, {'visible':_on})
+		cScene.geoDataSet(_elA, {'visible':_on})
 
 		self.reloadXml()
 

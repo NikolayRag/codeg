@@ -63,7 +63,7 @@ class GGData():
 		if focus:
 			self.sceneFocus(i)
 
-			
+
 		return i
 
 
@@ -175,12 +175,3 @@ class GGData():
 
 
 		self.sceneGet().marksReapply(step)
-
-
-
-	def objectApply(self, _elA, _data={}):
-		if not self.sceneGet():
-			return
-
-
-		self.sceneGet().geoDataSet(_elA, _data)
