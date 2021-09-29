@@ -60,6 +60,7 @@ class GGData():
 		self.allScenes[i] = Scene()
 
 
+		return i
 
 	def getScene(self, _id=0):
 		return self.allScenes and self.allScenes[_id]
