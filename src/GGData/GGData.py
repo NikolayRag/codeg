@@ -94,6 +94,8 @@ class GGData():
 ###
 
 
+#	Only create Geomark with given Geofilter and data.
+#	Should be appended to scene explicitely by Scene.markAppend().
 	def markNew(self, data={}, filterName=None, filterData={}, priority=0):
 		if filterName not in self.allFilters:
 			print('Warning: filter', filterName, 'is unknown')
