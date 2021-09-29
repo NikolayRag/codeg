@@ -90,6 +90,26 @@ class GGData():
 		return self.currentScene
 
 
+###
+
+
+	def markNew(self, data={}, filterName=None, filterData={}, priority=0):
+		if filterName not in self.allFilters:
+			print('Warning: filter', filterName, 'is unknown')
+
+			newclass = type('Filter'+filterName, (Geofilter,),{"name": filterName})
+			self.allFilters[filterName] = newclass
+
+
+		filterProc = self.allFilters[filterName](filterData)
+
+
+		cMark = Geomark(data, priority, filterProc)
+		return cMark
+
+
+###
+
 
 # -todo 104 (module-data, decide) +0: move to filter
 #  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
@@ -133,17 +153,3 @@ class GGData():
 		return "\n".join(gFlat)
 
 
-
-	def markNew(self, data={}, filterName=None, filterData={}, priority=0):
-		if filterName not in self.allFilters:
-			print('Warning: filter', filterName, 'is unknown')
-
-			newclass = type('Filter'+filterName, (Geofilter,),{"name": filterName})
-			self.allFilters[filterName] = newclass
-
-
-		filterProc = self.allFilters[filterName](filterData)
-
-
-		cMark = Geomark(data, priority, filterProc)
-		return cMark
