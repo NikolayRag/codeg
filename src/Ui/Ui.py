@@ -177,7 +177,7 @@ class Ui():
 
 		cScene.geoAdd(fileName, 'svg')
 		cMeta = cScene.geoMeta()
-		cScene.markApply(self.markDefault, cMeta.keys(), step='UI')
+		cScene.markApplyGeo(self.markDefault, cMeta.keys(), step='UI')
 
 		cXml = cScene.getSceneXML(True)
 		if cXml:
@@ -219,7 +219,7 @@ class Ui():
 			return
 
 
-		cScene.markApply(self.markSelect, _selectionA, step='UI')
+		cScene.markApplyGeo(self.markSelect, _selectionA, step='UI')
 
 		self.reloadXml()
 
@@ -232,7 +232,7 @@ class Ui():
 			return
 
 
-		cScene.markApply(self.markHover, [_hover] if _hover else [], step='UI')
+		cScene.markApplyGeo(self.markHover, [_hover] if _hover else [], step='UI')
 
 		self.reloadXml()
 
@@ -244,7 +244,7 @@ class Ui():
 			return
 
 
-		cScene.markApply(self.markOff, _elA, mode=(not _on), step='UI')
+		cScene.markApplyGeo(self.markOff, _elA, mode=(not _on), step='UI')
 		cScene.geoDataSet(_elA, {'visible':_on})
 
 		self.reloadXml()
