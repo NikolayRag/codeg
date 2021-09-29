@@ -58,7 +58,7 @@ class Geoblock():
 
 
 	def getObj(self, _nameA=None):
-		if not _nameA:
+		if _nameA == None:
 			_nameA = self.names()
 
 		return [self.namedLayers[n] for n in _nameA if (n in self.namedLayers)]
