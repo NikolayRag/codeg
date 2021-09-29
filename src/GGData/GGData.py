@@ -31,7 +31,7 @@ class GGData():
 
 	allFilters = {}
 	allScenes = {}
-	currentScene = 0
+	currentSceneId = 0
 
 
 
@@ -62,7 +62,7 @@ class GGData():
 
 
 		if focus:
-			self.sceneFocus(i)
+			self.sceneActive(i)
 
 
 		return i
@@ -71,7 +71,7 @@ class GGData():
 
 	def sceneGet(self, _id=-1):
 		if _id == -1:
-			_id = self.currentScene
+			_id = self.currentSceneId
 
 
 		return (_id in self.allScenes) and self.allScenes[_id]
@@ -83,12 +83,12 @@ class GGData():
 
 
 
-	def sceneFocus(self, _id=None):
+	def sceneActive(self, _id=None):
 		if _id != None:
-			self.currentScene = _id
+			self.currentSceneId = _id
 
 
-		return self.currentScene
+		return self.currentSceneId
 
 
 ###
