@@ -295,7 +295,7 @@
 +module-ui, module-data, API 103: +0 "src\Ui\Ui.py" kii 21/09/08 02:52:25
 	move geo decorators to data
 
--module-data, decide 104: +0 "src\GGData\GGData.py" ki 21/09/29 03:33:28
+-module-data, decide 104: +0 "src\GGData\GGData.py" ki 21/09/29 04:39:03
 	move to filter
 
 +module-data, filter, API 105: +0 "src\GGData\GGData.py" ki 21/09/25 22:38:42
@@ -313,7 +313,7 @@
 +clean 110: +0 "src\GGData\GGData.py" kii 21/09/07 22:45:38
 	use namedRef
 
--mark, optimize 111: +0 "src\GGData\Scene.py" ki 21/09/25 13:19:33
+-mark, optimize 111: +0 "src\GGData\Scene.py" ki 21/09/29 04:27:33
 	dramatically slow mark reapply
 
 +mark, feature 112: +0 "src\GGData\Geomark.py" ki 21/09/25 22:41:32
