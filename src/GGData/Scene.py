@@ -23,7 +23,13 @@ class Scene():
 
 
 	def markAppend(self, _mark):
+		if _mark in self.allMarks:
+			return
+
+
 		self.allMarks.append( _mark )
+
+		return True
 
 
 
