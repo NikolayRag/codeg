@@ -35,9 +35,10 @@ class Scene():
 # -todo 111 (mark, optimize) +0: dramatically slow mark reapply
 
 #  todo 139 (clean) +0: Clean mark to object appending
-	# mode: True/False/None points to add/sub/set
+	# mode: True/False/None(default) for add/sub/set
 	def markApply(self, _mark, _elA, mode=None, step=None):
-		elAll = elSub = elAdd = self.allGeo[0].getObj(_elA)
+		elAll = []
+		elSub = elAdd = self.allGeo[0].getObj(_elA)
 
 
 		if mode==True:
@@ -47,14 +48,16 @@ class Scene():
 			elAdd = []
 
 		if mode==None:
-			elAll = elSub = self.allGeo[0].getObj()
+			elSub = self.allGeo[0].getObj()
 
 
 		for cObj in elSub:
-			cObj.markSub(_mark)
+			if cObj.markSub(_mark):
+				elAll.append(cObj)
 
 		for cObj in elAdd:
-			cObj.markAdd(_mark)
+			if cObj.markAdd(_mark) and (cObj not in elAll):
+				elAll.append(cObj)
 
 
 		for cObj in elAll:
