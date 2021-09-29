@@ -27,6 +27,11 @@ class Scene():
 
 
 
+	def markList(self):
+		return list(self.allMarks)
+
+
+
 # -todo 111 (mark, optimize) +0: dramatically slow mark reapply
 	def markGeoAdd(self, _mark, _elA):
 		for cObj in self.allGeo[0].getObj(_elA):
