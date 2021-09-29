@@ -179,7 +179,7 @@ class Ui():
 		cMeta = cScene.geoMeta()
 		self.data.markApply(self.markDefault, cMeta.keys(), step='UI')
 
-		cXml = self.data.getXML()
+		cXml = cScene.getSceneXML(True)
 		if cXml:
 			self.appWindow.reactAddFile(cMeta, cXml)
 		
@@ -237,6 +237,8 @@ class Ui():
 
 
 	def reloadXml(self):
-		cXml = self.data.getXML()
+		cScene = self.data.sceneGet()
+
+		cXml = cScene and cScene.getSceneXML(True)
 		if cXml:
 			self.appWindow.canvasUpdate(cXml)

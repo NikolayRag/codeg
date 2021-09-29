@@ -92,9 +92,6 @@ class GGData():
 
 
 # -todo 84 (module-data) +0: make file load plugin system
-	def getXML(self):
-		return (self.sceneGet() and self.sceneGet().getSceneXML(True))
-
 
 
 # -todo 104 (module-data, decide) +0: move to filter
