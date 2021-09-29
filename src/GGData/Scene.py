@@ -40,9 +40,22 @@ class Scene():
 
 
 
-	def marksReapply(self, _step):
+	# part: True/False/None points to add/sub/reset
+	def markApply(self, _mark, _elA, part=None, step=None):
+		if part==True:
+			self.markGeoAdd(_mark, _elA)
+
+		if part==False:
+			self.markGeoSub(_mark, _elA)
+
+		if part==None:
+			self.markGeoSub(_mark)
+			if _elA:
+				self.markGeoAdd(_mark, _elA)
+
+
 		for cObj in self.allGeo[0].getObj():
-			cObj.marksSolve(filterStep=_step)
+			cObj.marksSolve(filterStep=step)
 
 
 

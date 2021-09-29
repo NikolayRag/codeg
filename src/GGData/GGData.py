@@ -153,25 +153,3 @@ class GGData():
 			self.sceneGet().markAppend(cMark)
 
 		return cMark
-
-
-
-	# part: True/False/None points to add/sub/reset
-	def markApply(self, _mark, _elA, part=None, step=None):
-		if not self.sceneGet():
-			return
-
-
-		if part==True:
-			self.sceneGet().markGeoAdd(_mark, _elA)
-
-		if part==False:
-			self.sceneGet().markGeoSub(_mark, _elA)
-
-		if part==None:
-			self.sceneGet().markGeoSub(_mark)
-			if _elA:
-				self.sceneGet().markGeoAdd(_mark, _elA)
-
-
-		self.sceneGet().marksReapply(step)
