@@ -37,7 +37,6 @@ class Scene():
 #  todo 139 (clean) +0: Clean mark to object appending
 	# mode: True/False/None(default) for add/sub/set
 	def markApply(self, _mark, _elA, mode=None, step=None):
-		elAll = []
 		elSub = elAdd = self.allGeo[0].getObj(_elA)
 
 
@@ -50,6 +49,8 @@ class Scene():
 		if mode==None:
 			elSub = self.allGeo[0].getObj()
 
+
+		elAll = []
 
 		for cObj in elSub:
 			if cObj.markSub(_mark):
