@@ -31,6 +31,7 @@ class GGData():
 
 	allFilters = {}
 	allScenes = {}
+	currentScene = 0
 
 
 
@@ -69,6 +70,15 @@ class GGData():
 
 	def sceneList(self):
 		return dict(self.allScenes)
+
+
+
+	def sceneFocus(self, _id=None):
+		if _id != None:
+			self.currentScene = _id
+
+
+		return self.currentScene
 
 
 

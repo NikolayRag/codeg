@@ -172,7 +172,9 @@ class Ui():
 
 
 		self.data.sceneClear()
-		self.data.sceneNew()
+		sId = self.data.sceneNew()
+		self.data.sceneFocus(sId)
+
 		cMeta = self.data.loadGeo(fileName, 'svg')
 		self.data.markApply(self.markDefault, cMeta.keys(), step='UI')
 
