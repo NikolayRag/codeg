@@ -14,3 +14,12 @@
 #listLayers {
 	gridline-color: rgba(255, 255, 255, 24);
 }
+
+#btnMarkAdd {
+	background-color: #aaa;
+	color: #555;
+}
+
+
+#scrollMarks { background-color: rgba(0,0,0,0); }
+#scrollMarks QWidget { background-color: rgba(0,0,0,0); }
