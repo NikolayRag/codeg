@@ -50,6 +50,7 @@ class AppWindow(QObject):
 	sigLayerSelect = Signal(list)
 	sigLayerHover = Signal(str)
 	sigCtrlLayersSet = Signal(list, bool)
+	sigAddMark = Signal()
 
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
@@ -89,7 +90,8 @@ class AppWindow(QObject):
 		self.lListLayers.cellClicked.connect(self.layerClick)
 
 		
-		self.lCheckLayerOn = cMain.findChild(QLineEdit, "checkLayerOn")
+		self.scrolMarksLayout = cMain.findChild(QLayout, "scrolMarksLayout")
+		self.btnMarkAdd = cMain.findChild(QToolButton, "btnMarkAdd")
 
 
 		holderViewport = cMain.findChild(QWidget, "wViewport")
@@ -126,7 +128,8 @@ class AppWindow(QObject):
 		self.lBtnOpen.clicked.connect(self.sigAddFile)
 		self.lBtnStore.clicked.connect(self.sigStoreG)
 		self.lBtnProccess.clicked.connect(self.dispatchRun)
-
+		self.btnMarkAdd.clicked.connect(self.sigAddMark)
+		
 
 
 	def show(self):
@@ -323,3 +326,14 @@ class AppWindow(QObject):
 
 	def dispatchLog(self, _txt):
 		self.lLogDev.insertPlainText(_txt)
+
+
+
+### MARKS ###
+
+
+	def wMarkAdd(self):
+		btnMark = QToolButton()
+		btnMark.setStyleSheet("background-color: #777;")
+
+		self.scrolMarksLayout.addWidget(btnMark)

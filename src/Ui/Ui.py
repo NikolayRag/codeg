@@ -102,6 +102,7 @@ class Ui():
 		self.appWindow.sigLayerSelect.connect(self.layerSetSelect)
 		self.appWindow.sigLayerHover.connect(self.layerSetHover)
 		self.appWindow.sigCtrlLayersSet.connect(self.ctrlLayersSet)
+		self.appWindow.sigAddMark.connect(self.uiMarkAdd)
 
 		self.appWindow.connList(self.dispatch.getDevices())
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
@@ -257,3 +258,9 @@ class Ui():
 		cXml = cScene and cScene.getSceneXML(True)
 		if cXml:
 			self.appWindow.canvasUpdate(cXml)
+
+
+
+	def uiMarkAdd(self):
+		self.appWindow.wMarkAdd()
+
