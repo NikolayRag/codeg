@@ -214,6 +214,9 @@ class Ui():
 
 
 
+### LAYERS ###
+
+
 #  todo 98 (module-ui, optimize) -1: prevent doubling by difference change
 	def layerSetSelect(self, _selectionA):
 		cScene = self.data.sceneGet()
