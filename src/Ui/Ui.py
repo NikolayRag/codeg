@@ -272,7 +272,12 @@ class Ui():
 
 
 		cColor = QColor.fromHsvF(random(),random()*.5+.5,random()*.5+.5).getRgb()[:-1]
-		cMark = self.data.markNew()
+		cMark = self.data.markNew(
+			data={
+				'markColor':cColor
+			}
+		)
+
 		if not cScene.markAppend(cMark):
 			print('Mark is already in')
 
@@ -283,5 +288,5 @@ class Ui():
 
 	def uiMarkAdd(self, _mark):
 		mData = _mark.getData()
-		self.appWindow.wMarkAdd()
+		self.appWindow.wMarkAdd(mData['markColor'])
 

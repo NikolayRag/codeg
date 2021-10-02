@@ -332,8 +332,10 @@ class AppWindow(QObject):
 ### MARKS ###
 
 
-	def wMarkAdd(self):
+	def wMarkAdd(self, _color):
 		btnMark = QToolButton()
-		btnMark.setStyleSheet("background-color: #777;")
 
 		self.scrolMarksLayout.addWidget(btnMark)
+
+#??		btnMark.setPalette(QColor.fromRgb(_color[0],_color[1],_color[2]))
+		btnMark.setStyleSheet(f"background-color: rgb{_color}")
