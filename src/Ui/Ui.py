@@ -5,6 +5,7 @@
 # =todo 117 (ux, module-ui) +0: add app settings
 
 from .AppWindow import *
+from random import *
 
 
 class Ui():
@@ -102,7 +103,7 @@ class Ui():
 		self.appWindow.sigLayerSelect.connect(self.layerSetSelect)
 		self.appWindow.sigLayerHover.connect(self.layerSetHover)
 		self.appWindow.sigCtrlLayersSet.connect(self.ctrlLayersSet)
-		self.appWindow.sigAddMark.connect(self.uiMarkAdd)
+		self.appWindow.sigAddMark.connect(self.slotMarkAdd)
 
 		self.appWindow.connList(self.dispatch.getDevices())
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
@@ -261,6 +262,26 @@ class Ui():
 
 
 
-	def uiMarkAdd(self):
+### ITS MARK TIME ###
+
+
+	def slotMarkAdd(self):
+		cScene = self.data.sceneGet()
+		if not cScene:
+			return
+
+
+		cColor = QColor.fromHsvF(random(),random()*.5+.5,random()*.5+.5).getRgb()[:-1]
+		cMark = self.data.markNew()
+		if not cScene.markAppend(cMark):
+			print('Mark is already in')
+
+
+		self.uiMarkAdd(cMark)
+
+
+
+	def uiMarkAdd(self, _mark):
+		mData = _mark.getData()
 		self.appWindow.wMarkAdd()
 
