@@ -11,6 +11,7 @@ from PySide2.QtWidgets import *
 from PySide2.QtUiTools import *
 
 from .SvgViewport import *
+from .MarkWidget import *
 
 
 
@@ -333,9 +334,6 @@ class AppWindow(QObject):
 
 
 	def wMarkAdd(self, _color):
-		btnMark = QToolButton()
+		btnMark = MarkWidget(color=_color)
 
 		self.scrolMarksLayout.addWidget(btnMark)
-
-#??		btnMark.setPalette(QColor.fromRgb(_color[0],_color[1],_color[2]))
-		btnMark.setStyleSheet(f"background-color: rgb{_color}")
