@@ -29,7 +29,7 @@ class MarkTool(QFrame):
 
 
 class MarkButton(QToolButton):
-	currentMarkTool = None
+	currentMark = None
 
 
 
@@ -45,6 +45,12 @@ class MarkButton(QToolButton):
 #??		self.setPalette(QColor.fromRgb(color[0],color[1],color[2]))
 		self.setStyleSheet(f"background-color: rgb{self.mark.getData()['markColor']}")
 
+		self.frameHighlight = QFrame(self)
+		self.frameHighlight.resize(self.sizeHint())
+		self.frameHighlight.setStyleSheet(f"border: 2px solid #fff; border-radius:2px")
+		self.frameHighlight.hide()
+
+
 		self.toolFrame = MarkTool(self.contSpace, _mark)
 
 		self.clicked.connect(self.toolPop)
@@ -52,10 +58,14 @@ class MarkButton(QToolButton):
 
 
 	def toolPop(self):
-		if MarkButton.currentMarkTool:
-			MarkButton.currentMarkTool.hide()
+		if MarkButton.currentMark:
+			MarkButton.currentMark.frameHighlight.hide()
+			MarkButton.currentMark.toolFrame.hide()
 
-		MarkButton.currentMarkTool = self.toolFrame
+		MarkButton.currentMark = self
+
+
+		self.frameHighlight.show()
 
 
 		toolPoint = QPoint(self.contAnchor.width()+6,0)
