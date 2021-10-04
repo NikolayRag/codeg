@@ -290,6 +290,5 @@ class Ui():
 
 
 	def uiMarkAdd(self, _mark):
-		mData = _mark.getData()
-		self.appWindow.wMarkAdd(mData['markColor'])
+		self.appWindow.wMarkAdd(_mark)
 

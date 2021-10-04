@@ -91,7 +91,8 @@ class AppWindow(QObject):
 		self.lListLayers.cellClicked.connect(self.layerClick)
 
 		
-		self.scrolMarksLayout = cMain.findChild(QLayout, "scrolMarksLayout")
+		self.scrollMarksWidget = cMain.findChild(QWidget, "scrollMarksWidget")
+		self.scrollMarksLayout = cMain.findChild(QLayout, "scrollMarksLayout")
 		self.btnMarkAdd = cMain.findChild(QToolButton, "btnMarkAdd")
 
 
@@ -333,7 +334,7 @@ class AppWindow(QObject):
 ### MARKS ###
 
 
-	def wMarkAdd(self, _color):
-		btnMark = MarkWidget(color=_color)
+	def wMarkAdd(self, _mark):
+		btnMark = MarkButton(self.scrollMarksWidget, self.lMain, _mark)
 
-		self.scrolMarksLayout.addWidget(btnMark)
+		self.scrollMarksLayout.addWidget(btnMark)
