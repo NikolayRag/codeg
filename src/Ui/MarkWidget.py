@@ -11,22 +11,18 @@ class MarkTool(QFrame):
 
 		self.mark = _mark
 
-		self.setFocusPolicy(Qt.ClickFocus)
-
 		self.resize(100,100)
 		self.setStyleSheet("background-color: rgba(0,0,0,0);")
 
-		cColor = tuple(self.mark.getData()['markColor']) +(.75,)
+
 		popFrameCover = QFrame(self)
 		popFrameCover.resize(100,100)
-		popFrameCover.setStyleSheet(f"border: 2px solid #ddd; border-radius: 5px; background-color: rgba{cColor};")
+		popFrameCover.setStyleSheet(f"border: 2px solid rgba(128,128,128,.5); border-radius: 5px; background-color: rgba(0,0,0,.9);")
 
+		cColor = tuple(self.mark.getData()['markColor']) +(.1,)
 		popFrameContent = QFrame(popFrameCover)
 		popFrameContent.resize(100,100)
-		popFrameContent.setStyleSheet(f"border: 0; background-color: rgba(0,0,0,.75);")
-
-
-		self.installEventFilter(self)
+		popFrameContent.setStyleSheet(f"background-color: rgba{cColor};")
 
 
 
