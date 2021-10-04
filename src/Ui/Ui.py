@@ -285,10 +285,10 @@ class Ui():
 			print('Mark is already in')
 
 
-		self.uiMarkAdd(cMark)
+		self.uiMarkAdd(cMark, True)
 
 
 
-	def uiMarkAdd(self, _mark):
-		self.appWindow.wMarkAdd(_mark)
+	def uiMarkAdd(self, _mark, _open=False):
+		self.appWindow.wMarkAdd(_mark, _open)
 

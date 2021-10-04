@@ -334,7 +334,10 @@ class AppWindow(QObject):
 ### MARKS ###
 
 
-	def wMarkAdd(self, _mark):
+	def wMarkAdd(self, _mark, _open):
 		btnMark = MarkButton(self.scrollMarksWidget, self.lMain, _mark)
 
 		self.scrollMarksLayout.addWidget(btnMark)
+
+		if _open:
+			btnMark.toolPop()
