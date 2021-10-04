@@ -2,6 +2,7 @@ from PySide2.QtWidgets import *
 from PySide2.QtCore import *
 
 
+# -todo 140 (module-ui, mark) +0: redesign
 class MarkTool(QFrame):
 
 
