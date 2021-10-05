@@ -228,43 +228,6 @@
                 <property name="spacing">
                  <number>2</number>
                 </property>
-                <item row="1" column="2">
-                 <layout class="QHBoxLayout" name="horizontalLayout_2">
-                  <item>
-                   <widget class="QToolButton" name="btnFit">
-                    <property name="text">
-                     <string>Fit</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item row="0" column="2">
-                 <spacer name="verticalSpacer_2">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item row="1" column="1">
-                 <spacer name="horizontalSpacer_4">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
                 <item row="0" column="0" rowspan="2">
                  <widget class="QWidget" name="widgetToolbar" native="true">
                   <property name="maximumSize">
@@ -361,9 +324,6 @@
                    </item>
                    <item row="1" column="1">
                     <layout class="QVBoxLayout" name="verticalLayout_3">
-                     <property name="spacing">
-                      <number>8</number>
-                     </property>
                      <property name="leftMargin">
                       <number>6</number>
                      </property>
@@ -418,13 +378,16 @@
                           <x>0</x>
                           <y>0</y>
                           <width>24</width>
-                          <height>102</height>
+                          <height>106</height>
                          </rect>
                         </property>
                         <property name="autoFillBackground">
                          <bool>true</bool>
                         </property>
                         <layout class="QVBoxLayout" name="verticalLayout_5">
+                         <property name="spacing">
+                          <number>0</number>
+                         </property>
                          <property name="leftMargin">
                           <number>0</number>
                          </property>
@@ -438,7 +401,14 @@
                           <number>0</number>
                          </property>
                          <item>
-                          <layout class="QVBoxLayout" name="scrollMarksLayout"/>
+                          <layout class="QVBoxLayout" name="scrollMarksLayout">
+                           <property name="spacing">
+                            <number>6</number>
+                           </property>
+                           <property name="topMargin">
+                            <number>6</number>
+                           </property>
+                          </layout>
                          </item>
                          <item>
                           <spacer name="verticalSpacer_3">
@@ -461,6 +431,85 @@
                    </item>
                   </layout>
                  </widget>
+                </item>
+                <item row="1" column="3">
+                 <layout class="QHBoxLayout" name="horizontalLayout_2">
+                  <item>
+                   <widget class="QToolButton" name="btnFit">
+                    <property name="text">
+                     <string>Fit</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="0" column="3">
+                 <spacer name="verticalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="1" column="2">
+                 <spacer name="horizontalSpacer_4">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="0" column="1" rowspan="2">
+                 <layout class="QVBoxLayout" name="verticalLayout_4">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <layout class="QVBoxLayout" name="layMarkHolder">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="sizeConstraint">
+                     <enum>QLayout::SetDefaultConstraint</enum>
+                    </property>
+                    <property name="leftMargin">
+                     <number>4</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>4</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>4</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>4</number>
+                    </property>
+                   </layout>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_5">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </widget>
