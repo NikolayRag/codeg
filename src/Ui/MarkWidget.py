@@ -15,21 +15,34 @@ class MarkTool(QFrame):
 
 		self.mark = _mark
 
-		self.setMinimumSize(100,32)
 		self.setStyleSheet("background-color: rgba(0,0,0,0);")
 
 		popFrameCover = QFrame(self)
-		popFrameCover.setMinimumSize(100,32)
 		popFrameCover.setStyleSheet(f"border: 2px solid rgba(128,128,128,.5); border-radius: 5px; background-color: rgba(16,16,16,.9);")
 
 		cColor = tuple(self.mark.getData()['markColor']) +(.1,)
 		popFrameContent = QFrame(popFrameCover)
-		popFrameContent.setMinimumSize(100,32)
 		popFrameContent.setStyleSheet(f"background-color: rgba{cColor};")
 
 
 		self.wLayout = QFormLayout()
 		self.setLayout(self.wLayout)
+
+		self.fillFrame()
+
+		popFrameCover.resize(self.sizeHint()-QSize(4,4))
+		popFrameContent.resize(self.sizeHint()-QSize(4,4))
+
+
+
+	def fillFrame(self):
+		mDataA = self.mark.getData()
+		for cData in mDataA:
+			fieldName = QLabel(f"{cData}")
+			fieldVal = QLabel(f"{mDataA[cData]}")
+
+			self.wLayout.addRow(fieldName, fieldVal)
+
 
 
 
