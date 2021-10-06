@@ -28,13 +28,13 @@ class MarkTool(QFrame):
 		wBg.setStyleSheet(f"border: 2px solid rgba(128,128,128,.5); border-radius: 5px; background-color: rgba(16,16,16,.9);")
 
 		self.wBgColor = QFrame(wBg)
-		self.setBackground(self.mark.getData()['markColor'])
 
 
 		self.wLayout = QFormLayout()
 		self.setLayout(self.wLayout)
 
 		self.fillFrame()
+
 
 		wBg.resize(self.sizeHint()-QSize(4,4))
 		self.wBgColor.resize(self.sizeHint()-QSize(4,4))
@@ -74,6 +74,9 @@ class MarkTool(QFrame):
 
 
 class MarkButton(QToolButton):
+	nameMarkColor = ''
+
+
 	sigChangedMark = Signal(object, str, object)
 
 
@@ -82,16 +85,19 @@ class MarkButton(QToolButton):
 
 
 
-	def __init__(self, _contLay, _mark):
+	def __init__(self, _contLay, _mark, fieldMainColor=''):
 		QToolButton.__init__(self)
 
 		
 		self.mark = _mark
+		self.nameMarkColor = fieldMainColor
+
+		mainColor = self.mark.getData(self.nameMarkColor) or QColor()
 
 
 		self.setCheckable(True)
 #??		self.setPalette(QColor.fromRgb(color[0],color[1],color[2]))
-		self.setColor(self.mark.getData()['markColor'])
+		self.setColor(mainColor)
 
 		self.wFrameHighlight = QFrame(self)
 		self.wFrameHighlight.resize(self.sizeHint())
@@ -100,6 +106,8 @@ class MarkButton(QToolButton):
 
 
 		self.wFrameTool = MarkTool(_mark)
+		self.wFrameTool.setBackground(mainColor)
+
 		self.wFrameTool.hide()
 
 
@@ -112,10 +120,10 @@ class MarkButton(QToolButton):
 
 
 	def changedMark(self, _name, _val):
-		if _name=='markColor':
+		if self.nameMarkColor and _name==self.nameMarkColor:
 			self.setColor(_val)
 			self.wFrameTool.setBackground(_val)
-			
+
 
 		self.sigChangedMark.emit(self.mark, _name, _val)
 
