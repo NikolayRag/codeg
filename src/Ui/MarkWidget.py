@@ -8,6 +8,9 @@ from .Widgets import *
 
 # -todo 140 (module-ui, mark) +0: redesign
 class MarkTool(QFrame):
+	sigChangedField = Signal(str, QColor)
+
+
 	mark = None
 	wLayout = None
 	wBgColor = None
@@ -63,6 +66,9 @@ class MarkTool(QFrame):
 
 	def changedColor(self, _name, _val):
 		self.mark.setData({_name:_val})
+	
+		self.sigChangedField.emit(_name, _val)
+
 
 
 
