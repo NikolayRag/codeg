@@ -62,7 +62,7 @@ class MarkTool(QFrame):
 
 
 	def changedColor(self, _name, _val):
-		self.mark[_name] = _val
+		self.mark.setData({_name:_val})
 
 
 
