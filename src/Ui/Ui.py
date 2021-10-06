@@ -277,7 +277,8 @@ class Ui():
 		cColor = QColor.fromHsvF(random(),random()*.5+.5,random()*.5+.5)
 		cMark = self.data.markNew(
 			data={
-				'markColor':cColor
+				'Mark Color':cColor,
+				'Laser Cycle': 100.
 			}
 		)
 
