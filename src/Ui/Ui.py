@@ -9,6 +9,13 @@ from random import *
 
 
 class Ui():
+	defaultMarkData = {
+		'Mark Color': QColor('#777'),
+		'Laser Cycle': 100.
+	}
+
+
+
 	defUi = './Ui/AppWindow.ui'
 
 	styleList = {
@@ -274,13 +281,10 @@ class Ui():
 			return
 
 
-		cColor = QColor.fromHsvF(random(),random()*.5+.5,random()*.5+.5)
-		cMark = self.data.markNew(
-			data={
-				'Mark Color':cColor,
-				'Laser Cycle': 100.
-			}
-		)
+		cData = dict(self.defaultMarkData)
+		cData['Mark Color'] = QColor.fromHsvF(random(),random()*.5+.5,random()*.5+.5)
+
+		cMark = self.data.markNew( data=cData )
 
 		if not cScene.markAppend(cMark):
 			print('Mark is already in')
