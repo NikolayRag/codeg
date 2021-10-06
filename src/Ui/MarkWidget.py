@@ -54,7 +54,7 @@ class MarkTool(QFrame):
 			if (dType==QColor):
 				fieldVal = ColorPicker(mDataA[cData])
 
-				fieldVal.sigChanged.connect(lambda _c: self.changedColor(cData, _c))
+				fieldVal.sigChangedColor.connect(lambda _c: self.changedColor(cData, _c))
 
 
 			self.wLayout.addRow(fieldName, fieldVal)

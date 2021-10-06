@@ -7,7 +7,7 @@ from PySide2.QtGui import *
 #thanks to https://stackoverflow.com/users/3336423/jpo38 at https://stackoverflow.com/questions/18257281/qt-color-picker-widget
 class ColorPicker(QPushButton):
 	
-	sigChanged = Signal(QColor)
+	sigChangedColor = Signal(QColor)
 
 	color = None
 
@@ -28,7 +28,7 @@ class ColorPicker(QPushButton):
 		if newColor != self.color:
 			self.setColor(newColor)
 
-			self.sigChanged.emit(newColor)
+			self.sigChangedColor.emit(newColor)
 
 
 
