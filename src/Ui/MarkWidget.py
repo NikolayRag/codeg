@@ -48,6 +48,10 @@ class MarkTool(QFrame):
 
 
 	def fillFrame(self):
+		def applyConnect(_field, _data): #not working inline, switch to QSignalMapper mb
+			_field.sigChangedColor.connect(lambda _c: self.changedColor(_data, _c))
+
+
 		mDataA = self.mark.getData()
 		for cData in mDataA:
 			fieldName = QLabel(f"{cData}")
@@ -56,8 +60,7 @@ class MarkTool(QFrame):
 			dType = type(mDataA[cData])
 			if (dType==QColor):
 				fieldVal = ColorPicker(mDataA[cData])
-
-				fieldVal.sigChangedColor.connect(lambda _c: self.changedColor(cData, _c))
+				applyConnect(fieldVal,cData)
 
 
 			self.wLayout.addRow(fieldName, fieldVal)
