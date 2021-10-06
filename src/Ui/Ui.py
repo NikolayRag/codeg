@@ -274,7 +274,7 @@ class Ui():
 			return
 
 
-		cColor = QColor.fromHsvF(random(),random()*.5+.5,random()*.5+.5).getRgb()[:-1]
+		cColor = QColor.fromHsvF(random(),random()*.5+.5,random()*.5+.5)
 		cMark = self.data.markNew(
 			data={
 				'markColor':cColor

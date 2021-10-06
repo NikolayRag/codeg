@@ -1,5 +1,9 @@
 from PySide2.QtWidgets import *
+from PySide2.QtGui import *
 from PySide2.QtCore import *
+
+from .Widgets import *
+
 
 
 # -todo 140 (module-ui, mark) +0: redesign
@@ -20,7 +24,7 @@ class MarkTool(QFrame):
 		popFrameCover = QFrame(self)
 		popFrameCover.setStyleSheet(f"border: 2px solid rgba(128,128,128,.5); border-radius: 5px; background-color: rgba(16,16,16,.9);")
 
-		cColor = tuple(self.mark.getData()['markColor']) +(.1,)
+		cColor = tuple(self.mark.getData()['markColor'].getRgb()[:-1]) +(.1,)
 		popFrameContent = QFrame(popFrameCover)
 		popFrameContent.setStyleSheet(f"background-color: rgba{cColor};")
 
@@ -41,7 +45,19 @@ class MarkTool(QFrame):
 			fieldName = QLabel(f"{cData}")
 			fieldVal = QLabel(f"{mDataA[cData]}")
 
+			dType = type(mDataA[cData])
+			if (dType==QColor):
+				fieldVal = ColorPicker(mDataA[cData])
+
+				fieldVal.sigChanged.connect(lambda _c: self.changedColor(cData, _c))
+
+
 			self.wLayout.addRow(fieldName, fieldVal)
+
+
+
+	def changedColor(self, _name, _val):
+		self.mark[_name] = _val
 
 
 
@@ -61,7 +77,8 @@ class MarkButton(QToolButton):
 
 		self.setCheckable(True)
 #??		self.setPalette(QColor.fromRgb(color[0],color[1],color[2]))
-		self.setStyleSheet(f"background-color: rgb{self.mark.getData()['markColor']}")
+		cColor = self.mark.getData()['markColor'].getRgb()[:-1]
+		self.setStyleSheet(f"background-color: rgb{cColor}")
 
 		self.wFrameHighlight = QFrame(self)
 		self.wFrameHighlight.resize(self.sizeHint())
