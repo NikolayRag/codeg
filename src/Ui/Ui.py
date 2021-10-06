@@ -13,7 +13,7 @@ class Ui():
 		'Mark Color': QColor('#777'),
 		'Laser Cycle': 100.
 	}
-
+	defaultMarkColorField = 'Mark Color'
 
 
 	defUi = './Ui/AppWindow.ui'
@@ -282,7 +282,7 @@ class Ui():
 
 
 		cData = dict(self.defaultMarkData)
-		cData['Mark Color'] = QColor.fromHsvF(random(),random()*.5+.5,random()*.5+.5)
+		cData[self.defaultMarkColorField] = QColor.fromHsvF(random(),random()*.5+.5,random()*.5+.5)
 
 		cMark = self.data.markNew( data=cData )
 
@@ -295,5 +295,5 @@ class Ui():
 
 
 	def uiMarkAdd(self, _mark, _open=False):
-		self.appWindow.wMarkAdd(_mark, _open)
+		self.appWindow.wMarkAdd(_mark, _open, fieldColor=self.defaultMarkColorField)
 

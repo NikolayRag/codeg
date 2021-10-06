@@ -88,12 +88,12 @@ class MarkButton(QToolButton):
 
 
 
-	def __init__(self, _contLay, _mark, fieldMainColor=''):
+	def __init__(self, _contLay, _mark, fieldWColor=''):
 		QToolButton.__init__(self)
 
 		
 		self.mark = _mark
-		self.nameMarkColor = fieldMainColor
+		self.nameMarkColor = fieldWColor
 
 		mainColor = self.mark.getData(self.nameMarkColor) or QColor()
 

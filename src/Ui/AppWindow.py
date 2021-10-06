@@ -334,8 +334,8 @@ class AppWindow(QObject):
 ### MARKS ###
 
 
-	def wMarkAdd(self, _mark, _open):
-		btnMark = MarkButton(self.layMarkHolder, _mark, fieldMainColor='Mark Color')
+	def wMarkAdd(self, _mark, _open, fieldColor=''):
+		btnMark = MarkButton(self.layMarkHolder, _mark, fieldWColor=fieldColor)
 
 		self.scrollMarksLayout.addWidget(btnMark)
 
