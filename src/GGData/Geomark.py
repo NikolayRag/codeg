@@ -66,5 +66,12 @@ class Geomark():
 
 
 
-	def getData(self):
-		return dict(self.data)
+	def getData(self, _field=None, _default=None):
+		if _field==None:
+			return dict(self.data)
+
+
+		if _field in self.data:
+			return self.data[_field]
+
+		return _default
