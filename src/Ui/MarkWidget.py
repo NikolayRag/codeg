@@ -4,6 +4,9 @@ from PySide2.QtCore import *
 
 # -todo 140 (module-ui, mark) +0: redesign
 class MarkTool(QFrame):
+	mark = None
+	wLayout = None
+
 
 
 	def __init__(self, _mark):
@@ -25,10 +28,14 @@ class MarkTool(QFrame):
 		popFrameContent.setStyleSheet(f"background-color: rgba{cColor};")
 
 
+		self.wLayout = QFormLayout()
+		self.setLayout(self.wLayout)
+
 
 
 class MarkButton(QToolButton):
-	currentMark = None
+	mark = None
+	currentMB = None
 
 
 
@@ -37,38 +44,37 @@ class MarkButton(QToolButton):
 
 		
 		self.mark = _mark
-		self.contLay = _contLay
 
 
 		self.setCheckable(True)
 #??		self.setPalette(QColor.fromRgb(color[0],color[1],color[2]))
 		self.setStyleSheet(f"background-color: rgb{self.mark.getData()['markColor']}")
 
-		self.frameHighlight = QFrame(self)
-		self.frameHighlight.resize(self.sizeHint())
-		self.frameHighlight.setStyleSheet(f"border: 2px solid #eee; border-radius:2px")
-		self.frameHighlight.hide()
+		self.wFrameHighlight = QFrame(self)
+		self.wFrameHighlight.resize(self.sizeHint())
+		self.wFrameHighlight.setStyleSheet(f"border: 2px solid #eee; border-radius:2px")
+		self.wFrameHighlight.hide()
 
 
-		self.toolFrame = MarkTool(_mark)
-		self.toolFrame.hide()
+		self.wFrameTool = MarkTool(_mark)
+		self.wFrameTool.hide()
 
 
-		self.contLay.addWidget(self.toolFrame)
+		_contLay.addWidget(self.wFrameTool)
 
 		self.clicked.connect(self.toolPop)
 
 
 
 	def toolPop(self):
-		if MarkButton.currentMark:
-			MarkButton.currentMark.setChecked(False)
-			MarkButton.currentMark.frameHighlight.hide()
-			MarkButton.currentMark.toolFrame.hide()
+		if MarkButton.currentMB:
+			MarkButton.currentMB.setChecked(False)
+			MarkButton.currentMB.wFrameHighlight.hide()
+			MarkButton.currentMB.wFrameTool.hide()
 
-		MarkButton.currentMark = self
+		MarkButton.currentMB = self
 
 
 		self.setChecked(True)
-		self.frameHighlight.show()
-		self.toolFrame.show()
+		self.wFrameHighlight.show()
+		self.wFrameTool.show()
