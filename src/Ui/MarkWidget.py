@@ -10,7 +10,7 @@ from .Widgets import *
 class MarkTool(QFrame):
 	mark = None
 	wLayout = None
-
+	wBgColor = None
 
 
 	def __init__(self, _mark):
@@ -21,12 +21,11 @@ class MarkTool(QFrame):
 
 		self.setStyleSheet("background-color: rgba(0,0,0,0);")
 
-		popFrameCover = QFrame(self)
-		popFrameCover.setStyleSheet(f"border: 2px solid rgba(128,128,128,.5); border-radius: 5px; background-color: rgba(16,16,16,.9);")
+		wBg = QFrame(self)
+		wBg.setStyleSheet(f"border: 2px solid rgba(128,128,128,.5); border-radius: 5px; background-color: rgba(16,16,16,.9);")
 
-		cColor = tuple(self.mark.getData()['markColor'].getRgb()[:-1]) +(.1,)
-		popFrameContent = QFrame(popFrameCover)
-		popFrameContent.setStyleSheet(f"background-color: rgba{cColor};")
+		self.wBgColor = QFrame(wBg)
+		self.setBackground(self.mark.getData()['markColor'])
 
 
 		self.wLayout = QFormLayout()
@@ -34,8 +33,14 @@ class MarkTool(QFrame):
 
 		self.fillFrame()
 
-		popFrameCover.resize(self.sizeHint()-QSize(4,4))
-		popFrameContent.resize(self.sizeHint()-QSize(4,4))
+		wBg.resize(self.sizeHint()-QSize(4,4))
+		self.wBgColor.resize(self.sizeHint()-QSize(4,4))
+
+
+
+	def setBackground(self, _color):
+		cColor = tuple(_color.getRgb()[:-1]) +(.1,)
+		self.wBgColor.setStyleSheet(f"background-color: rgba{cColor};")
 
 
 
