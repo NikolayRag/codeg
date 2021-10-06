@@ -88,8 +88,7 @@ class MarkButton(QToolButton):
 
 		self.setCheckable(True)
 #??		self.setPalette(QColor.fromRgb(color[0],color[1],color[2]))
-		cColor = self.mark.getData()['markColor'].getRgb()[:-1]
-		self.setStyleSheet(f"background-color: rgb{cColor}")
+		self.setColor(self.mark.getData()['markColor'])
 
 		self.wFrameHighlight = QFrame(self)
 		self.wFrameHighlight.resize(self.sizeHint())
@@ -104,6 +103,13 @@ class MarkButton(QToolButton):
 		_contLay.addWidget(self.wFrameTool)
 
 		self.clicked.connect(self.toolPop)
+
+
+
+
+	def setColor(self, _color):
+		cColor = _color.getRgb()[:-1]
+		self.setStyleSheet(f"background-color: rgb{cColor}")
 
 
 
