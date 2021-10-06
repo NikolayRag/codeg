@@ -74,6 +74,9 @@ class MarkTool(QFrame):
 
 
 class MarkButton(QToolButton):
+	sigChangedMark = Signal(object, str, object)
+
+
 	mark = None
 	currentMB = None
 
@@ -104,6 +107,17 @@ class MarkButton(QToolButton):
 
 		self.clicked.connect(self.toolPop)
 
+		self.wFrameTool.sigChangedField.connect(self.changedMark)
+
+
+
+	def changedMark(self, _name, _val):
+		if _name=='markColor':
+			self.setColor(_val)
+			self.wFrameTool.setBackground(_val)
+			
+
+		self.sigChangedMark.emit(self.mark, _name, _val)
 
 
 
