@@ -78,7 +78,11 @@ class MarkTool(QFrame):
 
 
 
-class MarkButton(QToolButton):
+class MarkButton(QFrame):
+	wButton = None
+	wTrigger = None
+
+
 	nameMarkColor = ''
 
 
@@ -91,7 +95,7 @@ class MarkButton(QToolButton):
 
 
 	def __init__(self, _contLay, _mark, fieldWColor=''):
-		QToolButton.__init__(self)
+		QFrame.__init__(self)
 
 		
 		self.mark = _mark
@@ -100,26 +104,30 @@ class MarkButton(QToolButton):
 		mainColor = self.mark.getData(self.nameMarkColor) or QColor()
 
 
-		self.setCheckable(True)
-#??		self.setPalette(QColor.fromRgb(color[0],color[1],color[2]))
-		self.setColor(mainColor)
+		cLayout = QHBoxLayout()
+		self.setLayout(cLayout)
 
-		self.wFrameHighlight = QFrame(self)
-		self.wFrameHighlight.resize(self.sizeHint())
+
+		self.wButton = QPushButton()
+		self.wButton.setCheckable(True)
+		cLayout.addWidget(self.wButton)
+
+
+		self.wFrameHighlight = QFrame(self.wButton)
+		self.wFrameHighlight.resize(self.wButton.sizeHint())
 		self.wFrameHighlight.setStyleSheet(f"border: 2px solid #eee; border-radius:2px")
 		self.wFrameHighlight.hide()
 
 
 		self.wFrameTool = MarkTool(_mark)
-		self.wFrameTool.setBackground(mainColor)
-
 		self.wFrameTool.hide()
-
 
 		_contLay.addWidget(self.wFrameTool)
 
-		self.clicked.connect(self.toolPop)
 
+		self.setColor(mainColor)
+
+		self.wButton.clicked.connect(self.toolPop)
 		self.wFrameTool.sigChangedField.connect(self.changedMark)
 
 
@@ -127,7 +135,6 @@ class MarkButton(QToolButton):
 	def changedMark(self, _name, _val):
 		if self.nameMarkColor and _name==self.nameMarkColor:
 			self.setColor(_val)
-			self.wFrameTool.setBackground(_val)
 
 
 		self.sigChangedMark.emit(self.mark, _name, _val)
@@ -136,19 +143,22 @@ class MarkButton(QToolButton):
 
 	def setColor(self, _color):
 		cColor = _color.getRgb()[:-1]
-		self.setStyleSheet(f"background-color: rgb{cColor}")
+#??		self.wButton.setPalette(QColor.fromRgb(color[0],color[1],color[2]))
+		self.wButton.setStyleSheet(f"background-color: rgb{cColor}")
+
+		self.wFrameTool.setBackground(_color)
 
 
 
 	def toolPop(self):
 		if MarkButton.currentMB:
-			MarkButton.currentMB.setChecked(False)
+			MarkButton.currentMB.wButton.setChecked(False)
 			MarkButton.currentMB.wFrameHighlight.hide()
 			MarkButton.currentMB.wFrameTool.hide()
 
 		MarkButton.currentMB = self
 
 
-		self.setChecked(True)
+		self.wButton.setChecked(True)
 		self.wFrameHighlight.show()
 		self.wFrameTool.show()
