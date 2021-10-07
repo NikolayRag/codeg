@@ -12,8 +12,8 @@ class MarkTool(QFrame):
 
 
 	mark = None
-	wLayout = None
-	wBgColor = None
+	lLayout = None
+	lBgColor = None
 
 
 	def __init__(self, _mark):
@@ -27,25 +27,25 @@ class MarkTool(QFrame):
 		wBg = QFrame(self)
 		wBg.setStyleSheet(f"border: 2px solid rgba(128,128,128,.5); border-radius: 5px; background-color: rgba(16,16,16,.9);")
 
-		self.wBgColor = QFrame(wBg)
+		self.lBgColor = QFrame(wBg)
 
 
-		self.wLayout = QFormLayout()
-		self.wLayout.setSpacing(12)
-		self.wLayout.setContentsMargins(16,16,24,24)
-		self.setLayout(self.wLayout)
+		self.lLayout = QFormLayout()
+		self.lLayout.setSpacing(12)
+		self.lLayout.setContentsMargins(16,16,24,24)
+		self.setLayout(self.lLayout)
 
 		self.fillFrame()
 
 
 		wBg.resize(self.sizeHint()-QSize(4,4))
-		self.wBgColor.resize(self.sizeHint()-QSize(4,4))
+		self.lBgColor.resize(self.sizeHint()-QSize(4,4))
 
 
 
 	def setBackground(self, _color):
 		cColor = tuple(_color.getRgb()[:-1]) +(.1,)
-		self.wBgColor.setStyleSheet(f"background-color: rgba{cColor};")
+		self.lBgColor.setStyleSheet(f"background-color: rgba{cColor};")
 
 
 
@@ -65,7 +65,7 @@ class MarkTool(QFrame):
 				applyConnect(fieldVal,cData)
 
 
-			self.wLayout.addRow(fieldName, fieldVal)
+			self.lLayout.addRow(fieldName, fieldVal)
 
 
 
@@ -79,8 +79,8 @@ class MarkTool(QFrame):
 
 
 class MarkButton(QFrame):
-	wButton = None
-	wTrigger = None
+	lButton = None
+	lTrigger = None
 
 	sigChangedMark = Signal(object, str, object)
 
@@ -106,13 +106,13 @@ class MarkButton(QFrame):
 		self.setLayout(cLayout)
 
 
-		self.wButton = QPushButton()
-		self.wButton.setCheckable(True)
-		cLayout.addWidget(self.wButton)
+		self.lButton = QPushButton()
+		self.lButton.setCheckable(True)
+		cLayout.addWidget(self.lButton)
 
 
-		self.wFrameHighlight = QFrame(self.wButton)
-		self.wFrameHighlight.resize(self.wButton.sizeHint())
+		self.wFrameHighlight = QFrame(self.lButton)
+		self.wFrameHighlight.resize(self.lButton.sizeHint())
 		self.wFrameHighlight.setStyleSheet(f"border: 2px solid #eee; border-radius:2px")
 		self.wFrameHighlight.hide()
 
@@ -125,7 +125,7 @@ class MarkButton(QFrame):
 
 		self.setColor(mainColor)
 
-		self.wButton.clicked.connect(self.toolPop)
+		self.lButton.clicked.connect(self.toolPop)
 		self.wFrameTool.sigChangedField.connect(self.changedMark)
 
 
@@ -141,8 +141,8 @@ class MarkButton(QFrame):
 
 	def setColor(self, _color):
 		cColor = _color.getRgb()[:-1]
-#??		self.wButton.setPalette(QColor.fromRgb(color[0],color[1],color[2]))
-		self.wButton.setStyleSheet(f"background-color: rgb{cColor}")
+#??		self.lButton.setPalette(QColor.fromRgb(color[0],color[1],color[2]))
+		self.lButton.setStyleSheet(f"background-color: rgb{cColor}")
 
 		self.wFrameTool.setBackground(_color)
 
@@ -150,13 +150,13 @@ class MarkButton(QFrame):
 
 	def toolPop(self):
 		if MarkButton.activeMB:
-			MarkButton.activeMB.wButton.setChecked(False)
+			MarkButton.activeMB.lButton.setChecked(False)
 			MarkButton.activeMB.wFrameHighlight.hide()
 			MarkButton.activeMB.wFrameTool.hide()
 
 		MarkButton.activeMB = self
 
 
-		self.wButton.setChecked(True)
+		self.lButton.setChecked(True)
 		self.wFrameHighlight.show()
 		self.wFrameTool.show()
