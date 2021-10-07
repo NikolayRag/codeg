@@ -31,6 +31,8 @@ class MarkTool(QFrame):
 
 
 		self.wLayout = QFormLayout()
+		self.wLayout.setSpacing(12)
+		self.wLayout.setContentsMargins(16,16,24,24)
 		self.setLayout(self.wLayout)
 
 		self.fillFrame()
