@@ -82,15 +82,13 @@ class MarkButton(QFrame):
 	wButton = None
 	wTrigger = None
 
-
-	nameMarkColor = ''
-
-
 	sigChangedMark = Signal(object, str, object)
 
 
+	fieldWColor = ''
+
 	mark = None
-	currentMB = None
+	activeMB = None
 
 
 
@@ -99,9 +97,9 @@ class MarkButton(QFrame):
 
 		
 		self.mark = _mark
-		self.nameMarkColor = fieldWColor
+		self.fieldWColor = fieldWColor
 
-		mainColor = self.mark.getData(self.nameMarkColor) or QColor()
+		mainColor = self.mark.getData(self.fieldWColor) or QColor()
 
 
 		cLayout = QHBoxLayout()
@@ -133,7 +131,7 @@ class MarkButton(QFrame):
 
 
 	def changedMark(self, _name, _val):
-		if self.nameMarkColor and _name==self.nameMarkColor:
+		if self.fieldWColor and _name==self.fieldWColor:
 			self.setColor(_val)
 
 
@@ -151,12 +149,12 @@ class MarkButton(QFrame):
 
 
 	def toolPop(self):
-		if MarkButton.currentMB:
-			MarkButton.currentMB.wButton.setChecked(False)
-			MarkButton.currentMB.wFrameHighlight.hide()
-			MarkButton.currentMB.wFrameTool.hide()
+		if MarkButton.activeMB:
+			MarkButton.activeMB.wButton.setChecked(False)
+			MarkButton.activeMB.wFrameHighlight.hide()
+			MarkButton.activeMB.wFrameTool.hide()
 
-		MarkButton.currentMB = self
+		MarkButton.activeMB = self
 
 
 		self.wButton.setChecked(True)
