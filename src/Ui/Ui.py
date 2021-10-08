@@ -310,4 +310,12 @@ class Ui():
 		if not cScene:
 			return
 
-		print("Assign" if _state else "Remove", f"{_mark} to {_geoList}")
+
+		cScene.markApplyGeo(_mark, list(_geoList.values()), mode=bool(_state), step='DIRECT')
+
+		self.uiMarkAssign(list(_geoList.keys()), _mark, _state)
+
+
+
+	def uiMarkAssign(self, _geoList, _mark, _state):
+		self.appWindow.wMarkAssign(_mark, _geoList, _state)

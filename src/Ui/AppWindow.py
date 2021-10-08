@@ -337,3 +337,8 @@ class AppWindow(QObject):
 	 
 		if _open:
 			btnMark.toolPop()
+
+
+
+	def wMarkAssign(self, _geoList, _mark, _state):
+		print(_geoList, _mark, _state)
