@@ -339,7 +339,7 @@ class AppWindow(QObject):
 
 		self.scrollMarksLayout.addWidget(btnMark)
 
-		btnMark.sigChangedMark.connect(lambda m,n,v:print('Changed:',m,n,v))
+		btnMark.sigChanged.connect(lambda m,n,v:print(f"Changed: {m} '{n}' to {v}"))
 
 		if _open:
 			btnMark.toolPop()
