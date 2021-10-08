@@ -5,7 +5,8 @@
 # =todo 117 (ux, module-ui) +0: add app settings
 
 from .AppWindow import *
-from random import *
+from .Utils import *
+
 
 
 class Ui():
@@ -282,7 +283,11 @@ class Ui():
 
 
 		cData = dict(self.defaultMarkData)
-		cData[self.defaultMarkColorField] = QColor.fromHsvF(random(),random()*.5+.5,random()*.5+.5)
+		cData[self.defaultMarkColorField] = QColor.fromHsvF(
+			Counter.next('hue',.3)%1.,
+			Counter.next('sat',.45)%1. *.5+.5,
+			Counter.next('val',.15)%1. *.5+.5
+		)
 
 		cMark = self.data.markNew( data=cData )
 
