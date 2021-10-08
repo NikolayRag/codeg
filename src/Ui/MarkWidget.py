@@ -160,9 +160,8 @@ class MarkButton(QFrame):
 
 
 	def setColor(self, _color):
-		cColor = _color.getRgb()[:-1]
 #??		self.lButton.setPalette(QColor.fromRgb(color[0],color[1],color[2]))
-		self.lButton.setStyleSheet(f"background-color: rgb{cColor};border-radius:4px;")
+		self.lButton.setStyleSheet(f"background-color: {_color.name()};border-radius:4px;")
 
 		self.wFrameTool.setBackground(_color)
 
