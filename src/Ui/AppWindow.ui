@@ -351,12 +351,6 @@
                      </item>
                      <item>
                       <widget class="QScrollArea" name="scrollMarks">
-                       <property name="minimumSize">
-                        <size>
-                         <width>24</width>
-                         <height>0</height>
-                        </size>
-                       </property>
                        <property name="frameShape">
                         <enum>QFrame::NoFrame</enum>
                        </property>
@@ -373,14 +367,6 @@
                         <bool>true</bool>
                        </property>
                        <widget class="QWidget" name="scrollMarksWidget">
-                        <property name="geometry">
-                         <rect>
-                          <x>0</x>
-                          <y>0</y>
-                          <width>24</width>
-                          <height>106</height>
-                         </rect>
-                        </property>
                         <property name="autoFillBackground">
                          <bool>true</bool>
                         </property>

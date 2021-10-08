@@ -103,17 +103,30 @@ class MarkButton(QFrame):
 
 
 		cLayout = QHBoxLayout()
+		cLayout.setSpacing(0)
+		cLayout.setContentsMargins(0,0,0,0)
 		self.setLayout(cLayout)
+
+
+		self.lTrigger = QCheckBox()
+		self.lTrigger.setMaximumWidth(16)
+		self.lTrigger.setStyleSheet(f"border:1px solid #777")
+		cLayout.addWidget(self.lTrigger)
+
+		sp1 = QSpacerItem(0,0, QSizePolicy.Expanding, QSizePolicy.Fixed)
+		cLayout.addItem(sp1)
 
 
 		self.lButton = QPushButton()
 		self.lButton.setCheckable(True)
+		self.lButton.setFixedWidth(24)
+		self.lButton.setFixedHeight(24)
 		cLayout.addWidget(self.lButton)
 
 
 		self.wFrameHighlight = QFrame(self.lButton)
-		self.wFrameHighlight.resize(self.lButton.sizeHint())
-		self.wFrameHighlight.setStyleSheet(f"border: 2px solid #eee; border-radius:2px")
+		self.wFrameHighlight.resize(24,24)
+		self.wFrameHighlight.setStyleSheet(f"border: 2px solid #eee; border-radius:2px;")
 		self.wFrameHighlight.hide()
 
 
@@ -142,7 +155,7 @@ class MarkButton(QFrame):
 	def setColor(self, _color):
 		cColor = _color.getRgb()[:-1]
 #??		self.lButton.setPalette(QColor.fromRgb(color[0],color[1],color[2]))
-		self.lButton.setStyleSheet(f"background-color: rgb{cColor}")
+		self.lButton.setStyleSheet(f"background-color: rgb{cColor};border-radius:4px;")
 
 		self.wFrameTool.setBackground(_color)
 
