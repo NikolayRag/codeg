@@ -51,8 +51,7 @@ class AppWindow(QObject):
 	sigLayerSelect = Signal(list)
 	sigLayerHover = Signal(str)
 	sigCtrlLayersSet = Signal(list, bool)
-	sigAddMark = Signal()
-
+	sigMarkAdd = Signal()
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
@@ -130,7 +129,7 @@ class AppWindow(QObject):
 		self.lBtnOpen.clicked.connect(self.sigAddFile)
 		self.lBtnStore.clicked.connect(self.sigStoreG)
 		self.lBtnProccess.clicked.connect(self.dispatchRun)
-		self.btnMarkAdd.clicked.connect(self.sigAddMark)
+		self.btnMarkAdd.clicked.connect(self.sigMarkAdd)
 		
 
 

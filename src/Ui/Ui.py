@@ -111,7 +111,7 @@ class Ui():
 		self.appWindow.sigLayerSelect.connect(self.layerSetSelect)
 		self.appWindow.sigLayerHover.connect(self.layerSetHover)
 		self.appWindow.sigCtrlLayersSet.connect(self.ctrlLayersSet)
-		self.appWindow.sigAddMark.connect(self.slotMarkAdd)
+		self.appWindow.sigMarkAdd.connect(self.slotMarkAdd)
 
 		self.appWindow.connList(self.dispatch.getDevices())
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
