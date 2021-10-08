@@ -112,6 +112,7 @@ class Ui():
 		self.appWindow.sigLayerHover.connect(self.layerSetHover)
 		self.appWindow.sigCtrlLayersSet.connect(self.ctrlLayersSet)
 		self.appWindow.sigMarkAdd.connect(self.slotMarkAdd)
+		self.appWindow.sigMarkAssign.connect(self.slotMarkAssign)
 
 		self.appWindow.connList(self.dispatch.getDevices())
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
@@ -302,3 +303,11 @@ class Ui():
 	def uiMarkAdd(self, _mark, _open=False):
 		self.appWindow.wMarkAdd(_mark, _open, fieldColor=self.defaultMarkColorField)
 
+
+
+	def slotMarkAssign(self, _geoList, _mark, _state):
+		cScene = self.data.sceneGet()
+		if not cScene:
+			return
+
+		print("Assign" if _state else "Remove", f"{_mark} to {_geoList}")

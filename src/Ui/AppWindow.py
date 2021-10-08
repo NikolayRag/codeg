@@ -52,6 +52,7 @@ class AppWindow(QObject):
 	sigLayerHover = Signal(str)
 	sigCtrlLayersSet = Signal(list, bool)
 	sigMarkAdd = Signal()
+	sigMarkAssign = Signal(list, object, bool)
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
@@ -131,7 +132,6 @@ class AppWindow(QObject):
 		self.lBtnProccess.clicked.connect(self.dispatchRun)
 		self.btnMarkAdd.clicked.connect(self.sigMarkAdd)
 		
-
 
 	def show(self):
 		self.lMain.show()
@@ -333,7 +333,7 @@ class AppWindow(QObject):
 		self.scrollMarksLayout.addWidget(btnMark)
 
 		btnMark.sigChanged.connect(lambda m,n,v:print(f"Changed: {m} '{n}' to {v}"))
-		btnMark.sigTrigger.connect(lambda m,s:print(f"Trigger: {m} to {s}"))
-
+		btnMark.sigTrigger.connect(lambda m,s:self.sigMarkAssign.emit(list(self.layerSelection().values()), m, s))
+	 
 		if _open:
 			btnMark.toolPop()
