@@ -238,25 +238,19 @@ class AppWindow(QObject):
 
 
 	def layerSelection(self):
-		cacheSelection = []
+		out = {}
 
 		for cRange in self.lListLayers.selectedRanges():
 			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
-				cacheSelection.append(cRow)
+				cName = self.lListLayers.item(cRow, self.LayerColumnName)
+				out[cRow] = cName.data(self.LdataName)
 
-		return cacheSelection
+		return out
 
 
 
 	def layerSelect(self):
-		selectionNamesA = []
-
-		for cRow in self.layerSelection():
-			cName = self.lListLayers.item(cRow, self.LayerColumnName)
-			selectionNamesA.append( cName.data(self.LdataName) )
-
-
-		self.sigLayerSelect.emit(selectionNamesA)
+		self.sigLayerSelect.emit(list(self.layerSelection().values()))
 
 
 
@@ -283,7 +277,7 @@ class AppWindow(QObject):
 
 
 	def layersSwitchVis(self, _row, _col):
-		cSelection = self.layerSelection()
+		cSelection = list(self.layerSelection().keys())
 
 		namesA = []
 		newState = not self.lListLayers.item(_row, _col).data(self.LdataOn)
