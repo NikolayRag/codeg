@@ -83,6 +83,7 @@ class MarkButton(QFrame):
 	lTrigger = None
 
 	sigChanged = Signal(object, str, object)
+	sigTrigger = Signal(object, bool)
 
 
 	fieldWColor = ''
@@ -139,7 +140,13 @@ class MarkButton(QFrame):
 		self.setColor(mainColor)
 
 		self.lButton.clicked.connect(self.toolPop)
+		self.lTrigger.stateChanged.connect(self.markTrigger)
 		self.wFrameTool.sigChangedField.connect(self.markChanged)
+
+
+
+	def markTrigger(self, _state):
+		self.sigTrigger.emit(self.mark, _state==Qt.Checked)
 
 
 
