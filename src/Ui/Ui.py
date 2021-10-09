@@ -84,12 +84,17 @@ class Ui():
 	qApp = None
 
 
+	preMaxSize = (0,0)
+
 
 	def __init__(self, _args, _data, _dispatch):
 		self.args = _args
 
 		self.data = _data
 		self.dispatch = _dispatch
+
+		self.preMaxSize = self.args.get('wSize')
+
 
 		#init
 		QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
@@ -99,7 +104,8 @@ class Ui():
 
 		self.appWindow = AppWindow(self.defUi, self.styleList[self.styleSet])
 
-		self.appWindow.sigResize.connect(self.storeWindow)
+		self.appWindow.sigResized.connect(lambda v:self.storeWindow(size=v))
+		self.appWindow.sigMaximized.connect(lambda v:self.storeWindow(maxi=v))
 		self.appWindow.resize(
 			self.args.get('wSize'),
 			self.args.get('wMaxi')
@@ -161,10 +167,17 @@ class Ui():
 
 
 #  todo 120 (refactor, module-ui, module-data) +0: hold pre-maximize size
-	def storeWindow(self, _size, _maximized):
-		self.args.set('wMaxi', _maximized)
-		if not _maximized:
-			self.args.set('wSize', (_size.width(),_size.height()) )
+	def storeWindow(self, pos=None, size=None, maxi=None):
+		if size != None:
+			self.preMaxSize = self.args.get('wSize')
+			self.args.set('wSize', (size.width(),size.height()) )
+
+		if maxi != None:
+			self.args.set('wMaxi', maxi)
+
+			if maxi:
+				self.args.set('wSize', (self.preMaxSize[0],self.preMaxSize[1]) )
+
 
 
 #  todo 118 (refactor, module-ui, module-data) +0: clean for minor import

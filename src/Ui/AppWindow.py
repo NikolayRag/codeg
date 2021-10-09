@@ -44,7 +44,8 @@ class AppWindow(QObject):
 	LdataName = Qt.UserRole +0
 	LdataOn = Qt.UserRole +1
 
-	sigResize = Signal(QSize, bool)
+	sigResized = Signal(QSize)
+	sigMaximized = Signal(bool)
 	sigAddFile = Signal()
 	sigStoreG = Signal()
 	sigDispatch = Signal(str)
@@ -70,13 +71,20 @@ class AppWindow(QObject):
 			with open(_styleFile) as fQss:
 				cMain.setStyleSheet(fQss.read())
 
-
 		cMain.setWindowTitle('codeg');
+
+		
 		self.tmpFilterWindowResize = BindFilter(
-			(QEvent.Type.Resize, QEvent.Type.WindowStateChange),
-			self.resized
+			QEvent.Type.Resize,
+			lambda event: self.sigResized.emit(event.size()) if not self.lMain.isMaximized() else None
 		)
 		cMain.installEventFilter(self.tmpFilterWindowResize)
+
+		self.tmpFilterWindowState = BindFilter(
+			QEvent.Type.WindowStateChange,
+			lambda event:self.sigMaximized.emit(event.oldState()==Qt.WindowNoState)
+		)
+		cMain.installEventFilter(self.tmpFilterWindowState)
 
 
 		#widgets time
@@ -147,20 +155,6 @@ class AppWindow(QObject):
 
 		if maximize:
 			self.lMain.showMaximized()
-
-
-
-### PRIVATE ###
-
-
-
-#  todo 79 (module-ui, ux, fix) +0: make size ignored on maximize
-	def resized(self, event):
-		wSize = self.lMain.size()
-		self.sigResize.emit(
-			wSize,
-			self.lMain.isMaximized()
-		)
 
 
 
