@@ -44,8 +44,6 @@ class AppWindow(QObject):
 	LdataName = Qt.UserRole +0
 	LdataOn = Qt.UserRole +1
 
-	sigResized = Signal(QSize)
-	sigMaximized = Signal(bool)
 	sigAddFile = Signal()
 	sigStoreG = Signal()
 	sigDispatch = Signal(str)
@@ -74,19 +72,6 @@ class AppWindow(QObject):
 		cMain.setWindowTitle('codeg');
 
 		
-		self.tmpFilterWindowResize = BindFilter(
-			QEvent.Type.Resize,
-			lambda event: self.sigResized.emit(event.size()) if not self.lMain.isMaximized() else None
-		)
-		cMain.installEventFilter(self.tmpFilterWindowResize)
-
-		self.tmpFilterWindowState = BindFilter(
-			QEvent.Type.WindowStateChange,
-			lambda event:self.sigMaximized.emit(event.oldState()==Qt.WindowNoState)
-		)
-		cMain.installEventFilter(self.tmpFilterWindowState)
-
-
 		#widgets time
 		self.lListLayers = cMain.findChild(QTableWidget, "listLayers")
 

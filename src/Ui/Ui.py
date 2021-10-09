@@ -84,16 +84,11 @@ class Ui():
 	qApp = None
 
 
-	preMaxSize = (0,0)
-
-
 	def __init__(self, _args, _data, _dispatch):
 		self.args = _args
 
 		self.data = _data
 		self.dispatch = _dispatch
-
-		self.preMaxSize = self.args.get('wSize')
 
 
 		#init
@@ -104,8 +99,6 @@ class Ui():
 
 		self.appWindow = AppWindow(self.defUi, self.styleList[self.styleSet])
 
-		self.appWindow.sigResized.connect(lambda v:self.storeWindow(size=v))
-		self.appWindow.sigMaximized.connect(lambda v:self.storeWindow(maxi=v))
 		self.appWindow.resize(
 			self.args.get('wSize'),
 			self.args.get('wMaxi')
@@ -154,6 +147,12 @@ class Ui():
 
 		self.qApp.exec_()
 
+		
+		self.args.set('wMaxi', self.appWindow.lMain.isMaximized())
+		if not self.appWindow.lMain.isMaximized():
+			cSize = self.appWindow.lMain.size()
+			self.args.set('wSize', (cSize.width(), cSize.height()) )
+
 
 
 ### PRIVATE ###
@@ -163,19 +162,6 @@ class Ui():
 # -todo 88 (fix, gcode) +0: use dispatch both for file save
 	def dispatchSend(self, _name):
 		return self.dispatch.runDevice(_name, self.appWindow.dispatchLog)
-
-
-
-	def storeWindow(self, pos=None, size=None, maxi=None):
-		if size != None:
-			self.preMaxSize = self.args.get('wSize')
-			self.args.set('wSize', (size.width(),size.height()) )
-
-		if maxi != None:
-			self.args.set('wMaxi', maxi)
-
-			if maxi:
-				self.args.set('wSize', (self.preMaxSize[0],self.preMaxSize[1]) )
 
 
 
