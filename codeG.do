@@ -334,7 +334,7 @@
 =ux, module-ui 117: +0 "src\Ui\Ui.py" kii 21/09/08 18:42:04
 	add app settings
 
- refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" ki 21/09/25 22:45:12
+ refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" ki 21/10/09 21:40:56
 	clean for minor import
 
 -refactor, module-ui, module-data 119: +0 "src\Ui\Ui.py" kii 21/09/09 21:27:02
