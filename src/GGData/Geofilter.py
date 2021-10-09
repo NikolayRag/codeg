@@ -10,7 +10,7 @@ Derived class should override .run() function, and fill out dataPublic.
 class Geofilter():
 	step = ''	# Step of executution (TO BE FILLED)
 	dataOwn = {}	# Internal data provided at init
-	dataPublic = {}	# Data to be returned on Geolayer.marksSolve() cycle, at particular step
+	dataPublic = {}	# Data to be returned on Geopart.marksSolve() cycle, at particular step
 
 
 

@@ -45,7 +45,7 @@ class Geoblock():
 
 				cName = tagType +str(i)
 				cTag.set('id', cName)
-				self.namedLayers[cName] = Geolayer(cTag, cName)
+				self.namedLayers[cName] = Geopart(cTag, cName)
 
 				i += 1
 
@@ -77,7 +77,7 @@ class Geoblock():
 
 
 
-class Geolayer():
+class Geopart():
 	obj = None
 	name = ''
 
