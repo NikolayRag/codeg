@@ -394,3 +394,9 @@
 -module-ui, mark 140: +0 "src\Ui\MarkWidget.py" ki 21/10/04 13:14:09
 	redesign
 
+-ui, mark 141: +0 "src\Ui\AppWindow.py" ki 21/10/10 00:14:19
+	update Geoitem widgets
+
+=ui, mark 142: +0 "src\Ui\AppWindow.py" ki 21/10/10 00:07:50
+	Select Marks by layers
+

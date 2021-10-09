@@ -228,8 +228,10 @@ class AppWindow(QObject):
 
 
 
+# =todo 142 (ui, mark) +0: Select Marks by layers
 	def layerSelect(self):
 		self.sigLayerSelect.emit(list(self.layerSelection().values()))
+
 
 
 
@@ -319,5 +321,6 @@ class AppWindow(QObject):
 
 
 
+# -todo 141 (ui, mark) +0: update Geoitem widgets
 	def wMarkAssign(self, _geoList, _mark, _state):
 		print(_geoList, _mark, _state)
