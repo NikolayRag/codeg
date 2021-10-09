@@ -1,6 +1,6 @@
 '''
 Geometry marker.
-Hold arbitrary data and optional Geofilter to be applied
+Hold arbitrary data and optional Markfilter to be applied
  to objects attached at particular steps of runtime.
 '''
 

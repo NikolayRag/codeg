@@ -1,9 +1,9 @@
 '''
 
 Folder for Filters to be imported
-Use following statement to Import parent Geofilter class:
+Use following statement to Import parent Markfilter class:
 
-from ..Geofilter import *
+from ..Markfilter import *
 
 '''
 

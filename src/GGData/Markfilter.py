@@ -7,7 +7,7 @@ Base class for deriving filters.
 Derived class should override .run() function, and fill out dataPublic.
 '''
 
-class Geofilter():
+class Markfilter():
 	step = ''	# Step of executution (TO BE FILLED)
 	dataOwn = {}	# Internal data provided at init
 	dataPublic = {}	# Data to be returned on Geopart.marksSolve() cycle, at particular step

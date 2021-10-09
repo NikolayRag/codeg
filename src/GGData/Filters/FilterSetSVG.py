@@ -1,8 +1,8 @@
-from ..Geofilter import *
+from ..Markfilter import *
 
 
 
-class FilterSetSVG(Geofilter):
+class FilterSetSVG(Markfilter):
 	step = 'UI'
 
 

@@ -21,8 +21,8 @@ Data scope:
 
 from .GGen import *
 from .Scene import *
-from .Geofilter import *
 from .Mark import *
+from .Markfilter import *
 from .Filters import *
 
 
@@ -36,7 +36,7 @@ class GGData():
 
 
 	def __init__(self):
-		self.allFilters = {a.__name__:a for a in Geofilter.__subclasses__()}
+		self.allFilters = {a.__name__:a for a in Markfilter.__subclasses__()}
 
 
 
@@ -94,7 +94,7 @@ class GGData():
 ###
 
 
-#	Only create Geomark with given Geofilter and data.
+#	Only create Mark with given Markfilter and data.
 #	Should be appended to scene explicitely by Scene.markAppend().
 	def markNew(self, data={}, filterName=None, filterData={}, priority=0):
 		filterProc = None
@@ -103,7 +103,7 @@ class GGData():
 			if filterName not in self.allFilters:
 				print('Warning: filter', filterName, 'is unknown')
 
-				newclass = type('Filter'+filterName, (Geofilter,),{"name": filterName})
+				newclass = type('Filter'+filterName, (Markfilter,),{"name": filterName})
 				self.allFilters[filterName] = newclass
 
 
