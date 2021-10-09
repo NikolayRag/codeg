@@ -166,7 +166,6 @@ class Ui():
 
 
 
-#  todo 120 (refactor, module-ui, module-data) +0: hold pre-maximize size
 	def storeWindow(self, pos=None, size=None, maxi=None):
 		if size != None:
 			self.preMaxSize = self.args.get('wSize')

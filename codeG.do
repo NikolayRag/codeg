@@ -223,7 +223,7 @@
 +module-ui, ux 78: +0 "src\Ui\Ui.py" kii 21/08/15 22:10:50
 	store/restore window size
 
- module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" kii 21/09/08 22:00:28
+!module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" ki 21/10/09 16:43:12
 	make size ignored on maximize
 
 +module-ui, svg, feature 80: +0 "src\Ui\SvgViewport.py" kii 21/08/20 05:30:30
@@ -340,7 +340,7 @@
 -refactor, module-ui, module-data 119: +0 "src\Ui\Ui.py" kii 21/09/09 21:27:02
 	clean for dispatch
 
- refactor, module-ui, module-data 120: +0 "src\Ui\Ui.py" ki 21/09/25 22:44:55
++refactor, module-ui, module-data, fix 120: +0 "src\Ui\Ui.py" ki 21/10/09 20:33:56
 	hold pre-maximize size
 
 +module-data, fix 121: +0 "src\GGen\GGen.py" kii 21/09/09 22:20:25
