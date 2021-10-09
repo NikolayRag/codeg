@@ -21,8 +21,8 @@ Data scope:
 
 from .GGen import *
 from .Scene import *
-from .Geomark import *
 from .Geofilter import *
+from .Mark import *
 from .Filters import *
 
 
@@ -110,7 +110,7 @@ class GGData():
 			filterProc = self.allFilters[filterName](filterData)
 
 
-		cMark = Geomark(data, priority, filterProc)
+		cMark = Mark(data, priority, filterProc)
 		return cMark
 
 

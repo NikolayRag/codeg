@@ -5,7 +5,7 @@ Hold arbitrary data and optional Geofilter to be applied
 '''
 
 
-class Geomark():
+class Mark():
 	isDirty = False
 	data = {}
 	gfilter = None
