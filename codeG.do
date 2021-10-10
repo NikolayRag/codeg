@@ -55,7 +55,7 @@
  spec, module-dispatch 19: +0 "src\GGData\GGData.py" kii 21/08/02 21:16:57
 	send to codegg
 
- module-ui, error 20: +0 "src\Ui\AppWindow.py" kii 21/09/02 00:47:53
+ module-ui, error 20: +0 "src\Ui\AppWindow.py" ki 21/10/10 14:16:43
 	handle errors, maybe status string
 
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
@@ -397,7 +397,7 @@
 -module-ui, mark 141: +0 "src\Ui\AppWindow.py" ki 21/10/10 13:17:56
 	update Geoitem widgets
 
-=ui, mark 142: +0 "src\Ui\AppWindow.py" ki 21/10/10 00:07:50
++ui, mark 142: +0 "src\Ui\AppWindow.py" ki 21/10/10 19:28:48
 	Select Marks by layers
 
 =ui, widgets 143: +0 "src\Ui\Widgets.py" ki 21/10/10 02:27:15
@@ -411,4 +411,7 @@
 
 =module-data, mark 146: +0 "src\Ui\Ui.py" ki 21/10/10 13:29:23
 	auto-increment mark priorities at creation
+
+-module-ui, fix 147: +0 "src\Ui\AppWindow.py" ki 21/10/10 19:31:52
+	use blank layer space to from-to hover mouse selection
 

@@ -234,7 +234,6 @@ class AppWindow(QObject):
 
 
 
-# =todo 142 (ui, mark) +0: Select Marks by layers
 	def layerSelect(self):
 		cSel = self.layerSelection().values()
 		self.sigLayerSelect.emit(list(cSel))
@@ -287,6 +286,7 @@ class AppWindow(QObject):
 
 
 # =todo 114 (module-ui, fix) +0: change vis for select-all case
+# -todo 147 (module-ui, fix) +0: use blank layer space to from-to hover mouse selection
 		for cRow in cSelection:
 			cItem = self.lListLayers.item(cRow, _col)
 			if newState == cItem.data(self.LdataOn):
