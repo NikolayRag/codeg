@@ -236,8 +236,19 @@ class AppWindow(QObject):
 
 # =todo 142 (ui, mark) +0: Select Marks by layers
 	def layerSelect(self):
-		self.sigLayerSelect.emit(list(self.layerSelection().values()))
+		cSel = self.layerSelection().values()
+		self.sigLayerSelect.emit(list(cSel))
 
+
+
+	def marksSelect(self, _marks):
+		for cMark in self.allWidgetsMarks:
+			self.allWidgetsMarks[cMark].setTrigger(False, emit=False)
+
+
+		for cMark in _marks:
+			if cMark in self.allWidgetsMarks:
+				self.allWidgetsMarks[cMark].setTrigger(_marks[cMark], tri=not _marks[cMark], emit=False)
 
 
 

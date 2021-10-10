@@ -231,6 +231,21 @@ class Ui():
 			return
 
 
+		marksUsed = {}
+		cObjA = cScene.getSceneObjs(_selectionA)
+
+		for cObj in cObjA:
+			for cMark in cObj.marks:
+				marksUsed[cMark] = True
+
+		for cMark in marksUsed:
+			for cObj in cObjA:
+				if cMark not in cObj.marks:
+					marksUsed[cMark] = False
+
+		self.appWindow.marksSelect(marksUsed)
+
+
 		cScene.markApplyGeo(self.markSelect, _selectionA, step='UI')
 
 		self.reloadXml()
