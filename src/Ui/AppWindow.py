@@ -180,7 +180,7 @@ class AppWindow(QObject):
 
 
 
-######### LAYERS #########
+######### Geoitems #########
 
 	def layerSetItem(self, _item, _on):
 		_item.setData(self.LdataOn, _on)

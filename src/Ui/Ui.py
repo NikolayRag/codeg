@@ -289,9 +289,7 @@ class Ui():
 		)
 
 		cMark = self.data.markNew( data=cData )
-
-		if not cScene.markAppend(cMark):
-			print('Mark is already in')
+		cScene.markAppend(cMark)
 
 
 		self.uiMarkAdd(cMark, True)
