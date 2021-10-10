@@ -146,7 +146,7 @@ class MarkWidget(QFrame):
 
 
 	def setTrigger(self, _on=None, tri=None):
-		cState = Qt.Checked if _on else Qt.PartiallyChecked
+		cState = Qt.Checked if _on else Qt.Unchecked
 
 		if tri:
 			cState = Qt.PartiallyChecked
