@@ -55,7 +55,7 @@ class AppWindow(QObject):
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
-	defaultFit = 0.8
+	defaultWindowFit = defaultViewportFit = 0.8
 
 
 
@@ -118,7 +118,7 @@ class AppWindow(QObject):
 		self.lLogDev = cMain.findChild(QTextEdit, "logDev")
 
 
-		self.lBtnFit.clicked.connect(lambda: self.lViewport.canvasFit(self.defaultFit))
+		self.lBtnFit.clicked.connect(lambda: self.lViewport.canvasFit(self.defaultViewportFit))
 		self.lBtnCaption.clicked.connect(self.about)
 		self.lBtnOpen.clicked.connect(self.sigAddFile)
 		self.lBtnStore.clicked.connect(self.sigStoreG)
@@ -135,7 +135,7 @@ class AppWindow(QObject):
 		self.lMain.resize(
 			QSize(*_size)
 			if _size else
-			QApplication.primaryScreen().size() *.8
+			QApplication.primaryScreen().size() * self.defaultWindowFit
 		)
 
 		if maximize:
@@ -155,7 +155,7 @@ class AppWindow(QObject):
 
 		self.lViewport.canvasReset()
 		self.lViewport.canvasAdd(_xml)
-		self.lViewport.canvasFit(self.defaultFit)
+		self.lViewport.canvasFit(self.defaultViewportFit)
 
 
 		cList = self.lListLayers
