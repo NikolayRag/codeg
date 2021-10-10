@@ -91,6 +91,7 @@ class MarkWidget(QFrame):
 	mark = None
 	activeMB = None
 
+	doEmitTrigger = True
 
 
 	def __init__(self, _contLay, _mark, fieldWColor=''):
@@ -145,18 +146,21 @@ class MarkWidget(QFrame):
 
 
 
-	def setTrigger(self, _on=None, tri=None):
+	def setTrigger(self, _on=None, tri=None, emit=True):
 		cState = Qt.Checked if _on else Qt.Unchecked
 
 		if tri:
 			cState = Qt.PartiallyChecked
 
+		self.doEmitTrigger = emit
 		self.lTrigger.setCheckState(cState)
+		self.doEmitTrigger = True
 
 
 
 	def markTrigger(self, _state):
-		self.sigTrigger.emit(self.mark, _state==Qt.Checked)
+		if self.doEmitTrigger:
+			self.sigTrigger.emit(self.mark, _state==Qt.Checked)
 
 
 
