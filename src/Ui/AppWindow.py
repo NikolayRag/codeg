@@ -58,6 +58,11 @@ class AppWindow(QObject):
 	defaultWindowFit = defaultViewportFit = 0.8
 
 
+## runtime ##
+
+	widgetsMarks = {}
+
+
 
 	def __init__(self, _uiFile, _styleFile=None):
 		QObject.__init__(self)
@@ -311,7 +316,14 @@ class AppWindow(QObject):
 
 # -todo 145 (module-ui, widgets) +0: make Marks arrangable with priority change
 	def wMarkAdd(self, _mark, _open, fieldColor=''):
+		if _mark in self.widgetsMarks:
+			print('MarkWidget already exists')
+			return
+
+
 		btnMark = MarkWidget(self.layMarkHolder, _mark, fieldWColor=fieldColor)
+		self.widgetsMarks[_mark] = btnMark
+
 
 		self.scrollMarksLayout.addWidget(btnMark)
 
