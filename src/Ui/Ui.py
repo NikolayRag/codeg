@@ -301,7 +301,7 @@ class Ui():
 
 
 
-	def slotMarkAssign(self, _geoList, _mark, _state):
+	def slotMarkAssign(self, _mark, _geoList, _state):
 		cScene = self.data.sceneGet()
 		if not cScene:
 			return
@@ -309,9 +309,9 @@ class Ui():
 
 		cScene.markApplyGeo(_mark, list(_geoList.values()), mode=bool(_state), step='DIRECT')
 
-		self.uiMarkAssign(list(_geoList.keys()), _mark, _state)
+		self.uiMarkAssign(_mark, list(_geoList.keys()), _state)
 
 
 
-	def uiMarkAssign(self, _geoList, _mark, _state):
+	def uiMarkAssign(self, _mark, _geoList, _state):
 		self.appWindow.wMarkAssign(_mark, _geoList, _state)

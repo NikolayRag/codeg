@@ -51,7 +51,7 @@ class AppWindow(QObject):
 	sigLayerHover = Signal(str)
 	sigCtrlLayersSet = Signal(list, bool)
 	sigMarkAdd = Signal()
-	sigMarkAssign = Signal(dict, object, bool)
+	sigMarkAssign = Signal(object, dict, bool)
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
@@ -316,7 +316,7 @@ class AppWindow(QObject):
 		self.scrollMarksLayout.addWidget(btnMark)
 
 		btnMark.sigChanged.connect(lambda m,n,v:print(f"Changed: {m} '{n}' to {v}"))
-		btnMark.sigTrigger.connect(lambda m,s:self.sigMarkAssign.emit(self.layerSelection(), m, s))
+		btnMark.sigTrigger.connect(lambda m,s:self.sigMarkAssign.emit(m, self.layerSelection(), s))
 	 
 		if _open:
 			btnMark.toolPop()
@@ -324,5 +324,5 @@ class AppWindow(QObject):
 
 
 # -todo 141 (module-ui, mark) +0: update Geoitem widgets
-	def wMarkAssign(self, _geoList, _mark, _state):
-		print(_geoList, _mark, _state)
+	def wMarkAssign(self, _mark, _geoList, _state):
+		print(_mark, _mark.getPriority(), _geoList, _state)
