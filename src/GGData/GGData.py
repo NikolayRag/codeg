@@ -33,6 +33,7 @@ class GGData():
 	allScenes = {}
 	currentSceneId = 0
 
+	maxMarkPriority = 0
 
 
 	def __init__(self):
@@ -96,7 +97,13 @@ class GGData():
 
 #	Only create Mark with given Markfilter and data.
 #	Should be appended to scene explicitely by Scene.markAppend().
-	def markNew(self, data={}, filterName=None, filterData={}, priority=0):
+	def markNew(self, data={}, filterName=None, filterData={}, priority=None):
+		if priority==None:
+			priority = self.maxMarkPriority +1
+
+		self.maxMarkPriority = priority
+
+
 		filterProc = None
 
 		if filterName:
