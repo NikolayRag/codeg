@@ -78,7 +78,7 @@ class MarkTool(QFrame):
 
 
 
-class MarkButton(QFrame):
+class MarkWidget(QFrame):
 	lButton = None
 	lTrigger = None
 
@@ -145,6 +145,16 @@ class MarkButton(QFrame):
 
 
 
+	def setTrigger(self, _on=None, tri=None):
+		cState = Qt.Checked if _on else Qt.PartiallyChecked
+
+		if tri:
+			cState = Qt.PartiallyChecked
+
+		self.lTrigger.setCheckState(cState)
+
+
+
 	def markTrigger(self, _state):
 		self.sigTrigger.emit(self.mark, _state==Qt.Checked)
 
@@ -168,12 +178,12 @@ class MarkButton(QFrame):
 
 
 	def toolPop(self):
-		if MarkButton.activeMB:
-			MarkButton.activeMB.lButton.setChecked(False)
-			MarkButton.activeMB.wFrameHighlight.hide()
-			MarkButton.activeMB.wFrameTool.hide()
+		if MarkWidget.activeMB:
+			MarkWidget.activeMB.lButton.setChecked(False)
+			MarkWidget.activeMB.wFrameHighlight.hide()
+			MarkWidget.activeMB.wFrameTool.hide()
 
-		MarkButton.activeMB = self
+		MarkWidget.activeMB = self
 
 
 		self.lButton.setChecked(True)

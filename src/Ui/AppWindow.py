@@ -311,7 +311,7 @@ class AppWindow(QObject):
 
 # -todo 145 (module-ui, widgets) +0: make Marks arrangable with priority change
 	def wMarkAdd(self, _mark, _open, fieldColor=''):
-		btnMark = MarkButton(self.layMarkHolder, _mark, fieldWColor=fieldColor)
+		btnMark = MarkWidget(self.layMarkHolder, _mark, fieldWColor=fieldColor)
 
 		self.scrollMarksLayout.addWidget(btnMark)
 
