@@ -60,7 +60,7 @@ class AppWindow(QObject):
 
 ## runtime ##
 
-	widgetsMarks = {}
+	allWidgetsMarks = {}
 
 
 
@@ -316,13 +316,13 @@ class AppWindow(QObject):
 
 # -todo 145 (module-ui, widgets) +0: make Marks arrangable with priority change
 	def wMarkAdd(self, _mark, _open, fieldColor=''):
-		if _mark in self.widgetsMarks:
+		if _mark in self.allWidgetsMarks:
 			print('MarkWidget already exists')
 			return
 
 
 		btnMark = MarkWidget(self.layMarkHolder, _mark, fieldWColor=fieldColor)
-		self.widgetsMarks[_mark] = btnMark
+		self.allWidgetsMarks[_mark] = btnMark
 
 
 		self.scrollMarksLayout.addWidget(btnMark)
