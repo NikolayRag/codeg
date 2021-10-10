@@ -162,6 +162,8 @@ class MarkWidget(QFrame):
 		if self.doEmitTrigger:
 			self.sigTrigger.emit(self.mark, _state==Qt.Checked)
 
+			self.lTrigger.setTristate(False)
+
 
 
 	def markChanged(self, _name, _val):
