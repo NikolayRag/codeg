@@ -5,6 +5,7 @@ from PySide2.QtGui import *
 
 
 #thanks to https://stackoverflow.com/users/3336423/jpo38 at https://stackoverflow.com/questions/18257281/qt-color-picker-widget
+# =todo 143 (ui, widgets) +0: simplify color picker
 class ColorPicker(QPushButton):
 	
 	sigChangedColor = Signal(QColor)

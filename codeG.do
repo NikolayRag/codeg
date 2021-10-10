@@ -394,9 +394,21 @@
 -module-ui, mark 140: +0 "src\Ui\MarkWidget.py" ki 21/10/04 13:14:09
 	redesign
 
--ui, mark 141: +0 "src\Ui\AppWindow.py" ki 21/10/10 00:14:19
+-module-ui, mark 141: +0 "src\Ui\AppWindow.py" ki 21/10/10 13:17:56
 	update Geoitem widgets
 
 =ui, mark 142: +0 "src\Ui\AppWindow.py" ki 21/10/10 00:07:50
 	Select Marks by layers
+
+=ui, widgets 143: +0 "src\Ui\Widgets.py" ki 21/10/10 02:27:15
+	simplify color picker
+
+=ui, widgets 144: +0 "src\Ui\AppWindow.py" ki 21/10/10 03:12:22
+	Use Geoitems directly in UI
+
+-module-ui, widgets 145: +0 "src\Ui\AppWindow.py" ki 21/10/10 13:17:51
+	make Marks arrangable with priority change
+
+=module-data, mark 146: +0 "src\Ui\Ui.py" ki 21/10/10 13:29:23
+	auto-increment mark priorities at creation
 
