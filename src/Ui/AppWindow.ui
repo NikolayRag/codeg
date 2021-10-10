@@ -232,7 +232,7 @@
                  <widget class="QWidget" name="widgetToolbar" native="true">
                   <property name="maximumSize">
                    <size>
-                    <width>120</width>
+                    <width>150</width>
                     <height>16777215</height>
                    </size>
                   </property>
@@ -339,7 +339,7 @@
                      <item>
                       <widget class="QToolButton" name="btnMarkAdd">
                        <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                          <horstretch>0</horstretch>
                          <verstretch>0</verstretch>
                         </sizepolicy>
@@ -351,6 +351,18 @@
                      </item>
                      <item>
                       <widget class="QScrollArea" name="scrollMarks">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>56</width>
+                         <height>0</height>
+                        </size>
+                       </property>
                        <property name="frameShape">
                         <enum>QFrame::NoFrame</enum>
                        </property>
@@ -360,13 +372,18 @@
                        <property name="horizontalScrollBarPolicy">
                         <enum>Qt::ScrollBarAlwaysOff</enum>
                        </property>
-                       <property name="sizeAdjustPolicy">
-                        <enum>QAbstractScrollArea::AdjustToContents</enum>
-                       </property>
                        <property name="widgetResizable">
                         <bool>true</bool>
                        </property>
                        <widget class="QWidget" name="scrollMarksWidget">
+                        <property name="geometry">
+                         <rect>
+                          <x>0</x>
+                          <y>0</y>
+                          <width>56</width>
+                          <height>106</height>
+                         </rect>
+                        </property>
                         <property name="autoFillBackground">
                          <bool>true</bool>
                         </property>
