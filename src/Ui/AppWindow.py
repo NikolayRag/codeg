@@ -186,8 +186,9 @@ class AppWindow(QObject):
 
 
 ######### Geoitems #########
+# -todo 150 (ux, widgets) +0: Make ItemWidget
 
-# =todo 144 (ui, widgets) +0: Use Geoitems directly in UI
+# =todo 144 (module-ui, widgets) +0: Use Geoitems directly in UI
 	def layerSetItem(self, _item, _on):
 		_item.setData(self.LdataOn, _on)
 
@@ -324,7 +325,8 @@ class AppWindow(QObject):
 
 ### MARKS ###
 
-
+#  todo 152 (module-ui, mark) +0: make select by mark
+#  todo 153 (module-ui, mark) +0: manage mark fields list
 # -todo 145 (module-ui, widgets) +0: make Marks arrangable with priority change
 	def wMarkAdd(self, _mark, _open, fieldColor=''):
 		if _mark in self.allWidgetsMarks:

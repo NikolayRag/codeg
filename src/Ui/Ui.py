@@ -1,6 +1,7 @@
 #  todo 20 (module-ui, error) +0: handle errors, maybe status string
 # -todo 23 (module-ui, ux) +0: show progress for time consuming operations
 #  todo 27 (module-data, module-ui, ux) +0: allow append gcode from text buffer
+#  todo 149 (module-ui, feature) +0: multiscene
 
 # =todo 117 (ux, module-ui) +0: add app settings
 
@@ -83,7 +84,7 @@ class Ui():
 	data = None
 	qApp = None
 
-
+# =todo 148 (module-ui, fix) +0: review scene life cycle
 	def __init__(self, _args, _data, _dispatch):
 		self.args = _args
 

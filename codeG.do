@@ -331,7 +331,7 @@
 =ux, module-ui 116: +0 "src\Ui\Ui.py" kii 21/09/08 18:41:48
 	choose style in app settings
 
-=ux, module-ui 117: +0 "src\Ui\Ui.py" kii 21/09/08 18:42:04
+=ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/10/11 22:19:18
 	add app settings
 
  refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" ki 21/10/09 21:40:56
@@ -403,7 +403,7 @@
 =ui, widgets 143: +0 "src\Ui\Widgets.py" ki 21/10/10 02:27:15
 	simplify color picker
 
-=ui, widgets 144: +0 "src\Ui\AppWindow.py" ki 21/10/10 03:12:22
+=module-ui, widgets 144: +0 "src\Ui\AppWindow.py" ki 21/10/11 22:21:45
 	Use Geoitems directly in UI
 
 -module-ui, widgets 145: +0 "src\Ui\AppWindow.py" ki 21/10/10 13:17:51
@@ -414,4 +414,19 @@
 
 -module-ui, fix 147: +0 "src\Ui\AppWindow.py" ki 21/10/10 19:31:52
 	use blank layer space to from-to hover mouse selection
+
+=module-ui, fix 148: +0 "src\Ui\Ui.py" ki 21/10/11 22:16:39
+	review scene life cycle
+
+ module-ui, feature 149: +0 "src\Ui\Ui.py" ki 21/10/11 22:19:18
+	multiscene
+
+-ux, widgets 150: +0 "src\Ui\AppWindow.py" ki 21/10/11 22:25:56
+	Make ItemWidget
+
+ module-ui, mark 152: +0 "src\Ui\AppWindow.py" ki 21/10/12 01:49:30
+	make select by mark
+
+ module-ui, mark 153: +0 "src\Ui\AppWindow.py" ki 21/10/12 01:50:38
+	manage mark fields list
 
