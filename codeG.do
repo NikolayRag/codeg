@@ -406,8 +406,8 @@
 =module-ui, widgets 144: +0 "src\Ui\AppWindow.py" ki 21/10/11 22:21:45
 	Use Geoitems directly in UI
 
--module-ui, widgets 145: +0 "src\Ui\AppWindow.py" ki 21/10/10 13:17:51
-	make Marks arrangable with priority change
+-module-ui, widgets 145: +0 "src\Ui\AppWindow.py" ki 21/10/12 03:54:15
+	make Marks arrangable with priority change (DragList)
 
 =module-data, mark 146: +0 "src\Ui\Ui.py" ki 21/10/10 13:29:23
 	auto-increment mark priorities at creation
