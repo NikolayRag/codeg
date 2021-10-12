@@ -26,10 +26,17 @@ class ColorPicker(QPushButton):
 
 	def changeColor(self):
 		newColor = QColorDialog.getColor(self.color, self.parentWidget())
-		if newColor != self.color:
-			self.setColor(newColor)
 
-			self.sigChangedColor.emit(newColor)
+		if newColor == QColor():
+			return
+
+		if newColor.name() == self.color.name():
+			return
+
+
+		self.setColor(newColor)
+
+		self.sigChangedColor.emit(newColor)
 
 
 
