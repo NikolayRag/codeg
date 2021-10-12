@@ -15,7 +15,7 @@ class DragList(QTabBar):
 		self.setExpanding(False)
 		self.setShape(QTabBar.RoundedEast)
 
-		self.setStyleSheet('border: none;')
+		self.setStyleSheet('QTabBar, QTabBar::tab{border: none;}')
 		self.setDrawBase(False)
 
 
@@ -36,10 +36,9 @@ class DragList(QTabBar):
 			dragWidget = QLabel('=')
 
 
-		wFiller = QLabel('a')
-		wFiller.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+		wFiller = QSpacerItem(0,0, QSizePolicy.Expanding, QSizePolicy.Fixed)
 
-		tabLayout.addWidget(wFiller)
+		tabLayout.addItem(wFiller)
 
 		tabLayout.addWidget(_widget)
 		tabLayout.addWidget(dragWidget)
