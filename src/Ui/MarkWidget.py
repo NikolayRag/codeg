@@ -2,7 +2,7 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2.QtCore import *
 
-from .Widget_ColorPicker import *
+from .Widgets import *
 
 
 
@@ -61,7 +61,7 @@ class MarkTool(QFrame):
 
 			dType = type(mDataA[cData])
 			if (dType==QColor):
-				fieldVal = ColorPicker(mDataA[cData])
+				fieldVal = ColorPicker.ColorPicker(mDataA[cData])
 				applyConnect(fieldVal,cData)
 
 
