@@ -53,13 +53,13 @@ class GGData():
 
 
 
-	def sceneNew(self, focus=False):
+	def sceneNew(self, _name='', focus=False):
 		i = 0
 		
 		if self.allScenes:
 			i = max(self.allScenes, key=int) +1
 
-		self.allScenes[i] = Scene()
+		self.allScenes[i] = Scene(_name)
 
 
 		if focus:

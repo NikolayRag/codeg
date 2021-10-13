@@ -12,10 +12,14 @@ class Scene():
 	allGeo = []
 	allMarks = []
 
+	name = ''
 
-	def __init__(self):
+
+	def __init__(self, _name=''):
 		self.allGeo = []
 		self.allMarks = []
+
+		self.name = _name
 
 
 

@@ -182,7 +182,7 @@ class Ui():
 
 
 		self.data.sceneRemove()
-		self.data.sceneNew(focus=True)
+		self.data.sceneNew(fileName, focus=True)
 		cScene = self.data.sceneGet()
 
 		cScene.geoAdd(fileName, 'svg')
