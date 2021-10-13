@@ -54,6 +54,10 @@ class Scene():
 #  todo 139 (clean) +0: Clean mark to object appending
 	# mode: True/False/None(default) for add/sub/set
 	def markApplyGeo(self, _mark, _elA, mode=None, step=None):
+		if not len(self.allGeo):
+			return
+
+
 		elSub = elAdd = self.allGeo[0].getObj(_elA)
 
 
@@ -95,17 +99,29 @@ class Scene():
 
 
 	def geoMeta(self):
-		return {cN:{'on':True} for cN in self.allGeo[0].names()}
+		out = {}
+		for cGeo in self.allGeo:
+			out = {cN:{'on':True} for cN in cGeo.names()}
+
+		return out
 
 
 
 	def getSceneXML(self, toString=False):
-		return self.allGeo[0].xmlRoot(toString)
+		out = {}
+		for cGeo in self.allGeo:
+			out = cGeo.xmlRoot(toString)
+
+		return out
 
 
 
 	def getSceneObjs(self, _name):
-		return self.allGeo[0].getObj(_name)
+		out = {}
+		for cGeo in self.allGeo:
+			out = cGeo.getObj(_name)
+
+		return out
 
 
 
