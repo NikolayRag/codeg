@@ -84,6 +84,8 @@ class Ui():
 	data = None
 	qApp = None
 
+
+
 # =todo 148 (module-ui, fix) +0: review scene life cycle
 	def __init__(self, _args, _data, _dispatch):
 		self.args = _args
