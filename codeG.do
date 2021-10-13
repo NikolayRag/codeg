@@ -415,7 +415,7 @@
 -module-ui, fix 147: +0 "src\Ui\AppWindow.py" ki 21/10/10 19:31:52
 	use blank layer space to from-to hover mouse selection
 
-=module-ui, fix 148: +0 "src\Ui\Ui.py" ki 21/10/11 22:16:39
+=module-ui, fix 148: +0 "src\Ui\Ui.py" ki 21/10/14 01:17:26
 	review scene life cycle
 
  module-ui, feature 149: +0 "src\Ui\Ui.py" ki 21/10/11 22:19:18
@@ -429,4 +429,7 @@
 
  module-ui, mark 153: +0 "src\Ui\AppWindow.py" ki 21/10/12 01:50:38
 	manage mark fields list
+
+-module-data, scene 155: +0 "src\GGData\GGData.py" ki 21/10/14 01:10:12
+	store short scene name in scene
 

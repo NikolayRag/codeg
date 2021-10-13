@@ -59,6 +59,7 @@ class GGData():
 		if self.allScenes:
 			i = max(self.allScenes, key=int) +1
 
+# -todo 155 (module-data, scene) +0: store short scene name in scene
 		self.allScenes[i] = Scene(_name)
 
 
