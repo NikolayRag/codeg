@@ -1,27 +1,27 @@
-<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+<svg width="1" height="1" xmlns="http://www.w3.org/2000/svg">
  <!-- Created with SVG Editor - http://github.com/mzalive/SVG Editor/ -->
  <g vector-effect="non-scaling-stroke" stroke-width='2px' stroke='#888' fill='none' opacity='.2'>
-  <line x1="0" x2="400" y1="000" y2="000"/>
-  <line x1="0" x2="400" y1="100" y2="100"/>
-  <line x1="0" x2="400" y1="200" y2="200"/>
-  <line x1="0" x2="400" y1="300" y2="300"/>
-  <line x1="0" x2="400" y1="400" y2="400"/>
+  <line x1="0" x2="1" y1="0.00" y2="0.00"/>
+  <line x1="0" x2="1" y1="0.25" y2="0.25"/>
+  <line x1="0" x2="1" y1="0.50" y2="0.50"/>
+  <line x1="0" x2="1" y1="0.75" y2="0.75"/>
+  <line x1="0" x2="1" y1="1.00" y2="1.00"/>
 
-  <line y1="0" y2="400" x1="000" x2="000"/>
-  <line y1="0" y2="400" x1="100" x2="100"/>
-  <line y1="0" y2="400" x1="200" x2="200"/>
-  <line y1="0" y2="400" x1="300" x2="300"/>
-  <line y1="0" y2="400" x1="400" x2="400"/>
+  <line y1="0" y2="1" x1="0.00" x2="0.00"/>
+  <line y1="0" y2="1" x1="0.25" x2="0.25"/>
+  <line y1="0" y2="1" x1="0.50" x2="0.50"/>
+  <line y1="0" y2="1" x1="0.75" x2="0.75"/>
+  <line y1="0" y2="1" x1="1.00" x2="1.00"/>
  </g>
  <g vector-effect="non-scaling-stroke" stroke-width='1px' stroke='#888' fill='none' opacity='.1'>
-  <line x1="0" x2="400" y1="50" y2="50"/>
-  <line x1="0" x2="400" y1="150" y2="150"/>
-  <line x1="0" x2="400" y1="250" y2="250"/>
-  <line x1="0" x2="400" y1="350" y2="350"/>
+  <line x1="0" x2="1" y1="0.125" y2="0.125"/>
+  <line x1="0" x2="1" y1="0.375" y2="0.375"/>
+  <line x1="0" x2="1" y1="0.625" y2="0.625"/>
+  <line x1="0" x2="1" y1="0.875" y2="0.875"/>
 
-  <line y1="0" y2="400" x1="50" x2="50"/>
-  <line y1="0" y2="400" x1="150" x2="150"/>
-  <line y1="0" y2="400" x1="250" x2="250"/>
-  <line y1="0" y2="400" x1="350" x2="350"/>
+  <line y1="0" y2="1" x1="0.125" x2="0.125"/>
+  <line y1="0" y2="1" x1="0.375" x2="0.375"/>
+  <line y1="0" y2="1" x1="0.625" x2="0.625"/>
+  <line y1="0" y2="1" x1="0.875" x2="0.875"/>
  </g>
 </svg>
