@@ -133,6 +133,7 @@ class AppWindow(QObject):
 
 	def show(self):
 		self.lMain.show()
+		self.lViewport.canvasFit(self.defaultViewportFit)
 
 
 
@@ -160,6 +161,7 @@ class AppWindow(QObject):
 
 		self.lViewport.canvasReset()
 		self.lViewport.canvasAdd(_xml)
+		self.lViewport.canvasFit(self.defaultViewportFit)
 		self.lViewport.canvasFit(self.defaultViewportFit)
 
 
