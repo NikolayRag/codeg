@@ -162,6 +162,7 @@ class AppWindow(QObject):
 		self.lViewport.canvasReset()
 		self.lViewport.canvasAdd(_xml)
 		self.lViewport.canvasFit(self.defaultViewportFit)
+#  todo 157 (fix, canvas) +0: review SvgViewport fit routine
 		self.lViewport.canvasFit(self.defaultViewportFit)
 
 

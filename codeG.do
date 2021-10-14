@@ -433,3 +433,9 @@
 -module-data, scene 155: +0 "src\GGData\GGData.py" ki 21/10/14 01:10:12
 	store short scene name in scene
 
+-fix, canvas 156: +0 "src\Ui\SvgViewport.py" ki 21/10/14 02:05:39
+	canvas is wrong size at init
+
+ fix, canvas 157: +0 "src\Ui\AppWindow.py" ki 21/10/14 04:48:24
+	review SvgViewport fit routine
+

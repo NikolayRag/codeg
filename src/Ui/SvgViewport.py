@@ -195,6 +195,7 @@ class SvgViewport(QWidget):
 
 
 	def canvasFit(self, multiply=1., center=True):
+# -todo 156 (fix, canvas) +0: canvas is wrong size at init
 		fitWidth = self.width() / self.canvas.docWidth
 		fitHeight = self.height() / self.canvas.docHeight
 
