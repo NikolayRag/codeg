@@ -42,55 +42,23 @@ class GGData():
 
 
 # -todo 138 (module-data, clean) +0: cleanup root scene functions
-	def sceneRemove(self, _id=-1):
-		if _id == -1:
-			self.allScenes = {}
-
-			return
-
-
-		del self.allScenes[_id]
+	def sceneRemove(self, _name):
+		if _name in self.allScenes:
+			del self.allScenes[_name]
 
 
 
-	def sceneNew(self, _name='', focus=False):
-		i = 0
-		
-		if self.allScenes:
-			i = max(self.allScenes, key=int) +1
+	def sceneGet(self, _name=''):
+		if _name not in self.allScenes:
+			self.allScenes[_name] = Scene(_name)
 
-# -todo 155 (module-data, scene) +0: store short scene name in scene
-		self.allScenes[i] = Scene(_name)
-
-
-		if focus:
-			self.sceneActive(i)
-
-
-		return i
-
-
-
-	def sceneGet(self, _id=-1):
-		if _id == -1:
-			_id = self.currentSceneId
-
-
-		return (_id in self.allScenes) and self.allScenes[_id]
+		return self.allScenes[_name]
 
 
 
 	def sceneList(self):
 		return dict(self.allScenes)
 
-
-
-	def sceneActive(self, _id=None):
-		if _id != None:
-			self.currentSceneId = _id
-
-
-		return self.currentSceneId
 
 
 ###
@@ -127,12 +95,9 @@ class GGData():
 
 # -todo 104 (module-data, decide) +0: move to filter
 #  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
-	def getG(self, x=0, y=0):
-		if not self.sceneGet():
-			return
-
+	def getG(self, _scene, x=0, y=0):
 #  todo 100 (gcode, feature) +0: allow flexible filters for gcode
-		cGG = GGen(self.sceneGet().getSceneXML())
+		cGG = GGen(_scene.getSceneXML())
 		cGG.set(
 			preamble = 'G90 M4 S0',
 			shapePre = 'G0',
@@ -142,7 +107,7 @@ class GGData():
 		)
 
 		def shapePreHook(_element):
-			refGeo = self.sceneGet().getSceneObjs([_element.get('id')])
+			refGeo = _scene.getSceneObjs([_element.get('id')])
 
 			if not refGeo:
 				return False
