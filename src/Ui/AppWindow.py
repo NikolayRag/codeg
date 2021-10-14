@@ -163,6 +163,18 @@ class AppWindow(QObject):
 		self.lListLayers.setRowCount(0)
 
 
+		while markTool := self.layMarkHolder.takeAt(0):
+			markTool.widget().setParent(None)
+
+
+		while wMark := self.scrollMarksLayout.takeAt(0):
+			wMark.widget().setParent(None)
+
+
+
+		self.allWidgetsMarks = {}
+
+
 		self.lViewport.canvasReset()
 		self.lViewport.canvasFit(self.defaultViewportFit)
 		self.lViewport.canvasFit(self.defaultViewportFit)
