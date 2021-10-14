@@ -145,7 +145,7 @@ class Ui():
 		)
 
 
-		self.sceneWipe('')
+		self.sceneNew()
 
 
 
@@ -173,7 +173,7 @@ class Ui():
 
 
 
-	def sceneWipe(self, _name=''):
+	def sceneWipe(self):
 		scenesList = self.data.sceneList()
 		
 		for cScene in scenesList:
@@ -190,6 +190,10 @@ class Ui():
 
 
 		return True
+
+
+
+	def sceneNew(self, _name=''):
 		self.activeScene = self.data.sceneGet(_name)
 		self.appWindow.slotNewScene(self.activeScene)
 
@@ -197,6 +201,10 @@ class Ui():
 
 #  todo 118 (refactor, module-ui, module-data) +0: clean for minor import
 	def addFile(self):
+		if not self.sceneWipe():
+			return
+
+
 		cRecentA = self.args.get("recentLoaded", [])
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
@@ -210,7 +218,7 @@ class Ui():
 		self.args.set("recentLoaded", cRecentA+[fileName])
 
 
-		self.sceneWipe(fileName):
+		self.sceneNew(fileName)
 
 		self.activeScene.geoAdd(fileName, 'svg')
 		cMeta = self.activeScene.geoMeta()
