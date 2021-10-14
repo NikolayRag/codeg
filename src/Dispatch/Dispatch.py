@@ -52,7 +52,7 @@ class Dispatch():
 
 
 
-	def runDevice(self, _dev, _logCB=None):
+	def runDevice(self, _scene, _dev, _logCB=None):
 		if _dev not in self.listPorts:
 			print('Invalid port', _dev)
 			return
@@ -67,7 +67,7 @@ class Dispatch():
 
 		port.readline().decode()
 
-		toSendString = self.data.getG()
+		toSendString = self.data.getG(_scene)
 
 		cursorChar = '>'
 		cursorLen = 1
