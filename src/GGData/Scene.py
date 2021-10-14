@@ -23,6 +23,11 @@ class Scene():
 
 
 
+	def isDirty(self):
+		return False
+
+		
+
 ### MARKS ###
 
 

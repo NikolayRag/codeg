@@ -174,10 +174,22 @@ class Ui():
 
 
 	def sceneWipe(self, _name=''):
-		for cScene in self.data.sceneList():
+		scenesList = self.data.sceneList()
+		
+		for cScene in scenesList:
+			if scenesList[cScene].isDirty():
+				msgBox = QMessageBox()
+				msgBox.setText("Scene modified")
+				msgBox.setInformativeText("Discard?")
+				msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+				msgBox.setDefaultButton(QMessageBox.Ok)
+				if msgBox.exec() == QMessageBox.Cancel:
+					return
+
 			self.data.sceneRemove(cScene)
 
 
+		return True
 		self.activeScene = self.data.sceneGet(_name)
 		self.appWindow.slotNewScene(self.activeScene)
 
