@@ -173,7 +173,7 @@ class Ui():
 
 
 
-	def sceneWipe(self):
+	def sceneWipe(self, _new=True):
 		scenesList = self.data.sceneList()
 		
 		for cScene in scenesList:
@@ -189,8 +189,8 @@ class Ui():
 			self.data.sceneRemove(cScene)
 
 
-		self.activeScene = self.data.sceneGet()
-		self.appWindow.slotNewScene(self.activeScene)
+		if _new:
+			self.sceneNew()
 
 
 		return True
@@ -205,7 +205,7 @@ class Ui():
 
 #  todo 118 (refactor, module-ui, module-data) +0: clean for minor import
 	def addFile(self):
-		if not self.sceneWipe():
+		if not self.sceneWipe(False):
 			return
 
 
