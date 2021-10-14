@@ -189,7 +189,9 @@ class Ui():
 			self.data.sceneRemove(cScene)
 
 
-		self.appWindow.slotNewScene(None)
+		self.activeScene = self.data.sceneGet()
+		self.appWindow.slotNewScene(self.activeScene)
+
 
 		return True
 
