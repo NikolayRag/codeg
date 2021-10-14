@@ -164,6 +164,8 @@ class AppWindow(QObject):
 
 
 		self.lViewport.canvasReset()
+		self.lViewport.canvasFit(self.defaultViewportFit)
+		self.lViewport.canvasFit(self.defaultViewportFit)
 
 
 #		Marks
