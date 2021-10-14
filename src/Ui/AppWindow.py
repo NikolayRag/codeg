@@ -154,7 +154,6 @@ class AppWindow(QObject):
 
 
 
-#  todo 3 (feature, file) +0: allow picking from Recent files list
 	def slotNewScene(self, _scene):
 		self.lBtnStore.setEnabled(True)
 		self.lBtnProccess.setEnabled(True)
@@ -164,7 +163,11 @@ class AppWindow(QObject):
 		self.lViewport.canvasReset()
 
 
+#		Marks
 
+
+
+#  todo 3 (feature, file) +0: allow picking from Recent files list
 	def reactAddFile(self, _meta, _xml):
 		self.lViewport.canvasAdd(_xml)
 		self.lViewport.canvasFit(self.defaultViewportFit)
