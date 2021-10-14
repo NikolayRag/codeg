@@ -143,6 +143,12 @@ class Ui():
 		)
 
 
+		self.data.sceneNew(focus=True)
+
+		cScene = self.data.sceneGet()
+		self.appWindow.slotNewScene(cScene)
+
+
 
 	def exec(self):
 		self.appWindow.show()
