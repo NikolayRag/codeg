@@ -185,7 +185,9 @@ class Ui():
 
 		self.data.sceneRemove()
 		self.data.sceneNew(fileName, focus=True)
+
 		cScene = self.data.sceneGet()
+		self.appWindow.slotNewScene(cScene)
 
 		cScene.geoAdd(fileName, 'svg')
 		cMeta = cScene.geoMeta()

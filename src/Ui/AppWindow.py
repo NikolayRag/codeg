@@ -155,11 +155,17 @@ class AppWindow(QObject):
 
 
 #  todo 3 (feature, file) +0: allow picking from Recent files list
-	def reactAddFile(self, _meta, _xml):
+	def slotNewScene(self, _scene):
 		self.lBtnStore.setEnabled(True)
 		self.lBtnProccess.setEnabled(True)
+		self.lListLayers.setRowCount(0)
+
 
 		self.lViewport.canvasReset()
+
+
+
+	def reactAddFile(self, _meta, _xml):
 		self.lViewport.canvasAdd(_xml)
 		self.lViewport.canvasFit(self.defaultViewportFit)
 #  todo 157 (fix, canvas) +0: review SvgViewport fit routine
@@ -167,7 +173,6 @@ class AppWindow(QObject):
 
 
 		cList = self.lListLayers
-		cList.setRowCount(0)
 
 		for cName in _meta:
 			self.layerAddItem(cList, _meta, cName)
