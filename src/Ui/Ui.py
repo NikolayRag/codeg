@@ -84,7 +84,7 @@ class Ui():
 	data = None
 	qApp = None
 
-	oneScene = None
+	activeScene = None
 
 
 # =todo 148 (module-ui, fix) +0: review scene life cycle
@@ -169,7 +169,7 @@ class Ui():
 
 # -todo 88 (fix, gcode) +0: use dispatch both for file save
 	def dispatchSend(self, _name):
-		return self.dispatch.runDevice(self.oneScene, _name, self.appWindow.dispatchLog)
+		return self.dispatch.runDevice(self.activeScene, _name, self.appWindow.dispatchLog)
 
 
 
@@ -178,8 +178,8 @@ class Ui():
 			self.data.sceneRemove(cScene)
 
 
-		self.oneScene = self.data.sceneGet(_name)
-		self.appWindow.slotNewScene(self.oneScene)
+		self.activeScene = self.data.sceneGet(_name)
+		self.appWindow.slotNewScene(self.activeScene)
 
 
 
@@ -198,13 +198,13 @@ class Ui():
 		self.args.set("recentLoaded", cRecentA+[fileName])
 
 
-		self.sceneWipe(fileName)
+		self.sceneWipe(fileName):
 
-		self.oneScene.geoAdd(fileName, 'svg')
-		cMeta = self.oneScene.geoMeta()
-		self.oneScene.markApplyGeo(self.markDefault, cMeta.keys(), step='UI')
+		self.activeScene.geoAdd(fileName, 'svg')
+		cMeta = self.activeScene.geoMeta()
+		self.activeScene.markApplyGeo(self.markDefault, cMeta.keys(), step='UI')
 
-		cXml = self.oneScene.getSceneXML(True)
+		cXml = self.activeScene.getSceneXML(True)
 		if cXml:
 			self.appWindow.reactAddFile(cMeta, cXml)
 		
@@ -224,7 +224,7 @@ class Ui():
 
 		h = self.appWindow.lViewport.canvas.docHeight
 		with open(fileName, 'w') as f:
-			f.write(self.data.getG(self.oneScene, 0, h))
+			f.write(self.data.getG(self.activeScene, 0, h))
 
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
@@ -238,7 +238,7 @@ class Ui():
 #  todo 98 (module-ui, optimize) -1: prevent doubling by difference change
 	def layerSetSelect(self, _selectionA):
 		marksUsed = {}
-		cObjA = self.oneScene.getSceneObjs(_selectionA)
+		cObjA = self.activeScene.getSceneObjs(_selectionA)
 
 		for cObj in cObjA:
 			for cMark in cObj.marks:
@@ -252,7 +252,7 @@ class Ui():
 		self.appWindow.marksSelect(marksUsed)
 
 
-		self.oneScene.markApplyGeo(self.markSelect, _selectionA, step='UI')
+		self.activeScene.markApplyGeo(self.markSelect, _selectionA, step='UI')
 
 		self.reloadXml()
 
@@ -260,22 +260,22 @@ class Ui():
 
 #  todo 77 (fix, module-ui, viewport, decide) -1: duplicate hover element topmost
 	def layerSetHover(self, _hover):
-		self.oneScene.markApplyGeo(self.markHover, [_hover] if _hover else [], step='UI')
+		self.activeScene.markApplyGeo(self.markHover, [_hover] if _hover else [], step='UI')
 
 		self.reloadXml()
 
 
 
 	def ctrlLayersSet(self, _elA, _on):
-		self.oneScene.markApplyGeo(self.markOff, _elA, mode=(not _on), step='UI')
-		self.oneScene.geoDataSet(_elA, {'visible':_on})
+		self.activeScene.markApplyGeo(self.markOff, _elA, mode=(not _on), step='UI')
+		self.activeScene.geoDataSet(_elA, {'visible':_on})
 
 		self.reloadXml()
 
 
 
 	def reloadXml(self):
-		cXml = self.oneScene.getSceneXML(True)
+		cXml = self.activeScene.getSceneXML(True)
 		if cXml:
 			self.appWindow.canvasUpdate(cXml)
 
@@ -293,7 +293,7 @@ class Ui():
 		)
 
 		cMark = self.data.markNew( data=cData )
-		self.oneScene.markAppend(cMark)
+		self.activeScene.markAppend(cMark)
 
 
 		self.uiMarkAdd(cMark, True)
@@ -306,7 +306,7 @@ class Ui():
 
 
 	def slotMarkAssign(self, _mark, _geoList, _state):
-		self.oneScene.markApplyGeo(_mark, list(_geoList.values()), mode=bool(_state), step='DIRECT')
+		self.activeScene.markApplyGeo(_mark, list(_geoList.values()), mode=bool(_state), step='DIRECT')
 
 		self.uiMarkAssign(_mark, list(_geoList.keys()), _state)
 
