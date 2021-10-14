@@ -44,6 +44,7 @@ class AppWindow(QObject):
 	LdataName = Qt.UserRole +0
 	LdataOn = Qt.UserRole +1
 
+	sigSceneWipe = Signal()
 	sigAddFile = Signal()
 	sigStoreG = Signal()
 	sigDispatch = Signal(str)
@@ -110,6 +111,7 @@ class AppWindow(QObject):
 		self.lBtnFit = cMain.findChild(QWidget, "btnFit")
 
 		self.lBtnCaption = cMain.findChild(QWidget, "btnCaption")
+		self.lBtnWipe = cMain.findChild(QWidget, "btnWipe")
 		self.lBtnOpen = cMain.findChild(QWidget, "btnLoad")
 		self.lBtnStore = cMain.findChild(QWidget, "btnSave")
 
@@ -125,6 +127,7 @@ class AppWindow(QObject):
 
 		self.lBtnFit.clicked.connect(lambda: self.lViewport.canvasFit(self.defaultViewportFit))
 		self.lBtnCaption.clicked.connect(self.about)
+		self.lBtnWipe.clicked.connect(self.sigSceneWipe)
 		self.lBtnOpen.clicked.connect(self.sigAddFile)
 		self.lBtnStore.clicked.connect(self.sigStoreG)
 		self.lBtnProccess.clicked.connect(self.dispatchRun)

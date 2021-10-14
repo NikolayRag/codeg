@@ -109,6 +109,7 @@ class Ui():
 		)
 
 
+		self.appWindow.sigSceneWipe.connect(self.sceneWipe)
 		self.appWindow.sigAddFile.connect(self.addFile)
 		self.appWindow.sigStoreG.connect(self.storeG)
 		self.appWindow.sigLayerSelect.connect(self.layerSetSelect)
@@ -144,8 +145,7 @@ class Ui():
 		)
 
 
-		self.oneScene = self.data.sceneGet()
-		self.appWindow.slotNewScene(self.oneScene)
+		self.sceneWipe('')
 
 
 
@@ -173,6 +173,16 @@ class Ui():
 
 
 
+	def sceneWipe(self, _name=''):
+		for cScene in self.data.sceneList():
+			self.data.sceneRemove(cScene)
+
+
+		self.oneScene = self.data.sceneGet(_name)
+		self.appWindow.slotNewScene(self.oneScene)
+
+
+
 #  todo 118 (refactor, module-ui, module-data) +0: clean for minor import
 	def addFile(self):
 		cRecentA = self.args.get("recentLoaded", [])
@@ -188,12 +198,7 @@ class Ui():
 		self.args.set("recentLoaded", cRecentA+[fileName])
 
 
-		for cScene in self.data.sceneList():
-			self.data.sceneRemove(cScene)
-
-
-		self.oneScene = self.data.sceneGet(fileName)
-		self.appWindow.slotNewScene(self.oneScene)
+		self.sceneWipe(fileName)
 
 		self.oneScene.geoAdd(fileName, 'svg')
 		cMeta = self.oneScene.geoMeta()
