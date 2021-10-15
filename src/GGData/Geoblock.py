@@ -51,6 +51,11 @@ class Geoblock():
 
 
 
+	def isDirty(self):
+		return False
+
+
+
 	def xmlRoot(self, _string):
 		cRoot = self.geoXML.getroot()
 		return (XML.tostring(cRoot) if _string else cRoot)
