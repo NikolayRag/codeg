@@ -6,7 +6,7 @@ Hold arbitrary data and optional Markfilter to be applied
 
 
 class Mark():
-	isDirty = False
+	dirtyFlag = False
 	data = {}
 	gfilter = None
 	priority = 0
@@ -14,12 +14,17 @@ class Mark():
 
 
 	def __init__(self, _data, _priority=0, _filter=None):
-		self.isDirty = False
+		self.dirtyFlag = False
 
 		self.data = dict(_data)
 		self.gfilter = _filter
 
 		self.priority = _priority
+
+
+
+	def isDirty(self):
+		return self.dirtyFlag
 
 
 
@@ -30,7 +35,7 @@ class Mark():
 
 		if self.gfilter:
 			if self.gfilter.proccess(_step, _geo, self.data):
-				self.isDirty = True
+				None
 
 			filterData = self.gfilter.getData(_step)
 
@@ -45,6 +50,8 @@ class Mark():
 
 
 	def setPriority(self, _priority):
+		self.dirtyFlag = True
+
 		self.priority = _priority
 
 
@@ -55,6 +62,9 @@ class Mark():
 
 
 	def setData(self, _data, clean=False):
+		self.dirtyFlag = True
+
+
 		if clean:
 			self.data = dict(_data)
 
