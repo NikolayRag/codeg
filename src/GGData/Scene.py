@@ -131,7 +131,8 @@ class Scene():
 			cObj.marksSolve(filterStep=step)
 
 
-		self.dirtyFlag = True
+		if _mark in self.allMarks:
+			self.dirtyFlag = True
 
 
 
