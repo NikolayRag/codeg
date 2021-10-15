@@ -9,6 +9,8 @@ from .Geoblock import *
 
 
 class Scene():
+	dirtyFlag = False
+
 	allGeo = []
 	allMarks = []
 
@@ -16,6 +18,8 @@ class Scene():
 
 
 	def __init__(self, _name=''):
+		self.dirtyFlag = False
+
 		self.allGeo = []
 		self.allMarks = []
 
@@ -24,7 +28,17 @@ class Scene():
 
 
 	def isDirty(self):
-		return False
+		for cMark in self.allMarks:
+			if cMark.isDirty():
+				return True
+
+
+		for cGeo in self.allGeo:
+			if cGeo.isDirty():
+				return True
+
+
+		return self.dirtyFlag
 
 		
 
@@ -37,6 +51,9 @@ class Scene():
 
 
 		self.allMarks.append( _mark )
+
+
+		self.dirtyFlag = True
 
 		return True
 
@@ -51,8 +68,11 @@ class Scene():
 		if _mark not in self.allMarks:
 			return
 
-		
+
 		self.allMarks.remove( _mark )
+
+
+		self.dirtyFlag = True
 
 		return True
 
@@ -95,6 +115,9 @@ class Scene():
 			cObj.marksSolve(filterStep=step)
 
 
+		self.dirtyFlag = True
+
+
 
 ### GEO ###
 
@@ -102,6 +125,9 @@ class Scene():
 #  todo 84 (module-data) +0: make file load plugin system
 	def geoAdd(self, _source, _type='svg'):
 		self.allGeo.append( Geoblock(_source, _type) )
+
+
+		self.dirtyFlag = True
 
 		return len(self.allGeo) -1
 
