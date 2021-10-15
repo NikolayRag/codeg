@@ -131,10 +131,6 @@ class Scene():
 			cObj.marksSolve(filterStep=step)
 
 
-		if _mark in self.allMarks:
-			self.dirtyFlag = True
-
-
 
 ### GEO ###
 
