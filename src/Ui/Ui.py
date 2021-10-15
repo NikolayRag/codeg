@@ -225,6 +225,8 @@ class Ui():
 		self.sceneNew(fileName)
 
 		self.activeScene.geoAdd(fileName, 'svg')
+		self.activeScene.clean()
+		
 		cMeta = self.activeScene.geoMeta()
 		self.activeScene.markApplyGeo(self.markDefault, cMeta.keys(), step='UI')
 
