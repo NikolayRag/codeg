@@ -34,6 +34,7 @@ class Mark():
 
 
 		if self.gfilter:
+#  todo 162 (module-data, mark) +0: Filter Success case
 			if self.gfilter.proccess(_step, _geo, self.data):
 				None
 

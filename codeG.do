@@ -4,7 +4,7 @@
 +feature, file 2: +0 "src\Ui\AppWindow.py" kii 21/07/25 16:29:21
 	deal with recent files
 
- feature, file 3: +0 "src\Ui\AppWindow.py" ki 21/10/14 06:27:10
+ feature, file 3: +0 "" kii 21/10/14 17:04:11
 	allow picking from Recent files list
 
 +svg, feature 4: +0 "src\Ui\SvgViewport.py" kii 21/08/02 19:14:43
@@ -22,13 +22,13 @@
 +spec, module-data 8: +0 "src\GGData\GGData.py" kii 21/07/31 16:30:49
 	save gcode
 
-=scene, spec, module-data 9: +1 "src\GGData\Scene.py" ki 21/09/25 22:40:22
+=scene, spec, module-data 9: +1 "src\GGData\Scene.py" kii 21/09/25 22:40:22
 	operate project data
 
 !spec, module-data 10: +0 "" kii 21/09/08 21:55:55
 	dup
 
-=spec, module-data 11: +0 "src\GGData\Scene.py" ki 21/09/27 02:38:56
+=spec, module-data 11: +0 "src\GGData\Scene.py" kii 21/09/27 02:38:56
 	read/save scene data
 
 +spec, module-ui 12: +1 "src\__main__w.py" kii 21/07/31 02:59:35
@@ -49,13 +49,13 @@
 =spec, module-dispatch 17: +0 "" kii 21/08/10 05:55:57
 	send to serial-usb (arduino)
 
- spec, module-dispatch 18: +0 "src\GGData\GGData.py" ki 21/09/25 22:37:20
+ spec, module-dispatch 18: +0 "src\GGData\GGData.py" kii 21/09/25 22:37:20
 	standalone dispatcher codegg
 
  spec, module-dispatch 19: +0 "src\GGData\GGData.py" kii 21/08/02 21:16:57
 	send to codegg
 
- module-ui, error 20: +0 "src\Ui\AppWindow.py" ki 21/10/10 14:16:43
+ module-ui, error 20: +0 "src\Ui\AppWindow.py" kii 21/10/10 14:16:43
 	handle errors, maybe status string
 
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
@@ -217,13 +217,13 @@
 =fix, gcode 76: +0 "" kii 21/08/25 22:58:28
 	gcode move, scale and crop
 
- fix, module-ui, viewport, decide 77: -1 "src\Ui\Ui.py" ki 21/09/25 22:46:34
+ fix, module-ui, viewport, decide 77: -1 "src\Ui\Ui.py" kii 21/09/25 22:46:34
 	duplicate hover element topmost
 
 +module-ui, ux 78: +0 "src\Ui\Ui.py" kii 21/08/15 22:10:50
 	store/restore window size
 
-!module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" ki 21/10/09 16:43:12
+!module-ui, ux, fix 79: +0 "src\Ui\AppWindow.py" kii 21/10/09 16:43:12
 	make size ignored on maximize
 
 +module-ui, svg, feature 80: +0 "src\Ui\SvgViewport.py" kii 21/08/20 05:30:30
@@ -235,10 +235,10 @@
  module-data, ux 82: +0 "src\GGData\GGData.py" kii 21/08/20 03:48:29
 	parse groups
 
- ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" ki 21/09/22 23:33:54
+ ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" kii 21/09/22 23:33:54
 	fit at init dont work due to obsolete size 
 
- module-data 84: +0 "src\GGData\GGData.py" ki 21/09/29 03:36:45
+ module-data 84: +0 "src\GGData\GGData.py" kii 21/09/29 03:36:45
 	make file load plugin system
 
 +module-dispatch 85: +0 "src\GGData\GGData.py" kii 21/08/28 18:00:25
@@ -253,19 +253,19 @@
 -fix, gcode 88: +0 "src\Ui\Ui.py" kii 21/09/03 02:02:12
 	use dispatch both for file save
 
--ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" ki 21/09/25 22:54:19
+-ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" kii 21/09/25 22:54:19
 	place grid correctly
 
 =ux, module-ui, fix 90: +0 "src\GGData\GGData.py" kii 21/09/08 22:03:51
 	respect units - both svg and device
 
--viewport, api 91: +0 "" ki 21/09/25 22:57:27
+-viewport, API 91: +0 "" kii 21/09/25 22:57:27
 	add class-level SVG runtime generator signal/slot
 
- feature 92: +0 "src\GGData\Scene.py" ki 21/09/27 02:39:16
+ feature 92: +0 "src\GGData\Scene.py" kii 21/09/27 02:39:16
 	multiple sources scene
 
-!scene, feature 93: +0 "" ki 21/09/27 02:39:14
+!scene, feature 93: +0 "" kii 21/09/27 02:39:14
 	redundant
 
  viewport, fix 95: +0 "src\Ui\SvgViewport.py" kii 21/08/28 15:52:23
@@ -283,7 +283,7 @@
 !module-ui, optimize 99: +0 "src\GGen\GGen.py" kii 21/09/02 03:40:33
 	
 
- gcode, feature 100: +0 "src\GGData\GGData.py" ki 21/09/27 02:22:22
+ gcode, feature 100: +0 "src\GGData\GGData.py" kii 21/09/27 02:22:22
 	allow flexible filters for gcode
 
 +module-ui 101: +0 "src\Ui\Ui.py" kii 21/09/08 02:52:08
@@ -295,10 +295,10 @@
 +module-ui, module-data, API 103: +0 "src\Ui\Ui.py" kii 21/09/08 02:52:25
 	move geo decorators to data
 
--module-data, decide 104: +0 "src\GGData\GGData.py" ki 21/09/29 04:39:03
+-module-data, decide 104: +0 "src\GGData\GGData.py" kii 21/09/29 04:39:03
 	move to filter
 
-+module-data, filter, API 105: +0 "src\GGData\GGData.py" ki 21/09/25 22:38:42
++module-data, filter, API 105: +0 "src\GGData\GGData.py" kii 21/09/25 22:38:42
 	add geo Filter class
 
 !module-data, module-dispatch, device, API 106: +0 "" kii 21/09/05 21:54:01
@@ -313,13 +313,13 @@
 +clean 110: +0 "src\GGData\GGData.py" kii 21/09/07 22:45:38
 	use namedRef
 
--mark, optimize 111: +0 "src\GGData\Scene.py" ki 21/09/29 04:27:33
+-mark, optimize 111: +0 "src\GGData\Scene.py" kii 21/09/29 04:27:33
 	dramatically slow mark reapply
 
-+mark, feature 112: +0 "src\GGData\Geomark.py" ki 21/09/25 22:41:32
++mark, feature 112: +0 "src\GGData\Geomark.py" kii 21/09/25 22:41:32
 	complex mark
 
-+scene, module-ui, ux 113: +0 "src\GGData\Scene.py" ki 21/09/25 22:40:14
++scene, module-ui, ux 113: +0 "src\GGData\Scene.py" kii 21/09/25 22:40:14
 	assignable layer marks holding control data
 
 =module-ui, fix 114: +0 "src\Ui\AppWindow.py" kii 21/09/08 13:42:53
@@ -331,111 +331,126 @@
 =ux, module-ui 116: +0 "src\Ui\Ui.py" kii 21/09/08 18:41:48
 	choose style in app settings
 
-=ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/10/11 22:19:18
+=ux, module-ui 117: +0 "src\Ui\Ui.py" kii 21/10/11 22:19:18
 	add app settings
 
- refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" ki 21/10/09 21:40:56
+ refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" kii 21/10/09 21:40:56
 	clean for minor import
 
 -refactor, module-ui, module-data 119: +0 "src\Ui\Ui.py" kii 21/09/09 21:27:02
 	clean for dispatch
 
-+refactor, module-ui, module-data, fix 120: +0 "src\Ui\Ui.py" ki 21/10/09 20:33:56
++refactor, module-ui, module-data, fix 120: +0 "src\Ui\Ui.py" kii 21/10/09 20:33:56
 	hold pre-maximize size
 
 +module-data, fix 121: +0 "src\GGen\GGen.py" kii 21/09/09 22:20:25
 	go to .items() for ElementTree
 
-+filter, module-data 124: +0 "src\GGData\Geomark.py" ki 21/09/25 22:41:33
++filter, module-data 124: +0 "src\GGData\Geomark.py" kii 21/09/25 22:41:33
 	make set svg tag as system filter
 
-+mark, optimize 126: +0 "src\GGData\Geoblock.py" ki 21/09/26 23:59:12
++mark, optimize 126: +0 "src\GGData\Geoblock.py" kii 21/09/26 23:59:12
 	manage object-level attributes
 
-+mark, optimize, decide 127: +10 "src\GGData\Geomark.py" ki 21/09/25 22:42:08
++mark, optimize, decide 127: +10 "src\GGData\Geomark.py" kii 21/09/25 22:42:08
 	Move marks assignment to Geoblock WTF?!
 
-+mark, optimize, decide 128: +10 "src\GGData\Geoblock.py" ki 21/09/25 22:40:45
++mark, optimize, decide 128: +10 "src\GGData\Geoblock.py" kii 21/09/25 22:40:45
 	Move marks assignment to geo dict WTF?!
 
-+mark 129: +0 "src\GGData\Geomark.py" ki 21/09/26 23:57:45
++mark 129: +0 "src\GGData\Geomark.py" kii 21/09/26 23:57:45
 	store custom fields data list
 
-+mark 130: +0 "src\GGData\Geomark.py" ki 21/09/19 03:24:15
++mark 130: +0 "src\GGData\Geomark.py" kii 21/09/19 03:24:15
 	move filter data to Geofilter
 
-!app, refactor 131: +1 "src\Ui\Ui.py" ki 21/09/25 22:44:00
+!app, refactor 131: +1 "src\Ui\Ui.py" kii 21/09/25 22:44:00
 	move default Marks creation to App-level
 
-=module-data, refactor 132: +0 "" ki 21/09/25 22:47:48
+=module-data, refactor 132: +0 "" kii 21/09/25 22:47:48
 	unify Filter creation
 
- mark, optimize, decide 133: -1 "src\GGData\Geoblock.py" ki 21/09/26 23:50:36
+ mark, optimize, decide 133: -1 "src\GGData\Geoblock.py" kii 21/09/26 23:50:36
 	Need to cache data?
 
-=module-data, api 134: -1 "src\GGData\GGData.py" ki 21/09/28 01:21:18
+=module-data, API 134: -1 "src\GGData\GGData.py" kii 21/09/28 01:21:18
 	Clean Scene and further classes to be used as a GGData API part
 
-+module-data, api, filters 135: +0 "src\GGData\GGData.py" ki 21/09/28 13:42:23
++module-data, API, filters 135: +0 "src\GGData\GGData.py" kii 21/09/28 13:42:23
 	add fallback dummy filter on fly
 
--module-data, decide 136: +0 "src\GGData\Geomark.py" ki 21/09/28 22:48:47
+-module-data, decide 136: +0 "src\GGData\Mark.py" ki 21/10/15 14:36:40
 	step is ambiguous
 
-+module-data, scene 137: +0 "src\GGData\GGData.py" ki 21/09/29 03:15:27
++module-data, scene 137: +0 "src\GGData\GGData.py" kii 21/09/29 03:15:27
 	multiscene
 
--module-data, clean 138: +0 "src\GGData\GGData.py" ki 21/09/29 13:30:27
++module-data, clean 138: +0 "src\GGData\GGData.py" kii 21/10/14 15:10:58
 	cleanup root scene functions
 
- clean 139: +0 "src\GGData\Scene.py" ki 21/09/29 13:34:57
+ clean 139: +0 "src\GGData\Scene.py" kii 21/09/29 13:34:57
 	Clean mark to object appending
 
--module-ui, mark 140: +0 "src\Ui\MarkWidget.py" ki 21/10/04 13:14:09
+-module-ui, mark 140: +0 "src\Ui\MarkWidget.py" kii 21/10/04 13:14:09
 	redesign
 
--module-ui, mark 141: +0 "src\Ui\AppWindow.py" ki 21/10/10 13:17:56
+-module-ui, mark 141: +0 "src\Ui\AppWindow.py" kii 21/10/10 13:17:56
 	update Geoitem widgets
 
-+ui, mark 142: +0 "src\Ui\AppWindow.py" ki 21/10/10 19:28:48
++ui, mark 142: +0 "src\Ui\AppWindow.py" kii 21/10/10 19:28:48
 	Select Marks by layers
 
-=ui, widgets 143: +0 "src\Ui\Widgets.py" ki 21/10/10 02:27:15
+=ui, widgets 143: +0 "src\Ui\Widgets.py" kii 21/10/10 02:27:15
 	simplify color picker
 
-=module-ui, widgets 144: +0 "src\Ui\AppWindow.py" ki 21/10/11 22:21:45
+=module-ui, widgets 144: +0 "src\Ui\AppWindow.py" kii 21/10/11 22:21:45
 	Use Geoitems directly in UI
 
--module-ui, widgets 145: +0 "src\Ui\AppWindow.py" ki 21/10/12 03:54:15
+-module-ui, widgets 145: +0 "src\Ui\AppWindow.py" kii 21/10/12 03:54:15
 	make Marks arrangable with priority change (DragList)
 
-=module-data, mark 146: +0 "src\Ui\Ui.py" ki 21/10/10 13:29:23
+=module-data, mark 146: +0 "src\Ui\Ui.py" kii 21/10/10 13:29:23
 	auto-increment mark priorities at creation
 
--module-ui, fix 147: +0 "src\Ui\AppWindow.py" ki 21/10/10 19:31:52
+-module-ui, fix 147: +0 "src\Ui\AppWindow.py" kii 21/10/10 19:31:52
 	use blank layer space to from-to hover mouse selection
 
-=module-ui, fix 148: +0 "src\Ui\Ui.py" ki 21/10/14 01:17:26
+=module-ui, fix 148: +0 "src\Ui\Ui.py" kii 21/10/14 01:17:26
 	review scene life cycle
 
- module-ui, feature 149: +0 "src\Ui\Ui.py" ki 21/10/11 22:19:18
+ module-ui, feature 149: +0 "src\Ui\Ui.py" kii 21/10/11 22:19:18
 	multiscene
 
--ux, widgets 150: +0 "src\Ui\AppWindow.py" ki 21/10/11 22:25:56
+-ux, widgets 150: +0 "src\Ui\AppWindow.py" kii 21/10/11 22:25:56
 	Make ItemWidget
 
- module-ui, mark 152: +0 "src\Ui\AppWindow.py" ki 21/10/12 01:49:30
+ module-ui, mark 152: +0 "src\Ui\AppWindow.py" kii 21/10/12 01:49:30
 	make select by mark
 
- module-ui, mark 153: +0 "src\Ui\AppWindow.py" ki 21/10/12 01:50:38
+ module-ui, mark 153: +0 "src\Ui\AppWindow.py" kii 21/10/12 01:50:38
 	manage mark fields list
 
--module-data, scene 155: +0 "src\GGData\GGData.py" ki 21/10/14 01:10:12
++module-data, scene 155: +0 "src\GGData\GGData.py" kii 21/10/14 15:09:14
 	store short scene name in scene
 
--fix, canvas 156: +0 "src\Ui\SvgViewport.py" ki 21/10/14 02:05:39
+-fix, canvas 156: +0 "src\Ui\SvgViewport.py" kii 21/10/14 02:05:39
 	canvas is wrong size at init
 
- fix, canvas 157: +0 "src\Ui\AppWindow.py" ki 21/10/14 04:48:24
+ fix, canvas 157: +0 "src\Ui\AppWindow.py" kii 21/10/14 04:48:24
 	review SvgViewport fit routine
+
++module-data, fix 158: +0 "src\GGData\GGData.py" kii 21/10/14 17:43:48
+	move to direct Scene definitions
+
++module-data, fix, scene 159: +0 "src\GGData\GGData.py" kii 21/10/14 17:44:06
+	make Scene data cleanup
+
++module-ui 160: +0 "src\Ui\Ui.py" kii 21/10/14 23:46:55
+	File Load Cancel case
+
++module-data, scene 161: +0 "src\GGData\Scene.py" ki 21/10/15 14:50:22
+	collect Scene dirty state
+
+ module-data, mark 162: +0 "src\GGData\Mark.py" kii 21/10/15 14:28:14
+	Filter Success case
 
