@@ -40,7 +40,23 @@ class Scene():
 
 		return self.dirtyFlag
 
-		
+
+
+	def clean(self, _all=True):
+		self.dirtyFlag = False
+
+		if not _all:
+			return
+
+
+		for cMark in self.allMarks:
+			cMark.clean()
+
+
+		for cGeo in self.allGeo:
+			cGeo.clean()
+
+
 
 ### MARKS ###
 

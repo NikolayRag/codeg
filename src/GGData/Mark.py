@@ -28,6 +28,11 @@ class Mark():
 
 
 
+	def clean(self):
+		self.dirtyFlag = False
+
+
+
 # -todo 136 (module-data, decide) +0: step is ambiguous
 	def applyFilter(self, _geo, _step):
 		outData = dict(self.data)
