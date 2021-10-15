@@ -99,6 +99,7 @@ class Geoitem():
 	dirtyGeo = False
 	dirtyData = False
 	dirtyBind = False
+	dirtyRuntime = False
 
 
 	def __init__(self, _obj, _name='', _data={}):
@@ -113,6 +114,7 @@ class Geoitem():
 		self.dirtyGeo = False
 		self.dirtyData = False
 		self.dirtyBind = False
+		self.dirtyRuntime = False
 
 
 
@@ -125,28 +127,32 @@ class Geoitem():
 
 
 
-	def markAdd(self, _mark):
+	def markAdd(self, _mark, dirty=True):
 		if _mark in self.marks:
 			return
 
 
 		self.marks.append(_mark)
 
-		self.dirtyBind = True
+		self.dirtyRuntime = True
+		if dirty:
+			self.dirtyBind = True
 
 
 		return True
 
 
 
-	def markSub(self, _mark):
+	def markSub(self, _mark, dirty=True):
 		if _mark not in self.marks:
 			return
 
 
 		self.marks.remove(_mark)
 
-		self.dirtyBind = True
+		self.dirtyRuntime = True
+		if dirty:
+			self.dirtyBind = True
 
 
 		return True
@@ -161,13 +167,13 @@ class Geoitem():
 
 
 		for cMark in markSortedA:
-			filterData = cMark.applyFilter(self, self.dirtyBind and filterStep)
+			filterData = cMark.applyFilter(self, self.dirtyRuntime and filterStep)
 
 			for cData in filterData:
 				self.dataApplied[cData] = filterData[cData]
 
 
-		self.dirtyBind = False
+		self.dirtyRuntime = False
 
 
 ### DATA ###

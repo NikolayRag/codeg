@@ -119,11 +119,11 @@ class Scene():
 		elAll = []
 
 		for cObj in elSub:
-			if cObj.markSub(_mark):
+			if cObj.markSub(_mark, _mark in self.allMarks):
 				elAll.append(cObj)
 
 		for cObj in elAdd:
-			if cObj.markAdd(_mark) and (cObj not in elAll):
+			if cObj.markAdd(_mark, _mark in self.allMarks) and (cObj not in elAll):
 				elAll.append(cObj)
 
 
