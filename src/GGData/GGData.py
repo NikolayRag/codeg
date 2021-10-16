@@ -5,14 +5,13 @@
 
 #  todo 25 (module-data, formats) +0: load .nc gcode
 
-
 '''
 Data scope:
 	(Filter,)
 	(Scene,)
 		(Mark,)
 			*Filter link
-		(Geoblock,)/(Geo,)
+		(Geoblock/(Geo,),)
 			*Mark link
 
 '''
