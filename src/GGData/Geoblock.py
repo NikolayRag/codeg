@@ -21,6 +21,9 @@ class Geoblock():
 	namespace = ''
 
 
+	dirtyFlag = False
+
+
 
 	def __init__(self, _source, _type):
 		self.namespace = _source
@@ -52,12 +55,21 @@ class Geoblock():
 
 
 	def isDirty(self):
-		return False
+		for cObj in self.namedLayers:
+			if self.namedLayers[cObj].isDirty():
+				return True
+
+
+		return self.dirtyFlag
 
 
 
 	def clean(self):
-		None
+		for cObj in self.namedLayers:
+			self.namedLayers[cObj].clean()
+
+
+		self.dirtyFlag = False
 
 
 
@@ -115,6 +127,18 @@ class Geoitem():
 		self.dirtyData = False
 		self.dirtyBind = False
 		self.dirtyRuntime = False
+
+
+
+	def isDirty(self): 
+		return (self.dirtyGeo or self.dirtyData or self.dirtyBind)
+
+
+
+	def clean(self):
+		self.dirtyGeo = False
+		self.dirtyData = False 
+		self.dirtyBind = False
 
 
 
