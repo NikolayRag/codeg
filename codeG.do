@@ -373,7 +373,7 @@
  mark, optimize, decide 133: -1 "src\GGData\Geoblock.py" kii 21/09/26 23:50:36
 	Need to cache data?
 
-=module-data, API 134: -1 "src\GGData\GGData.py" kii 21/09/28 01:21:18
++module-data, api 134: -1 "src\GGData\GGData.py" ki 21/10/16 21:01:11
 	Clean Scene and further classes to be used as a GGData API part
 
 +module-data, API, filters 135: +0 "src\GGData\GGData.py" kii 21/09/28 13:42:23
