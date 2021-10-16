@@ -151,6 +151,7 @@ class Geoitem():
 
 
 
+	#Non-Scene Marks should not make dirty
 	def markAdd(self, _mark, dirty=True):
 		if _mark in self.marks:
 			return
@@ -167,6 +168,7 @@ class Geoitem():
 
 
 
+	#Non-Scene Marks should not make dirty
 	def markSub(self, _mark, dirty=True):
 		if _mark not in self.marks:
 			return
