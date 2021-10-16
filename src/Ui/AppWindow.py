@@ -112,8 +112,8 @@ class AppWindow(QObject):
 
 		self.lBtnCaption = cMain.findChild(QWidget, "btnCaption")
 		self.lBtnWipe = cMain.findChild(QWidget, "btnWipe")
-		self.lBtnOpen = cMain.findChild(QWidget, "btnLoad")
-		self.lBtnStore = cMain.findChild(QWidget, "btnSave")
+		self.lBtnOpen = cMain.findChild(QWidget, "btnOpen")
+		self.lBtnStore = cMain.findChild(QWidget, "btnStore")
 
 		self.lFrameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
 		self.lFrameDispatcher.setVisible(False)
