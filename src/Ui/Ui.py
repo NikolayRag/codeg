@@ -173,7 +173,7 @@ class Ui():
 
 
 
-	def sceneWipe(self, _new=True):
+	def sceneDirty(self):
 		scenesList = self.data.sceneList()
 		
 		for cScene in scenesList:
@@ -184,16 +184,7 @@ class Ui():
 				msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
 				msgBox.setDefaultButton(QMessageBox.Ok)
 				if msgBox.exec() == QMessageBox.Cancel:
-					return
-
-			self.data.sceneRemove(cScene)
-
-
-		if _new:
-			self.sceneNew()
-
-
-		return True
+					return True
 
 
 
@@ -203,9 +194,23 @@ class Ui():
 
 
 
+	def sceneWipe(self, _new=True):
+		if self.sceneDirty():
+			return
+
+
+		for cScene in self.data.sceneList():
+			self.data.sceneRemove(cScene)
+
+
+		if _new:
+			self.sceneNew()
+
+
+
 #  todo 118 (refactor, module-ui, module-data) +0: clean for minor import
 	def addFile(self):
-		if not self.sceneWipe(False):
+		if self.sceneDirty():
 			return
 
 
@@ -221,6 +226,9 @@ class Ui():
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
 		self.args.set("recentLoaded", cRecentA+[fileName])
 
+
+		for cScene in self.data.sceneList():
+			self.data.sceneRemove(cScene)
 
 		self.sceneNew(fileName)
 
