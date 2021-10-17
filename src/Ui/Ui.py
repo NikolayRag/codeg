@@ -323,7 +323,7 @@ class Ui():
 
 ### ITS MARK TIME ###
 
-
+# =todo 164 (feature, module-ui) -1: auto-apply new Mark to selection
 	def slotMarkAdd(self):
 		cData = dict(self.defaultMarkData)
 		cData[self.defaultMarkColorField] = QColor.fromHsvF(

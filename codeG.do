@@ -457,3 +457,6 @@
 !feature, save 163: +0 "src\Ui\Ui.py" ki 21/10/17 18:28:32
 	Scene save/load
 
+=feature, module-ui 164: -1 "src\Ui\Ui.py" ki 21/10/17 18:51:23
+	auto-apply new Mark to selection
+
