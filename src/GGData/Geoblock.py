@@ -100,6 +100,12 @@ class Geoblock():
 
 
 
+	def collect(self, _markLimit):
+		for cObj in self.namedLayers:
+			self.namedLayers[cObj].collect(_markLimit)
+
+
+
 class Geoitem():
 	obj = None
 	name = ''
@@ -140,6 +146,16 @@ class Geoitem():
 		self.dirtyGeo = False
 		self.dirtyData = False 
 		self.dirtyBind = False
+
+
+
+	def collect(self, _markLimit=None):
+		print(
+			self.name,
+			self.obj,
+			set(_markLimit) & set(self.marks),
+			self.dataOwn
+		)
 
 
 

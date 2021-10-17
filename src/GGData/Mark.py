@@ -33,6 +33,11 @@ class Mark():
 
 
 
+	def collect(self):
+		print(self.gfilter, self.data, self.priority)
+
+
+
 # -todo 136 (module-data, decide) +0: step is ambiguous
 	def applyFilter(self, _geo, _step):
 		outData = dict(self.data)

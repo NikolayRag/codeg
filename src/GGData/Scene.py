@@ -27,6 +27,21 @@ class Scene():
 
 
 
+	def collect(self):
+		print('SCENE', self.name)
+		print('SCENE', self.name)
+
+		for cMark in self.allMarks:
+			print(cMark)
+			cMark.collect()
+
+
+		for cGeo in self.allGeo:
+			print(cGeo)
+			cGeo.collect(self.allMarks)
+
+
+
 	def isDirty(self):
 		for cMark in self.allMarks:
 			if cMark.isDirty():

@@ -111,6 +111,7 @@ class Ui():
 
 		self.appWindow.sigSceneWipe.connect(self.sceneWipe)
 		self.appWindow.sigAddFile.connect(self.addFile)
+		self.appWindow.sigSceneSave.connect(self.sceneSave)
 		self.appWindow.sigStoreG.connect(self.storeG)
 		self.appWindow.sigLayerSelect.connect(self.layerSetSelect)
 		self.appWindow.sigLayerHover.connect(self.layerSetHover)
@@ -185,6 +186,11 @@ class Ui():
 				msgBox.setDefaultButton(QMessageBox.Ok)
 				if msgBox.exec() == QMessageBox.Cancel:
 					return True
+
+
+
+	def sceneSave(self):
+		self.activeScene.collect()
 
 
 

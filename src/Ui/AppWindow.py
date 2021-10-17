@@ -46,6 +46,7 @@ class AppWindow(QObject):
 
 	sigSceneWipe = Signal()
 	sigAddFile = Signal()
+	sigSceneSave = Signal()
 	sigStoreG = Signal()
 	sigDispatch = Signal(str)
 	sigLayerSelect = Signal(list)
@@ -113,6 +114,7 @@ class AppWindow(QObject):
 		self.lBtnCaption = cMain.findChild(QWidget, "btnCaption")
 		self.lBtnWipe = cMain.findChild(QWidget, "btnWipe")
 		self.lBtnOpen = cMain.findChild(QWidget, "btnOpen")
+		self.lBtnSave = cMain.findChild(QWidget, "btnSave")
 		self.lBtnStore = cMain.findChild(QWidget, "btnStore")
 
 		self.lFrameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
@@ -129,6 +131,7 @@ class AppWindow(QObject):
 		self.lBtnCaption.clicked.connect(self.about)
 		self.lBtnWipe.clicked.connect(self.sigSceneWipe)
 		self.lBtnOpen.clicked.connect(self.sigAddFile)
+		self.lBtnSave.clicked.connect(self.sigSceneSave)
 		self.lBtnStore.clicked.connect(self.sigStoreG)
 		self.lBtnProccess.clicked.connect(self.dispatchRun)
 		self.btnMarkAdd.clicked.connect(self.sigMarkAdd)

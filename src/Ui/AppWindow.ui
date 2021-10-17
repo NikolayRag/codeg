@@ -94,6 +94,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QToolButton" name="btnSave">
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="btnStore">
             <property name="enabled">
              <bool>false</bool>
