@@ -28,7 +28,7 @@ class Scene():
 
 
 	def collect(self):
-		print('SCENE', self.name)
+		print('--------')
 		print('SCENE', self.name)
 
 		for cMark in self.allMarks:
