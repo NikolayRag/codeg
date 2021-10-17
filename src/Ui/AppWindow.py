@@ -2,7 +2,7 @@
 #  todo 34 (module-ui, widgets) +0: transform reset
 
 
-import os, logging
+import os
 import webbrowser
 
 from PySide2.QtCore import *
