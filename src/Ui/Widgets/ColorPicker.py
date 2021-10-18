@@ -18,7 +18,7 @@ class ColorPicker(QPushButton):
 		QPushButton.__init__(self)
 
 
-		self.setColor(_color)
+		self.setColor(QColor(_color))
 
 		self.clicked.connect(self.changeColor)
 

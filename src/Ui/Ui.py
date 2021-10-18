@@ -33,7 +33,7 @@ from .Utils import *
 
 class Ui():
 	defaultMarkData = {
-		'Mark Color': QColor('#777'),
+		'Mark Color': '#777',
 		'Laser Cycle': 100.
 	}
 	defaultMarkColorField = 'Mark Color'
@@ -346,12 +346,14 @@ class Ui():
 
 # =todo 164 (feature, module-ui) -1: auto-apply new Mark to selection
 	def slotMarkAdd(self):
-		cData = dict(self.defaultMarkData)
-		cData[self.defaultMarkColorField] = QColor.fromHsvF(
+		randomColor = QColor.fromHsvF(
 			Counter.next('hue',.3)%1.,
 			Counter.next('sat',.45)%1. *.5+.5,
 			Counter.next('val',.15)%1. *.5+.5
 		)
+
+		cData = dict(self.defaultMarkData)
+		cData[self.defaultMarkColorField] = randomColor.name()
 
 		cMark = self.data.markNew( data=cData )
 		self.activeScene.markAppend(cMark)

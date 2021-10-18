@@ -8,7 +8,7 @@ from .Widgets import *
 
 # -todo 140 (module-ui, mark) +0: redesign
 class MarkTool(QFrame):
-	sigChangedField = Signal(str, QColor)
+	sigChangedField = Signal(str, object)
 
 
 	mark = None
@@ -44,28 +44,31 @@ class MarkTool(QFrame):
 
 
 	def setBackground(self, _color):
-		cColor = tuple(_color.getRgb()[:-1]) +(.1,)
+		cColor = tuple(QColor(_color).getRgb()[:-1]) +(.1,)
+
 		self.lBgColor.setStyleSheet(f"background-color: rgba{cColor};")
 
 
 
 	def fillFrame(self):
 		def applyConnect(_field, _data): #not working inline, switch to QSignalMapper mb
-			_field.sigChangedColor.connect(lambda _c: self.changedColor(_data, _c))
+			_field.sigChangedColor.connect(lambda _c: self.changedColor(_data, _c.name()))
 
 
 		mDataA = self.mark.getData()
 		for cData in mDataA:
+			cVal = mDataA[cData]
+			fieldWidget = QLabel(f"{cVal}")
+
+			dType = type(cVal)
+			if dType == str:
+				if (len(cVal) in [4,7]) and (cVal[0] == '#'):
+					fieldWidget = ColorPicker.ColorPicker(cVal)
+					applyConnect(fieldWidget,cData)
+
+
 			fieldName = QLabel(f"{cData}")
-			fieldVal = QLabel(f"{mDataA[cData]}")
-
-			dType = type(mDataA[cData])
-			if (dType==QColor):
-				fieldVal = ColorPicker.ColorPicker(mDataA[cData])
-				applyConnect(fieldVal,cData)
-
-
-			self.lLayout.addRow(fieldName, fieldVal)
+			self.lLayout.addRow(fieldName, fieldWidget)
 
 
 
@@ -101,7 +104,7 @@ class MarkWidget(QFrame):
 		self.mark = _mark
 		self.fieldWColor = fieldWColor
 
-		mainColor = self.mark.getData(self.fieldWColor) or QColor()
+		mainColor = self.mark.getData(self.fieldWColor)
 
 
 		cLayout = QHBoxLayout()
@@ -177,7 +180,7 @@ class MarkWidget(QFrame):
 
 	def setColor(self, _color):
 #??		self.lButton.setPalette(QColor.fromRgb(color[0],color[1],color[2]))
-		self.lButton.setStyleSheet(f"background-color: {_color.name()};border-radius:4px;")
+		self.lButton.setStyleSheet(f"background-color: {_color};border-radius:4px;")
 
 		self.wFrameTool.setBackground(_color)
 
