@@ -5,6 +5,27 @@
 
 # =todo 117 (ux, module-ui) +0: add app settings
 
+# =todo 177 (ux) +0: check dirty at exit
+# =todo 178 (ux) +0: suggest recent at load
+
+# =todo 174 (module-ui, module-data, geo) +0: add more geo
+# =todo 175 (module-ui, module-data, geo) +0: clone geo
+# =todo 176 (module-ui, module-data, geo) +0: del geo
+
+# =todo 169 (module-ui, ux, mark) +0: del mark
+# -todo 170 (module-ui, ux, mark) +0: reorder mark
+# =todo 171 (module-ui, ux, mark) +0: select by mark
+# =todo 172 (module-ui, ux, mark) +0: unselect mark/close mark box
+# -todo 173 (module-ui, ux, mark) +0: hover mark show toolbox
+
+# =todo 167 (module-ui, viewport) +0: deselect geo by viewport
+# -todo 168 (module-ui, viewport) +0: select by viewport
+
+# =todo 165 (feature, dispatch) +0: device definition
+# =todo 166 (module-ui, ux) +0: icons
+
+
+
 from .AppWindow import *
 from .Utils import *
 

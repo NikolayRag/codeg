@@ -22,7 +22,7 @@
 +spec, module-data 8: +0 "src\GGData\GGData.py" kii 21/07/31 16:30:49
 	save gcode
 
-=scene, spec, module-data 9: +1 "src\GGData\Scene.py" kii 21/09/25 22:40:22
+!scene, spec, module-data 9: +1 "src\GGData\Scene.py" ki 21/10/18 18:33:32
 	operate project data
 
 !spec, module-data 10: +0 "" kii 21/09/08 21:55:55
@@ -76,7 +76,7 @@
 !module-data, formats 26: +0 "src\GGData\GGData.py" kii 21/07/31 16:30:39
 	
 
- module-data, module-ui, ux 27: +0 "src\Ui\Ui.py" kii 21/08/02 21:19:12
+ module-data, module-ui, ux 27: +0 "src\Ui\Ui.py" ki 21/10/17 18:53:47
 	allow append gcode from text buffer
 
 +module-ui 28: +0 "src\Ui\AppWindow.py" kii 21/08/02 21:55:16
@@ -259,10 +259,10 @@
 =ux, module-ui, fix 90: +0 "src\GGData\GGData.py" kii 21/09/08 22:03:51
 	respect units - both svg and device
 
--viewport, API 91: +0 "" kii 21/09/25 22:57:27
+-viewport, api 91: +0 "src\Ui\SvgViewport.py" ki 21/10/18 18:20:26
 	add class-level SVG runtime generator signal/slot
 
- feature 92: +0 "src\GGData\Scene.py" kii 21/09/27 02:39:16
+ feature 92: +0 "src\GGData\Scene.py" ki 21/10/18 18:33:34
 	multiple sources scene
 
 !scene, feature 93: +0 "" kii 21/09/27 02:39:14
@@ -459,4 +459,46 @@
 
 =feature, module-ui 164: -1 "src\Ui\Ui.py" ki 21/10/17 18:51:23
 	auto-apply new Mark to selection
+
+=feature, dispatch 165: +0 "src\Ui\Ui.py" ki 21/10/18 18:41:17
+	device definition
+
+=module-ui, ux 166: +0 "src\Ui\Ui.py" ki 21/10/18 18:41:19
+	icons
+
+=module-ui, viewport 167: +0 "src\Ui\Ui.py" ki 21/10/18 18:41:38
+	deselect geo by viewport
+
+-module-ui, viewport 168: +0 "src\Ui\Ui.py" ki 21/10/18 18:41:50
+	select by viewport
+
+=module-ui, ux, mark 169: +0 "src\Ui\Ui.py" ki 21/10/18 18:42:31
+	del mark
+
+-module-ui, ux, mark 170: +0 "src\Ui\Ui.py" ki 21/10/18 18:42:33
+	reorder mark
+
+=module-ui, ux, mark 171: +0 "src\Ui\Ui.py" ki 21/10/18 18:42:40
+	select by mark
+
+=module-ui, ux, mark 172: +0 "src\Ui\Ui.py" ki 21/10/18 18:42:47
+	unselect mark/close mark box
+
+-module-ui, ux, mark 173: +0 "src\Ui\Ui.py" ki 21/10/18 18:42:55
+	hover mark show toolbox
+
+=module-ui, module-data, geo 174: +0 "src\Ui\Ui.py" ki 21/10/18 18:43:36
+	add more geo
+
+=module-ui, module-data, geo 175: +0 "src\Ui\Ui.py" ki 21/10/18 18:43:43
+	clone geo
+
+=module-ui, module-data, geo 176: +0 "src\Ui\Ui.py" ki 21/10/18 18:43:48
+	del geo
+
+=ux 177: +0 "src\Ui\Ui.py" ki 21/10/18 18:44:30
+	check dirty at exit
+
+=ux 178: +0 "src\Ui\Ui.py" ki 21/10/18 18:44:25
+	suggest recent at load
 
