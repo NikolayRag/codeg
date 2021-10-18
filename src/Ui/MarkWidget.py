@@ -96,8 +96,6 @@ class MarkWidget(QFrame):
 		self.mark = _mark
 		self.fieldWColor = fieldWColor
 
-		mainColor = self.mark.getData(self.fieldWColor)
-
 
 		cLayout = QHBoxLayout()
 		cLayout.setSpacing(0)
@@ -127,13 +125,14 @@ class MarkWidget(QFrame):
 		self.wFrameHighlight.hide()
 
 
-		self.wFrameTool = MarkTool(_mark.getData())
+		self.wFrameTool = MarkTool(self.mark.getData())
 		self.wFrameTool.hide()
 
 		_contLay.addWidget(self.wFrameTool)
 
 
-		self.setColor(mainColor)
+		cColor = self.mark.getData(self.fieldWColor)
+		self.setColor(cColor)
 
 		self.lButton.clicked.connect(self.toolPop)
 		self.lTrigger.stateChanged.connect(self.markTrigger)
