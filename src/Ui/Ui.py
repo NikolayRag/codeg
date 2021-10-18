@@ -216,8 +216,23 @@ class Ui():
 	def sceneSave(self):
 		saveData = self.activeScene.collect()
 
+		fileName = ''
+		cRecentA = self.args.get("recentSaved", [])
 
-		print(json.dumps(saveData, sort_keys=True, indent=4))
+		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
+		
+		fileName = QFileDialog.getSaveFileName(None, "Save project", os.path.dirname(cLast), "*.codeg")[0]
+
+		if not fileName:
+			return
+
+
+		with open(fileName, 'w') as f:
+			f.write( json.dumps(saveData, indent=2) )
+
+		if cRecentA.count(fileName): cRecentA.remove(fileName)
+		self.args.set("recentSaved", cRecentA+[fileName])
+
 
 		self.activeScene.clean()
 
