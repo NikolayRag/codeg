@@ -76,7 +76,7 @@ class GGData():
 			if filterName not in self.allFilters:
 				print('Warning: filter', filterName, 'is unknown')
 
-				newclass = type('Filter'+filterName, (Markfilter,),{"name": filterName})
+				newclass = type(filterName, (Markfilter,), {})
 				self.allFilters[filterName] = newclass
 
 
