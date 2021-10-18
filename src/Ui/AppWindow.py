@@ -381,4 +381,4 @@ class AppWindow(QObject):
 
 # -todo 141 (module-ui, mark) +0: update Geoitem widgets
 	def wMarkAssign(self, _mark, _geoList, _state):
-		print(_mark, _mark.getPriority(), _geoList, _state)
+		None
