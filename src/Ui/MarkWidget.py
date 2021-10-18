@@ -11,16 +11,16 @@ class MarkTool(QFrame):
 	sigChangedField = Signal(str, object)
 
 
-	mark = None
+	data = {}
 	lLayout = None
 	lBgColor = None
 
 
-	def __init__(self, _mark):
+	def __init__(self, _data):
 		QFrame.__init__(self)
 
 
-		self.mark = _mark
+		self.data = _data
 
 		self.setStyleSheet("background-color: rgba(0,0,0,0);")
 
@@ -55,19 +55,18 @@ class MarkTool(QFrame):
 			_field.sigChangedColor.connect(lambda _val: self.sigChangedField.emit(_name, _val))
 
 
-		mDataA = self.mark.getData()
-		for cData in mDataA:
-			cVal = mDataA[cData]
+		for cName in self.data:
+			cVal = self.data[cName]
 			fieldWidget = QLabel(f"{cVal}")
 
 			dType = type(cVal)
 			if dType == str:
 				if (len(cVal) in [4,7]) and (cVal[0] == '#'):
 					fieldWidget = ColorPicker.ColorPicker(cVal)
-					applyConnect(fieldWidget,cData)
+					applyConnect(fieldWidget,cName)
 
 
-			fieldName = QLabel(f"{cData}")
+			fieldName = QLabel(f"{cName}")
 			self.lLayout.addRow(fieldName, fieldWidget)
 
 
@@ -128,7 +127,7 @@ class MarkWidget(QFrame):
 		self.wFrameHighlight.hide()
 
 
-		self.wFrameTool = MarkTool(_mark)
+		self.wFrameTool = MarkTool(_mark.getData())
 		self.wFrameTool.hide()
 
 		_contLay.addWidget(self.wFrameTool)
@@ -166,6 +165,8 @@ class MarkWidget(QFrame):
 		if self.fieldWColor and _name==self.fieldWColor:
 			self.setColor(_val.name())
 
+
+		self.mark.setData({_name:_val})
 
 		self.sigChanged.emit(self.mark, _name, _val)
 
