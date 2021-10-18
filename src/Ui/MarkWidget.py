@@ -52,7 +52,7 @@ class MarkTool(QFrame):
 
 	def fillFrame(self):
 		def applyConnect(_field, _data): #not working inline, switch to QSignalMapper mb
-			_field.sigChangedColor.connect(lambda _c: self.changedColor(_data, _c.name()))
+			_field.sigChangedColor.connect(lambda _c: self.changedColor(_data, _c))
 
 
 		mDataA = self.mark.getData()
