@@ -502,3 +502,6 @@
 =ux 178: +0 "src\Ui\Ui.py" ki 21/10/18 18:44:25
 	suggest recent at load
 
+=clean 179: -1 "src\Ui\Ui.py" ki 21/10/19 00:08:32
+	chack names, order and var/function annotates
+
