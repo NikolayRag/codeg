@@ -171,7 +171,7 @@ class MarkWidget(QFrame):
 
 	def markChanged(self, _name, _val):
 		if self.fieldWColor and _name==self.fieldWColor:
-			self.setColor(_val)
+			self.setColor(_val.name())
 
 
 		self.sigChanged.emit(self.mark, _name, _val)
