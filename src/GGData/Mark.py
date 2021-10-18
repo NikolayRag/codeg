@@ -34,7 +34,14 @@ class Mark():
 
 
 	def collect(self):
-		print(self.gfilter, self.data, self.priority)
+		out = {
+			'priority': self.priority,
+			'filter': self.gfilter and self.gfilter.__name__,
+			'data': dict(self.data)
+		}
+
+
+		return out
 
 
 

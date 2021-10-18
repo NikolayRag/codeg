@@ -27,18 +27,29 @@ class Scene():
 
 
 	def collect(self):
-		print('--------')
-		print('SCENE', self.name)
+		out = {
+			'name': self.name
+		}
 
+
+		markBlock = {}
+		mId = 0
 		for cMark in self.allMarks:
-			print(cMark)
-			cMark.collect()
+			markBlock[mId] = cMark.collect()
+			mId += 1
+
+		out['markBlock'] = markBlock
 
 
+		geoBlock = []
+		
 		for cGeo in self.allGeo:
-			print(cGeo)
-			cGeo.collect(self.allMarks)
+			geoBlock.append( cGeo.collect(self.allMarks) )
 
+		out['geoBlock'] = geoBlock
+
+
+		return out
 
 
 	def isDirty(self):

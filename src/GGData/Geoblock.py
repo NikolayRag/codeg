@@ -101,8 +101,13 @@ class Geoblock():
 
 
 	def collect(self, _markLimit):
+		out = []
+
 		for cObj in self.namedLayers:
-			self.namedLayers[cObj].collect(_markLimit)
+			out.append( self.namedLayers[cObj].collect(_markLimit) )
+
+
+		return out
 
 
 
@@ -149,13 +154,17 @@ class Geoitem():
 
 
 
-	def collect(self, _markLimit=None):
-		print(
-			self.name,
-			self.obj,
-			set(_markLimit) & set(self.marks),
-			self.dataOwn
-		)
+	def collect(self, _markLimit=[]):
+		out = {
+			'name': self.name,
+			'data': self.dataOwn
+		}
+
+
+		out['marks'] = [_markLimit.index(cMark) for cMark in self.marks if (cMark in _markLimit)]
+
+
+		return out
 
 
 

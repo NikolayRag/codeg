@@ -26,6 +26,9 @@
 
 
 
+import json
+
+
 from .AppWindow import *
 from .Utils import *
 
@@ -211,7 +214,12 @@ class Ui():
 
 
 	def sceneSave(self):
-		self.activeScene.collect()
+		saveData = self.activeScene.collect()
+
+
+		print(json.dumps(saveData, sort_keys=True, indent=4))
+
+		self.activeScene.clean()
 
 
 
