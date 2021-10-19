@@ -279,6 +279,9 @@ class Ui():
 		for geoData in projData['geoBlock']:
 			cGeo = self.activeScene.geoAdd(geoData['namespace'], 'svg')
 
+			self.activeScene.markApplyGeo(self.markDefault, cGeo.names(), step='UI')
+
+
 			for itemData in geoData['items']:
 				cItem = cGeo.getObj([itemData['name']])[0]
 
@@ -288,35 +291,19 @@ class Ui():
 
 
 				cData = itemData['data']
-
 				cItem.dataSet(cData)
-
-#				if ('visible' in cData) and cData['visible'] == False:
-#					self.appWindow.layersSwitchVis(gi, 1)
-
+				if ('visible' in cData) and (cData['visible'] == False):
+					self.activeScene.markApplyGeo(self.markOff, [cItem.name], True, step='UI')
 
 				cItem.marksSolve(filterStep='UI')
 
 
 		cMeta = self.activeScene.geoMeta()
-		self.activeScene.markApplyGeo(self.markDefault, cMeta.keys(), step='UI')
 
 		cXml = self.activeScene.getSceneXML(True)
 		if cXml:
 			self.appWindow.reactAddFile(cMeta, cXml)
 
-
-#cut the midways
-		gi = 0
-		for geoData in projData['geoBlock']:
-			for itemData in geoData['items']:
-				cData = itemData['data']
-
-				if ('visible' in cData) and cData['visible'] == False:
-					self.appWindow.layersSwitchVis(gi, 1)
-
-				gi += 1
-#drop the bass
 
 
 		self.activeScene.clean()
