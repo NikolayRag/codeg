@@ -221,7 +221,7 @@ class Ui():
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
 		
-		fileName = QFileDialog.getSaveFileName(None, "Save project", os.path.dirname(cLast), "*.codeg")[0]
+		fileName = QFileDialog.getSaveFileName(self.appWindow.lMain, "Save project", os.path.dirname(cLast), "*.codeg", None, QFileDialog.DontUseNativeDialog)[0]
 
 		if not fileName:
 			return
@@ -267,7 +267,7 @@ class Ui():
 		cRecentA = self.args.get("recentLoaded", [])
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
-		fileName = QFileDialog.getOpenFileName(None, "Open SVG File", os.path.dirname(cLast), "*.svg")[0]
+		fileName = QFileDialog.getOpenFileName(self.appWindow.lMain, "Open SVG File", os.path.dirname(cLast), "*.svg", None, QFileDialog.DontUseNativeDialog)[0]
 
 		if fileName=="":
 			return
@@ -299,7 +299,7 @@ class Ui():
 		cRecentA = self.args.get("recentSaved", [])
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
-		fileName = QFileDialog.getSaveFileName(None, "Save G", os.path.dirname(cLast), "*.nc")[0]
+		fileName = QFileDialog.getSaveFileName(self.appWindow.lMain, "Save G", os.path.dirname(cLast), "*.nc", None, QFileDialog.DontUseNativeDialog)[0]
 
 		
 		if fileName=="":
