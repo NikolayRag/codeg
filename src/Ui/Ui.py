@@ -292,6 +292,7 @@ class Ui():
 
 				cData = itemData['data']
 				cItem.dataSet(cData)
+# -todo 183 (ux, module-ui) +1: brush Scene routines
 				if ('visible' in cData) and (cData['visible'] == False):
 					self.activeScene.markApplyGeo(self.markOff, [cItem.name], True, step='UI')
 
