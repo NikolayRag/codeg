@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as XML
 import re
 
-
+# =todo 181 (decide) +0: geometry embed method
 class Geoblock():
 	# Should contain fields affected by Marks
 	CachedFields = [

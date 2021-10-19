@@ -505,3 +505,9 @@
 =clean 179: -1 "src\Ui\Ui.py" ki 21/10/19 00:08:32
 	chack names, order and var/function annotates
 
+=module-ui, mark 180: +0 "src\Ui\MarkWidget.py" ki 21/10/19 03:18:36
+	allow to assign only with selected geo
+
+=decide 181: +0 "src\GGData\Geoblock.py" ki 21/10/19 03:40:56
+	geometry embed method
+
