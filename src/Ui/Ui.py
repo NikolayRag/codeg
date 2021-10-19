@@ -136,6 +136,7 @@ class Ui():
 		self.appWindow.sigSceneWipe.connect(self.sceneWipe)
 		self.appWindow.sigAddFile.connect(self.addFile)
 		self.appWindow.sigSceneSave.connect(self.sceneSave)
+		self.appWindow.sigSceneLoad.connect(self.sceneLoad)
 		self.appWindow.sigStoreG.connect(self.storeG)
 		self.appWindow.sigLayerSelect.connect(self.layerSetSelect)
 		self.appWindow.sigLayerHover.connect(self.layerSetHover)
@@ -232,6 +233,90 @@ class Ui():
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
 		self.args.set("recentProject", cRecentA+[fileName])
+
+
+		self.activeScene.clean()
+
+
+
+	def sceneLoad(self):
+		if self.sceneDirty():
+			return
+
+
+		cRecentA = self.args.get("recentProject", [])
+
+		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
+		fileName = QFileDialog.getOpenFileName(self.appWindow.lMain, "Open project", os.path.dirname(cLast), "*.codeg", None, QFileDialog.DontUseNativeDialog)[0]
+
+		if fileName=="":
+			return
+
+		
+		if cRecentA.count(fileName): cRecentA.remove(fileName)
+		self.args.set("recentProject", cRecentA+[fileName])
+
+
+		with open(fileName, 'r') as f:
+			projData = json.loads( f.read() )
+
+
+		for cScene in self.data.sceneList():
+			self.data.sceneRemove(cScene)
+
+		self.sceneNew(projData['name'])
+
+
+		marksA = {}
+		for cMarkId in projData['markBlock']:
+			markData = projData['markBlock'][cMarkId]
+			cMark = marksA[int(cMarkId)] = self.data.markNew(data=markData['data'], filterName=markData['filter'], filterData={}, priority=markData['priority'])
+
+			self.activeScene.markAppend(cMark)
+			self.uiMarkAdd(cMark)
+
+
+		for geoData in projData['geoBlock']:
+			cGeo = self.activeScene.geoAdd(geoData['namespace'], 'svg')
+
+			for itemData in geoData['items']:
+				cItem = cGeo.getObj([itemData['name']])[0]
+
+
+				for markIn in itemData['marks']:
+					cItem.markAdd(marksA[markIn])
+
+
+				cData = itemData['data']
+
+				cItem.dataSet(cData)
+
+#				if ('visible' in cData) and cData['visible'] == False:
+#					self.appWindow.layersSwitchVis(gi, 1)
+
+
+				cItem.marksSolve(filterStep='UI')
+
+
+		cMeta = self.activeScene.geoMeta()
+		self.activeScene.markApplyGeo(self.markDefault, cMeta.keys(), step='UI')
+
+		cXml = self.activeScene.getSceneXML(True)
+		if cXml:
+			self.appWindow.reactAddFile(cMeta, cXml)
+
+
+#cut the midways
+		gi = 0
+		for geoData in projData['geoBlock']:
+			for itemData in geoData['items']:
+				cData = itemData['data']
+
+				if ('visible' in cData) and cData['visible'] == False:
+					self.appWindow.layersSwitchVis(gi, 1)
+
+				gi += 1
+#drop the bass
 
 
 		self.activeScene.clean()

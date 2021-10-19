@@ -47,6 +47,7 @@ class AppWindow(QObject):
 	sigSceneWipe = Signal()
 	sigAddFile = Signal()
 	sigSceneSave = Signal()
+	sigSceneLoad = Signal()
 	sigStoreG = Signal()
 	sigDispatch = Signal(str)
 	sigLayerSelect = Signal(list)
@@ -115,6 +116,7 @@ class AppWindow(QObject):
 		self.lBtnWipe = cMain.findChild(QWidget, "btnWipe")
 		self.lBtnOpen = cMain.findChild(QWidget, "btnOpen")
 		self.lBtnSave = cMain.findChild(QWidget, "btnSave")
+		self.lBtnLoad = cMain.findChild(QWidget, "btnLoad")
 		self.lBtnStore = cMain.findChild(QWidget, "btnStore")
 
 		self.lFrameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
@@ -132,6 +134,7 @@ class AppWindow(QObject):
 		self.lBtnWipe.clicked.connect(self.sigSceneWipe)
 		self.lBtnOpen.clicked.connect(self.sigAddFile)
 		self.lBtnSave.clicked.connect(self.sigSceneSave)
+		self.lBtnLoad.clicked.connect(self.sigSceneLoad)
 		self.lBtnStore.clicked.connect(self.sigStoreG)
 		self.lBtnProccess.clicked.connect(self.dispatchRun)
 		self.btnMarkAdd.clicked.connect(self.sigMarkAdd)
@@ -307,7 +310,6 @@ class AppWindow(QObject):
 
 	def layersSwitchVis(self, _row, _col):
 		cSelection = list(self.layerSelection().keys())
-
 		namesA = []
 		newState = not self.lListLayers.item(_row, _col).data(self.LdataOn)
 
