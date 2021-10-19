@@ -217,7 +217,7 @@ class Ui():
 		saveData = self.activeScene.collect()
 
 		fileName = ''
-		cRecentA = self.args.get("recentSaved", [])
+		cRecentA = self.args.get("recentProject", [])
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
 		
@@ -231,7 +231,7 @@ class Ui():
 			f.write( json.dumps(saveData, indent=2) )
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
-		self.args.set("recentSaved", cRecentA+[fileName])
+		self.args.set("recentProject", cRecentA+[fileName])
 
 
 		self.activeScene.clean()
