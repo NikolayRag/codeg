@@ -101,11 +101,17 @@ class Geoblock():
 
 
 	def collect(self, _markLimit):
-		out = []
+		out = {
+			'namespace': self.namespace
+		}
+
+
+		geoA = []
 
 		for cObj in self.namedLayers:
-			out.append( self.namedLayers[cObj].collect(_markLimit) )
+			geoA.append( self.namedLayers[cObj].collect(_markLimit) )
 
+		out['items'] = geoA
 
 		return out
 
