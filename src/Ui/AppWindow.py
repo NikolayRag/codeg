@@ -246,7 +246,8 @@ class AppWindow(QObject):
 			itemOn.setData(self.LdataName, _name)
 
 			itemOn.setFlags(Qt.NoItemFlags)
-			self.layerSetItem(itemOn, _meta[_name]['on'])
+			visible = ('visible' not in _meta[_name]) or _meta[_name]['visible']
+			self.layerSetItem(itemOn, visible)
 			_list.setItem(cRow, self.LayerColumnSwitch, itemOn)
 
 		else:

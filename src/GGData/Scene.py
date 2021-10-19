@@ -175,7 +175,8 @@ class Scene():
 	def geoMeta(self):
 		out = {}
 		for cGeo in self.allGeo:
-			out = {cN:{'on':True} for cN in cGeo.names()}
+			for cN in cGeo.names():
+				out[cN] = cGeo.getObj([cN])[0].dataGet()
 
 		return out
 
