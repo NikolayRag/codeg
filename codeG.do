@@ -421,8 +421,8 @@
  module-ui, feature 149: +0 "src\Ui\Ui.py" kii 21/10/11 22:19:18
 	multiscene
 
--ux, widgets 150: +0 "src\Ui\AppWindow.py" kii 21/10/11 22:25:56
-	Make ItemWidget
+-ux, widgets 150: +0 "src\Ui\AppWindow.py" ki 21/10/19 07:01:05
+	Make GeoWidget
 
  module-ui, mark 152: +0 "src\Ui\AppWindow.py" kii 21/10/12 01:49:30
 	make select by mark
@@ -510,4 +510,7 @@
 
 =decide 181: +0 "src\GGData\Geoblock.py" ki 21/10/19 03:40:56
 	geometry embed method
+
+=ux 182: +0 "src\Ui\Ui.py" ki 21/10/19 06:59:59
+	fix save saved project
 

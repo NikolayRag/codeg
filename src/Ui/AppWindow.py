@@ -220,7 +220,7 @@ class AppWindow(QObject):
 
 
 ######### Geoitems #########
-# -todo 150 (ux, widgets) +0: Make ItemWidget
+# -todo 150 (ux, widgets) +0: Make GeoWidget
 
 # =todo 144 (module-ui, widgets) +0: Use Geoitems directly in UI
 	def layerSetItem(self, _item, _on):
