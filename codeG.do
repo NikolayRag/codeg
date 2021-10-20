@@ -331,7 +331,7 @@
 =ux, module-ui 116: +0 "src\Ui\Ui.py" kii 21/09/08 18:41:48
 	choose style in app settings
 
-=ux, module-ui 117: +0 "src\Ui\Ui.py" kii 21/10/11 22:19:18
+=ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/10/20 12:13:02
 	add app settings
 
  refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" kii 21/10/09 21:40:56
@@ -516,4 +516,7 @@
 
 -ux, module-ui 183: +1 "src\Ui\Ui.py" ki 21/10/19 20:47:46
 	brush Scene routines
+
+=ux, module-ui 184: +0 "src\Ui\Ui.py" ki 21/10/20 12:14:08
+	save/load app settings with project
 

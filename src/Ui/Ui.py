@@ -4,6 +4,7 @@
 #  todo 149 (module-ui, feature) +0: multiscene
 
 # =todo 117 (ux, module-ui) +0: add app settings
+# =todo 184 (ux, module-ui) +0: save/load app settings with project
 
 # =todo 177 (ux) +0: check dirty at exit
 # =todo 178 (ux) +0: suggest recent at load
