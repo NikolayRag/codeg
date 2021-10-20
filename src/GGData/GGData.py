@@ -1,6 +1,7 @@
+# =todo 189 (module-data, api) +1: make all indirect (by id) controls
 # =todo 90 (ux, module-ui, fix) +0: respect units - both svg and device
 
-#  todo 18 (spec, module-dispatch) +0: standalone dispatcher codegg
+#  todo 18 (spec, module-dispatch) +0: standalone dispatcher
 #  todo 19 (spec, module-dispatch) +0: send to codegg
 
 #  todo 25 (module-data, formats) +0: load .nc gcode

@@ -49,10 +49,10 @@
 =spec, module-dispatch 17: +0 "" kii 21/08/10 05:55:57
 	send to serial-usb (arduino)
 
- spec, module-dispatch 18: +0 "src\GGData\GGData.py" kii 21/09/25 22:37:20
-	standalone dispatcher codegg
+ spec, module-dispatch 18: +0 "src\GGData\GGData.py" ki 21/10/20 22:59:43
+	standalone dispatcher
 
- spec, module-dispatch 19: +0 "src\GGData\GGData.py" kii 21/08/02 21:16:57
+ spec, module-dispatch 19: +0 "src\GGData\GGData.py" ki 21/10/20 22:59:40
 	send to codegg
 
  module-ui, error 20: +0 "src\Ui\AppWindow.py" kii 21/10/10 14:16:43
@@ -256,7 +256,7 @@
 -ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" kii 21/09/25 22:54:19
 	place grid correctly
 
-=ux, module-ui, fix 90: +0 "src\GGData\GGData.py" kii 21/09/08 22:03:51
+=ux, module-ui, fix 90: +0 "src\GGData\GGData.py" ki 21/10/20 23:01:21
 	respect units - both svg and device
 
 -viewport, api 91: +0 "src\Ui\SvgViewport.py" ki 21/10/18 18:20:26
@@ -331,7 +331,7 @@
 =ux, module-ui 116: +0 "src\Ui\Ui.py" kii 21/09/08 18:41:48
 	choose style in app settings
 
-=ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/10/20 12:13:02
+=ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/10/20 22:56:59
 	add app settings
 
  refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" kii 21/10/09 21:40:56
@@ -519,4 +519,22 @@
 
 =ux, module-ui 184: +0 "src\Ui\Ui.py" ki 21/10/20 12:14:08
 	save/load app settings with project
+
+=feature, module-ui 186: +0 "src\Ui\Ui.py" ki 21/10/20 23:05:46
+	live cut visualize
+
+!dispatch, feature 187: +0 "src\Ui\Ui.py" ki 21/10/20 22:57:58
+	
+
+=module-data, api 188: +0 "src\Ui\Ui.py" ki 21/10/20 23:02:07
+	move all data functions to data
+
+=module-data, api 189: +1 "src\GGData\GGData.py" ki 21/10/20 23:03:35
+	make all indirect (by id) controls
+
+ feature, module-ui 190: +0 "src\Ui\Ui.py" ki 21/10/20 23:29:53
+	live cut visualize from standalone dispatcher, with some echo protocol
+
+ filter, feature 191: +2 "src\Ui\Ui.py" ki 21/10/20 23:58:14
+	outline, fill and shape-intersect filters
 
