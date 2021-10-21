@@ -81,6 +81,9 @@ class AppWindow(QObject):
 
 		
 		#widgets time
+		self.lGeoView = cMain.findChild(QSplitter, "wGeoView")
+
+
 		self.lListLayers = cMain.findChild(QTableWidget, "listLayers")
 
 		self.lListLayers.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
