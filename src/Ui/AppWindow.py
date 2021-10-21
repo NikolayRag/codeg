@@ -108,14 +108,14 @@ class AppWindow(QObject):
 
 
 		holderViewport = cMain.findChild(QWidget, "wViewport")
-		self.wViewport = SvgViewport(holderViewport)
-		self.wViewport.setGrid('resource\\grid.svg')
-		self.wViewport.lower()
-		self.wViewport.show()
+		self.wSvgViewport = SvgViewport(holderViewport)
+		self.wSvgViewport.setGrid('resource\\grid.svg')
+		self.wSvgViewport.lower()
+		self.wSvgViewport.show()
 
 		self.tmpFilterViewResize = BindFilter(
 			QEvent.Type.Resize,
-			lambda event: self.wViewport.resize(event.size())
+			lambda event: self.wSvgViewport.resize(event.size())
 		)
 		holderViewport.installEventFilter(self.tmpFilterViewResize)
 
@@ -139,7 +139,7 @@ class AppWindow(QObject):
 		self.wFrameDev = cMain.findChild(QTextEdit, "frameDev")
 
 
-		self.wBtnFit.clicked.connect(lambda: self.wViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset))
+		self.wBtnFit.clicked.connect(lambda: self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset))
 		self.wBtnCaption.clicked.connect(self.about)
 		self.wBtnWipe.clicked.connect(self.sigSceneWipe)
 		self.wBtnOpen.clicked.connect(self.sigAddFile)
@@ -153,7 +153,7 @@ class AppWindow(QObject):
 	def show(self):
 		self.wMain.show()
 #  todo 192 (module-ui, fix) +0: wrong fit at start
-		self.wViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
+		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 
 
 
@@ -192,9 +192,9 @@ class AppWindow(QObject):
 		self.allWidgetsMarks = {}
 
 
-		self.wViewport.canvasReset()
-		self.wViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
-		self.wViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
+		self.wSvgViewport.canvasReset()
+		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
+		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 
 
 #		Marks
@@ -203,10 +203,10 @@ class AppWindow(QObject):
 
 #  todo 3 (feature, file) +0: allow picking from Recent files list
 	def reactAddFile(self, _meta, _xml):
-		self.wViewport.canvasAdd(_xml)
-		self.wViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
+		self.wSvgViewport.canvasAdd(_xml)
+		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 #  todo 157 (fix, canvas) +0: review SvgViewport fit routine
-		self.wViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
+		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 
 
 		cList = self.wListGeoItems
@@ -226,7 +226,7 @@ class AppWindow(QObject):
 
 
 	def canvasUpdate(self, _xml):
-		self.wViewport.canvasUpdate(_xml)
+		self.wSvgViewport.canvasUpdate(_xml)
 
 
 
