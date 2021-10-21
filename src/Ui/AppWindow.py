@@ -58,7 +58,9 @@ class AppWindow(QObject):
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
-	defaultWindowFit = defaultViewportFit = 0.8
+	defaultWindowFit = 0.8
+	defaultViewportFit = 0.8
+	defaultViewportOffset = 0.66
 
 
 ## runtime ##
@@ -135,7 +137,7 @@ class AppWindow(QObject):
 		self.wFrameDev = cMain.findChild(QTextEdit, "frameDev")
 
 
-		self.wBtnFit.clicked.connect(lambda: self.wViewport.canvasFit(self.defaultViewportFit))
+		self.wBtnFit.clicked.connect(lambda: self.wViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset))
 		self.wBtnCaption.clicked.connect(self.about)
 		self.wBtnWipe.clicked.connect(self.sigSceneWipe)
 		self.wBtnOpen.clicked.connect(self.sigAddFile)
@@ -148,7 +150,7 @@ class AppWindow(QObject):
 
 	def show(self):
 		self.wMain.show()
-		self.wViewport.canvasFit(self.defaultViewportFit)
+		self.wViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 
 
 
@@ -188,8 +190,8 @@ class AppWindow(QObject):
 
 
 		self.wViewport.canvasReset()
-		self.wViewport.canvasFit(self.defaultViewportFit)
-		self.wViewport.canvasFit(self.defaultViewportFit)
+		self.wViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
+		self.wViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 
 
 #		Marks
@@ -199,9 +201,9 @@ class AppWindow(QObject):
 #  todo 3 (feature, file) +0: allow picking from Recent files list
 	def reactAddFile(self, _meta, _xml):
 		self.wViewport.canvasAdd(_xml)
-		self.wViewport.canvasFit(self.defaultViewportFit)
+		self.wViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 #  todo 157 (fix, canvas) +0: review SvgViewport fit routine
-		self.wViewport.canvasFit(self.defaultViewportFit)
+		self.wViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 
 
 		cList = self.wListGeoItems
