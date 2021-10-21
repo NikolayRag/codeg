@@ -58,6 +58,8 @@ class AppWindow(QObject):
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
+	defUi = './Ui/AppWindow.ui'
+
 	defaultWindowFit = 0.8
 	defaultViewportFit = 0.8
 	defaultViewportOffset = 0.66
@@ -69,10 +71,10 @@ class AppWindow(QObject):
 
 
 
-	def __init__(self, _uiFile, _styleFile=None):
+	def __init__(self, _styleFile=None):
 		QObject.__init__(self)
 
-		cMain = self.lMain = self.wMain = QUiLoader().load(_uiFile)
+		cMain = self.lMain = self.wMain = QUiLoader().load(self.defUi)
 
 
 		if _styleFile:

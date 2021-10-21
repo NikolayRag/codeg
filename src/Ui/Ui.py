@@ -46,8 +46,6 @@ class Ui():
 	defaultMarkColorField = 'Mark Color'
 
 
-	defUi = './Ui/AppWindow.ui'
-
 	styleList = {
 		'dark':'./Ui/schemes/default dark.qss',
 		'light':'./Ui/schemes/default light.qss',
@@ -129,7 +127,7 @@ class Ui():
 		self.qApp.setStyle(QStyleFactory.create('fusion'))
 
 
-		self.appWindow = AppWindow(self.defUi, self.styleList[self.styleSet])
+		self.appWindow = AppWindow(self.styleList[self.styleSet])
 
 		self.appWindow.resize(
 			self.args.get('wSize'),
