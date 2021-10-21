@@ -538,3 +538,6 @@
  filter, feature 191: +2 "src\Ui\Ui.py" ki 21/10/20 23:58:14
 	outline, fill and shape-intersect filters
 
+ module-ui, fix 192: +0 "src\Ui\AppWindow.py" ki 21/10/22 01:31:18
+	wrong fit at start
+

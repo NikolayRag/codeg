@@ -152,6 +152,7 @@ class AppWindow(QObject):
 
 	def show(self):
 		self.wMain.show()
+#  todo 192 (module-ui, fix) +0: wrong fit at start
 		self.wViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 
 
