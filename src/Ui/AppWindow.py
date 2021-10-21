@@ -70,7 +70,7 @@ class AppWindow(QObject):
 	def __init__(self, _uiFile, _styleFile=None):
 		QObject.__init__(self)
 
-		cMain = self.lMain = QUiLoader().load(_uiFile)
+		cMain = self.lMain = self.wMain = QUiLoader().load(_uiFile)
 
 
 		if _styleFile:
@@ -81,83 +81,86 @@ class AppWindow(QObject):
 
 		
 		#widgets time
-		self.lGeoView = cMain.findChild(QSplitter, "wGeoView")
+		self.wListObjects = cMain.findChild(QSplitter, "listObjects")
 
 
-		self.lListLayers = cMain.findChild(QTableWidget, "listLayers")
+		self.wListGeoBlocks = cMain.findChild(QTableWidget, "listGeoBlocks")
 
-		self.lListLayers.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
-		self.lListLayers.itemSelectionChanged.connect(self.layerSelect)
-		self.lListLayers.cellEntered.connect(self.layerHover)
+
+		self.wListGeoItems = cMain.findChild(QTableWidget, "listGeoItems")
+
+		self.wListGeoItems.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
+		self.wListGeoItems.itemSelectionChanged.connect(self.layerSelect)
+		self.wListGeoItems.cellEntered.connect(self.layerHover)
 		self.tmpFilterLayersLeave = BindFilter(QEvent.Type.Leave, self.layerHover)
-		self.lListLayers.installEventFilter(self.tmpFilterLayersLeave)
+		self.wListGeoItems.installEventFilter(self.tmpFilterLayersLeave)
 
-		self.lListLayers.cellClicked.connect(self.layerClick)
+		self.wListGeoItems.cellClicked.connect(self.layerClick)
 
 		
-		self.layMarkHolder = cMain.findChild(QLayout, "layMarkHolder")
-		self.scrollMarksLayout = cMain.findChild(QLayout, "scrollMarksLayout")
-		self.btnMarkAdd = cMain.findChild(QToolButton, "btnMarkAdd")
+		self.wMarkTools = cMain.findChild(QLayout, "wMarkTools")
+		self.wMarks = cMain.findChild(QLayout, "wMarks")
+		self.wBtnMarkAdd = cMain.findChild(QToolButton, "btnMarkAdd")
 
 
 		holderViewport = cMain.findChild(QWidget, "wViewport")
-		self.lViewport = SvgViewport(holderViewport)
-		self.lViewport.setGrid('resource\\grid.svg')
-		self.lViewport.lower()
-		self.lViewport.show()
+		self.wViewport = SvgViewport(holderViewport)
+		self.wViewport.setGrid('resource\\grid.svg')
+		self.wViewport.lower()
+		self.wViewport.show()
 
 		self.tmpFilterViewResize = BindFilter(
 			QEvent.Type.Resize,
-			lambda event: self.lViewport.resize(event.size())
+			lambda event: self.wViewport.resize(event.size())
 		)
 		holderViewport.installEventFilter(self.tmpFilterViewResize)
 
 
-		self.lBtnFit = cMain.findChild(QWidget, "btnFit")
+		self.wBtnFit = cMain.findChild(QWidget, "btnFit")
 
-		self.lBtnCaption = cMain.findChild(QWidget, "btnCaption")
-		self.lBtnWipe = cMain.findChild(QWidget, "btnWipe")
-		self.lBtnOpen = cMain.findChild(QWidget, "btnOpen")
-		self.lBtnSave = cMain.findChild(QWidget, "btnSave")
-		self.lBtnLoad = cMain.findChild(QWidget, "btnLoad")
-		self.lBtnStore = cMain.findChild(QWidget, "btnStore")
+		self.wBtnCaption = cMain.findChild(QWidget, "btnCaption")
+		self.wBtnWipe = cMain.findChild(QWidget, "btnWipe")
+		self.wBtnOpen = cMain.findChild(QWidget, "btnOpen")
+		self.wBtnSave = cMain.findChild(QWidget, "btnSave")
+		self.wBtnLoad = cMain.findChild(QWidget, "btnLoad")
+		self.wBtnStore = cMain.findChild(QWidget, "btnStore")
 
-		self.lFrameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
-		self.lFrameDispatcher.setVisible(False)
+		self.wFrameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
+		self.wFrameDispatcher.setVisible(False)
 #  todo 47 (module-dispatch, module-ui, ux) +0: change device list to button+list
 #  todo 48 (module-ui) +0: update device list
 #  todo 49 (module-ui, ux) +0: save/restore active device between sessions
-		self.lDdPorts = cMain.findChild(QWidget, "ddPorts")
-		self.lBtnProccess = cMain.findChild(QWidget, "btnProccess")
-		self.lLogDev = cMain.findChild(QTextEdit, "logDev")
+		self.wListPorts = cMain.findChild(QWidget, "listPorts")
+		self.wBtnProccess = cMain.findChild(QWidget, "btnProccess")
+		self.wFrameDev = cMain.findChild(QTextEdit, "frameDev")
 
 
-		self.lBtnFit.clicked.connect(lambda: self.lViewport.canvasFit(self.defaultViewportFit))
-		self.lBtnCaption.clicked.connect(self.about)
-		self.lBtnWipe.clicked.connect(self.sigSceneWipe)
-		self.lBtnOpen.clicked.connect(self.sigAddFile)
-		self.lBtnSave.clicked.connect(self.sigSceneSave)
-		self.lBtnLoad.clicked.connect(self.sigSceneLoad)
-		self.lBtnStore.clicked.connect(self.sigStoreG)
-		self.lBtnProccess.clicked.connect(self.dispatchRun)
-		self.btnMarkAdd.clicked.connect(self.sigMarkAdd)
+		self.wBtnFit.clicked.connect(lambda: self.wViewport.canvasFit(self.defaultViewportFit))
+		self.wBtnCaption.clicked.connect(self.about)
+		self.wBtnWipe.clicked.connect(self.sigSceneWipe)
+		self.wBtnOpen.clicked.connect(self.sigAddFile)
+		self.wBtnSave.clicked.connect(self.sigSceneSave)
+		self.wBtnLoad.clicked.connect(self.sigSceneLoad)
+		self.wBtnStore.clicked.connect(self.sigStoreG)
+		self.wBtnProccess.clicked.connect(self.dispatchRun)
+		self.wBtnMarkAdd.clicked.connect(self.sigMarkAdd)
 		
 
 	def show(self):
-		self.lMain.show()
-		self.lViewport.canvasFit(self.defaultViewportFit)
+		self.wMain.show()
+		self.wViewport.canvasFit(self.defaultViewportFit)
 
 
 
 	def resize(self, _size, maximize=None):
-		self.lMain.resize(
+		self.wMain.resize(
 			QSize(*_size)
 			if _size else
 			QApplication.primaryScreen().size() * self.defaultWindowFit
 		)
 
 		if maximize:
-			self.lMain.showMaximized()
+			self.wMain.showMaximized()
 
 
 
@@ -167,16 +170,16 @@ class AppWindow(QObject):
 
 
 	def slotNewScene(self, _scene):
-		self.lBtnStore.setEnabled(True)
-		self.lBtnProccess.setEnabled(True)
-		self.lListLayers.setRowCount(0)
+		self.wBtnStore.setEnabled(True)
+		self.wBtnProccess.setEnabled(True)
+		self.wListGeoItems.setRowCount(0)
 
 
-		while markTool := self.layMarkHolder.takeAt(0):
+		while markTool := self.wMarkTools.takeAt(0):
 			markTool.widget().setParent(None)
 
 
-		while wMark := self.scrollMarksLayout.takeAt(0):
+		while wMark := self.wMarks.takeAt(0):
 			wMark.widget().setParent(None)
 
 
@@ -184,9 +187,9 @@ class AppWindow(QObject):
 		self.allWidgetsMarks = {}
 
 
-		self.lViewport.canvasReset()
-		self.lViewport.canvasFit(self.defaultViewportFit)
-		self.lViewport.canvasFit(self.defaultViewportFit)
+		self.wViewport.canvasReset()
+		self.wViewport.canvasFit(self.defaultViewportFit)
+		self.wViewport.canvasFit(self.defaultViewportFit)
 
 
 #		Marks
@@ -195,13 +198,13 @@ class AppWindow(QObject):
 
 #  todo 3 (feature, file) +0: allow picking from Recent files list
 	def reactAddFile(self, _meta, _xml):
-		self.lViewport.canvasAdd(_xml)
-		self.lViewport.canvasFit(self.defaultViewportFit)
+		self.wViewport.canvasAdd(_xml)
+		self.wViewport.canvasFit(self.defaultViewportFit)
 #  todo 157 (fix, canvas) +0: review SvgViewport fit routine
-		self.lViewport.canvasFit(self.defaultViewportFit)
+		self.wViewport.canvasFit(self.defaultViewportFit)
 
 
-		cList = self.lListLayers
+		cList = self.wListGeoItems
 
 		for cName in _meta:
 			self.layerAddItem(cList, _meta, cName)
@@ -218,7 +221,7 @@ class AppWindow(QObject):
 
 
 	def canvasUpdate(self, _xml):
-		self.lViewport.canvasUpdate(_xml)
+		self.wViewport.canvasUpdate(_xml)
 
 
 
@@ -264,9 +267,9 @@ class AppWindow(QObject):
 	def layerSelection(self):
 		out = {}
 
-		for cRange in self.lListLayers.selectedRanges():
+		for cRange in self.wListGeoItems.selectedRanges():
 			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
-				cName = self.lListLayers.item(cRow, self.LayerColumnName)
+				cName = self.wListGeoItems.item(cRow, self.LayerColumnName)
 				out[cRow] = cName.data(self.LdataName)
 
 		return out
@@ -293,7 +296,7 @@ class AppWindow(QObject):
 	def layerHover(self, _row=-1, _col=-1, event=None):
 		hoverName = None
 		if _row >= 0:
-			hoverName = self.lListLayers.item(_row, self.LayerColumnName).data(self.LdataName)
+			hoverName = self.wListGeoItems.item(_row, self.LayerColumnName).data(self.LdataName)
 
 
 		self.sigLayerHover.emit(hoverName)
@@ -301,8 +304,8 @@ class AppWindow(QObject):
 
 
 	def layerClick(self, _row, _col):
-		if _row == self.lListLayers.rowCount()-1:
-			self.lListLayers.clearSelection()
+		if _row == self.wListGeoItems.rowCount()-1:
+			self.wListGeoItems.clearSelection()
 
 			return
 			
@@ -315,18 +318,18 @@ class AppWindow(QObject):
 	def layersSwitchVis(self, _row, _col):
 		cSelection = list(self.layerSelection().keys())
 		namesA = []
-		newState = not self.lListLayers.item(_row, _col).data(self.LdataOn)
+		newState = not self.wListGeoItems.item(_row, _col).data(self.LdataOn)
 
 
 		if _row not in cSelection:
-			self.lListLayers.selectRow(_row)
+			self.wListGeoItems.selectRow(_row)
 			cSelection = [_row]
 
 
 # =todo 114 (module-ui, fix) +0: change vis for select-all case
 # -todo 147 (module-ui, fix) +0: use blank layer space to from-to hover mouse selection
 		for cRow in cSelection:
-			cItem = self.lListLayers.item(cRow, _col)
+			cItem = self.wListGeoItems.item(cRow, _col)
 			if newState == cItem.data(self.LdataOn):
 				continue
 
@@ -346,17 +349,17 @@ class AppWindow(QObject):
 # -todo 59 (module-ui, ux, clean) +0: make updatable connections list
 	def connList(self, _portsA):
 		for port in _portsA:
-			self.lDdPorts.insertItem(0,port)
+			self.wListPorts.insertItem(0,port)
 
 
 
 	def dispatchRun(self):
-		self.sigDispatch.emit( self.lDdPorts.currentText() )
+		self.sigDispatch.emit( self.wListPorts.currentText() )
 
 
 
 	def dispatchLog(self, _txt):
-		self.lLogDev.insertPlainText(_txt)
+		self.wFrameDev.insertPlainText(_txt)
 
 
 
@@ -371,11 +374,11 @@ class AppWindow(QObject):
 			return
 
 
-		btnMark = MarkWidget(self.layMarkHolder, _mark, fieldWColor=fieldColor)
+		btnMark = MarkWidget(self.wMarkTools, _mark, fieldWColor=fieldColor)
 		self.allWidgetsMarks[_mark] = btnMark
 
 
-		self.scrollMarksLayout.addWidget(btnMark)
+		self.wMarks.addWidget(btnMark)
 
 		btnMark.sigChanged.connect(lambda m,n,v:print(f"Changed: {m} '{n}' to {v}"))
 		btnMark.sigTrigger.connect(lambda m,s:self.sigMarkAssign.emit(m, self.layerSelection(), s))

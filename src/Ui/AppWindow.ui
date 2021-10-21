@@ -319,7 +319,7 @@
                        <property name="widgetResizable">
                         <bool>true</bool>
                        </property>
-                       <widget class="QWidget" name="scrollMarksWidget">
+                       <widget class="QWidget" name="widget">
                         <property name="geometry">
                          <rect>
                           <x>0</x>
@@ -348,7 +348,7 @@
                           <number>0</number>
                          </property>
                          <item>
-                          <layout class="QVBoxLayout" name="scrollMarksLayout">
+                          <layout class="QVBoxLayout" name="wMarks">
                            <property name="spacing">
                             <number>6</number>
                            </property>
@@ -377,7 +377,7 @@
                     </layout>
                    </item>
                    <item row="1" column="0">
-                    <widget class="QSplitter" name="wGeoView">
+                    <widget class="QSplitter" name="listObjects">
                      <property name="orientation">
                       <enum>Qt::Vertical</enum>
                      </property>
@@ -408,7 +408,7 @@
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QListView" name="wGeoBlocks">
+                        <widget class="QListView" name="listGeoBlocks">
                          <property name="sizePolicy">
                           <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
                            <horstretch>0</horstretch>
@@ -455,7 +455,7 @@
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QTableWidget" name="listLayers">
+                        <widget class="QTableWidget" name="listGeoItems">
                          <property name="enabled">
                           <bool>true</bool>
                          </property>
@@ -577,7 +577,7 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <layout class="QVBoxLayout" name="layMarkHolder">
+                   <layout class="QVBoxLayout" name="wMarkTools">
                     <property name="spacing">
                      <number>0</number>
                     </property>
@@ -635,10 +635,10 @@
               <number>0</number>
              </property>
              <item row="1" column="1">
-              <widget class="QComboBox" name="ddPorts"/>
+              <widget class="QComboBox" name="listPorts"/>
              </item>
              <item row="0" column="0" colspan="3">
-              <widget class="QTextEdit" name="logDev">
+              <widget class="QTextEdit" name="frameDev">
                <property name="maximumSize">
                 <size>
                  <width>150</width>

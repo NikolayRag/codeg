@@ -23,4 +23,4 @@
 
 #scrollMarks { background-color: rgba(0,0,0,0); }
 #scrollMarks QWidget { background-color: rgba(0,0,0,0); }
-#wGeoView, #wGeoView QWidget { background-color: rgba(0,0,0,0); }
+#listObjects, #listObjects QWidget { background-color: rgba(0,0,0,0); }
