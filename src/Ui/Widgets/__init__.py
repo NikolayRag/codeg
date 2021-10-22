@@ -1,6 +1,6 @@
 '''
 
-General-use widgets
+Support widgets
 
 '''
 
