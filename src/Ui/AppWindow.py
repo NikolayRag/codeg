@@ -51,7 +51,7 @@ class AppWindow(QObject):
 	sigSceneLoad = Signal()
 	sigStoreG = Signal()
 	sigDispatch = Signal(str)
-	sigLayerSelect = Signal(list)
+	sigGeoSelect = Signal(object, bool)
 	sigGeoHover = Signal(object, bool)
 	sigGeoDataSet = Signal(object, list)
 	sigGeoChanged = Signal()
@@ -97,7 +97,7 @@ class AppWindow(QObject):
 		self.wGeoWidget = GeoWidget()
 		self.wFrameGeo.addWidget(self.wGeoWidget)
 
-		self.wGeoWidget.sigLayerSelect.connect(lambda sel: self.sigLayerSelect.emit(sel))
+		self.wGeoWidget.sigItemSelect.connect(lambda item, state: self.sigGeoSelect.emit(item, state))
 		self.wGeoWidget.sigItemHover.connect(lambda item, state: self.sigGeoHover.emit(item, state))
 		self.wGeoWidget.sigItemDataSet.connect(lambda item, names: self.sigGeoDataSet.emit(item, names))
 		self.wGeoWidget.sigChanged.connect(lambda: self.sigGeoChanged.emit())
@@ -244,12 +244,6 @@ class AppWindow(QObject):
 				out[cRow] = cName.data(self.LdataName)
 
 		return out
-
-
-
-	def layerSelect(self):
-		cSel = self.layerSelection().values()
-		self.sigLayerSelect.emit(list(cSel))
 
 
 

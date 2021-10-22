@@ -140,7 +140,7 @@ class Ui():
 		self.appWindow.sigSceneSave.connect(self.sceneSave)
 		self.appWindow.sigSceneLoad.connect(self.sceneLoad)
 		self.appWindow.sigStoreG.connect(self.storeG)
-		self.appWindow.sigLayerSelect.connect(self.layerSetSelect)
+		self.appWindow.sigGeoSelect.connect(self.geoSetSelect)
 		self.appWindow.sigGeoHover.connect(self.geoSetHover)
 		self.appWindow.sigGeoDataSet.connect(self.geoSetData)
 		self.appWindow.sigGeoChanged.connect(self.reloadXml)
@@ -400,25 +400,10 @@ class Ui():
 
 
 #  todo 98 (module-ui, optimize) -1: prevent doubling by difference change
-	def layerSetSelect(self, _selectionA):
-		marksUsed = {}
-		cObjA = self.activeScene.getSceneObjs(_selectionA)
+	def geoSetSelect(self, _item, _state):
+		_item.markSet(self.markSelect, _state)
 
-		for cObj in cObjA:
-			for cMark in cObj.marks:
-				marksUsed[cMark] = True
-
-		for cMark in marksUsed:
-			for cObj in cObjA:
-				if cMark not in cObj.marks:
-					marksUsed[cMark] = False
-
-		self.appWindow.marksSelect(marksUsed)
-
-
-		self.activeScene.markApplyGeo(self.markSelect, _selectionA, step='UI')
-
-		self.reloadXml()
+		_item.marksSolve(filterStep='UI')
 
 
 

@@ -18,7 +18,7 @@ class GeoWidget(QWidget):
 	eventTypes = None
 
 
-	sigLayerSelect = Signal(list)
+	sigItemSelect = Signal(object, bool)
 	sigItemHover = Signal(object, bool)
 	sigItemDataSet = Signal(object, list)
 	sigChanged = Signal()
@@ -27,6 +27,7 @@ class GeoWidget(QWidget):
 
 	geoblock = None
 	lastHover = None
+	lastSelection = []
 
 
 	def eventFilter(self, _o, _e):
@@ -85,7 +86,21 @@ class GeoWidget(QWidget):
 
 
 	def layerSelect(self):
-		print('itemSelect')
+		cSelection = self.layerSelection().values()
+
+
+		for cObj in self.lastSelection:
+			if cObj not in cSelection:
+				self.sigItemSelect.emit(cObj, False)
+
+		for cObj in cSelection:
+			if cObj not in self.lastSelection:
+				self.sigItemSelect.emit(cObj, True)
+
+		self.lastSelection = cSelection
+
+
+		self.sigChanged.emit()
 
 
 
