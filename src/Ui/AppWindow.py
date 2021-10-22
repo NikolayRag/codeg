@@ -93,8 +93,8 @@ class AppWindow(QObject):
 
 
 		self.wGeoWidget = GeoWidget()
-		holderGeoWidget = cMain.findChild(QLayout, "wGeoWidget")
-		holderGeoWidget.addWidget(self.wGeoWidget)
+		frameGeo = cMain.findChild(QLayout, "frameGeo")
+		frameGeo.addWidget(self.wGeoWidget)
 
 
 		self.wListGeoItems = cMain.findChild(QTableWidget, "listGeoItems")
@@ -108,7 +108,7 @@ class AppWindow(QObject):
 		self.wListGeoItems.cellClicked.connect(self.layerClick)
 
 		
-		self.wMarkTools = cMain.findChild(QLayout, "wMarkTools")
+		self.wFrameMark = cMain.findChild(QLayout, "frameMark")
 		self.wMarks = cMain.findChild(QLayout, "wMarks")
 		self.wBtnMarkAdd = cMain.findChild(QToolButton, "btnMarkAdd")
 
@@ -186,7 +186,7 @@ class AppWindow(QObject):
 		self.wListGeoItems.setRowCount(0)
 
 
-		while markTool := self.wMarkTools.takeAt(0):
+		while markTool := self.wFrameMark.takeAt(0):
 			markTool.widget().setParent(None)
 
 
@@ -385,7 +385,7 @@ class AppWindow(QObject):
 			return
 
 
-		btnMark = MarkWidget(self.wMarkTools, _mark, fieldWColor=fieldColor)
+		btnMark = MarkWidget(self.wFrameMark, _mark, fieldWColor=fieldColor)
 		self.allWidgetsMarks[_mark] = btnMark
 
 

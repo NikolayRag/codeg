@@ -423,7 +423,7 @@
                       </layout>
                      </widget>
                      <widget class="QWidget" name="verticalLayoutWidget_2">
-                      <layout class="QVBoxLayout" name="wGeoWidget"/>
+                      <layout class="QVBoxLayout" name="frameGeo"/>
                      </widget>
                     </widget>
                    </item>
@@ -473,7 +473,7 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <layout class="QVBoxLayout" name="wMarkTools">
+                   <layout class="QVBoxLayout" name="frameMark">
                     <property name="spacing">
                      <number>0</number>
                     </property>
