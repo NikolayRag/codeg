@@ -67,16 +67,10 @@ class GeoWidget(QWidget):
 
 		if _item:
 			itemName = QTableWidgetItem(_item.name)
-#
-			itemName.setData(self.LdataName, _item.name)
-#
 			itemName.setData(self.LdataItem, _item)
 			self.wListItems.setItem(cRow, self.LayerColumnName, itemName)
 		
 			itemOn = QTableWidgetItem()
-#
-			itemOn.setData(self.LdataName, _item.name)
-#
 			itemOn.setData(self.LdataItem, _item)
 
 			itemOn.setFlags(Qt.NoItemFlags)
@@ -103,8 +97,7 @@ class GeoWidget(QWidget):
 
 
 	def layerClick(self, _row, _col):
-		print('itemClick', _row, _col)
-		
+		#blank space click
 		if _row == self.wListItems.rowCount()-1:
 			self.wListItems.clearSelection()
 
@@ -123,7 +116,7 @@ class GeoWidget(QWidget):
 		cSelection = list(self.layerSelection().keys())
 		newState = not self.wListItems.item(_row, _col).data(self.LdataOn)
 
-
+		#explicit single item select
 		if _row not in cSelection:
 			self.wListItems.selectRow(_row)
 			cSelection = [_row]
@@ -133,6 +126,9 @@ class GeoWidget(QWidget):
 # -todo 147 (module-ui, fix) +0: use blank layer space to from-to hover mouse selection
 		for cRow in cSelection:
 			cItem = self.wListItems.item(cRow, _col)
+
+
+			#skip items already set in a group
 			if newState == cItem.data(self.LdataOn):
 				continue
 
