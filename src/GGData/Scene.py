@@ -138,7 +138,7 @@ class Scene():
 			elAdd = []
 
 		if mode==None:
-			elSub = self.allGeo[0].getObj()
+			elSub = self.allGeo[0].getObj() #first remove all for None mode
 
 
 		elAll = []
