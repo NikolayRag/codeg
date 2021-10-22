@@ -19,25 +19,7 @@ class GeoWidget(QWidget):
 		return False
 
 
-
-	def __init__(self):
-		QWidget.__init__(self)
-
-
-		loadUi = QUiLoader().load(self.defUi)
-		self.setLayout(loadUi.layout())
-
-
-		self.wListGeoItems = self.findChild(QTableWidget, "listGeoItems")
-
-		self.wListGeoItems.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
-		self.wListGeoItems.itemSelectionChanged.connect(self.layerSelect)
-		self.wListGeoItems.cellEntered.connect(self.layerHover)
-		self.eventTypes = {QEvent.Type.Leave: self.layerHover}
-		self.wListGeoItems.installEventFilter(self)
-
-		self.wListGeoItems.cellClicked.connect(self.layerClick)
-
+### PRIVATE 
 
 
 	def layerSelect(self):
@@ -52,3 +34,24 @@ class GeoWidget(QWidget):
 
 	def layerClick(self, _row, _col):
 		print('itemClick', _row, _col)
+
+
+
+	def __init__(self):
+		QWidget.__init__(self)
+
+
+		loadUi = QUiLoader().load(self.defUi)
+		self.setLayout(loadUi.layout())
+
+
+		self.wListItems = self.findChild(QTableWidget, "listItems")
+
+		self.wListItems.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
+		self.wListItems.itemSelectionChanged.connect(self.layerSelect)
+		self.wListItems.cellEntered.connect(self.layerHover)
+		self.eventTypes = {QEvent.Type.Leave: self.layerHover}
+		self.wListItems.installEventFilter(self)
+
+		self.wListItems.cellClicked.connect(self.layerClick)
+
