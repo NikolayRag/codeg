@@ -362,8 +362,7 @@ class Ui():
 		cGeo = self.activeScene.geoAdd(fileName, 'svg')
 		self.activeScene.clean()
 		
-		cMeta = self.activeScene.geoMeta()
-		self.activeScene.markApplyGeo(self.markDefault, cMeta.keys(), step='UI')
+		self.activeScene.markApplyGeo(self.markDefault, cGeo.names(), step='UI')
 
 
 		self.appWindow.geoAddSlot(cGeo)

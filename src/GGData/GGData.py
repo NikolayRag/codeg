@@ -30,7 +30,6 @@ class GGData():
 
 	allFilters = {}
 	allScenes = {}
-	currentSceneId = 0
 
 	maxMarkPriority = 0
 
