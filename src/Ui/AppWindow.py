@@ -12,6 +12,7 @@ from PySide2.QtUiTools import *
 
 from .SvgViewport import *
 from .MarkWidget import *
+from .GeoWidget import *
 
 
 
@@ -89,6 +90,11 @@ class AppWindow(QObject):
 
 
 		self.wListGeoBlocks = cMain.findChild(QTableWidget, "listGeoBlocks")
+
+
+		self.wGeoWidget = GeoWidget()
+		holderGeoWidget = cMain.findChild(QLayout, "wGeoWidget")
+		holderGeoWidget.addWidget(self.wGeoWidget)
 
 
 		self.wListGeoItems = cMain.findChild(QTableWidget, "listGeoItems")
