@@ -143,6 +143,7 @@ class Ui():
 		self.appWindow.sigLayerSelect.connect(self.layerSetSelect)
 		self.appWindow.sigLayerHover.connect(self.layerSetHover)
 		self.appWindow.sigCtrlLayersSet.connect(self.ctrlLayersSet)
+		self.appWindow.sigGeoChanged.connect(self.reloadXml)
 		self.appWindow.sigMarkAdd.connect(self.slotMarkAdd)
 		self.appWindow.sigMarkAssign.connect(self.slotMarkAssign)
 
@@ -429,11 +430,17 @@ class Ui():
 
 
 
-	def ctrlLayersSet(self, _elA, _on):
-		self.activeScene.markApplyGeo(self.markOff, _elA, mode=(not _on), step='UI')
-		self.activeScene.geoDataSet(_elA, {'visible':_on})
+	def ctrlLayersSet(self, _item, _names):
+		if 'visible' not in _names:
+			return
 
-		self.reloadXml()
+		print(_item.dataGet('visible'))
+		if _item.dataGet('visible'):
+			_item.markSub(self.markOff)
+		else:
+			_item.markAdd(self.markOff)
+
+		_item.marksSolve(filterStep='UI')
 
 
 

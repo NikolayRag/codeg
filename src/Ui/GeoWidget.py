@@ -21,7 +21,8 @@ class GeoWidget(QWidget):
 
 	sigLayerSelect = Signal(list)
 	sigLayerHover = Signal(str)
-	sigCtrlLayersSet = Signal(list, bool)
+	sigItemDataSet = Signal(object, list)
+	sigChanged = Signal()
 
 	#runtime
 
@@ -114,10 +115,12 @@ class GeoWidget(QWidget):
 			self.layersSwitchVis(_row, _col)
 
 
+		self.sigChanged.emit()
+
+
 
 	def layersSwitchVis(self, _row, _col):
 		cSelection = list(self.layerSelection().keys())
-		namesA = []
 		newState = not self.wListItems.item(_row, _col).data(self.LdataOn)
 
 
@@ -134,13 +137,10 @@ class GeoWidget(QWidget):
 				continue
 
 			self.geoitemSet(cItem, newState)
-			namesA.append( cItem.data(self.LdataName) )
 
-
-		self.sigCtrlLayersSet.emit(
-			namesA,
-			newState
-		)
+			cGeo = cItem.data(self.LdataItem)
+			cGeo.dataSet({'visible':newState})
+			self.sigItemDataSet.emit(cGeo, ['visible'])
 
 
 
