@@ -92,9 +92,9 @@ class AppWindow(QObject):
 		self.wListGeoBlocks = cMain.findChild(QTableWidget, "listGeoBlocks")
 
 
+		self.wFrameGeo = cMain.findChild(QLayout, "frameGeo")
 		self.wGeoWidget = GeoWidget()
-		frameGeo = cMain.findChild(QLayout, "frameGeo")
-		frameGeo.addWidget(self.wGeoWidget)
+		self.wFrameGeo.addWidget(self.wGeoWidget)
 
 
 ###
@@ -211,11 +211,7 @@ class AppWindow(QObject):
 
 
 	def geoAddSlot(self, _geo):
-		for cItem in _geo.getObj():
-			self.wGeoWidget.geoitemAdd(cItem)
-
-		#blank
-		self.wGeoWidget.geoitemAdd()
+		self.wGeoWidget.replace(_geo)
 
 
 

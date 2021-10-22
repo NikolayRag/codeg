@@ -19,6 +19,10 @@ class GeoWidget(QWidget):
 	eventTypes = None
 
 
+	#runtime
+
+	block = None
+
 
 	def eventFilter(self, _o, _e):
 		if _e.type() in self.eventTypes:
@@ -80,7 +84,7 @@ class GeoWidget(QWidget):
 
 
 
-	def __init__(self):
+	def __init__(self, _geoblock=None):
 		QWidget.__init__(self)
 
 
@@ -100,5 +104,24 @@ class GeoWidget(QWidget):
 
 
 
+		if _geoblock:
+			self.replace(_geoblock)
+
+
+
 	def clean(self):
 		self.wListItems.setRowCount(0)
+
+
+
+	def replace(self, _geoblock):
+		self.clean()
+
+		self.block = _geoblock
+
+
+		for cItem in self.block.getObj():
+			self.geoitemAdd(cItem)
+
+		#blank
+		self.geoitemAdd()
