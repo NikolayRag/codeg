@@ -58,6 +58,7 @@ class GeoWidget(QWidget):
 		_item.setBackground(c)
 
 
+#  todo 193 (ux, widgets, decide) +0: move to GeoItem widget
 	def geoitemAdd(self, _geoitem=None):
 		cRow = self.wListItems.rowCount()
 

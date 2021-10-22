@@ -322,7 +322,7 @@
 +scene, module-ui, ux 113: +0 "src\GGData\Scene.py" kii 21/09/25 22:40:14
 	assignable layer marks holding control data
 
-=module-ui, fix 114: +0 "src\Ui\AppWindow.py" kii 21/09/08 13:42:53
+=module-ui, fix 114: +0 "src\Ui\GeoWidget.py" ki 21/10/22 19:46:39
 	change vis for select-all case
 
  ux 115: -1 "src\Ui\Ui.py" kii 21/09/08 18:41:16
@@ -421,7 +421,7 @@
  module-ui, feature 149: +0 "src\Ui\Ui.py" kii 21/10/11 22:19:18
 	multiscene
 
--ux, widgets 150: +0 "src\Ui\AppWindow.py" ki 21/10/19 07:01:05
+-ux, widgets 150: +0 "src\Ui\AppWindow.py" ki 21/10/22 04:48:01
 	Make GeoWidget
 
  module-ui, mark 152: +0 "src\Ui\AppWindow.py" kii 21/10/12 01:49:30
@@ -540,4 +540,10 @@
 
  module-ui, fix 192: +0 "src\Ui\AppWindow.py" ki 21/10/22 01:31:18
 	wrong fit at start
+
+ ux, widgets, decide 193: +0 "src\Ui\GeoWidget.py" ki 21/10/22 18:21:35
+	move to GeoItem widget
+
+!issue, explore 194: +0 "src\Ui\GeoWidget.py" ki 21/10/22 18:35:40
+	why does it remove selection before select-by-click?
 
