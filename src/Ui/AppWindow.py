@@ -43,7 +43,7 @@ class AppWindow(QObject):
 	LayerColumnSwitch = 1
 
 	LdataName = Qt.UserRole +0
-	LdataOn = Qt.UserRole +1
+	LdataOn = Qt.UserRole +2
 
 	sigSceneWipe = Signal()
 	sigAddFile = Signal()
@@ -209,13 +209,12 @@ class AppWindow(QObject):
 		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 
 
-		cList = self.wListGeoItems
 
 		for cName in _meta:
-			self.layerAddItem(cList, _meta, cName)
+			self.wGeoWidget.geoitemAdd(cName, _meta[cName])
 
 		#blank
-		self.layerAddItem(cList)
+		self.wGeoWidget.geoitemAdd()
 
 
 
@@ -240,32 +239,6 @@ class AppWindow(QObject):
 		c = QColor('#4c4')
 		c.setAlpha(255 if _on else 0)
 		_item.setBackground(c)
-
-
-
-	def layerAddItem(self, _list, _meta=None, _name=None):
-		cRow = _list.rowCount()
-
-		_list.insertRow(cRow)
-
-		if _meta:
-			itemName = QTableWidgetItem(_name)
-			itemName.setData(self.LdataName, _name)
-			_list.setItem(cRow, self.LayerColumnName, itemName)
-		
-			itemOn = QTableWidgetItem()
-			itemOn.setData(self.LdataName, _name)
-
-			itemOn.setFlags(Qt.NoItemFlags)
-			visible = ('visible' not in _meta[_name]) or _meta[_name]['visible']
-			self.layerSetItem(itemOn, visible)
-			_list.setItem(cRow, self.LayerColumnSwitch, itemOn)
-
-		else:
-			for i in range(_list.columnCount()):
-				cItem = QTableWidgetItem()
-				cItem.setFlags(Qt.NoItemFlags)
-				_list.setItem(cRow, i, cItem)
 
 
 

@@ -6,6 +6,14 @@ from PySide2.QtUiTools import *
 
 
 class GeoWidget(QWidget):
+	LayerColumnName = 0
+	LayerColumnSwitch = 1
+
+	LdataName = Qt.UserRole +0
+	LdataItem = Qt.UserRole +1
+	LdataOn = Qt.UserRole +2
+
+
 	defUi = './Ui/GeoWidget.ui'
 
 	eventTypes = None
@@ -20,6 +28,41 @@ class GeoWidget(QWidget):
 
 
 ### PRIVATE 
+
+
+	def geoitemSet(self, _item, _on):
+		_item.setData(self.LdataOn, _on)
+
+		c = QColor('#4c4')
+		c.setAlpha(255 if _on else 0)
+		_item.setBackground(c)
+
+
+
+	def geoitemAdd(self, _name=None, _item=None):
+		cRow = self.wListItems.rowCount()
+
+		self.wListItems.insertRow(cRow)
+
+		if _name:
+			itemName = QTableWidgetItem(_name)
+			itemName.setData(self.LdataName, _name)
+			self.wListItems.setItem(cRow, self.LayerColumnName, itemName)
+		
+			itemOn = QTableWidgetItem()
+			itemOn.setData(self.LdataName, _name)
+
+			itemOn.setFlags(Qt.NoItemFlags)
+			visible = ('visible' not in _item) or _item['visible']
+			self.geoitemSet(itemOn, visible)
+			self.wListItems.setItem(cRow, self.LayerColumnSwitch, itemOn)
+
+		else:
+			for i in range(self.wListItems.columnCount()):
+				cItem = QTableWidgetItem()
+				cItem.setFlags(Qt.NoItemFlags)
+				self.wListItems.setItem(cRow, i, cItem)
+
 
 
 	def layerSelect(self):
