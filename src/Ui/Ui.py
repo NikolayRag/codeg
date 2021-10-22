@@ -462,11 +462,7 @@ class Ui():
 
 
 	def slotMarkAssign(self, _mark, _geoList, _state):
-		self.activeScene.markApplyGeo(_mark, list(_geoList.values()), mode=bool(_state), step='DIRECT')
+		for cGeo in _geoList:
+			cGeo.markSet(_mark, _state)
 
-		self.uiMarkAssign(_mark, list(_geoList.keys()), _state)
-
-
-
-	def uiMarkAssign(self, _mark, _geoList, _state):
-		self.appWindow.wMarkAssign(_mark, _geoList, _state)
+			cGeo.marksSolve(filterStep='DIRECT')

@@ -315,7 +315,7 @@ class AppWindow(QObject):
 		self.wMarks.addWidget(btnMark)
 
 		btnMark.sigChanged.connect(lambda m,n,v:print(f"Changed: {m} '{n}' to {v}"))
-		btnMark.sigTrigger.connect(lambda m,s:self.sigMarkAssign.emit(m, self.layerSelection(), s))
+		btnMark.sigTrigger.connect(lambda m,s:self.sigMarkAssign.emit(m, self.wGeoWidget.getItems(selected=True), s))
 	 
 		if _open:
 			btnMark.toolPop()
@@ -323,5 +323,3 @@ class AppWindow(QObject):
 
 
 # -todo 141 (module-ui, mark) +0: update Geoitem widgets
-	def wMarkAssign(self, _mark, _geoList, _state):
-		None
