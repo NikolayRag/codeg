@@ -58,22 +58,21 @@ class GeoWidget(QWidget):
 		_item.setBackground(c)
 
 
-
-	def geoitemAdd(self, _item=None):
+	def geoitemAdd(self, _geoitem=None):
 		cRow = self.wListItems.rowCount()
 
 		self.wListItems.insertRow(cRow)
 
-		if _item:
-			itemName = QTableWidgetItem(_item.name)
-			itemName.setData(self.LdataItem, _item)
+		if _geoitem:
+			itemName = QTableWidgetItem(_geoitem.name)
+			itemName.setData(self.LdataItem, _geoitem)
 			self.wListItems.setItem(cRow, self.LayerColumnName, itemName)
 		
 			itemOn = QTableWidgetItem()
-			itemOn.setData(self.LdataItem, _item)
+			itemOn.setData(self.LdataItem, _geoitem)
 
 			itemOn.setFlags(Qt.NoItemFlags)
-			visible = _item.dataGet('visible', True)
+			visible = _geoitem.dataGet('visible', True)
 			self.geoitemSet(itemOn, visible)
 			self.wListItems.setItem(cRow, self.LayerColumnSwitch, itemOn)
 
