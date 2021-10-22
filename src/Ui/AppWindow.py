@@ -100,7 +100,7 @@ class AppWindow(QObject):
 		self.wGeoWidget.sigItemSelect.connect(lambda item, state: self.sigGeoSelect.emit(item, state))
 		self.wGeoWidget.sigItemHover.connect(lambda item, state: self.sigGeoHover.emit(item, state))
 		self.wGeoWidget.sigItemDataSet.connect(lambda item, names: self.sigGeoDataSet.emit(item, names))
-		self.wGeoWidget.sigChanged.connect(lambda: self.sigGeoChanged.emit())
+		self.wGeoWidget.sigChanged.connect(self.geoTouched)
 
 ###
 		self.wListGeoItems = cMain.findChild(QTableWidget, "listGeoItems")
@@ -247,14 +247,34 @@ class AppWindow(QObject):
 
 
 
-	def marksSelect(self, _marks):
+	def geoTouched(self, _selected):
+		self.sigGeoChanged.emit()
+
+		if not _selected:
+			return
+
+
+		marksUsed = {}
+		
+		cSelected = self.wGeoWidget.getItems(selected=True)
+
+		for cObj in cSelected:
+			for cMark in cObj.marks:
+				marksUsed[cMark] = True
+
+		for cMark in marksUsed:
+			for cObj in cSelected:
+				if cMark not in cObj.marks:
+					marksUsed[cMark] = False
+
+
 		for cMark in self.allWidgetsMarks:
 			self.allWidgetsMarks[cMark].setTrigger(False, emit=False)
 
 
-		for cMark in _marks:
+		for cMark, cIn in marksUsed.items():
 			if cMark in self.allWidgetsMarks:
-				self.allWidgetsMarks[cMark].setTrigger(_marks[cMark], tri=not _marks[cMark], emit=False)
+				self.allWidgetsMarks[cMark].setTrigger(cIn, tri=not cIn, emit=False)
 
 
 

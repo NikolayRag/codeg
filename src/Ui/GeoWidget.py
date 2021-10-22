@@ -21,7 +21,7 @@ class GeoWidget(QWidget):
 	sigItemSelect = Signal(object, bool)
 	sigItemHover = Signal(object, bool)
 	sigItemDataSet = Signal(object, list)
-	sigChanged = Signal()
+	sigChanged = Signal(bool)
 
 	#runtime
 
@@ -100,7 +100,7 @@ class GeoWidget(QWidget):
 		self.lastSelection = cSelection
 
 
-		self.sigChanged.emit()
+		self.sigChanged.emit(True)
 
 
 
@@ -118,7 +118,7 @@ class GeoWidget(QWidget):
 			self.sigItemHover.emit(cGeo, True)
 
 
-		self.sigChanged.emit()
+		self.sigChanged.emit(False)
 
 
 
@@ -146,7 +146,7 @@ class GeoWidget(QWidget):
 			self.layersSwitchVis(cSelection, newState)
 
 
-		self.sigChanged.emit()
+		self.sigChanged.emit(False)
 
 
 
@@ -209,3 +209,11 @@ class GeoWidget(QWidget):
 
 		#blank
 		self.geoitemAdd()
+
+
+	def getItems(self, selected=False):
+		if selected:
+			return list(self.lastSelection)
+
+
+		return list(self.geoblock.getObj())
