@@ -96,6 +96,9 @@ class AppWindow(QObject):
 		self.wGeoWidget = GeoWidget()
 		self.wFrameGeo.addWidget(self.wGeoWidget)
 
+		self.wGeoWidget.sigLayerSelect.connect(lambda sel: self.sigLayerSelect.emit(sel))
+		self.wGeoWidget.sigLayerHover.connect(lambda itm: self.sigLayerHover.emit(itm))
+		self.wGeoWidget.sigCtrlLayersSet.connect(lambda sel, on: self.sigCtrlLayersSet.emit(sel, on))
 
 ###
 		self.wListGeoItems = cMain.findChild(QTableWidget, "listGeoItems")
