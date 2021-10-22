@@ -142,7 +142,7 @@ class Ui():
 		self.appWindow.sigStoreG.connect(self.storeG)
 		self.appWindow.sigLayerSelect.connect(self.layerSetSelect)
 		self.appWindow.sigGeoHover.connect(self.geoSetHover)
-		self.appWindow.sigCtrlLayersSet.connect(self.ctrlLayersSet)
+		self.appWindow.sigGeoDataSet.connect(self.geoSetData)
 		self.appWindow.sigGeoChanged.connect(self.reloadXml)
 		self.appWindow.sigMarkAdd.connect(self.slotMarkAdd)
 		self.appWindow.sigMarkAssign.connect(self.slotMarkAssign)
@@ -430,7 +430,7 @@ class Ui():
 
 
 
-	def ctrlLayersSet(self, _item, _names):
+	def geoSetData(self, _item, _names):
 		if 'visible' not in _names:
 			return
 

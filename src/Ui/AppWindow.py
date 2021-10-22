@@ -53,7 +53,7 @@ class AppWindow(QObject):
 	sigDispatch = Signal(str)
 	sigLayerSelect = Signal(list)
 	sigGeoHover = Signal(object, bool)
-	sigCtrlLayersSet = Signal(object, list)
+	sigGeoDataSet = Signal(object, list)
 	sigGeoChanged = Signal()
 	sigMarkAdd = Signal()
 	sigMarkAssign = Signal(object, dict, bool)
@@ -99,7 +99,7 @@ class AppWindow(QObject):
 
 		self.wGeoWidget.sigLayerSelect.connect(lambda sel: self.sigLayerSelect.emit(sel))
 		self.wGeoWidget.sigItemHover.connect(lambda item, state: self.sigGeoHover.emit(item, state))
-		self.wGeoWidget.sigItemDataSet.connect(lambda item, names: self.sigCtrlLayersSet.emit(item, names))
+		self.wGeoWidget.sigItemDataSet.connect(lambda item, names: self.sigGeoDataSet.emit(item, names))
 		self.wGeoWidget.sigChanged.connect(lambda: self.sigGeoChanged.emit())
 
 ###
