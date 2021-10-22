@@ -25,7 +25,7 @@ class GeoWidget(QWidget):
 
 	#runtime
 
-	block = None
+	geoblock = None
 
 
 	def eventFilter(self, _o, _e):
@@ -171,10 +171,10 @@ class GeoWidget(QWidget):
 	def replace(self, _geoblock):
 		self.clean()
 
-		self.block = _geoblock
+		self.geoblock = _geoblock
 
 
-		for cItem in self.block.getObj():
+		for cItem in self.geoblock.getObj():
 			self.geoitemAdd(cItem)
 
 		#blank
