@@ -98,7 +98,6 @@ class GeoWidget(QWidget):
 		#blank space click
 		if _row == self.wListItems.rowCount()-1:
 			self.wListItems.clearSelection()
-
 			return
 			
 

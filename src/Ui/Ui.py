@@ -434,7 +434,6 @@ class Ui():
 		if 'visible' not in _names:
 			return
 
-		print(_item.dataGet('visible'))
 		if _item.dataGet('visible'):
 			_item.markSub(self.markOff)
 		else:
