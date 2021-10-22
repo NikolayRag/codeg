@@ -97,17 +97,11 @@ class AppWindow(QObject):
 		frameGeo.addWidget(self.wGeoWidget)
 
 
+###
 		self.wListGeoItems = cMain.findChild(QTableWidget, "listGeoItems")
+###
 
-		self.wListGeoItems.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
-		self.wListGeoItems.itemSelectionChanged.connect(self.layerSelect)
-		self.wListGeoItems.cellEntered.connect(self.layerHover)
-		self.tmpFilterLayersLeave = BindFilter(QEvent.Type.Leave, self.layerHover)
-		self.wListGeoItems.installEventFilter(self.tmpFilterLayersLeave)
 
-		self.wListGeoItems.cellClicked.connect(self.layerClick)
-
-		
 		self.wFrameMark = cMain.findChild(QLayout, "frameMark")
 		self.wMarks = cMain.findChild(QLayout, "wMarks")
 		self.wBtnMarkAdd = cMain.findChild(QToolButton, "btnMarkAdd")
