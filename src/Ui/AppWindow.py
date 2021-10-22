@@ -177,7 +177,7 @@ class AppWindow(QObject):
 	def slotNewScene(self, _scene):
 		self.wBtnStore.setEnabled(True)
 		self.wBtnProccess.setEnabled(True)
-		self.wListGeoItems.setRowCount(0)
+		self.wGeoWidget.clean()
 
 
 		while markTool := self.wFrameMark.takeAt(0):

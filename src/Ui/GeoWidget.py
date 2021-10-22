@@ -55,3 +55,7 @@ class GeoWidget(QWidget):
 
 		self.wListItems.cellClicked.connect(self.layerClick)
 
+
+
+	def clean(self):
+		self.wListItems.setRowCount(0)
