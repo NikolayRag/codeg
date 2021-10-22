@@ -14,11 +14,5 @@ class GeoWidget(QWidget):
 		QWidget.__init__(self)
 
 
-		self.lLayout = QVBoxLayout()
-		self.lLayout.setSpacing(0)
-		self.lLayout.setContentsMargins(0,0,0,0)
-		self.setLayout(self.lLayout)
-
-
-		self.wMain = QUiLoader().load(self.defUi)
-		self.lLayout.addWidget(self.wMain)
+		loadUi = QUiLoader().load(self.defUi)
+		self.setLayout(loadUi.layout())
