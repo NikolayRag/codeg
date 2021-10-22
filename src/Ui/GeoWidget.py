@@ -50,11 +50,17 @@ class GeoWidget(QWidget):
 
 		if _item:
 			itemName = QTableWidgetItem(_item.name)
+#
 			itemName.setData(self.LdataName, _item.name)
+#
+			itemName.setData(self.LdataItem, _item)
 			self.wListItems.setItem(cRow, self.LayerColumnName, itemName)
 		
 			itemOn = QTableWidgetItem()
+#
 			itemOn.setData(self.LdataName, _item.name)
+#
+			itemOn.setData(self.LdataItem, _item)
 
 			itemOn.setFlags(Qt.NoItemFlags)
 			visible = _item.dataGet('visible', True)
