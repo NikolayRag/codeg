@@ -19,18 +19,19 @@ class GeoWidget(QWidget):
 
 
 	sigLayerSelect = Signal(list)
-	sigLayerHover = Signal(str)
+	sigItemHover = Signal(object, bool)
 	sigItemDataSet = Signal(object, list)
 	sigChanged = Signal()
 
 	#runtime
 
 	geoblock = None
+	lastHover = None
 
 
 	def eventFilter(self, _o, _e):
 		if _e.type() in self.eventTypes:
-			self.eventTypes[_e.type()](event=_e)
+			self.eventTypes[_e.type()]()
 
 		return False
 
@@ -88,8 +89,22 @@ class GeoWidget(QWidget):
 
 
 
-	def layerHover(self, _row=-1, _col=-1, event=None):
-		print('itemHover', _row, _col, event)
+	def layerHover(self, _row=-1, _col=-1):
+		if self.lastHover:
+			self.sigItemHover.emit(self.lastHover, False)
+
+
+		if _row == -1:
+			return
+
+
+		cGeo = self.lastHover = self.wListItems.item(_row, _col).data(self.LdataItem)
+		if cGeo:
+			self.sigItemHover.emit(cGeo, True)
+
+
+		self.sigChanged.emit()
+
 
 
 

@@ -52,7 +52,7 @@ class AppWindow(QObject):
 	sigStoreG = Signal()
 	sigDispatch = Signal(str)
 	sigLayerSelect = Signal(list)
-	sigLayerHover = Signal(str)
+	sigGeoHover = Signal(object, bool)
 	sigCtrlLayersSet = Signal(object, list)
 	sigGeoChanged = Signal()
 	sigMarkAdd = Signal()
@@ -98,7 +98,7 @@ class AppWindow(QObject):
 		self.wFrameGeo.addWidget(self.wGeoWidget)
 
 		self.wGeoWidget.sigLayerSelect.connect(lambda sel: self.sigLayerSelect.emit(sel))
-		self.wGeoWidget.sigLayerHover.connect(lambda itm: self.sigLayerHover.emit(itm))
+		self.wGeoWidget.sigItemHover.connect(lambda item, state: self.sigGeoHover.emit(item, state))
 		self.wGeoWidget.sigItemDataSet.connect(lambda item, names: self.sigCtrlLayersSet.emit(item, names))
 		self.wGeoWidget.sigChanged.connect(lambda: self.sigGeoChanged.emit())
 
@@ -261,16 +261,6 @@ class AppWindow(QObject):
 		for cMark in _marks:
 			if cMark in self.allWidgetsMarks:
 				self.allWidgetsMarks[cMark].setTrigger(_marks[cMark], tri=not _marks[cMark], emit=False)
-
-
-
-	def layerHover(self, _row=-1, _col=-1, event=None):
-		hoverName = None
-		if _row >= 0:
-			hoverName = self.wListGeoItems.item(_row, self.LayerColumnName).data(self.LdataName)
-
-
-		self.sigLayerHover.emit(hoverName)
 
 
 

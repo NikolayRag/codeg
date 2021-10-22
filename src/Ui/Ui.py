@@ -141,7 +141,7 @@ class Ui():
 		self.appWindow.sigSceneLoad.connect(self.sceneLoad)
 		self.appWindow.sigStoreG.connect(self.storeG)
 		self.appWindow.sigLayerSelect.connect(self.layerSetSelect)
-		self.appWindow.sigLayerHover.connect(self.layerSetHover)
+		self.appWindow.sigGeoHover.connect(self.geoSetHover)
 		self.appWindow.sigCtrlLayersSet.connect(self.ctrlLayersSet)
 		self.appWindow.sigGeoChanged.connect(self.reloadXml)
 		self.appWindow.sigMarkAdd.connect(self.slotMarkAdd)
@@ -423,8 +423,14 @@ class Ui():
 
 
 #  todo 77 (fix, module-ui, viewport, decide) -1: duplicate hover element topmost
-	def layerSetHover(self, _hover):
-		self.activeScene.markApplyGeo(self.markHover, [_hover] if _hover else [], step='UI')
+	def geoSetHover(self, _item, _state):
+		if _state:
+			_item.markAdd(self.markHover)
+		else:
+			_item.markSub(self.markHover)
+
+		_item.marksSolve(filterStep='UI')
+
 
 		self.reloadXml()
 
