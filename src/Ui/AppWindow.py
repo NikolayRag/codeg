@@ -232,9 +232,6 @@ class AppWindow(QObject):
 
 
 ######### Geoitems #########
-# -todo 150 (ux, widgets) +0: Make GeoWidget
-
-# =todo 144 (module-ui, widgets) +0: Use Geoitems directly in UI
 	def layerSelection(self):
 		out = {}
 
@@ -322,4 +319,4 @@ class AppWindow(QObject):
 
 
 
-# -todo 141 (module-ui, mark) +0: update Geoitem widgets
+# -todo 141 (module-ui, mark) +0: update Geoitem widgets on Mark assign

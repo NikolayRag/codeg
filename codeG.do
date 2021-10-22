@@ -370,7 +370,7 @@
 =module-data, refactor 132: +0 "" kii 21/09/25 22:47:48
 	unify Filter creation
 
- mark, optimize, decide 133: -1 "src\GGData\Geoblock.py" kii 21/09/26 23:50:36
+ mark, optimize, decide 133: -1 "src\GGData\Geoblock.py" ki 21/10/22 20:45:56
 	Need to cache data?
 
 +module-data, api 134: -1 "src\GGData\GGData.py" ki 21/10/16 21:01:11
@@ -394,8 +394,8 @@
 -module-ui, mark 140: +0 "src\Ui\MarkWidget.py" kii 21/10/04 13:14:09
 	redesign
 
--module-ui, mark 141: +0 "src\Ui\AppWindow.py" kii 21/10/10 13:17:56
-	update Geoitem widgets
+-module-ui, mark 141: +0 "src\Ui\AppWindow.py" ki 21/10/23 01:36:55
+	update Geoitem widgets on Mark assign
 
 +ui, mark 142: +0 "src\Ui\AppWindow.py" kii 21/10/10 19:28:48
 	Select Marks by layers
@@ -403,7 +403,7 @@
 =ui, widgets 143: +0 "src\Ui\Widgets.py" kii 21/10/10 02:27:15
 	simplify color picker
 
-=module-ui, widgets 144: +0 "src\Ui\AppWindow.py" kii 21/10/11 22:21:45
++module-ui, widgets 144: +0 "src\Ui\AppWindow.py" ki 21/10/22 22:12:55
 	Use Geoitems directly in UI
 
 -module-ui, widgets 145: +0 "src\Ui\AppWindow.py" kii 21/10/12 03:54:15
@@ -421,7 +421,7 @@
  module-ui, feature 149: +0 "src\Ui\Ui.py" kii 21/10/11 22:19:18
 	multiscene
 
--ux, widgets 150: +0 "src\Ui\AppWindow.py" ki 21/10/22 04:48:01
++ux, widgets 150: +0 "src\Ui\AppWindow.py" ki 21/10/22 22:12:51
 	Make GeoWidget
 
  module-ui, mark 152: +0 "src\Ui\AppWindow.py" kii 21/10/12 01:49:30
@@ -546,4 +546,7 @@
 
 !issue, explore 194: +0 "src\Ui\GeoWidget.py" ki 21/10/22 18:35:40
 	why does it remove selection before select-by-click?
+
++fix 195: +2 "src\Ui\Ui.py" ki 21/10/23 01:11:15
+	fix sysytem marks assignment
 
