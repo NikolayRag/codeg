@@ -202,7 +202,7 @@ class AppWindow(QObject):
 
 
 #  todo 3 (feature, file) +0: allow picking from Recent files list
-	def reactAddFile(self, _meta, _xml):
+	def updateViewport(self, _xml):
 		self.wSvgViewport.canvasAdd(_xml)
 		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 #  todo 157 (fix, canvas) +0: review SvgViewport fit routine
@@ -210,8 +210,9 @@ class AppWindow(QObject):
 
 
 
-		for cName in _meta:
-			self.wGeoWidget.geoitemAdd(cName, _meta[cName])
+	def geoAddSlot(self, _geo):
+		for cItem in _geo.getObj():
+			self.wGeoWidget.geoitemAdd(cItem)
 
 		#blank
 		self.wGeoWidget.geoitemAdd()
