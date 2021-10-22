@@ -202,9 +202,6 @@ class AppWindow(QObject):
 		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 
 
-#		Marks
-
-
 
 #  todo 3 (feature, file) +0: allow picking from Recent files list
 	def updateViewport(self, _xml):
@@ -212,11 +209,6 @@ class AppWindow(QObject):
 		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 #  todo 157 (fix, canvas) +0: review SvgViewport fit routine
 		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
-
-
-
-	def geoAddSlot(self, _geo):
-		self.wGeoWidget.replace(_geo)
 
 
 
@@ -232,15 +224,9 @@ class AppWindow(QObject):
 
 
 ######### Geoitems #########
-	def layerSelection(self):
-		out = {}
 
-		for cRange in self.wListGeoItems.selectedRanges():
-			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
-				cName = self.wListGeoItems.item(cRow, self.LayerColumnName)
-				out[cRow] = cName.data(self.LdataName)
-
-		return out
+	def geoAddSlot(self, _geo):
+		self.wGeoWidget.replace(_geo)
 
 
 
