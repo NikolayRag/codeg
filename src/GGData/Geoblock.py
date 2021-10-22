@@ -184,29 +184,19 @@ class Geoitem():
 
 
 	#Non-Scene Marks should not make dirty
-	def markAdd(self, _mark, dirty=True):
-		if _mark in self.marks:
-			return
+	def markSet(self, _mark, _on, dirty=True):
+		if _on:
+			if _mark in self.marks:
+				return
 
+			self.marks.append(_mark)
 
-		self.marks.append(_mark)
+		else:
+			if _mark not in self.marks:
+				return
 
-		self.dirtyRuntime = True
-		if dirty:
-			self.dirtyBind = True
+			self.marks.remove(_mark)
 
-
-		return True
-
-
-
-	#Non-Scene Marks should not make dirty
-	def markSub(self, _mark, dirty=True):
-		if _mark not in self.marks:
-			return
-
-
-		self.marks.remove(_mark)
 
 		self.dirtyRuntime = True
 		if dirty:

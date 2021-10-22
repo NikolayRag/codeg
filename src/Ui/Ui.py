@@ -290,7 +290,7 @@ class Ui():
 
 
 				for markIn in itemData['marks']:
-					cItem.markAdd(marksA[markIn])
+					cItem.markSet(marksA[markIn], True)
 
 
 				cData = itemData['data']
@@ -424,10 +424,7 @@ class Ui():
 
 #  todo 77 (fix, module-ui, viewport, decide) -1: duplicate hover element topmost
 	def geoSetHover(self, _item, _state):
-		if _state:
-			_item.markAdd(self.markHover)
-		else:
-			_item.markSub(self.markHover)
+		_item.markSet(self.markHover, _state)
 
 		_item.marksSolve(filterStep='UI')
 
@@ -440,10 +437,7 @@ class Ui():
 		if 'visible' not in _names:
 			return
 
-		if _item.dataGet('visible'):
-			_item.markSub(self.markOff)
-		else:
-			_item.markAdd(self.markOff)
+		_item.markSet(self.markOff, not _item.dataGet('visible', True))
 
 		_item.marksSolve(filterStep='UI')
 
