@@ -11,7 +11,6 @@ class GeoWidget(QWidget):
 
 	LdataName = Qt.UserRole +0
 	LdataItem = Qt.UserRole +1
-	LdataOn = Qt.UserRole +2
 
 
 	defUi = './Ui/GeoWidget.ui'
@@ -51,11 +50,10 @@ class GeoWidget(QWidget):
 
 
 	def geoitemSet(self, _item, _on):
-		_item.setData(self.LdataOn, _on)
-
 		c = QColor('#4c4')
 		c.setAlpha(255 if _on else 0)
 		_item.setBackground(c)
+
 
 
 #  todo 193 (ux, widgets, decide) +0: move to GeoItem widget
