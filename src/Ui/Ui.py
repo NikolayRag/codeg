@@ -429,9 +429,6 @@ class Ui():
 		_item.marksSolve(filterStep='UI')
 
 
-		self.reloadXml()
-
-
 
 	def ctrlLayersSet(self, _item, _names):
 		if 'visible' not in _names:
