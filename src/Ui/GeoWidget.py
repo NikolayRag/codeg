@@ -109,13 +109,10 @@ class GeoWidget(QWidget):
 			self.sigItemHover.emit(self.lastHover, False)
 
 
-		if _row == -1:
-			return
-
-
-		cGeo = self.lastHover = self.wListItems.item(_row, _col).data(self.LdataItem)
-		if cGeo:
-			self.sigItemHover.emit(cGeo, True)
+		if _row >= 0:
+			cGeo = self.lastHover = self.wListItems.item(_row, _col).data(self.LdataItem)
+			if cGeo:
+				self.sigItemHover.emit(cGeo, True)
 
 
 		self.sigChanged.emit(False)
