@@ -105,6 +105,11 @@ class Scene():
 
 
 
+	def markIn(self, _mark):
+		return _mark in self.allMarks
+
+
+
 	def markRemove(self, _mark):
 		if _mark not in self.allMarks:
 			return

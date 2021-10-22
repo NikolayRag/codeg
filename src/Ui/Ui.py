@@ -401,7 +401,8 @@ class Ui():
 
 #  todo 98 (module-ui, optimize) -1: prevent doubling by difference change
 	def geoSetSelect(self, _item, _state):
-		_item.markSet(self.markSelect, _state)
+		_item.markSet(self.markSelect, _state,
+			dirty=self.activeScene.markIn(self.markSelect))
 
 		_item.marksSolve(filterStep='UI')
 
@@ -409,7 +410,8 @@ class Ui():
 
 #  todo 77 (fix, module-ui, viewport, decide) -1: duplicate hover element topmost
 	def geoSetHover(self, _item, _state):
-		_item.markSet(self.markHover, _state)
+		_item.markSet(self.markHover, _state,
+			dirty=self.activeScene.markIn(self.markHover))
 
 		_item.marksSolve(filterStep='UI')
 
@@ -419,7 +421,8 @@ class Ui():
 		if 'visible' not in _names:
 			return
 
-		_item.markSet(self.markOff, not _item.dataGet('visible', True))
+		_item.markSet(self.markOff, not _item.dataGet('visible', True),
+			dirty=self.activeScene.markIn(self.markOff))
 
 		_item.marksSolve(filterStep='UI')
 
