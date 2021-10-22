@@ -19,6 +19,10 @@ class GeoWidget(QWidget):
 	eventTypes = None
 
 
+	sigLayerSelect = Signal(list)
+	sigLayerHover = Signal(str)
+	sigCtrlLayersSet = Signal(list, bool)
+
 	#runtime
 
 	block = None
@@ -32,6 +36,18 @@ class GeoWidget(QWidget):
 
 
 ### PRIVATE 
+
+
+	def layerSelection(self):
+		out = {}
+
+		for cRange in self.wListItems.selectedRanges():
+			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
+				cName = self.wListItems.item(cRow, self.LayerColumnName)
+				out[cRow] = cName.data(self.LdataName)
+
+		return out
+
 
 
 	def geoitemSet(self, _item, _on):
@@ -87,6 +103,44 @@ class GeoWidget(QWidget):
 
 	def layerClick(self, _row, _col):
 		print('itemClick', _row, _col)
+		
+		if _row == self.wListItems.rowCount()-1:
+			self.wListItems.clearSelection()
+
+			return
+			
+
+		if _col == self.LayerColumnSwitch:
+			self.layersSwitchVis(_row, _col)
+
+
+
+	def layersSwitchVis(self, _row, _col):
+		cSelection = list(self.layerSelection().keys())
+		namesA = []
+		newState = not self.wListItems.item(_row, _col).data(self.LdataOn)
+
+
+		if _row not in cSelection:
+			self.wListItems.selectRow(_row)
+			cSelection = [_row]
+
+
+# =todo 114 (module-ui, fix) +0: change vis for select-all case
+# -todo 147 (module-ui, fix) +0: use blank layer space to from-to hover mouse selection
+		for cRow in cSelection:
+			cItem = self.wListItems.item(cRow, _col)
+			if newState == cItem.data(self.LdataOn):
+				continue
+
+			self.geoitemSet(cItem, newState)
+			namesA.append( cItem.data(self.LdataName) )
+
+
+		self.sigCtrlLayersSet.emit(
+			namesA,
+			newState
+		)
 
 
 

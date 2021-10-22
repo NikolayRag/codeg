@@ -230,15 +230,6 @@ class AppWindow(QObject):
 # -todo 150 (ux, widgets) +0: Make GeoWidget
 
 # =todo 144 (module-ui, widgets) +0: Use Geoitems directly in UI
-	def layerSetItem(self, _item, _on):
-		_item.setData(self.LdataOn, _on)
-
-		c = QColor('#4c4')
-		c.setAlpha(255 if _on else 0)
-		_item.setBackground(c)
-
-
-
 	def layerSelection(self):
 		out = {}
 
@@ -275,47 +266,6 @@ class AppWindow(QObject):
 
 
 		self.sigLayerHover.emit(hoverName)
-
-
-
-	def layerClick(self, _row, _col):
-		if _row == self.wListGeoItems.rowCount()-1:
-			self.wListGeoItems.clearSelection()
-
-			return
-			
-
-		if _col == self.LayerColumnSwitch:
-			self.layersSwitchVis(_row, _col)
-
-
-
-	def layersSwitchVis(self, _row, _col):
-		cSelection = list(self.layerSelection().keys())
-		namesA = []
-		newState = not self.wListGeoItems.item(_row, _col).data(self.LdataOn)
-
-
-		if _row not in cSelection:
-			self.wListGeoItems.selectRow(_row)
-			cSelection = [_row]
-
-
-# =todo 114 (module-ui, fix) +0: change vis for select-all case
-# -todo 147 (module-ui, fix) +0: use blank layer space to from-to hover mouse selection
-		for cRow in cSelection:
-			cItem = self.wListGeoItems.item(cRow, _col)
-			if newState == cItem.data(self.LdataOn):
-				continue
-
-			self.layerSetItem(cItem, newState)
-			namesA.append( cItem.data(self.LdataName) )
-
-
-		self.sigCtrlLayersSet.emit(
-			namesA,
-			newState
-		)
 
 
 
