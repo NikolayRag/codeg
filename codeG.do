@@ -334,7 +334,7 @@
 =ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/10/20 22:56:59
 	add app settings
 
- refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" kii 21/10/09 21:40:56
+!refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" ki 21/10/23 03:36:50
 	clean for minor import
 
 -refactor, module-ui, module-data 119: +0 "src\Ui\Ui.py" kii 21/09/09 21:27:02
@@ -415,7 +415,7 @@
 -module-ui, fix 147: +0 "src\Ui\AppWindow.py" kii 21/10/10 19:31:52
 	use blank layer space to from-to hover mouse selection
 
-=module-ui, fix 148: +0 "src\Ui\Ui.py" kii 21/10/14 01:17:26
+-module-ui, fix 148: +0 "src\Ui\Ui.py" ki 21/10/23 03:35:32
 	review scene life cycle
 
  module-ui, feature 149: +0 "src\Ui\Ui.py" kii 21/10/11 22:19:18
@@ -555,4 +555,13 @@
 
 =data, fix 197: +0 "src\Ui\Ui.py" ki 21/10/23 03:17:31
 	deal with missing svg link
+
+-data, fix 198: +0 "src\Ui\Ui.py" ki 21/10/23 03:34:31
+	move save/load routines to GGData
+
+=module-data, module-ui, feature, api 199: +0 "src\Ui\Ui.py" ki 21/10/23 03:37:57
+	multiple Geoblocks
+
+=ux 200: +0 "src\Ui\Ui.py" ki 21/10/23 03:39:03
+	suggest file ext at save
 

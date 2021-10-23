@@ -113,7 +113,7 @@ class Ui():
 	activeScene = None
 
 
-# =todo 148 (module-ui, fix) +0: review scene life cycle
+# -todo 148 (module-ui, fix) +0: review scene life cycle
 	def __init__(self, _args, _data, _dispatch):
 		self.args = _args
 
@@ -217,7 +217,9 @@ class Ui():
 
 
 # =todo 182 (ux) +0: fix save saved project
+# =todo 200 (ux) +0: suggest file ext at save
 #  todo 196 (module-data, api) +0: deal with Markfilter data fields within Mark
+# -todo 198 (data, fix) +0: move save/load routines to GGData
 	def sceneSave(self):
 		saveData = self.activeScene.collect()
 
@@ -337,7 +339,7 @@ class Ui():
 
 
 
-#  todo 118 (refactor, module-ui, module-data) +0: clean for minor import
+# =todo 199 (module-data, module-ui, feature, api) +0: multiple Geoblocks
 	def addFile(self):
 		if self.sceneDirty():
 			return
