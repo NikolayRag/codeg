@@ -17,7 +17,7 @@ class Geoblock():
 
 
 	geoXML = None
-	allItems = {}
+	allItems = []
 	namespace = ''
 
 
@@ -28,7 +28,7 @@ class Geoblock():
 	def __init__(self, _source, _type):
 		self.namespace = _source
 		self.geoXML = XML.parse(_source)
-		self.allItems = {}
+		self.allItems = []
 
 
 		i = 1
@@ -48,7 +48,7 @@ class Geoblock():
 
 				cName = tagType +str(i)
 				cTag.set('id', cName)
-				self.allItems[cName] = Geoitem(cTag, cName)
+				self.allItems.append( Geoitem(cTag, cName) )
 
 				i += 1
 
@@ -56,7 +56,7 @@ class Geoblock():
 
 	def isDirty(self):
 		for cObj in self.allItems:
-			if self.allItems[cObj].isDirty():
+			if cObj.isDirty():
 				return True
 
 
@@ -66,7 +66,7 @@ class Geoblock():
 
 	def clean(self):
 		for cObj in self.allItems:
-			self.allItems[cObj].clean()
+			cObj.clean()
 
 
 		self.dirtyFlag = False
@@ -80,10 +80,7 @@ class Geoblock():
 
 
 	def getObj(self, _nameA=True):
-		if _nameA == True:
-			_nameA = self.allItems.keys()
-
-		return [self.allItems[n] for n in _nameA if (n in self.allItems)]
+		return [cI for cI in self.allItems if (_nameA==True or (cI.name in _nameA))]
 
 
 
@@ -96,7 +93,7 @@ class Geoblock():
 		geoA = []
 
 		for cObj in self.allItems:
-			geoA.append( self.allItems[cObj].packItem(_markLimit) )
+			geoA.append( cObj.packItem(_markLimit) )
 
 		out['items'] = geoA
 
