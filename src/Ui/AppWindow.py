@@ -47,6 +47,7 @@ class AppWindow(QObject):
 	LdataName = Qt.UserRole +0
 	LdataOn = Qt.UserRole +2
 
+	sigPreexit = Signal(object)
 	sigSceneWipe = Signal()
 	sigAddFile = Signal()
 	sigSceneSave = Signal()
@@ -79,6 +80,11 @@ class AppWindow(QObject):
 		QObject.__init__(self)
 
 		cMain = self.lMain = self.wMain = QUiLoader().load(self.defUi)
+		self.tmpFilterPreexit = BindFilter(
+			QEvent.Close,
+			lambda event: self.sigPreexit.emit(event)
+		)
+		cMain.installEventFilter(self.tmpFilterPreexit)
 
 
 		if _styleFile:

@@ -135,6 +135,7 @@ class Ui():
 		)
 
 
+		self.appWindow.sigPreexit.connect(self.preexit)
 		self.appWindow.sigSceneWipe.connect(self.sceneWipe)
 		self.appWindow.sigAddFile.connect(self.addFile)
 		self.appWindow.sigSceneSave.connect(self.sceneSave)
@@ -175,6 +176,12 @@ class Ui():
 
 
 		self.sceneNew()
+
+
+
+	def preexit(self, _e):
+		if self.sceneDirty():
+			_e.ignore()
 
 
 
