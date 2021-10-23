@@ -40,7 +40,7 @@ from .Utils import *
 
 class Ui():
 	defaultMarkData = {
-		'Mark Color': '#777',
+		'Mark Color': '#777', #dummy
 		'Laser Cycle': 100.
 	}
 	defaultMarkColorField = 'Mark Color'

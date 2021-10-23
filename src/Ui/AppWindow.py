@@ -102,10 +102,6 @@ class AppWindow(QObject):
 		self.wGeoWidget.sigItemDataSet.connect(lambda item, names: self.sigGeoDataSet.emit(item, names))
 		self.wGeoWidget.sigChanged.connect(self.geoTouched)
 
-###
-		self.wListGeoItems = cMain.findChild(QTableWidget, "listGeoItems")
-###
-
 
 		self.wFrameMark = cMain.findChild(QLayout, "frameMark")
 		self.wMarks = cMain.findChild(QLayout, "wMarks")
