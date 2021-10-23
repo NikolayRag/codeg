@@ -33,6 +33,8 @@ class BindFilter(QObject):
 	def eventFilter(self, _o, _e):
 		if _e.type() in self.eTypes:
 			self.cb(event=_e)
+			return True
+
 
 		return False
 
