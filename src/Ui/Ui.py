@@ -281,13 +281,13 @@ class Ui():
 
 
 		for geoData in projData['geoBlock']:
-			cGeo = self.activeScene.geoAdd(geoData['namespace'], 'svg')
-
-			self.activeScene.markApplyGeo(self.markDefault, cGeo.names(), step='UI')
+			cGeoblock = self.activeScene.geoAdd(geoData['namespace'], 'svg')
+			for cGeo in cGeoblock.getObj():
+				cGeo.markSet(self.markDefault, True)
 
 
 			for itemData in geoData['items']:
-				cItem = cGeo.getObj([itemData['name']])[0]
+				cItem = cGeoblock.getObj([itemData['name']])[0]
 
 
 				for markIn in itemData['marks']:
@@ -303,7 +303,7 @@ class Ui():
 				cItem.marksSolve(filterStep='UI')
 
 
-			self.appWindow.geoAddSlot(cGeo)
+			self.appWindow.geoAddSlot(cGeoblock)
 
 
 		cXml = self.activeScene.getSceneXML(True)
@@ -360,13 +360,15 @@ class Ui():
 
 		self.sceneNew(fileName)
 
-		cGeo = self.activeScene.geoAdd(fileName, 'svg')
+		cGeoblock = self.activeScene.geoAdd(fileName, 'svg')
+		for cGeo in cGeoblock.getObj():
+			cGeo.markSet(self.markDefault, True)
+			cGeo.marksSolve(filterStep='UI')
+
 		self.activeScene.clean()
 		
-		self.activeScene.markApplyGeo(self.markDefault, cGeo.names(), step='UI')
 
-
-		self.appWindow.geoAddSlot(cGeo)
+		self.appWindow.geoAddSlot(cGeoblock)
 
 		cXml = self.activeScene.getSceneXML(True)
 		if cXml:
