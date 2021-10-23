@@ -67,7 +67,7 @@ class Dispatch():
 
 		port.readline().decode()
 
-		toSendString = self.data.getG(_scene)
+		toSendString = _scene.getG()
 
 		cursorChar = '>'
 		cursorLen = 1

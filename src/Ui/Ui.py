@@ -406,7 +406,7 @@ class Ui():
 
 		h = self.appWindow.wSvgViewport.canvas.docHeight
 		with open(fileName, 'w') as f:
-			f.write(self.data.getG(self.activeScene, 0, h))
+			f.write(self.activeScene.getG(0, h))
 
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)

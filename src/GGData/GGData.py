@@ -20,7 +20,6 @@ Data scope:
 '''
 
 
-from .GGen import *
 from .Scene import *
 from .Mark import *
 from .Markfilter import *
@@ -87,52 +86,3 @@ class GGData():
 
 		cMark = Mark(data, priority, filterProc)
 		return cMark
-
-
-###
-
-
-# -todo 104 (module-data, decide) +0: move to filter
-#  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
-	def getG(self, _scene, x=0, y=0):
-#  todo 100 (gcode, feature) +0: allow flexible filters for gcode
-		cScene = _scene.getSceneXML()
-		if not cScene:
-			return ''
-
-
-		cGG = GGen(cScene)
-		cGG.set(
-			preamble = 'G90 M4 S0',
-			shapePre = 'G0',
-			shapeIn = 'S100 G1',
-			shapeOut = 'S0',
-			postamble = 'M5 G0 X0Y0'
-		)
-
-		def shapePreHook(_element):
-			refGeo = _scene.getSceneObjs([_element.get('id')])
-
-			if not refGeo:
-				return False
-
-			if not refGeo[0].dataGet('visible', True):
-				return False
-
-
-			return 'G0'
-
-
-		def shapeInHook(_element, _point):
-			return( "S100 G1" )
-
-		cGG.set(shapeIn=shapeInHook, shapePre=shapePreHook)
-
-
-		gFlat = []
-		for g in cGG.generate( xform=[[1,0,x], [0,-1,y]] ):
-			gFlat += g
-
-		return "\n".join(gFlat)
-
-
