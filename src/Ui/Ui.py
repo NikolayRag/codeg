@@ -292,30 +292,30 @@ class Ui():
 
 
 		for geoData in projData['geoBlock']:
-			cGeoblock = self.activeScene.geoAdd(geoData['name'], 'svg')
-			for cGeo in cGeoblock.getObj():
-				cGeo.markSet(self.markDefault, True)
+			cGBlock = self.activeScene.geoAdd(geoData['name'], 'svg')
+			for cGItem in cGBlock.getObj():
+				cGItem.markSet(self.markDefault, True)
 
 
 # =todo 197 (data, fix) +0: deal with missing svg link
 			for itemData in geoData['items']:
-				cItem = cGeoblock.getObj([itemData['name']])[0]
+				cGItem = cGBlock.getObj([itemData['name']])[0]
 
 
 				for markIn in itemData['marks']:
-					cItem.markSet(marksA[markIn], True)
+					cGItem.markSet(marksA[markIn], True)
 
 
 				cData = itemData['data']
-				cItem.dataSet(cData)
+				cGItem.dataSet(cData)
 # -todo 183 (ux, module-ui) +1: brush Scene routines
 				if ('visible' in cData) and (cData['visible'] == False):
-					self.activeScene.markApplyGeo(self.markOff, [cItem.name], True, step='UI')
+					self.activeScene.markApplyGeo(self.markOff, [cGItem.name], True, step='UI')
 
-				cItem.marksSolve(filterStep='UI')
+				cGItem.marksSolve(filterStep='UI')
 
 
-			self.appWindow.geoAddSlot(cGeoblock)
+			self.appWindow.geoAddSlot(cGBlock)
 
 
 		cXml = self.activeScene.getSceneXML(True)
@@ -372,15 +372,15 @@ class Ui():
 
 		self.sceneNew(fileName)
 
-		cGeoblock = self.activeScene.geoAdd(fileName, 'svg')
-		for cGeo in cGeoblock.getObj():
+		cGBlock = self.activeScene.geoAdd(fileName, 'svg')
+		for cGeo in cGBlock.getObj():
 			cGeo.markSet(self.markDefault, True)
 			cGeo.marksSolve(filterStep='UI')
 
 		self.activeScene.clean()
 		
 
-		self.appWindow.geoAddSlot(cGeoblock)
+		self.appWindow.geoAddSlot(cGBlock)
 
 		cXml = self.activeScene.getSceneXML(True)
 		if cXml:
