@@ -55,7 +55,7 @@ class Ui():
 			'default': {
 				'vector-effect': 'non-scaling-stroke',
 				'stroke-width':'1.5px',
-				'stroke':'#888',
+				'stroke':'#889',
 				'fill':'#181818',
 				'opacity': '.9'
 			},
@@ -78,7 +78,7 @@ class Ui():
 			'default': {
 				'vector-effect': 'non-scaling-stroke',
 				'stroke-width':'1.5px',
-				'stroke':'#666',
+				'stroke':'#667',
 				'fill':'#fdfdfd',
 				'opacity': '.9'
 			},
