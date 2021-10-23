@@ -201,7 +201,7 @@ class GeoWidget(QWidget):
 		self.geoblock = _geoblock
 
 
-		for cItem in self.geoblock.getObj():
+		for cItem in self.geoblock.getGeo():
 			self.geoitemAdd(cItem)
 
 		#blank
@@ -213,4 +213,4 @@ class GeoWidget(QWidget):
 			return list(self.lastSelection)
 
 
-		return list(self.geoblock.getObj())
+		return list(self.geoblock.getGeo())

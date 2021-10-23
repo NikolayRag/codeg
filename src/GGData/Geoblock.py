@@ -79,7 +79,7 @@ class Geoblock():
 
 
 
-	def getObj(self, _nameA=True):
+	def getGeo(self, _nameA=True):
 		return [cI for cI in self.allItems if (_nameA==True or (cI.name in _nameA))]
 
 

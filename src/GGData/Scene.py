@@ -150,6 +150,6 @@ class Scene():
 	def getSceneObjs(self, _name):
 		out = {}
 		for cGeo in self.allGeo:
-			out = cGeo.getObj(_name)
+			out = cGeo.getGeo(_name)
 
 		return out
