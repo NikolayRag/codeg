@@ -55,7 +55,7 @@
  spec, module-dispatch 19: +0 "src\GGData\GGData.py" ki 21/10/20 22:59:40
 	send to codegg
 
- module-ui, error 20: +0 "src\Ui\AppWindow.py" kii 21/10/10 14:16:43
+ module-ui, error 20: +0 "src\Ui\AppWindow.py" ki 21/10/23 02:02:56
 	handle errors, maybe status string
 
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
@@ -549,4 +549,7 @@
 
 +fix 195: +2 "src\Ui\Ui.py" ki 21/10/23 01:11:15
 	fix sysytem marks assignment
+
+ module-data, api 196: +0 "src\Ui\Ui.py" ki 21/10/23 01:48:28
+	deal with Markfilter data fields within Mark
 
