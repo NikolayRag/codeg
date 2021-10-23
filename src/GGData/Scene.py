@@ -26,7 +26,7 @@ class Scene():
 
 
 
-	def collect(self):
+	def packScene(self):
 		out = {
 			'name': self.name
 		}
@@ -35,7 +35,7 @@ class Scene():
 		markBlock = {}
 		mId = 0
 		for cMark in self.allMarks:
-			markBlock[mId] = cMark.collect()
+			markBlock[mId] = cMark.packMark()
 			mId += 1
 
 		out['markBlock'] = markBlock
@@ -44,7 +44,7 @@ class Scene():
 		geoBlock = []
 		
 		for cGeo in self.allGeo:
-			geoBlock.append( cGeo.collect(self.allMarks) )
+			geoBlock.append( cGeo.packGeo(self.allMarks) )
 
 		out['geoBlock'] = geoBlock
 

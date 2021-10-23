@@ -226,7 +226,7 @@ class Ui():
 #  todo 196 (module-data, api) +0: deal with Markfilter data fields within Mark
 # -todo 198 (data, fix) +0: move save/load routines to GGData
 	def sceneSave(self):
-		saveData = self.activeScene.collect()
+		saveData = self.activeScene.packScene()
 
 		fileName = ''
 		cRecentA = self.args.get("recentProject", [])

@@ -100,7 +100,7 @@ class Geoblock():
 
 
 
-	def collect(self, _markLimit):
+	def packGeo(self, _markLimit):
 		out = {
 			'namespace': self.namespace
 		}
@@ -109,7 +109,7 @@ class Geoblock():
 		geoA = []
 
 		for cObj in self.namedLayers:
-			geoA.append( self.namedLayers[cObj].collect(_markLimit) )
+			geoA.append( self.namedLayers[cObj].packItem(_markLimit) )
 
 		out['items'] = geoA
 
@@ -160,7 +160,7 @@ class Geoitem():
 
 
 
-	def collect(self, _markLimit=[]):
+	def packItem(self, _markLimit=[]):
 		out = {
 			'name': self.name,
 			'data': self.dataOwn

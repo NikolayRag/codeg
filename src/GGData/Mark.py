@@ -33,7 +33,7 @@ class Mark():
 
 
 
-	def collect(self):
+	def packMark(self):
 		out = {
 			'priority': self.priority,
 			'filter': self.gfilter and self.gfilter.__name__,
