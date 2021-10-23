@@ -138,6 +138,12 @@ class Scene():
 
 
 
+	def geoList(self):
+		return list(self.allGeo)
+
+
+
+# =todo 205 (fix, module-data) +0: check for multiobject case
 	def getSceneXML(self, toString=False):
 		out = {}
 		for cGeo in self.allGeo:
