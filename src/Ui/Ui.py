@@ -310,7 +310,7 @@ class Ui():
 				cGItem.dataSet(cData)
 # -todo 183 (ux, module-ui) +1: brush Scene routines
 				if ('visible' in cData) and (cData['visible'] == False):
-					self.activeScene.markApplyGeo(self.markOff, [cGItem.name], True, step='UI')
+					cGItem.markSet(self.markOff, [cGItem.name], True)
 
 				cGItem.marksSolve(filterStep='UI')
 
