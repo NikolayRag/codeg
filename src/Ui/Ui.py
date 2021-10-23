@@ -292,7 +292,7 @@ class Ui():
 
 
 		for geoData in projData['geoBlock']:
-			cGeoblock = self.activeScene.geoAdd(geoData['namespace'], 'svg')
+			cGeoblock = self.activeScene.geoAdd(geoData['name'], 'svg')
 			for cGeo in cGeoblock.getObj():
 				cGeo.markSet(self.markDefault, True)
 

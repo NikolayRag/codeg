@@ -102,7 +102,7 @@ class Geoblock():
 
 	def packGeo(self, _markLimit):
 		out = {
-			'namespace': self.namespace
+			'name': self.namespace
 		}
 
 
