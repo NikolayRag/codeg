@@ -496,10 +496,10 @@
 =module-ui, module-data, geo 176: +0 "src\Ui\Ui.py" ki 21/10/18 18:43:48
 	del geo
 
-=ux 177: +0 "src\Ui\Ui.py" ki 21/10/18 18:44:30
++ux 177: +0 "src\Ui\Ui.py" ki 21/10/23 05:34:36
 	check dirty at exit
 
-=ux 178: +0 "src\Ui\Ui.py" ki 21/10/18 18:44:25
+=ux 178: +0 "src\Ui\Ui.py" ki 21/10/23 05:34:37
 	suggest recent at load
 
 =clean 179: -1 "src\Ui\Ui.py" ki 21/10/19 00:08:32
