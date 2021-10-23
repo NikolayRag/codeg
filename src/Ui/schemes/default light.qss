@@ -24,3 +24,23 @@
 #scrollMarks { background-color: rgba(0,0,0,0); }
 #scrollMarks QWidget { background-color: rgba(0,0,0,0); }
 #listObjects, #listObjects QWidget { background-color: rgba(0,0,0,0); }
+
+QScrollBar {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	width: 12px;
+	margin: 2px 0 2px 2px;
+}
+QScrollBar::handle:disabled {
+	background: #ccc;
+}
+QScrollBar::handle {
+	background: #888;
+	border-radius: 3px;
+	min-height: 50px;
+}
+QScrollBar::add-line, QScrollBar::sub-line,
+QScrollBar::up-arrow, QScrollBar::down-arrow,
+QScrollBar::add-page, QScrollBar::sub-page {
+	background: none;
+}
