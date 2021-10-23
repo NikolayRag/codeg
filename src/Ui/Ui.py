@@ -286,6 +286,7 @@ class Ui():
 				cGeo.markSet(self.markDefault, True)
 
 
+# =todo 197 (data, fix) +0: deal with missing svg link
 			for itemData in geoData['items']:
 				cItem = cGeoblock.getObj([itemData['name']])[0]
 

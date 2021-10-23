@@ -553,3 +553,6 @@
  module-data, api 196: +0 "src\Ui\Ui.py" ki 21/10/23 01:48:28
 	deal with Markfilter data fields within Mark
 
+=data, fix 197: +0 "src\Ui\Ui.py" ki 21/10/23 03:17:31
+	deal with missing svg link
+
