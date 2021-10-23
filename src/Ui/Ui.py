@@ -302,8 +302,8 @@ class Ui():
 				cGItem = cGBlock.getGeo([itemData['name']])[0]
 
 
-				for markIn in itemData['marks']:
-					cGItem.markSet(marksA[markIn], True)
+				for cMark in itemData['marks']:
+					cGItem.markSet(marksA[cMark], True)
 
 
 				cData = itemData['data']
