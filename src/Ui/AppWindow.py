@@ -204,7 +204,7 @@ class AppWindow(QObject):
 
 
 #  todo 3 (feature, file) +0: allow picking from Recent files list
-	def updateViewport(self, _xml):
+	def viewportSet(self, _xml):
 		self.wSvgViewport.canvasAdd(_xml)
 		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 #  todo 157 (fix, canvas) +0: review SvgViewport fit routine
@@ -218,7 +218,7 @@ class AppWindow(QObject):
 
 
 
-	def canvasUpdate(self, _xml):
+	def viewportUpdate(self, _xml):
 		self.wSvgViewport.canvasUpdate(_xml)
 
 

@@ -308,7 +308,7 @@ class Ui():
 
 		cXml = self.activeScene.getSceneXML(True)
 		if cXml:
-			self.appWindow.updateViewport(cXml)
+			self.appWindow.viewportSet(cXml)
 
 
 
@@ -370,7 +370,7 @@ class Ui():
 
 		cXml = self.activeScene.getSceneXML(True)
 		if cXml:
-			self.appWindow.updateViewport(cXml)
+			self.appWindow.viewportSet(cXml)
 		
 
 
@@ -431,7 +431,7 @@ class Ui():
 	def reloadXml(self):
 		cXml = self.activeScene.getSceneXML(True)
 		if cXml:
-			self.appWindow.canvasUpdate(cXml)
+			self.appWindow.viewportUpdate(cXml)
 
 
 
