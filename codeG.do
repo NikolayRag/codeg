@@ -49,7 +49,7 @@
 =spec, module-dispatch 17: +0 "" kii 21/08/10 05:55:57
 	send to serial-usb (arduino)
 
- spec, module-dispatch 18: +0 "src\GGData\GGData.py" ki 21/10/20 22:59:43
+ spec, module-dispatch 18: +0 "src\GGData\GGData.py" ki 21/10/23 23:50:07
 	standalone dispatcher
 
  spec, module-dispatch 19: +0 "src\GGData\GGData.py" ki 21/10/20 22:59:40
@@ -556,7 +556,7 @@
 =data, fix 197: +0 "src\Ui\Ui.py" ki 21/10/23 03:17:31
 	deal with missing svg link
 
--data, fix 198: +0 "src\Ui\Ui.py" ki 21/10/23 03:34:31
+=data, fix 198: +0 "src\Ui\Ui.py" ki 21/10/23 07:20:24
 	move save/load routines to GGData
 
 =module-data, module-ui, feature, api 199: +0 "src\Ui\Ui.py" ki 21/10/23 03:37:57
@@ -564,4 +564,7 @@
 
 +ux 200: +0 "src\Ui\Ui.py" ki 21/10/23 04:42:23
 	suggest file ext at save
+
+ geo, feature 201: +0 "src\GGData\Geoblock.py" ki 21/10/23 23:49:51
+	update reference geometry 
 

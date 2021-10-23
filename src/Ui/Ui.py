@@ -224,7 +224,7 @@ class Ui():
 
 # =todo 182 (ux) +0: fix save saved project
 #  todo 196 (module-data, api) +0: deal with Markfilter data fields within Mark
-# -todo 198 (data, fix) +0: move save/load routines to GGData
+# =todo 198 (data, fix) +0: move save/load routines to GGData
 	def sceneSave(self):
 		saveData = self.activeScene.packScene()
 

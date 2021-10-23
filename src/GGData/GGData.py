@@ -1,6 +1,8 @@
 # =todo 189 (module-data, api) +1: make all indirect (by id) controls
 # =todo 90 (ux, module-ui, fix) +0: respect units - both svg and device
 
+#  todo 201 (geo, feature) +0: update reference geometry 
+
 #  todo 18 (spec, module-dispatch) +0: standalone dispatcher
 #  todo 19 (spec, module-dispatch) +0: send to codegg
 
@@ -97,7 +99,7 @@ class GGData():
 		cScene = _scene.getSceneXML()
 		if not cScene:
 			return ''
-			
+
 
 		cGG = GGen(cScene)
 		cGG.set(
