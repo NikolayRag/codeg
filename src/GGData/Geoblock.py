@@ -17,7 +17,7 @@ class Geoblock():
 
 
 	geoXML = None
-	namedLayers = {}
+	allItems = {}
 	namespace = ''
 
 
@@ -28,7 +28,7 @@ class Geoblock():
 	def __init__(self, _source, _type):
 		self.namespace = _source
 		self.geoXML = XML.parse(_source)
-		self.namedLayers = {}
+		self.allItems = {}
 
 
 		i = 1
@@ -48,15 +48,15 @@ class Geoblock():
 
 				cName = tagType +str(i)
 				cTag.set('id', cName)
-				self.namedLayers[cName] = Geoitem(cTag, cName)
+				self.allItems[cName] = Geoitem(cTag, cName)
 
 				i += 1
 
 
 
 	def isDirty(self):
-		for cObj in self.namedLayers:
-			if self.namedLayers[cObj].isDirty():
+		for cObj in self.allItems:
+			if self.allItems[cObj].isDirty():
 				return True
 
 
@@ -65,8 +65,8 @@ class Geoblock():
 
 
 	def clean(self):
-		for cObj in self.namedLayers:
-			self.namedLayers[cObj].clean()
+		for cObj in self.allItems:
+			self.allItems[cObj].clean()
 
 
 		self.dirtyFlag = False
@@ -83,20 +83,20 @@ class Geoblock():
 		if _nameA == True:
 			_nameA = self.names()
 
-		return [self.namedLayers[n] for n in _nameA if (n in self.namedLayers)]
+		return [self.allItems[n] for n in _nameA if (n in self.allItems)]
 
 
 
 	def names(self):
-		return self.namedLayers.keys()
+		return self.allItems.keys()
 
 
 
 	def dataSet(self, _el, _data):
-		if not _el in self.namedLayers:
+		if not _el in self.allItems:
 			return
 
-		self.namedLayers[_el].dataSet(_data)
+		self.allItems[_el].dataSet(_data)
 
 
 
@@ -108,8 +108,8 @@ class Geoblock():
 
 		geoA = []
 
-		for cObj in self.namedLayers:
-			geoA.append( self.namedLayers[cObj].packItem(_markLimit) )
+		for cObj in self.allItems:
+			geoA.append( self.allItems[cObj].packItem(_markLimit) )
 
 		out['items'] = geoA
 
