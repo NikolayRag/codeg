@@ -190,7 +190,7 @@ class Ui():
 
 		self.qApp.exec_()
 
-		
+
 		self.args.set('wMaxi', self.appWindow.lMain.isMaximized())
 		if not self.appWindow.lMain.isMaximized():
 			cSize = self.appWindow.lMain.size()
