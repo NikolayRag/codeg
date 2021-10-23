@@ -177,16 +177,6 @@ class Scene():
 
 
 
-	def geoMeta(self):
-		out = {}
-		for cGeo in self.allGeo:
-			for cN in cGeo.names():
-				out[cN] = cGeo.getObj([cN])[0].dataGet()
-
-		return out
-
-
-
 	def getSceneXML(self, toString=False):
 		out = {}
 		for cGeo in self.allGeo:
@@ -202,9 +192,3 @@ class Scene():
 			out = cGeo.getObj(_name)
 
 		return out
-
-
-
-	def geoDataSet(self, _elA, _data):
-		for cEl in _elA:
-			self.allGeo[0].dataSet(cEl, _data)
