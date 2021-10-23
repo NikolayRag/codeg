@@ -475,7 +475,7 @@
 =module-ui, ux, mark 169: +0 "src\Ui\Ui.py" ki 21/10/18 18:42:31
 	del mark
 
--module-ui, ux, mark 170: +0 "src\Ui\Ui.py" ki 21/10/18 18:42:33
+-module-ui, ux, mark 170: +0 "src\Ui\Ui.py" ki 21/10/23 05:36:48
 	reorder mark
 
 =module-ui, ux, mark 171: +0 "src\Ui\Ui.py" ki 21/10/18 18:42:40
@@ -499,7 +499,7 @@
 +ux 177: +0 "src\Ui\Ui.py" ki 21/10/23 05:34:36
 	check dirty at exit
 
-=ux 178: +0 "src\Ui\Ui.py" ki 21/10/23 05:34:37
+=ux 178: +0 "src\Ui\Ui.py" ki 21/10/23 05:36:47
 	suggest recent at load
 
 =clean 179: -1 "src\Ui\Ui.py" ki 21/10/19 00:08:32
@@ -520,7 +520,7 @@
 =ux, module-ui 184: +0 "src\Ui\Ui.py" ki 21/10/20 12:14:08
 	save/load app settings with project
 
-=feature, module-ui 186: +0 "src\Ui\Ui.py" ki 21/10/20 23:05:46
+=feature, module-ui, dispatch 186: +0 "src\Ui\Ui.py" ki 21/10/23 05:37:24
 	live cut visualize
 
 !dispatch, feature 187: +0 "src\Ui\Ui.py" ki 21/10/20 22:57:58

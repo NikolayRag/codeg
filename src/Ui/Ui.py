@@ -4,7 +4,7 @@
 #  todo 149 (module-ui, feature) +0: multiscene
 #  todo 191 (filter, feature) +2: outline, fill and shape-intersect filters
 
-# =todo 186 (feature, module-ui) +0: live cut visualize
+# =todo 186 (feature, module-ui, dispatch) +0: live cut visualize
 #  todo 190 (feature, module-ui) +0: live cut visualize from standalone dispatcher, with some echo protocol
 # =todo 117 (ux, module-ui) +0: add app settings
 # =todo 184 (ux, module-ui) +0: save/load app settings with project
