@@ -94,7 +94,12 @@ class GGData():
 #  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
 	def getG(self, _scene, x=0, y=0):
 #  todo 100 (gcode, feature) +0: allow flexible filters for gcode
-		cGG = GGen(_scene.getSceneXML())
+		cScene = _scene.getSceneXML()
+		if not cScene:
+			return ''
+			
+
+		cGG = GGen(cScene)
 		cGG.set(
 			preamble = 'G90 M4 S0',
 			shapePre = 'G0',
