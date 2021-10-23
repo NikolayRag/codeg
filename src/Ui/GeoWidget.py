@@ -110,9 +110,9 @@ class GeoWidget(QWidget):
 
 
 		if _row >= 0:
-			cGeo = self.lastHover = self.wListItems.item(_row, _col).data(self.LdataItem)
-			if cGeo:
-				self.sigItemHover.emit(cGeo, True)
+			cGItem = self.lastHover = self.wListItems.item(_row, _col).data(self.LdataItem)
+			if cGItem:
+				self.sigItemHover.emit(cGItem, True)
 
 
 		self.sigChanged.emit(False)
@@ -128,7 +128,7 @@ class GeoWidget(QWidget):
 			
 
 		if _col == self.LayerColumnSwitch:
-			cGeo = self.wListItems.item(_row, _col).data(self.LdataItem)
+			cGItem = self.wListItems.item(_row, _col).data(self.LdataItem)
 
 			cSelection = self.layerSelection()
 
@@ -136,10 +136,10 @@ class GeoWidget(QWidget):
 			#explicit single item select
 			if _row not in cSelection.keys():
 				self.wListItems.selectRow(_row)
-				cSelection = {_row: cGeo}
+				cSelection = {_row: cGItem}
 
 
-			newState = not cGeo.dataGet('visible', True)
+			newState = not cGItem.dataGet('visible', True)
 			self.layersSwitchVis(cSelection, newState)
 
 
@@ -151,17 +151,17 @@ class GeoWidget(QWidget):
 # =todo 114 (module-ui, fix) +0: change vis for select-all case
 # -todo 147 (module-ui, fix) +0: use blank layer space to from-to hover mouse selection
 
-		for cRow, cGeo in _cSelection.items():
+		for cRow, cGItem in _cSelection.items():
 			#skip items already set in a group
-			if _newState == cGeo.dataGet('visible'):
+			if _newState == cGItem.dataGet('visible'):
 				continue
 
 
 			cItem = self.wListItems.item(cRow, self.LayerColumnSwitch)
 			self.geoitemSet(cItem, _newState)
 
-			cGeo.dataSet({'visible':_newState})
-			self.sigItemDataSet.emit(cGeo, ['visible'])
+			cGItem.dataSet({'visible':_newState})
+			self.sigItemDataSet.emit(cGItem, ['visible'])
 
 
 
