@@ -228,11 +228,15 @@ class Ui():
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
 		
-		fileName = QFileDialog.getSaveFileName(self.appWindow.lMain, "Save project", os.path.dirname(cLast), "*.codeg", None, QFileDialog.DontUseNativeDialog)[0]
-
-		if not fileName:
+		cDialog = QFileDialog(self.appWindow.lMain, "Save project", os.path.dirname(cLast), "Codeg (*.codeg)")
+		cDialog.setDefaultSuffix(".codeg")
+		cDialog.setOptions(QFileDialog.DontUseNativeDialog)
+		cDialog.setAcceptMode(QFileDialog.AcceptSave)
+		if not cDialog.exec():
 			return
 
+
+		fileName = cDialog.selectedFiles()[0]
 
 		with open(fileName, 'w') as f:
 			f.write( json.dumps(saveData, indent=2) )
@@ -384,14 +388,18 @@ class Ui():
 		cRecentA = self.args.get("recentSaved", [])
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
-		fileName = QFileDialog.getSaveFileName(self.appWindow.lMain, "Save G", os.path.dirname(cLast), "*.nc", None, QFileDialog.DontUseNativeDialog)[0]
 
-		
-		if fileName=="":
+		cDialog = QFileDialog(self.appWindow.lMain, "Save G-code", os.path.dirname(cLast), "G-code (*.nc)")
+		cDialog.setDefaultSuffix(".nc")
+		cDialog.setOptions(QFileDialog.DontUseNativeDialog)
+		cDialog.setAcceptMode(QFileDialog.AcceptSave)
+		if not cDialog.exec():
 			return
 
 
 		h = self.appWindow.lViewport.canvas.docHeight
+		fileName = cDialog.selectedFiles()[0]
+
 		with open(fileName, 'w') as f:
 			f.write(self.data.getG(self.activeScene, 0, h))
 
