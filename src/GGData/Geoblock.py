@@ -81,22 +81,9 @@ class Geoblock():
 
 	def getObj(self, _nameA=True):
 		if _nameA == True:
-			_nameA = self.names()
+			_nameA = self.allItems.keys()
 
 		return [self.allItems[n] for n in _nameA if (n in self.allItems)]
-
-
-
-	def names(self):
-		return self.allItems.keys()
-
-
-
-	def dataSet(self, _el, _data):
-		if not _el in self.allItems:
-			return
-
-		self.allItems[_el].dataSet(_data)
 
 
 
