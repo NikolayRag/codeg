@@ -183,7 +183,6 @@ class SvgViewport(QWidget):
 
 
 
-
 	def __init__(self, _parent):
 		QWidget.__init__(self, _parent)
 
