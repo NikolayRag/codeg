@@ -21,6 +21,7 @@ class ColorGrid(QFrame):
 		cLayout.setSpacing(0)
 		cLayout.setContentsMargins(0,0,0,0)
 
+#  todo 210 (fix, widgets) -1: popup ignores Alt+F4
 		self.tmpFilter = BindFilter({
 			QEvent.Type.KeyPress: lambda _e: self.close() })
 		self.installEventFilter(self.tmpFilter)

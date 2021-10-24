@@ -592,3 +592,6 @@
 -fix, widgets 209: +0 "src\Ui\Widgets\ColorPicker.py" ki 21/10/24 17:03:37
 	bound color picker by screen borders
 
+ fix, widgets 210: -1 "src\Ui\Widgets\ColorPicker.py" ki 21/10/24 19:13:00
+	popup ignores Alt+F4
+
