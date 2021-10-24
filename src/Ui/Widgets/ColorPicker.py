@@ -4,7 +4,6 @@ from PySide2.QtGui import *
 
 
 
-# =todo 143 (ui, widgets) +0: simplify color picker
 class ColorPicker(QPushButton):
 	
 	sigChangedColor = Signal(str)
@@ -70,6 +69,7 @@ class ColorPicker(QPushButton):
 
 
 	def palettePop(self):
+# -todo 209 (fix, widgets) +0: bound color picker by screen borders
 		pos = self.mapToGlobal(QPoint(self.width()+2,0))
 		self.lPalette.move(pos)
 		self.lPalette.show()

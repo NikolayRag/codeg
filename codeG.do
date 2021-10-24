@@ -400,7 +400,7 @@
 +ui, mark 142: +0 "src\Ui\AppWindow.py" kii 21/10/10 19:28:48
 	Select Marks by layers
 
-=ui, widgets 143: +0 "src\Ui\Widgets.py" kii 21/10/10 02:27:15
++ui, widgets 143: +0 "src\Ui\Widgets\ColorPicker.py" ki 21/10/24 17:01:41
 	simplify color picker
 
 +module-ui, widgets 144: +0 "src\Ui\AppWindow.py" ki 21/10/22 22:12:55
@@ -588,4 +588,7 @@
 
  viewport 208: +0 "src\Ui\SvgViewport.py" ki 21/10/24 04:29:16
 	viewport controls
+
+-fix, widgets 209: +0 "src\Ui\Widgets\ColorPicker.py" ki 21/10/24 17:03:37
+	bound color picker by screen borders
 
