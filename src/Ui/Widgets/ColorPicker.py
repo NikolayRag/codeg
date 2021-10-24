@@ -49,7 +49,7 @@ class ColorGrid(QFrame):
 
 		for iY in range(1,_gridY+1):
 			cSample = makeSample( QColor.fromHslF(0,0,1.*iY/(_gridY+1)) )
-			cLayout.addWidget(cSample, iY, 15)
+			cLayout.addWidget(cSample, iY, _gridX+1)
 
 
 		self.resize(_gridX*_gridSize, _gridY*_gridSize)
