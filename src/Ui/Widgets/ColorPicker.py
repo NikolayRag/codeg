@@ -5,7 +5,7 @@ from PySide2.QtGui import *
 
 
 class ColorPicker(QPushButton):
-	
+
 	sigChangedColor = Signal(str)
 
 	color = None
@@ -22,7 +22,6 @@ class ColorPicker(QPushButton):
 
 
 		self.lPalette = QFrame()
-		self.lPalette.resize(214,100)
 		self.lPalette.setWindowFlags(Qt.Popup)
 
 		cLayout = QGridLayout(self.lPalette)
@@ -30,8 +29,9 @@ class ColorPicker(QPushButton):
 		cLayout.setContentsMargins(0,0,0,0)
 
 
+# COLOR GRID
 
-		def makeSample(_color):
+		def makeSample(_color): #inline to scope signal lambda
 			cSample = QPushButton()
 			cSample.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
 
@@ -43,15 +43,24 @@ class ColorPicker(QPushButton):
 			return cSample
 
 
-		for iX in range(1,14):
-			for iY in range(1,7):
-				cSample = makeSample( QColor.fromHslF(iX/14.,1,iY/7.) )
+		gridX = 12
+		gridY = 6
+		gridSize = 15
+
+		for iX in range(1,gridX+1):
+			for iY in range(1,gridY+1):
+				cSample = makeSample( QColor.fromHslF(1.*(iX-1)/gridX,1,1.*iY/(gridY+1)) )
 				cLayout.addWidget(cSample, iY, iX)
 
 
-		for iY in range(1,7):
-			cSample = makeSample( QColor.fromHslF(0,0,iY/7.) )
+		gridX += 1
+
+		for iY in range(1,gridY+1):
+			cSample = makeSample( QColor.fromHslF(0,0,1.*iY/(gridY+1)) )
 			cLayout.addWidget(cSample, iY, 15)
+
+
+		self.lPalette.resize(gridX*gridSize, gridY*gridSize)
 
 
 
