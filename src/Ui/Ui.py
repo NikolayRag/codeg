@@ -135,11 +135,7 @@ class Ui():
 
 
 		self.appWindow.sigPreexit.connect(self.preexit)
-		self.appWindow.sigSceneWipe.connect(self.sceneWipe)
-		self.appWindow.sigAddFile.connect(self.addFile)
-		self.appWindow.sigSceneSave.connect(self.sceneSave)
-		self.appWindow.sigSceneLoad.connect(self.sceneLoad)
-		self.appWindow.sigStoreG.connect(self.storeG)
+
 		self.appWindow.sigGeoSelect.connect(self.geoSetSelect)
 		self.appWindow.sigGeoHover.connect(self.geoSetHover)
 		self.appWindow.sigGeoDataSet.connect(self.geoSetData)
@@ -147,8 +143,14 @@ class Ui():
 		self.appWindow.sigMarkAdd.connect(self.slotMarkAdd)
 		self.appWindow.sigMarkAssign.connect(self.slotMarkAssign)
 
+		self.appWindow.sigSceneWipe.connect(self.sceneWipe)
+		self.appWindow.sigSceneSave.connect(self.sceneSave)
+		self.appWindow.sigSceneLoad.connect(self.sceneLoad)
+		self.appWindow.sigAddFile.connect(self.addFile)
+
 		self.appWindow.connList(self.dispatch.getDevices())
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
+		self.appWindow.sigStoreG.connect(self.storeG)
 
 
 		self.markDefault = self.data.markNew(

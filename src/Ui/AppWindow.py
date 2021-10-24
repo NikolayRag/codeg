@@ -41,25 +41,23 @@ class BindFilter(QObject):
 
 
 class AppWindow(QObject):
-	LayerColumnName = 0
-	LayerColumnSwitch = 1
-
-	LdataName = Qt.UserRole +0
-	LdataOn = Qt.UserRole +2
-
 	sigPreexit = Signal(object)
-	sigSceneWipe = Signal()
-	sigAddFile = Signal()
-	sigSceneSave = Signal()
-	sigSceneLoad = Signal()
-	sigStoreG = Signal()
-	sigDispatch = Signal(str)
+
 	sigGeoSelect = Signal(object, bool)
 	sigGeoHover = Signal(object, bool)
 	sigGeoDataSet = Signal(object, list)
 	sigGeoChanged = Signal()
 	sigMarkAdd = Signal()
 	sigMarkAssign = Signal(object, dict, bool)
+
+	sigSceneWipe = Signal()
+	sigSceneSave = Signal()
+	sigSceneLoad = Signal()
+	sigAddFile = Signal()
+
+	sigDispatch = Signal(str)
+	sigStoreG = Signal()
+
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
