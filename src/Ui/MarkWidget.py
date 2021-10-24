@@ -30,10 +30,9 @@ class MarkTool(QFrame):
 		self.lBgColor = QFrame(wBg)
 
 
-		self.lLayout = QFormLayout()
+		self.lLayout = QFormLayout(self)
 		self.lLayout.setSpacing(12)
 		self.lLayout.setContentsMargins(16,16,24,24)
-		self.setLayout(self.lLayout)
 
 		self.fillFrame()
 
@@ -96,10 +95,9 @@ class MarkWidget(QFrame):
 		self.fieldWColor = fieldWColor
 
 
-		cLayout = QHBoxLayout()
+		cLayout = QHBoxLayout(self)
 		cLayout.setSpacing(0)
 		cLayout.setContentsMargins(0,0,0,0)
-		self.setLayout(cLayout)
 
 
 		self.lTrigger = QCheckBox()
@@ -111,11 +109,10 @@ class MarkWidget(QFrame):
 		cLayout.addItem(sp1)
 
 
-		self.lButton = QPushButton()
+		self.lButton = QPushButton(self.lButton)
 		self.lButton.setCheckable(True)
 		self.lButton.setFixedWidth(24)
 		self.lButton.setFixedHeight(24)
-		cLayout.addWidget(self.lButton)
 
 
 		self.wFrameHighlight = QFrame(self.lButton)
