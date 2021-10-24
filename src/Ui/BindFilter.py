@@ -1,3 +1,17 @@
+'''
+Generalized eventFilter() control.
+
+Accepts {event: function(event)} dict.
+
+Function is called at given event,
+ and its return value is returned by eventFilter(),
+ which is reasonable for some cases.
+
+When used, assign it to non-volatile variable, not to be GC'd
+'''
+
+
+
 from PySide2.QtCore import *
 
 
