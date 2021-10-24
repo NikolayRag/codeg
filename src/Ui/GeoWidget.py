@@ -40,17 +40,6 @@ class GeoWidget(QWidget):
 ### PRIVATE 
 
 
-	def layerSelection(self):
-		out = {}
-
-		for cRange in self.wListItems.selectedRanges():
-			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
-				out[cRow] = self.wListItems.item(cRow, self.LayerColumnName).data(self.LdataItem)
-
-		return out
-
-
-
 	def geoitemSet(self, _item, _on):
 		c = QColor('#4c4')
 		c.setAlpha(255 if _on else 0)
@@ -85,19 +74,30 @@ class GeoWidget(QWidget):
 
 
 
-	def layerSelect(self, _selection=False):
+	def itemSelection(self):
+		out = {}
+
+		for cRange in self.wListItems.selectedRanges():
+			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
+				out[cRow] = self.wListItems.item(cRow, self.LayerColumnName).data(self.LdataItem)
+
+		return out
+
+
+
+	def itemSelect(self, _selection=False):
 		if not _selection:
 			self.wListItems.clearSelection()
 
 			return
-			
+
 
 		print(_selection)
 
 
 
-	def layerSelected(self):
-		cSelection = self.layerSelection().values()
+	def itemSelected(self):
+		cSelection = self.itemSelection().values()
 
 
 		for cObj in self.lastSelection:
@@ -115,7 +115,7 @@ class GeoWidget(QWidget):
 
 
 
-	def layerHover(self, _row=-1, _col=-1):
+	def itemHover(self, _row=-1, _col=-1):
 		if self.lastHover:
 			self.sigItemHover.emit(self.lastHover, False)
 
@@ -131,7 +131,7 @@ class GeoWidget(QWidget):
 
 
 
-	def layerClicked(self, _row, _col):
+	def itemClicked(self, _row, _col):
 		#blank space click
 		if _row == self.wListItems.rowCount()-1:
 			self.wListItems.clearSelection()
@@ -141,7 +141,7 @@ class GeoWidget(QWidget):
 		if _col == self.LayerColumnSwitch:
 			cGItem = self.wListItems.item(_row, _col).data(self.LdataItem)
 
-			cSelection = self.layerSelection()
+			cSelection = self.itemSelection()
 
 
 			#explicit single item select
@@ -151,14 +151,14 @@ class GeoWidget(QWidget):
 
 
 			newState = not cGItem.dataGet('visible', True)
-			self.layersSwitchVis(cSelection, newState)
+			self.itemsSwitchVis(cSelection, newState)
 
 
 		self.sigChanged.emit(False)
 
 
 
-	def layersSwitchVis(self, _cSelection, _newState):
+	def itemsSwitchVis(self, _cSelection, _newState):
 # =todo 114 (module-ui, fix) +0: change vis for select-all case
 # -todo 147 (module-ui, fix) +0: use blank layer space to from-to hover mouse selection
 
@@ -187,12 +187,12 @@ class GeoWidget(QWidget):
 		self.wListItems = self.findChild(QTableWidget, "listItems")
 
 		self.wListItems.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
-		self.wListItems.itemSelectionChanged.connect(self.layerSelected)
-		self.wListItems.cellEntered.connect(self.layerHover)
-		self.eventTypes = {QEvent.Type.Leave: self.layerHover}
+		self.wListItems.itemSelectionChanged.connect(self.itemSelected)
+		self.wListItems.cellEntered.connect(self.itemHover)
+		self.eventTypes = {QEvent.Type.Leave: self.itemHover}
 		self.wListItems.installEventFilter(self)
 
-		self.wListItems.cellClicked.connect(self.layerClicked)
+		self.wListItems.cellClicked.connect(self.itemClicked)
 
 
 
