@@ -256,12 +256,12 @@ class AppWindow(QObject):
 
 
 		for cMark in self.allWidgetsMarks:
-			self.allWidgetsMarks[cMark].setTrigger(False, emit=False)
+			self.allWidgetsMarks[cMark].setTrigger(False)
 
 
 		for cMark, cIn in marksUsed.items():
 			if cMark in self.allWidgetsMarks:
-				self.allWidgetsMarks[cMark].setTrigger(cIn, tri=not cIn, emit=False)
+				self.allWidgetsMarks[cMark].setTrigger(cIn, tri=not cIn)
 
 
 
