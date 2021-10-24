@@ -49,6 +49,7 @@ class SvgViewport(QWidget):
 			self.eventTypes[_e.type()](_e)
 			return True
 
+
 		return False
 
 
@@ -160,9 +161,9 @@ class SvgViewport(QWidget):
 	#hold canvas's midpoint in SvgViewport screen space
 	# as cache for window resize
 	def anchorCanvas(self):
-			cHint = self.canvas.sizeHint()
-			self.anchorCanvasX = ( self.pos.x()+cHint.width()*.5 ) /self.width()
-			self.anchorCanvasY = ( self.pos.y()+cHint.height()*.5 ) /self.height()
+		cHint = self.canvas.sizeHint()
+		self.anchorCanvasX = ( self.pos.x()+cHint.width()*.5 ) /self.width()
+		self.anchorCanvasY = ( self.pos.y()+cHint.height()*.5 ) /self.height()
 
 
 
@@ -197,6 +198,8 @@ class SvgViewport(QWidget):
 
 		self.canvasReset()
 # -todo 91 (viewport, api) +0: add class-level SVG runtime generator signal/slot
+
+
 # -todo 89 (ux, module-ui, fix) +0: place grid correctly
 #  todo 83 (ux, module-ui, fix) +0: fit at init dont work due to obsolete size 
 
