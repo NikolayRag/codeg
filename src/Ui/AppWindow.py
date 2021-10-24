@@ -14,29 +14,7 @@ from .SvgViewport import *
 from .MarkWidget import *
 from .GeoWidget import *
 
-
-
-class BindFilter(QObject):
-	eType = None
-	cb = None
-
-
-	def __init__(self, _etypes, _cb):
-		QObject.__init__(self)
-
-		if not hasattr(_etypes, '__iter__'):
-			_etypes = (_etypes,)
-		self.eTypes = _etypes
-		self.cb = _cb
-
-
-	def eventFilter(self, _o, _e):
-		if _e.type() in self.eTypes:
-			self.cb(event=_e)
-			return True
-
-
-		return False
+from .BindFilter import *
 
 
 
@@ -78,8 +56,8 @@ class AppWindow(QObject):
 		QObject.__init__(self)
 
 		cMain = self.lMain = self.wMain = QUiLoader().load(self.defUi)
-		self.tmpFilterPreexit = BindFilter(
-			QEvent.Close, lambda event: self.sigPreexit.emit(event))
+		self.tmpFilterPreexit = BindFilter({
+			QEvent.Close: lambda event: self.sigPreexit.emit(event) or True })
 		cMain.installEventFilter(self.tmpFilterPreexit)
 
 
@@ -118,8 +96,8 @@ class AppWindow(QObject):
 		self.wSvgViewport.lower()
 		self.wSvgViewport.show()
 
-		self.tmpFilterViewResize = BindFilter(
-			QEvent.Type.Resize,	lambda event: self.wSvgViewport.resize(event.size()))
+		self.tmpFilterViewResize = BindFilter({
+			QEvent.Type.Resize: lambda event: self.wSvgViewport.resize(event.size()) })
 		holderViewport.installEventFilter(self.tmpFilterViewResize)
 
 		self.wSvgViewport.sigMousePress.connect(lambda: self.wGeoWidget.itemSelect())
