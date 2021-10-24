@@ -200,7 +200,7 @@ class Ui():
 
 
 
-### PRIVATE ###
+### SLOTS ###
 
 
 
@@ -456,7 +456,7 @@ class Ui():
 
 
 
-### ITS MARK TIME ###
+### MARKS ###
 
 # =todo 164 (feature, module-ui) -1: auto-apply new Mark to selection
 	def slotMarkAdd(self):

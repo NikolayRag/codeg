@@ -79,9 +79,7 @@ class AppWindow(QObject):
 
 		cMain = self.lMain = self.wMain = QUiLoader().load(self.defUi)
 		self.tmpFilterPreexit = BindFilter(
-			QEvent.Close,
-			lambda event: self.sigPreexit.emit(event)
-		)
+			QEvent.Close, lambda event: self.sigPreexit.emit(event))
 		cMain.installEventFilter(self.tmpFilterPreexit)
 
 
@@ -121,9 +119,7 @@ class AppWindow(QObject):
 		self.wSvgViewport.show()
 
 		self.tmpFilterViewResize = BindFilter(
-			QEvent.Type.Resize,
-			lambda event: self.wSvgViewport.resize(event.size())
-		)
+			QEvent.Type.Resize,	lambda event: self.wSvgViewport.resize(event.size()))
 		holderViewport.installEventFilter(self.tmpFilterViewResize)
 
 		self.wSvgViewport.sigMousePress.connect(lambda: self.wGeoWidget.itemSelect())
