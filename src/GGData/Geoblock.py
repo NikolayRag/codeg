@@ -191,6 +191,16 @@ class Geoitem():
 
 
 
+	def markAssigned(self, _mark):
+		return _mark in self.marks
+
+
+
+	def markList(self):
+		return list(self.marks)
+
+
+
 #  todo 133 (mark, optimize, decide) -1: Need to cache data?
 	def marksSolve(self, filterStep=None):
 		self.dataApplied = dict(self.dataOwn)
@@ -206,6 +216,7 @@ class Geoitem():
 
 
 		self.dirtyRuntime = False
+
 
 
 ### DATA ###

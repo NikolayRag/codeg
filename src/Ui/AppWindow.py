@@ -246,13 +246,13 @@ class AppWindow(QObject):
 		cSelected = self.wGeoWidget.getItems(selected=True)
 
 		for cObj in cSelected:
-			for cMark in cObj.marks:
-				marksUsed[cMark] = True
+			for cMark in cObj.markList():
+				marksUsed[cMark] = True #assigned
 
 		for cMark in marksUsed:
 			for cObj in cSelected:
-				if cMark not in cObj.marks:
-					marksUsed[cMark] = False
+				if not cObj.markAssigned(cMark):
+					marksUsed[cMark] = False #also unassigned
 
 
 		for cMark in self.allWidgetsMarks:
