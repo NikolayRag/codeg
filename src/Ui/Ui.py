@@ -4,7 +4,7 @@
 #  todo 149 (module-ui, feature) +0: multiscene
 #  todo 191 (filter, feature) +2: outline, fill and shape-intersect filters
 
-# =todo 186 (feature, module-ui, dispatch) +0: live cut visualize
+# -todo 186 (feature, module-ui, module-dispatch, v2) +0: live cut visualize
 #  todo 190 (feature, module-ui) +0: live cut visualize from standalone dispatcher, with some echo protocol
 # =todo 117 (ux, module-ui) +0: add app settings
 # =todo 184 (ux, module-ui) +0: save/load app settings with project
@@ -21,8 +21,8 @@
 # =todo 172 (module-ui, ux, mark) +0: unselect mark/close mark box
 # -todo 173 (module-ui, ux, mark) +0: hover mark show toolbox
 
-# =todo 167 (module-ui, viewport) +0: deselect geo by viewport
-# -todo 168 (module-ui, viewport) +0: select by viewport
+#  todo 208 (viewport) +0: viewport controls
+# -todo 168 (module-ui, viewport, v2) +0: select by viewport
 
 # =todo 165 (feature, dispatch) +0: device definition
 # =todo 166 (module-ui, ux) +0: icons
@@ -225,6 +225,7 @@ class Ui():
 # =todo 182 (ux) +0: fix save saved project
 #  todo 196 (module-data, api) +0: deal with Markfilter data fields within Mark
 # =todo 198 (data, fix) +0: move save/load routines to GGData
+# =todo 203 (ux, clean) +0: scene load/save error handling
 	def sceneSave(self):
 		saveData = self.activeScene.packScene()
 
@@ -253,7 +254,7 @@ class Ui():
 		self.activeScene.clean()
 
 
-
+# =todo 204 (ux) +0: group scene controls
 	def sceneLoad(self):
 		if self.sceneDirty():
 			return

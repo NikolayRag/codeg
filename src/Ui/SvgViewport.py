@@ -6,6 +6,7 @@ from PySide2.QtWidgets import *
 from PySide2.QtSvg import *
 
 #  todo 37 (module-ui, viewport) +0: make custom scrollbars out of SvgViewport
+#  todo 207 (viewport, v2) +0: onscreen controls
 
 '''
 Main scene widget
@@ -197,7 +198,6 @@ class SvgViewport(QWidget):
 		QHBoxLayout(self)
 
 		self.canvasReset()
-# -todo 91 (viewport, api) +0: add class-level SVG runtime generator signal/slot
 
 
 # -todo 89 (ux, module-ui, fix) +0: place grid correctly

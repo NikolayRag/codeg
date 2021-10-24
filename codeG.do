@@ -13,7 +13,7 @@
 =module-ui, feature 5: +0 "" kii 21/08/03 02:38:56
 	pan by mouse
 
- module-ui, feature 6: +0 "src\Ui\SvgViewport.py" kii 21/08/02 21:02:22
+ module-ui, feature 6: -1 "src\Ui\SvgViewport.py" ki 21/10/24 04:43:28
 	smooth animated zoom
 
 +spec, module-data 7: +0 "src\__main__w.py" kii 21/07/31 02:59:50
@@ -49,7 +49,7 @@
 =spec, module-dispatch 17: +0 "" kii 21/08/10 05:55:57
 	send to serial-usb (arduino)
 
- spec, module-dispatch 18: +0 "src\GGData\GGData.py" ki 21/10/23 23:50:07
+ spec, module-dispatch 18: +0 "" ki 21/10/24 04:25:33
 	standalone dispatcher
 
  spec, module-dispatch 19: +0 "src\GGData\GGData.py" ki 21/10/20 22:59:40
@@ -253,13 +253,13 @@
 -fix, gcode 88: +0 "src\Ui\Ui.py" kii 21/09/03 02:02:12
 	use dispatch both for file save
 
--ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" kii 21/09/25 22:54:19
+-ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" ki 21/10/24 05:32:09
 	place grid correctly
 
-=ux, module-ui, fix 90: +0 "src\GGData\GGData.py" ki 21/10/20 23:01:21
+=ux, module-ui, fix 90: +5 "src\GGData\GGData.py" ki 21/10/24 04:17:21
 	respect units - both svg and device
 
--viewport, api 91: +0 "src\Ui\SvgViewport.py" ki 21/10/18 18:20:26
++viewport, api 91: +0 "src\Ui\SvgViewport.py" ki 21/10/24 05:32:07
 	add class-level SVG runtime generator signal/slot
 
  feature 92: +0 "src\GGData\Scene.py" ki 21/10/18 18:33:34
@@ -295,7 +295,7 @@
 +module-ui, module-data, API 103: +0 "src\Ui\Ui.py" kii 21/09/08 02:52:25
 	move geo decorators to data
 
--module-data, decide 104: +0 "src\GGData\GGData.py" kii 21/09/29 04:39:03
+-module-data, decide 104: +0 "src\GGData\GGData.py" ki 21/10/24 02:33:59
 	move to filter
 
 +module-data, filter, API 105: +0 "src\GGData\GGData.py" kii 21/09/25 22:38:42
@@ -313,7 +313,7 @@
 +clean 110: +0 "src\GGData\GGData.py" kii 21/09/07 22:45:38
 	use namedRef
 
--mark, optimize 111: +0 "src\GGData\Scene.py" kii 21/09/29 04:27:33
++mark, optimize 111: +0 "src\GGData\Scene.py" ki 21/10/24 01:38:11
 	dramatically slow mark reapply
 
 +mark, feature 112: +0 "src\GGData\Geomark.py" kii 21/09/25 22:41:32
@@ -370,7 +370,7 @@
 =module-data, refactor 132: +0 "" kii 21/09/25 22:47:48
 	unify Filter creation
 
- mark, optimize, decide 133: -1 "src\GGData\Geoblock.py" ki 21/10/22 20:45:56
+ mark, optimize, decide 133: -1 "src\GGData\Geoblock.py" ki 21/10/24 03:09:44
 	Need to cache data?
 
 +module-data, api 134: -1 "src\GGData\GGData.py" ki 21/10/16 21:01:11
@@ -388,7 +388,7 @@
 +module-data, clean 138: +0 "src\GGData\GGData.py" kii 21/10/14 15:10:58
 	cleanup root scene functions
 
- clean 139: +0 "src\GGData\Scene.py" kii 21/09/29 13:34:57
++clean 139: +0 "src\GGData\Scene.py" ki 21/10/24 01:38:02
 	Clean mark to object appending
 
 -module-ui, mark 140: +0 "src\Ui\MarkWidget.py" kii 21/10/04 13:14:09
@@ -466,10 +466,10 @@
 =module-ui, ux 166: +0 "src\Ui\Ui.py" ki 21/10/18 18:41:19
 	icons
 
-=module-ui, viewport 167: +0 "src\Ui\Ui.py" ki 21/10/18 18:41:38
++module-ui, viewport 167: +0 "src\Ui\Ui.py" ki 21/10/24 05:53:45
 	deselect geo by viewport
 
--module-ui, viewport 168: +0 "src\Ui\Ui.py" ki 21/10/18 18:41:50
+-module-ui, viewport, v2 168: +0 "src\Ui\Ui.py" ki 21/10/24 05:53:46
 	select by viewport
 
 =module-ui, ux, mark 169: +0 "src\Ui\Ui.py" ki 21/10/18 18:42:31
@@ -508,7 +508,7 @@
 =module-ui, mark 180: +0 "src\Ui\MarkWidget.py" ki 21/10/19 03:18:36
 	allow to assign only with selected geo
 
-=decide 181: +0 "src\GGData\Geoblock.py" ki 21/10/19 03:40:56
+-decide 181: +0 "src\GGData\Geoblock.py" ki 21/10/24 04:17:54
 	geometry embed method
 
 =ux 182: +0 "src\Ui\Ui.py" ki 21/10/19 06:59:59
@@ -520,7 +520,7 @@
 =ux, module-ui 184: +0 "src\Ui\Ui.py" ki 21/10/20 12:14:08
 	save/load app settings with project
 
-=feature, module-ui, dispatch 186: +0 "src\Ui\Ui.py" ki 21/10/23 05:37:24
+-feature, module-ui, module-dispatch, v2 186: +0 "src\Ui\Ui.py" ki 21/10/24 04:25:52
 	live cut visualize
 
 !dispatch, feature 187: +0 "src\Ui\Ui.py" ki 21/10/20 22:57:58
@@ -529,7 +529,7 @@
 =module-data, api 188: +0 "src\Ui\Ui.py" ki 21/10/20 23:02:07
 	move all data functions to data
 
-=module-data, api 189: +1 "src\GGData\GGData.py" ki 21/10/20 23:03:35
+-module-data, api, decide 189: +1 "src\GGData\GGData.py" ki 21/10/24 03:26:05
 	make all indirect (by id) controls
 
  feature, module-ui 190: +0 "src\Ui\Ui.py" ki 21/10/20 23:29:53
@@ -567,4 +567,25 @@
 
  geo, feature 201: +0 "src\GGData\Geoblock.py" ki 21/10/23 23:49:51
 	update reference geometry 
+
+ clean 202: +0 "src\__main__w.py" ki 21/10/24 00:36:07
+	add app constants
+
+=ux, clean 203: +0 "src\Ui\Ui.py" ki 21/10/24 01:21:13
+	scene load/save error handling
+
+=ux 204: +0 "src\Ui\Ui.py" ki 21/10/24 02:18:26
+	group scene controls
+
+=fix, module-data 205: +0 "src\GGData\Scene.py" ki 21/10/24 02:36:12
+	check for multiobject case
+
++fix 206: +0 "src\Ui\MarkWidget.py" ki 21/10/24 03:15:59
+	maybe unsafe for some threaded case
+
+ viewport, v2 207: +0 "src\Ui\SvgViewport.py" ki 21/10/24 04:29:19
+	onscreen controls
+
+ viewport 208: +0 "src\Ui\SvgViewport.py" ki 21/10/24 04:29:16
+	viewport controls
 
