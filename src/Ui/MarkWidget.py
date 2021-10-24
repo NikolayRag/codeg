@@ -109,10 +109,11 @@ class MarkWidget(QFrame):
 		cLayout.addItem(sp1)
 
 
-		self.lButton = QPushButton(self.lButton)
+		self.lButton = QPushButton()
 		self.lButton.setCheckable(True)
 		self.lButton.setFixedWidth(24)
 		self.lButton.setFixedHeight(24)
+		cLayout.addWidget(self.lButton)
 
 
 		self.wFrameHighlight = QFrame(self.lButton)
