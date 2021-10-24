@@ -11,6 +11,14 @@ from PySide2.QtSvg import *
 Main scene widget
 '''
 class SvgViewport(QWidget):
+	sigMousePress = Signal(object)
+	sigMouseMove = Signal(object)
+	sigMouseRelease = Signal(object)
+
+
+	eventTypes = {}
+
+
 	panOrigin = None
 
 	panMargins = .2
@@ -34,7 +42,16 @@ class SvgViewport(QWidget):
 
 
 
-#  todo 6 (module-ui, feature) +0: smooth animated zoom
+#  todo 6 (module-ui, feature) -1: smooth animated zoom
+
+	def eventFilter(self, _o, _e):
+		if _e.type() in self.eventTypes:
+			self.eventTypes[_e.type()](_e)
+			return True
+
+		return False
+
+
 
 	def resizeEvent(self, _e):
 		oldW, oldH, newW, newH = _e.oldSize().width(), _e.oldSize().height(), _e.size().width(), _e.size().height()
@@ -149,9 +166,32 @@ class SvgViewport(QWidget):
 
 
 
+	def mousePress(self, _e):
+		self.sigMousePress.emit(_e)
+
+
+
+	def mouseMove(self, _e):
+		self.sigMouseMove.emit(_e)
+
+
+
+	def mouseRelease(self, _e):
+		self.sigMouseRelease.emit(_e)
+
+
+
 
 	def __init__(self, _parent):
 		QWidget.__init__(self, _parent)
+
+		self.eventTypes = {
+			QEvent.Type.MouseButtonPress: self.mousePress,
+			QEvent.Type.MouseMove: self.mouseMove,
+			QEvent.Type.MouseButtonRelease: self.mouseRelease,
+		}
+		self.installEventFilter(self)
+
 
 		QHBoxLayout(self)
 
