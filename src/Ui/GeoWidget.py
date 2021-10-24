@@ -85,7 +85,7 @@ class GeoWidget(QWidget):
 
 
 
-	def layerSelect(self):
+	def layerSelected(self):
 		cSelection = self.layerSelection().values()
 
 
@@ -120,7 +120,7 @@ class GeoWidget(QWidget):
 
 
 
-	def layerClick(self, _row, _col):
+	def layerClicked(self, _row, _col):
 		#blank space click
 		if _row == self.wListItems.rowCount()-1:
 			self.wListItems.clearSelection()
@@ -176,12 +176,12 @@ class GeoWidget(QWidget):
 		self.wListItems = self.findChild(QTableWidget, "listItems")
 
 		self.wListItems.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
-		self.wListItems.itemSelectionChanged.connect(self.layerSelect)
+		self.wListItems.itemSelectionChanged.connect(self.layerSelected)
 		self.wListItems.cellEntered.connect(self.layerHover)
 		self.eventTypes = {QEvent.Type.Leave: self.layerHover}
 		self.wListItems.installEventFilter(self)
 
-		self.wListItems.cellClicked.connect(self.layerClick)
+		self.wListItems.cellClicked.connect(self.layerClicked)
 
 
 
