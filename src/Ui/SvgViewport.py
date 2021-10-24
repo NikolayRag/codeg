@@ -5,6 +5,10 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 from PySide2.QtSvg import *
 
+from .BindFilter import *
+
+
+
 #  todo 37 (module-ui, viewport) +0: make custom scrollbars out of SvgViewport
 #  todo 207 (viewport, v2) +0: onscreen controls
 
@@ -44,15 +48,6 @@ class SvgViewport(QWidget):
 
 
 #  todo 6 (module-ui, feature) -1: smooth animated zoom
-
-	def eventFilter(self, _o, _e):
-		if _e.type() in self.eventTypes:
-			fn = self.eventTypes[_e.type()]
-			return bool(fn(_e))
-
-
-		return False
-
 
 
 	def resizeEvent(self, _e):
@@ -186,12 +181,12 @@ class SvgViewport(QWidget):
 	def __init__(self, _parent):
 		QWidget.__init__(self, _parent)
 
-		self.eventTypes = {
+		self.tmpFilter = BindFilter({
 			QEvent.Type.MouseButtonPress: self.mousePress,
 			QEvent.Type.MouseMove: self.mouseMove,
 			QEvent.Type.MouseButtonRelease: self.mouseRelease,
-		}
-		self.installEventFilter(self)
+		})
+		self.installEventFilter(self.tmpFilter)
 
 
 		QHBoxLayout(self)

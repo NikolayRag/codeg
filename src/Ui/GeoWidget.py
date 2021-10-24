@@ -3,6 +3,8 @@ from PySide2.QtGui import *
 from PySide2.QtCore import *
 from PySide2.QtUiTools import *
 
+from .BindFilter import *
+
 
 
 class GeoWidget(QWidget):
@@ -29,12 +31,6 @@ class GeoWidget(QWidget):
 	lastHover = None
 	lastSelection = []
 
-
-	def eventFilter(self, _o, _e):
-		if _e.type() in self.eventTypes:
-			self.eventTypes[_e.type()]()
-
-		return False
 
 
 ### PRIVATE 
@@ -115,6 +111,10 @@ class GeoWidget(QWidget):
 
 
 
+	def itemHover_(self, _e):
+		self.itemHover()
+
+
 	def itemHover(self, _row=-1, _col=-1):
 		if self.lastHover:
 			self.sigItemHover.emit(self.lastHover, False)
@@ -189,8 +189,10 @@ class GeoWidget(QWidget):
 		self.wListItems.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
 		self.wListItems.itemSelectionChanged.connect(self.itemSelected)
 		self.wListItems.cellEntered.connect(self.itemHover)
-		self.eventTypes = {QEvent.Type.Leave: self.itemHover}
-		self.wListItems.installEventFilter(self)
+
+		self.tmpFilter = BindFilter({
+			QEvent.Type.Leave: self.itemHover_ })
+		self.wListItems.installEventFilter(self.tmpFilter)
 
 		self.wListItems.cellClicked.connect(self.itemClicked)
 
