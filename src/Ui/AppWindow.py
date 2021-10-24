@@ -128,6 +128,8 @@ class AppWindow(QObject):
 		)
 		holderViewport.installEventFilter(self.tmpFilterViewResize)
 
+		self.wSvgViewport.sigMousePress.connect(lambda: self.wGeoWidget.layerSelect())
+
 
 		self.wBtnFit = cMain.findChild(QWidget, "btnFit")
 

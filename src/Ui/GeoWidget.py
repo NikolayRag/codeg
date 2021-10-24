@@ -85,6 +85,17 @@ class GeoWidget(QWidget):
 
 
 
+	def layerSelect(self, _selection=False):
+		if not _selection:
+			self.wListItems.clearSelection()
+
+			return
+			
+
+		print(_selection)
+
+
+
 	def layerSelected(self):
 		cSelection = self.layerSelection().values()
 
