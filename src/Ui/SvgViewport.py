@@ -47,8 +47,8 @@ class SvgViewport(QWidget):
 
 	def eventFilter(self, _o, _e):
 		if _e.type() in self.eventTypes:
-			self.eventTypes[_e.type()](_e)
-			return True
+			fn = self.eventTypes[_e.type()]
+			return bool(fn(_e))
 
 
 		return False
