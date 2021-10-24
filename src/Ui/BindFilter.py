@@ -1,7 +1,8 @@
 '''
 Generalized eventFilter() control.
 
-Accepts {event: function(event)} dict.
+Accepts {[QEvent.Type|True]: function(event)} dict,
+ using True to accept any event type.
 
 Function is called at given event,
  and its return value is returned by eventFilter(),
@@ -27,9 +28,16 @@ class BindFilter(QObject):
 
 
 	def eventFilter(self, _o, _e):
-		if _e.type() in self.eventTypes:
-			fn = self.eventTypes[_e.type()]
-			return bool(fn(_e))
+		cType = _e.type() 
+
+		if cType not in self.eventTypes:
+			if True in self.eventTypes:
+				cType = True
+
+			else:
+				return False
 
 
-		return False
+		fn = self.eventTypes[cType]
+
+		return bool(fn(_e))
