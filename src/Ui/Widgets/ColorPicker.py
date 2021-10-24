@@ -2,6 +2,8 @@ from PySide2.QtCore import *
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 
+from ..BindFilter import *
+
 
 
 class ColorGrid(QFrame):
@@ -18,6 +20,10 @@ class ColorGrid(QFrame):
 		cLayout = QGridLayout(self)
 		cLayout.setSpacing(0)
 		cLayout.setContentsMargins(0,0,0,0)
+
+		self.tmpFilter = BindFilter({
+			QEvent.Type.KeyPress: lambda _e: self.close() })
+		self.installEventFilter(self.tmpFilter)
 
 
 
