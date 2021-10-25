@@ -142,8 +142,8 @@ class Ui():
 		self.appWindow.sigGeoHover.connect(self.geoSetHover)
 		self.appWindow.sigGeoDataSet.connect(self.geoSetData)
 		self.appWindow.sigGeoTouched.connect(self.reloadXml)
-		self.appWindow.sigMarkAdd.connect(self.slotMarkAdd)
-		self.appWindow.sigMarkAssign.connect(self.slotMarkAssign)
+		self.appWindow.sigMarkAdd.connect(self.markAddSlot)
+		self.appWindow.sigMarkAssign.connect(self.markAssign)
 
 		self.appWindow.sigSceneWipe.connect(self.sceneWipe)
 		self.appWindow.sigSceneSave.connect(self.sceneSave)
@@ -293,7 +293,7 @@ class Ui():
 			cMark = marksA[int(cMarkId)] = self.data.markNew(data=markData['data'], filterName=markData['filter'], filterData={}, priority=markData['priority'])
 
 			self.activeScene.markAppend(cMark)
-			self.uiMarkAdd(cMark)
+			self.markAdd(cMark)
 
 
 		for geoData in projData['geoBlock']:
@@ -419,7 +419,7 @@ class Ui():
 
 
 
-### LAYERS ###
+### GEO ###
 
 
 #  todo 98 (module-ui, optimize) -1: prevent doubling by difference change
@@ -461,7 +461,7 @@ class Ui():
 ### MARKS ###
 
 # =todo 164 (feature, module-ui) -1: auto-apply new Mark to selection
-	def slotMarkAdd(self):
+	def markAddSlot(self):
 		randomColor = QColor.fromHsvF(
 			Counter.next('hue',.3)%1.,
 			Counter.next('sat',.45)%1. *.5+.5,
@@ -475,16 +475,16 @@ class Ui():
 		self.activeScene.markAppend(cMark)
 
 
-		self.uiMarkAdd(cMark, True)
+		self.markAdd(cMark, True)
 
 
 
-	def uiMarkAdd(self, _mark, _open=False):
+	def markAdd(self, _mark, _open=False):
 		self.appWindow.markAddWidget(_mark, _open, fieldColor=self.defaultMarkColorField)
 
 
 
-	def slotMarkAssign(self, _mark, _geoList, _state):
+	def markAssign(self, _mark, _geoList, _state):
 		for cGeo in _geoList:
 			cGeo.markSet(_mark, _state)
 
