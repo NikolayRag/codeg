@@ -56,7 +56,8 @@ class Ui():
 				'stroke-width':'1.5px',
 				'stroke':'#889',
 				'fill':'#181818',
-				'opacity': '.9'
+				'fill-opacity':'0.2',
+				'opacity': '1'
 			},
 			'off': {
 				'fill':'#282828',
@@ -79,7 +80,8 @@ class Ui():
 				'stroke-width':'1.5px',
 				'stroke':'#667',
 				'fill':'#fdfdfd',
-				'opacity': '.9'
+				'fill-opacity':'0.2',
+				'opacity': '1'
 			},
 			'off': {
 				'fill':'#f8f8f8',
@@ -88,7 +90,7 @@ class Ui():
 			},
 			'select': {
 				'fill':'#8cf',
-				'stroke':'#04f',
+				'stroke':'#04c',
 			},
 			'hover': {
 				'stroke-width':'2.5px',
