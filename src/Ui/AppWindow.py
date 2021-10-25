@@ -212,13 +212,13 @@ class AppWindow(QObject):
 #  todo 152 (module-ui, mark) +0: make select by mark
 #  todo 153 (module-ui, mark) +0: manage mark fields list
 # -todo 145 (module-ui, widgets) +0: make Marks arrangable with priority change (DragList)
-	def markAddWidget(self, _mark, _open, fieldColor=''):
+	def markAddWidget(self, _mark, _open=False, colorName=''):
 		if _mark in self.allWidgetsMarks:
 			print('MarkWidget already exists')
 			return
 
 
-		btnMark = MarkWidget(self.wFrameMark, _mark, fieldWColor=fieldColor)
+		btnMark = MarkWidget(self.wFrameMark, _mark, colorFieldName=colorName)
 		self.allWidgetsMarks[_mark] = btnMark
 
 

@@ -480,7 +480,7 @@ class Ui():
 
 
 	def markAdd(self, _mark, _open=False):
-		self.appWindow.markAddWidget(_mark, _open, fieldColor=self.defaultMarkColorField)
+		self.appWindow.markAddWidget(_mark, _open, colorName=self.defaultMarkColorField)
 
 
 

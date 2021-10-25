@@ -80,19 +80,19 @@ class MarkWidget(QFrame):
 	sigTrigger = Signal(object, bool)
 
 
-	fieldWColor = ''
+	colorFieldName = ''
 
 	mark = None
 	activeMB = None
 
 
 
-	def __init__(self, _contLay, _mark, fieldWColor=''):
+	def __init__(self, _contLay, _mark, colorFieldName=''):
 		QFrame.__init__(self)
 
 		
 		self.mark = _mark
-		self.fieldWColor = fieldWColor
+		self.colorFieldName = colorFieldName
 
 
 		cLayout = QHBoxLayout(self)
@@ -128,7 +128,7 @@ class MarkWidget(QFrame):
 		_contLay.addWidget(self.wFrameTool)
 
 
-		cColor = self.mark.getData(self.fieldWColor)
+		cColor = self.mark.getData(self.colorFieldName)
 		self.setColor(cColor)
 
 		self.lButton.clicked.connect(self.toolPop)
@@ -159,7 +159,7 @@ class MarkWidget(QFrame):
 
 
 	def markChanged(self, _name, _val):
-		if self.fieldWColor and _name==self.fieldWColor:
+		if self.colorFieldName and _name==self.colorFieldName:
 			self.setColor(_val)
 
 
