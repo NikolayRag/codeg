@@ -137,6 +137,7 @@ class MarkWidget(QFrame):
 
 
 
+	#partially have priority
 	def setTrigger(self, _on=None, tri=None):
 		cState = Qt.Checked if _on else Qt.Unchecked
 
