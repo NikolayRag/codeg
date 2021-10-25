@@ -143,7 +143,6 @@ class Ui():
 		self.appWindow.sigGeoDataSet.connect(self.geoSetData)
 		self.appWindow.sigGeoTouched.connect(self.reloadXml)
 		self.appWindow.sigMarkAdd.connect(self.markCreate)
-		self.appWindow.sigMarkAssign.connect(self.markAssign)
 
 		self.appWindow.sigSceneWipe.connect(self.sceneWipe)
 		self.appWindow.sigSceneSave.connect(self.sceneSave)
@@ -481,11 +480,3 @@ class Ui():
 
 	def markAdd(self, _mark):
 		self.appWindow.markAddWidget(_mark, colorName=self.defaultMarkColorField)
-
-
-
-	def markAssign(self, _mark, _geoList, _state):
-		for cGeo in _geoList:
-			cGeo.markSet(_mark, _state)
-
-			cGeo.marksSolve(filterStep='DIRECT')

@@ -26,7 +26,6 @@ class AppWindow(QObject):
 	sigGeoDataSet = Signal(object, list)
 	sigGeoTouched = Signal()
 	sigMarkAdd = Signal()
-	sigMarkAssign = Signal(object, dict, bool)
 
 	sigSceneWipe = Signal()
 	sigSceneSave = Signal()
@@ -224,8 +223,8 @@ class AppWindow(QObject):
 
 		self.wMarks.addWidget(btnMark)
 
-		btnMark.sigChanged.connect(lambda m,n,v:print(f"Changed: {m} '{n}' to {v}"))
-		btnMark.sigTrigger.connect(lambda m,s:self.sigMarkAssign.emit(m, self.wGeoWidget.getItems(selected=True), s))
+		btnMark.sigChanged.connect(self.markChanged)
+		btnMark.sigTrigger.connect(self.markAssign)
 	 
 		if _open:
 			btnMark.toolPop()
@@ -233,6 +232,18 @@ class AppWindow(QObject):
 
 
 # -todo 141 (module-ui, mark) +0: update Geoitem widgets on Mark assign
+	def markChanged(self, _mark, _name, _val):
+		self.wGeoWidget.getItems(selected=True)
+
+
+
+	def markAssign(self, _mark, _state):
+		cGeoList = self.wGeoWidget.getItems(selected=True)
+
+		for cGeo in cGeoList:
+			cGeo.markSet(_mark, _state)
+
+			cGeo.marksSolve(filterStep='DIRECT')
 
 
 
