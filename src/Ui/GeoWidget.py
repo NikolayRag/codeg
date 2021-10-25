@@ -8,6 +8,11 @@ from .BindFilter import *
 
 
 class GeoWidget(QWidget):
+	iconVis = QIcon('./resource/vis.svg')
+	iconVis.addFile('./resource/vis.svg', mode=QIcon.Disabled)
+	iconInvis = QIcon('./resource/invis.svg')
+	iconInvis.addFile('./resource/invis.svg', mode=QIcon.Disabled)
+
 	LayerColumnName = 0
 	LayerColumnSwitch = 1
 
@@ -38,9 +43,7 @@ class GeoWidget(QWidget):
 
 
 	def geoitemSet(self, _item, _on):
-		c = QColor('#4c4')
-		c.setAlpha(255 if _on else 0)
-		_item.setBackground(c)
+		_item.setIcon(self.iconVis if _on else self.iconInvis)
 
 
 
@@ -190,6 +193,7 @@ class GeoWidget(QWidget):
 
 
 		self.wListItems = self.findChild(QTableWidget, "listItems")
+		self.wListItems.setIconSize(QSize(14,14))
 
 		self.wListItems.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
 		self.wListItems.itemSelectionChanged.connect(self.itemSelected)
