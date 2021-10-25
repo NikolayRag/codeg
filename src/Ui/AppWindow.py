@@ -24,7 +24,7 @@ class AppWindow(QObject):
 	sigGeoSelect = Signal(object, bool)
 	sigGeoHover = Signal(object, bool)
 	sigGeoDataSet = Signal(object, list)
-	sigGeoChanged = Signal()
+	sigGeoTouched = Signal()
 	sigMarkAdd = Signal()
 	sigMarkAssign = Signal(object, dict, bool)
 
@@ -82,8 +82,8 @@ class AppWindow(QObject):
 		self.wGeoWidget.sigItemSelect.connect(lambda item, state: self.sigGeoSelect.emit(item, state))
 		self.wGeoWidget.sigItemHover.connect(lambda item, state: self.sigGeoHover.emit(item, state))
 		self.wGeoWidget.sigItemDataSet.connect(lambda item, names: self.sigGeoDataSet.emit(item, names))
-		self.wGeoWidget.sigTouched.connect(lambda _mark: self.sigGeoChanged.emit())
-		self.wGeoWidget.sigSelected.connect(self.geoSelected)
+		self.wGeoWidget.sigTouched.connect(lambda _mark: self.sigGeoTouched.emit())
+		self.wGeoWidget.sigSelected.connect(self.geoWidgetSelected)
 
 
 		self.wFrameMark = cMain.findChild(QLayout, "frameMark")
@@ -183,7 +183,7 @@ class AppWindow(QObject):
 
 
 
-	def geoSelected(self, _geo, _selection):
+	def geoWidgetSelected(self, _geo, _selection):
 		marksUsed = {}
 		
 		for cObj in _selection:

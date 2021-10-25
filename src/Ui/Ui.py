@@ -141,7 +141,7 @@ class Ui():
 		self.appWindow.sigGeoSelect.connect(self.geoSetSelect)
 		self.appWindow.sigGeoHover.connect(self.geoSetHover)
 		self.appWindow.sigGeoDataSet.connect(self.geoSetData)
-		self.appWindow.sigGeoChanged.connect(self.reloadXml)
+		self.appWindow.sigGeoTouched.connect(self.reloadXml)
 		self.appWindow.sigMarkAdd.connect(self.slotMarkAdd)
 		self.appWindow.sigMarkAssign.connect(self.slotMarkAssign)
 
