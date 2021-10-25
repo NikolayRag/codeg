@@ -142,7 +142,7 @@ class Ui():
 		self.appWindow.sigGeoHover.connect(self.geoSetHover)
 		self.appWindow.sigGeoDataSet.connect(self.geoSetData)
 		self.appWindow.sigGeoTouched.connect(self.reloadXml)
-		self.appWindow.sigMarkAdd.connect(self.markAddSlot)
+		self.appWindow.sigMarkAdd.connect(self.markCreate)
 		self.appWindow.sigMarkAssign.connect(self.markAssign)
 
 		self.appWindow.sigSceneWipe.connect(self.sceneWipe)
@@ -461,7 +461,7 @@ class Ui():
 ### MARKS ###
 
 # =todo 164 (feature, module-ui) -1: auto-apply new Mark to selection
-	def markAddSlot(self):
+	def markCreate(self):
 		randomColor = QColor.fromHsvF(
 			Counter.next('hue',.3)%1.,
 			Counter.next('sat',.45)%1. *.5+.5,
@@ -475,12 +475,12 @@ class Ui():
 		self.activeScene.markAppend(cMark)
 
 
-		self.markAdd(cMark, True)
+		self.appWindow.markAddWidget(cMark, True, colorName=self.defaultMarkColorField)
 
 
 
-	def markAdd(self, _mark, _open=False):
-		self.appWindow.markAddWidget(_mark, _open, colorName=self.defaultMarkColorField)
+	def markAdd(self, _mark):
+		self.appWindow.markAddWidget(_mark, colorName=self.defaultMarkColorField)
 
 
 
