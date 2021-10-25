@@ -318,7 +318,7 @@ class Ui():
 				cGItem.marksSolve(filterStep='UI')
 
 
-			self.appWindow.geoAddSlot(cGBlock)
+			self.appWindow.geoAddWidget(cGBlock)
 
 
 		cXml = self.activeScene.getSceneXML(True)
@@ -383,7 +383,7 @@ class Ui():
 		self.activeScene.clean()
 		
 
-		self.appWindow.geoAddSlot(cGBlock)
+		self.appWindow.geoAddWidget(cGBlock)
 
 		cXml = self.activeScene.getSceneXML(True)
 		if cXml:
@@ -478,7 +478,7 @@ class Ui():
 
 
 	def uiMarkAdd(self, _mark, _open=False):
-		self.appWindow.wMarkAdd(_mark, _open, fieldColor=self.defaultMarkColorField)
+		self.appWindow.markAddWidget(_mark, _open, fieldColor=self.defaultMarkColorField)
 
 
 

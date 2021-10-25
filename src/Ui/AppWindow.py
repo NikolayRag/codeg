@@ -157,28 +157,7 @@ class AppWindow(QObject):
 
 
 
-	def slotNewScene(self, _scene):
-		self.wBtnStore.setEnabled(True)
-		self.wBtnProccess.setEnabled(True)
-		self.wGeoWidget.clean()
-
-
-		while markTool := self.wFrameMark.takeAt(0):
-			markTool.widget().setParent(None)
-
-
-		while wMark := self.wMarks.takeAt(0):
-			wMark.widget().setParent(None)
-
-
-
-		self.allWidgetsMarks = {}
-
-
-		self.wSvgViewport.canvasReset()
-		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
-		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
-
+### VIEWPORT ###
 
 
 #  todo 3 (feature, file) +0: allow picking from Recent files list
@@ -190,20 +169,15 @@ class AppWindow(QObject):
 
 
 
-#  todo 20 (module-ui, error) +0: handle errors, maybe status string
-	def reactStoreG(self):
-		None
-
-
-
 	def viewportUpdate(self, _xml):
 		self.wSvgViewport.canvasUpdate(_xml)
 
 
 
-######### Geoitems #########
+### GEO ###
 
-	def geoAddSlot(self, _geo):
+
+	def geoAddWidget(self, _geo):
 		self.wGeoWidget.replace(_geo)
 
 
@@ -239,31 +213,13 @@ class AppWindow(QObject):
 
 
 
-### DISPATCH ###
-
-# -todo 59 (module-ui, ux, clean) +0: make updatable connections list
-	def connList(self, _portsA):
-		for port in _portsA:
-			self.wListPorts.insertItem(0,port)
-
-
-
-	def dispatchRun(self):
-		self.sigDispatch.emit( self.wListPorts.currentText() )
-
-
-
-	def dispatchLog(self, _txt):
-		self.wFrameDev.insertPlainText(_txt)
-
-
-
 ### MARKS ###
+
 
 #  todo 152 (module-ui, mark) +0: make select by mark
 #  todo 153 (module-ui, mark) +0: manage mark fields list
 # -todo 145 (module-ui, widgets) +0: make Marks arrangable with priority change (DragList)
-	def wMarkAdd(self, _mark, _open, fieldColor=''):
+	def markAddWidget(self, _mark, _open, fieldColor=''):
 		if _mark in self.allWidgetsMarks:
 			print('MarkWidget already exists')
 			return
@@ -284,3 +240,55 @@ class AppWindow(QObject):
 
 
 # -todo 141 (module-ui, mark) +0: update Geoitem widgets on Mark assign
+
+
+
+### DISPATCH ###
+
+# -todo 59 (module-ui, ux, clean) +0: make updatable connections list
+	def connList(self, _portsA):
+		for port in _portsA:
+			self.wListPorts.insertItem(0,port)
+
+
+
+	def dispatchRun(self):
+		self.sigDispatch.emit( self.wListPorts.currentText() )
+
+
+
+	def dispatchLog(self, _txt):
+		self.wFrameDev.insertPlainText(_txt)
+
+
+
+### HIPE ###
+
+
+	def slotNewScene(self, _scene):
+		self.wBtnStore.setEnabled(True)
+		self.wBtnProccess.setEnabled(True)
+		self.wGeoWidget.clean()
+
+
+		while markTool := self.wFrameMark.takeAt(0):
+			markTool.widget().setParent(None)
+
+
+		while wMark := self.wMarks.takeAt(0):
+			wMark.widget().setParent(None)
+
+
+
+		self.allWidgetsMarks = {}
+
+
+		self.wSvgViewport.canvasReset()
+		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
+		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
+
+
+
+#  todo 20 (module-ui, error) +0: handle errors, maybe status string
+	def reactStoreG(self):
+		None
