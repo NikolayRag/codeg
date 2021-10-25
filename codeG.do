@@ -331,7 +331,7 @@
 =ux, module-ui 116: +0 "src\Ui\Ui.py" kii 21/09/08 18:41:48
 	choose style in app settings
 
-=ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/10/20 22:56:59
+=ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/10/25 15:25:56
 	add app settings
 
 !refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" ki 21/10/23 03:36:50
@@ -406,7 +406,7 @@
 +module-ui, widgets 144: +0 "src\Ui\AppWindow.py" ki 21/10/22 22:12:55
 	Use Geoitems directly in UI
 
--module-ui, widgets 145: +0 "src\Ui\AppWindow.py" kii 21/10/12 03:54:15
+ module-ui, widgets 145: +0 "src\Ui\AppWindow.py" ki 21/10/25 15:42:29
 	make Marks arrangable with priority change (DragList)
 
 =module-data, mark 146: +0 "src\Ui\Ui.py" kii 21/10/10 13:29:23
@@ -424,7 +424,7 @@
 +ux, widgets 150: +0 "src\Ui\AppWindow.py" ki 21/10/22 22:12:51
 	Make GeoWidget
 
- module-ui, mark 152: +0 "src\Ui\AppWindow.py" kii 21/10/12 01:49:30
+=module-ui, mark 152: +0 "src\Ui\AppWindow.py" ki 21/10/25 15:42:32
 	make select by mark
 
  module-ui, mark 153: +0 "src\Ui\AppWindow.py" kii 21/10/12 01:50:38
