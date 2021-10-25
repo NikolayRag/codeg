@@ -119,6 +119,7 @@ class GeoWidget(QWidget):
 		self.itemHover()
 
 
+
 	def itemHover(self, _row=-1, _col=-1):
 		if self.lastHover:
 			self.sigItemHover.emit(self.lastHover, False)

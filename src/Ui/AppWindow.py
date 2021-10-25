@@ -225,7 +225,7 @@ class AppWindow(QObject):
 
 		btnMark.sigChanged.connect(self.markChanged)
 		btnMark.sigTrigger.connect(self.markAssign)
-	 
+
 		if _open:
 			btnMark.toolPop()
 
