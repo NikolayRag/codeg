@@ -55,13 +55,15 @@ class GeoWidget(QWidget):
 			itemName.setData(self.LdataItem, _geoitem)
 			self.wListItems.setItem(cRow, self.LayerColumnName, itemName)
 		
-			itemOn = QTableWidgetItem()
-			itemOn.setData(self.LdataItem, _geoitem)
+	
+			ctrlVisible = QTableWidgetItem()
+			ctrlVisible.setData(self.LdataItem, _geoitem)
 
-			itemOn.setFlags(Qt.NoItemFlags)
+			ctrlVisible.setFlags(Qt.NoItemFlags)
 			visible = _geoitem.dataGet('visible', True)
-			self.geoitemSet(itemOn, visible)
-			self.wListItems.setItem(cRow, self.LayerColumnSwitch, itemOn)
+			self.geoitemSet(ctrlVisible, visible)
+
+			self.wListItems.setItem(cRow, self.LayerColumnSwitch, ctrlVisible)
 
 		else:
 			for i in range(self.wListItems.columnCount()):
