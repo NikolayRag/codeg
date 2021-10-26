@@ -203,12 +203,6 @@ class Ui():
 ### SLOTS ###
 
 
-
-# -todo 88 (fix, gcode) +0: use dispatch both for file save
-	def dispatchSend(self, _name):
-		return self.dispatch.runDevice(self.activeScene, _name, self.appWindow.dispatchLog)
-
-
 # =todo 188 (module-data, api) +0: move all data functions to data
 	def sceneDirty(self):
 		scenesList = self.data.sceneList()
@@ -387,6 +381,12 @@ class Ui():
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
 		self.args.set("recentSaved", cRecentA+[fileName])
+
+
+
+# -todo 88 (fix, gcode) +0: use dispatch both for file save
+	def dispatchSend(self, _name):
+		return self.dispatch.runDevice(self.activeScene, _name, self.appWindow.dispatchLog)
 
 
 
