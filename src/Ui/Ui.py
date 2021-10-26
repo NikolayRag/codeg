@@ -327,7 +327,7 @@ class Ui():
 
 
 
-	def sceneWipe(self, _new=True):
+	def sceneWipe(self):
 		if self.sceneDirty():
 			return
 
@@ -336,8 +336,7 @@ class Ui():
 			self.data.sceneRemove(cScene)
 
 
-		if _new:
-			self.sceneNew()
+		self.sceneNew()
 
 
 
