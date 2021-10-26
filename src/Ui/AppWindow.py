@@ -160,7 +160,6 @@ class AppWindow(QObject):
 ### VIEWPORT ###
 
 
-#  todo 3 (feature, file) +0: allow picking from Recent files list
 	def viewportFit(self):
 		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 #  todo 157 (fix, canvas) +0: review SvgViewport fit routine
@@ -175,6 +174,7 @@ class AppWindow(QObject):
 
 
 ### GEO ###
+# =todo 199 (module-data, module-ui, feature, api) +0: multiple Geoblocks
 
 
 	def geoAddWidget(self, _geo):
