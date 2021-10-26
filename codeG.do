@@ -49,7 +49,7 @@
 =spec, module-dispatch 17: +0 "" kii 21/08/10 05:55:57
 	send to serial-usb (arduino)
 
- spec, module-dispatch 18: +0 "" ki 21/10/24 04:25:33
+ spec, module-dispatch, v2 18: +0 "src\GGData\GGData.py" ki 21/10/26 01:06:10
 	standalone dispatcher
 
  spec, module-dispatch 19: +0 "src\GGData\GGData.py" ki 21/10/20 22:59:40
@@ -508,7 +508,7 @@
 =module-ui, mark 180: +0 "src\Ui\MarkWidget.py" ki 21/10/19 03:18:36
 	allow to assign only with selected geo
 
--decide 181: +0 "src\GGData\Geoblock.py" ki 21/10/24 04:17:54
+-decide 181: +0 "src\GGData\Geoblock.py" ki 21/10/26 01:06:10
 	geometry embed method
 
 =ux 182: +0 "src\Ui\Ui.py" ki 21/10/19 06:59:59
@@ -568,7 +568,7 @@
  geo, feature 201: +0 "src\GGData\Geoblock.py" ki 21/10/23 23:49:51
 	update reference geometry 
 
- clean 202: +0 "src\__main__w.py" ki 21/10/24 00:36:07
+ clean 202: +0 "src\__main__w.py" ki 21/10/26 01:06:10
 	add app constants
 
 =ux, clean 203: +0 "src\Ui\Ui.py" ki 21/10/24 01:21:13
@@ -594,4 +594,7 @@
 
  fix, widgets 210: -1 "src\Ui\Widgets\ColorPicker.py" ki 21/10/24 19:13:00
 	popup ignores Alt+F4
+
++viewport, ux 211: +0 "src\Ui\AppWindow.py" ki 21/10/26 10:46:18
+	cancel select by right click
 
