@@ -113,7 +113,7 @@ class GeoWidget(QWidget):
 		self.lastSelection = cSelection
 
 
-		self.sigTouched.emit(self)
+		self.sigTouched.emit(self.geoblock)
 		self.sigSelected.emit(self, list(cSelection))
 
 
@@ -134,7 +134,7 @@ class GeoWidget(QWidget):
 				self.sigItemHover.emit(cGItem, True)
 
 
-		self.sigTouched.emit(self)
+		self.sigTouched.emit(self.geoblock)
 
 
 
@@ -162,7 +162,7 @@ class GeoWidget(QWidget):
 			self.itemsSwitchVis(cSelection, newState)
 
 
-		self.sigTouched.emit(self)
+		self.sigTouched.emit(self.geoblock)
 
 
 
