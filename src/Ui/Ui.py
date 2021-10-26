@@ -343,10 +343,6 @@ class Ui():
 
 #  todo 3 (feature, file) +0: geo library
 	def addFile(self):
-		if self.sceneDirty():
-			return
-
-
 		cRecentA = self.args.get("recentLoaded", [])
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
@@ -360,14 +356,6 @@ class Ui():
 		self.args.set("recentLoaded", cRecentA+[fileName])
 
 
-		for cScene in self.data.sceneList():
-			self.data.sceneRemove(cScene)
-
-		self.sceneNew(fileName)
-
-
-		self.activeScene.clean()
-		
 		cGBlock = self.activeScene.geoAdd(fileName, [self.markDefault], 'UI')
 		self.appWindow.geoAddWidget(cGBlock)
 
