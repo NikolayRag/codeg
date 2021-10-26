@@ -224,34 +224,24 @@ class Ui():
 					return True
 
 
-# =todo 182 (ux) +0: fix save saved project
-#  todo 196 (module-data, api) +0: deal with Markfilter data fields within Mark
-# =todo 198 (data, fix) +0: move save/load routines to GGData
-# =todo 203 (ux, clean) +0: scene load/save error handling
-	def sceneSave(self):
-		cRecentA = self.args.get("recentProject", [])
 
-		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
-		
-		cDialog = QFileDialog(self.appWindow.lMain, "Save project", os.path.dirname(cLast), "Codeg (*.codeg)")
-		cDialog.setDefaultSuffix(".codeg")
-		cDialog.setOptions(QFileDialog.DontUseNativeDialog)
-		cDialog.setAcceptMode(QFileDialog.AcceptSave)
-		if not cDialog.exec():
+	def sceneWipe(self):
+		if self.sceneDirty():
 			return
 
 
-		saveData = self.activeScene.packScene()
-
-		fileName = cDialog.selectedFiles()[0]
-		with open(fileName, 'w') as f:
-			f.write( json.dumps(saveData, indent=2) )
-
-		if cRecentA.count(fileName): cRecentA.remove(fileName)
-		self.args.set("recentProject", cRecentA+[fileName])
+		for cScene in self.data.sceneList():
+			self.data.sceneRemove(cScene)
 
 
-		self.activeScene.clean()
+		self.sceneNew()
+
+
+
+	def sceneNew(self, _name=''):
+		self.activeScene = self.data.sceneGet(_name)
+		self.appWindow.slotNewScene(self.activeScene)
+
 
 
 # =todo 204 (ux) +0: group scene controls
@@ -321,22 +311,34 @@ class Ui():
 
 
 
-	def sceneNew(self, _name=''):
-		self.activeScene = self.data.sceneGet(_name)
-		self.appWindow.slotNewScene(self.activeScene)
+# =todo 182 (ux) +0: fix save saved project
+#  todo 196 (module-data, api) +0: deal with Markfilter data fields within Mark
+# =todo 198 (data, fix) +0: move save/load routines to GGData
+# =todo 203 (ux, clean) +0: scene load/save error handling
+	def sceneSave(self):
+		cRecentA = self.args.get("recentProject", [])
 
-
-
-	def sceneWipe(self):
-		if self.sceneDirty():
+		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
+		
+		cDialog = QFileDialog(self.appWindow.lMain, "Save project", os.path.dirname(cLast), "Codeg (*.codeg)")
+		cDialog.setDefaultSuffix(".codeg")
+		cDialog.setOptions(QFileDialog.DontUseNativeDialog)
+		cDialog.setAcceptMode(QFileDialog.AcceptSave)
+		if not cDialog.exec():
 			return
 
 
-		for cScene in self.data.sceneList():
-			self.data.sceneRemove(cScene)
+		saveData = self.activeScene.packScene()
+
+		fileName = cDialog.selectedFiles()[0]
+		with open(fileName, 'w') as f:
+			f.write( json.dumps(saveData, indent=2) )
+
+		if cRecentA.count(fileName): cRecentA.remove(fileName)
+		self.args.set("recentProject", cRecentA+[fileName])
 
 
-		self.sceneNew()
+		self.activeScene.clean()
 
 
 
