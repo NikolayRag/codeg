@@ -174,7 +174,8 @@ class AppWindow(QObject):
 
 
 
-	def viewportInteract(self):
+	def viewportInteract(self, _from, _to):
+		print(_from, _to)
 		self.wGeoWidget.itemSelect()
 		MarkWidget.toolUnpop()
 

@@ -5,8 +5,6 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 from PySide2.QtSvg import *
 
-from .BindFilter import *
-
 
 
 #  todo 37 (module-ui, viewport) +0: make custom scrollbars out of SvgViewport
@@ -16,7 +14,7 @@ from .BindFilter import *
 Main scene widget
 '''
 class SvgViewport(QWidget):
-	sigInteract = Signal()
+	sigInteract = Signal(object, object)
 
 	eventTypes = {}
 
@@ -44,7 +42,7 @@ class SvgViewport(QWidget):
 
 	#runtime
 
-	deselectFlag=False
+	interactStart = None
 
 
 
@@ -90,8 +88,11 @@ class SvgViewport(QWidget):
 			self.panOrigin = _e.pos() - self.pos
 
 
+		if _e.button() == Qt.MouseButton.LeftButton:
+			self.interactStart = _e.pos() - self.pos
+
 		if _e.button() == Qt.MouseButton.RightButton:
-			self.deselectFlag = False
+			self.interactStart = None
 
 
 
@@ -107,10 +108,14 @@ class SvgViewport(QWidget):
 
 
 		if _e.button() == Qt.MouseButton.LeftButton:
-			if self.deselectFlag:
-				self.sigInteract.emit()
+			if self.interactStart:
+				interactEnd = _e.pos()-self.pos
+				self.sigInteract.emit(
+					self.interactStart,
+					interactEnd
+				)
 
-			self.deselectFlag = True
+			self.interactStart = None
 
 
 
