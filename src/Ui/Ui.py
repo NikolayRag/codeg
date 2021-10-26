@@ -296,11 +296,7 @@ class Ui():
 
 
 		for geoData in projData['geoBlock']:
-			cGBlock = self.activeScene.geoAdd(geoData['name'], 'svg')
-			for cGItem in cGBlock.getGeo():
-				cGItem.markSet(self.markDefault, True)
-
-
+			cGBlock = self.activeScene.geoAdd(geoData['name'], [self.markDefault])
 # =todo 197 (data, fix) +0: deal with missing svg link
 			for itemData in geoData['items']:
 				cGItem = cGBlock.getGeo([itemData['name']])[0]
@@ -376,9 +372,8 @@ class Ui():
 
 		self.sceneNew(fileName)
 
-		cGBlock = self.activeScene.geoAdd(fileName, 'svg')
+		cGBlock = self.activeScene.geoAdd(fileName, [self.markDefault])
 		for cGeo in cGBlock.getGeo():
-			cGeo.markSet(self.markDefault, True)
 			cGeo.marksSolve(filterStep='UI')
 
 		self.activeScene.clean()
