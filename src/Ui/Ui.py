@@ -317,7 +317,7 @@ class Ui():
 			self.appWindow.geoAddWidget(cGBlock)
 
 
-		self.appWindow.viewportUpdate()
+		self.appWindow.viewportFit()
 
 		self.activeScene.clean()
 
@@ -374,7 +374,7 @@ class Ui():
 
 		self.appWindow.geoAddWidget(cGBlock)
 
-		self.appWindow.viewportUpdate()
+		self.appWindow.viewportFit()
 
 
 

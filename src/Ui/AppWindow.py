@@ -136,7 +136,7 @@ class AppWindow(QObject):
 	def show(self):
 		self.wMain.show()
 #  todo 192 (module-ui, fix) +0: wrong fit at start
-		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
+		self.viewportFit()
 
 
 
@@ -161,16 +161,7 @@ class AppWindow(QObject):
 
 
 #  todo 3 (feature, file) +0: allow picking from Recent files list
-	def viewportUpdate(self):
-		if not self.wGeoWidget.getBlock():
-			return
-
-
-		cXml = self.wGeoWidget.getBlock().xmlRoot(True)
-		if cXml:
-			self.wSvgViewport.canvasUpdate(cXml)
-
-
+	def viewportFit(self):
 		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 #  todo 157 (fix, canvas) +0: review SvgViewport fit routine
 		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
