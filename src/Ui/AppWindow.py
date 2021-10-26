@@ -100,7 +100,7 @@ class AppWindow(QObject):
 			QEvent.Type.Resize: lambda event: self.wSvgViewport.resize(event.size()) })
 		holderViewport.installEventFilter(self.tmpFilterViewResize)
 
-		self.wSvgViewport.sigInteract.connect(lambda: self.wGeoWidget.itemSelect())
+		self.wSvgViewport.sigInteract.connect(self.viewportInteract)
 
 
 		self.wBtnFit = cMain.findChild(QWidget, "btnFit")
@@ -171,6 +171,12 @@ class AppWindow(QObject):
 
 	def viewportUpdate(self, _xml):
 		self.wSvgViewport.canvasUpdate(_xml)
+
+
+
+	def viewportInteract(self):
+		self.wGeoWidget.itemSelect()
+		MarkWidget.toolUnpop()
 
 
 
