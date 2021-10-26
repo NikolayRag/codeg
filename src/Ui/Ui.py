@@ -143,7 +143,7 @@ class Ui():
 		self.appWindow.sigGeoDataSet.connect(self.geoSetData)
 		self.appWindow.sigMarkAdd.connect(self.markCreate)
 
-		self.appWindow.sigSceneWipe.connect(self.sceneWipe)
+		self.appWindow.sigSceneReset.connect(self.sceneReset)
 		self.appWindow.sigSceneSave.connect(self.sceneSave)
 		self.appWindow.sigSceneLoad.connect(self.sceneLoad)
 		self.appWindow.sigAddFile.connect(self.addFile)
@@ -176,7 +176,7 @@ class Ui():
 		)
 
 
-		self.sceneNew()
+		self.sceneCreate()
 
 
 
@@ -219,7 +219,13 @@ class Ui():
 
 
 
-	def sceneWipe(self):
+	def sceneCreate(self, _name=''):
+		self.activeScene = self.data.sceneGet(_name)
+		self.appWindow.slotNewScene(self.activeScene)
+
+
+
+	def sceneReset(self):
 		if self.sceneDirty():
 			return
 
@@ -228,13 +234,7 @@ class Ui():
 			self.data.sceneRemove(cScene)
 
 
-		self.sceneNew()
-
-
-
-	def sceneNew(self, _name=''):
-		self.activeScene = self.data.sceneGet(_name)
-		self.appWindow.slotNewScene(self.activeScene)
+		self.sceneCreate()
 
 
 
@@ -264,7 +264,7 @@ class Ui():
 		with open(fileName, 'r') as f:
 			projData = json.loads( f.read() )
 
-		self.sceneNew(projData['name'])
+		self.sceneCreate(projData['name'])
 
 
 		marksA = {}

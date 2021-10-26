@@ -26,7 +26,7 @@ class AppWindow(QObject):
 	sigGeoDataSet = Signal(object, list)
 	sigMarkAdd = Signal()
 
-	sigSceneWipe = Signal()
+	sigSceneReset = Signal()
 	sigSceneSave = Signal()
 	sigSceneLoad = Signal()
 	sigAddFile = Signal()
@@ -124,7 +124,7 @@ class AppWindow(QObject):
 
 		self.wBtnFit.clicked.connect(lambda: self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset))
 		self.wBtnCaption.clicked.connect(self.about)
-		self.wBtnWipe.clicked.connect(self.sigSceneWipe)
+		self.wBtnWipe.clicked.connect(self.sigSceneReset)
 		self.wBtnOpen.clicked.connect(self.sigAddFile)
 		self.wBtnSave.clicked.connect(self.sigSceneSave)
 		self.wBtnLoad.clicked.connect(self.sigSceneLoad)
