@@ -4,8 +4,8 @@
 +feature, file 2: +0 "src\Ui\AppWindow.py" kii 21/07/25 16:29:21
 	deal with recent files
 
- feature, file 3: +0 "" kii 21/10/14 17:04:11
-	allow picking from Recent files list
+ feature, file 3: +0 "src\Ui\Ui.py" ki 21/10/26 20:58:49
+	geo library
 
 +svg, feature 4: +0 "src\Ui\SvgViewport.py" kii 21/08/02 19:14:43
 	zoom by wheel within center-mouse
@@ -508,7 +508,7 @@
 =module-ui, mark 180: +0 "src\Ui\MarkWidget.py" ki 21/10/19 03:18:36
 	allow to assign only with selected geo
 
--decide 181: +0 "src\GGData\Geoblock.py" ki 21/10/26 01:06:10
+-decide 181: +0 "src\GGData\Geoblock.py" ki 21/10/26 20:58:34
 	geometry embed method
 
 =ux 182: +0 "src\Ui\Ui.py" ki 21/10/19 06:59:59
