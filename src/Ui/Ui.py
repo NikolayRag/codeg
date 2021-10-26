@@ -229,9 +229,6 @@ class Ui():
 # =todo 198 (data, fix) +0: move save/load routines to GGData
 # =todo 203 (ux, clean) +0: scene load/save error handling
 	def sceneSave(self):
-		saveData = self.activeScene.packScene()
-
-		fileName = ''
 		cRecentA = self.args.get("recentProject", [])
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
@@ -244,8 +241,9 @@ class Ui():
 			return
 
 
-		fileName = cDialog.selectedFiles()[0]
+		saveData = self.activeScene.packScene()
 
+		fileName = cDialog.selectedFiles()[0]
 		with open(fileName, 'w') as f:
 			f.write( json.dumps(saveData, indent=2) )
 
