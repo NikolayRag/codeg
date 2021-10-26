@@ -87,7 +87,7 @@ class SvgViewport(QWidget):
 
 	def mousePressEvent(self, _e):
 		if _e.button() == Qt.MouseButton.MiddleButton:
-			self.panOrigin = self.pos - _e.pos()
+			self.panOrigin = _e.pos() - self.pos
 
 
 		if _e.button() == Qt.MouseButton.RightButton:
@@ -97,7 +97,7 @@ class SvgViewport(QWidget):
 
 	def mouseMoveEvent(self, _e):
 		if self.panOrigin:
-			self.viewportPlace( self.panOrigin + _e.pos() )
+			self.viewportPlace( _e.pos() - self.panOrigin)
 
 
 
