@@ -129,13 +129,15 @@ class Scene():
 
 
 #  todo 84 (module-data) +0: make file load plugin system
-	def geoAdd(self, _source, _marks=[]):
+	def geoAdd(self, _source, _marks=[], _solve=None):
 		geo = Geoblock(_source)
 		self.allGeo.append( geo )
 
 		for cGeo in geo.getGeo():
 			for cMark in _marks:
 				cGeo.markSet(cMark, True)
+				if _solve:
+					cGeo.marksSolve(filterStep=_solve)
 
 
 		self.dirtyFlag = True

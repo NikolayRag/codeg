@@ -372,12 +372,10 @@ class Ui():
 
 		self.sceneNew(fileName)
 
-		cGBlock = self.activeScene.geoAdd(fileName, [self.markDefault])
-		for cGeo in cGBlock.getGeo():
-			cGeo.marksSolve(filterStep='UI')
 
 		self.activeScene.clean()
 		
+		cGBlock = self.activeScene.geoAdd(fileName, [self.markDefault], 'UI')
 
 		self.appWindow.geoAddWidget(cGBlock)
 
