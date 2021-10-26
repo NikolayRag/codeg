@@ -317,11 +317,7 @@ class Ui():
 			self.appWindow.geoAddWidget(cGBlock)
 
 
-		cXml = self.activeScene.getSceneXML(True)
-		if cXml:
-			self.appWindow.viewportSet(cXml)
-
-
+		self.appWindow.viewportUpdate()
 
 		self.activeScene.clean()
 
@@ -378,10 +374,8 @@ class Ui():
 
 		self.appWindow.geoAddWidget(cGBlock)
 
-		cXml = self.activeScene.getSceneXML(True)
-		if cXml:
-			self.appWindow.viewportSet(cXml)
-		
+		self.appWindow.viewportUpdate()
+
 
 
 # -todo 119 (refactor, module-ui, module-data) +0: clean for dispatch

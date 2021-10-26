@@ -161,14 +161,6 @@ class AppWindow(QObject):
 
 
 #  todo 3 (feature, file) +0: allow picking from Recent files list
-	def viewportSet(self, _xml):
-		self.wSvgViewport.canvasAdd(_xml)
-		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
-#  todo 157 (fix, canvas) +0: review SvgViewport fit routine
-		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
-
-
-
 	def viewportUpdate(self):
 		if not self.wGeoWidget.getBlock():
 			return
@@ -177,6 +169,11 @@ class AppWindow(QObject):
 		cXml = self.wGeoWidget.getBlock().xmlRoot(True)
 		if cXml:
 			self.wSvgViewport.canvasUpdate(cXml)
+
+
+		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
+#  todo 157 (fix, canvas) +0: review SvgViewport fit routine
+		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 
 
 
@@ -192,6 +189,10 @@ class AppWindow(QObject):
 
 	def geoAddWidget(self, _geo):
 		self.wGeoWidget.replace(_geo)
+
+
+		cXml = _geo.xmlRoot(True)
+		self.wSvgViewport.canvasAdd(cXml)
 
 
 
