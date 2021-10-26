@@ -24,7 +24,6 @@ class AppWindow(QObject):
 	sigGeoSelect = Signal(object, bool)
 	sigGeoHover = Signal(object, bool)
 	sigGeoDataSet = Signal(object, list)
-	sigGeoTouched = Signal()
 	sigMarkAdd = Signal()
 
 	sigSceneWipe = Signal()
@@ -47,6 +46,7 @@ class AppWindow(QObject):
 
 ## runtime ##
 
+	wGeoWidget = None
 	allWidgetsMarks = {}
 
 
@@ -81,7 +81,7 @@ class AppWindow(QObject):
 		self.wGeoWidget.sigItemSelect.connect(lambda item, state: self.sigGeoSelect.emit(item, state))
 		self.wGeoWidget.sigItemHover.connect(lambda item, state: self.sigGeoHover.emit(item, state))
 		self.wGeoWidget.sigItemDataSet.connect(lambda item, names: self.sigGeoDataSet.emit(item, names))
-		self.wGeoWidget.sigTouched.connect(lambda _mark: self.sigGeoTouched.emit())
+		self.wGeoWidget.sigTouched.connect(self.viewportUpdate)
 		self.wGeoWidget.sigSelected.connect(self.geoWidgetSelected)
 
 
@@ -169,8 +169,14 @@ class AppWindow(QObject):
 
 
 
-	def viewportUpdate(self, _xml):
-		self.wSvgViewport.canvasUpdate(_xml)
+	def viewportUpdate(self):
+		if not self.wGeoWidget.getBlock():
+			return
+
+
+		cXml = self.wGeoWidget.getBlock().xmlRoot(True)
+		if cXml:
+			self.wSvgViewport.canvasUpdate(cXml)
 
 
 

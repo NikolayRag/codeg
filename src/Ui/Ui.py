@@ -141,7 +141,6 @@ class Ui():
 		self.appWindow.sigGeoSelect.connect(self.geoSetSelect)
 		self.appWindow.sigGeoHover.connect(self.geoSetHover)
 		self.appWindow.sigGeoDataSet.connect(self.geoSetData)
-		self.appWindow.sigGeoTouched.connect(self.reloadXml)
 		self.appWindow.sigMarkAdd.connect(self.markCreate)
 
 		self.appWindow.sigSceneWipe.connect(self.sceneWipe)
@@ -440,13 +439,6 @@ class Ui():
 			dirty=self.activeScene.markIn(self.markOff))
 
 		_item.marksSolve(filterStep='UI')
-
-
-
-	def reloadXml(self):
-		cXml = self.activeScene.getSceneXML(True)
-		if cXml:
-			self.appWindow.viewportUpdate(cXml)
 
 
 
