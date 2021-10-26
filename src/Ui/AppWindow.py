@@ -71,7 +71,7 @@ class AppWindow(QObject):
 		self.wListObjects = cMain.findChild(QSplitter, "listObjects")
 
 
-		self.wListGeoBlocks = cMain.findChild(QTableWidget, "listGeoBlocks")
+		self.wListGeoBlocks = cMain.findChild(QListWidget, "listGeoBlocks")
 
 
 		self.wFrameGeo = cMain.findChild(QLayout, "frameGeo")

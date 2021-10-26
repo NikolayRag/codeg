@@ -37,7 +37,7 @@ QScrollBar::handle:disabled {
 QScrollBar::handle {
 	background: #888;
 	border-radius: 3px;
-	min-height: 50px;
+	min-height: 30px;
 }
 QScrollBar::add-line, QScrollBar::sub-line,
 QScrollBar::up-arrow, QScrollBar::down-arrow,

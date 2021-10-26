@@ -390,7 +390,7 @@
                      <widget class="QWidget" name="verticalLayoutWidget">
                       <layout class="QVBoxLayout" name="verticalLayout_8">
                        <item>
-                        <widget class="QListView" name="listGeoBlocks">
+                        <widget class="QListWidget" name="listGeoBlocks">
                          <property name="sizePolicy">
                           <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
                            <horstretch>0</horstretch>
@@ -417,6 +417,9 @@
                          </property>
                          <property name="showDropIndicator" stdset="0">
                           <bool>false</bool>
+                         </property>
+                         <property name="verticalScrollMode">
+                          <enum>QAbstractItemView::ScrollPerPixel</enum>
                          </property>
                         </widget>
                        </item>
