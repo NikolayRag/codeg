@@ -129,8 +129,8 @@ class Scene():
 
 
 #  todo 84 (module-data) +0: make file load plugin system
-	def geoAdd(self, _source, _type='svg'):
-		geo = Geoblock(_source, _type)
+	def geoAdd(self, _source):
+		geo = Geoblock(_source)
 		self.allGeo.append( geo )
 
 

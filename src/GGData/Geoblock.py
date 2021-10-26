@@ -25,7 +25,7 @@ class Geoblock():
 
 
 
-	def __init__(self, _source, _type):
+	def __init__(self, _source):
 		self.namespace = _source
 		self.geoXML = XML.parse(_source)
 		self.allItems = []
