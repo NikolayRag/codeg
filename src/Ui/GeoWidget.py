@@ -231,11 +231,6 @@ class GeoWidget(QWidget):
 
 
 
-	def getBlock(self):
-		return self.geoblock
-
-
-
 	def getItems(self, selected=False):
 		if selected:
 			return list(self.lastSelection)

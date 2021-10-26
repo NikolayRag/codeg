@@ -371,7 +371,6 @@ class Ui():
 		self.activeScene.clean()
 		
 		cGBlock = self.activeScene.geoAdd(fileName, [self.markDefault], 'UI')
-
 		self.appWindow.geoAddWidget(cGBlock)
 
 		self.appWindow.viewportFit()
