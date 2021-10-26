@@ -16,10 +16,7 @@ from .BindFilter import *
 Main scene widget
 '''
 class SvgViewport(QWidget):
-	sigMousePress = Signal(object)
-	sigMouseMove = Signal(object)
-	sigMouseRelease = Signal(object)
-
+	sigInteract = Signal()
 
 	eventTypes = {}
 
@@ -44,6 +41,10 @@ class SvgViewport(QWidget):
 	anchorCanvasX = .5
 	anchorCanvasY = .5
 
+
+	#runtime
+
+	deselectFlag=False
 
 
 
@@ -89,6 +90,10 @@ class SvgViewport(QWidget):
 			self.panOrigin = self.pos - _e.pos()
 
 
+		if _e.button() == Qt.MouseButton.RightButton:
+			self.deselectFlag = False
+
+
 
 	def mouseMoveEvent(self, _e):
 		if self.panOrigin:
@@ -99,6 +104,13 @@ class SvgViewport(QWidget):
 	def mouseReleaseEvent(self, _e):
 		if _e.button() == Qt.MouseButton.MiddleButton:
 			self.panOrigin = None
+
+
+		if _e.button() == Qt.MouseButton.LeftButton:
+			if self.deselectFlag:
+				self.sigInteract.emit()
+
+			self.deselectFlag = True
 
 
 
@@ -163,31 +175,8 @@ class SvgViewport(QWidget):
 
 
 
-	def mousePress(self, _e):
-		self.sigMousePress.emit(_e)
-
-
-
-	def mouseMove(self, _e):
-		self.sigMouseMove.emit(_e)
-
-
-
-	def mouseRelease(self, _e):
-		self.sigMouseRelease.emit(_e)
-
-
-
 	def __init__(self, _parent):
 		QWidget.__init__(self, _parent)
-
-		self.tmpFilter = BindFilter({
-			QEvent.Type.MouseButtonPress: self.mousePress,
-			QEvent.Type.MouseMove: self.mouseMove,
-			QEvent.Type.MouseButtonRelease: self.mouseRelease,
-		})
-		self.installEventFilter(self.tmpFilter)
-
 
 		QHBoxLayout(self)
 
