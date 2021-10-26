@@ -273,12 +273,12 @@ class Ui():
 		self.args.set("recentProject", cRecentA+[fileName])
 
 
-		with open(fileName, 'r') as f:
-			projData = json.loads( f.read() )
-
-
 		for cScene in self.data.sceneList():
 			self.data.sceneRemove(cScene)
+
+
+		with open(fileName, 'r') as f:
+			projData = json.loads( f.read() )
 
 		self.sceneNew(projData['name'])
 
