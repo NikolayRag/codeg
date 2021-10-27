@@ -426,7 +426,7 @@
                       </layout>
                      </widget>
                      <widget class="QWidget" name="verticalLayoutWidget_2">
-                      <layout class="QVBoxLayout" name="_2">
+                      <layout class="QVBoxLayout" name="_2" stretch="0,1">
                        <item>
                         <layout class="QVBoxLayout" name="frameGeo"/>
                        </item>
