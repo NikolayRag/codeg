@@ -68,21 +68,10 @@ class AppWindow(QObject):
 
 		
 		#widgets time
-		self.wListObjects = cMain.findChild(QSplitter, "listObjects")
+		wListGeoBlocks = cMain.findChild(QListWidget, "listGeoBlocks")
+		wFrameGeoWid = cMain.findChild(QLayout, "frameGeo")
+		self.wGeoWidget = GeoWidget(wListGeoBlocks, wFrameGeoWid)
 
-
-		self.wListGeoBlocks = cMain.findChild(QListWidget, "listGeoBlocks")
-
-
-		self.wFrameGeo = cMain.findChild(QLayout, "frameGeo")
-		self.wFrameGeo.addWidget(self.wGeoWidget)
-
-		self.wGeoWidget.sigItemSelect.connect(lambda item, state: self.sigGeoSelect.emit(item, state))
-		self.wGeoWidget.sigItemHover.connect(lambda item, state: self.sigGeoHover.emit(item, state))
-		self.wGeoWidget.sigItemDataSet.connect(lambda item, names: self.sigGeoDataSet.emit(item, names))
-		self.wGeoWidget.sigTouched.connect(lambda _geo: _geo and self.wSvgViewport.canvasUpdate( _geo.xmlRoot(True) ))
-		self.wGeoWidget.sigSelected.connect(self.geoWidgetSelected)
-		self.wGeoWidget = GeoWidgetItem()
 
 
 		self.wFrameMark = cMain.findChild(QLayout, "frameMark")
@@ -178,7 +167,7 @@ class AppWindow(QObject):
 
 
 	def geoAddWidget(self, _geo):
-		self.wGeoWidget.replace(_geo)
+		self.wGeoWidget.blockAdd(_geo)
 
 
 		cXml = _geo.xmlRoot(True)

@@ -237,3 +237,51 @@ class GeoWidgetItems(QWidget):
 
 
 		return list(self.geoblock.getGeo())
+
+
+
+
+class GeoWidget(QWidget):
+	LdataBlock = Qt.UserRole +0
+	LdataWidget = Qt.UserRole +1
+
+
+	contBlocks = None
+	contItems = None
+
+
+
+	def __init__(self, _contBlocks, _contItems):
+		QWidget.__init__(self)
+
+		self.contBlocks = _contBlocks
+		self.contItems = _contItems
+
+
+
+	def blockAdd(self, _geoblock):
+		cWidget = GeoWidgetItems(_geoblock)
+
+		cBlockItem = QListWidgetItem(f"{_geoblock.namespace[-10:]}")
+		cBlockItem.setData(self.LdataBlock, _geoblock)
+		cBlockItem.setData(self.LdataWidget, cWidget)
+
+		self.contBlocks.addItem(cBlockItem)
+
+		self.blockShow(cBlockItem)
+
+
+
+	def blockShow(self, _item):
+		if cItem := self.contBlocks.currentItem():
+			cWidget = cItem.data(self.LdataWidget)
+			cWidget.setParent(None)
+
+
+		self.contBlocks.setCurrentItem(_item)
+		self.contItems.addWidget(_item.data(self.LdataWidget))
+
+
+
+	def clean(self):
+		None
