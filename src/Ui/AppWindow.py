@@ -237,7 +237,7 @@ class AppWindow(QObject):
 
 # -todo 141 (module-ui, mark) +0: update Geoitem widgets on Mark assign
 	def markChanged(self, _mark, _name, _val):
-		self.wGeoWidget.getItems(selected=True)
+		None
 
 
 
