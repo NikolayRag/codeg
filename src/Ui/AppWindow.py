@@ -46,7 +46,7 @@ class AppWindow(QObject):
 
 ## runtime ##
 
-	wGeoWidget = None
+	widgetGeo = None
 	allWidgetsMarks = {}
 
 
@@ -70,7 +70,7 @@ class AppWindow(QObject):
 		#widgets time
 		wListGeoBlocks = cMain.findChild(QListWidget, "listGeoBlocks")
 		wFrameGeoWid = cMain.findChild(QLayout, "frameGeo")
-		self.wGeoWidget = GeoWidget(wListGeoBlocks, wFrameGeoWid)
+		self.widgetGeo = GeoWidget(wListGeoBlocks, wFrameGeoWid)
 
 
 
@@ -157,7 +157,7 @@ class AppWindow(QObject):
 
 
 	def viewportInteract(self, _from, _to):
-		self.wGeoWidget.itemSelect()
+		self.widgetGeo.itemSelect()
 		MarkWidget.toolUnpop()
 
 
@@ -167,7 +167,7 @@ class AppWindow(QObject):
 
 
 	def geoAddWidget(self, _geo):
-		self.wGeoWidget.blockAdd(_geo)
+		self.widgetGeo.blockAdd(_geo)
 
 
 		cXml = _geo.xmlRoot(True)
@@ -231,7 +231,7 @@ class AppWindow(QObject):
 
 
 	def markAssign(self, _mark, _state):
-		cGeoList = self.wGeoWidget.getItems(selected=True)
+		cGeoList = self.widgetGeo.getItems(selected=True)
 
 		for cGeo in cGeoList:
 			cGeo.markSet(_mark, _state)
@@ -265,7 +265,7 @@ class AppWindow(QObject):
 	def slotNewScene(self, _scene):
 		self.wBtnStore.setEnabled(True)
 		self.wBtnProccess.setEnabled(True)
-		self.wGeoWidget.clean()
+		self.widgetGeo.clean()
 
 
 		while markTool := self.wFrameMark.takeAt(0):
