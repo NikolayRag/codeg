@@ -7,7 +7,7 @@ from .BindFilter import *
 
 
 
-class GeoWidget(QWidget):
+class GeoWidgetItems(QWidget):
 	iconVis = QIcon('./resource/vis.svg')
 	iconVis.addFile('./resource/vis.svg', mode=QIcon.Disabled)
 	iconInvis = QIcon('./resource/invis.svg')

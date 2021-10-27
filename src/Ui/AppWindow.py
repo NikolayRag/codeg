@@ -75,7 +75,6 @@ class AppWindow(QObject):
 
 
 		self.wFrameGeo = cMain.findChild(QLayout, "frameGeo")
-		self.wGeoWidget = GeoWidget()
 		self.wFrameGeo.addWidget(self.wGeoWidget)
 
 		self.wGeoWidget.sigItemSelect.connect(lambda item, state: self.sigGeoSelect.emit(item, state))
@@ -83,6 +82,7 @@ class AppWindow(QObject):
 		self.wGeoWidget.sigItemDataSet.connect(lambda item, names: self.sigGeoDataSet.emit(item, names))
 		self.wGeoWidget.sigTouched.connect(lambda _geo: _geo and self.wSvgViewport.canvasUpdate( _geo.xmlRoot(True) ))
 		self.wGeoWidget.sigSelected.connect(self.geoWidgetSelected)
+		self.wGeoWidget = GeoWidgetItem()
 
 
 		self.wFrameMark = cMain.findChild(QLayout, "frameMark")
