@@ -275,11 +275,11 @@ class GeoWidget(QWidget):
 
 
 
-	def currentSet(self, _item):
+	def currentSet(self, _entry):
 		self.currentRemove()
 
-		self.contBlocks.setCurrentItem(_item)
-		self.contItems.addWidget(_item.data(self.LdataWidget))
+		self.contBlocks.setCurrentItem(_entry)
+		self.contItems.addWidget(_entry.data(self.LdataWidget))
 
 
 
