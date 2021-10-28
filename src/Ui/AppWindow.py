@@ -74,6 +74,8 @@ class AppWindow(QObject):
 		wFrameGeoWid = cMain.findChild(QLayout, "frameGeo")
 		self.widgetGeo = GeoWidget(wListGeoBlocks, wFrameGeoWid)
 
+		self.widgetGeo.sigItemHover.connect(lambda block, item, state: self.sigGeoHover.emit(item, state))
+		self.widgetGeo.sigTouched.connect(lambda block, layer: self.wSvgViewport.canvasUpdate( layer, block.xmlRoot(True) ))
 
 
 		self.wFrameMark = cMain.findChild(QLayout, "frameMark")
