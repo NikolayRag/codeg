@@ -28,12 +28,11 @@ class GeoWidgetItems(QWidget):
 	sigItemSelect = Signal(object, bool)
 	sigItemHover = Signal(object, bool)
 	sigItemDataSet = Signal(object, list)
-	sigTouched = Signal(object)
 	sigSelected = Signal(object, list)
+	sigTouched = Signal()
 
 	#runtime
 
-	geoblock = None
 	lastHover = None
 	lastSelection = []
 
@@ -113,8 +112,8 @@ class GeoWidgetItems(QWidget):
 		self.lastSelection = cSelection
 
 
-		self.sigTouched.emit(self.geoblock)
 		self.sigSelected.emit(self, list(cSelection))
+		self.sigTouched.emit()
 
 
 
@@ -134,7 +133,7 @@ class GeoWidgetItems(QWidget):
 				self.sigItemHover.emit(cGItem, True)
 
 
-		self.sigTouched.emit(self.geoblock)
+		self.sigTouched.emit()
 
 
 
@@ -162,7 +161,7 @@ class GeoWidgetItems(QWidget):
 			self.itemsSwitchVis(cSelection, newState)
 
 
-		self.sigTouched.emit(self.geoblock)
+		self.sigTouched.emit()
 
 
 
@@ -184,7 +183,7 @@ class GeoWidgetItems(QWidget):
 
 
 
-	def __init__(self, _geoblock=None):
+	def __init__(self, _geoblock):
 		QWidget.__init__(self)
 
 
@@ -206,24 +205,8 @@ class GeoWidgetItems(QWidget):
 		self.wListItems.cellClicked.connect(self.itemClicked)
 
 
-
-		if _geoblock:
-			self.replace(_geoblock)
-
-
-
-	def clean(self):
-		self.wListItems.setRowCount(0)
-
-
-
-	def replace(self, _geoblock):
-		self.clean()
-
-		self.geoblock = _geoblock
-
-
-		for cItem in self.geoblock.getGeo():
+		#add
+		for cItem in _geoblock.getGeo():
 			self.geoitemAdd(cItem)
 
 		#blank
