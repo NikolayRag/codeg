@@ -83,9 +83,8 @@ class AppWindow(QObject):
 
 		holderViewport = cMain.findChild(QWidget, "wViewport")
 		self.wSvgViewport = SvgViewport(holderViewport)
+		self.wSvgViewport.lower() 
 		self.wSvgViewport.setGrid('resource\\grid.svg')
-		self.wSvgViewport.lower()
-		self.wSvgViewport.show()
 
 		self.tmpFilterViewResize = BindFilter({
 			QEvent.Type.Resize: lambda event: self.wSvgViewport.resize(event.size()) })
