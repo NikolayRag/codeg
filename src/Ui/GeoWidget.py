@@ -293,4 +293,6 @@ class GeoWidget(QWidget):
 
 
 	def clean(self):
-		None
+		self.removeCurrent()
+
+		self.contBlocks.clear()
