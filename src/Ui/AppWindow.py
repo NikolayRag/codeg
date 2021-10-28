@@ -233,7 +233,7 @@ class AppWindow(QObject):
 
 
 	def markAssign(self, _mark, _state):
-		cGeoList = self.widgetGeo.getItems(selected=True)
+		cGeoList = self.widgetGeo.currentSelection()
 
 		for cGeo in cGeoList:
 			cGeo.markSet(_mark, _state)

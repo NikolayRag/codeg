@@ -231,12 +231,9 @@ class GeoWidgetItems(QWidget):
 
 
 
-	def getItems(self, selected=False):
-		if selected:
-			return list(self.lastSelection)
+	def getSelection(self):
+		return list(self.lastSelection)
 
-
-		return list(self.geoblock.getGeo())
 
 
 
@@ -296,6 +293,16 @@ class GeoWidget(QWidget):
 		self.currentRemove()
 
 		self.contBlocks.clear()
+
+
+
+	def currentSelection(self):
+		cItem = self.contBlocks.currentItem()
+		cWidget = cItem.data(self.LdataWidget)
+		return cWidget.getSelection()
+
+
+
 	def select(self, _items=None):
 		cItem = self.contBlocks.currentItem()
 		cWidget = cItem.data(self.LdataWidget)
