@@ -271,11 +271,11 @@ class GeoWidget(QWidget):
 		self.contBlocks.addItem(cBlockItem)
 
 
-		self.blockShow(cBlockItem)
+		self.setCurrent(cBlockItem)
 
 
 
-	def blockShow(self, _item):
+	def setCurrent(self, _item):
 		if cItem := self.contBlocks.currentItem():
 			cWidget = cItem.data(self.LdataWidget)
 			cWidget.setParent(None)
