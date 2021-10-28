@@ -296,3 +296,7 @@ class GeoWidget(QWidget):
 		self.currentRemove()
 
 		self.contBlocks.clear()
+	def select(self, _items=None):
+		cItem = self.contBlocks.currentItem()
+		cWidget = cItem.data(self.LdataWidget)
+		cWidget.itemSelect()
