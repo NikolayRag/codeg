@@ -598,3 +598,15 @@
 +viewport, ux 211: +0 "src\Ui\AppWindow.py" ki 21/10/26 10:46:18
 	cancel select by right click
 
+ module-ui, clean, widget 212: +0 "src\Ui\AppWindow.py" ki 21/10/28 13:16:31
+	MarkWidget collection class
+
+ ux, viewport 213: +0 "src\Ui\AppWindow.py" ki 21/10/28 15:32:26
+	place support viewport layer for block
+
+=module-ui, viewport 214: +0 "src\Ui\AppWindow.py" ki 21/10/28 15:32:52
+	display active block differently
+
+ module-ui 215: +0 "src\Ui\AppWindow.py" ki 21/10/28 15:34:12
+	cleanup GeoWidget ui collection
+

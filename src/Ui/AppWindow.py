@@ -46,6 +46,7 @@ class AppWindow(QObject):
 
 ## runtime ##
 
+#  todo 212 (module-ui, clean, widget) +0: MarkWidget collection class
 	widgetGeo = None
 	allWidgetsMarks = {}
 
@@ -68,6 +69,7 @@ class AppWindow(QObject):
 
 		
 		#widgets time
+#  todo 215 (module-ui) +0: cleanup GeoWidget ui collection
 		wListGeoBlocks = cMain.findChild(QListWidget, "listGeoBlocks")
 		wFrameGeoWid = cMain.findChild(QLayout, "frameGeo")
 		self.widgetGeo = GeoWidget(wListGeoBlocks, wFrameGeoWid)
@@ -166,6 +168,8 @@ class AppWindow(QObject):
 # =todo 199 (module-data, module-ui, feature, api) +0: multiple Geoblocks
 
 
+# =todo 214 (module-ui, viewport) +0: display active block differently
+#  todo 213 (ux, viewport) +0: place support viewport layer for block
 	def geoAddWidget(self, _geo):
 		cXml = _geo.xmlRoot(True)
 		canvasId = self.wSvgViewport.canvasAdd(cXml)
