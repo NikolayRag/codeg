@@ -215,13 +215,15 @@ class SvgViewport(QWidget):
 
 
 	def canvasAdd(self, _xml):
-		self.layerId = self.canvas.layerNew()
-		self.canvas.layerSet(self.layerId, _xml)
+		layerId = self.canvas.layerNew()
+		self.canvas.layerSet(layerId, _xml)
+
+		return layerId
 
 
 
-	def canvasUpdate(self, _xml):
-		self.canvas.layerSet(self.layerId, _xml, quick=True)
+	def canvasUpdate(self, _layerId, _xml):
+		self.canvas.layerSet(_layerId, _xml, quick=True)
 
 
 
@@ -271,7 +273,8 @@ class SvgCanvas(QWidget):
 	defaultWidth = 0
 	defaultHeight = 0
 
-	layers = None
+	layers = {}
+	layerMaxId = 0
 	docWidth = 0
 	docHeight = 0
 
@@ -285,7 +288,7 @@ class SvgCanvas(QWidget):
 	def __init__(self, _parent, size=(1,1)):
 		QWidget.__init__(self, _parent)
 
-		self.layers = []
+		self.layers = {}
 
 		self.defaultWidth = size[0]
 		self.defaultHeight = size[1]
@@ -298,17 +301,17 @@ class SvgCanvas(QWidget):
 		cLayer = SvgCanvasLayer(self)
 		cLayer.setGhost(isGhost)
 
-		cId = len(self.layers)
-		self.layers.append(cLayer)
-		return cId
+		self.layerMaxId += 1
+		self.layers[self.layerMaxId] = cLayer
+		return self.layerMaxId
 
 
 
-	def layerSet(self, _idx, _xml, quick=False):
+	def layerSet(self, _lId, _xml, quick=False):
 		if not _xml:
 			return
 
-		cLayer = self.layers[_idx]
+		cLayer = self.layers[_lId]
 		cLayer.load(_xml)
 
 		if quick:
@@ -324,7 +327,7 @@ class SvgCanvas(QWidget):
 			self.docWidth = 0
 			self.docHeight = 0
 
-			for l in self.layers:
+			for l in self.layers.values():
 				if l.display and not l.ghost:
 					cSize = l.defaultSize()
 					self.docWidth = max(self.docWidth, cSize.width())
@@ -342,7 +345,7 @@ class SvgCanvas(QWidget):
 		p = QPainter(self)
 		p.setRenderHint(QPainter.Antialiasing)
 
-		for l in self.layers:
+		for l in self.layers.values():
 			if not l.display:
 				continue
 #  todo 97 (viewport, fix, solve) +0: decide how to paint different layer sizes
