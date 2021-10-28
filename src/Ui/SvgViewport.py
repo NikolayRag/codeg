@@ -181,7 +181,7 @@ class SvgViewport(QWidget):
 
 
 	def __init__(self, _parent):
-		QWidget.__init__(self, _parent)
+		QWidget.__init__(self, _parent)  #set parent within init to leave overlay widgets untouched
 
 		QHBoxLayout(self)
 
