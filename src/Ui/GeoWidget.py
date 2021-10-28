@@ -262,24 +262,24 @@ class GeoWidget(QWidget):
 
 
 	def currentSet(self, _entry):
-		self.currentRemove()
+		self.removeLast()
 
 		self.contBlocks.setCurrentItem(_entry)
 		self.contItems.addWidget(_entry.data(self.LdataWidget))
 
 
 
-	def currentRemove(self):
 		if cItem := self.contBlocks.currentItem():
 			cWidget = cItem.data(self.LdataWidget)
 			cWidget.setParent(None)
 
 
+	def removeLast(self):
 
 
 
 	def clean(self):
-		self.currentRemove()
+		self.removeLast()
 
 		self.contBlocks.clear()
 
