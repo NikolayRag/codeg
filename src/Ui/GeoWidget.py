@@ -244,6 +244,7 @@ class GeoWidgetItems(QWidget):
 class GeoWidget(QWidget):
 	LdataWidget = Qt.UserRole +0
 	LdataBlock = Qt.UserRole +1
+	LdataData = Qt.UserRole +2
 
 
 	contBlocks = None
@@ -259,12 +260,13 @@ class GeoWidget(QWidget):
 
 
 
-	def blockAdd(self, _geoblock):
+	def blockAdd(self, _geoblock, _data):
 		cWidget = GeoWidgetItems(_geoblock)
 
 		cBlockItem = QListWidgetItem(f"{_geoblock.namespace[-10:]}")
 		cBlockItem.setData(self.LdataWidget, cWidget)
 		cBlockItem.setData(self.LdataBlock, _geoblock)
+		cBlockItem.setData(self.LdataData, _data)
 
 		self.contBlocks.addItem(cBlockItem)
 

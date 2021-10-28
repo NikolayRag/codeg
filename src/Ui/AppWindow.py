@@ -167,11 +167,10 @@ class AppWindow(QObject):
 
 
 	def geoAddWidget(self, _geo):
-		self.widgetGeo.blockAdd(_geo)
-
-
 		cXml = _geo.xmlRoot(True)
-		self.wSvgViewport.canvasAdd(cXml)
+		canvasId = self.wSvgViewport.canvasAdd(cXml)
+
+		self.widgetGeo.blockAdd(_geo, canvasId)
 
 
 
