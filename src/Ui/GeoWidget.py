@@ -28,8 +28,8 @@ class GeoWidgetItems(QWidget):
 	sigItemSelect = Signal(object, bool)
 	sigItemHover = Signal(object, bool)
 	sigItemDataSet = Signal(object, list)
-	sigSelected = Signal(object, list)
 	sigTouched = Signal()
+	sigSelected = Signal(list)
 
 	#runtime
 
@@ -112,8 +112,8 @@ class GeoWidgetItems(QWidget):
 		self.lastSelection = cSelection
 
 
-		self.sigSelected.emit(self, list(cSelection))
 		self.sigTouched.emit()
+		self.sigSelected.emit(list(cSelection))
 
 
 
