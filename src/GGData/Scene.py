@@ -13,6 +13,7 @@ from .GGen import *
 class Scene():
 	dirtyFlag = False
 
+	geoNames = {}
 	allGeo = []
 	allMarks = []
 
@@ -22,6 +23,7 @@ class Scene():
 	def __init__(self, _name=''):
 		self.dirtyFlag = False
 
+		self.geoNames = {}
 		self.allGeo = []
 		self.allMarks = []
 
@@ -133,6 +135,12 @@ class Scene():
 	def geoAdd(self, _source, _marks=[], _solve=None, name=None):
 		if not name:
 			name = path.basename(_source).split('.')[0]
+			if name not in self.geoNames:
+				self.geoNames[name] = 0
+
+			else:
+				self.geoNames[name] += 1
+				name = f"{name}({self.geoNames[name]})"
 
 
 		geo = Geoblock(_source, name)
