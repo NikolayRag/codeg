@@ -81,7 +81,10 @@ class GeoWidgetItems(QWidget):
 
 		for cRange in self.wListItems.selectedRanges():
 			for cRow in range(cRange.topRow(), cRange.bottomRow()+1):
-				out[cRow] = self.wListItems.item(cRow, self.LayerColumnName).data(self.LdataItem)
+				cItem = self.wListItems.item(cRow, self.LayerColumnName).data(self.LdataItem)
+				if cItem:
+					out[cRow] = cItem
+
 
 		return out
 
