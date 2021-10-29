@@ -244,6 +244,8 @@ class GeoWidget(QWidget):
 		self.contBlocks = _contBlocks
 		self.contItems = _contItems
 
+		self.contBlocks.itemClicked.connect(self.currentSet)
+
 
 
 	def blockAdd(self, _geoblock, _data):
