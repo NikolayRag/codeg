@@ -227,6 +227,7 @@ class GeoWidget(QWidget):
 	LdataData = Qt.UserRole +2
 
 
+	sigItemSelect = Signal(object, object, bool)
 	sigItemHover = Signal(object, object, bool)
 	sigTouched = Signal(object, int)
 
@@ -252,6 +253,7 @@ class GeoWidget(QWidget):
 		cWidget = GeoWidgetItems(_geoblock)
 
 		cBlockItem = QListWidgetItem(f"{_geoblock.namespace[-10:]}")
+		cWidget.sigItemSelect.connect(lambda item, state: self.sigItemSelect.emit(_geoblock, item, state) )
 		cWidget.sigItemHover.connect(lambda item, state: self.sigItemHover.emit(_geoblock, item, state) )
 		cWidget.sigTouched.connect(lambda: self.sigTouched.emit(_geoblock, _data) )
 		cBlockItem.setData(self.LdataWidget, cWidget)
