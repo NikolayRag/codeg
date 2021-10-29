@@ -276,7 +276,10 @@ class GeoWidget(QWidget):
 		self.removeLast()
 
 		self.contBlocks.setCurrentItem(_entry)
-		_entry.data(self.LdataWidget).show()
+		cItems = _entry.data(self.LdataWidget)
+		cItems.show()
+
+		self.sigSelected.emit(list(cItems.itemSelection().values()))
 
 
 		self.lastEntry = _entry
@@ -286,6 +289,8 @@ class GeoWidget(QWidget):
 	def removeLast(self):
 		if cItem := self.lastEntry:
 			cItem.data(self.LdataWidget).hide()
+
+		self.sigSelected.emit([])
 
 
 
