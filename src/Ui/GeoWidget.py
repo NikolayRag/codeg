@@ -231,6 +231,7 @@ class GeoWidget(QWidget):
 	sigItemHover = Signal(object, bool)
 	sigItemDataSet = Signal(object, list)
 	sigTouched = Signal(object, int)
+	sigSelected = Signal(list)
 
 
 	contBlocks = None
@@ -258,6 +259,7 @@ class GeoWidget(QWidget):
 		cWidget.sigItemHover.connect(lambda item, state: self.sigItemHover.emit(item, state) )
 		cWidget.sigItemDataSet.connect(lambda item, names: self.sigItemDataSet.emit(item, names) )
 		cWidget.sigTouched.connect(lambda: self.sigTouched.emit(_geoblock, _data) )
+		cWidget.sigSelected.connect(lambda items: self.sigSelected.emit(items) )
 		cBlockItem.setData(self.LdataWidget, cWidget)
 		cBlockItem.setData(self.LdataBlock, _geoblock)
 		cBlockItem.setData(self.LdataData, _data)

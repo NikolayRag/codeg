@@ -78,6 +78,7 @@ class AppWindow(QObject):
 		self.widgetGeo.sigItemHover.connect(lambda item, state: self.sigGeoHover.emit(item, state))
 		self.widgetGeo.sigItemDataSet.connect(lambda item, names: self.sigGeoDataSet.emit(item, names))
 		self.widgetGeo.sigTouched.connect(lambda block, layer: self.wSvgViewport.canvasUpdate( layer, block.xmlRoot(True) ))
+		self.widgetGeo.sigSelected.connect(self.geoWidgetSelected)
 
 
 		self.wFrameMark = cMain.findChild(QLayout, "frameMark")
@@ -181,7 +182,7 @@ class AppWindow(QObject):
 
 
 
-	def geoWidgetSelected(self, _geo, _selection):
+	def geoWidgetSelected(self, _selection):
 		marksUsed = {}
 		
 		for cObj in _selection:
