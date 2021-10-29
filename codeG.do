@@ -4,7 +4,7 @@
 +feature, file 2: +0 "src\Ui\AppWindow.py" kii 21/07/25 16:29:21
 	deal with recent files
 
- feature, file 3: +0 "src\Ui\Ui.py" ki 21/10/26 20:58:49
+ feature, file 3: +0 "src\Ui\Ui.py" ki 21/10/29 21:03:25
 	geo library
 
 +svg, feature 4: +0 "src\Ui\SvgViewport.py" kii 21/08/02 19:14:43
@@ -283,7 +283,7 @@
 !module-ui, optimize 99: +0 "src\GGen\GGen.py" kii 21/09/02 03:40:33
 	
 
- gcode, feature 100: +0 "src\GGData\GGData.py" kii 21/09/27 02:22:22
+ gcode, feature 100: +0 "src\GGData\Scene.py" ki 21/10/29 21:02:18
 	allow flexible filters for gcode
 
 +module-ui 101: +0 "src\Ui\Ui.py" kii 21/09/08 02:52:08
@@ -412,7 +412,7 @@
 =module-data, mark 146: +0 "src\Ui\Ui.py" kii 21/10/10 13:29:23
 	auto-increment mark priorities at creation
 
--module-ui, fix 147: +0 "src\Ui\AppWindow.py" kii 21/10/10 19:31:52
+-module-ui, fix 147: +0 "src\Ui\GeoWidget.py" ki 21/10/29 21:04:50
 	use blank layer space to from-to hover mouse selection
 
 -module-ui, fix 148: +0 "src\Ui\Ui.py" ki 21/10/23 03:35:32
@@ -487,10 +487,10 @@
 -module-ui, ux, mark 173: +0 "src\Ui\Ui.py" ki 21/10/18 18:42:55
 	hover mark show toolbox
 
-=module-ui, module-data, geo 174: +0 "src\Ui\Ui.py" ki 21/10/18 18:43:36
++module-ui, module-data, geo 174: +0 "src\Ui\Ui.py" ki 21/10/29 21:07:36
 	add more geo
 
-=module-ui, module-data, geo 175: +0 "src\Ui\Ui.py" ki 21/10/18 18:43:43
+=module-ui, module-data, geo 175: +0 "src\Ui\Ui.py" ki 21/10/29 21:07:44
 	clone geo
 
 =module-ui, module-data, geo 176: +0 "src\Ui\Ui.py" ki 21/10/18 18:43:48
@@ -559,7 +559,7 @@
 =data, fix 198: +0 "src\Ui\Ui.py" ki 21/10/23 07:20:24
 	move save/load routines to GGData
 
-=module-data, module-ui, feature, api 199: +0 "src\Ui\Ui.py" ki 21/10/23 03:37:57
++module-data, module-ui, feature, api 199: +0 "src\Ui\AppWindow.py" ki 21/10/29 21:14:32
 	multiple Geoblocks
 
 +ux 200: +0 "src\Ui\Ui.py" ki 21/10/23 04:42:23
@@ -604,7 +604,7 @@
  ux, viewport 213: +0 "src\Ui\AppWindow.py" ki 21/10/28 15:32:26
 	place support viewport layer for block
 
-=module-ui, viewport 214: +0 "src\Ui\AppWindow.py" ki 21/10/28 15:32:52
+=module-ui, viewport 214: +0 "src\Ui\AppWindow.py" ki 21/10/29 21:14:34
 	display active block differently
 
  module-ui 215: +0 "src\Ui\AppWindow.py" ki 21/10/28 15:34:12
@@ -615,4 +615,16 @@
 
  module-data, ux 217: +0 "src\Ui\Ui.py" ki 21/10/29 17:29:46
 	detect missing geometry file
+
+!module-ui, ux 218: +0 "src\Ui\Ui.py" ki 21/10/29 21:14:54
+	add inactive Geo visual style
+
+=module-ui, module-data, geo 219: +0 "src\Ui\Ui.py" ki 21/10/29 21:14:55
+	edit Geoblock transform
+
+=ux, widget 220: +0 "src\Ui\GeoWidget.py" ki 21/10/29 21:13:35
+	make Geoitems list view continuous
+
++viewport 221: +0 "src\Ui\SvgViewport.py" ki 21/10/29 21:22:24
+	add viewport descriptor
 

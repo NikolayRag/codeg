@@ -11,9 +11,9 @@
 
 # =todo 178 (ux) +0: suggest recent at load
 
-# =todo 174 (module-ui, module-data, geo) +0: add more geo
 # =todo 175 (module-ui, module-data, geo) +0: clone geo
 # =todo 176 (module-ui, module-data, geo) +0: del geo
+# =todo 219 (module-ui, module-data, geo) +0: edit Geoblock transform
 
 # =todo 169 (module-ui, ux, mark) +0: del mark
 # -todo 170 (module-ui, ux, mark) +0: reorder mark
@@ -335,7 +335,7 @@ class Ui():
 		self.activeScene.clean()
 
 
-
+# =todo 216 (module-data, clean) +0: use relative paths
 #  todo 3 (feature, file) +0: geo library
 	def addFile(self):
 		cRecentA = self.args.get("recentLoaded", [])

@@ -5,6 +5,7 @@ from PySide2.QtUiTools import *
 
 from .BindFilter import *
 
+# =todo 220 (ux, widget) +0: make Geoitems list view continuous
 
 
 class GeoWidgetItems(QWidget):
@@ -96,7 +97,7 @@ class GeoWidgetItems(QWidget):
 		print(_selection)
 
 
-
+# =todo 114 (module-ui, fix) +0: change vis for select-all case
 	def itemSelected(self):
 		cSelection = self.itemSelection().values()
 
@@ -166,7 +167,6 @@ class GeoWidgetItems(QWidget):
 
 
 	def itemsSwitchVis(self, _cSelection, _newState):
-# =todo 114 (module-ui, fix) +0: change vis for select-all case
 # -todo 147 (module-ui, fix) +0: use blank layer space to from-to hover mouse selection
 
 		for cRow, cGItem in _cSelection.items():

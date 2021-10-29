@@ -26,7 +26,6 @@ class Geoblock():
 
 
 
-# =todo 216 (module-data, clean) +0: use relative paths
 	def __init__(self, _source, _name=''):
 		self.name = _name
 
