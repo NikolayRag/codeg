@@ -53,49 +53,61 @@ class Ui():
 		'dark': {
 			'default': {
 				'vector-effect': 'non-scaling-stroke',
-				'stroke-width':'1.5px',
-				'stroke':'#889',
-				'fill':'#181818',
-				'fill-opacity':'0.2',
+				'stroke-width':'2px',
+				'stroke':'#99e',
+				'fill':'#262640',
+				'fill-opacity':'0.3',
 				'opacity': '1'
 			},
 			'off': {
 				'fill':'#282828',
 				'stroke':'#444',
-				'opacity': '.3'
+				'opacity': '.3',
+				'fill-opacity':'0.1',
 			},
 			'select': {
 				'fill':'#820',
 				'stroke':'#f44',
 			},
 			'hover': {
-				'stroke-width':'2.5px',
+				'stroke-width':'3px',
 				'stroke':'#fe0',
-				'opacity': '.9'
+				'opacity': '1',
+			},
+			'inactive': {
+				'stroke-width':'1px',
+				'stroke':'#777',
+				'fill':'none',
 			}
 		},
 		'light': {
 			'default': {
 				'vector-effect': 'non-scaling-stroke',
-				'stroke-width':'1.5px',
-				'stroke':'#667',
-				'fill':'#fdfdfd',
-				'fill-opacity':'0.2',
+				'stroke-width':'2px',
+				'fill':'#8cf',
+				'stroke':'#48c',
+				'fill-opacity':'0.3',
 				'opacity': '1'
 			},
 			'off': {
 				'fill':'#f8f8f8',
 				'stroke':'#888',
-				'opacity': '.3'
+				'opacity': '.3',
+				'fill-opacity':'0.1',
 			},
 			'select': {
-				'fill':'#8cf',
-				'stroke':'#04c',
+				'fill':'#fc8',
+				'stroke':'#c80',
 			},
 			'hover': {
-				'stroke-width':'2.5px',
+				'stroke-width':'3px',
 				'stroke':'#f00',
-				'opacity': '.9'
+				'opacity': '1'
+			},
+			'inactive': {
+				'stroke-width':'1px',
+				'stroke':'#777',
+				'fill':'none',
 			}
 		}
 	}
@@ -142,6 +154,7 @@ class Ui():
 		self.appWindow.sigGeoHover.connect(self.geoSetHover)
 		self.appWindow.sigGeoDataSet.connect(self.geoSetData)
 		self.appWindow.sigMarkAdd.connect(self.markCreate)
+		self.appWindow.sigGeoActivate.connect(self.geoActivate)
 
 		self.appWindow.sigSceneReset.connect(self.sceneReset)
 		self.appWindow.sigSceneSave.connect(self.sceneSave)
@@ -156,22 +169,27 @@ class Ui():
 		self.markDefault = self.data.markNew(
 			filterName='FilterSetSVG',
 			filterData=self.styleSVG[self.styleSet]['default'],
-			priority=-4,
+			priority=-5,
 		)
 		self.markOff = self.data.markNew(
 			filterName='FilterSetSVG',
 			filterData=self.styleSVG[self.styleSet]['off'],
-			priority=-3,
+			priority=-4,
 #			data={'visible':False} #mark-level visibility for example
 		)
 		self.markSelect = self.data.markNew(
 			filterName='FilterSetSVG',
 			filterData=self.styleSVG[self.styleSet]['select'],
-			priority=-2,
+			priority=-3,
 		)
 		self.markHover = self.data.markNew(
 			filterName='FilterSetSVG',
 			filterData=self.styleSVG[self.styleSet]['hover'],
+			priority=-2,
+		)
+		self.markInactive = self.data.markNew(
+			filterName='FilterSetSVG',
+			filterData=self.styleSVG[self.styleSet]['inactive'],
 			priority=-1,
 		)
 
@@ -411,6 +429,7 @@ class Ui():
 
 
 
+
 	def geoSetData(self, _item, _names):
 		if 'visible' not in _names:
 			return
@@ -419,6 +438,15 @@ class Ui():
 			dirty=self.activeScene.markIn(self.markOff))
 
 		_item.marksSolve(filterStep='UI')
+
+
+
+	def geoActivate(self, _block, _state):
+		for cGItem in _block.getGeo():
+			cGItem.markSet(self.markInactive, not _state,
+				dirty=self.activeScene.markIn(self.markInactive))
+
+			cGItem.marksSolve(filterStep='UI')
 
 
 

@@ -25,6 +25,7 @@ class AppWindow(QObject):
 	sigGeoHover = Signal(object, bool)
 	sigGeoDataSet = Signal(object, list)
 	sigMarkAdd = Signal()
+	sigGeoActivate = Signal(object, bool)
 
 	sigSceneReset = Signal()
 	sigSceneSave = Signal()
@@ -79,6 +80,7 @@ class AppWindow(QObject):
 		self.widgetGeo.sigItemDataSet.connect(lambda item, names: self.sigGeoDataSet.emit(item, names))
 		self.widgetGeo.sigTouched.connect(lambda block, descr: self.wSvgViewport.canvasUpdate( descr, block.xmlRoot(True) ))
 		self.widgetGeo.sigSelected.connect(self.geoWidgetSelected)
+		self.widgetGeo.sigActivate.connect(lambda block, state: self.sigGeoActivate.emit(block, state))
 
 
 		self.wFrameMark = cMain.findChild(QLayout, "frameMark")

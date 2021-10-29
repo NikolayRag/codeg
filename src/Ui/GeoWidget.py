@@ -235,6 +235,7 @@ class GeoWidget(QWidget):
 	sigItemDataSet = Signal(object, list)
 	sigTouched = Signal(object, object)
 	sigSelected = Signal(list)
+	sigActivate = Signal(object, bool)
 
 
 	contBlocks = None
@@ -266,8 +267,8 @@ class GeoWidget(QWidget):
 
 		cBlockItem = QListWidgetItem(_geoblock.label())
 		cBlockItem.setData(self.LdataWidget, cWidget)
-#		cBlockItem.setData(self.LdataBlock, _geoblock)
-#		cBlockItem.setData(self.LdataData, _data)
+		cBlockItem.setData(self.LdataBlock, _geoblock)
+		cBlockItem.setData(self.LdataData, _data)
 
 		self.contBlocks.addItem(cBlockItem)
 		self.contItems.addWidget(cWidget)
@@ -284,6 +285,10 @@ class GeoWidget(QWidget):
 		cItems = _entry.data(self.LdataWidget)
 		cItems.show()
 
+
+		cBlock = _entry.data(self.LdataBlock)
+		self.sigActivate.emit(cBlock, True)
+		self.sigTouched.emit(cBlock, _entry.data(self.LdataData))
 		self.sigSelected.emit(list(cItems.itemSelection().values()))
 
 
@@ -294,6 +299,11 @@ class GeoWidget(QWidget):
 	def removeLast(self):
 		if cItem := self.lastEntry:
 			cItem.data(self.LdataWidget).hide()
+
+			cBlock = cItem.data(self.LdataBlock)
+			self.sigActivate.emit(cBlock, False)
+			self.sigTouched.emit(cBlock, cItem.data(self.LdataData))
+
 
 		self.sigSelected.emit([])
 
