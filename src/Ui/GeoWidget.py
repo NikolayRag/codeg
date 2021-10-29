@@ -100,7 +100,7 @@ class GeoWidgetItems(QWidget):
 		print(_selection)
 
 
-# =todo 114 (module-ui, fix) +0: change vis for select-all case
+
 	def itemSelected(self):
 		cSelection = self.itemSelection().values()
 

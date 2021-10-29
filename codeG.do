@@ -322,8 +322,8 @@
 +scene, module-ui, ux 113: +0 "src\GGData\Scene.py" kii 21/09/25 22:40:14
 	assignable layer marks holding control data
 
-=module-ui, fix 114: +0 "src\Ui\GeoWidget.py" ki 21/10/22 19:46:39
-	change vis for select-all case
++module-ui, fix 114: +0 "src\Ui\GeoWidget.py" ki 21/10/29 21:36:39
+	select-all case bug
 
  ux 115: -1 "src\Ui\Ui.py" kii 21/09/08 18:41:16
 	allow to choose style by commandline
