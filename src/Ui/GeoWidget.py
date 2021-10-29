@@ -263,6 +263,7 @@ class GeoWidget(QWidget):
 		cBlockItem.setData(self.LdataData, _data)
 
 		self.contBlocks.addItem(cBlockItem)
+		self.contItems.addWidget(cWidget)
 
 
 		self.currentSet(cBlockItem)
@@ -273,7 +274,7 @@ class GeoWidget(QWidget):
 		self.removeLast()
 
 		self.contBlocks.setCurrentItem(_entry)
-		self.contItems.addWidget(_entry.data(self.LdataWidget))
+		_entry.data(self.LdataWidget).show()
 
 
 		self.lastEntry = _entry
@@ -282,8 +283,7 @@ class GeoWidget(QWidget):
 
 	def removeLast(self):
 		if cItem := self.lastEntry:
-			cWidget = cItem.data(self.LdataWidget)
-			cWidget.setParent(None)
+			cItem.data(self.LdataWidget).hide()
 
 
 
