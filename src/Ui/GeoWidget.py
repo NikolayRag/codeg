@@ -288,6 +288,8 @@ class GeoWidget(QWidget):
 
 		self.contBlocks.clear()
 
+		self.lastEntry = None
+
 
 
 	def currentSelection(self):
