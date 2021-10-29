@@ -234,6 +234,8 @@ class GeoWidget(QWidget):
 	contBlocks = None
 	contItems = None
 
+	lastEntry = None
+
 
 
 	def __init__(self, _contBlocks, _contItems):
@@ -268,13 +270,14 @@ class GeoWidget(QWidget):
 		self.contItems.addWidget(_entry.data(self.LdataWidget))
 
 
+		self.lastEntry = _entry
 
-		if cItem := self.contBlocks.currentItem():
-			cWidget = cItem.data(self.LdataWidget)
-			cWidget.setParent(None)
 
 
 	def removeLast(self):
+		if cItem := self.lastEntry:
+			cWidget = cItem.data(self.LdataWidget)
+			cWidget.setParent(None)
 
 
 
@@ -286,13 +289,19 @@ class GeoWidget(QWidget):
 
 
 	def currentSelection(self):
-		cItem = self.contBlocks.currentItem()
-		cWidget = cItem.data(self.LdataWidget)
+		if not self.lastEntry:
+			return []
+
+
+		cWidget = self.lastEntry.data(self.LdataWidget)
 		return cWidget.getSelection()
 
 
 
 	def select(self, _items=None):
-		cItem = self.contBlocks.currentItem()
-		cWidget = cItem.data(self.LdataWidget)
+		if not self.lastEntry:
+			return
+
+
+		cWidget = self.lastEntry.data(self.LdataWidget)
 		cWidget.itemSelect()
