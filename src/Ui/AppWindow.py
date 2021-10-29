@@ -171,7 +171,6 @@ class AppWindow(QObject):
 
 
 ### GEO ###
-# =todo 214 (module-ui, viewport) +0: display active block differently
 #  todo 213 (ux, viewport) +0: place support viewport layer for block
 	def geoAddWidget(self, _geo):
 		cXml = _geo.xmlRoot(True)

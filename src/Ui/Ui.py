@@ -26,6 +26,7 @@
 
 # =todo 165 (feature, dispatch) +0: device definition
 # =todo 166 (module-ui, ux) +0: icons
+#  todo 222 (feature) +2: independent undo/preset stack for any Geo and Mark
 
 # =todo 179 (clean) -1: chack names, order and var/function annotates
 

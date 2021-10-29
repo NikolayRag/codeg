@@ -55,7 +55,7 @@
  spec, module-dispatch 19: +0 "src\GGData\GGData.py" ki 21/10/20 22:59:40
 	send to codegg
 
- module-ui, error 20: +0 "src\Ui\AppWindow.py" ki 21/10/23 02:02:56
+ module-ui, error 20: +0 "src\Ui\Ui.py" ki 21/10/30 00:44:46
 	handle errors, maybe status string
 
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
@@ -601,11 +601,11 @@
  module-ui, clean, widget 212: +0 "src\Ui\AppWindow.py" ki 21/10/28 13:16:31
 	MarkWidget collection class
 
- ux, viewport 213: +0 "src\Ui\AppWindow.py" ki 21/10/28 15:32:26
+ ux, viewport 213: +0 "src\Ui\AppWindow.py" ki 21/10/30 02:09:02
 	place support viewport layer for block
 
-=module-ui, viewport 214: +0 "src\Ui\AppWindow.py" ki 21/10/29 21:14:34
-	display active block differently
++module-ui, viewport 214: +0 "src\Ui\AppWindow.py" ki 21/10/30 02:09:01
+	display inactive block differently
 
  module-ui 215: +0 "src\Ui\AppWindow.py" ki 21/10/28 15:34:12
 	cleanup GeoWidget ui collection
@@ -627,4 +627,10 @@
 
 +viewport 221: +0 "src\Ui\SvgViewport.py" ki 21/10/29 21:22:24
 	add viewport descriptor
+
+ feature 222: +2 "src\Ui\Ui.py" ki 21/10/30 00:47:31
+	independent undo/preset stack for any Geo and Mark
+
+!feature 223: +1 "src\Ui\Ui.py" ki 21/10/30 00:47:33
+	
 
