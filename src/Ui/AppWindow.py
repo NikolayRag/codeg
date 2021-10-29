@@ -76,6 +76,7 @@ class AppWindow(QObject):
 
 		self.widgetGeo.sigItemSelect.connect(lambda block, item, state: self.sigGeoSelect.emit(item, state))
 		self.widgetGeo.sigItemHover.connect(lambda block, item, state: self.sigGeoHover.emit(item, state))
+		self.widgetGeo.sigItemDataSet.connect(lambda block, item, names: self.sigGeoDataSet.emit(item, names))
 		self.widgetGeo.sigTouched.connect(lambda block, layer: self.wSvgViewport.canvasUpdate( layer, block.xmlRoot(True) ))
 
 
