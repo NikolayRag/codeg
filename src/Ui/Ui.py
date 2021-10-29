@@ -276,6 +276,7 @@ class Ui():
 
 
 		for geoData in projData['geoBlock']:
+#  todo 217 (module-data, ux) +0: detect missing geometry file
 			cGBlock = self.activeScene.geoAdd(geoData['source'], [self.markDefault], name=('name' in geoData and geoData['name']))
 # =todo 197 (data, fix) +0: deal with missing svg link
 			for itemData in geoData['items']:

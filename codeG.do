@@ -28,7 +28,7 @@
 !spec, module-data 10: +0 "" kii 21/09/08 21:55:55
 	dup
 
-=spec, module-data 11: +0 "src\GGData\Scene.py" kii 21/09/27 02:38:56
++spec, module-data 11: +0 "src\GGData\Scene.py" ki 21/10/29 17:32:20
 	read/save scene data
 
 +spec, module-ui 12: +1 "src\__main__w.py" kii 21/07/31 02:59:35
@@ -238,7 +238,7 @@
  ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" kii 21/09/22 23:33:54
 	fit at init dont work due to obsolete size 
 
- module-data 84: +0 "src\GGData\GGData.py" kii 21/09/29 03:36:45
+ module-data 84: +0 "src\GGData\Scene.py" ki 21/10/29 17:32:58
 	make file load plugin system
 
 +module-dispatch 85: +0 "src\GGData\GGData.py" kii 21/08/28 18:00:25
@@ -262,7 +262,7 @@
 +viewport, api 91: +0 "src\Ui\SvgViewport.py" ki 21/10/24 05:32:07
 	add class-level SVG runtime generator signal/slot
 
- feature 92: +0 "src\GGData\Scene.py" ki 21/10/18 18:33:34
++feature 92: +0 "src\GGData\Scene.py" ki 21/10/29 17:32:58
 	multiple sources scene
 
 !scene, feature 93: +0 "" kii 21/09/27 02:39:14
@@ -609,4 +609,10 @@
 
  module-ui 215: +0 "src\Ui\AppWindow.py" ki 21/10/28 15:34:12
 	cleanup GeoWidget ui collection
+
+=module-data, clean 216: +0 "src\GGData\Geoblock.py" ki 21/10/29 17:28:30
+	use relative paths
+
+ module-data, ux 217: +0 "src\Ui\Ui.py" ki 21/10/29 17:29:46
+	detect missing geometry file
 

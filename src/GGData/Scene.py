@@ -1,5 +1,5 @@
-# =todo 11 (spec, module-data) +0: read/save scene data
-#  todo 92 (feature) +0: multiple sources scene
+#  todo 84 (module-data) +0: make file load plugin system
+
 import os.path as path
 
 
@@ -131,7 +131,6 @@ class Scene():
 ### GEO ###
 
 
-#  todo 84 (module-data) +0: make file load plugin system
 	def geoAdd(self, _source, _marks=[], _solve=None, name=None):
 		if not name:
 			name = path.basename(_source).split('.')[0]
