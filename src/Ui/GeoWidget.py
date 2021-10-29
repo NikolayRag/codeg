@@ -254,12 +254,14 @@ class GeoWidget(QWidget):
 	def blockAdd(self, _geoblock, _data):
 		cWidget = GeoWidgetItems(_geoblock)
 
-		cBlockItem = QListWidgetItem(f"{_geoblock.namespace[-10:]}")
 		cWidget.sigItemSelect.connect(lambda item, state: self.sigItemSelect.emit(item, state) )
 		cWidget.sigItemHover.connect(lambda item, state: self.sigItemHover.emit(item, state) )
 		cWidget.sigItemDataSet.connect(lambda item, names: self.sigItemDataSet.emit(item, names) )
 		cWidget.sigTouched.connect(lambda: self.sigTouched.emit(_geoblock, _data) )
 		cWidget.sigSelected.connect(lambda items: self.sigSelected.emit(items) )
+
+
+		cBlockItem = QListWidgetItem(_geoblock.label())
 		cBlockItem.setData(self.LdataWidget, cWidget)
 		cBlockItem.setData(self.LdataBlock, _geoblock)
 		cBlockItem.setData(self.LdataData, _data)
