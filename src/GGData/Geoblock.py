@@ -18,15 +18,18 @@ class Geoblock():
 
 	geoXML = None
 	allItems = []
-	namespace = ''
+	source = ''
+	name = ''
 
 
 	dirtyFlag = False
 
 
 
-	def __init__(self, _source):
-		self.namespace = _source
+	def __init__(self, _source, _name=''):
+		self.name = _name
+
+		self.source = _source
 		self.geoXML = XML.parse(_source)
 		self.allItems = []
 
@@ -51,6 +54,11 @@ class Geoblock():
 				self.allItems.append( Geoitem(cTag, cName) )
 
 				i += 1
+
+
+
+	def label(self):
+		return self.name
 
 
 
@@ -86,7 +94,8 @@ class Geoblock():
 
 	def packGeo(self, _markLimit):
 		out = {
-			'name': self.namespace
+			'source': self.source,
+			'name': self.name
 		}
 
 
