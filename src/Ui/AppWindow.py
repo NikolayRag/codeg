@@ -77,7 +77,7 @@ class AppWindow(QObject):
 		self.widgetGeo.sigItemSelect.connect(lambda item, state: self.sigGeoSelect.emit(item, state))
 		self.widgetGeo.sigItemHover.connect(lambda item, state: self.sigGeoHover.emit(item, state))
 		self.widgetGeo.sigItemDataSet.connect(lambda item, names: self.sigGeoDataSet.emit(item, names))
-		self.widgetGeo.sigTouched.connect(lambda block, layer: self.wSvgViewport.canvasUpdate( layer, block.xmlRoot(True) ))
+		self.widgetGeo.sigTouched.connect(lambda block, descr: self.wSvgViewport.canvasUpdate( descr, block.xmlRoot(True) ))
 		self.widgetGeo.sigSelected.connect(self.geoWidgetSelected)
 
 
@@ -176,9 +176,9 @@ class AppWindow(QObject):
 #  todo 213 (ux, viewport) +0: place support viewport layer for block
 	def geoAddWidget(self, _geo):
 		cXml = _geo.xmlRoot(True)
-		canvasId = self.wSvgViewport.canvasAdd(cXml)
+		cDscr = self.wSvgViewport.canvasAdd(cXml)
 
-		self.widgetGeo.blockAdd(_geo, canvasId)
+		self.widgetGeo.blockAdd(_geo, cDscr)
 
 
 

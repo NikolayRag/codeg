@@ -10,6 +10,21 @@ from PySide2.QtSvg import *
 #  todo 37 (module-ui, viewport) +0: make custom scrollbars out of SvgViewport
 #  todo 207 (viewport, v2) +0: onscreen controls
 
+
+class vpDescriptor():
+	idGeo = -1
+
+
+	def __init__(self, _id):
+		self.idGeo = _id
+
+
+
+	def layerGeo(self):
+		return self.idGeo
+
+
+
 '''
 Main scene widget
 '''
@@ -218,12 +233,12 @@ class SvgViewport(QWidget):
 		layerId = self.canvas.layerNew()
 		self.canvas.layerSet(layerId, _xml)
 
-		return layerId
+		return vpDescriptor(layerId)
 
 
 
-	def canvasUpdate(self, _layerId, _xml):
-		self.canvas.layerSet(_layerId, _xml, quick=True)
+	def canvasUpdate(self, _descr, _xml):
+		self.canvas.layerSet(_descr.layerGeo(), _xml, quick=True)
 
 
 

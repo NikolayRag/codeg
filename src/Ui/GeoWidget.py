@@ -230,7 +230,7 @@ class GeoWidget(QWidget):
 	sigItemSelect = Signal(object, bool)
 	sigItemHover = Signal(object, bool)
 	sigItemDataSet = Signal(object, list)
-	sigTouched = Signal(object, int)
+	sigTouched = Signal(object, object)
 	sigSelected = Signal(list)
 
 
