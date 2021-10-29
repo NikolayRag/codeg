@@ -263,8 +263,8 @@ class GeoWidget(QWidget):
 
 		cBlockItem = QListWidgetItem(_geoblock.label())
 		cBlockItem.setData(self.LdataWidget, cWidget)
-		cBlockItem.setData(self.LdataBlock, _geoblock)
-		cBlockItem.setData(self.LdataData, _data)
+#		cBlockItem.setData(self.LdataBlock, _geoblock)
+#		cBlockItem.setData(self.LdataData, _data)
 
 		self.contBlocks.addItem(cBlockItem)
 		self.contItems.addWidget(cWidget)
