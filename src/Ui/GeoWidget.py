@@ -298,7 +298,7 @@ class GeoWidget(QWidget):
 
 
 
-	def select(self, _items=None):
+	def selectGeo(self, _items=None):
 		if not self.lastEntry:
 			return
 

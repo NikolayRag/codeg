@@ -160,7 +160,7 @@ class AppWindow(QObject):
 
 
 	def viewportInteract(self, _from, _to):
-		self.widgetGeo.select(None)
+		self.widgetGeo.selectGeo(None)
 		MarkWidget.toolUnpop()
 
 
