@@ -20,6 +20,22 @@ class Scene():
 	name = ''
 
 
+	def geoNameUniq(self, _source, _name):
+		refName = path.basename(_source).split('.')[0]
+		refCount = 0
+		if refName in self.geoNames:
+			refCount = self.geoNames[refName] +1
+
+
+		if not _name:
+			_name = f"{refName}({refCount})" if refCount>0 else refName
+
+		self.geoNames[refName] = refCount
+
+		return _name
+
+
+
 	def __init__(self, _name=''):
 		self.dirtyFlag = False
 
@@ -132,17 +148,7 @@ class Scene():
 
 
 	def geoAdd(self, _source, _marks=[], _solve=None, name=None):
-		if not name:
-			name = path.basename(_source).split('.')[0]
-			if name not in self.geoNames:
-				self.geoNames[name] = 0
-
-			else:
-				self.geoNames[name] += 1
-				name = f"{name}({self.geoNames[name]})"
-
-
-		geo = Geoblock(_source, name)
+		geo = Geoblock(_source, self.geoNameUniq(_source, name))
 		self.allGeo.append( geo )
 
 		for cGeo in geo.getGeo():
