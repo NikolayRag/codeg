@@ -601,7 +601,7 @@
  module-ui, clean, widget 212: +0 "src\Ui\AppWindow.py" ki 21/10/28 13:16:31
 	MarkWidget collection class
 
- ux, viewport 213: +0 "src\Ui\AppWindow.py" ki 21/10/30 02:09:02
+ ux, viewport 213: +0 "src\Ui\AppWindow.py" ki 21/10/30 02:39:45
 	place support viewport layer for block
 
 +module-ui, viewport 214: +0 "src\Ui\AppWindow.py" ki 21/10/30 02:09:01
@@ -633,4 +633,7 @@
 
 !feature 223: +1 "src\Ui\Ui.py" ki 21/10/30 00:47:33
 	
+
+ ux, widget, fix 224: +0 "src\Ui\GeoWidget.py" ki 21/10/30 04:08:39
+	GeoWidget badly layout review
 

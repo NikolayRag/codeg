@@ -6,6 +6,7 @@ from PySide2.QtUiTools import *
 from .BindFilter import *
 
 # =todo 220 (ux, widget) +0: make Geoitems list view continuous
+#  todo 224 (ux, widget, fix) +0: GeoWidget badly layout review
 
 
 class GeoWidgetItems(QWidget):
