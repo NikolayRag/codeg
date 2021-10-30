@@ -54,16 +54,21 @@ class Ui():
 		'dark': {
 			'default': {
 				'vector-effect': 'non-scaling-stroke',
-				'stroke-width':'2px',
+				'stroke-width':'2.5px',
 				'stroke':'#99e',
 				'fill':'#262640',
 				'fill-opacity':'0.3',
 				'opacity': '1'
 			},
+			'inactive': {
+				'stroke-width':'1px',
+				'stroke':'#bbb',
+				'fill':'none',
+			},
 			'off': {
 				'fill':'#282828',
 				'stroke':'#444',
-				'opacity': '.3',
+				'opacity': '.5',
 				'fill-opacity':'0.1',
 			},
 			'select': {
@@ -75,20 +80,20 @@ class Ui():
 				'stroke':'#fe0',
 				'opacity': '1',
 			},
-			'inactive': {
-				'stroke-width':'1px',
-				'stroke':'#777',
-				'fill':'none',
-			}
 		},
 		'light': {
 			'default': {
 				'vector-effect': 'non-scaling-stroke',
-				'stroke-width':'2px',
+				'stroke-width':'2.5px',
 				'fill':'#8cf',
 				'stroke':'#48c',
 				'fill-opacity':'0.3',
 				'opacity': '1'
+			},
+			'inactive': {
+				'stroke-width':'1px',
+				'stroke':'#777',
+				'fill':'none',
 			},
 			'off': {
 				'fill':'#f8f8f8',
@@ -105,11 +110,6 @@ class Ui():
 				'stroke':'#f00',
 				'opacity': '1'
 			},
-			'inactive': {
-				'stroke-width':'1px',
-				'stroke':'#777',
-				'fill':'none',
-			}
 		}
 	}
 #  todo 115 (ux) -1: allow to choose style by commandline
@@ -172,25 +172,25 @@ class Ui():
 			filterData=self.styleSVG[self.styleSet]['default'],
 			priority=-5,
 		)
+		self.markInactive = self.data.markNew(
+			filterName='FilterSetSVG',
+			filterData=self.styleSVG[self.styleSet]['inactive'],
+			priority=-4,
+		)
 		self.markOff = self.data.markNew(
 			filterName='FilterSetSVG',
 			filterData=self.styleSVG[self.styleSet]['off'],
-			priority=-4,
+			priority=-3,
 #			data={'visible':False} #mark-level visibility for example
 		)
 		self.markSelect = self.data.markNew(
 			filterName='FilterSetSVG',
 			filterData=self.styleSVG[self.styleSet]['select'],
-			priority=-3,
+			priority=-2,
 		)
 		self.markHover = self.data.markNew(
 			filterName='FilterSetSVG',
 			filterData=self.styleSVG[self.styleSet]['hover'],
-			priority=-2,
-		)
-		self.markInactive = self.data.markNew(
-			filterName='FilterSetSVG',
-			filterData=self.styleSVG[self.styleSet]['inactive'],
 			priority=-1,
 		)
 
