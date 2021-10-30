@@ -285,6 +285,8 @@ class Ui():
 		self.sceneCreate(projData['name'])
 
 
+		self.appWindow.suspend(True)
+
 		marksA = {}
 		for cMarkId in projData['markBlock']:
 			markData = projData['markBlock'][cMarkId]
@@ -321,6 +323,9 @@ class Ui():
 		self.appWindow.viewportFit()
 
 		self.activeScene.clean()
+
+
+		self.appWindow.suspend(False)
 
 
 

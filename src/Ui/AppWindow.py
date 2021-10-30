@@ -152,6 +152,11 @@ class AppWindow(QObject):
 
 
 
+	def suspend(self, _state):
+		self.lMain.setUpdatesEnabled(not _state)
+
+
+
 	def about(self):
 		webbrowser.open(self.aboutHref)
 
