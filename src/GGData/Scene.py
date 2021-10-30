@@ -210,7 +210,9 @@ class Scene():
 
 
 		def shapeInHook(_element, _point):
-			return( "S100 G1" )
+			refGeo = self.geoList()[0].getGeo([_element.get('id')])
+			cycle = refGeo[0].dataGet('Laser Cycle', 100)
+			return( f"S{int(cycle)} G1" )
 
 		cGG.set(shapeIn=shapeInHook, shapePre=shapePreHook)
 
