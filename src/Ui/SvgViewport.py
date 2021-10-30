@@ -221,7 +221,7 @@ class SvgViewport(QWidget):
 
 	def canvasReset(self):
 		if self.canvas:
-			self.canvas.deleteLater()
+			self.canvas.setParent(None)
 			self.canvas = None
 
 		self.canvas = SvgCanvas(self)
