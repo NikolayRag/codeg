@@ -234,6 +234,7 @@ class GeoWidget(QListWidget):
 	sigItemSelect = Signal(object, bool)
 	sigItemHover = Signal(object, bool)
 	sigItemDataSet = Signal(object, list)
+	sigTouchRun = Signal(bool)
 	sigTouched = Signal(object, object)
 	sigSelected = Signal(list)
 	sigActivate = Signal(object, bool)
@@ -286,6 +287,9 @@ class GeoWidget(QListWidget):
 
 
 	def currentSet(self, _entry):
+		self.sigTouchRun.emit(True)
+
+
 		self.removeLast()
 
 		self.setCurrentItem(_entry)
@@ -299,6 +303,7 @@ class GeoWidget(QListWidget):
 		self.sigSelected.emit(list(cItems.itemSelection().values()))
 
 
+		self.sigTouchRun.emit(False)
 		self.lastEntry = _entry
 
 
