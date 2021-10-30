@@ -64,7 +64,7 @@ class MarkTool(QFrame):
 					fieldWidget = ColorPicker.ColorPicker(cVal)
 					applyConnect(fieldWidget.sigChangedColor,cName)
 
-			if dType == float:
+			if dType == float or dType == int:
 					fieldWidget = QSlider(Qt.Horizontal)
 					fieldWidget.setValue(cVal)
 					fieldWidget.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Preferred)
