@@ -100,11 +100,11 @@
 !module-ui, widgets 35: +0 "src\Ui\AppWindow.py" kii 21/08/02 05:10:07
 	zoom factor 
 
- module-ui, API 36: +0 "src\Ui\SvgViewport.py" kii 21/08/02 06:13:19
++module-ui, API 36: +0 "src\Ui\SvgViewport.py" ki 21/10/31 00:39:45
 	make viewport interaction callbacks
 
- module-ui, viewport 37: +0 "src\Ui\SvgViewport.py" kii 21/08/24 17:44:42
-	make custom scrollbars out of SvgViewport
+ module-ui, viewport 37: +0 "src\Ui\SvgViewport.py" ki 21/10/31 00:40:04
+	make custom scrollbars for SvgViewport
 
 +module-ui, API 38: +0 "src\Ui\SvgViewport.py" kii 21/08/02 19:14:34
 	add SVGCanvas.canvasPlace

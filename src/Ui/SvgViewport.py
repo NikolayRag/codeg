@@ -1,5 +1,3 @@
-#  todo 36 (module-ui, API) +0: make viewport interaction callbacks
-
 from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
@@ -7,7 +5,7 @@ from PySide2.QtSvg import *
 
 
 
-#  todo 37 (module-ui, viewport) +0: make custom scrollbars out of SvgViewport
+#  todo 37 (module-ui, viewport) +0: make custom scrollbars for SvgViewport
 #  todo 207 (viewport, v2) +0: onscreen controls
 
 
