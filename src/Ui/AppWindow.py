@@ -75,6 +75,9 @@ class AppWindow(QObject):
 		wFrameGeoWid = cMain.findChild(QLayout, "frameGeo")
 		self.widgetGeo = GeoWidget(wFrameGeoBlocks, wFrameGeoWid)
 
+		listObjects = cMain.findChild(QSplitter, "listObjects")
+		listObjects.setStretchFactor(1, 1)
+
 		self.widgetGeo.sigItemSelect.connect(lambda item, state: self.sigGeoSelect.emit(item, state))
 		self.widgetGeo.sigItemHover.connect(lambda item, state: self.sigGeoHover.emit(item, state))
 		self.widgetGeo.sigItemDataSet.connect(lambda item, names: self.sigGeoDataSet.emit(item, names))

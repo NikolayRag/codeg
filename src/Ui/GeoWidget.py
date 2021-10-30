@@ -247,8 +247,9 @@ class GeoWidget(QListWidget):
 	def __init__(self, _contBlocks, _contItems):
 		QListWidget.__init__(self)
 
+		self.setFrameShape(QFrame.NoFrame)
 		self.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Ignored)
-		self.setMinimumHeight(15)
+		self.setMinimumHeight(80)
 		self.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
 		self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
 
