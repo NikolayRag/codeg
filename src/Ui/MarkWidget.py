@@ -50,8 +50,8 @@ class MarkTool(QFrame):
 
 
 	def fillFrame(self):
-		def applyConnect(_field, _name): #not working inline, switch to QSignalMapper mb
-			_field.sigChangedColor.connect(lambda _val: self.sigChangedField.emit(_name, _val))
+		def applyConnect(_signal, _name): #not working inline, switch to QSignalMapper mb
+			_signal.connect(lambda _val: self.sigChangedField.emit(_name, _val))
 
 
 		for cName in self.data:
@@ -62,7 +62,7 @@ class MarkTool(QFrame):
 			if dType == str:
 				if (len(cVal) in [4,7]) and (cVal[0] == '#'):
 					fieldWidget = ColorPicker.ColorPicker(cVal)
-					applyConnect(fieldWidget,cName)
+					applyConnect(fieldWidget.sigChangedColor,cName)
 
 
 			fieldName = QLabel(f"{cName}")
