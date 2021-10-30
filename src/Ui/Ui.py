@@ -314,6 +314,10 @@ class Ui():
 				if ('visible' in cData) and (cData['visible'] == False):
 					cGItem.markSet(self.markOff, True)
 
+				if ('selected' in cData) and cData['selected']:
+					cGItem.markSet(self.markSelect, True)
+
+
 				cGItem.marksSolve(filterStep='UI')
 
 
