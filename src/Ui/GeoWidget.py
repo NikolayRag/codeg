@@ -224,7 +224,7 @@ class GeoWidgetItems(QWidget):
 
 
 
-class GeoWidget(QWidget):
+class GeoWidget(QListWidget):
 	LdataWidget = Qt.UserRole +0
 	LdataBlock = Qt.UserRole +1
 	LdataData = Qt.UserRole +2
@@ -238,7 +238,6 @@ class GeoWidget(QWidget):
 	sigActivate = Signal(object, bool)
 
 
-	contBlocks = None
 	contItems = None
 
 	lastEntry = None
@@ -246,12 +245,18 @@ class GeoWidget(QWidget):
 
 
 	def __init__(self, _contBlocks, _contItems):
-		QWidget.__init__(self)
+		QListWidget.__init__(self)
 
-		self.contBlocks = _contBlocks
+		self.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Ignored)
+		self.setMinimumHeight(15)
+		self.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
+		self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+
+		_contBlocks.addWidget(self)
+
 		self.contItems = _contItems
 
-		self.contBlocks.itemClicked.connect(self.currentSet)
+		self.itemClicked.connect(self.currentSet)
 
 
 
@@ -270,7 +275,7 @@ class GeoWidget(QWidget):
 		cBlockItem.setData(self.LdataBlock, _geoblock)
 		cBlockItem.setData(self.LdataData, _data)
 
-		self.contBlocks.addItem(cBlockItem)
+		self.addItem(cBlockItem)
 		self.contItems.addWidget(cWidget)
 
 
@@ -281,7 +286,7 @@ class GeoWidget(QWidget):
 	def currentSet(self, _entry):
 		self.removeLast()
 
-		self.contBlocks.setCurrentItem(_entry)
+		self.setCurrentItem(_entry)
 		cItems = _entry.data(self.LdataWidget)
 		cItems.show()
 
@@ -312,7 +317,7 @@ class GeoWidget(QWidget):
 	def clean(self):
 		self.removeLast()
 
-		self.contBlocks.clear()
+		self.clear()
 
 		self.lastEntry = None
 

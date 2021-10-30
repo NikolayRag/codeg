@@ -71,9 +71,9 @@ class AppWindow(QObject):
 		
 		#widgets time
 #  todo 215 (module-ui) +0: cleanup GeoWidget ui collection
-		wListGeoBlocks = cMain.findChild(QListWidget, "listGeoBlocks")
+		wFrameGeoBlocks = cMain.findChild(QLayout, "frameGeoBlocks")
 		wFrameGeoWid = cMain.findChild(QLayout, "frameGeo")
-		self.widgetGeo = GeoWidget(wListGeoBlocks, wFrameGeoWid)
+		self.widgetGeo = GeoWidget(wFrameGeoBlocks, wFrameGeoWid)
 
 		self.widgetGeo.sigItemSelect.connect(lambda item, state: self.sigGeoSelect.emit(item, state))
 		self.widgetGeo.sigItemHover.connect(lambda item, state: self.sigGeoHover.emit(item, state))
