@@ -323,7 +323,7 @@ class Ui():
 
 			self.appWindow.geoAddWidget(cGBlock)
 
-
+#  todo 225 (ux) +0: store viewport position/size within scene
 		self.appWindow.viewportFit()
 
 		self.activeScene.clean()

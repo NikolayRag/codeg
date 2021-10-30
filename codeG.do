@@ -637,3 +637,6 @@
  ux, widget, fix 224: +0 "src\Ui\GeoWidget.py" ki 21/10/30 04:08:39
 	GeoWidget badly layout review
 
+ ux 225: +0 "src\Ui\Ui.py" ki 21/10/31 01:52:29
+	store viewport position/size within scene
+
