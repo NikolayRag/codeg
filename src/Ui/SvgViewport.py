@@ -11,17 +11,22 @@ from PySide2.QtSvg import *
 #  todo 207 (viewport, v2) +0: onscreen controls
 
 
-class vpDescriptor():
+class SvgDescriptor():
+	canvas = None
 	idGeo = -1
 
 
-	def __init__(self, _id):
-		self.idGeo = _id
+	def __init__(self, _canvas, _xml=None):
+		self.canvas = _canvas
+		self.idGeo = self.canvas.layerNew()
+
+		if _xml:
+			self.setXml(_xml)
 
 
 
-	def layerGeo(self):
-		return self.idGeo
+	def setXml(self, _xml):
+		self.canvas.layerSet(self.idGeo, _xml)
 
 
 
@@ -229,16 +234,8 @@ class SvgViewport(QWidget):
 
 
 
-	def canvasAdd(self, _xml):
-		layerId = self.canvas.layerNew()
-		self.canvas.layerSet(layerId, _xml)
-
-		return vpDescriptor(layerId)
-
-
-
-	def canvasUpdate(self, _descr, _xml):
-		self.canvas.layerSet(_descr.layerGeo(), _xml, quick=True)
+	def canvasAdd(self, _xml=None):
+		return SvgDescriptor(self.canvas, _xml)
 
 
 
