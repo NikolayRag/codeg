@@ -64,6 +64,13 @@ class MarkTool(QFrame):
 					fieldWidget = ColorPicker.ColorPicker(cVal)
 					applyConnect(fieldWidget.sigChangedColor,cName)
 
+			if dType == float:
+					fieldWidget = QSlider(Qt.Horizontal)
+					fieldWidget.setValue(cVal)
+					fieldWidget.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Preferred)
+					applyConnect(fieldWidget.valueChanged,cName)
+
+
 
 			fieldName = QLabel(f"{cName}")
 			self.lLayout.addRow(fieldName, fieldWidget)
