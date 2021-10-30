@@ -419,6 +419,8 @@ class Ui():
 
 #  todo 98 (module-ui, optimize) -1: prevent doubling by difference change
 	def geoSetSelect(self, _item, _state):
+		_item.dataSet({'selected': _state})
+
 		_item.markSet(self.markSelect, _state,
 			dirty=self.activeScene.markIn(self.markSelect))
 
@@ -449,6 +451,10 @@ class Ui():
 
 	def geoActivate(self, _block, _state):
 		for cGItem in _block.getGeo():
+			cSel = _state and cGItem.dataGet('selected', False)
+			cGItem.markSet(self.markSelect, cSel,
+				dirty=self.activeScene.markIn(self.markSelect))
+
 			cGItem.markSet(self.markInactive, not _state,
 				dirty=self.activeScene.markIn(self.markInactive))
 
