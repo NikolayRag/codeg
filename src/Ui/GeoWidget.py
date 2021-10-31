@@ -347,3 +347,23 @@ class GeoWidget(QListWidget):
 
 		cWidget = self.lastEntry.data(self.LdataWidget)
 		cWidget.itemSelect()
+
+
+
+	#returns {Geoblock: SvgDescriptor} dict
+	def getBlocks(self, _all=False):
+		cList = [self.lastEntry] if self.lastEntry else []
+
+
+		if _all:
+			cList = []
+			for i in range(self.count()):
+				cList.append( self.item(i) )
+
+
+		out = {}
+		for cItem in cList:
+			out[cItem.data(self.LdataBlock)] = cItem.data(self.LdataData)
+
+
+		return out
