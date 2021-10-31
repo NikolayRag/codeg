@@ -62,8 +62,12 @@ class Geoblock():
 		if offset:
 			self.xformOffset = offset
 
+			self.dirtyFlag = True
+
 		if scale:
 			self.xformScale = scale
+
+			self.dirtyFlag = True
 
 
 		return [(self.xformScale[0],0), (0,self.xformScale[1]), self.xformOffset]
