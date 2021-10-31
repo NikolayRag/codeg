@@ -356,25 +356,22 @@ class SvgCanvas(QWidget):
 		cLayer = self.layers[_lId]
 		cLayer.load(_xml)
 
-		if quick:
-			self.repaint()
-		else:
-			self.recompute()
+		self.recompute()
 
 			self.update()
 
 
 
-	def recompute(self):
+	def recompute(self, _update=True):
 			if not self.layers:
 				self.docWidth = self.defaultWidth
 				self.docHeight = self.defaultHeight
 
+
+				if _update:
+					self.update()
+
 				return
-
-
-			self.docWidth = 0
-			self.docHeight = 0
 
 			for l in self.layers.values():
 				if not l.display:
@@ -383,6 +380,8 @@ class SvgCanvas(QWidget):
 				lSize = l.layerSize()
 				self.docWidth = max(self.docWidth, lSize[0])
 				self.docHeight = max(self.docHeight, lSize[1])
+			if _update:
+				self.update()
 
 
 
