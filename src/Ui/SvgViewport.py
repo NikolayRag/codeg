@@ -239,9 +239,9 @@ class SvgViewport(QWidget):
 
 	def canvasFit(self, multiply=1., offset=.5):
 # -todo 156 (fix, canvas) +0: canvas is wrong size at init
-		cSize = self.canvas.getDocSize()
-		fitWidth = self.width() / cSize.width()
-		fitHeight = self.height() / cSize.height()
+		cBox = self.canvas.getDocSize()
+		fitWidth = self.width() / (cBox[0][1] - cBox[0][0])
+		fitHeight = self.height() / (cBox[1][1] - cBox[1][0])
 
 
 		cScale = fitHeight if fitHeight<fitWidth else fitWidth
@@ -317,8 +317,10 @@ class SvgCanvas(QWidget):
 
 	layers = {}
 	layerMaxId = 0
-	docWidth = 0
-	docHeight = 0
+	docXMin = 0
+	docXMax = 0
+	docYMin = 0
+	docYMax = 0
 
 	
 	offset = QPoint(0,0)
@@ -364,8 +366,10 @@ class SvgCanvas(QWidget):
 
 	def recompute(self, _update=True):
 			if not self.layers:
-				self.docWidth = self.defaultWidth
-				self.docHeight = self.defaultHeight
+				self.docXMin = 0
+				self.docXMax = self.defaultWidth
+				self.docYMin = 0
+				self.docYMax = self.defaultHeight
 
 
 				if _update:
@@ -373,13 +377,29 @@ class SvgCanvas(QWidget):
 
 				return
 
+
+			f = True
 			for l in self.layers.values():
 				if not l.display:
 					continue
 
 				lSize = l.layerSize()
-				self.docWidth = max(self.docWidth, lSize[0])
-				self.docHeight = max(self.docHeight, lSize[1])
+				lPos = l.layerOffset()
+
+				if f:
+					f = False
+					self.docXMin = lPos[0]
+					self.docXMax = lSize[0] +lPos[0]
+					self.docYMin = lPos[1]
+					self.docYMax = lSize[1] +lPos[1]
+
+				else:
+					self.docXMin = min(self.docXMin, lPos[0])
+					self.docXMax = max(self.docXMax, lSize[0]+lPos[0])
+					self.docYMin = min(self.docYMin, lPos[1])
+					self.docYMax = max(self.docYMax, lSize[1]+lPos[1])
+
+
 			if _update:
 				self.update()
 
@@ -401,8 +421,8 @@ class SvgCanvas(QWidget):
 
 			lPos = l.layerOffset()
 			lPos = QPoint(
-				lPos[0] *self.scaleX,
-				lPos[1] *self.scaleY,
+				(lPos[0]-self.docXMin) *self.scaleX, # compensate entire canvas offset
+				(lPos[1]-self.docYMin) *self.scaleY,
 			)
 
 
@@ -413,8 +433,8 @@ class SvgCanvas(QWidget):
 
 	def sizeHint(self):
 		return QSize(
-			self.docWidth * self.scaleX,
-			self.docHeight * self.scaleY
+			max(1, (self.docXMax - self.docXMin) * self.scaleX),
+			max(1, (self.docYMax - self.docYMin) * self.scaleY)
 		)
 
 
@@ -443,4 +463,4 @@ class SvgCanvas(QWidget):
 
 
 	def getDocSize(self):
-		return QSize(self.docWidth, self.docHeight)
+		return ((self.docXMin,self.docXMax), (self.docYMin, self.docYMax))
