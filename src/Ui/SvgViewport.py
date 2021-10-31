@@ -228,8 +228,8 @@ class SvgViewport(QWidget):
 		self.canvas.show()
 
 		if self.gridXml:
-			self.canvas.layerSet(self.canvas.layerNew(True), self.gridXml)
-
+			gridId = self.canvas.layerNew(True)
+			self.canvas.layerSet(gridId, self.gridXml)
 
 
 	def canvasAdd(self, _xml=None):
