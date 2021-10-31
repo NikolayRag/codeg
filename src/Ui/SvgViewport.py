@@ -369,6 +369,14 @@ class SvgCanvas(QWidget):
 
 
 
+	def layerSetScale(self, _lId, _scale):
+		cLayer = self.layers[_lId]
+		cLayer.setLayerScale(_scale)
+
+		self.recompute()
+
+
+
 	def recompute(self, _update=True):
 			if not self.layers:
 				self.docXMin = 0
