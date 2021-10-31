@@ -37,7 +37,8 @@ class SvgDescriptor():
 Main scene widget
 '''
 class SvgViewport(QWidget):
-	sigInteract = Signal(object, object)
+	intStart, intLive, intEnd, intCancel = (0,1,2,3)
+	sigInteract = Signal(int, object, object)
 
 	eventTypes = {}
 
@@ -108,14 +109,21 @@ class SvgViewport(QWidget):
 
 	def mousePressEvent(self, _e):
 		cPos = _e.pos() -self.pos
+		cPosTrue = QPointF(cPos) / self.scale
+
 		if _e.button() == Qt.MouseButton.MiddleButton:
 			self.panOrigin = cPos
 
 
 		if _e.button() == Qt.MouseButton.LeftButton:
-			self.interactStart = _e.pos() - self.pos
+			self.interactStart = cPosTrue
+			self.sigInteract.emit(self.intStart, self.interactStart, self.interactStart)
+
 
 		if _e.button() == Qt.MouseButton.RightButton:
+			if self.interactStart:
+				self.sigInteract.emit(self.intCancel, cPosTrue, self.interactStart)
+
 			self.interactStart = None
 
 
@@ -123,6 +131,11 @@ class SvgViewport(QWidget):
 	def mouseMoveEvent(self, _e):
 		if self.panOrigin:
 			self.viewportPlace( _e.pos() - self.panOrigin)
+
+
+		if self.interactStart:
+			cPos = _e.pos() -self.pos
+			self.sigInteract.emit(self.intLive, QPointF(cPos)/self.scale, self.interactStart)
 
 
 
@@ -133,11 +146,8 @@ class SvgViewport(QWidget):
 
 		if _e.button() == Qt.MouseButton.LeftButton:
 			if self.interactStart:
-				interactEnd = _e.pos()-self.pos
-				self.sigInteract.emit(
-					(self.interactStart.x() /self.scale, self.interactStart.y() /self.scale),
-					(interactEnd.x() /self.scale, interactEnd.y() /self.scale)
-				)
+				cPos = _e.pos() -self.pos
+				self.sigInteract.emit(self.intEnd, QPointF(cPos)/self.scale, self.interactStart)
 
 			self.interactStart = None
 
