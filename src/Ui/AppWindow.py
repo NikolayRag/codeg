@@ -177,8 +177,8 @@ class AppWindow(QObject):
 		for cGeo, cDscr in self.widgetGeo.getBlocks().items():
 			cOffset = cGeo.xformSet()[2]
 			cOffset = (
-				cOffset[0] + _to.x()-_from.x(),
-				cOffset[1] + _to.y()-_from.y()
+				cOffset[0] + _to[0]-_from[0],
+				cOffset[1] + _to[1]-_from[1]
 			)
 			cGeo.xformSet(offset=cOffset)
 			cDscr.place(cOffset)

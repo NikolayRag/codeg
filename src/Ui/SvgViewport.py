@@ -134,8 +134,8 @@ class SvgViewport(QWidget):
 			if self.interactStart:
 				interactEnd = _e.pos()-self.pos
 				self.sigInteract.emit(
-					self.interactStart,
-					interactEnd
+					(self.interactStart.x() /self.scale, self.interactStart.y() /self.scale),
+					(interactEnd.x() /self.scale, interactEnd.y() /self.scale)
 				)
 
 			self.interactStart = None
