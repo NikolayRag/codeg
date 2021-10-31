@@ -431,19 +431,14 @@ class SvgCanvas(QWidget):
 				continue
 
 			lSize = l.layerSize()
-			lSize = QSize(
-				lSize[0] *self.scaleX,
-				lSize[1] *self.scaleY,
-			)
-
 			lPos = l.layerOffset()
-			lPos = QPoint(
+
+			p.setViewport(
 				(lPos[0]-self.docXMin) *self.scaleX, # compensate entire canvas offset
 				(lPos[1]-self.docYMin) *self.scaleY,
+				lSize[0] *self.scaleX,
+				lSize[1] *self.scaleY
 			)
-
-
-			p.setViewport( QRect(lPos, lSize) )
 			l.render(p)
 
 
