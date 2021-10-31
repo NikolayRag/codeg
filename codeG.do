@@ -268,7 +268,7 @@
 !scene, feature 93: +0 "" kii 21/09/27 02:39:14
 	redundant
 
- viewport, fix 95: +0 "src\Ui\SvgViewport.py" kii 21/08/28 15:52:23
+ viewport, fix 95: +0 "src\Ui\SvgViewport.py" ki 21/10/31 21:10:08
 	clip max scale by render limit
 
 !module-ui, ux, scene 96: +0 "src\Ui\AppWindow.py" kii 21/08/29 16:52:03
@@ -646,6 +646,6 @@
 =fix 227: +0 "src\Ui\SvgViewport.py" ki 21/10/31 20:05:23
 	integer pos and size result in jitter
 
-=ux, fix 228: +0 "src\Ui\AppWindow.py" ki 21/10/31 09:40:44
++ux, fix 228: +0 "src\Ui\AppWindow.py" ki 21/10/31 22:47:20
 	pin viewport while transforming geo
 

@@ -173,7 +173,6 @@ class AppWindow(QObject):
 
 
 
-# =todo 228 (ux, fix) +0: pin viewport while transforming geo
 	def viewportInteract(self, _step, _point, _origin):
 		cOffset = _point -_origin
 
