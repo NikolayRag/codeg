@@ -267,6 +267,8 @@ class SvgCanvasLayer(QSvgRenderer):
 
 
 	scale = QSize(1, 1)
+	offset = QPoint(0, 0)
+
 	def __init__(self, _parent):
 		QSvgRenderer.__init__(self, _parent)
 
@@ -290,6 +292,19 @@ class SvgCanvasLayer(QSvgRenderer):
 			defSize.width() *self.scale.width(),
 			defSize.height() *self.scale.height()
 		)
+
+
+
+	def setlayerOffset(self, _offset):
+		self.offset = _offset
+
+
+
+	def layerOffset(self):
+		return self.offset
+
+
+
 
 
 class SvgCanvas(QWidget):
@@ -380,7 +395,14 @@ class SvgCanvas(QWidget):
 				lSize.height() *self.scaleY,
 			)
 
-			p.setViewport( QRect(QPoint(0, 0), lSize) )
+			lPos = l.layerOffset()
+			lPos = QPoint(
+				lPos.x() *self.scaleX,
+				lPos.y() *self.scaleY,
+			)
+
+
+			p.setViewport( QRect(lPos, lSize) )
 			l.render(p)
 
 
