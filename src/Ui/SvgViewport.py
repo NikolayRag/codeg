@@ -37,7 +37,7 @@ class SvgDescriptor():
 Main scene widget
 '''
 class SvgViewport(QWidget):
-	intStart, intLive, intEnd, intCancel = (0,1,2,3)
+	intStart, intLive, intEnd, intCancel, intOption = (0,1,2,3,4)
 	sigInteract = Signal(int, object, object)
 
 	eventTypes = {}
@@ -123,6 +123,8 @@ class SvgViewport(QWidget):
 		if _e.button() == Qt.MouseButton.RightButton:
 			if self.interactStart:
 				self.sigInteract.emit(self.intCancel, cPosTrue, self.interactStart)
+			else:
+				self.sigInteract.emit(self.intOption, cPosTrue, cPosTrue)
 
 			self.interactStart = None
 
