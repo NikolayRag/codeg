@@ -643,8 +643,8 @@
  fix, check 226: +0 "src\Ui\SvgViewport.py" ki 21/10/31 04:37:29
 	probably will fit wrong if canvas and widget orientation differs
 
- check 227: +0 "src\Ui\SvgViewport.py" ki 21/10/31 05:21:01
-	integer pos and size can result in jitter
+=fix 227: +0 "src\Ui\SvgViewport.py" ki 21/10/31 20:05:23
+	integer pos and size result in jitter
 
 =ux, fix 228: +0 "src\Ui\AppWindow.py" ki 21/10/31 09:40:44
 	pin viewport while transforming geo
