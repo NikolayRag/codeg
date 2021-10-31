@@ -319,10 +319,7 @@ class SvgCanvasLayer(QSvgRenderer):
 
 	def layerSize(self):
 		defSize = self.defaultSize()
-		return (
-			defSize.width() *self.scale[0],
-			defSize.height() *self.scale[1]
-		)
+		return QSizeF(defSize.width()*self.scale[0], defSize.height()*self.scale[1])
 
 
 
@@ -332,7 +329,7 @@ class SvgCanvasLayer(QSvgRenderer):
 
 
 	def layerOffset(self):
-		return self.offset
+		return QPointF(*self.offset)
 
 
 
@@ -429,16 +426,16 @@ class SvgCanvas(QWidget):
 
 				if f:
 					f = False
-					self.docXMin = lPos[0]
-					self.docXMax = lSize[0] +lPos[0]
-					self.docYMin = lPos[1]
-					self.docYMax = lSize[1] +lPos[1]
+					self.docXMin = lPos.x()
+					self.docXMax = lSize.width() +lPos.x()
+					self.docYMin = lPos.y()
+					self.docYMax = lSize.height() +lPos.y()
 
 				else:
-					self.docXMin = min(self.docXMin, lPos[0])
-					self.docXMax = max(self.docXMax, lSize[0]+lPos[0])
-					self.docYMin = min(self.docYMin, lPos[1])
-					self.docYMax = max(self.docYMax, lSize[1]+lPos[1])
+					self.docXMin = min(self.docXMin, lPos.x())
+					self.docXMax = max(self.docXMax, lSize.width()+lPos.x())
+					self.docYMin = min(self.docYMin, lPos.y())
+					self.docYMax = max(self.docYMax, lSize.height()+lPos.y())
 
 
 			if _update:
@@ -459,10 +456,10 @@ class SvgCanvas(QWidget):
 			lPos = l.layerOffset()
 
 			p.setViewport(
-				(lPos[0]-self.docXMin) *self.scaleX, # compensate entire canvas offset
-				(lPos[1]-self.docYMin) *self.scaleY,
-				lSize[0] *self.scaleX,
-				lSize[1] *self.scaleY
+				(lPos.x()-self.docXMin) *self.scaleX, # compensate entire canvas offset
+				(lPos.y()-self.docYMin) *self.scaleY,
+				lSize.width() *self.scaleX,
+				lSize.height() *self.scaleY
 			)
 			l.render(p)
 
