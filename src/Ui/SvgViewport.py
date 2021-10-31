@@ -299,7 +299,7 @@ class SvgCanvasLayer(QSvgRenderer):
 
 
 
-	def setlayerOffset(self, _offset):
+	def setLayerOffset(self, _offset):
 		self.offset = _offset
 
 
