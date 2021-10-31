@@ -16,7 +16,8 @@ class Geoblock():
 	]
 
 
-	xform = ((0,0),(1,1)) #((x,y), (xScale,yScale))
+	xformOffset = (0,0)
+	xformScale = (1,1)
 	geoXML = None
 	allItems = []
 	source = ''
@@ -57,6 +58,17 @@ class Geoblock():
 				i += 1
 
 
+	def xformSet(self, offset=None, scale=None):
+		if offset:
+			self.xformOffset = offset
+
+		if scale:
+			self.xformScale = scale
+
+
+		return [self.xformOffset, self.xformScale]
+
+
 
 	def label(self):
 		return self.name
@@ -95,6 +107,7 @@ class Geoblock():
 
 	def packGeo(self, _markLimit):
 		out = {
+			'xform': (self.xformOffset,self.xformScale),
 			'source': self.source,
 			'name': self.name
 		}
