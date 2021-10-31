@@ -365,6 +365,13 @@ class SvgCanvas(QWidget):
 
 
 	def recompute(self):
+			if not self.layers:
+				self.docWidth = self.defaultWidth
+				self.docHeight = self.defaultHeight
+
+				return
+
+
 			self.docWidth = 0
 			self.docHeight = 0
 
@@ -375,12 +382,6 @@ class SvgCanvas(QWidget):
 				lSize = l.layerSize()
 				self.docWidth = max(self.docWidth, lSize[0])
 				self.docHeight = max(self.docHeight, lSize[1])
-
-
-			if not self.docWidth:
-				self.docWidth = self.defaultWidth
-			if not self.docHeight:
-				self.docHeight = self.defaultHeight
 
 
 
