@@ -273,8 +273,10 @@ class SvgCanvasLayer(QSvgRenderer):
 		QSvgRenderer.__init__(self, _parent)
 
 
+
 	def setGhost(self, _ghost):
 		self.ghost = _ghost
+
 
 
 	def setDisplay(self, _display):
