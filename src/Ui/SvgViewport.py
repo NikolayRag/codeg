@@ -461,7 +461,10 @@ class SvgCanvas(QWidget):
 
 	def update(self):
 		self.resize(self.sizeHint())
-		self.move(self.offset)
+		self.move(QPoint(
+			self.offset.x()+int(self.docXMin*self.scaleX),
+			self.offset.y()+int(self.docYMin*self.scaleY)
+		))
 
 		QWidget.update(self)
 
