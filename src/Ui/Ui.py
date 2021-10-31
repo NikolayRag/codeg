@@ -402,7 +402,7 @@ class Ui():
 
 		fileName = cDialog.selectedFiles()[0]
 
-		h = self.appWindow.wSvgViewport.canvas.docHeight
+		h = self.appWindow.wSvgViewport.canvas.docYMax
 		with open(fileName, 'w') as f:
 			f.write(self.activeScene.getG(0, h))
 
