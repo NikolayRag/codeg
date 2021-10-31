@@ -16,6 +16,7 @@ class Geoblock():
 	]
 
 
+	xform = ((0,0),(1,1)) #((x,y), (xScale,yScale))
 	geoXML = None
 	allItems = []
 	source = ''

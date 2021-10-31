@@ -174,6 +174,17 @@ class AppWindow(QObject):
 
 
 	def viewportInteract(self, _from, _to):
+		for cGeo, cDscr in self.widgetGeo.getBlocks().items():
+			cGeo.xform = (
+				(
+					cGeo.xform[0][0]+_to.x()-_from.x(),
+					cGeo.xform[0][1]+_to.y()-_from.y()
+				), cGeo.xform[1]
+			)
+			cDscr.place(cGeo.xform[0])
+
+
+
 		self.widgetGeo.selectGeo(None)
 		MarkWidget.toolUnpop()
 
