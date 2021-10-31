@@ -274,8 +274,8 @@
 !module-ui, ux, scene 96: +0 "src\Ui\AppWindow.py" kii 21/08/29 16:52:03
 	
 
- viewport, fix, solve 97: +0 "src\Ui\SvgViewport.py" kii 21/09/01 21:59:23
-	decide how to paint different layer sizes
++viewport, fix, solve 97: +0 "src\Ui\SvgViewport.py" ki 21/10/31 05:43:32
+	respect layer offset and scale
 
  module-ui, optimize 98: -1 "src\Ui\Ui.py" kii 21/09/02 01:04:33
 	prevent doubling by difference change
@@ -639,4 +639,10 @@
 
  ux 225: +0 "src\Ui\Ui.py" ki 21/10/31 01:52:29
 	store viewport position/size within scene
+
+ fix, check 226: +0 "src\Ui\SvgViewport.py" ki 21/10/31 04:37:29
+	probably will fit wrong if canvas and widget orientation differs
+
+ check 227: +0 "src\Ui\SvgViewport.py" ki 21/10/31 05:21:01
+	integer pos and size can result in jitter
 

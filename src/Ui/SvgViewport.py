@@ -232,6 +232,7 @@ class SvgViewport(QWidget):
 			self.canvas.layerSet(gridId, self.gridXml)
 
 
+
 	def canvasAdd(self, _xml=None):
 		return SvgDescriptor(self.canvas, _xml)
 
@@ -244,6 +245,7 @@ class SvgViewport(QWidget):
 		fitHeight = self.height() / (cBox[1][1] - cBox[1][0])
 
 
+#  todo 226 (fix, check) +0: probably will fit wrong if canvas and widget orientation differs
 		cScale = fitHeight if fitHeight<fitWidth else fitWidth
 		self.viewportSize(cScale*multiply)
 
@@ -310,6 +312,7 @@ class SvgCanvasLayer(QSvgRenderer):
 
 
 
+#  todo 227 (check) +0: integer pos and size can result in jitter
 class SvgCanvas(QWidget):
 	defaultWidth = 0
 	defaultHeight = 0
@@ -422,10 +425,11 @@ class SvgCanvas(QWidget):
 		p = QPainter(self)
 		p.setRenderHint(QPainter.Antialiasing)
 
+
 		for l in self.layers.values():
 			if not l.display:
 				continue
-#  todo 97 (viewport, fix, solve) +0: decide how to paint different layer sizes
+
 			lSize = l.layerSize()
 			lSize = QSize(
 				lSize[0] *self.scaleX,
