@@ -266,6 +266,7 @@ class SvgCanvasLayer(QSvgRenderer):
 #	lod = 1.
 
 
+	scale = QSize(1, 1)
 	def __init__(self, _parent):
 		QSvgRenderer.__init__(self, _parent)
 
@@ -277,6 +278,18 @@ class SvgCanvasLayer(QSvgRenderer):
 	def setDisplay(self, _display):
 		self.display = _display
 
+
+
+	def setLayerScale(self, _scale):
+		self.scale = QSize(_scale)
+
+
+	def layerSize(self):
+		defSize = self.defaultSize()
+		return QSize(
+			defSize.width() *self.scale.width(),
+			defSize.height() *self.scale.height()
+		)
 
 
 class SvgCanvas(QWidget):
@@ -338,7 +351,7 @@ class SvgCanvas(QWidget):
 			self.docHeight = 0
 
 			for l in self.layers.values():
-					cSize = l.defaultSize()
+					cSize = l.layerSize()
 					self.docWidth = max(self.docWidth, cSize.width())
 					self.docHeight = max(self.docHeight, cSize.height())
 				if not l.display:
@@ -359,7 +372,13 @@ class SvgCanvas(QWidget):
 			if not l.display:
 				continue
 #  todo 97 (viewport, fix, solve) +0: decide how to paint different layer sizes
-			p.setViewport( QRect(QPoint(0, 0), self.sizeHint()) )
+			lSize = l.layerSize()
+			lSize = QSize(
+				lSize.width() *self.scaleX,
+				lSize.height() *self.scaleY,
+			)
+
+			p.setViewport( QRect(QPoint(0, 0), lSize) )
 			l.render(p)
 
 
