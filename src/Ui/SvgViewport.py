@@ -363,6 +363,13 @@ class SvgCanvas(QWidget):
 			self.update()
 
 
+	def layerSetOffset(self, _lId, _offset):
+		cLayer = self.layers[_lId]
+		cLayer.setLayerOffset(_offset)
+
+		self.recompute()
+
+
 
 	def recompute(self, _update=True):
 			if not self.layers:
