@@ -553,7 +553,7 @@
  module-data, api 196: +0 "src\Ui\Ui.py" ki 21/10/23 04:42:23
 	deal with Markfilter data fields within Mark
 
-=data, fix 197: +0 "src\Ui\Ui.py" ki 21/10/23 03:17:31
+=data, fix 197: +0 "src\Ui\Ui.py" ki 21/10/31 08:17:36
 	deal with missing svg link
 
 =data, fix 198: +0 "src\Ui\Ui.py" ki 21/10/23 07:20:24
@@ -645,4 +645,7 @@
 
  check 227: +0 "src\Ui\SvgViewport.py" ki 21/10/31 05:21:01
 	integer pos and size can result in jitter
+
+=ux, fix 228: +0 "src\Ui\AppWindow.py" ki 21/10/31 09:40:44
+	pin viewport while transforming geo
 

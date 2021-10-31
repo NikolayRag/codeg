@@ -173,6 +173,7 @@ class AppWindow(QObject):
 
 
 
+# =todo 228 (ux, fix) +0: pin viewport while transforming geo
 	def viewportInteract(self, _from, _to):
 		for cGeo, cDscr in self.widgetGeo.getBlocks().items():
 			cOffset = cGeo.xformSet()[2]
