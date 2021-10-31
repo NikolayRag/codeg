@@ -28,6 +28,11 @@ class SvgDescriptor():
 
 
 
+	def place(self, _xy):
+		self.canvas.layerSetOffset(self.idGeo, _xy)
+
+
+
 '''
 Main scene widget
 '''
