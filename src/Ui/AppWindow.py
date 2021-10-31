@@ -175,7 +175,7 @@ class AppWindow(QObject):
 
 	def viewportInteract(self, _from, _to):
 		for cGeo, cDscr in self.widgetGeo.getBlocks().items():
-			cOffset = cGeo.xformSet()[0]
+			cOffset = cGeo.xformSet()[2]
 			cOffset = (
 				cOffset[0] + _to.x()-_from.x(),
 				cOffset[1] + _to.y()-_from.y()
@@ -194,7 +194,7 @@ class AppWindow(QObject):
 #  todo 213 (ux, viewport) +0: place support viewport layer for block
 	def geoAddWidget(self, _geo):
 		cXml = _geo.xmlRoot(True)
-		cDscr = self.wSvgViewport.canvasAdd(cXml, _geo.xformSet()[0])
+		cDscr = self.wSvgViewport.canvasAdd(cXml, _geo.xformSet()[2])
 
 		self.widgetGeo.blockAdd(_geo, cDscr)
 

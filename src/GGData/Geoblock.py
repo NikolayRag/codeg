@@ -66,7 +66,7 @@ class Geoblock():
 			self.xformScale = scale
 
 
-		return [self.xformOffset, self.xformScale]
+		return [(self.xformScale[0],0), (0,self.xformScale[1]), self.xformOffset]
 
 
 
@@ -107,7 +107,7 @@ class Geoblock():
 
 	def packGeo(self, _markLimit):
 		out = {
-			'xform': (self.xformOffset,self.xformScale),
+			'xform': self.xformSet(),
 			'source': self.source,
 			'name': self.name
 		}
