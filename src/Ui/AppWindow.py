@@ -186,8 +186,8 @@ class AppWindow(QObject):
 
 
 
-		self.widgetGeo.selectGeo(None)
-		MarkWidget.toolUnpop()
+#		self.widgetGeo.selectGeo(None)
+#		MarkWidget.toolUnpop()
 
 
 
