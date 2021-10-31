@@ -66,8 +66,10 @@ class GeoWidgetItems(QWidget):
 			ctrlVisible.setFlags(Qt.NoItemFlags)
 			visible = _geoitem.dataGet('visible', True)
 			self.geoitemSet(ctrlVisible, visible)
-
 			self.wListItems.setItem(cRow, self.LayerColumnSwitch, ctrlVisible)
+
+			if _geoitem.dataGet('selected', False):
+				self.wListItems.setCurrentItem(itemName, QItemSelectionModel.Select)
 
 		else:
 			for i in range(self.wListItems.columnCount()):
