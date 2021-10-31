@@ -338,10 +338,10 @@ class SvgCanvas(QWidget):
 			self.docHeight = 0
 
 			for l in self.layers.values():
-				if l.display and not l.ghost:
 					cSize = l.defaultSize()
 					self.docWidth = max(self.docWidth, cSize.width())
 					self.docHeight = max(self.docHeight, cSize.height())
+				if not l.display:
 
 
 			if not self.docWidth:
