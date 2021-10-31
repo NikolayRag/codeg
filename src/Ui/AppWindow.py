@@ -175,16 +175,22 @@ class AppWindow(QObject):
 
 # =todo 228 (ux, fix) +0: pin viewport while transforming geo
 	def viewportInteract(self, _step, _point, _origin):
-		return
-		for cGeo, cDscr in self.widgetGeo.getBlocks().items():
-			cOffset = cGeo.xformSet()[2]
-			cOffset = (
-				cOffset[0] + _to[0]-_from[0],
-				cOffset[1] + _to[1]-_from[1]
-			)
-			cGeo.xformSet(offset=cOffset)
-			cDscr.place(cOffset)
+		cOffset = _point -_origin
 
+		for cGeo, cDscr in self.widgetGeo.getBlocks().items():
+			_offset = (
+				cGeo.xformSet()[2][0] +cOffset.x(),
+				cGeo.xformSet()[2][1] +cOffset.y()
+			)
+
+			if _step == SvgViewport.intLive:
+				cDscr.place(_offset)
+
+			if _step == SvgViewport.intEnd:
+				cGeo.xformSet(offset=_offset)
+
+			if _step == SvgViewport.intCancel:
+				cDscr.place(cGeo.xformSet()[2])
 
 
 #		self.widgetGeo.selectGeo(None)
