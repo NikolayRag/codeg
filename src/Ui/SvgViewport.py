@@ -268,7 +268,7 @@ class SvgCanvasLayer(QSvgRenderer):
 
 
 	scale = (1, 1)
-	offset = (.2, .2)
+	offset = (0, 0)
 
 
 	def __init__(self, _parent):
@@ -306,7 +306,6 @@ class SvgCanvasLayer(QSvgRenderer):
 
 	def layerOffset(self):
 		return self.offset
-
 
 
 
@@ -360,7 +359,6 @@ class SvgCanvas(QWidget):
 
 		self.recompute()
 
-			self.update()
 
 
 	def layerSetOffset(self, _lId, _offset):
