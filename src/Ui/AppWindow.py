@@ -174,6 +174,10 @@ class AppWindow(QObject):
 
 
 	def viewportInteract(self, _step, _point, _origin, _mod):
+		if _mod!=Qt.ShiftModifier:
+			return
+
+
 		cOffset = _point -_origin
 
 		for cGeo, cDscr in self.widgetGeo.getBlocks().items():
