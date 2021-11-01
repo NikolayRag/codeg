@@ -33,6 +33,11 @@ class SvgDescriptor():
 
 
 
+	def size(self, _xy):
+		self.canvas.layerSetScale(self.idGeo, _xy)
+
+
+
 '''
 Main scene widget
 '''
