@@ -40,32 +40,29 @@ class SvgViewport(QWidget):
 	intStart, intLive, intEnd, intCancel, intOption, intSpot = (0,1,2,3,4,5)
 	sigInteract = Signal(int, object, object, object)
 
-	eventTypes = {}
-
-
-	panOrigin = None
 
 	panMargins = .2
 	scaleMinPx = 10
 	scaleMax = 10000
-	interactSpotDist = 10
-
-	gridXml = None
-	canvas = None
-
-	layerId = -1
-
-	pos = QPoint(0, 0)
-	scale = 1.
-	diff = 1.1
-
-	#screen space
-	anchorCanvasX = .5
-	anchorCanvasY = .5
+	spotDist = 10
+	zoomStep = 1.1
 
 
 	#runtime
 
+	gridXml = None
+	canvas = None
+
+	canvasPos = QPoint(0, 0)
+	canvasScale = 1.
+
+	#screen space
+	zoomAnchorX = .5
+	zoomAnchorY = .5
+
+
+	#mouse events
+	panOrigin = None
 	interactStart = None
 	interactKey = None
 	interactSpot = True
@@ -84,37 +81,37 @@ class SvgViewport(QWidget):
 		else:
 			cScale = ( (newW/oldW)+(newH/oldH) ) /2.
 		
-		self.viewportSize(self.scale*cScale, False)
+		self.viewportSize(self.canvasScale*cScale, False)
 
 
 		#compensate center position against viewport center
 		newHint = self.canvas.sizeHint()
 		self.viewportPlace( QPoint(
-			round(self.anchorCanvasX*newW - newHint.width()*.5),
-			round(self.anchorCanvasY*newH - newHint.height()*.5)
+			round(self.zoomAnchorX*newW - newHint.width()*.5),
+			round(self.zoomAnchorY*newH - newHint.height()*.5)
 		), False)
 
 
 
 	#mouse interaction
 	def wheelEvent(self, _e):
-		scaleMul = self.diff if _e.delta()> 0 else 1/self.diff
+		scaleMul = self.zoomStep if _e.delta()> 0 else 1/self.zoomStep
 
-		oldScale = self.scale
-		self.viewportSize(self.scale*scaleMul)
+		oldScale = self.canvasScale
+		self.viewportSize(self.canvasScale*scaleMul)
 
-		posDelta = _e.pos() - self.pos
-		posDelta *= (1-self.scale/oldScale)
-		self.viewportPlace( self.pos + posDelta )
+		posDelta = _e.pos() - self.canvasPos
+		posDelta *= (1-self.canvasScale/oldScale)
+		self.viewportPlace( self.canvasPos + posDelta )
 
 
 
 	def mousePressEvent(self, _e):
-		cPosTrue = QPointF(_e.pos() -self.pos) / self.scale
+		cPosTrue = QPointF(_e.pos() -self.canvasPos) / self.canvasScale
 
 
 		if _e.button() == Qt.MouseButton.MiddleButton:
-			self.panOrigin = _e.pos() -self.pos
+			self.panOrigin = _e.pos() -self.canvasPos
 
 
 		if _e.button() == Qt.MouseButton.LeftButton:
@@ -135,7 +132,7 @@ class SvgViewport(QWidget):
 
 
 	def mouseMoveEvent(self, _e):
-		cPosTrue = QPointF(_e.pos() -self.pos) / self.scale
+		cPosTrue = QPointF(_e.pos() -self.canvasPos) / self.canvasScale
 
 
 		if self.panOrigin:
@@ -143,7 +140,7 @@ class SvgViewport(QWidget):
 
 
 		if self.interactStart:
-			if (QLineF(self.interactStart, cPosTrue).length() *self.scale)> self.interactSpotDist:
+			if (QLineF(self.interactStart, cPosTrue).length() *self.canvasScale)> self.spotDist:
 				self.interactSpot = False
 
 			self.sigInteract.emit(self.intLive, cPosTrue, self.interactStart, self.interactKey)
@@ -151,7 +148,7 @@ class SvgViewport(QWidget):
 
 
 	def mouseReleaseEvent(self, _e):
-		cPosTrue = QPointF(_e.pos() -self.pos) / self.scale
+		cPosTrue = QPointF(_e.pos() -self.canvasPos) / self.canvasScale
 
 
 		if _e.button() == Qt.MouseButton.MiddleButton:
@@ -179,13 +176,13 @@ class SvgViewport(QWidget):
 		#min clip
 		cSize = self.canvas.sizeHint()
 		cWidth, cHeight = cSize.width(), cSize.height()
-		newSize = (cWidth if cWidth<cHeight else cHeight) * _scale/self.scale
+		newSize = (cWidth if cWidth<cHeight else cHeight) * _scale/self.canvasScale
 
 		if self.scaleMinPx > newSize:
 			_scale *= (self.scaleMinPx / newSize)
 
 
-		self.scale = _scale
+		self.canvasScale = _scale
 		self.canvas.canvasSize(_scale, _scale)
 
 
@@ -212,7 +209,7 @@ class SvgViewport(QWidget):
 			_pos.setY(cMarginY-cSize.height())
 
 
-		self.pos = _pos
+		self.canvasPos = _pos
 		self.canvas.canvasPlace( _pos )
 
 
@@ -225,8 +222,8 @@ class SvgViewport(QWidget):
 	# as cache for window resize
 	def anchorCanvas(self):
 		cHint = self.canvas.sizeHint()
-		self.anchorCanvasX = ( self.pos.x()+cHint.width()*.5 ) /self.width()
-		self.anchorCanvasY = ( self.pos.y()+cHint.height()*.5 ) /self.height()
+		self.zoomAnchorX = ( self.canvasPos.x()+cHint.width()*.5 ) /self.width()
+		self.zoomAnchorY = ( self.canvasPos.y()+cHint.height()*.5 ) /self.height()
 
 
 
