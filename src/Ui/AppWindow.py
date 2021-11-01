@@ -174,11 +174,12 @@ class AppWindow(QObject):
 
 
 	def viewportInteract(self, _step, _point, _origin, _mod, _spot=True):
-		if _step == SvgViewport.intEnd and _spot:
-			self.widgetGeo.selectGeo(None)
-			MarkWidget.toolUnpop()
+		if _mod == Qt.NoModifier:
+			if _step == SvgViewport.intEnd and _spot:
+				self.widgetGeo.selectGeo(None)
+				MarkWidget.toolUnpop()
 
-			return
+				return
 
 
 		if _mod!=Qt.ShiftModifier:
