@@ -11,11 +11,13 @@ from PySide2.QtSvg import *
 
 class SvgDescriptor():
 	canvas = None
+	recomputeCB = None
 	idGeo = -1
 
 
-	def __init__(self, _canvas, _xml=None):
+	def __init__(self, _canvas, _recomputeCB, _xml=None):
 		self.canvas = _canvas
+		self.recomputeCB = _recomputeCB
 		self.idGeo = self.canvas.layerNew()
 
 		if _xml:
@@ -26,15 +28,21 @@ class SvgDescriptor():
 	def setXml(self, _xml):
 		self.canvas.layerSet(self.idGeo, _xml)
 
+		self.recomputeCB()
+
 
 
 	def place(self, _xy):
 		self.canvas.layerSetOffset(self.idGeo, _xy)
 
+		self.recomputeCB()
+
 
 
 	def size(self, _xy):
 		self.canvas.layerSetScale(self.idGeo, _xy)
+
+		self.recomputeCB()
 
 
 
@@ -259,7 +267,7 @@ class SvgViewport(QWidget):
 
 
 	def canvasAdd(self, _xml=None, _offset=(0,0)):
-		cDescr = SvgDescriptor(self.canvas, _xml)
+		cDescr = SvgDescriptor(self.canvas, self.anchorCanvas, _xml)
 		cDescr.place(_offset)
 
 		return cDescr
