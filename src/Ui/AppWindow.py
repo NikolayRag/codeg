@@ -174,6 +174,13 @@ class AppWindow(QObject):
 
 
 	def viewportInteract(self, _step, _point, _origin, _mod):
+		if _step == SvgViewport.intSpot:
+			self.widgetGeo.selectGeo(None)
+			MarkWidget.toolUnpop()
+
+			return
+
+
 		if _mod!=Qt.ShiftModifier:
 			return
 
@@ -194,10 +201,6 @@ class AppWindow(QObject):
 
 			if _step == SvgViewport.intCancel:
 				cDscr.place(cGeo.xformSet()[2])
-
-
-#		self.widgetGeo.selectGeo(None)
-#		MarkWidget.toolUnpop()
 
 
 
