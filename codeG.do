@@ -103,7 +103,7 @@
 +module-ui, API 36: +0 "src\Ui\SvgViewport.py" ki 21/10/31 00:39:45
 	make viewport interaction callbacks
 
- module-ui, viewport 37: +0 "src\Ui\SvgViewport.py" ki 21/10/31 00:40:04
+ module-ui, viewport 37: +0 "src\Ui\SvgViewport.py" ki 21/11/01 19:40:46
 	make custom scrollbars for SvgViewport
 
 +module-ui, API 38: +0 "src\Ui\SvgViewport.py" kii 21/08/02 19:14:34
@@ -235,7 +235,7 @@
  module-data, ux 82: +0 "src\GGData\GGData.py" kii 21/08/20 03:48:29
 	parse groups
 
- ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" kii 21/09/22 23:33:54
+ ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" ki 21/11/01 19:48:46
 	fit at init dont work due to obsolete size 
 
  module-data 84: +0 "src\GGData\Scene.py" ki 21/10/29 17:32:58
@@ -253,7 +253,7 @@
 -fix, gcode 88: +0 "src\Ui\Ui.py" kii 21/09/03 02:02:12
 	use dispatch both for file save
 
--ux, module-ui, fix 89: +0 "src\Ui\SvgViewport.py" ki 21/10/24 05:32:09
+=ux, module-ui, fix 89: +0 "src\Ui\AppWindow.py" ki 21/11/01 20:01:16
 	place grid correctly
 
 =ux, module-ui, fix 90: +5 "src\GGData\GGData.py" ki 21/10/24 04:17:21
@@ -651,4 +651,7 @@
 
  viewport, v2 229: +0 "src\Ui\SvgViewport.py" ki 21/11/01 18:47:52
 	overview
+
+!viewport, feature 230: +0 "src\Ui\SvgViewport.py" ki 21/11/01 19:29:54
+	add keypress event passed to sigInteract
 
