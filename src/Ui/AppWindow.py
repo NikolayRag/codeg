@@ -124,7 +124,7 @@ class AppWindow(QObject):
 		self.wFrameDev = cMain.findChild(QTextEdit, "frameDev")
 
 
-		self.wBtnFit.clicked.connect(lambda: self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset))
+		self.wBtnFit.clicked.connect(self.viewportFit)
 		self.wBtnCaption.clicked.connect(self.about)
 		self.wBtnWipe.clicked.connect(self.sigSceneReset)
 		self.wBtnOpen.clicked.connect(self.sigAddFile)
@@ -328,8 +328,6 @@ class AppWindow(QObject):
 			gridDescr.size(_cnc.table())
 
 
-		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
-		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 
 
 

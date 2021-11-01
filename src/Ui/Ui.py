@@ -240,8 +240,8 @@ class Ui():
 
 	def sceneCreate(self, _name=''):
 		self.activeScene = self.data.sceneGet(_name)
-		self.appWindow.slotNewScene(self.activeScene, self.dispatch.getCnc())
-
+		self.appWindow.slotNewScene(self.activeScene, self.dispatch.getCnc().table())
+		self.appWindow.viewportFit()
 
 
 	def sceneReset(self):
