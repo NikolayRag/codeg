@@ -240,7 +240,8 @@ class Ui():
 
 	def sceneCreate(self, _name=''):
 		self.activeScene = self.data.sceneGet(_name)
-		self.appWindow.slotNewScene(self.activeScene, self.dispatch.getCnc().table())
+		self.appWindow.slotNewScene(self.activeScene)
+		self.appWindow.gridSize( self.dispatch.getCnc().table() )
 		self.appWindow.viewportFit()
 
 

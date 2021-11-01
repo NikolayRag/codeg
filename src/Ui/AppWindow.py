@@ -48,6 +48,7 @@ class AppWindow(QObject):
 
 ## runtime ##
 
+	gridDescription = None
 #  todo 212 (module-ui, clean, widget) +0: MarkWidget collection class
 	widgetGeo = None
 	allWidgetsMarks = {}
@@ -303,7 +304,7 @@ class AppWindow(QObject):
 ### HIPE ###
 
 
-	def slotNewScene(self, _scene, _cnc=None):
+	def slotNewScene(self, _scene):
 		self.wBtnStore.setEnabled(True)
 		self.wBtnProccess.setEnabled(True)
 		self.widgetGeo.clean()
@@ -323,11 +324,12 @@ class AppWindow(QObject):
 
 # =todo 89 (ux, module-ui, fix) +0: place grid correctly
 		self.wSvgViewport.canvasReset()
-		gridDescr = self.wSvgViewport.canvasAdd(self.defGrid)
-		if _cnc:
-			gridDescr.size(_cnc.table())
+		self.gridDescription = self.wSvgViewport.canvasAdd(self.defGrid)
 
 
+
+	def gridSize(self, _size):
+		self.gridDescription.size(_size)
 
 
 
