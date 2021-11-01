@@ -269,12 +269,11 @@ class SvgViewport(QWidget):
 	def canvasFit(self, multiply=1., offset=.5):
 # -todo 156 (fix, canvas) +0: canvas is wrong size at init
 		cBox = self.canvas.getDocSize()
-		fitWidth = self.width() / (cBox[0][1] - cBox[0][0])
-		fitHeight = self.height() / (cBox[1][1] - cBox[1][0])
-
+		scaleX = self.width() / cBox.width()
+		scaleY = self.height() / cBox.height()
 
 #  todo 226 (fix, check) +0: probably will fit wrong if canvas and widget orientation differs
-		cScale = fitHeight if fitHeight<fitWidth else fitWidth
+		cScale = scaleY if scaleY<scaleX else scaleX
 		self.viewportSize(cScale*multiply)
 
 
@@ -503,4 +502,4 @@ class SvgCanvas(QWidget):
 
 
 	def getDocSize(self):
-		return ((self.docXMin,self.docXMax), (self.docYMin, self.docYMax))
+		return QRectF(QPointF(self.docXMin,self.docYMin), QPointF(self.docXMax, self.docYMax))
