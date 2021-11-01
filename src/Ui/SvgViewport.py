@@ -63,8 +63,6 @@ class SvgViewport(QWidget):
 
 	canvasPos = QPoint(0, 0)
 	canvasScale = 1.
-
-	#screen space
 	zoomAnchorX = .5
 	zoomAnchorY = .5
 
