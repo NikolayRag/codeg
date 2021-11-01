@@ -501,5 +501,5 @@ class SvgCanvas(QWidget):
 
 
 
-	def getDocSize(self):
-		return QRectF(QPointF(self.docXMin,self.docYMin), QPointF(self.docXMax, self.docYMax))
+	def getDocSize(self, _scale=1):
+		return QRectF(QPointF(self.docXMin,self.docYMin)*_scale, QPointF(self.docXMax, self.docYMax)*_scale)
