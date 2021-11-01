@@ -37,7 +37,15 @@ class SvgDescriptor():
 Main scene widget
 '''
 class SvgViewport(QWidget):
+	# sigInteract emit step conditions
+	# intStart: left button pressed, storing start point for all other steps
+	# intLive: mouse move while interacting
+	# intEnd: left button released while interacting, stopping interaction
+	# intCancel: right button pressed while interacting, stopping interaction
+	# intOption: right button pressed alone
 	intStart, intLive, intEnd, intCancel, intOption = (0,1,2,3,4)
+
+	#step, coordTo, coordStart, keyModifiers, inspotFlag
 	sigInteract = Signal(int, object, object, object, bool)
 
 
