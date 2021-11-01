@@ -38,7 +38,7 @@ class AppWindow(QObject):
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
-	defGrid = 'resource\\grid.svg'
+	defGrid = 'resource\\grid.svg' #1-unit size
 	defUi = './Ui/AppWindow.ui'
 
 	defaultWindowFit = 0.8
