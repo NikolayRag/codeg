@@ -228,9 +228,9 @@ class SvgViewport(QWidget):
 	#hold canvas's midpoint in SvgViewport screen space
 	# as cache for window resize
 	def anchorCanvas(self):
-		cHint = self.canvas.sizeHint()
-		self.zoomAnchorX = ( self.canvasPos.x()+cHint.width()*.5 ) /self.width()
-		self.zoomAnchorY = ( self.canvasPos.y()+cHint.height()*.5 ) /self.height()
+		cHint = self.canvas.getDocSize(self.canvasScale)
+		self.zoomAnchorX = ( self.canvasPos.x() +cHint.width()*.5 +cHint.left()) /self.width()
+		self.zoomAnchorY = ( self.canvasPos.y() +cHint.height()*.5 +cHint.top()) /self.height()
 
 
 
