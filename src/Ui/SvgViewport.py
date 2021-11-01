@@ -6,7 +6,7 @@ from PySide2.QtSvg import *
 
 
 #  todo 37 (module-ui, viewport) +0: make custom scrollbars for SvgViewport
-#  todo 207 (viewport, v2) +0: onscreen controls
+#  todo 229 (viewport, v2) +0: overview
 
 
 class SvgDescriptor():

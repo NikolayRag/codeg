@@ -583,7 +583,7 @@
 +fix 206: +0 "src\Ui\MarkWidget.py" ki 21/10/24 03:15:59
 	maybe unsafe for some threaded case
 
- viewport, v2 207: +0 "src\Ui\SvgViewport.py" ki 21/10/24 04:29:19
++viewport, v2 207: +0 "src\Ui\SvgViewport.py" ki 21/11/01 18:47:41
 	onscreen controls
 
  viewport 208: +0 "src\Ui\SvgViewport.py" ki 21/10/24 04:29:16
@@ -648,4 +648,7 @@
 
 +ux, fix 228: +0 "src\Ui\AppWindow.py" ki 21/10/31 22:47:20
 	pin viewport while transforming geo
+
+ viewport, v2 229: +0 "src\Ui\SvgViewport.py" ki 21/11/01 18:47:52
+	overview
 
