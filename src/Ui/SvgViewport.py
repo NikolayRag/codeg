@@ -66,8 +66,8 @@ class SvgViewport(QWidget):
 
 	canvasPos = QPoint(0, 0)
 	canvasScale = 1.
-	zoomAnchorX = .5
-	zoomAnchorY = .5
+	canvasMidX = .5
+	canvasMidY = .5
 
 
 	#mouse events
@@ -96,8 +96,8 @@ class SvgViewport(QWidget):
 		#compensate center position against viewport center
 		cHint = self.canvas.getDocSize(self.canvasScale)
 		self.viewportPlace( QPoint(
-			round(newW*self.zoomAnchorX -cHint.width()*.5 -cHint.left()),
-			round(newH*self.zoomAnchorY -cHint.height()*.5 -cHint.top())
+			round(newW*self.canvasMidX -cHint.width()*.5 -cHint.left()),
+			round(newH*self.canvasMidY -cHint.height()*.5 -cHint.top())
 		), False)
 
 
@@ -229,8 +229,8 @@ class SvgViewport(QWidget):
 	# as cache for window resize
 	def anchorCanvas(self):
 		cHint = self.canvas.getDocSize(self.canvasScale)
-		self.zoomAnchorX = ( self.canvasPos.x() +cHint.width()*.5 +cHint.left()) /self.width()
-		self.zoomAnchorY = ( self.canvasPos.y() +cHint.height()*.5 +cHint.top()) /self.height()
+		self.canvasMidX = ( self.canvasPos.x() +cHint.width()*.5 +cHint.left()) /self.width()
+		self.canvasMidY = ( self.canvasPos.y() +cHint.height()*.5 +cHint.top()) /self.height()
 
 
 
