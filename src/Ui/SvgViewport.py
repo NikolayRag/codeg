@@ -57,8 +57,6 @@ class SvgViewport(QWidget):
 
 
 	#runtime
-
-	gridXml = None
 	canvas = None
 
 	canvasPos = QPoint(0, 0)
@@ -246,12 +244,6 @@ class SvgViewport(QWidget):
 #####PUBLIC#####
 
 
-
-	def setGrid(self, _gridXml=None):
-		self.gridXml = _gridXml
-
-
-
 	def canvasReset(self):
 		if self.canvas:
 			self.canvas.setParent(None)
@@ -259,10 +251,6 @@ class SvgViewport(QWidget):
 
 		self.canvas = SvgCanvas(self)
 		self.canvas.show()
-
-		if self.gridXml:
-			gridId = self.canvas.layerNew(True)
-			self.canvas.layerSet(gridId, self.gridXml)
 
 
 

@@ -38,6 +38,7 @@ class AppWindow(QObject):
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
+	defGrid = 'resource\\grid.svg'
 	defUi = './Ui/AppWindow.ui'
 
 	defaultWindowFit = 0.8
@@ -95,7 +96,7 @@ class AppWindow(QObject):
 		holderViewport = cMain.findChild(QWidget, "wViewport")
 		self.wSvgViewport = SvgViewport(holderViewport)
 		self.wSvgViewport.lower() 
-		self.wSvgViewport.setGrid('resource\\grid.svg')
+
 
 		self.tmpFilterViewResize = BindFilter({
 			QEvent.Type.Resize: lambda event: self.wSvgViewport.resize(event.size()) })
@@ -321,6 +322,8 @@ class AppWindow(QObject):
 
 
 		self.wSvgViewport.canvasReset()
+		gridDescr = self.wSvgViewport.canvasAdd(self.defGrid)
+
 		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 
