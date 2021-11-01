@@ -9,15 +9,39 @@ import serial.tools.list_ports
 # =todo 62 (module-dispatch) +0: live device control
 # -todo 64 (module-dispatch) +0: dispatch queue
 # -todo 68 (module-dispatch) +0: queue control
+
+
+class CNC():
+	size = (500,400)
+
+
+
+	def table(self):
+		return self.size
+
+
+
+
+
 class Dispatch():
 	listPorts = []
 	port = None
 
 	data = None
 
+	cnc = None
+
 
 	def __init__(self, _data):
 		self.data = _data
+
+
+		self.cnc = CNC()
+
+
+
+	def getCnc(self):
+		return self.cnc
 
 
 
