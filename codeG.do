@@ -433,7 +433,7 @@
 +module-data, scene 155: +0 "src\GGData\GGData.py" kii 21/10/14 15:09:14
 	store short scene name in scene
 
--fix, canvas 156: +0 "src\Ui\SvgViewport.py" kii 21/10/14 02:05:39
++fix, canvas 156: +0 "src\Ui\SvgViewport.py" ki 21/11/02 01:08:16
 	canvas is wrong size at init
 
  fix, canvas 157: +0 "src\Ui\AppWindow.py" kii 21/10/14 04:48:24
@@ -598,7 +598,7 @@
 +viewport, ux 211: +0 "src\Ui\AppWindow.py" ki 21/10/26 10:46:18
 	cancel select by right click
 
- module-ui, clean, widget 212: +0 "src\Ui\AppWindow.py" ki 21/10/28 13:16:31
+ module-ui, clean, widget 212: +0 "src\Ui\AppWindow.py" ki 21/11/01 21:58:53
 	MarkWidget collection class
 
  ux, viewport 213: +0 "src\Ui\AppWindow.py" ki 21/10/30 02:39:45
@@ -640,7 +640,7 @@
  ux 225: +0 "src\Ui\Ui.py" ki 21/10/31 01:52:29
 	store viewport position/size within scene
 
- fix, check 226: +0 "src\Ui\SvgViewport.py" ki 21/10/31 04:37:29
+!fix, check 226: +0 "" ki 21/11/02 01:09:28
 	probably will fit wrong if canvas and widget orientation differs
 
 =fix 227: +0 "src\Ui\SvgViewport.py" ki 21/10/31 20:05:23
