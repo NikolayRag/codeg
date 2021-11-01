@@ -173,7 +173,7 @@ class AppWindow(QObject):
 
 
 
-	def viewportInteract(self, _step, _point, _origin):
+	def viewportInteract(self, _step, _point, _origin, _mod):
 		cOffset = _point -_origin
 
 		for cGeo, cDscr in self.widgetGeo.getBlocks().items():

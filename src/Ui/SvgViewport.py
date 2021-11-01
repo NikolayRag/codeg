@@ -38,7 +38,7 @@ Main scene widget
 '''
 class SvgViewport(QWidget):
 	intStart, intLive, intEnd, intCancel, intOption = (0,1,2,3,4)
-	sigInteract = Signal(int, object, object)
+	sigInteract = Signal(int, object, object, object)
 
 	eventTypes = {}
 
@@ -67,6 +67,7 @@ class SvgViewport(QWidget):
 	#runtime
 
 	interactStart = None
+	interactKey = None
 
 
 
@@ -116,15 +117,16 @@ class SvgViewport(QWidget):
 
 
 		if _e.button() == Qt.MouseButton.LeftButton:
+			self.interactKey = _e.modifiers()
 			self.interactStart = cPosTrue
-			self.sigInteract.emit(self.intStart, cPosTrue, self.interactStart)
+			self.sigInteract.emit(self.intStart, cPosTrue, self.interactStart, self.interactKey)
 
 
 		if _e.button() == Qt.MouseButton.RightButton:
 			if self.interactStart:
-				self.sigInteract.emit(self.intCancel, cPosTrue, self.interactStart)
+				self.sigInteract.emit(self.intCancel, cPosTrue, self.interactStart, self.interactKey)
 			else:
-				self.sigInteract.emit(self.intOption, cPosTrue, cPosTrue)
+				self.sigInteract.emit(self.intOption, cPosTrue, cPosTrue, _e.modifiers())
 
 			self.interactStart = None
 
@@ -139,7 +141,7 @@ class SvgViewport(QWidget):
 
 
 		if self.interactStart:
-			self.sigInteract.emit(self.intLive, cPosTrue, self.interactStart)
+			self.sigInteract.emit(self.intLive, cPosTrue, self.interactStart, self.interactKey)
 
 
 
@@ -153,7 +155,7 @@ class SvgViewport(QWidget):
 
 		if _e.button() == Qt.MouseButton.LeftButton:
 			if self.interactStart:
-				self.sigInteract.emit(self.intEnd, cPosTrue, self.interactStart)
+				self.sigInteract.emit(self.intEnd, cPosTrue, self.interactStart, self.interactKey)
 
 			self.interactStart = None
 
