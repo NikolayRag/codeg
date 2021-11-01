@@ -94,10 +94,10 @@ class SvgViewport(QWidget):
 
 
 		#compensate center position against viewport center
-		newHint = self.canvas.sizeHint()
+		cHint = self.canvas.getDocSize(self.canvasScale)
 		self.viewportPlace( QPoint(
-			round(self.zoomAnchorX*newW - newHint.width()*.5),
-			round(self.zoomAnchorY*newH - newHint.height()*.5)
+			round(newW*self.zoomAnchorX -cHint.width()*.5 -cHint.left()),
+			round(newH*self.zoomAnchorY -cHint.height()*.5 -cHint.top())
 		), False)
 
 
