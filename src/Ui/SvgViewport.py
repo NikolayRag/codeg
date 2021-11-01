@@ -199,21 +199,21 @@ class SvgViewport(QWidget):
 
 
 	def viewportPlace(self, _pos, _updateAnchor=True):
-		cSize = self.canvas.sizeHint()
+		cHint = self.canvas.getDocSize(self.canvasScale)
 
 		cMarginX = self.width() * self.panMargins
 		cMarginY = self.height() * self.panMargins
 
-		if _pos.x()>(self.width()-cMarginX):
-			_pos.setX(self.width()-cMarginX)
-		if _pos.y()>(self.height()-cMarginY):
-			_pos.setY(self.height()-cMarginY)
+		if _pos.x() > (self.width() -cHint.left() -cMarginX):
+			_pos.setX(self.width() -cHint.left() -cMarginX)
+		if _pos.y() > (self.height() -cHint.top() -cMarginY):
+			_pos.setY(self.height() -cHint.top() -cMarginY)
 
 
-		if _pos.x()<(cMarginX-cSize.width()):
-			_pos.setX(cMarginX-cSize.width())
-		if _pos.y()<(cMarginY-cSize.height()):
-			_pos.setY(cMarginY-cSize.height())
+		if _pos.x() < (cMarginX -cHint.width() -cHint.left()):
+			_pos.setX(cMarginX -cHint.width() -cHint.left())
+		if _pos.y() < (cMarginY -cHint.height() -cHint.top()):
+			_pos.setY(cMarginY -cHint.height() -cHint.top())
 
 
 		self.canvasPos = _pos
