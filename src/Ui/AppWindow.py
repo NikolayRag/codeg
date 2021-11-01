@@ -303,7 +303,7 @@ class AppWindow(QObject):
 ### HIPE ###
 
 
-	def slotNewScene(self, _scene):
+	def slotNewScene(self, _scene, _cnc=None):
 		self.wBtnStore.setEnabled(True)
 		self.wBtnProccess.setEnabled(True)
 		self.widgetGeo.clean()
@@ -324,6 +324,9 @@ class AppWindow(QObject):
 # =todo 89 (ux, module-ui, fix) +0: place grid correctly
 		self.wSvgViewport.canvasReset()
 		gridDescr = self.wSvgViewport.canvasAdd(self.defGrid)
+		if _cnc:
+			gridDescr.size(_cnc.table())
+
 
 		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
 		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
