@@ -37,8 +37,8 @@ class SvgDescriptor():
 Main scene widget
 '''
 class SvgViewport(QWidget):
-	intStart, intLive, intEnd, intCancel, intOption, intSpot = (0,1,2,3,4,5)
-	sigInteract = Signal(int, object, object, object)
+	intStart, intLive, intEnd, intCancel, intOption = (0,1,2,3,4)
+	sigInteract = Signal(int, object, object, object, bool)
 
 
 	panMargins = .2
@@ -118,14 +118,14 @@ class SvgViewport(QWidget):
 			self.interactSpot = True
 			self.interactKey = _e.modifiers()
 			self.interactStart = cPosTrue
-			self.sigInteract.emit(self.intStart, cPosTrue, self.interactStart, self.interactKey)
+			self.sigInteract.emit(self.intStart, cPosTrue, self.interactStart, self.interactKey, True)
 
 
 		if _e.button() == Qt.MouseButton.RightButton:
 			if self.interactStart:
-				self.sigInteract.emit(self.intCancel, cPosTrue, self.interactStart, self.interactKey)
+				self.sigInteract.emit(self.intCancel, cPosTrue, self.interactStart, self.interactKey, self.interactSpot)
 			else:
-				self.sigInteract.emit(self.intOption, cPosTrue, cPosTrue, _e.modifiers())
+				self.sigInteract.emit(self.intOption, cPosTrue, cPosTrue, _e.modifiers(), True)
 
 			self.interactStart = None
 
@@ -143,7 +143,7 @@ class SvgViewport(QWidget):
 			if (QLineF(self.interactStart, cPosTrue).length() *self.canvasScale)> self.spotDist:
 				self.interactSpot = False
 
-			self.sigInteract.emit(self.intLive, cPosTrue, self.interactStart, self.interactKey)
+			self.sigInteract.emit(self.intLive, cPosTrue, self.interactStart, self.interactKey, self.interactSpot)
 
 
 
@@ -157,9 +157,7 @@ class SvgViewport(QWidget):
 
 		if _e.button() == Qt.MouseButton.LeftButton:
 			if self.interactStart:
-				self.sigInteract.emit(self.intEnd, cPosTrue, self.interactStart, self.interactKey)
-				if self.interactSpot:
-					self.sigInteract.emit(self.intSpot, self.interactStart, self.interactStart, self.interactKey)
+				self.sigInteract.emit(self.intEnd, cPosTrue, self.interactStart, self.interactKey, self.interactSpot)
 
 
 			self.interactStart = None

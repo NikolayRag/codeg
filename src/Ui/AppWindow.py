@@ -173,8 +173,8 @@ class AppWindow(QObject):
 
 
 
-	def viewportInteract(self, _step, _point, _origin, _mod):
-		if _step == SvgViewport.intSpot:
+	def viewportInteract(self, _step, _point, _origin, _mod, _spot=True):
+		if _step == SvgViewport.intEnd and _spot:
 			self.widgetGeo.selectGeo(None)
 			MarkWidget.toolUnpop()
 
