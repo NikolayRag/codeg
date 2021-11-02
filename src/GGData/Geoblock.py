@@ -1,4 +1,4 @@
-import xml.etree.ElementTree as XML
+from xml.etree import ElementTree
 import re
 
 from .GGen import *
@@ -36,7 +36,7 @@ class Geoblock():
 		self.name = _name
 
 		self.source = _source
-		self.geoXML = XML.parse(_source)
+		self.geoXML = ElementTree.parse(_source)
 		self.allItems = []
 
 
@@ -104,7 +104,7 @@ class Geoblock():
 
 	def xmlRoot(self, _string):
 		cRoot = self.geoXML.getroot()
-		return (XML.tostring(cRoot) if _string else cRoot)
+		return (ElementTree.tostring(cRoot) if _string else cRoot)
 
 
 
