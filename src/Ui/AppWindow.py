@@ -330,6 +330,7 @@ class AppWindow(QObject):
 
 	def gridSize(self, _size):
 		self.gridDescription.size(_size)
+		self.gridDescription.place((0,-_size[1]))
 
 
 
