@@ -170,7 +170,6 @@ class AppWindow(QObject):
 
 	def viewportFit(self):
 		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
-#  todo 157 (fix, canvas) +0: review SvgViewport fit routine
 
 
 

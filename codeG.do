@@ -436,7 +436,7 @@
 +fix, canvas 156: +0 "src\Ui\SvgViewport.py" ki 21/11/02 01:08:16
 	canvas is wrong size at init
 
- fix, canvas 157: +0 "src\Ui\AppWindow.py" kii 21/10/14 04:48:24
++fix, canvas 157: +0 "src\Ui\AppWindow.py" ki 21/11/02 15:59:47
 	review SvgViewport fit routine
 
 +module-data, fix 158: +0 "src\GGData\GGData.py" kii 21/10/14 17:43:48
@@ -553,7 +553,7 @@
  module-data, api 196: +0 "src\Ui\Ui.py" ki 21/10/23 04:42:23
 	deal with Markfilter data fields within Mark
 
-=data, fix 197: +0 "src\Ui\Ui.py" ki 21/10/31 08:17:36
+=data, fix 197: +0 "src\Ui\Ui.py" ki 21/11/02 15:17:11
 	deal with missing svg link
 
 =data, fix 198: +0 "src\Ui\Ui.py" ki 21/10/23 07:20:24
@@ -654,4 +654,7 @@
 
 !viewport, feature 230: +0 "src\Ui\SvgViewport.py" ki 21/11/01 19:29:54
 	add keypress event passed to sigInteract
+
+=fix, svg, data 231: +0 "src\GGData\Geoblock.py" ki 21/11/02 17:16:02
+	proccess SVG responsibly
 

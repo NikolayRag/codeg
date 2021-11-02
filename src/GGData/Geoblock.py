@@ -32,6 +32,7 @@ class Geoblock():
 	dirtyFlag = False
 
 
+# =todo 231 (fix, svg, data) +0: proccess SVG responsibly
 	def __init__(self, _source, _name=''):
 		self.name = _name
 
