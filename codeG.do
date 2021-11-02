@@ -184,7 +184,7 @@
 !module-dispatch 65: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:38:19
 	
 
- module-ui, module-dispatch 66: +0 "src\GGData\GGData.py" kii 21/09/05 21:16:18
+ module-ui, module-dispatch 66: +0 "src\GGData\Scene.py" ki 21/11/02 14:31:22
 	show dispatch progress
 
 -API 67: +1 "src\__main__w.py" kii 21/09/08 21:59:33
@@ -283,7 +283,7 @@
 !module-ui, optimize 99: +0 "src\GGen\GGen.py" kii 21/09/02 03:40:33
 	
 
- gcode, feature 100: +0 "src\GGData\Scene.py" ki 21/10/29 21:02:18
+ gcode, feature 100: +0 "" ki 21/11/02 14:43:19
 	allow flexible filters for gcode
 
 +module-ui 101: +0 "src\Ui\Ui.py" kii 21/09/08 02:52:08
@@ -295,7 +295,7 @@
 +module-ui, module-data, API 103: +0 "src\Ui\Ui.py" kii 21/09/08 02:52:25
 	move geo decorators to data
 
--module-data, decide 104: +0 "src\GGData\GGData.py" ki 21/10/24 02:33:59
+-module-data, decide 104: +0 "src\GGData\Scene.py" ki 21/11/02 14:31:27
 	move to filter
 
 +module-data, filter, API 105: +0 "src\GGData\GGData.py" kii 21/09/25 22:38:42
@@ -577,7 +577,7 @@
 +ux 204: +0 "src\Ui\Ui.py" ki 21/10/26 23:42:24
 	group scene controls
 
-=fix, module-data 205: +0 "src\GGData\Scene.py" ki 21/10/24 02:36:12
++fix, module-data 205: +0 "src\GGData\Scene.py" ki 21/11/02 13:58:22
 	check for multiobject case
 
 +fix 206: +0 "src\Ui\MarkWidget.py" ki 21/10/24 03:15:59

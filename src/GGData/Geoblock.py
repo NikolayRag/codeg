@@ -132,6 +132,8 @@ class Geoblock():
 
 
 
+# -todo 104 (module-data, decide) +0: move to filter
+#  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
 	def trace(self, _x=0, _y=0):
 		cScene = self.xmlRoot(False)
 

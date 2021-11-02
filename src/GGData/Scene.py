@@ -169,11 +169,7 @@ class Scene():
 
 
 
-# =todo 205 (fix, module-data) +0: check for multiobject case
 
-# -todo 104 (module-data, decide) +0: move to filter
-#  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
-#  todo 100 (gcode, feature) +0: allow flexible filters for gcode
 	def traceG(self, _x=0, _y=0):
 		out = []
 		for cObj in self.geoList():
