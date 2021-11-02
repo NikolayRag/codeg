@@ -405,9 +405,8 @@ class Ui():
 
 		fileName = cDialog.selectedFiles()[0]
 
-		h = self.appWindow.wSvgViewport.canvas.docYMax
 		with open(fileName, 'w') as f:
-			f.write(self.activeScene.getG(0, h))
+			f.write(self.activeScene.getG())
 
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
