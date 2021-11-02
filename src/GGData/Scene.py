@@ -173,8 +173,8 @@ class Scene():
 
 # -todo 104 (module-data, decide) +0: move to filter
 #  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
-	def getG(self, _x=0, _y=0):
 #  todo 100 (gcode, feature) +0: allow flexible filters for gcode
+	def traceG(self, _x=0, _y=0):
 		out = []
 		for cObj in self.geoList():
 			out += cObj.trace(_x, _y)

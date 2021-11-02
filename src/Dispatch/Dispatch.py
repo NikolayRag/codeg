@@ -96,7 +96,7 @@ class Dispatch():
 		cursorLen = 1
 
 		        
-		gLines = _scene.getG()
+		gLines = _scene.traceG()
 		for cLine in gLines:
 			inString = ''
 
