@@ -191,9 +191,11 @@ class AppWindow(QObject):
 		cOffset = _point -_origin
 
 		for cGeo, cDscr in self.widgetGeo.getBlocks().items():
+			gOffset = cGeo.xformSet()
+			gOffset = (gOffset[0][2], gOffset[1][2])
 			_offset = (
-				cGeo.xformSet()[2][0] +cOffset.x(),
-				cGeo.xformSet()[2][1] +cOffset.y()
+				gOffset[0] +cOffset.x(),
+				gOffset[1] +cOffset.y()
 			)
 
 			if _step == SvgViewport.intLive:
@@ -203,15 +205,17 @@ class AppWindow(QObject):
 				cGeo.xformSet(offset=_offset)
 
 			if _step == SvgViewport.intCancel:
-				cDscr.place(cGeo.xformSet()[2])
+				cDscr.place(gOffset)
 
 
 
 ### GEO ###
 #  todo 213 (ux, viewport) +0: place support viewport layer for block
 	def geoAddWidget(self, _geo):
+		gOffset = _geo.xformSet()
+		gOffset = (gOffset[0][2], gOffset[1][2])
 		cXml = _geo.xmlRoot(True)
-		cDscr = self.wSvgViewport.canvasAdd(cXml, _geo.xformSet()[2])
+		cDscr = self.wSvgViewport.canvasAdd(cXml, gOffset)
 
 		self.widgetGeo.blockAdd(_geo, cDscr)
 

@@ -74,7 +74,7 @@ class Geoblock():
 			self.dirtyFlag = True
 
 
-		return [(self.xformScale[0],0), (0,self.xformScale[1]), self.xformOffset]
+		return [(self.xformScale[0],0,self.xformOffset[0]), (0,self.xformScale[1],self.xformOffset[1])]
 
 
 
