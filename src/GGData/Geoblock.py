@@ -20,6 +20,7 @@ class Geoblock():
 	]
 
 
+	xformRefScale = (1,1) #updated from reference dimensions
 	xformOffset = (0,0)
 	xformScale = (1,1)
 	geoXML = None
