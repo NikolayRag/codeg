@@ -179,5 +179,5 @@ class Scene():
 		for cObj in self.geoList():
 			out += cObj.trace(_x, _y)
 
-		return "\n".join(out)
+		return out
 

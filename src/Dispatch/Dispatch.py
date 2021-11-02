@@ -91,14 +91,12 @@ class Dispatch():
 
 		port.readline().decode()
 
-		toSendString = _scene.getG()
 
 		cursorChar = '>'
 		cursorLen = 1
 
 		        
-		gLines = toSendString.splitlines()+['']
-
+		gLines = _scene.getG()
 		for cLine in gLines:
 			inString = ''
 
