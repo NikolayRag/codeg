@@ -32,7 +32,6 @@ class Geoblock():
 	dirtyFlag = False
 
 
-
 	def __init__(self, _source, _name=''):
 		self.name = _name
 
