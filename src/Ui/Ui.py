@@ -383,6 +383,8 @@ class Ui():
 
 
 		cGBlock = self.activeScene.geoAdd(fileName, [self.markDefault], 'UI')
+		cOffset = QPointF(*self.dispatch.getCnc().table())
+		cGBlock.xformSet(offset=(0,-cOffset.y()))
 		self.appWindow.geoAddWidget(cGBlock)
 
 		self.appWindow.viewportFit()
