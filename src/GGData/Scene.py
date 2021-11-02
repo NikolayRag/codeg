@@ -170,21 +170,13 @@ class Scene():
 
 
 # =todo 205 (fix, module-data) +0: check for multiobject case
-	def getSceneXML(self, toString=False):
-		out = {}
-		for cGeo in self.allGeo:
-			out = cGeo.xmlRoot(toString)
-
-		return out
-
 
 # -todo 104 (module-data, decide) +0: move to filter
 #  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
 	def getG(self, x=0, y=0):
 #  todo 100 (gcode, feature) +0: allow flexible filters for gcode
-		cScene = self.getSceneXML()
-		if not cScene:
-			return ''
+		cObj = self.geoList()[0]
+		cScene = cObj.xmlRoot(False)
 
 
 		cGG = GGen(cScene)
@@ -197,7 +189,7 @@ class Scene():
 		)
 
 		def shapePreHook(_element):
-			refGeo = self.geoList()[0].getGeo([_element.get('id')])
+			refGeo = cObj.getGeo([_element.get('id')])
 
 			if not refGeo:
 				return False
@@ -210,15 +202,18 @@ class Scene():
 
 
 		def shapeInHook(_element, _point):
-			refGeo = self.geoList()[0].getGeo([_element.get('id')])
+			refGeo = cObj.getGeo([_element.get('id')])
 			cycle = refGeo[0].dataGet('Laser Cycle', 100)
 			return( f"S{int(cycle)} G1" )
 
 		cGG.set(shapeIn=shapeInHook, shapePre=shapePreHook)
 
 
+
+		xf = cObj.xformSet()[2]
+
 		gFlat = []
-		for g in cGG.generate( xform=[[1,0,x], [0,-1,y]] ):
+		for g in cGG.generate( xform=[[1,0,xf[0]+_x], [0,-1,-xf[1]+_y]] ):
 			gFlat += g
 
 		return "\n".join(gFlat)
