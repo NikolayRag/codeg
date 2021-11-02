@@ -266,9 +266,10 @@ class SvgViewport(QWidget):
 
 
 
-	def canvasAdd(self, _xml=None, _offset=(0,0)):
+	def canvasAdd(self, _xml=None, _offset=(0,0), _scale=(1,1)):
 		cDescr = SvgDescriptor(self.canvas, self.anchorCanvas, _xml)
 		cDescr.place(_offset)
+		cDescr.size(_scale)
 
 		return cDescr
 
