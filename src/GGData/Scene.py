@@ -175,56 +175,9 @@ class Scene():
 #  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
 	def getG(self, _x=0, _y=0):
 #  todo 100 (gcode, feature) +0: allow flexible filters for gcode
-
-		def gen(_obj):
-			cScene = _obj.xmlRoot(False)
-
-
-			cGG = GGen(cScene)
-			cGG.set(
-				preamble = 'G90 M4 S0',
-				shapePre = 'G0',
-				shapeIn = 'S100 G1',
-				shapeOut = 'S0',
-				postamble = 'M5 G0 X0Y0'
-			)
-
-			def shapePreHook(_element):
-				refGeo = _obj.getGeo([_element.get('id')])
-
-				if not refGeo:
-					return False
-
-				if not refGeo[0].dataGet('visible', True):
-					return False
-
-
-				return 'G0'
-
-
-			def shapeInHook(_element, _point):
-				refGeo = _obj.getGeo([_element.get('id')])
-				cycle = refGeo[0].dataGet('Laser Cycle', 100)
-				return( f"S{int(cycle)} G1" )
-
-			cGG.set(shapeIn=shapeInHook, shapePre=shapePreHook)
-
-
-
-			xf = _obj.xformSet()[2]
-
-			gFlat = []
-			for g in cGG.generate( xform=[[1,0,xf[0]+_x], [0,-1,-xf[1]+_y]] ):
-				gFlat += g
-
-
-			return gFlat
-
-
 		out = []
 		for cObj in self.geoList():
-			out += gen(cObj)
-
+			out += cObj.trace(_x, _y)
 
 		return "\n".join(out)
 
