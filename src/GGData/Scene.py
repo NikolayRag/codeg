@@ -171,9 +171,11 @@ class Scene():
 
 
 	def traceG(self, _x=0, _y=0):
-		out = []
+		out = ['G90 M4 S0']
+
 		for cObj in self.geoList():
 			out += cObj.trace(_x, _y)
 
+		out += ['M5 G0 X0Y0']
 		return out
 

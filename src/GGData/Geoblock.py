@@ -140,11 +140,9 @@ class Geoblock():
 
 		cGG = GGen(cScene)
 		cGG.set(
-			preamble = 'G90 M4 S0',
 			shapePre = 'G0',
 			shapeIn = 'S100 G1',
 			shapeOut = 'S0',
-			postamble = 'M5 G0 X0Y0'
 		)
 
 		def shapePreHook(_element):
