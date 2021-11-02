@@ -89,27 +89,6 @@ class SvgViewport(QWidget):
 #  todo 6 (module-ui, feature) -1: smooth animated zoom
 
 
-	def resizeEvent(self, _e):
-		oldW, oldH, newW, newH = _e.oldSize().width(), _e.oldSize().height(), _e.size().width(), _e.size().height()
-
-		#portrait/landscape didnt change, use smallest side scale factor
-		if (oldW-oldH)*(newW-newH)>0:
-			cScale = (newW/oldW) if oldW<oldH else (newH/oldH)
-		else:
-			cScale = ( (newW/oldW)+(newH/oldH) ) /2.
-		
-		self.viewportSize(self.canvasScale*cScale, False)
-
-
-		#compensate center position against viewport center
-		cHint = self.canvas.getDocSize(self.canvasScale)
-		self.viewportPlace( QPoint(
-			round(newW*self.canvasMidX -cHint.width()*.5 -cHint.left()),
-			round(newH*self.canvasMidY -cHint.height()*.5 -cHint.top())
-		), False)
-
-
-
 	#mouse interaction
 	def wheelEvent(self, _e):
 		scaleMul = self.zoomStep if _e.delta()> 0 else 1/self.zoomStep
@@ -178,6 +157,27 @@ class SvgViewport(QWidget):
 
 
 			self.interactStart = None
+
+
+
+	def resizeEvent(self, _e):
+		oldW, oldH, newW, newH = _e.oldSize().width(), _e.oldSize().height(), _e.size().width(), _e.size().height()
+
+		#portrait/landscape didnt change, use smallest side scale factor
+		if (oldW-oldH)*(newW-newH)>0:
+			cScale = (newW/oldW) if oldW<oldH else (newH/oldH)
+		else:
+			cScale = ( (newW/oldW)+(newH/oldH) ) /2.
+		
+		self.viewportSize(self.canvasScale*cScale, False)
+
+
+		#compensate center position against viewport center
+		cHint = self.canvas.getDocSize(self.canvasScale)
+		self.viewportPlace( QPoint(
+			round(newW*self.canvasMidX -cHint.width()*.5 -cHint.left()),
+			round(newH*self.canvasMidY -cHint.height()*.5 -cHint.top())
+		), False)
 
 
 
