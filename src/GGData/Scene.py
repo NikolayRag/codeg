@@ -6,8 +6,6 @@ import os.path as path
 from .Mark import *
 from .Geoblock import *
 
-from .GGen import *
-
 
 
 class Scene():
@@ -166,7 +164,6 @@ class Scene():
 
 	def geoList(self):
 		return list(self.allGeo)
-
 
 
 

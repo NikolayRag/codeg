@@ -135,25 +135,12 @@ class Geoblock():
 # -todo 104 (module-data, decide) +0: move to filter
 #  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
 	def trace(self, _x=0, _y=0):
-		cScene = self.xmlRoot(False)
-
-
-		cGG = GGen(cScene)
-		cGG.set(
-			shapePre = 'G0',
-			shapeIn = 'S100 G1',
-			shapeOut = 'S0',
-		)
-
 		def shapePreHook(_element):
 			refGeo = self.getGeo([_element.get('id')])
-
 			if not refGeo:
 				return False
-
 			if not refGeo[0].dataGet('visible', True):
 				return False
-
 
 			return 'G0'
 
@@ -161,20 +148,23 @@ class Geoblock():
 		def shapeInHook(_element, _point):
 			refGeo = self.getGeo([_element.get('id')])
 			cycle = refGeo[0].dataGet('Laser Cycle', 100)
+
 			return( f"S{int(cycle)} G1" )
 
-		cGG.set(shapeIn=shapeInHook, shapePre=shapePreHook)
 
 
+		cScene = self.xmlRoot(False)
+		cGG = GGen(cScene)
+
+		cGG.set(shapeIn=shapeInHook, shapePre=shapePreHook, shapeOut = 'S0')
 
 		xf = self.xformOffset
-
-		gFlat = []
+		out = []
 		for g in cGG.generate( xform=[[1,0,xf[0]+_x], [0,-1,-xf[1]+_y]] ):
-			gFlat += g
+			out += g
 
 
-		return gFlat
+		return out
 
 
 
