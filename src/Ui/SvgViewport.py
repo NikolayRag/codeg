@@ -67,6 +67,8 @@ class SvgViewport(QWidget):
 	sigInteract = Signal(int, object, object, object, bool)
 
 
+	overlayBoxSvg = 'resource\\select.svg'
+
 	panMargins = .2
 	scaleMinPx = 10
 	scaleMax = 10000
@@ -268,6 +270,9 @@ class SvgViewport(QWidget):
 
 		self.canvas = SvgCanvas(self)
 		self.canvas.show()
+
+		self.overlayBox = SvgDescriptor(self.canvas, self.anchorCanvas, self.overlayBoxSvg, z=99)
+		self.overlayBox.show(False)
 
 
 
