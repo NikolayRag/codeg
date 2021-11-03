@@ -183,13 +183,6 @@ class AppWindow(QObject):
 				self.widgetGeo.selectGeo(inthebox)
 
 
-			if _step == SvgViewport.intEnd and _spot:
-				self.widgetGeo.selectGeo()
-				MarkWidget.toolUnpop()
-
-				return
-
-
 		if _mod!=Qt.ShiftModifier:
 			return
 
