@@ -7,19 +7,6 @@ from .GGen import *
 
 # -todo 181 (decide) +0: geometry embed method
 class Geoblock():
-	# Should contain fields affected by Marks
-	CachedFields = [
-		'id',
-		'vector-effect',
-		'stroke',
-		'stroke-width',
-		'stroke-dasharray',
-		'fill',
-		'opacity',
-		'display'
-	]
-
-
 	xformOffset = (0,0)
 	xformScale = (1,1)
 	svgeo = None
