@@ -178,48 +178,13 @@ class AppWindow(QObject):
 
 
 
-	def viewportInteract(self, _step, _point, _origin, _mod, _spot=True):
-		if _mod == Qt.NoModifier:
-			self.selectionDescription.fit(_point,_origin)
-
-			if _step == SvgViewport.intStart:
-				self.selectionCache = self.widgetGeo.currentSelection()
-
-				self.selectionDescription.show(True)
-
-				return
-
-			if _step == SvgViewport.intLive:
-				for cGeo, cDescr in self.widgetGeo.getBlocks().items():
-					xmm = sorted((_origin.x(),_point.x()))
-					ymm = sorted((_origin.y(),_point.y()))
-
-					inthebox = cGeo.boxed(xmm, ymm, _origin.x()>=_point.x())
-					self.widgetGeo.selectGeo(inthebox)
-
-				return
-
-
-			self.selectionDescription.show(False)
-
-			if _step == SvgViewport.intCancel:
-				self.widgetGeo.selectGeo(self.selectionCache)
-
-				return
-
-
-		if _mod!=Qt.ShiftModifier:
-			return
-
-
-		cOffset = _point -_origin
-
+	def viewportMouseMove(self, _offset, _step):
 		for cGeo, cDscr in self.widgetGeo.getBlocks().items():
 			gOffset = cGeo.xformSet()
 			gOffset = (gOffset[0][2], gOffset[1][2])
 			_offset = (
-				gOffset[0] +cOffset.x(),
-				gOffset[1] +cOffset.y()
+				gOffset[0] +_offset.x(),
+				gOffset[1] +_offset.y()
 			)
 
 			if _step == SvgViewport.intLive:
@@ -230,6 +195,46 @@ class AppWindow(QObject):
 
 			if _step == SvgViewport.intCancel:
 				cDscr.place(gOffset)
+
+
+
+	def viewportMouseSelect(self, _point, _origin, _step):
+		self.selectionDescription.fit(_point,_origin)
+
+		if _step == SvgViewport.intStart:
+			self.selectionCache = self.widgetGeo.currentSelection()
+
+			self.selectionDescription.show(True)
+
+			return
+
+
+		if _step == SvgViewport.intLive:
+			for cGeo, cDescr in self.widgetGeo.getBlocks().items():
+				xmm = sorted((_origin.x(),_point.x()))
+				ymm = sorted((_origin.y(),_point.y()))
+
+				inthebox = cGeo.boxed(xmm, ymm, _origin.x()>=_point.x())
+				self.widgetGeo.selectGeo(inthebox)
+
+			return
+
+
+		self.selectionDescription.show(False)
+
+		if _step == SvgViewport.intCancel:
+			self.widgetGeo.selectGeo(self.selectionCache)
+
+			return
+
+
+
+	def viewportInteract(self, _step, _point, _origin, _mod, _spot=True):
+		if _mod == Qt.NoModifier:
+			self.viewportMouseSelect(_point, _origin, _step)
+
+		if _mod==Qt.ShiftModifier:
+			self.viewportMouseMove(_point -_origin, _step)
 
 
 
