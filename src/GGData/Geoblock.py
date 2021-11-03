@@ -153,6 +153,7 @@ class Geoblock():
 
 class Geoitem():
 	ggobj = None
+	box = None
 	name = ''
 
 	marks = []
@@ -168,6 +169,7 @@ class Geoitem():
 
 	def __init__(self, _ggobj, _name='', _data={}):
 		self.ggobj = _ggobj
+		self.box = self.ggobj.bBox(True)
 		self.name = _name
 
 		self.marks = []
@@ -183,7 +185,7 @@ class Geoitem():
 
 
 	def bbox(self): 
-		return (self.ggobj.bBox(True))
+		return self.box
 
 
 
