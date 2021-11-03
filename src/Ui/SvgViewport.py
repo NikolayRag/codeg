@@ -75,8 +75,6 @@ class SvgViewport(QWidget):
 	sigInteract = Signal(int, object, object, object, bool)
 
 
-	overlayBoxSvg = 'resource\\select.svg'
-
 	panMargins = .2
 	scaleMinPx = 10
 	scaleMax = 10000
@@ -131,15 +129,10 @@ class SvgViewport(QWidget):
 			self.interactStart = cPosTrue
 			self.sigInteract.emit(self.intStart, cPosTrue, self.interactStart, self.interactKey, True)
 
-			self.overlayBox.fit(cPosTrue,cPosTrue)
-			self.overlayBox.show(True)
-
 
 		if _e.button() == Qt.MouseButton.RightButton:
 			if self.interactStart:
 				self.sigInteract.emit(self.intCancel, cPosTrue, self.interactStart, self.interactKey, self.interactSpot)
-
-				self.overlayBox.show(False)
 
 			else:
 				self.sigInteract.emit(self.intOption, cPosTrue, cPosTrue, _e.modifiers(), True)
@@ -162,8 +155,6 @@ class SvgViewport(QWidget):
 
 			self.sigInteract.emit(self.intLive, cPosTrue, self.interactStart, self.interactKey, self.interactSpot)
 
-			self.overlayBox.fit(cPosTrue, self.interactStart)
-
 
 
 	def mouseReleaseEvent(self, _e):
@@ -177,8 +168,6 @@ class SvgViewport(QWidget):
 		if _e.button() == Qt.MouseButton.LeftButton:
 			if self.interactStart:
 				self.sigInteract.emit(self.intEnd, cPosTrue, self.interactStart, self.interactKey, self.interactSpot)
-
-				self.overlayBox.show(False)
 
 			self.interactStart = None
 
@@ -287,9 +276,6 @@ class SvgViewport(QWidget):
 
 		self.canvas = SvgCanvas(self)
 		self.canvas.show()
-
-		self.overlayBox = SvgDescriptor(self.canvas, self.anchorCanvas, self.overlayBoxSvg, z=99)
-		self.overlayBox.show(False)
 
 
 
