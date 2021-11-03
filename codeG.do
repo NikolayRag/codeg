@@ -661,7 +661,7 @@
 !fix, svg 232: +1 "src\GGData\Geoblock.py" ki 21/11/02 23:41:47
 	compensate svg scale with wrap-all transform block
 
- performance, unsure 233: +0 "src\GGData\Geoblock.py" ki 21/11/03 15:56:08
+ performance, unsure 233: +0 "src\GGData\Geoblock.py" ki 21/11/04 00:21:29
 	bBox maybe time consuming for complex geo
 
 +ux, viewport 234: +0 "src\Ui\SvgViewport.py" ki 21/11/03 20:06:29

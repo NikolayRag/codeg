@@ -174,7 +174,6 @@ class Geoitem():
 
 	def __init__(self, _ggobj, _name='', _data={}):
 		self.ggobj = _ggobj
-#  todo 233 (performance, unsure) +0: bBox maybe time consuming for complex geo
 		self.name = _name
 
 		self.dataOwn = dict(_data)
@@ -189,6 +188,7 @@ class Geoitem():
 
 
 
+#  todo 233 (performance, unsure) +0: bBox maybe time consuming for complex geo
 	def bbox(self): 
 		if not self.box:
 			self.box = self.ggobj.bBox(True)
