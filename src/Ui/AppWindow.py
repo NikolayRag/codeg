@@ -177,12 +177,15 @@ class AppWindow(QObject):
 
 	def viewportInteract(self, _step, _point, _origin, _mod, _spot=True):
 		if _mod == Qt.NoModifier:
-			for cGeo, cDescr in self.widgetGeo.getBlocks().items():
-				xmm = sorted((_origin.x(),_point.x()))
-				ymm = sorted((_origin.y(),_point.y()))
+			if _step == SvgViewport.intLive:
+				for cGeo, cDescr in self.widgetGeo.getBlocks().items():
+					xmm = sorted((_origin.x(),_point.x()))
+					ymm = sorted((_origin.y(),_point.y()))
 
-				inthebox = cGeo.boxed(xmm, ymm, _origin.x()>_point.x())
-				self.widgetGeo.selectGeo(inthebox)
+					inthebox = cGeo.boxed(xmm, ymm, _origin.x()>=_point.x())
+					self.widgetGeo.selectGeo(inthebox)
+
+				return
 
 
 		if _mod!=Qt.ShiftModifier:
