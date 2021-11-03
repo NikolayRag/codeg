@@ -177,6 +177,13 @@ class AppWindow(QObject):
 
 	def viewportInteract(self, _step, _point, _origin, _mod, _spot=True):
 		if _mod == Qt.NoModifier:
+			self.selectionDescription.fit(_point,_origin)
+
+			if _step == SvgViewport.intStart:
+				self.selectionDescription.show(True)
+
+				return
+
 			if _step == SvgViewport.intLive:
 				for cGeo, cDescr in self.widgetGeo.getBlocks().items():
 					xmm = sorted((_origin.x(),_point.x()))
@@ -185,6 +192,12 @@ class AppWindow(QObject):
 					inthebox = cGeo.boxed(xmm, ymm, _origin.x()>=_point.x())
 					self.widgetGeo.selectGeo(inthebox)
 
+				return
+
+
+			self.selectionDescription.show(False)
+
+			if _step == SvgViewport.intCancel:
 				return
 
 
