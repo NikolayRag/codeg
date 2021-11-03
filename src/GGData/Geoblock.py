@@ -46,13 +46,10 @@ class Geoblock():
 		i = 1
 #  todo 82 (module-data, ux) +0: parse groups
 		for cEl in self.svgeo.getTree():
-			if not cEl.isgeo():
-				continue
-	
-			cTag = cEl.xml()
 			cName = cEl.type() +str(i)
-			cTag.set('id', cName)
-			self.allItems.append( Geoitem(cTag, cName) )
+			cItem = Geoitem(cEl.xml(), cName)
+			cEl.setData(cItem)
+			self.allItems.append(cItem)
 
 			i += 1
 
@@ -129,19 +126,17 @@ class Geoblock():
 # -todo 104 (module-data, decide) +0: move to filter
 #  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
 	def trace(self, _x=0, _y=0):
-		def shapePreHook(_element):
-			refGeo = self.getGeo([_element.get('id')])
-			if not refGeo:
-				return False
-			if not refGeo[0].dataGet('visible', True):
+		def shapePreHook(_shape):
+			refGeo = _shape.data()
+			if not refGeo.dataGet('visible', True):
 				return False
 
 			return 'G0'
 
 
-		def shapeInHook(_element, _point):
-			refGeo = self.getGeo([_element.get('id')])
-			cycle = refGeo[0].dataGet('Laser Cycle', 100)
+		def shapeInHook(_shape, _point):
+			refGeo = _shape.data()
+			cycle = refGeo.dataGet('Laser Cycle', 100)
 
 			return( f"S{int(cycle)} G1" )
 
