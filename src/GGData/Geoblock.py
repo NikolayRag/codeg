@@ -24,6 +24,7 @@ class Geoblock():
 	xformOffset = (0,0)
 	xformScale = (1,1)
 	geoXML = None
+	svgeo = None
 	allItems = []
 	source = ''
 	name = ''
@@ -38,6 +39,8 @@ class Geoblock():
 
 		self.source = _source
 		self.geoXML = ElementTree.parse(_source)
+		self.svgeo = GGen(self.geoXML.getroot())
+
 		self.allItems = []
 
 
@@ -154,14 +157,11 @@ class Geoblock():
 
 
 
-		cScene = self.xmlRoot(False)
-		cGG = GGen(cScene)
-
-		cGG.set(shapeIn=shapeInHook, shapePre=shapePreHook, shapeOut = 'S0')
+		self.svgeo.set(shapeIn=shapeInHook, shapePre=shapePreHook, shapeOut = 'S0')
 
 		xf = self.xformOffset
 		out = []
-		for g in cGG.generate( xform=[[1,0,xf[0]+_x], [0,-1,-xf[1]+_y]] ):
+		for g in self.svgeo.generate( xform=[[1,0,xf[0]+_x], [0,-1,-xf[1]+_y]] ):
 			out += g
 
 
