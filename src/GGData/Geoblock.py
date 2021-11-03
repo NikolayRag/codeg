@@ -106,9 +106,8 @@ class Geoblock():
 
 
 
-	def xmlRoot(self, _string):
-		cRoot = self.geoXML.getroot()
-		return (ElementTree.tostring(cRoot) if _string else cRoot)
+	def xmlString(self):
+		return ElementTree.tostring(self.svgeo.getRoot())
 
 
 

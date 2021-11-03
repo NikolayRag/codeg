@@ -84,7 +84,7 @@ class AppWindow(QObject):
 		self.widgetGeo.sigItemHover.connect(lambda item, state: self.sigGeoHover.emit(item, state))
 		self.widgetGeo.sigItemDataSet.connect(lambda item, names: self.sigGeoDataSet.emit(item, names))
 		self.widgetGeo.sigTouchRun.connect(self.suspend)
-		self.widgetGeo.sigTouched.connect(lambda block, descr: descr.setXml( block.xmlRoot(True) ))
+		self.widgetGeo.sigTouched.connect(lambda block, descr: descr.setXml( block.xmlString() ))
 		self.widgetGeo.sigSelected.connect(self.geoWidgetSelected)
 		self.widgetGeo.sigActivate.connect(lambda block, state: self.sigGeoActivate.emit(block, state))
 
@@ -212,7 +212,7 @@ class AppWindow(QObject):
 	def geoAddWidget(self, _geo):
 		gOffset = _geo.xformSet()
 		gOffset = (gOffset[0][2], gOffset[1][2])
-		cXml = _geo.xmlRoot(True)
+		cXml = _geo.xmlString()
 		cDscr = self.wSvgViewport.canvasAdd(cXml, gOffset)
 
 		self.widgetGeo.blockAdd(_geo, cDscr)
