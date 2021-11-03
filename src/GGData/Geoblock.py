@@ -182,6 +182,11 @@ class Geoitem():
 
 
 
+	def bbox(self): 
+		return (self.ggobj.bBox(True))
+
+
+
 	def isDirty(self): 
 		return (self.dirtyGeo or self.dirtyData or self.dirtyBind)
 
