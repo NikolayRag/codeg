@@ -93,7 +93,7 @@ class GeoWidgetItems(QWidget):
 
 
 
-	def itemSelect(self, _selection=[], _outside=True):
+	def itemSelectSet(self, _selection=[], _outside=True):
 		for cObj in self.lastSelection:
 			if cObj not in _selection:
 				self.sigItemSelect.emit(cObj, False)
@@ -117,7 +117,7 @@ class GeoWidgetItems(QWidget):
 	def itemSelected(self):
 		cSelection = self.itemSelection().values()
 
-		self.itemSelect(cSelection)
+		self.itemSelectSet(cSelection)
 
 
 
@@ -345,7 +345,7 @@ class GeoWidget(QListWidget):
 
 
 		cWidget = self.lastEntry.data(self.LdataWidget)
-		cWidget.itemSelect(_items)
+		cWidget.itemSelectSet(_items)
 
 
 
