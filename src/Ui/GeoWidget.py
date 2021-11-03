@@ -93,34 +93,31 @@ class GeoWidgetItems(QWidget):
 
 
 
-		if not _selection:
-			self.wListItems.clearSelection()
-
-			return
-
 	def itemSelect(self, _selection=[], _outside=True):
+		for cObj in self.lastSelection:
+			if cObj not in _selection:
+				self.sigItemSelect.emit(cObj, False)
 
-		print(_selection)
+		for cObj in _selection:
+			if cObj not in self.lastSelection:
+				self.sigItemSelect.emit(cObj, True)
+
+		self.lastSelection = _selection
+
+
+		self.sigTouched.emit()
+		self.sigSelected.emit(list(_selection))
+
+
+		if _outside:
+			print('toucj')
 
 
 
 	def itemSelected(self):
 		cSelection = self.itemSelection().values()
 
-
-		for cObj in self.lastSelection:
-			if cObj not in cSelection:
-				self.sigItemSelect.emit(cObj, False)
-
-		for cObj in cSelection:
-			if cObj not in self.lastSelection:
-				self.sigItemSelect.emit(cObj, True)
-
-		self.lastSelection = cSelection
-
-
-		self.sigTouched.emit()
-		self.sigSelected.emit(list(cSelection))
+		self.itemSelect(cSelection)
 
 
 
