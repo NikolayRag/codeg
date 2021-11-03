@@ -356,8 +356,12 @@ class GeoWidget(QListWidget):
 			return
 
 
+		self.sigTouchRun.emit(True)
+
 		cWidget = self.lastEntry.data(self.LdataWidget)
 		cWidget.itemSelectSet(_items)
+
+		self.sigTouchRun.emit(False)
 
 
 
