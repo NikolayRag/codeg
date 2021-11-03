@@ -23,8 +23,12 @@ class Geoblock():
 		self.name = _name
 
 		self.source = _source
-		geoXML = ElementTree.parse(_source)
-		self.svgeo = GGen(geoXML.getroot())
+		geoXML = ElementTree.parse(self.source)
+		cRoot = geoXML.getroot()
+		cRoot.set('viewBox', '')
+		cRoot.set('width', '')
+		cRoot.set('height', '')
+		self.svgeo = GGen(cRoot)
 
 		self.allItems = []
 
