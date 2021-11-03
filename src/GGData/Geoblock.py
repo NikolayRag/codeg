@@ -43,7 +43,7 @@ class Geoblock():
 
 
 		i = 1
-		for cEl in self.svgeo.getTree():
+		for cEl in self.svgeo.tree():
 			cName = cEl.type() +str(i)
 			cItem = Geoitem(cEl.xml(), cName)
 			cEl.setData(cItem)
@@ -93,7 +93,7 @@ class Geoblock():
 
 
 	def xmlString(self):
-		return ElementTree.tostring(self.svgeo.getRoot())
+		return ElementTree.tostring(self.svgeo.root())
 
 
 
