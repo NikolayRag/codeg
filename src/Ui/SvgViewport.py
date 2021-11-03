@@ -384,8 +384,8 @@ class SvgCanvas(QWidget):
 
 
 
-	def layerNew(self, isGhost=False):
-		cLayer = SvgCanvasLayer(self)
+	def layerNew(self, isGhost=False, z=0):
+		cLayer = SvgCanvasLayer(self, z)
 		cLayer.setGhost(isGhost)
 
 		self.layerMaxId += 1
@@ -467,7 +467,8 @@ class SvgCanvas(QWidget):
 		p.setRenderHint(QPainter.Antialiasing)
 
 
-		for l in self.layers.values():
+		lOrdered = sorted(self.layers.values(), key=lambda l: l.zindex())
+		for l in lOrdered:
 			if not l.display:
 				continue
 
