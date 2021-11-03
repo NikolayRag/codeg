@@ -131,10 +131,16 @@ class SvgViewport(QWidget):
 			self.interactStart = cPosTrue
 			self.sigInteract.emit(self.intStart, cPosTrue, self.interactStart, self.interactKey, True)
 
+			self.overlayBox.fit(cPosTrue,cPosTrue)
+			self.overlayBox.show(True)
+
 
 		if _e.button() == Qt.MouseButton.RightButton:
 			if self.interactStart:
 				self.sigInteract.emit(self.intCancel, cPosTrue, self.interactStart, self.interactKey, self.interactSpot)
+
+				self.overlayBox.show(False)
+
 			else:
 				self.sigInteract.emit(self.intOption, cPosTrue, cPosTrue, _e.modifiers(), True)
 
@@ -156,6 +162,8 @@ class SvgViewport(QWidget):
 
 			self.sigInteract.emit(self.intLive, cPosTrue, self.interactStart, self.interactKey, self.interactSpot)
 
+			self.overlayBox.fit(cPosTrue, self.interactStart)
+
 
 
 	def mouseReleaseEvent(self, _e):
@@ -170,6 +178,7 @@ class SvgViewport(QWidget):
 			if self.interactStart:
 				self.sigInteract.emit(self.intEnd, cPosTrue, self.interactStart, self.interactKey, self.interactSpot)
 
+				self.overlayBox.show(False)
 
 			self.interactStart = None
 
