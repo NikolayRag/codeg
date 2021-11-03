@@ -297,6 +297,7 @@ class SvgViewport(QWidget):
 Scene canvas 
 '''
 class SvgCanvasLayer(QSvgRenderer):
+	z = 0
 #	name = ''
 	ghost = False
 	display = True
@@ -307,8 +308,10 @@ class SvgCanvasLayer(QSvgRenderer):
 	offset = (0, 0)
 
 
-	def __init__(self, _parent):
+	def __init__(self, _parent, z=0):
 		QSvgRenderer.__init__(self, _parent)
+
+		self.z = z
 
 
 
@@ -339,6 +342,13 @@ class SvgCanvasLayer(QSvgRenderer):
 
 	def layerOffset(self):
 		return QPointF(*self.offset)
+
+
+	def zindex(self, _z=None):
+		if _z != None:
+			self.z = _z
+
+		return self.z
 
 
 
