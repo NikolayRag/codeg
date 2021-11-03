@@ -15,10 +15,10 @@ class SvgDescriptor():
 	idGeo = -1
 
 
-	def __init__(self, _canvas, _recomputeCB, _xml=None):
+	def __init__(self, _canvas, _recomputeCB, _xml=None, z=0):
 		self.canvas = _canvas
 		self.recomputeCB = _recomputeCB
-		self.idGeo = self.canvas.layerNew()
+		self.idGeo = self.canvas.layerNew(z)
 
 		if _xml:
 			self.setXml(_xml)
