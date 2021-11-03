@@ -38,6 +38,7 @@ class GeoWidgetItems(QWidget):
 	lastHover = None
 	lastSelection = []
 
+	itemRef = {}
 
 
 ### PRIVATE 
@@ -71,6 +72,8 @@ class GeoWidgetItems(QWidget):
 			if _geoitem.dataGet('selected', False):
 				self.wListItems.setCurrentItem(itemName, QItemSelectionModel.Select)
 
+			self.itemRef[_geoitem] = itemName
+
 		else:
 			for i in range(self.wListItems.columnCount()):
 				cItem = QTableWidgetItem()
@@ -94,6 +97,17 @@ class GeoWidgetItems(QWidget):
 
 
 	def itemSelectSet(self, _selection=[], _outside=True):
+		if _outside:
+			self.wListItems.blockSignals(True)
+
+			self.wListItems.clearSelection()
+
+			for cEl in _selection:
+				self.wListItems.setCurrentItem(self.itemRef[cEl], QItemSelectionModel.Select)
+
+			self.wListItems.blockSignals(False)
+
+
 		for cObj in self.lastSelection:
 			if cObj not in _selection:
 				self.sigItemSelect.emit(cObj, False)
@@ -117,7 +131,7 @@ class GeoWidgetItems(QWidget):
 	def itemSelected(self):
 		cSelection = self.itemSelection().values()
 
-		self.itemSelectSet(cSelection)
+		self.itemSelectSet(cSelection, False)
 
 
 
@@ -183,6 +197,9 @@ class GeoWidgetItems(QWidget):
 
 	def __init__(self, _geoblock):
 		QWidget.__init__(self)
+
+
+		self.itemRef = {}
 
 
 		loadUi = QUiLoader().load(self.defUi)
