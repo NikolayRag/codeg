@@ -84,7 +84,7 @@ class AppWindow(QObject):
 		self.widgetGeo.sigItemHover.connect(lambda item, state: self.sigGeoHover.emit(item, state))
 		self.widgetGeo.sigItemDataSet.connect(lambda item, names: self.sigGeoDataSet.emit(item, names))
 		self.widgetGeo.sigTouchRun.connect(self.suspend)
-		self.widgetGeo.sigTouched.connect(lambda block, descr: descr.setXml( block.xmlString() ))
+		self.widgetGeo.sigTouched.connect(self.geoWidgetTouched)
 		self.widgetGeo.sigSelected.connect(self.geoWidgetSelected)
 		self.widgetGeo.sigActivate.connect(lambda block, state: self.sigGeoActivate.emit(block, state))
 
@@ -223,6 +223,11 @@ class AppWindow(QObject):
 		cDscr = self.wSvgViewport.canvasAdd(cXml, gOffset)
 
 		self.widgetGeo.blockAdd(_geo, cDscr)
+
+
+
+	def geoWidgetTouched(self, _block, _descr):
+		_descr.setXml( _block.xmlString() )
 
 
 
