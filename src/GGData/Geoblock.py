@@ -44,25 +44,17 @@ class Geoblock():
 
 
 		i = 1
-		for cTag in geoXML.iter():
-			tagType = cTag.tag[28:]
-
-			if tagType == 'xml':
-				None
-
 #  todo 82 (module-data, ux) +0: parse groups
-			if tagType == 'g':
-				None
+		for cEl in self.svgeo.getTree():
+			if not cEl.isgeo():
+				continue
+	
+			cTag = cEl.xml()
+			cName = cEl.type() +str(i)
+			cTag.set('id', cName)
+			self.allItems.append( Geoitem(cTag, cName) )
 
-			if tagType in ['rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path' ]:
-				for cField in Geoblock.CachedFields:
-					cTag.set('cache-'+cField, cTag.get(cField) or '')
-
-				cName = tagType +str(i)
-				cTag.set('id', cName)
-				self.allItems.append( Geoitem(cTag, cName) )
-
-				i += 1
+			i += 1
 
 
 	def xformSet(self, offset=None, scale=None):
