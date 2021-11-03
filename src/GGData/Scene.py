@@ -19,7 +19,8 @@ class Scene():
 
 
 	def geoNameUniq(self, _source, _name):
-		refName = path.basename(_source).split('.')[0]
+		refName = path.basename(_source).split('.')[:-1]
+		refName = '.'.join(refName)
 		refCount = 0
 		if refName in self.geoNames:
 			refCount = self.geoNames[refName] +1
