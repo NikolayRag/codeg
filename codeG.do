@@ -598,7 +598,7 @@
 +viewport, ux 211: +0 "src\Ui\AppWindow.py" ki 21/10/26 10:46:18
 	cancel select by right click
 
- module-ui, clean, widget 212: +0 "src\Ui\AppWindow.py" ki 21/11/01 21:58:53
+ module-ui, clean, widget 212: +0 "src\Ui\AppWindow.py" ki 21/11/03 20:29:54
 	MarkWidget collection class
 
  ux, viewport 213: +0 "src\Ui\AppWindow.py" ki 21/10/30 02:39:45
@@ -643,8 +643,8 @@
 !fix, check 226: +0 "" ki 21/11/02 01:09:28
 	probably will fit wrong if canvas and widget orientation differs
 
-=fix 227: +0 "src\Ui\SvgViewport.py" ki 21/10/31 20:05:23
-	integer pos and size result in jitter
+=fix 227: +10 "src\Ui\SvgViewport.py" ki 21/11/03 20:56:16
+	integer pos and size result in SvgCanvasLayer jitter
 
 +ux, fix 228: +0 "src\Ui\AppWindow.py" ki 21/10/31 22:47:20
 	pin viewport while transforming geo
@@ -660,4 +660,10 @@
 
 !fix, svg 232: +1 "src\GGData\Geoblock.py" ki 21/11/02 23:41:47
 	compensate svg scale with wrap-all transform block
+
+ performance, unsure 233: +0 "src\GGData\Geoblock.py" ki 21/11/03 15:56:08
+	bBox maybe time consuming for complex geo
+
++ux, viewport 234: +0 "src\Ui\SvgViewport.py" ki 21/11/03 20:06:29
+	show interaction box
 

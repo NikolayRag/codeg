@@ -366,7 +366,7 @@ class SvgCanvasLayer(QSvgRenderer):
 
 
 
-# =todo 227 (fix) +0: integer pos and size result in jitter
+# =todo 227 (fix) +10: integer pos and size result in SvgCanvasLayer jitter
 class SvgCanvas(QWidget):
 	defaultWidth = 0
 	defaultHeight = 0

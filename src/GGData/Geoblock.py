@@ -187,6 +187,7 @@ class Geoitem():
 
 	def __init__(self, _ggobj, _name='', _data={}):
 		self.ggobj = _ggobj
+#  todo 233 (performance, unsure) +0: bBox maybe time consuming for complex geo
 		self.box = self.ggobj.bBox(True)
 		self.name = _name
 
