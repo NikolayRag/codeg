@@ -125,16 +125,16 @@ class Geoblock():
 #  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
 	def trace(self, _x=0, _y=0):
 		def shapePreHook(_shape):
-			refGeo = _shape.data()
-			if not refGeo.dataGet('visible', True):
+			refItem = _shape.data()
+			if not refItem.dataGet('visible', True):
 				return False
 
 			return 'G0'
 
 
 		def shapeInHook(_shape, _point):
-			refGeo = _shape.data()
-			cycle = refGeo.dataGet('Laser Cycle', 100)
+			refItem = _shape.data()
+			cycle = refItem.dataGet('Laser Cycle', 100)
 
 			return( f"S{int(cycle)} G1" )
 
