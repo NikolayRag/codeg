@@ -43,6 +43,11 @@ class SvgTag(object):
     def xml(self):
         return self.xml_node
 
+    def isgeo(self):
+        return True
+
+    def type(self):
+        return self.__class__.__name__
 
     def cubicPath(self, xform=True):
         dPath = self.d_path()
@@ -84,6 +89,9 @@ class g(SvgTag):
         super(g, self).__init__(xml_node, _parentMat)
 
      def d_path(self):
+        return False
+
+     def isgeo(self):
         return False
 
 
