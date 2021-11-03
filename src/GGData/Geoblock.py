@@ -20,7 +20,6 @@ class Geoblock():
 	]
 
 
-	xformRefScale = (1,1) #updated from reference dimensions
 	xformOffset = (0,0)
 	xformScale = (1,1)
 	svgeo = None
@@ -30,6 +29,7 @@ class Geoblock():
 
 
 	dirtyFlag = False
+
 
 
 	def __init__(self, _source, _name=''):
@@ -47,8 +47,8 @@ class Geoblock():
 			cName = cEl.type() +str(i)
 			cItem = Geoitem(cEl.xml(), cName)
 			cEl.setData(cItem)
-			self.allItems.append(cItem)
 
+			self.allItems.append(cItem)
 			i += 1
 
 
@@ -137,7 +137,6 @@ class Geoblock():
 			cycle = refGeo.dataGet('Laser Cycle', 100)
 
 			return( f"S{int(cycle)} G1" )
-
 
 
 		self.svgeo.set(shapeIn=shapeInHook, shapePre=shapePreHook, shapeOut = 'S0')
