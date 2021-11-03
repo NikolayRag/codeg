@@ -45,7 +45,7 @@ class Geoblock():
 		i = 1
 		for cEl in self.svgeo.tree():
 			cName = cEl.type() +str(i)
-			cItem = Geoitem(cEl.xml(), cName)
+			cItem = Geoitem(cEl, cName)
 			cEl.setData(cItem)
 
 			self.allItems.append(cItem)
@@ -152,7 +152,7 @@ class Geoblock():
 
 
 class Geoitem():
-	obj = None
+	ggobj = None
 	name = ''
 
 	marks = []
@@ -166,8 +166,8 @@ class Geoitem():
 	dirtyRuntime = False
 
 
-	def __init__(self, _obj, _name='', _data={}):
-		self.obj = _obj
+	def __init__(self, _ggobj, _name='', _data={}):
+		self.ggobj = _ggobj
 		self.name = _name
 
 		self.marks = []
@@ -209,7 +209,7 @@ class Geoitem():
 
 
 	def setTag(self, _tag, _data, dirty=True):
-		self.obj.set(_tag, _data)
+		self.ggobj.xml().set(_tag, _data)
 
 
 		if dirty:
