@@ -46,6 +46,11 @@ class SvgDescriptor():
 
 
 
+	def show(self, _vis):
+		self.canvas.layerSetVis(self.idGeo, _vis)
+
+
+
 '''
 Main scene widget
 '''
@@ -416,6 +421,14 @@ class SvgCanvas(QWidget):
 	def layerSetScale(self, _lId, _scale):
 		cLayer = self.layers[_lId]
 		cLayer.setLayerScale(_scale)
+
+		self.recompute()
+
+
+
+	def layerSetVis(self, _lId, _vis):
+		cLayer = self.layers[_lId]
+		cLayer.setDisplay(_vis)
 
 		self.recompute()
 
