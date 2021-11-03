@@ -121,11 +121,6 @@ class GeoWidgetItems(QWidget):
 
 
 
-	def itemHover_(self, _e):
-		self.itemHover()
-
-
-
 	def itemHover(self, _row=-1, _col=-1):
 		if self.lastHover:
 			self.sigItemHover.emit(self.lastHover, False)
@@ -202,7 +197,7 @@ class GeoWidgetItems(QWidget):
 		self.wListItems.cellEntered.connect(self.itemHover)
 
 		self.tmpFilter = BindFilter({
-			QEvent.Type.Leave: self.itemHover_ })
+			QEvent.Type.Leave: lambda e: self.itemHover() })
 		self.wListItems.installEventFilter(self.tmpFilter)
 
 		self.wListItems.cellClicked.connect(self.itemClicked)
