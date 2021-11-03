@@ -68,6 +68,24 @@ class Geoblock():
 
 
 
+	def boxed(self, _xmm, _ymm, strict=True):
+		out = []
+		_xmm = (_xmm[0]-self.xformOffset[0], _xmm[1]-self.xformOffset[0])
+		_ymm = (_ymm[0]-self.xformOffset[1], _ymm[1]-self.xformOffset[1])
+
+		for cObj in self.allItems:
+			cBox = cObj.bbox()
+			if strict:
+				if (_xmm[0]<cBox[0]) and (_xmm[1]>cBox[1]) and (_ymm[0]<cBox[2]) and (_ymm[1]>cBox[3]):
+					out.append(cObj)
+			else:
+				if not( (_xmm[1]<cBox[0]) or (_xmm[0]>cBox[1]) or (_ymm[1]<cBox[2]) or (_ymm[0]>cBox[3]) ):
+					out.append(cObj)
+
+		return out
+
+
+
 	def label(self):
 		return self.name
 
