@@ -10,6 +10,7 @@ from . import cspsubdiv
 
 
 class SvgTag(object):
+    _data = None
     mat = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]]
 
     
@@ -49,6 +50,12 @@ class SvgTag(object):
     def type(self):
         return self.__class__.__name__
 
+    def data(self):
+        return self._data
+
+    def setData(self, _data):
+        self._data = _data
+
     def cubicPath(self, xform=True):
         dPath = self.d_path()
         if not dPath:
@@ -87,9 +94,6 @@ class SvgTag(object):
 class g(SvgTag):
      def __init__(self, xml_node, _parentMat=None):
         super(g, self).__init__(xml_node, _parentMat)
-
-     def d_path(self):
-        return False
 
      def isgeo(self):
         return False
