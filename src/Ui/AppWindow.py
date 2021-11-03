@@ -51,7 +51,9 @@ class AppWindow(QObject):
 
 	selectionDescription = None
 	selectionCache = []
+
 	gridDescription = None
+
 #  todo 212 (module-ui, clean, widget) +0: MarkWidget collection class
 	widgetGeo = None
 	allWidgetsMarks = {}
