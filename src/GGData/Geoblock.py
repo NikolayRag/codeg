@@ -23,7 +23,6 @@ class Geoblock():
 	xformRefScale = (1,1) #updated from reference dimensions
 	xformOffset = (0,0)
 	xformScale = (1,1)
-	geoXML = None
 	svgeo = None
 	allItems = []
 	source = ''
@@ -38,14 +37,14 @@ class Geoblock():
 		self.name = _name
 
 		self.source = _source
-		self.geoXML = ElementTree.parse(_source)
-		self.svgeo = GGen(self.geoXML.getroot())
+		geoXML = ElementTree.parse(_source)
+		self.svgeo = GGen(geoXML.getroot())
 
 		self.allItems = []
 
 
 		i = 1
-		for cTag in self.geoXML.iter():
+		for cTag in geoXML.iter():
 			tagType = cTag.tag[28:]
 
 			if tagType == 'xml':
