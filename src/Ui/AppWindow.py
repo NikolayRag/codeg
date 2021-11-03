@@ -50,6 +50,7 @@ class AppWindow(QObject):
 ## runtime ##
 
 	selectionDescription = None
+	selectionCache = []
 	gridDescription = None
 #  todo 212 (module-ui, clean, widget) +0: MarkWidget collection class
 	widgetGeo = None
@@ -180,6 +181,8 @@ class AppWindow(QObject):
 			self.selectionDescription.fit(_point,_origin)
 
 			if _step == SvgViewport.intStart:
+				self.selectionCache = self.widgetGeo.currentSelection()
+
 				self.selectionDescription.show(True)
 
 				return
@@ -198,6 +201,8 @@ class AppWindow(QObject):
 			self.selectionDescription.show(False)
 
 			if _step == SvgViewport.intCancel:
+				self.widgetGeo.selectGeo(self.selectionCache)
+
 				return
 
 
