@@ -38,6 +38,7 @@ class AppWindow(QObject):
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
+	defSelection = 'resource\\select.svg'
 	defGrid = 'resource\\grid.svg' #1-unit size
 	defUi = './Ui/AppWindow.ui'
 
@@ -48,6 +49,7 @@ class AppWindow(QObject):
 
 ## runtime ##
 
+	selectionDescription = None
 	gridDescription = None
 #  todo 212 (module-ui, clean, widget) +0: MarkWidget collection class
 	widgetGeo = None
@@ -333,6 +335,9 @@ class AppWindow(QObject):
 # =todo 89 (ux, module-ui, fix) +0: place grid correctly
 		self.wSvgViewport.canvasReset()
 		self.gridDescription = self.wSvgViewport.canvasAdd(self.defGrid)
+
+		self.selectionDescription = self.wSvgViewport.canvasAdd(self.defSelection, z=99)
+		self.selectionDescription.show(False)
 
 
 
