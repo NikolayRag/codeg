@@ -123,10 +123,6 @@ class GeoWidgetItems(QWidget):
 		self.sigSelected.emit(list(_selection))
 
 
-		if _outside:
-			print('toucj')
-
-
 
 	def itemSelected(self):
 		cSelection = self.itemSelection().values()
