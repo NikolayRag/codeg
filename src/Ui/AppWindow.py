@@ -175,6 +175,13 @@ class AppWindow(QObject):
 
 	def viewportInteract(self, _step, _point, _origin, _mod, _spot=True):
 		if _mod == Qt.NoModifier:
+			for cGeo in self.widgetGeo.getBlocks().keys():
+				xmm = sorted((_origin.x(),_point.x()))
+				ymm = sorted((_origin.y(),_point.y()))
+
+				cGeo.boxed(xmm, ymm, _origin.x()>_point.x())
+
+
 			if _step == SvgViewport.intEnd and _spot:
 				self.widgetGeo.selectGeo(None)
 				MarkWidget.toolUnpop()
