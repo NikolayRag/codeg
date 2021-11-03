@@ -32,7 +32,6 @@ class Geoblock():
 	dirtyFlag = False
 
 
-# =todo 231 (fix, svg, data) +0: proccess SVG responsibly
 	def __init__(self, _source, _name=''):
 		self.name = _name
 
@@ -44,7 +43,6 @@ class Geoblock():
 
 
 		i = 1
-#  todo 82 (module-data, ux) +0: parse groups
 		for cEl in self.svgeo.getTree():
 			cName = cEl.type() +str(i)
 			cItem = Geoitem(cEl.xml(), cName)

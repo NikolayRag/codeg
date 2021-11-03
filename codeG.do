@@ -232,7 +232,7 @@
 -module-ui, svg, feature 81: +0 "" kii 21/08/27 03:13:26
 	show grid
 
- module-data, ux 82: +0 "src\GGData\GGData.py" kii 21/08/20 03:48:29
+!module-data, ux 82: +0 "src\GGData\Geoblock.py" ki 21/11/03 05:27:21
 	parse groups
 
  ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" ki 21/11/01 19:48:46
@@ -655,6 +655,9 @@
 !viewport, feature 230: +0 "src\Ui\SvgViewport.py" ki 21/11/01 19:29:54
 	add keypress event passed to sigInteract
 
-=fix, svg, data 231: +0 "src\GGData\Geoblock.py" ki 21/11/02 17:16:02
++fix, svg, data 231: +0 "src\GGData\Geoblock.py" ki 21/11/03 06:29:32
 	proccess SVG responsibly
+
+!fix, svg 232: +1 "src\GGData\Geoblock.py" ki 21/11/02 23:41:47
+	compensate svg scale with wrap-all transform block
 
