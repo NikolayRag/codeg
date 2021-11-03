@@ -93,12 +93,12 @@ class GeoWidgetItems(QWidget):
 
 
 
-	def itemSelect(self, _selection=False):
 		if not _selection:
 			self.wListItems.clearSelection()
 
 			return
 
+	def itemSelect(self, _selection=[], _outside=True):
 
 		print(_selection)
 
@@ -342,13 +342,13 @@ class GeoWidget(QListWidget):
 
 
 
-	def selectGeo(self, _items=None):
+	def selectGeo(self, _items=[]):
 		if not self.lastEntry:
 			return
 
 
 		cWidget = self.lastEntry.data(self.LdataWidget)
-		cWidget.itemSelect()
+		cWidget.itemSelect(_items)
 
 
 
