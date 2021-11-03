@@ -10,7 +10,8 @@ class GGen():
     svg_shapes = ('g', 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path')
 
 
-    rootET = None
+    root = None
+    tree = None
 
     xform = [[1.0, 0.0, 0.0], [0.0, -1.0, 0.0]]
     smoothness = 0.02
@@ -30,8 +31,39 @@ class GGen():
 
 
 
-    def __init__(self, _rootET):
-        self.rootET = _rootET
+    def iterateTree(self, _el, _matrix=None):
+        try:
+            _, cTag = _el.tag.split('}')
+        except ValueError:
+            print('Skip tag:', _el.tag)
+            return
+
+
+        if cTag in self.svg_shapes:
+            shape_class = getattr(shapes, cTag)
+            cShape = shape_class(_el, _matrix)
+
+            yield cShape
+
+            _matrix = cShape.transformation_matrix()
+
+
+        for cEl in _el:
+            yield from self.iterateTree(cEl, _matrix)
+
+
+
+    def __init__(self, _root):
+        self.root = _root
+        self.tree = []
+
+        for cEl in self.iterateTree(self.root):
+            self.tree.append(cEl)
+
+
+
+    def getRoot(self):
+        return self.root
 
 
 
@@ -81,21 +113,8 @@ class GGen():
 
         matrixAcc = []
         prevDep = 0
-        cTree = []
-        self.iterateTree(self.rootET, cTree)
-        for cDep, cShape in cTree:
-            if cDep <= prevDep: #out of branch
-                matrixAcc = matrixAcc[:(cDep-prevDep-1)]
-            prevDep = cDep
-
-            matrixAcc.append(cShape.transformation_matrix())
-
-
-            cXform = self.xform
-            for m in matrixAcc:
-                if m:
-                    cXform = simpletransform.composeTransform(cXform, m)
-
+        for cShape in self.tree:
+            cXform = cShape.transformation_matrix(self.xform)
             shapesA = self.shapeGen(cShape, cXform)
 
             el = self.shapeDecorate(cShape.xml(), shapesA)
@@ -121,34 +140,6 @@ class GGen():
 
 
 ###private###
-
-
-
-    def iterateTree(self, _el, _treeA, _dep=0,):
-        try:
-            _, cTag = _el.tag.split('}')
-        except ValueError:
-            print('Skip tag:', _el.tag)
-            return
-
-
-        if (
-            (cTag in self.svg_shapes)
-            and (_el.get('display') != 'none')
-            and (_el.get('visibility') != 'hidden')
-        ):
-            shape_class = getattr(shapes, cTag)
-            cShape = shape_class(_el)
-
-            _treeA.append([_dep, cShape])
-
-        else:
-            _dep -= 1 #roll back unknown tag
-
-
-        for cEl in _el:
-            self.iterateTree(cEl, _treeA, _dep+1)
-
 
 
     def shapeGen(self, _shape, _xform):

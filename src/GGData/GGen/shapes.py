@@ -10,16 +10,28 @@ from . import cspsubdiv
 
 
 class SvgTag(object):
+    mat = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]]
+
     
-    def __init__(self, xml_node):
+    def __init__(self, xml_node, _parent=None):
+        t = xml_node.get('transform')
+        if t:
+            self.mat = simpletransform.parseTransform(t)
+
+        if _parent:
+            self.mat = simpletransform.composeTransform(_parent, self.mat)
+
         self.xml_node = xml_node 
- 
+
     def d_path(self):
         raise NotImplementedError
 
-    def transformation_matrix(self):
-        t = self.xml_node.get('transform')
-        return simpletransform.parseTransform(t) if t is not None else None
+    def transformation_matrix(self, _parent=None):
+        if not _parent:
+            return self.mat
+
+        return simpletransform.composeTransform(_parent, self.mat)
+
 
     def svg_path(self):
         dPath = self.d_path()
@@ -68,16 +80,16 @@ class SvgTag(object):
 
 
 class g(SvgTag):
-     def __init__(self, xml_node):
-        super(g, self).__init__(xml_node)
+     def __init__(self, xml_node, _parentMat=None):
+        super(g, self).__init__(xml_node, _parentMat)
 
      def d_path(self):
         return False
 
 
 class path(SvgTag):
-     def __init__(self, xml_node):
-        super(path, self).__init__(xml_node)
+     def __init__(self, xml_node, _parentMat=None):
+        super(path, self).__init__(xml_node, _parentMat)
 
         if not self.xml_node == None:
             path_el = self.xml_node
@@ -91,8 +103,8 @@ class path(SvgTag):
 
 class rect(SvgTag):
   
-    def __init__(self, xml_node):
-        super(rect, self).__init__(xml_node)
+    def __init__(self, xml_node, _parentMat=None):
+        super(rect, self).__init__(xml_node, _parentMat)
 
         if not self.xml_node == None:
             rect_el = self.xml_node
@@ -117,8 +129,8 @@ class rect(SvgTag):
 
 class ellipse(SvgTag):
 
-    def __init__(self, xml_node):
-        super(ellipse, self).__init__(xml_node)
+    def __init__(self, xml_node, _parentMat=None):
+        super(ellipse, self).__init__(xml_node, _parentMat)
 
         if not self.xml_node == None:
             ellipse_el = self.xml_node
@@ -141,8 +153,8 @@ class ellipse(SvgTag):
         return p
 
 class circle(ellipse):
-    def __init__(self, xml_node):
-        super(ellipse, self).__init__(xml_node)
+    def __init__(self, xml_node, _parentMat=None):
+        super(ellipse, self).__init__(xml_node, _parentMat)
 
         if not self.xml_node == None:
             circle_el = self.xml_node
@@ -156,8 +168,8 @@ class circle(ellipse):
 
 class line(SvgTag):
 
-    def __init__(self, xml_node):
-        super(line, self).__init__(xml_node)
+    def __init__(self, xml_node, _parentMat=None):
+        super(line, self).__init__(xml_node, _parentMat)
 
         if not self.xml_node == None:
             line_el = self.xml_node
@@ -177,8 +189,8 @@ class line(SvgTag):
 
 class polycommon(SvgTag):
 
-    def __init__(self, xml_node, polytype):
-        super(polycommon, self).__init__(xml_node)
+    def __init__(self, xml_node, _parentMat=None):
+        super(polycommon, self).__init__(xml_node, _parentMat)
         self.points = list()
 
         if not self.xml_node == None:
@@ -192,8 +204,8 @@ class polycommon(SvgTag):
 
 class polygon(polycommon):
 
-    def __init__(self, xml_node):
-         super(polygon, self).__init__(xml_node, 'polygon')
+    def __init__(self, xml_node, _parentMat=None):
+         super(polygon, self).__init__(xml_node, _parentMat)
 
     def d_path(self):
         d = "M " + self.points[0]
@@ -204,8 +216,8 @@ class polygon(polycommon):
 
 class polyline(polycommon):
 
-    def __init__(self, xml_node):
-         super(polyline, self).__init__(xml_node, 'polyline')
+    def __init__(self, xml_node, _parentMat=None):
+         super(polyline, self).__init__(xml_node, _parentMat)
 
     def d_path(self):
         d = "M " + self.points[0]
