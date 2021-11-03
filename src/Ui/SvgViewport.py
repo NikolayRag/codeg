@@ -46,6 +46,14 @@ class SvgDescriptor():
 
 
 
+	def fit(self, _p1, _p2):
+		xmm = sorted((_p1.x(), _p2.x()))
+		ymm = sorted((_p1.y(), _p2.y()))
+		self.place((xmm[0],ymm[0]))
+		self.size((xmm[1]-xmm[0],ymm[1]-ymm[0]))
+
+
+
 	def show(self, _vis):
 		self.canvas.layerSetVis(self.idGeo, _vis)
 
