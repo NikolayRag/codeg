@@ -10,6 +10,7 @@ class Geoblock():
 	matrix = [[1,0,0],[0,1,0]]
 	svgeo = None
 	allItems = []
+	box = None
 	source = ''
 	name = ''
 
@@ -62,6 +63,25 @@ class Geoblock():
 
 
 		return self.matrix
+
+
+
+	def bbox(self):
+		if self.box:
+			return
+			
+
+		self.box = list(self.allItems[0].bbox()) if self.allItems else [[0,0],[0,0]]
+
+		for cObj in self.allItems[1:]:
+			cBox = cObj.bbox()
+
+			if self.box[0]>cBox[0]: self.box[0]=cBox[0]
+			if self.box[1]<cBox[1]: self.box[1]=cBox[1]
+			if self.box[2]>cBox[2]: self.box[2]=cBox[2]
+			if self.box[3]<cBox[3]: self.box[3]=cBox[3]
+
+		return self.box
 
 
 
