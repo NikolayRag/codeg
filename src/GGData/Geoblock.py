@@ -7,8 +7,7 @@ from .GGen import *
 
 # -todo 181 (decide) +0: geometry embed method
 class Geoblock():
-	xformOffset = (0,0)
-	xformScale = (1,1)
+	matrix = [[1,0,0],[0,1,0]]
 	svgeo = None
 	allItems = []
 	source = ''
@@ -21,6 +20,7 @@ class Geoblock():
 
 	def __init__(self, _source, _name=''):
 		self.name = _name
+		self.matrix = [[1,0,0],[0,1,0]]
 
 		self.source = _source
 		geoXML = ElementTree.parse(self.source)
@@ -43,26 +43,31 @@ class Geoblock():
 			i += 1
 
 
-	def xformSet(self, offset=None, scale=None):
+	def xformSet(self, _matrix=None, offset=None, scale=None):
+		if _matrix:
+			self.matrix = _matrix
+
 		if offset:
-			self.xformOffset = offset
+			self.matrix[0][2] = offset[0]
+			self.matrix[1][2] = offset[1]
 
 			self.dirtyFlag = True
 
 		if scale:
-			self.xformScale = scale
+			self.matrix[0][0] = scale[0]
+			self.matrix[1][1] = scale[1]
 
 			self.dirtyFlag = True
 
 
-		return [(self.xformScale[0],0,self.xformOffset[0]), (0,self.xformScale[1],self.xformOffset[1])]
+		return self.matrix
 
 
 
 	def boxed(self, _xmm, _ymm, strict=True):
 		out = []
-		_xmm = (_xmm[0]-self.xformOffset[0], _xmm[1]-self.xformOffset[0])
-		_ymm = (_ymm[0]-self.xformOffset[1], _ymm[1]-self.xformOffset[1])
+		_xmm = (_xmm[0]-self.matrix[0][2], _xmm[1]-self.matrix[0][2])
+		_ymm = (_ymm[0]-self.matrix[1][2], _ymm[1]-self.matrix[1][2])
 
 		for cObj in self.allItems:
 			cBox = cObj.bbox()
@@ -113,7 +118,7 @@ class Geoblock():
 
 	def packGeo(self, _markLimit):
 		out = {
-			'xform': self.xformSet(),
+			'xform': self.matrix,
 			'source': self.source,
 			'name': self.name
 		}
@@ -150,9 +155,13 @@ class Geoblock():
 
 		self.svgeo.set(shapeIn=shapeInHook, shapePre=shapePreHook, shapeOut = 'S0')
 
-		xf = self.xformOffset
+		xform=[
+			[self.matrix[0][0], 0, self.matrix[0][2]+_x],
+			[0, self.matrix[1][1]*-1, -self.matrix[1][2]+_y]
+		]
+
 		out = []
-		for g in self.svgeo.generate( xform=[[1,0,xf[0]+_x], [0,-1,-xf[1]+_y]] ):
+		for g in self.svgeo.generate( xform=xform ):
 			out += g
 
 
