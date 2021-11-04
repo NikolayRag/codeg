@@ -146,8 +146,8 @@ class Scene():
 ### GEO ###
 
 
-	def geoAdd(self, _source, _marks=[], _solve=None, name=None):
-		geo = Geoblock(_source, self.geoNameUniq(_source, name))
+	def geoAdd(self, _source, _marks=[], _solve=None, name=None, raw=False):
+		geo = Geoblock(_source, self.geoNameUniq(_source, name), raw=raw)
 		self.allGeo.append( geo )
 
 		for cGeo in geo.getGeo():
