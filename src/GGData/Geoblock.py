@@ -19,10 +19,11 @@ class Geoblock():
 
 
 	def __init__(self, _source, _name=''):
-		self.name = _name
 		self.matrix = [[1,0,0],[0,1,0]]
 
+		self.name = _name
 		self.source = _source
+
 		geoXML = ElementTree.parse(self.source)
 		cRoot = geoXML.getroot()
 		cRoot.set('viewBox', '')
