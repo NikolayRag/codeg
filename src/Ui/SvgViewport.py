@@ -344,6 +344,8 @@ class SvgCanvasLayer(QSvgRenderer):
 
 	def layerSize(self):
 		defSize = self.defaultSize()
+		if defSize.width()==-1 or defSize.height()==-1:
+			return (0,0)
 		return (defSize.width()*self.scale[0], defSize.height()*self.scale[1])
 
 
