@@ -445,40 +445,10 @@ class SvgCanvas(QWidget):
 
 
 	def recompute(self, _update=True):
-			if not self.layers:
-				self.docXMin = 0
-				self.docXMax = self.defaultWidth
-				self.docYMin = 0
-				self.docYMax = self.defaultHeight
-
-
-				if _update:
-					self.update()
-
-				return
-
-
-			f = True
-			for l in self.layers.values():
-				if not l.display:
-					continue
-
-				lSize = QSizeF(*l.layerSize())
-				lPos = QPointF(*l.layerOffset())
-
-				if f:
-					f = False
-					self.docXMin = lPos.x()
-					self.docXMax = lSize.width() +lPos.x()
-					self.docYMin = lPos.y()
-					self.docYMax = lSize.height() +lPos.y()
-
-				else:
-					self.docXMin = min(self.docXMin, lPos.x())
-					self.docXMax = max(self.docXMax, lSize.width()+lPos.x())
-					self.docYMin = min(self.docYMin, lPos.y())
-					self.docYMax = max(self.docYMax, lSize.height()+lPos.y())
-
+			allLayerXforms = [[*l.layerOffset(), *l.layerSize()] for l in self.layers.values() if l.display]
+			allMinMax = list(zip(*[ [v[0], v[0]+v[2], v[1], v[1]+v[3]] for v in allLayerXforms ]))
+			self.docXMin, self.docXMax = map(sorted(allMinMax[0]+allMinMax[1]).__getitem__, [0,-1])
+			self.docYMin, self.docYMax = map(sorted(allMinMax[2]+allMinMax[3]).__getitem__, [0,-1])
 
 			if _update:
 				self.update()
