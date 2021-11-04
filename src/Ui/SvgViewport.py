@@ -344,7 +344,7 @@ class SvgCanvasLayer(QSvgRenderer):
 
 	def layerSize(self):
 		defSize = self.defaultSize()
-		return QSizeF(defSize.width()*self.scale[0], defSize.height()*self.scale[1])
+		return (defSize.width()*self.scale[0], defSize.height()*self.scale[1])
 
 
 
@@ -354,7 +354,7 @@ class SvgCanvasLayer(QSvgRenderer):
 
 
 	def layerOffset(self):
-		return QPointF(*self.offset)
+		return self.offset
 
 
 	def zindex(self, _z=None):
@@ -461,8 +461,8 @@ class SvgCanvas(QWidget):
 				if not l.display:
 					continue
 
-				lSize = l.layerSize()
-				lPos = l.layerOffset()
+				lSize = QSizeF(*l.layerSize())
+				lPos = QPointF(*l.layerOffset())
 
 				if f:
 					f = False
@@ -493,8 +493,8 @@ class SvgCanvas(QWidget):
 			if not l.display:
 				continue
 
-			lSize = l.layerSize()
-			lPos = l.layerOffset()
+			lSize = QSizeF(*l.layerSize())
+			lPos = QPointF(*l.layerOffset())
 
 			p.setViewport(
 				(lPos.x()-self.docXMin) *self.scaleX, # compensate entire canvas offset
