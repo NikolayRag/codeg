@@ -19,14 +19,17 @@ class Geoblock():
 
 
 
-	def __init__(self, _source, _name=''):
+	def __init__(self, _source, _name='', raw=False):
 		self.matrix = [[1,0,0],[0,1,0]]
 
 		self.name = _name
 		self.source = _source
 
-		geoXML = ElementTree.parse(self.source)
-		self.svgeo = GGen(geoXML.getroot())
+		if raw:
+			geoXML = ElementTree.fromstring(self.source)
+		else:
+			geoXML = ElementTree.parse(self.source).getroot()
+		self.svgeo = GGen(geoXML)
 
 		self.allItems = []
 
