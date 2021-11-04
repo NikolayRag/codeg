@@ -26,11 +26,7 @@ class Geoblock():
 		self.source = _source
 
 		geoXML = ElementTree.parse(self.source)
-		cRoot = geoXML.getroot()
-		cRoot.set('viewBox', '')
-		cRoot.set('width', '')
-		cRoot.set('height', '')
-		self.svgeo = GGen(cRoot)
+		self.svgeo = GGen(geoXML.getroot())
 
 		self.allItems = []
 
@@ -69,7 +65,7 @@ class Geoblock():
 	def bbox(self):
 		if self.box:
 			return
-			
+
 
 		self.box = list(self.allItems[0].bbox()) if self.allItems else [[0,0],[0,0]]
 
