@@ -66,8 +66,8 @@ class Geoblock():
 
 	def boxed(self, _xmm, _ymm, strict=True):
 		out = []
-		_xmm = (_xmm[0]-self.matrix[0][2], _xmm[1]-self.matrix[0][2])
-		_ymm = (_ymm[0]-self.matrix[1][2], _ymm[1]-self.matrix[1][2])
+		_xmm = ((_xmm[0]-self.matrix[0][2])/self.matrix[0][0], (_xmm[1]-self.matrix[0][2])/self.matrix[0][0])
+		_ymm = ((_ymm[0]-self.matrix[1][2])/self.matrix[1][1], (_ymm[1]-self.matrix[1][2])/self.matrix[1][1])
 
 		for cObj in self.allItems:
 			cBox = cObj.bbox()
