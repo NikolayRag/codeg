@@ -241,10 +241,11 @@ class AppWindow(QObject):
 ### GEO ###
 #  todo 213 (ux, viewport) +0: place support viewport layer for block
 	def geoAddWidget(self, _geo):
-		gOffset = _geo.xformSet()
-		gOffset = (gOffset[0][2], gOffset[1][2])
+		gX = _geo.xformSet()
+		gOffset = (gX[0][2], gX[1][2])
+		gScale = (gX[0][0], gX[1][1])
 		cXml = _geo.xmlString()
-		cDscr = self.wSvgViewport.canvasAdd(cXml, gOffset)
+		cDscr = self.wSvgViewport.canvasAdd(cXml, gOffset, gScale)
 
 		self.widgetGeo.blockAdd(_geo, cDscr)
 
