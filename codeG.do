@@ -643,7 +643,7 @@
 !fix, check 226: +0 "" ki 21/11/02 01:09:28
 	probably will fit wrong if canvas and widget orientation differs
 
-=fix 227: +10 "src\Ui\SvgViewport.py" ki 21/11/03 20:56:16
+=fix 227: +10 "src\Ui\SvgViewport.py" ki 21/11/04 02:55:28
 	integer pos and size result in SvgCanvasLayer jitter
 
 +ux, fix 228: +0 "src\Ui\AppWindow.py" ki 21/10/31 22:47:20
