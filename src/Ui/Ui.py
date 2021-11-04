@@ -161,6 +161,7 @@ class Ui():
 		self.appWindow.sigSceneSave.connect(self.sceneSave)
 		self.appWindow.sigSceneLoad.connect(self.sceneLoad)
 		self.appWindow.sigAddFile.connect(self.addFile)
+		self.appWindow.sigPaste.connect(self.paste)
 
 		self.appWindow.connList(self.dispatch.getDevices())
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
@@ -383,6 +384,18 @@ class Ui():
 
 
 		cGBlock = self.activeScene.geoAdd(fileName, [self.markDefault], 'UI')
+		cOffset = QPointF(*self.dispatch.getCnc().table())
+		cGBlock.xformSet(offset=(0,-cOffset.y()))
+		self.appWindow.geoAddWidget(cGBlock)
+
+		self.appWindow.viewportFit()
+
+
+
+	def paste(self):
+		clipboard = QGuiApplication.clipboard()
+
+		cGBlock = self.activeScene.geoAdd(clipboard.text(), [self.markDefault], 'UI', name='paste', raw=True)
 		cOffset = QPointF(*self.dispatch.getCnc().table())
 		cGBlock.xformSet(offset=(0,-cOffset.y()))
 		self.appWindow.geoAddWidget(cGBlock)

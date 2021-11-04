@@ -84,6 +84,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QToolButton" name="btnSave">
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="btnOpen">
             <property name="text">
              <string/>
@@ -101,9 +108,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="btnSave">
+           <widget class="QToolButton" name="btnPaste">
             <property name="text">
-             <string>Save</string>
+             <string>pasta</string>
             </property>
            </widget>
           </item>

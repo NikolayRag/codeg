@@ -31,6 +31,7 @@ class AppWindow(QObject):
 	sigSceneSave = Signal()
 	sigSceneLoad = Signal()
 	sigAddFile = Signal()
+	sigPaste = Signal()
 
 	sigDispatch = Signal(str)
 	sigStoreG = Signal()
@@ -119,6 +120,7 @@ class AppWindow(QObject):
 		self.wBtnSave = cMain.findChild(QWidget, "btnSave")
 		self.wBtnLoad = cMain.findChild(QWidget, "btnLoad")
 		self.wBtnStore = cMain.findChild(QWidget, "btnStore")
+		self.wBtnPaste = cMain.findChild(QWidget, "btnPaste")
 
 		self.wFrameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
 		self.wFrameDispatcher.setVisible(False)
@@ -134,6 +136,7 @@ class AppWindow(QObject):
 		self.wBtnCaption.clicked.connect(self.about)
 		self.wBtnWipe.clicked.connect(self.sigSceneReset)
 		self.wBtnOpen.clicked.connect(self.sigAddFile)
+		self.wBtnPaste.clicked.connect(self.sigPaste)
 		self.wBtnSave.clicked.connect(self.sigSceneSave)
 		self.wBtnLoad.clicked.connect(self.sigSceneLoad)
 		self.wBtnStore.clicked.connect(self.sigStoreG)
