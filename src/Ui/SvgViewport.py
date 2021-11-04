@@ -202,7 +202,7 @@ class SvgViewport(QWidget):
 
 
 		#min clip
-		cSize = self.canvas.sizeHint()
+		cSize = self.canvas.getDocSize(self.canvasScale)
 		cWidth, cHeight = cSize.width(), cSize.height()
 		newSize = (cWidth if cWidth<cHeight else cHeight) * _scale/self.canvasScale
 
