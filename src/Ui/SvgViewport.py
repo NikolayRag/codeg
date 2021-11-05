@@ -300,10 +300,9 @@ class SvgViewport(QWidget):
 
 
 		#center
-		cBox = self.canvas.getDocSize(self.canvasScale)
 		self.viewportPlace(QPoint(
-			self.width()*offset -(cBox.left()+cBox.width()*offset),
-			self.height()*.5 -(cBox.top()+cBox.height()*.5)
+			self.width()*offset -(cBox.left()+cBox.width()*offset) *self.canvasScale,
+			self.height()*.5 -(cBox.top()+cBox.height()*.5) *self.canvasScale
 		))
 
 
