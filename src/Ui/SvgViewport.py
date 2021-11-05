@@ -20,7 +20,7 @@ class SvgDescriptor():
 		self.recomputeCB = _recomputeCB
 		self.idGeo = self.canvas.layerNew(z)
 
-		self.canvas.layerGhost(self.idGeo, ghost)
+		self.ghost(ghost)
 
 		if _xml:
 			self.setXml(_xml)
@@ -58,6 +58,11 @@ class SvgDescriptor():
 
 	def show(self, _vis):
 		self.canvas.layerSetVis(self.idGeo, _vis)
+
+
+
+	def ghost(self, _ghost):
+		self.canvas.layerGhost(self.idGeo, _ghost)
 
 
 
