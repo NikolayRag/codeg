@@ -447,6 +447,7 @@ class SvgCanvas(QWidget):
 	def recompute(self, _update=True):
 			allLayerXforms = [[*l.layerOffset(), *l.layerSize()] for l in self.layers.values() if l.display]
 			allMinMax = list(zip(*[ [v[0], v[0]+v[2], v[1], v[1]+v[3]] for v in allLayerXforms ]))
+			allMinMax = allMinMax or [[0], [self.defaultWidth], [0], [self.defaultHeight]]
 			self.docXMin, self.docXMax = map(sorted(allMinMax[0]+allMinMax[1]).__getitem__, [0,-1])
 			self.docYMin, self.docYMax = map(sorted(allMinMax[2]+allMinMax[3]).__getitem__, [0,-1])
 
