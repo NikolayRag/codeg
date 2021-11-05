@@ -255,6 +255,8 @@ class AppWindow(QObject):
 
 		self.widgetGeo.blockAdd(_geo, cDscr)
 
+		return cDscr
+
 
 
 	def geoWidgetTouched(self, _block, _descr):
