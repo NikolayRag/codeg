@@ -676,3 +676,6 @@
  svg, fix, v2 237: +0 "src\Ui\SvgViewport.py" ki 21/11/05 00:18:00
 	go OGL
 
+=fix, viewport, svg 238: +0 "src\Ui\SvgViewport.py" ki 21/11/05 17:11:13
+	correct SvgCanvasLayer xform for scaled/offset svg
+
