@@ -176,11 +176,11 @@ class AppWindow(QObject):
 ### VIEWPORT ###
 
 
-	def viewportFit(self):
+	def viewportFit(self, _box=None):
 		countGrid = bool(self.widgetGeo.getBlocks())
 		self.gridDescription.ghost(countGrid)
 
-		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset)
+		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset, box=_box)
 
 
 
