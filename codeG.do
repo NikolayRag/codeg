@@ -163,7 +163,7 @@
 +fix 58: +0 "src\Ui\Ui.py" kii 21/08/06 17:23:41
 	isolate
 
--module-ui, ux, clean 59: +0 "src\Ui\AppWindow.py" kii 21/08/06 17:22:09
+-module-ui, ux, clean 59: +0 "src\Ui\AppWindow.py" ki 21/11/04 04:09:46
 	make updatable connections list
 
 =module-dispatch 60: +0 "src\Dispatch\Dispatch.py" kii 21/08/28 18:03:33
@@ -538,7 +538,7 @@
  filter, feature 191: +2 "src\Ui\Ui.py" ki 21/10/20 23:58:14
 	outline, fill and shape-intersect filters
 
- module-ui, fix 192: +0 "src\Ui\AppWindow.py" ki 21/10/22 01:31:18
++module-ui, fix 192: +0 "src\Ui\AppWindow.py" ki 21/11/05 04:13:41
 	wrong fit at start
 
  ux, widgets, decide 193: +0 "src\Ui\GeoWidget.py" ki 21/10/22 18:21:35
@@ -553,7 +553,7 @@
  module-data, api 196: +0 "src\Ui\Ui.py" ki 21/10/23 04:42:23
 	deal with Markfilter data fields within Mark
 
-=data, fix 197: +0 "src\Ui\Ui.py" ki 21/11/02 15:17:11
+=data, fix 197: +0 "src\Ui\Ui.py" ki 21/11/04 04:06:17
 	deal with missing svg link
 
 =data, fix 198: +0 "src\Ui\Ui.py" ki 21/10/23 07:20:24
@@ -619,7 +619,7 @@
 !module-ui, ux 218: +0 "src\Ui\Ui.py" ki 21/10/29 21:14:54
 	add inactive Geo visual style
 
-=module-ui, module-data, geo 219: +0 "src\Ui\Ui.py" ki 21/10/29 21:14:55
+=module-ui, module-data, geo 219: +0 "src\Ui\Ui.py" ki 21/11/04 03:56:45
 	edit Geoblock transform
 
 =ux, widget 220: +0 "src\Ui\GeoWidget.py" ki 21/10/29 21:13:35
@@ -643,7 +643,7 @@
 !fix, check 226: +0 "" ki 21/11/02 01:09:28
 	probably will fit wrong if canvas and widget orientation differs
 
-=fix 227: +10 "src\Ui\SvgViewport.py" ki 21/11/04 02:55:28
+-fix 227: +0 "src\Ui\SvgViewport.py" ki 21/11/05 04:41:27
 	integer pos and size result in SvgCanvasLayer jitter
 
 +ux, fix 228: +0 "src\Ui\AppWindow.py" ki 21/10/31 22:47:20
@@ -666,4 +666,13 @@
 
 +ux, viewport 234: +0 "src\Ui\SvgViewport.py" ki 21/11/03 20:06:29
 	show interaction box
+
++fix 235: +1 "src\GGData\Geoblock.py" ki 21/11/04 06:29:58
+	very bad viewport parsing, find reasonable solution
+
+ svg, fix, v2 236: +0 "src\GGData\Geoblock.py" ki 21/11/04 07:26:48
+	parse svg more completely
+
+ svg, fix, v2 237: +0 "src\Ui\SvgViewport.py" ki 21/11/05 00:18:00
+	go OGL
 

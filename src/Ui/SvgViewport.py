@@ -9,6 +9,8 @@ from PySide2.QtSvg import *
 #  todo 229 (viewport, v2) +0: overview
 
 
+#  todo 237 (svg, fix, v2) +0: go OGL
+
 class SvgDescriptor():
 	canvas = None
 	recomputeCB = None
@@ -374,7 +376,6 @@ class SvgCanvasLayer(QSvgRenderer):
 
 
 
-# =todo 227 (fix) +10: integer pos and size result in SvgCanvasLayer jitter
 class SvgCanvas(QWidget):
 	defaultWidth = 0
 	defaultHeight = 0
@@ -399,6 +400,7 @@ class SvgCanvas(QWidget):
 		self.defaultWidth = size[0]
 		self.defaultHeight = size[1]
 
+# -todo 227 (fix) +0: integer pos and size result in SvgCanvasLayer jitter
 		#anti jitter pin
 		self.layers[-1] = SvgCanvasLayer(self, -1)
 		self.layers[-1].setGhost(True)

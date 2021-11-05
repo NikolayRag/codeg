@@ -4,6 +4,7 @@ import re
 from .GGen import *
 
 
+#  todo 236 (svg, fix, v2) +0: parse svg more completely
 
 # -todo 181 (decide) +0: geometry embed method
 class Geoblock():
