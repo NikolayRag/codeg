@@ -375,10 +375,8 @@ class SvgCanvas(QWidget):
 
 	layers = {}
 	layerMaxId = 0
-	docXMin = 0
-	docXMax = 0
-	docYMin = 0
-	docYMax = 0
+	docXMin = docXMax = docYMin = docYMax = 0
+	ghostXMin = ghostXMax = ghostYMin = ghostYMax = 0
 
 	
 	offset = QPoint(0,0)
@@ -445,11 +443,17 @@ class SvgCanvas(QWidget):
 
 
 	def recompute(self, _update=True):
-			allLayerXforms = [[*l.layerOffset(), *l.layerSize()] for l in self.layers.values() if l.display]
+			allLayerXforms = [[*l.layerOffset(), *l.layerSize()] for l in self.layers.values() if l.display and not l.ghost]
 			allMinMax = list(zip(*[ [v[0], v[0]+v[2], v[1], v[1]+v[3]] for v in allLayerXforms ]))
 			allMinMax = allMinMax or [[0], [self.defaultWidth], [0], [self.defaultHeight]]
 			self.docXMin, self.docXMax = map(sorted(allMinMax[0]+allMinMax[1]).__getitem__, [0,-1])
 			self.docYMin, self.docYMax = map(sorted(allMinMax[2]+allMinMax[3]).__getitem__, [0,-1])
+
+			allLayerXforms = [[*l.layerOffset(), *l.layerSize()] for l in self.layers.values() if l.display]
+			allMinMax = list(zip(*[ [v[0], v[0]+v[2], v[1], v[1]+v[3]] for v in allLayerXforms ]))
+			allMinMax = allMinMax or [[0], [self.defaultWidth], [0], [self.defaultHeight]]
+			self.ghostXMin, self.ghostXMax = map(sorted(allMinMax[0]+allMinMax[1]).__getitem__, [0,-1])
+			self.ghostYMin, self.ghostYMax = map(sorted(allMinMax[2]+allMinMax[3]).__getitem__, [0,-1])
 
 			if _update:
 				self.update()
@@ -470,8 +474,8 @@ class SvgCanvas(QWidget):
 			lPos = QPointF(*l.layerOffset())
 
 			p.setViewport(
-				(lPos.x()-self.docXMin) *self.scaleX, # compensate entire canvas offset
-				(lPos.y()-self.docYMin) *self.scaleY,
+				(lPos.x()-self.ghostXMin) *self.scaleX, # compensate entire canvas offset
+				(lPos.y()-self.ghostYMin) *self.scaleY,
 				lSize.width() *self.scaleX,
 				lSize.height() *self.scaleY
 			)
@@ -481,8 +485,8 @@ class SvgCanvas(QWidget):
 
 	def sizeHint(self):
 		return QSize(
-			max(1, (self.docXMax - self.docXMin) * self.scaleX),
-			max(1, (self.docYMax - self.docYMin) * self.scaleY)
+			max(1, (self.ghostXMax - self.ghostXMin) * self.scaleX),
+			max(1, (self.ghostYMax - self.ghostYMin) * self.scaleY)
 		)
 
 
@@ -490,8 +494,8 @@ class SvgCanvas(QWidget):
 	def update(self):
 		self.resize(self.sizeHint())
 		self.move(QPoint(
-			self.offset.x()+int(self.docXMin*self.scaleX),
-			self.offset.y()+int(self.docYMin*self.scaleY)
+			self.offset.x()+int(self.ghostXMin*self.scaleX),
+			self.offset.y()+int(self.ghostYMin*self.scaleY)
 		))
 
 		QWidget.update(self)
