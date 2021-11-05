@@ -399,6 +399,11 @@ class SvgCanvas(QWidget):
 		self.defaultWidth = size[0]
 		self.defaultHeight = size[1]
 
+		#anti jitter pin
+		self.layers[-1] = SvgCanvasLayer(self, -1)
+		self.layers[-1].setGhost(True)
+		self.layers[-1].setLayerOffset((-1000000,-1000000))
+
 		self.recompute()
 
 
