@@ -295,8 +295,8 @@ class SvgViewport(QWidget):
 
 
 
-	def canvasFit(self, multiply=1., offset=.5):
-		cBox = self.canvas.getDocSize()
+	def canvasFit(self, multiply=1., offset=.5, box=None):
+		cBox = box or self.canvas.getDocSize()
 		scaleX = self.width() / cBox.width()
 		scaleY = self.height() / cBox.height()
 
