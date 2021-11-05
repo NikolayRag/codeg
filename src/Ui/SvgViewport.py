@@ -15,10 +15,12 @@ class SvgDescriptor():
 	idGeo = -1
 
 
-	def __init__(self, _canvas, _recomputeCB, _xml=None, z=0):
+	def __init__(self, _canvas, _recomputeCB, _xml=None, z=0, ghost=False):
 		self.canvas = _canvas
 		self.recomputeCB = _recomputeCB
 		self.idGeo = self.canvas.layerNew(z)
+
+		self.canvas.layerGhost(self.idGeo, ghost)
 
 		if _xml:
 			self.setXml(_xml)
@@ -279,8 +281,8 @@ class SvgViewport(QWidget):
 
 
 
-	def canvasAdd(self, _xml=None, _offset=(0,0), _scale=(1,1), z=0):
-		cDescr = SvgDescriptor(self.canvas, self.anchorCanvas, _xml, z)
+	def canvasAdd(self, _xml=None, _offset=(0,0), _scale=(1,1), z=0, ghost=False):
+		cDescr = SvgDescriptor(self.canvas, self.anchorCanvas, _xml, z=z, ghost=ghost)
 		cDescr.place(_offset)
 		cDescr.size(_scale)
 
@@ -437,6 +439,14 @@ class SvgCanvas(QWidget):
 	def layerSetVis(self, _lId, _vis):
 		cLayer = self.layers[_lId]
 		cLayer.setDisplay(_vis)
+
+		self.recompute()
+
+
+
+	def layerGhost(self, _lId, _ghost):
+		cLayer = self.layers[_lId]
+		cLayer.setGhost(_ghost)
 
 		self.recompute()
 
