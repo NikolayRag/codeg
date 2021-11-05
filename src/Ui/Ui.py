@@ -388,8 +388,6 @@ class Ui():
 		cGBlock.xformSet(offset=(0,-cOffset.y()))
 		self.appWindow.geoAddWidget(cGBlock)
 
-		self.appWindow.viewportFit()
-
 
 
 	def paste(self):
@@ -399,8 +397,6 @@ class Ui():
 		cOffset = QPointF(*self.dispatch.getCnc().table())
 		cGBlock.xformSet(offset=(0,-cOffset.y()))
 		self.appWindow.geoAddWidget(cGBlock)
-
-		self.appWindow.viewportFit()
 
 
 
