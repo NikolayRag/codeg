@@ -117,6 +117,9 @@ class Ui():
 	styleSet = 'dark'
 
 	defWindowFit = .85
+	defVportGeoFit = .5
+	defVportOffset = .66
+
 
 	args = None
 
@@ -385,7 +388,9 @@ class Ui():
 		cGBlock = self.activeScene.geoAdd(fileName, [self.markDefault], 'UI')
 		cOffset = QPointF(*self.dispatch.getCnc().table())
 		cGBlock.xformSet(offset=(0,-cOffset.y()))
-		self.appWindow.geoAddWidget(cGBlock)
+		gDscr = self.appWindow.geoAddWidget(cGBlock)
+
+		self.appWindow.viewportFit(self.defVportGeoFit, self.defVportOffset, gDscr.bbox())
 
 
 
@@ -395,7 +400,9 @@ class Ui():
 		cGBlock = self.activeScene.geoAdd(clipboard.text(), [self.markDefault], 'UI', name='paste', raw=True)
 		cOffset = QPointF(*self.dispatch.getCnc().table())
 		cGBlock.xformSet(offset=(0,-cOffset.y()))
-		self.appWindow.geoAddWidget(cGBlock)
+		gDscr = self.appWindow.geoAddWidget(cGBlock)
+
+		self.appWindow.viewportFit(self.defVportGeoFit, self.defVportOffset, gDscr.bbox())
 
 
 
