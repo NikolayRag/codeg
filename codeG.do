@@ -337,7 +337,7 @@
 !refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" ki 21/10/23 03:36:50
 	clean for minor import
 
--refactor, module-ui, module-data 119: +0 "src\Ui\Ui.py" kii 21/09/09 21:27:02
+-refactor, module-ui, module-data 119: +0 "src\Ui\Ui.py" ki 21/11/05 20:05:08
 	clean for dispatch
 
 +refactor, module-ui, module-data, fix 120: +0 "src\Ui\Ui.py" kii 21/10/09 20:33:56
@@ -508,7 +508,7 @@
 =module-ui, mark 180: +0 "src\Ui\MarkWidget.py" ki 21/10/19 03:18:36
 	allow to assign only with selected geo
 
--decide 181: +0 "src\GGData\Geoblock.py" ki 21/10/26 20:58:34
+-decide 181: +0 "src\GGData\Geoblock.py" ki 21/11/05 20:04:13
 	geometry embed method
 
 =ux 182: +0 "src\Ui\Ui.py" ki 21/10/19 06:59:59
@@ -670,7 +670,7 @@
 +fix 235: +1 "src\GGData\Geoblock.py" ki 21/11/04 06:29:58
 	very bad viewport parsing, find reasonable solution
 
- svg, fix, v2 236: +0 "src\GGData\Geoblock.py" ki 21/11/04 07:26:48
+ svg, fix, v2 236: +0 "src\GGData\Geoblock.py" ki 21/11/05 20:05:08
 	parse svg more completely
 
  svg, fix, v2 237: +0 "src\Ui\SvgViewport.py" ki 21/11/05 00:18:00
@@ -678,4 +678,7 @@
 
 =fix, viewport, svg 238: +0 "src\Ui\SvgViewport.py" ki 21/11/05 17:11:13
 	correct SvgCanvasLayer xform for scaled/offset svg
+
+=svg 239: +0 "src\Ui\SvgViewport.py" ki 21/11/06 05:19:16
+	join SvgDescriptor and SvgCanvasLayer
 
