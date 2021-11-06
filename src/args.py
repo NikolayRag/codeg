@@ -7,6 +7,14 @@ Deal with app settings.
 Loads previously saved and put commandline arguments over.
 '''
 class Args():
+	defaults = [
+		['-defWindowFit', 0.8],
+		['-defVportFit', 0.5],
+		['-defVportGeoFit', .3],
+		['-defVportOffset', 0.66],
+	]
+
+
 	appName = 'codeg'
 	settingsFile = os.path.join(os.path.expanduser('~'), ".%s/%s.ini" % (appName,appName))
 
@@ -104,7 +112,9 @@ class Args():
 
 		cParser.add_argument('-v', default=False, action='store_true', help='version 0')
 #		cParser.add_argument('inStr', type=str, default='pwned', nargs=(None if 0 else '?'), help='Mandatory string input')
-#		cParser.add_argument('-num', type=int, choices=[1,2], help='number setting', help=argparse.SUPPRESS)
+
+		for argn, argv in self.defaults:
+			cParser.add_argument(argn, default=argv, help=argparse.SUPPRESS)
 
 		
 		cArgs = cParser.parse_args()
