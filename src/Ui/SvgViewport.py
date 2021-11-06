@@ -50,6 +50,11 @@ class SvgDescriptor():
 
 
 
+	def bbox(self):
+		return self.canvas.layerBox(self.idGeo)
+
+
+
 	def fit(self, _p1, _p2):
 		xmm = sorted((_p1.x(), _p2.x()))
 		ymm = sorted((_p1.y(), _p2.y()))
@@ -379,6 +384,10 @@ class SvgCanvasLayer(QSvgRenderer):
 
 
 
+	def getLayerBox(self):
+		return (*self.layerOffset(True), *self.layerSize())
+
+
 
 	def zindex(self, _z=None):
 		if _z != None:
@@ -457,6 +466,12 @@ class SvgCanvas(QWidget):
 		cLayer.setLayerScale(_scale)
 
 		self.recompute()
+
+
+
+	def layerBox(self, _lId):
+		cLayer = self.layers[_lId]
+		return cLayer.getLayerBox()
 
 
 
