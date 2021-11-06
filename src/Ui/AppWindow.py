@@ -43,8 +43,8 @@ class AppWindow(QObject):
 	defGrid = 'resource\\grid.svg' #1-unit size
 	defUi = './Ui/AppWindow.ui'
 
-	defaultViewportFit = 0.8
-	defaultViewportOffset = 0.66
+	defVportFit = .7
+	defVportOffset = .66
 
 
 ## runtime ##
@@ -171,11 +171,14 @@ class AppWindow(QObject):
 ### VIEWPORT ###
 
 
-	def viewportFit(self, _box=None):
+	def viewportFit(self, _fit=None, _offset=None, _box=None):
+		_fit = _fit or self.defVportFit
+		_offset = _offset or self.defVportOffset
+
 		countGrid = bool(self.widgetGeo.getBlocks())
 		self.gridDescription.ghost(countGrid)
 
-		self.wSvgViewport.canvasFit(self.defaultViewportFit, self.defaultViewportOffset, box=_box)
+		self.wSvgViewport.canvasFit(_fit, _offset, box=_box)
 
 
 
