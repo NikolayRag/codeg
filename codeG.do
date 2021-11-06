@@ -682,6 +682,6 @@
 =svg 239: +0 "src\Ui\SvgViewport.py" ki 21/11/06 05:19:16
 	join SvgDescriptor and SvgCanvasLayer
 
- api 240: +0 "src\args.py" ki 21/11/06 05:23:59
+=api 240: +0 "src\args.py" ki 21/11/06 05:30:58
 	make global settings singletone
 
