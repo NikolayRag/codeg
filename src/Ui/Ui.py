@@ -116,6 +116,7 @@ class Ui():
 # =todo 116 (ux, module-ui) +0: choose style in app settings
 	styleSet = 'dark'
 
+	defWindowFit = .85
 
 	args = None
 
@@ -143,10 +144,8 @@ class Ui():
 
 		self.appWindow = AppWindow(self.styleList[self.styleSet])
 
-		self.appWindow.resize(
-			self.args.get('wSize'),
-			self.args.get('wMaxi')
-		)
+		cSize = self.args.get('wSize') or QApplication.primaryScreen().size() * self.defWindowFit
+		self.appWindow.resize(cSize, self.args.get('wMaxi'))
 
 
 		self.appWindow.sigPreexit.connect(self.preexit)

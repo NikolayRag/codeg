@@ -43,7 +43,6 @@ class AppWindow(QObject):
 	defGrid = 'resource\\grid.svg' #1-unit size
 	defUi = './Ui/AppWindow.ui'
 
-	defaultWindowFit = 0.8
 	defaultViewportFit = 0.8
 	defaultViewportOffset = 0.66
 
@@ -152,11 +151,7 @@ class AppWindow(QObject):
 
 
 	def resize(self, _size, maximize=None):
-		self.wMain.resize(
-			QSize(*_size)
-			if _size else
-			QApplication.primaryScreen().size() * self.defaultWindowFit
-		)
+		self.wMain.resize( QSize(*_size) )
 
 		if maximize:
 			self.wMain.showMaximized()
