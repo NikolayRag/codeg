@@ -526,8 +526,8 @@
 !dispatch, feature 187: +0 "src\Ui\Ui.py" ki 21/10/20 22:57:58
 	
 
-=module-data, api 188: +0 "src\Ui\Ui.py" ki 21/11/07 06:26:40
-	move all data functions to data
+!module-data, api 188: +0 "src\Ui\Ui.py" ki 21/11/07 07:46:10
+	move scene load to data
 
 -module-data, api, decide 189: +1 "src\GGData\GGData.py" ki 21/10/24 03:26:05
 	make all indirect (by id) controls

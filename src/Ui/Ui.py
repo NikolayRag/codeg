@@ -220,7 +220,6 @@ class Ui():
 ### SLOTS ###
 
 
-# =todo 188 (module-data, api) +0: move all data functions to data
 	def sceneDirty(self):
 		scenesList = self.data.sceneList()
 		
