@@ -211,10 +211,10 @@ class Ui():
 		self.qApp.exec_()
 
 
-#		self.args.set('wMaxi', self.appWindow.lMain.isMaximized())
+		Args.app.wMaxi = self.appWindow.lMain.isMaximized()
 		if not self.appWindow.lMain.isMaximized():
 			cSize = self.appWindow.lMain.size()
-#			self.args.set('wSize', (cSize.width(), cSize.height()) )
+			Args.app.wSize = (cSize.width(), cSize.height())
 
 
 
@@ -272,7 +272,7 @@ class Ui():
 
 		
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
-#		self.args.set("recentProject", cRecentA+[fileName])
+		Args.ui.recentProject = cRecentA+[fileName]
 
 
 		for cScene in self.data.sceneList():
@@ -359,7 +359,7 @@ class Ui():
 			f.write( json.dumps(saveData, indent=2) )
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
-#		self.args.set("recentProject", cRecentA+[fileName])
+		Args.ui.recentProject = cRecentA+[fileName]
 
 
 		self.activeScene.clean()
@@ -378,7 +378,7 @@ class Ui():
 
 		
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
-#		self.args.set("recentLoaded", cRecentA+[fileName])
+		Args.ui.recentLoaded = cRecentA+[fileName]
 
 
 		cGBlock = self.activeScene.geoAdd(fileName, [self.markDefault], 'UI')
@@ -423,7 +423,7 @@ class Ui():
 
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
-#		self.args.set("recentSaved", cRecentA+[fileName])
+		Args.ui.recentSaved = cRecentA+[fileName]
 
 
 
