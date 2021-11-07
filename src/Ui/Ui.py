@@ -129,9 +129,7 @@ class Ui():
 
 
 # -todo 148 (module-ui, fix) +0: review scene life cycle
-	def __init__(self, _args, _data, _dispatch):
-		self.args = _args
-
+	def __init__(self, _data, _dispatch):
 		self.data = _data
 		self.dispatch = _dispatch
 

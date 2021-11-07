@@ -38,13 +38,13 @@ AppFields = {
 
 #  todo 202 (clean) +0: add app constants
 if __name__ == '__main__':
-	cArgs= Args(AppPrefs, AppFields, AppName)
+	cArgs = Args(AppPrefs, AppFields, AppName)
 
 	cGG = GGData()
 	
 	cDis = Dispatch(cGG)
 
-	cUi = Ui(cArgs, cGG, cDis)
+	cUi = Ui(cGG, cDis)
 	cUi.exec()
 
 
