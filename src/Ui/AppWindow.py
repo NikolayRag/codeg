@@ -156,8 +156,8 @@ class AppWindow(QObject):
 
 
 
-	def mainSize(self):
-		return self.rtSize[1]
+	def windowSize(self):
+		return [self.rtSize[1], self.lMain.isMaximized()]
 
 
 
