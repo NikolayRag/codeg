@@ -92,7 +92,7 @@ class SvgViewport(QWidget):
 
 	panMargins = .2
 	scaleMinPx = 10
-	scaleMax = 10000
+	scaleMax = 1000
 	spotDist = 10
 	zoomStep = 1.1
 
@@ -427,7 +427,7 @@ class SvgCanvas(QWidget):
 		#anti jitter pin
 		self.layers[-1] = SvgCanvasLayer(self, -1)
 		self.layers[-1].setGhost(True)
-		self.layers[-1].setLayerOffset((-1000000,-1000000))
+		self.layers[-1].setLayerOffset((-10000,-10000))
 
 		self.recompute()
 
