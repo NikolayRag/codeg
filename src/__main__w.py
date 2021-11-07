@@ -49,4 +49,4 @@ if __name__ == '__main__':
 
 
 	logging.warning('Exiting')
-	cArgs.save()
+	cArgs._save()

@@ -33,10 +33,8 @@ class ArgBlock():
 
 class Args():
 	_iniFile = None
+
 	_args = []
-
-
-	args= None
 
 
 
@@ -82,7 +80,7 @@ class Args():
 
 		if _iniFile:
 			self._iniFile = os.path.join(os.path.expanduser('~'), ".%s/%s.ini" % (_iniFile,_iniFile))
-			self.load()
+			self._load()
 
 
 #		self.parseCmdline(_defaults)
@@ -92,7 +90,7 @@ class Args():
 	'''
 	Save current settings to application related file.
 	'''
-	def save(self):
+	def _save(self):
 		saveData = {}
 
 		for cBlock in self._args:
@@ -101,7 +99,6 @@ class Args():
 				cFieldsA[cField] = getattr(cBlock, cField)
 
 			saveData[cBlock._getName()] = cFieldsA
-
 
 
 		settings = json.dumps(saveData, sort_keys=True, indent=4)
@@ -123,7 +120,7 @@ class Args():
 
 	#private
 
-	def load(self):
+	def _load(self):
 		try:
 			f = open(self._iniFile, 'r')
 		except:
