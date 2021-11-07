@@ -7,54 +7,85 @@ Deal with app settings.
 Loads previously saved and put commandline arguments over.
 '''
 # =todo 240 (api) +0: make global settings singletone
+class ArgBlock():
+	_name = None
+	_fields = {}
+
+
+#	def __setitem__(self, _name):
+	def __init__(self, _name):
+		self._name = _name
+		self._fields = {}
+
+
+	def _setData(self, _name, _data):
+		self._fields[_name] = _data
+
+
+	def _getName(self):
+		return self._name
+
+	def _getFields(self):
+		return dict(self._fields)
+
+
+
+
 class Args():
-	defaults = [
-		['-defWindowFit', 0.8],
-		['-defVportFit', 0.5],
-		['-defVportGeoFit', .3],
-		['-defVportOffset', 0.66],
-	]
+	_iniFile = None
+	_args = []
 
-
-	appName = 'codeg'
-	settingsFile = os.path.join(os.path.expanduser('~'), ".%s/%s.ini" % (appName,appName))
 
 	args= None
 
 
 
-	'''
-	_reuseOld tells to load saved settings.
-	If set, 'dst' is not required.
-	'''
-	def __init__(self, _reuseOld=True):
-		if _reuseOld:
-			self.args = self.load()
+	def fillFields(self, _defaults, _store=True):
+		for blockN, blockV in _defaults.items():
+			if not hasattr(Args, blockN):
+				cBlock = ArgBlock(blockN)
+				setattr(Args, blockN, cBlock)
 
-		if not self.args:
-			self.args = {}
+				self._args.append(cBlock)
 
 
-		cArgs = self.parseCmdline()
+			cBlock = getattr(Args, blockN)
+			for argN, argV in blockV.items():
+				setattr(cBlock, argN, argV)
+
+				cBlock._setData(argN, _store)
+
+
+
+	def parseCmdline(self, _defs):
+		cParser = argparse.ArgumentParser(description= 'codeg')
+
+		cParser.add_argument('-v', default=False, action='store_true')
+#		cParser.add_argument('inStr', type=str, default='pwned', nargs=(None if 0 else '?'), help='Mandatory string input')
+
+		for block in self._args:
+			for argn,argv in vars(block).items():
+				cParser.add_argument(f"-{argn}", default=argv, help=argparse.SUPPRESS)
+
+		
+		cArgs = cParser.parse_args()
 
 		if cArgs:
-			for cArg in cArgs:
-				if cArgs[cArg] != None:
-					self.args[cArg] = cArgs[cArg]
+			return vars(cArgs)
+		
 
 
+	def __init__(self, _defaults, _field, _iniFile=None):
+		self.fillFields(_defaults)
+		self.fillFields(_field, False)
 
 
-	def get(self, _field, default=None):
-		return self.args[_field] if (_field in self.args) else default
+		if _iniFile:
+			self._iniFile = os.path.join(os.path.expanduser('~'), ".%s/%s.ini" % (_iniFile,_iniFile))
+			self.load()
 
 
-
-	def set(self, _field, _val, save=True):
-		self.args[_field] = _val
-
-		if save:
-			self.save()
+#		self.parseCmdline(_defaults)
 
 
 
@@ -62,13 +93,24 @@ class Args():
 	Save current settings to application related file.
 	'''
 	def save(self):
-		settings = json.dumps(self.args, sort_keys=True, indent=4)
+		saveData = {}
+
+		for cBlock in self._args:
+			cFieldsA = {}
+			for cField in cBlock._getFields():
+				cFieldsA[cField] = getattr(cBlock, cField)
+
+			saveData[cBlock._getName()] = cFieldsA
+
+
+
+		settings = json.dumps(saveData, sort_keys=True, indent=4)
 
 		try:
-			if not os.path.exists(os.path.dirname(self.settingsFile)):
-				os.makedirs(os.path.dirname(self.settingsFile))
+			if not os.path.exists(os.path.dirname(self._iniFile)):
+				os.makedirs(os.path.dirname(self._iniFile))
 
-			f = open(self.settingsFile, 'w')
+			f = open(self._iniFile, 'w')
 			f.write(settings)
 		except:
 			logging.warning('Settings could not be saved.')
@@ -83,7 +125,7 @@ class Args():
 
 	def load(self):
 		try:
-			f = open(self.settingsFile, 'r')
+			f = open(self._iniFile, 'r')
 		except:
 			logging.warning('No stored settings found.')
 			return
@@ -99,27 +141,14 @@ class Args():
 
 
 		try:
-			return json.loads(settingsStr)
+			filesSettings = json.loads(settingsStr)
 		except:
 			logging.warning('Setting file corrupt')
 			return
 
 
+		for blockN, blockV in filesSettings.items():
+			cBlock = getattr(self, blockN)
 
-
-
-	def parseCmdline(self):
-		cParser = argparse.ArgumentParser(description= 'codeg')
-
-		cParser.add_argument('-v', default=False, action='store_true', help='version 0')
-#		cParser.add_argument('inStr', type=str, default='pwned', nargs=(None if 0 else '?'), help='Mandatory string input')
-
-		for argn, argv in self.defaults:
-			cParser.add_argument(argn, default=argv, help=argparse.SUPPRESS)
-
-		
-		cArgs = cParser.parse_args()
-	
-		if cArgs:
-			return vars(cArgs)
-		
+			for fieldN, fieldV in blockV.items():
+				setattr(cBlock, fieldN, fieldV)

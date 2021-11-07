@@ -114,12 +114,6 @@ class Ui():
 	}
 #  todo 115 (ux) -1: allow to choose style by commandline
 # =todo 116 (ux, module-ui) +0: choose style in app settings
-	styleSet = 'dark'
-
-	defWindowFit = .85
-	defVportGeoFit = .5
-	defVportOffset = .66
-
 
 	args = None
 
@@ -148,10 +142,11 @@ class Ui():
 		self.qApp.setStyle(QStyleFactory.create('fusion'))
 
 
-		self.appWindow = AppWindow(self.styleList[self.styleSet])
+		self.appWindow = AppWindow(self.styleList[Args.app.scheme])
 
-		cSize = self.args.get('wSize') or QApplication.primaryScreen().size() * self.defWindowFit
-		self.appWindow.resize(cSize, self.args.get('wMaxi'))
+		cSize = Args.app.wSize and QSize(*Args.app.wSize)
+		cSize = cSize or QApplication.primaryScreen().size() *Args.app.initFit
+		self.appWindow.resize(cSize, Args.app.wMaxi)
 
 
 		self.appWindow.sigPreexit.connect(self.preexit)
@@ -175,28 +170,28 @@ class Ui():
 
 		self.markDefault = self.data.markNew(
 			filterName='FilterSetSVG',
-			filterData=self.styleSVG[self.styleSet]['default'],
+			filterData=self.styleSVG[Args.app.scheme]['default'],
 			priority=-5,
 		)
 		self.markInactive = self.data.markNew(
 			filterName='FilterSetSVG',
-			filterData=self.styleSVG[self.styleSet]['inactive'],
+			filterData=self.styleSVG[Args.app.scheme]['inactive'],
 			priority=-4,
 		)
 		self.markOff = self.data.markNew(
 			filterName='FilterSetSVG',
-			filterData=self.styleSVG[self.styleSet]['off'],
+			filterData=self.styleSVG[Args.app.scheme]['off'],
 			priority=-3,
 #			data={'visible':False} #mark-level visibility for example
 		)
 		self.markSelect = self.data.markNew(
 			filterName='FilterSetSVG',
-			filterData=self.styleSVG[self.styleSet]['select'],
+			filterData=self.styleSVG[Args.app.scheme]['select'],
 			priority=-2,
 		)
 		self.markHover = self.data.markNew(
 			filterName='FilterSetSVG',
-			filterData=self.styleSVG[self.styleSet]['hover'],
+			filterData=self.styleSVG[Args.app.scheme]['hover'],
 			priority=-1,
 		)
 
@@ -218,10 +213,10 @@ class Ui():
 		self.qApp.exec_()
 
 
-		self.args.set('wMaxi', self.appWindow.lMain.isMaximized())
+#		self.args.set('wMaxi', self.appWindow.lMain.isMaximized())
 		if not self.appWindow.lMain.isMaximized():
 			cSize = self.appWindow.lMain.size()
-			self.args.set('wSize', (cSize.width(), cSize.height()) )
+#			self.args.set('wSize', (cSize.width(), cSize.height()) )
 
 
 
@@ -269,7 +264,7 @@ class Ui():
 			return
 
 
-		cRecentA = self.args.get("recentProject", [])
+		cRecentA = Args.ui.recentProject
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
 		fileName = QFileDialog.getOpenFileName(self.appWindow.lMain, "Open project", os.path.dirname(cLast), "*.codeg", None, QFileDialog.DontUseNativeDialog)[0]
@@ -279,7 +274,7 @@ class Ui():
 
 		
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
-		self.args.set("recentProject", cRecentA+[fileName])
+#		self.args.set("recentProject", cRecentA+[fileName])
 
 
 		for cScene in self.data.sceneList():
@@ -347,7 +342,7 @@ class Ui():
 # =todo 198 (data, fix) +0: move save/load routines to GGData
 # =todo 203 (ux, clean) +0: scene load/save error handling
 	def sceneSave(self):
-		cRecentA = self.args.get("recentProject", [])
+		cRecentA = Args.ui.recentProject
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
 		
@@ -366,7 +361,7 @@ class Ui():
 			f.write( json.dumps(saveData, indent=2) )
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
-		self.args.set("recentProject", cRecentA+[fileName])
+#		self.args.set("recentProject", cRecentA+[fileName])
 
 
 		self.activeScene.clean()
@@ -375,7 +370,7 @@ class Ui():
 # =todo 216 (module-data, clean) +0: use relative paths
 #  todo 3 (feature, file) +0: geo library
 	def addFile(self):
-		cRecentA = self.args.get("recentLoaded", [])
+		cRecentA = Args.ui.recentLoaded
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
 		fileName = QFileDialog.getOpenFileName(self.appWindow.lMain, "Open SVG File", os.path.dirname(cLast), "*.svg", None, QFileDialog.DontUseNativeDialog)[0]
@@ -385,7 +380,7 @@ class Ui():
 
 		
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
-		self.args.set("recentLoaded", cRecentA+[fileName])
+#		self.args.set("recentLoaded", cRecentA+[fileName])
 
 
 		cGBlock = self.activeScene.geoAdd(fileName, [self.markDefault], 'UI')
@@ -393,7 +388,7 @@ class Ui():
 		cGBlock.xformSet(offset=(0,-cOffset.y()))
 		gDscr = self.appWindow.geoAddWidget(cGBlock)
 
-		self.appWindow.viewportFit(self.defVportGeoFit, self.defVportOffset, gDscr.bbox())
+		self.appWindow.viewportFit(Args.viewport.fitGeo, Args.viewport.offsetX, gDscr.bbox())
 
 
 
@@ -405,13 +400,13 @@ class Ui():
 		cGBlock.xformSet(offset=(0,-cOffset.y()))
 		gDscr = self.appWindow.geoAddWidget(cGBlock)
 
-		self.appWindow.viewportFit(self.defVportGeoFit, self.defVportOffset, gDscr.bbox())
+		self.appWindow.viewportFit(Args.viewport.fitGeo, Args.viewport.offsetX, gDscr.bbox())
 
 
 
 # -todo 119 (refactor, module-ui, module-data) +0: clean for dispatch
 	def storeG(self):
-		cRecentA = self.args.get("recentSaved", [])
+		cRecentA = Args.ui.recentSaved
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
 
@@ -430,7 +425,7 @@ class Ui():
 
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
-		self.args.set("recentSaved", cRecentA+[fileName])
+#		self.args.set("recentSaved", cRecentA+[fileName])
 
 
 

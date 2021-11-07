@@ -10,6 +10,8 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 from PySide2.QtUiTools import *
 
+from Args import *
+
 from .SvgViewport import *
 from .MarkWidget import *
 from .GeoWidget import *
@@ -42,9 +44,6 @@ class AppWindow(QObject):
 	defSelection = 'resource\\select.svg'
 	defGrid = 'resource\\grid.svg' #1-unit size
 	defUi = './Ui/AppWindow.ui'
-
-	defVportFit = .7
-	defVportOffset = .66
 
 
 ## runtime ##
@@ -151,7 +150,7 @@ class AppWindow(QObject):
 
 
 	def resize(self, _size, maximize=None):
-		self.wMain.resize( QSize(*_size) )
+		self.wMain.resize( _size )
 
 		if maximize:
 			self.wMain.showMaximized()
@@ -172,8 +171,8 @@ class AppWindow(QObject):
 
 
 	def viewportFit(self, _fit=None, _offset=None, _box=None):
-		_fit = _fit or self.defVportFit
-		_offset = _offset or self.defVportOffset
+		_fit = _fit or Args.viewport.fit
+		_offset = _offset or Args.viewport.offsetX
 
 		countGrid = bool(self.widgetGeo.getBlocks())
 		self.gridDescription.ghost(countGrid)
