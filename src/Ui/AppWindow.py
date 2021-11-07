@@ -149,6 +149,11 @@ class AppWindow(QObject):
 
 
 
+	def mainSize(self):
+		return self.lMain.size()
+
+
+
 	def resize(self, _size, maximize=None):
 		self.wMain.resize( _size )
 
