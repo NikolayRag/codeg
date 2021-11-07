@@ -30,6 +30,7 @@ class ArgBlock():
 	def _getName(self):
 		return self._name
 
+
 	def _getFields(self):
 		return dict(self._fields)
 
@@ -41,6 +42,7 @@ class ArgBlock():
 
 
 
+
 class Args():
 	_iniFile = None
 
@@ -48,8 +50,8 @@ class Args():
 
 
 
-	def fillFields(self, _defaults, _store=True):
-		for blockN, blockV in _defaults.items():
+	def _fillFields(self, _fields, _store=True):
+		for blockN, blockV in _fields.items():
 			if not hasattr(Args, blockN):
 				cBlock = ArgBlock(blockN)
 				setattr(Args, blockN, cBlock)
@@ -65,7 +67,7 @@ class Args():
 
 
 
-	def parseCmdline(self, _defs):
+	def _parseCmdline(self, _defs):
 		cParser = argparse.ArgumentParser(description= 'codeg')
 
 		cParser.add_argument('-v', default=False, action='store_true')
@@ -83,9 +85,9 @@ class Args():
 		
 
 
-	def __init__(self, _defaults, _field, _iniFile=None):
-		self.fillFields(_defaults)
-		self.fillFields(_field, False)
+	def __init__(self, _prefs, _field, _iniFile=None):
+		self._fillFields(_prefs)
+		self._fillFields(_field, False)
 
 
 		if _iniFile:
@@ -94,7 +96,7 @@ class Args():
 
 
 # -todo 243 (api, app) +0: parse command line
-#		self.parseCmdline(_defaults)
+#		self._parseCmdline(_prefs)
 
 
 		for cBlock in self._args:
