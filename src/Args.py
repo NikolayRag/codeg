@@ -6,7 +6,6 @@ import logging
 Deal with app settings.
 Loads previously saved and put commandline arguments over.
 '''
-# =todo 240 (api) +0: make global settings singletone
 class ArgBlock():
 	_name = None
 	_fields = {}

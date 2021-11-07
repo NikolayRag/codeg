@@ -526,7 +526,7 @@
 !dispatch, feature 187: +0 "src\Ui\Ui.py" ki 21/10/20 22:57:58
 	
 
-=module-data, api 188: +0 "src\Ui\Ui.py" ki 21/10/20 23:02:07
+=module-data, api 188: +0 "src\Ui\Ui.py" ki 21/11/07 06:26:40
 	move all data functions to data
 
 -module-data, api, decide 189: +1 "src\GGData\GGData.py" ki 21/10/24 03:26:05
@@ -679,10 +679,10 @@
 =fix, viewport, svg 238: +0 "src\Ui\SvgViewport.py" ki 21/11/05 17:11:13
 	correct SvgCanvasLayer xform for scaled/offset svg
 
-=svg 239: +0 "src\Ui\SvgViewport.py" ki 21/11/06 05:19:16
+=svg 239: +0 "src\Ui\SvgViewport.py" ki 21/11/07 06:26:40
 	join SvgDescriptor and SvgCanvasLayer
 
-=api 240: +0 "src\args.py" ki 21/11/06 06:57:35
++api 240: +0 "src\Args.py" ki 21/11/07 07:23:15
 	make global settings singletone
 
 -api, app 243: +0 "src\Args.py" ki 21/11/07 05:31:41
