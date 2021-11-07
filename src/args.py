@@ -10,12 +10,17 @@ Loads previously saved and put commandline arguments over.
 class ArgBlock():
 	_name = None
 	_fields = {}
+	_saveCB = None
 
 
 #	def __setitem__(self, _name):
 	def __init__(self, _name):
 		self._name = _name
 		self._fields = {}
+
+
+	def _setCB(self, _cb):
+		self._saveCB = _cb
 
 
 	def _setData(self, _name, _data):
@@ -28,6 +33,11 @@ class ArgBlock():
 	def _getFields(self):
 		return dict(self._fields)
 
+
+	def __setattr__(self, _name, _val):
+		self.__dict__[_name] = _val 
+
+		self._saveCB and self._saveCB()
 
 
 
@@ -84,6 +94,10 @@ class Args():
 
 
 #		self.parseCmdline(_defaults)
+
+
+		for cBlock in self._args:
+			cBlock._setCB(self._save)
 
 
 
