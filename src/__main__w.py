@@ -36,7 +36,6 @@ AppFields = {
 
 
 
-#  todo 202 (clean) +0: add app constants
 if __name__ == '__main__':
 	Args(AppPrefs, AppFields, AppName)
 

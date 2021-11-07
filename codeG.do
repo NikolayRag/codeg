@@ -568,7 +568,7 @@
  geo, feature 201: +0 "src\GGData\Geoblock.py" ki 21/10/23 23:49:51
 	update reference geometry 
 
- clean 202: +0 "src\__main__w.py" ki 21/10/26 01:06:10
++clean 202: +0 "src\__main__w.py" ki 21/11/07 05:55:28
 	add app constants
 
 =ux, clean 203: +0 "src\Ui\Ui.py" ki 21/10/24 01:21:13
@@ -682,6 +682,9 @@
 =svg 239: +0 "src\Ui\SvgViewport.py" ki 21/11/06 05:19:16
 	join SvgDescriptor and SvgCanvasLayer
 
-=api 240: +0 "src\args.py" ki 21/11/06 05:30:58
+=api 240: +0 "src\args.py" ki 21/11/06 06:57:35
 	make global settings singletone
+
+-api, app 243: +0 "src\Args.py" ki 21/11/07 05:31:41
+	parse command line
 
