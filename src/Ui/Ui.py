@@ -231,7 +231,7 @@ class Ui():
 				msgBox.setText("Scene modified")
 				msgBox.setInformativeText("Discard?")
 				msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-				msgBox.setDefaultButton(QMessageBox.Ok)
+				msgBox.setDefaultButton(QMessageBox.Cancel)
 				if msgBox.exec() == QMessageBox.Cancel:
 					return True
 
