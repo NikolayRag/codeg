@@ -57,15 +57,22 @@ class AppWindow(QObject):
 	widgetGeo = None
 	allWidgetsMarks = {}
 
+	rtSize = []
 
 
 	def __init__(self, _styleFile=None):
 		QObject.__init__(self)
 
+
+		self.rtSize = [None, None]
+
 		cMain = self.lMain = self.wMain = QUiLoader().load(self.defUi)
-		self.tmpFilterPreexit = BindFilter({
-			QEvent.Close: lambda event: self.sigPreexit.emit(event) or True })
-		cMain.installEventFilter(self.tmpFilterPreexit)
+		self.tmpFilterMain = BindFilter({
+			QEvent.Close: lambda event: self.sigPreexit.emit(event) or True,
+			QEvent.Resize: lambda e: self.resized(e, True),
+			QEvent.WindowStateChange: self.resized
+		 })
+		cMain.installEventFilter(self.tmpFilterMain)
 
 
 		if _styleFile:
@@ -150,7 +157,18 @@ class AppWindow(QObject):
 
 
 	def mainSize(self):
-		return self.lMain.size()
+		return self.rtSize[1]
+
+
+
+	def resized(self, _e, _resize=False):
+		if _resize:
+			self.rtSize[0] = self.rtSize[1]
+			self.rtSize[1] = _e.size()
+			return
+
+		if self.lMain.isMaximized():
+			self.rtSize[1] = self.rtSize[0]
 
 
 

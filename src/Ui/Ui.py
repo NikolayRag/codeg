@@ -212,9 +212,8 @@ class Ui():
 
 
 		Args.app.wMaxi = self.appWindow.lMain.isMaximized()
-		if not self.appWindow.lMain.isMaximized():
-			cSize = self.appWindow.mainSize()
-			Args.app.wSize = (cSize.width(), cSize.height())
+		cSize = self.appWindow.mainSize()
+		Args.app.wSize = (cSize.width(), cSize.height())
 
 
 
