@@ -8,14 +8,14 @@ Loads previously saved and put commandline arguments over.
 '''
 class ArgBlock():
 	_name = None
-	_fields = {}
+	_data = {}
 	_saveCB = None
 
 
 #	def __setitem__(self, _name):
 	def __init__(self, _name):
 		self._name = _name
-		self._fields = {}
+		self._data = {}
 
 
 	def _setCB(self, _cb):
@@ -27,11 +27,11 @@ class ArgBlock():
 
 
 	def _setData(self, _name, _data):
-		self._fields[_name] = _data
+		self._data[_name] = _data
 
 
-	def _getFields(self):
-		return dict(self._fields)
+	def _getData(self):
+		return dict(self._data)
 
 
 	def __getattr__(self, _name):
@@ -115,7 +115,7 @@ class Args():
 
 		for cBlock in self._args:
 			cFieldsA = {}
-			for cField in cBlock._getFields():
+			for cField in cBlock._getData():
 				cFieldsA[cField] = getattr(cBlock, cField)
 
 			saveData[cBlock._getName()] = cFieldsA
