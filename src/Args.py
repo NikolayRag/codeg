@@ -22,12 +22,12 @@ class ArgBlock():
 		self._saveCB = _cb
 
 
-	def _setData(self, _name, _data):
-		self._fields[_name] = _data
-
-
 	def _getName(self):
 		return self._name
+
+
+	def _setData(self, _name, _data):
+		self._fields[_name] = _data
 
 
 	def _getFields(self):
