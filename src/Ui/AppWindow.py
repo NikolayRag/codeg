@@ -12,6 +12,7 @@ from PySide2.QtUiTools import *
 
 from Args import *
 
+from .PrefsWidget import *
 from .SvgViewport import *
 from .MarkWidget import *
 from .GeoWidget import *
@@ -415,6 +416,7 @@ class AppWindow(QObject):
 ### OPTIONS ###
 
 	def prefsList(self):
-		for arg in Args._list():
-			print(arg._getName())
-			print({n:v[0] for n,v in arg._getData().items() if v})
+		wPrefs = PrefsWidget(self.wMain, Args._list())
+
+		if not wPrefs.exec():
+			return
