@@ -688,3 +688,9 @@
 -api, app 243: +0 "src\Args.py" ki 21/11/07 05:31:41
 	parse command line
 
+ feature 244: +0 "src\Ui\AppWindow.py" ki 21/11/08 14:11:05
+	add drop scene, svg files and tag text
+
+!feature 245: +0 "src\Ui\AppWindow.py" ki 21/11/08 14:11:32
+	drop svg
+

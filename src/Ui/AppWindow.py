@@ -67,6 +67,7 @@ class AppWindow(QObject):
 
 		self.rtSize = [None, None]
 
+#  todo 244 (feature) +0: add drop scene, svg files and tag text
 		cMain = self.wMain = QUiLoader().load(self.defUi)
 		self.tmpFilterMain = BindFilter({
 			QEvent.Close: lambda event: self.sigPreexit.emit(event) or True,
