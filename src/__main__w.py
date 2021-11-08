@@ -20,6 +20,12 @@ AppPrefs = {
 		'fit': 0.7,
 		'fitGeo': .5,
 		'offsetX': 0.66,
+
+		'panMargins': .2,
+		'scaleMin': 10,
+		'scaleMax': 1000,
+		'spotDist': 3,
+		'zoomStep': 1.1
 	}
 }
 AppFields = {

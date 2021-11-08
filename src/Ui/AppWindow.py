@@ -106,7 +106,15 @@ class AppWindow(QObject):
 
 
 		holderViewport = cMain.findChild(QWidget, "wViewport")
-		self.wSvgViewport = SvgViewport(holderViewport)
+		self.wSvgViewport = SvgViewport(holderViewport,
+			Args.viewport.fit,
+			Args.viewport.offsetX,
+			Args.viewport.panMargins,
+			Args.viewport.scaleMin,
+			Args.viewport.scaleMax,
+			Args.viewport.spotDist,
+			Args.viewport.zoomStep
+		)
 		self.wSvgViewport.lower() 
 
 
@@ -194,13 +202,10 @@ class AppWindow(QObject):
 
 
 	def viewportFit(self, _box=None, _fit=None, _offset=None):
-		_fit = _fit or Args.viewport.fit
-		_offset = _offset or Args.viewport.offsetX
-
 		countGrid = bool(self.widgetGeo.getBlocks())
 		self.gridDescription.ghost(countGrid)
 
-		self.wSvgViewport.canvasFit(_fit, _offset, box=_box)
+		self.wSvgViewport.canvasFit(_box, _fit, _offset)
 
 
 

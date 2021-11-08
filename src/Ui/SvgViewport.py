@@ -90,11 +90,13 @@ class SvgViewport(QWidget):
 	sigInteract = Signal(int, object, object, object, bool)
 
 
-	panMargins = .2
-	scaleMin = 10
-	scaleMax = 1000
-	spotDist = 3
-	zoomStep = 1.1
+	defFit = None
+	defOffset = None
+	panMargins = None
+	scaleMin = None
+	scaleMax = None
+	spotDist = None
+	zoomStep = None
 
 
 	#runtime
@@ -270,7 +272,25 @@ class SvgViewport(QWidget):
 
 
 
-	def __init__(self, _parent):
+	def __init__(self, _parent,
+		fit = .7,
+		offset = .66,
+		panMargins=.2,
+		scaleMin=10,
+		scaleMax=1000,
+		spotDist=3,
+		zoomStep=1.1
+	):
+		self.defFit = fit
+		self.defOffset = offset
+
+		self.panMargins = panMargins
+		self.scaleMin = scaleMin
+		self.scaleMax = scaleMax
+		self.spotDist = spotDist
+		self.zoomStep = zoomStep
+
+
 		QWidget.__init__(self, _parent)
 
 		QHBoxLayout(self)
@@ -303,16 +323,18 @@ class SvgViewport(QWidget):
 
 
 
-	def canvasFit(self, multiply=1., offset=.5, box=None):
-		cBox = QRectF(*box) if box else self.canvas.getDocSize()
+	def canvasFit(self, _box=None, fit=None, offset=None):
+		cBox = QRectF(*_box) if _box else self.canvas.getDocSize()
 		scaleX = self.width() / cBox.width()
 		scaleY = self.height() / cBox.height()
 
+		fit = fit or self.defFit
 		cScale = scaleY if scaleY<scaleX else scaleX
-		self.viewportSize(cScale*multiply)
+		self.viewportSize(cScale*fit)
 
 
 		#center
+		offset = offset or self.defOffset
 		self.viewportPlace(QPoint(
 			self.width()*offset -(cBox.left()+cBox.width()*offset) *self.canvasScale,
 			self.height()*.5 -(cBox.top()+cBox.height()*.5) *self.canvasScale
