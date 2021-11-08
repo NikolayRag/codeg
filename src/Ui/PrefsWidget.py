@@ -28,7 +28,7 @@ class PrefsWidget():
 
 
 				fieldVal = QLineEdit(str(getattr(arg, prefN)))
-				wForm.addRow(prefV[1], fieldVal)
+				wForm.addRow(prefV[2], fieldVal)
 
 
 			if flag:
