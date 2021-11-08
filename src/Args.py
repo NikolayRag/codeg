@@ -34,6 +34,10 @@ class ArgBlock():
 		return dict(self._fields)
 
 
+	def __getattr__(self, _name):
+		return self.__dict__[_name]
+
+
 	def __setattr__(self, _name, _val):
 		self.__dict__[_name] = _val 
 
