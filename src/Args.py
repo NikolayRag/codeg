@@ -27,7 +27,7 @@ class ArgBlock():
 
 
 	def _setData(self, _name, _data):
-		self._data[_name] = _data
+		self._data[_name] = _data[1:]
 
 		setattr(self, _name, _data[0])
 
