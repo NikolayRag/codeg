@@ -13,25 +13,22 @@ from Args import *
 AppName = 'codeg'
 AppPrefs = {
 	'app': {
-		'initFit': [0.85],
-		'scheme': ['dark'],
-	},
-	'viewport': {
-		'fit': [0.7],
-		'fitGeo': [.5],
-		'offsetX': [0.66],
+		'initFit': [0.85, True],
+		'scheme': ['dark', True],
 
-		'panMargins': [.2],
-		'scaleMin': [10],
-		'scaleMax': [1000],
-		'spotDist': [3],
-		'zoomStep': [1.1],
-	}
-}
-AppFields = {
-	'app': {
 		'wSize': [None],
 		'wMaxi': [False],
+	},
+	'viewport': {
+		'fit': [0.7, True],
+		'fitGeo': [.5, True],
+		'offsetX': [0.66, True],
+
+		'panMargins': [.2, True],
+		'scaleMin': [10, True],
+		'scaleMax': [1000, True],
+		'spotDist': [3, True],
+		'zoomStep': [1.1, True],
 	},
 	'ui': {
 		'recentProject': [[]],
@@ -43,7 +40,7 @@ AppFields = {
 
 
 if __name__ == '__main__':
-	Args(AppPrefs, AppFields, AppName)
+	Args(AppPrefs, AppName)
 
 	cGG = GGData()
 	

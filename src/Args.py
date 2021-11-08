@@ -29,6 +29,8 @@ class ArgBlock():
 	def _setData(self, _name, _data):
 		self._data[_name] = _data
 
+		setattr(self, _name, _data[0])
+
 
 	def _getData(self):
 		return dict(self._data)
@@ -53,7 +55,7 @@ class Args():
 
 
 
-	def _fillFields(self, _fields, _store=True):
+	def _fillFields(self, _fields):
 		for blockN, blockV in _fields.items():
 			if not hasattr(Args, blockN):
 				cBlock = ArgBlock(blockN)
@@ -64,9 +66,7 @@ class Args():
 
 			cBlock = getattr(Args, blockN)
 			for argN, argV in blockV.items():
-				setattr(cBlock, argN, argV[0])
-
-				cBlock._setData(argN, _store)
+				cBlock._setData(argN, argV)
 
 
 
@@ -88,9 +88,8 @@ class Args():
 		
 
 
-	def __init__(self, _prefs, _field, _iniFile=None):
-		self._fillFields(_prefs)
-		self._fillFields(_field, False)
+	def __init__(self, _field, _iniFile=None):
+		self._fillFields(_field)
 
 
 		if _iniFile:
