@@ -168,3 +168,7 @@ class Args():
 
 			for fieldN, fieldV in blockV.items():
 				setattr(cBlock, fieldN, fieldV)
+
+
+	def _list():
+		return list(Args._args)
