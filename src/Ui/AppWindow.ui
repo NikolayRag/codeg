@@ -79,14 +79,14 @@
           <item>
            <widget class="QToolButton" name="btnLoad">
             <property name="text">
-             <string>Load</string>
+             <string>L</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QToolButton" name="btnSave">
             <property name="text">
-             <string>Save</string>
+             <string>S</string>
             </property>
            </widget>
           </item>
@@ -110,7 +110,7 @@
           <item>
            <widget class="QToolButton" name="btnPaste">
             <property name="text">
-             <string>pasta</string>
+             <string>^V</string>
             </property>
            </widget>
           </item>
