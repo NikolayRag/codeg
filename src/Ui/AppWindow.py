@@ -134,6 +134,7 @@ class AppWindow(QObject):
 		self.wBtnLoad = cMain.findChild(QWidget, "btnLoad")
 		self.wBtnStore = cMain.findChild(QWidget, "btnStore")
 		self.wBtnPaste = cMain.findChild(QWidget, "btnPaste")
+		self.wBtnPrefs = cMain.findChild(QWidget, "btnPrefs")
 
 		self.wFrameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
 		self.wFrameDispatcher.setVisible(False)
@@ -155,6 +156,7 @@ class AppWindow(QObject):
 		self.wBtnStore.clicked.connect(lambda: self.sigStoreG.emit(self.wMain))
 		self.wBtnProccess.clicked.connect(self.dispatchRun)
 		self.wBtnMarkAdd.clicked.connect(self.sigMarkAdd)
+		self.wBtnPrefs.clicked.connect(self.prefsList)
 		
 
 	def show(self):
@@ -412,3 +414,12 @@ class AppWindow(QObject):
 #  todo 20 (module-ui, error) +0: handle errors, maybe status string
 	def reactStoreG(self):
 		None
+
+
+
+### OPTIONS ###
+
+	def prefsList(self):
+		for arg in Args._list():
+			print(arg._getName())
+			print({n:v[0] for n,v in arg._getData().items() if v})

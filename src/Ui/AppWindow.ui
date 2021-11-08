@@ -171,6 +171,13 @@
            </spacer>
           </item>
           <item>
+           <widget class="QToolButton" name="btnPrefs">
+            <property name="text">
+             <string>?</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QToolButton" name="btnCaption">
             <property name="text">
              <string>codeg</string>
