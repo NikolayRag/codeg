@@ -61,7 +61,7 @@ class Args():
 				cBlock = ArgBlock(blockN)
 				setattr(Args, blockN, cBlock)
 
-				self._args.append(cBlock)
+				Args._args.append(cBlock)
 
 
 			cBlock = getattr(Args, blockN)
@@ -76,7 +76,7 @@ class Args():
 		cParser.add_argument('-v', default=False, action='store_true')
 #		cParser.add_argument('inStr', type=str, default='pwned', nargs=(None if 0 else '?'), help='Mandatory string input')
 
-		for block in self._args:
+		for block in Args._args:
 			for argn,argv in vars(block).items():
 				cParser.add_argument(f"-{argn}", default=argv, help=argparse.SUPPRESS)
 
@@ -101,7 +101,7 @@ class Args():
 #		self._parseCmdline(_prefs)
 
 
-		for cBlock in self._args:
+		for cBlock in Args._args:
 			cBlock._setCB(self._save)
 
 
@@ -112,7 +112,7 @@ class Args():
 	def _save(self):
 		saveData = {}
 
-		for cBlock in self._args:
+		for cBlock in Args._args:
 			cFieldsA = {}
 			for cField in cBlock._getData():
 				cFieldsA[cField] = getattr(cBlock, cField)
