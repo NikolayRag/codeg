@@ -34,6 +34,7 @@ class AppWindow(QObject):
 	sigSceneLoad = Signal(object)
 	sigAddFile = Signal(object)
 	sigPaste = Signal()
+	sigDrop = Signal(list)
 
 	sigDispatch = Signal(str)
 	sigStoreG = Signal(object)
@@ -70,7 +71,9 @@ class AppWindow(QObject):
 		self.tmpFilterMain = BindFilter({
 			QEvent.Close: lambda event: self.sigPreexit.emit(event) or True,
 			QEvent.Resize: lambda e: self.resized(e, True),
-			QEvent.WindowStateChange: self.resized
+			QEvent.WindowStateChange: self.resized,
+			QEvent.DragEnter: lambda e: e.acceptProposedAction(),
+			QEvent.Drop: lambda e: e.mimeData().hasUrls() and self.sigDrop.emit(e.mimeData().urls()),
 		 })
 		cMain.installEventFilter(self.tmpFilterMain)
 
