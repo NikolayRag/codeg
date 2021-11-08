@@ -323,20 +323,20 @@ class SvgViewport(QWidget):
 
 
 
-	def canvasFit(self, _box=None, fit=None, offset=None):
+	def canvasFit(self, _box=None, _fit=None, _offset=None):
 		cBox = QRectF(*_box) if _box else self.canvas.getDocSize()
 		scaleX = self.width() / cBox.width()
 		scaleY = self.height() / cBox.height()
 
-		fit = fit or self.defFit
+		_fit = _fit or self.defFit
 		cScale = scaleY if scaleY<scaleX else scaleX
-		self.viewportSize(cScale*fit)
+		self.viewportSize(cScale*_fit)
 
 
 		#center
-		offset = offset or self.defOffset
+		_offset = _offset or self.defOffset
 		self.viewportPlace(QPoint(
-			self.width()*offset -(cBox.left()+cBox.width()*offset) *self.canvasScale,
+			self.width()*_offset -(cBox.left()+cBox.width()*_offset) *self.canvasScale,
 			self.height()*.5 -(cBox.top()+cBox.height()*.5) *self.canvasScale
 		))
 
