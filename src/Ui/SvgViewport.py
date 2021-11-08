@@ -91,9 +91,9 @@ class SvgViewport(QWidget):
 
 
 	panMargins = .2
-	scaleMinPx = 10
+	scaleMin = 10
 	scaleMax = 1000
-	spotDist = 10
+	spotDist = 3
 	zoomStep = 1.1
 
 
@@ -221,8 +221,8 @@ class SvgViewport(QWidget):
 		cWidth, cHeight = cSize.width(), cSize.height()
 		newSize = (cWidth if cWidth<cHeight else cHeight) * _scale/self.canvasScale
 
-		if self.scaleMinPx > newSize:
-			_scale *= (self.scaleMinPx / newSize)
+		if self.scaleMin > newSize:
+			_scale *= (self.scaleMin / newSize)
 
 
 		self.canvasScale = _scale
