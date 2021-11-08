@@ -255,7 +255,7 @@ class Ui():
 
 
 
-	def sceneLoad(self):
+	def sceneLoad(self, _parent):
 		if self.sceneDirty():
 			return
 
@@ -263,7 +263,7 @@ class Ui():
 		cRecentA = Args.ui.recentProject
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
-		fileName = QFileDialog.getOpenFileName(self.appWindow.lMain, "Open project", os.path.dirname(cLast), "*.codeg", None, QFileDialog.DontUseNativeDialog)[0]
+		fileName = QFileDialog.getOpenFileName(_parent, "Open project", os.path.dirname(cLast), "*.codeg", None, QFileDialog.DontUseNativeDialog)[0]
 
 		if fileName=="":
 			return
@@ -337,12 +337,12 @@ class Ui():
 #  todo 196 (module-data, api) +0: deal with Markfilter data fields within Mark
 # =todo 198 (data, fix) +0: move save/load routines to GGData
 # =todo 203 (ux, clean) +0: scene load/save error handling
-	def sceneSave(self):
+	def sceneSave(self, _parent):
 		cRecentA = Args.ui.recentProject
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
-		
-		cDialog = QFileDialog(self.appWindow.lMain, "Save project", os.path.dirname(cLast), "Codeg (*.codeg)")
+
+		cDialog = QFileDialog(_parent, "Save project", os.path.dirname(cLast), "Codeg (*.codeg)")
 		cDialog.setDefaultSuffix(".codeg")
 		cDialog.setOptions(QFileDialog.DontUseNativeDialog)
 		cDialog.setAcceptMode(QFileDialog.AcceptSave)
@@ -365,11 +365,11 @@ class Ui():
 
 # =todo 216 (module-data, clean) +0: use relative paths
 #  todo 3 (feature, file) +0: geo library
-	def addFile(self):
+	def addFile(self, _parent):
 		cRecentA = Args.ui.recentLoaded
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
-		fileName = QFileDialog.getOpenFileName(self.appWindow.lMain, "Open SVG File", os.path.dirname(cLast), "*.svg", None, QFileDialog.DontUseNativeDialog)[0]
+		fileName = QFileDialog.getOpenFileName(_parent, "Open SVG File", os.path.dirname(cLast), "*.svg", None, QFileDialog.DontUseNativeDialog)[0]
 
 		if fileName=="":
 			return
@@ -401,12 +401,12 @@ class Ui():
 
 
 # -todo 119 (refactor, module-ui, module-data) +0: clean for dispatch
-	def storeG(self):
+	def storeG(self, _parent):
 		cRecentA = Args.ui.recentSaved
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''
 
-		cDialog = QFileDialog(self.appWindow.lMain, "Save G-code", os.path.dirname(cLast), "G-code (*.nc)")
+		cDialog = QFileDialog(_parent, "Save G-code", os.path.dirname(cLast), "G-code (*.nc)")
 		cDialog.setDefaultSuffix(".nc")
 		cDialog.setOptions(QFileDialog.DontUseNativeDialog)
 		cDialog.setAcceptMode(QFileDialog.AcceptSave)

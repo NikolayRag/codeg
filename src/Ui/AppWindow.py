@@ -30,13 +30,13 @@ class AppWindow(QObject):
 	sigGeoActivate = Signal(object, bool)
 
 	sigSceneReset = Signal()
-	sigSceneSave = Signal()
-	sigSceneLoad = Signal()
-	sigAddFile = Signal()
+	sigSceneSave = Signal(object)
+	sigSceneLoad = Signal(object)
+	sigAddFile = Signal(object)
 	sigPaste = Signal()
 
 	sigDispatch = Signal(str)
-	sigStoreG = Signal()
+	sigStoreG = Signal(object)
 
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
@@ -140,11 +140,11 @@ class AppWindow(QObject):
 		self.wBtnFit.clicked.connect(self.viewportFit)
 		self.wBtnCaption.clicked.connect(self.about)
 		self.wBtnWipe.clicked.connect(self.sigSceneReset)
-		self.wBtnOpen.clicked.connect(self.sigAddFile)
+		self.wBtnOpen.clicked.connect(lambda: self.sigAddFile.emit(self.wMain))
 		self.wBtnPaste.clicked.connect(self.sigPaste)
-		self.wBtnSave.clicked.connect(self.sigSceneSave)
-		self.wBtnLoad.clicked.connect(self.sigSceneLoad)
-		self.wBtnStore.clicked.connect(self.sigStoreG)
+		self.wBtnSave.clicked.connect(lambda: self.sigSceneSave.emit(self.wMain))
+		self.wBtnLoad.clicked.connect(lambda: self.sigSceneLoad.emit(self.wMain))
+		self.wBtnStore.clicked.connect(lambda: self.sigStoreG.emit(self.wMain))
 		self.wBtnProccess.clicked.connect(self.dispatchRun)
 		self.wBtnMarkAdd.clicked.connect(self.sigMarkAdd)
 		
