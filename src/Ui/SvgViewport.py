@@ -90,13 +90,15 @@ class SvgViewport(QWidget):
 	sigInteract = Signal(int, object, object, object, bool)
 
 
-	defFit = None
-	defOffset = None
-	panMargins = None
-	scaleMin = None
-	scaleMax = None
-	spotDist = None
-	zoomStep = None
+	prefs = type('', (object,), {
+		'fit': .7,
+		'offsetX': .66,
+		'panMargins': .2,
+		'scaleMin': 10,
+		'scaleMax': 1000,
+		'spotDist': 3,
+		'zoomStep': 1.1,
+	})
 
 
 	#runtime
@@ -121,7 +123,7 @@ class SvgViewport(QWidget):
 
 	#mouse interaction
 	def wheelEvent(self, _e):
-		scaleMul = self.zoomStep if _e.delta()> 0 else 1/self.zoomStep
+		scaleMul = self.prefs.zoomStep if _e.delta()> 0 else 1/self.prefs.zoomStep
 
 		oldScale = self.canvasScale
 		self.viewportSize(self.canvasScale*scaleMul)
@@ -167,7 +169,7 @@ class SvgViewport(QWidget):
 
 
 		if self.interactStart:
-			if (QLineF(self.interactStart, cPosTrue).length() *self.canvasScale)> self.spotDist:
+			if (QLineF(self.interactStart, cPosTrue).length() *self.canvasScale)> self.prefs.spotDist:
 				self.interactSpot = False
 
 			self.sigInteract.emit(self.intLive, cPosTrue, self.interactStart, self.interactKey, self.interactSpot)
@@ -214,8 +216,8 @@ class SvgViewport(QWidget):
 #  todo 95 (viewport, fix) +0: clip max scale by render limit
 	def viewportSize(self, _scale, _updateAnchor=True):
 		#max clip
-		if _scale>self.scaleMax:
-			_scale = self.scaleMax
+		if _scale>self.prefs.scaleMax:
+			_scale = self.prefs.scaleMax
 
 
 		#min clip
@@ -223,8 +225,8 @@ class SvgViewport(QWidget):
 		cWidth, cHeight = cSize.width(), cSize.height()
 		newSize = (cWidth if cWidth<cHeight else cHeight) * _scale/self.canvasScale
 
-		if self.scaleMin > newSize:
-			_scale *= (self.scaleMin / newSize)
+		if self.prefs.scaleMin > newSize:
+			_scale *= (self.prefs.scaleMin / newSize)
 
 
 		self.canvasScale = _scale
@@ -239,8 +241,8 @@ class SvgViewport(QWidget):
 	def viewportPlace(self, _pos, _updateAnchor=True):
 		cHint = self.canvas.getDocSize(self.canvasScale)
 
-		cMarginX = self.width() * self.panMargins
-		cMarginY = self.height() * self.panMargins
+		cMarginX = self.width() * self.prefs.panMargins
+		cMarginY = self.height() * self.prefs.panMargins
 
 		if _pos.x() > (self.width() -cHint.left() -cMarginX):
 			_pos.setX(self.width() -cHint.left() -cMarginX)
@@ -272,23 +274,8 @@ class SvgViewport(QWidget):
 
 
 
-	def __init__(self, _parent,
-		fit = .7,
-		offset = .66,
-		panMargins=.2,
-		scaleMin=10,
-		scaleMax=1000,
-		spotDist=3,
-		zoomStep=1.1
-	):
-		self.defFit = fit
-		self.defOffset = offset
-
-		self.panMargins = panMargins
-		self.scaleMin = scaleMin
-		self.scaleMax = scaleMax
-		self.spotDist = spotDist
-		self.zoomStep = zoomStep
+	def __init__(self, _parent, _prefs=None):
+		self.prefs = _prefs or self.prefs
 
 
 		QWidget.__init__(self, _parent)
@@ -328,13 +315,13 @@ class SvgViewport(QWidget):
 		scaleX = self.width() / cBox.width()
 		scaleY = self.height() / cBox.height()
 
-		_fit = _fit or self.defFit
+		_fit = _fit or self.prefs.fit
 		cScale = scaleY if scaleY<scaleX else scaleX
 		self.viewportSize(cScale*_fit)
 
 
 		#center
-		_offset = _offset or self.defOffset
+		_offset = _offset or self.prefs.offsetX
 		self.viewportPlace(QPoint(
 			self.width()*_offset -(cBox.left()+cBox.width()*_offset) *self.canvasScale,
 			self.height()*.5 -(cBox.top()+cBox.height()*.5) *self.canvasScale

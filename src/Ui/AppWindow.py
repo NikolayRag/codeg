@@ -110,15 +110,7 @@ class AppWindow(QObject):
 
 
 		holderViewport = cMain.findChild(QWidget, "wViewport")
-		self.wSvgViewport = SvgViewport(holderViewport,
-			Args.viewport.fit,
-			Args.viewport.offsetX,
-			Args.viewport.panMargins,
-			Args.viewport.scaleMin,
-			Args.viewport.scaleMax,
-			Args.viewport.spotDist,
-			Args.viewport.zoomStep
-		)
+		self.wSvgViewport = SvgViewport(holderViewport, Args.viewport)
 		self.wSvgViewport.lower() 
 
 
