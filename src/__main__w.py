@@ -12,25 +12,25 @@ from Args import *
 
 AppName = 'codeg'
 AppPrefs = {
-	'app': {
-		'initFit': [0.85, True],
-		'scheme': ['dark', True],
+	'Application': {
+		'initFit': [0.85],
+		'scheme': ['dark', True, 'Style scheme'],
 
 		'wSize': [None],
 		'wMaxi': [False],
 	},
-	'viewport': {
-		'fit': [0.7, True],
-		'fitGeo': [.5, True],
-		'offsetX': [0.66, True],
+	'Viewport': {
+		'fit': [0.7, True, 'Fit ratio'],
+		'fitGeo': [.5, True, 'Fit geometry ratio'],
+		'offsetX': [0.66, True, 'Fit center'],
 
-		'panMargins': [.2, True],
-		'scaleMin': [10, True],
-		'scaleMax': [1000, True],
-		'spotDist': [3, True],
-		'zoomStep': [1.1, True],
+		'panMargins': [.2, True, 'Pan limit margins'],
+		'scaleMin': [10],
+		'scaleMax': [1000],
+		'spotDist': [3, True, "Mouse interaction \nspot size"],
+		'zoomStep': [1.1, True, 'Mouse wheel zoom multiplier'],
 	},
-	'ui': {
+	'Ui': {
 		'recentProject': [[]],
 		'recentLoaded': [[]],
 		'recentSaved': [[]],
