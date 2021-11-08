@@ -66,7 +66,7 @@ class AppWindow(QObject):
 
 		self.rtSize = [None, None]
 
-		cMain = self.lMain = self.wMain = QUiLoader().load(self.defUi)
+		cMain = self.wMain = QUiLoader().load(self.defUi)
 		self.tmpFilterMain = BindFilter({
 			QEvent.Close: lambda event: self.sigPreexit.emit(event) or True,
 			QEvent.Resize: lambda e: self.resized(e, True),
@@ -157,7 +157,7 @@ class AppWindow(QObject):
 
 
 	def windowSize(self):
-		return [self.rtSize[1], self.lMain.isMaximized()]
+		return [self.rtSize[1], self.wMain.isMaximized()]
 
 
 
@@ -167,7 +167,7 @@ class AppWindow(QObject):
 			self.rtSize[1] = _e.size()
 			return
 
-		if self.lMain.isMaximized():
+		if self.wMain.isMaximized():
 			self.rtSize[1] = self.rtSize[0]
 
 
@@ -181,7 +181,7 @@ class AppWindow(QObject):
 
 
 	def suspend(self, _state):
-		self.lMain.setUpdatesEnabled(not _state)
+		self.wMain.setUpdatesEnabled(not _state)
 
 
 
