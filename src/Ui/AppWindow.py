@@ -224,7 +224,7 @@ class AppWindow(QObject):
 
 
 
-	def viewportMouseSelect(self, _point, _origin, _step):
+	def viewportMouseSelect(self, _point, _origin, _step, _spot):
 		self.selectionDescription.fit(_point,_origin)
 
 		if _step == SvgViewport.intStart:
@@ -232,15 +232,13 @@ class AppWindow(QObject):
 
 			self.selectionDescription.show(True)
 
-			return
 
-
-		if _step == SvgViewport.intLive:
+		if (_step == SvgViewport.intLive and not _spot) or _step == SvgViewport.intStart:
 			for cGeo, cDescr in self.widgetGeo.getBlocks().items():
 				xmm = sorted((_origin.x(),_point.x()))
 				ymm = sorted((_origin.y(),_point.y()))
 
-				inthebox = cGeo.boxed(xmm, ymm, _origin.x()>=_point.x())
+				inthebox = cGeo.boxed(xmm, ymm, _origin.x()>_point.x())
 				self.widgetGeo.selectGeo(inthebox)
 
 			return
@@ -257,7 +255,7 @@ class AppWindow(QObject):
 
 	def viewportInteract(self, _step, _point, _origin, _mod, _spot=True):
 		if _mod == Qt.NoModifier:
-			self.viewportMouseSelect(_point, _origin, _step)
+			self.viewportMouseSelect(_point, _origin, _step, _spot)
 
 		if _mod==Qt.ShiftModifier:
 			self.viewportMouseMove(_point -_origin, _step)
