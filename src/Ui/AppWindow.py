@@ -400,7 +400,6 @@ class AppWindow(QObject):
 		self.allWidgetsMarks = {}
 
 
-# =todo 89 (ux, module-ui, fix) +0: place grid correctly
 		self.wSvgViewport.canvasReset()
 		self.gridDescription = self.wSvgViewport.canvasAdd(self.defGrid)
 

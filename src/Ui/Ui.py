@@ -7,7 +7,7 @@
 # -todo 186 (feature, module-ui, module-dispatch, v2) +0: live cut visualize
 #  todo 190 (feature, module-ui) +0: live cut visualize from standalone dispatcher, with some echo protocol
 # =todo 117 (ux, module-ui) +0: add app settings
-# =todo 184 (ux, module-ui) +0: save/load app settings with project
+# -todo 184 (ux, module-ui) +0: save/load app settings with project
 
 # =todo 178 (ux) +0: suggest recent at load
 
@@ -28,7 +28,7 @@
 # =todo 166 (module-ui, ux) +0: icons
 #  todo 222 (feature) +2: independent undo/preset stack for any Geo and Mark
 
-# =todo 179 (clean) -1: chack names, order and var/function annotates
+# =todo 179 (clean) -1: check names, order and var/function annotates
 
 import json
 
@@ -112,8 +112,6 @@ class Ui():
 			},
 		}
 	}
-#  todo 115 (ux) -1: allow to choose style by commandline
-# =todo 116 (ux, module-ui) +0: choose style in app settings
 
 	args = None
 

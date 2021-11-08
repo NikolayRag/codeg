@@ -253,7 +253,7 @@
 -fix, gcode 88: +0 "src\Ui\Ui.py" kii 21/09/03 02:02:12
 	use dispatch both for file save
 
-=ux, module-ui, fix 89: +0 "src\Ui\AppWindow.py" ki 21/11/01 20:01:16
++ux, module-ui, fix 89: +0 "src\Ui\AppWindow.py" ki 21/11/08 14:31:39
 	place grid correctly
 
 =ux, module-ui, fix 90: +5 "src\GGData\GGData.py" ki 21/10/24 04:17:21
@@ -325,10 +325,10 @@
 +module-ui, fix 114: +0 "src\Ui\GeoWidget.py" ki 21/10/29 21:36:39
 	select-all case bug
 
- ux 115: -1 "src\Ui\Ui.py" kii 21/09/08 18:41:16
+!ux 115: -1 "src\Ui\Ui.py" ki 21/11/08 14:29:21
 	allow to choose style by commandline
 
-=ux, module-ui 116: +0 "src\Ui\Ui.py" kii 21/09/08 18:41:48
++ux, module-ui 116: +0 "src\Ui\Ui.py" ki 21/11/08 14:29:12
 	choose style in app settings
 
 =ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/10/25 15:25:56
@@ -502,10 +502,10 @@
 =ux 178: +0 "src\Ui\Ui.py" ki 21/10/23 05:36:47
 	suggest recent at load
 
-=clean 179: -1 "src\Ui\Ui.py" ki 21/10/19 00:08:32
-	chack names, order and var/function annotates
+=clean 179: -1 "src\Ui\Ui.py" ki 21/11/08 14:29:06
+	check names, order and var/function annotates
 
-=module-ui, mark 180: +0 "src\Ui\MarkWidget.py" ki 21/10/19 03:18:36
+-module-ui, mark, wat 180: +0 "src\Ui\MarkWidget.py" ki 21/11/08 14:32:19
 	allow to assign only with selected geo
 
 -decide 181: +0 "src\GGData\Geoblock.py" ki 21/11/05 20:04:13
@@ -517,7 +517,7 @@
 -ux, module-ui 183: +1 "src\Ui\Ui.py" ki 21/10/19 20:47:46
 	brush Scene routines
 
-=ux, module-ui 184: +0 "src\Ui\Ui.py" ki 21/10/20 12:14:08
+-ux, module-ui 184: +0 "src\Ui\Ui.py" ki 21/11/08 14:27:53
 	save/load app settings with project
 
 -feature, module-ui, module-dispatch, v2 186: +0 "src\Ui\Ui.py" ki 21/10/24 04:25:52
@@ -676,7 +676,7 @@
  svg, fix, v2 237: +0 "src\Ui\SvgViewport.py" ki 21/11/05 00:18:00
 	go OGL
 
-=fix, viewport, svg 238: +0 "src\Ui\SvgViewport.py" ki 21/11/05 17:11:13
++fix, viewport, svg 238: +0 "src\Ui\SvgViewport.py" ki 21/11/08 14:33:01
 	correct SvgCanvasLayer xform for scaled/offset svg
 
 =svg 239: +0 "src\Ui\SvgViewport.py" ki 21/11/07 06:26:40

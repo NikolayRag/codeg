@@ -515,7 +515,6 @@ class SvgCanvas(QWidget):
 
 
 	def recompute(self, _update=True):
-# =todo 238 (fix, viewport, svg) +0: correct SvgCanvasLayer xform for scaled/offset svg
 			allLayerXforms = [[*l.layerOffset(True), *l.layerSize()] for l in self.layers.values() if l.display and not l.ghost]
 			allMinMax = list(zip(*[ [x, x+w, y, y+h] for x,y,w,h in allLayerXforms ]))
 			allMinMax = allMinMax or [[0], [self.defaultWidth], [0], [self.defaultHeight]]
