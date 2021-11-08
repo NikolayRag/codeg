@@ -193,7 +193,7 @@ class AppWindow(QObject):
 ### VIEWPORT ###
 
 
-	def viewportFit(self, _fit=None, _offset=None, _box=None):
+	def viewportFit(self, _box=None, _fit=None, _offset=None):
 		_fit = _fit or Args.viewport.fit
 		_offset = _offset or Args.viewport.offsetX
 

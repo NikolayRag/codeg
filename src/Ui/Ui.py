@@ -385,7 +385,7 @@ class Ui():
 		cGBlock.xformSet(offset=(0,-cOffset.y()))
 		gDscr = self.appWindow.geoAddWidget(cGBlock)
 
-		self.appWindow.viewportFit(Args.viewport.fitGeo, Args.viewport.offsetX, gDscr.bbox())
+		self.appWindow.viewportFit(gDscr.bbox(), Args.viewport.fitGeo)
 
 
 
@@ -397,7 +397,7 @@ class Ui():
 		cGBlock.xformSet(offset=(0,-cOffset.y()))
 		gDscr = self.appWindow.geoAddWidget(cGBlock)
 
-		self.appWindow.viewportFit(Args.viewport.fitGeo, Args.viewport.offsetX, gDscr.bbox())
+		self.appWindow.viewportFit(gDscr.bbox(), Args.viewport.fitGeo)
 
 
 
