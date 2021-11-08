@@ -246,6 +246,8 @@ class AppWindow(QObject):
 				inthebox = cGeo.boxed(xmm, ymm, _origin.x()>_point.x())
 				self.widgetGeo.selectGeo(inthebox)
 
+
+		if _step == SvgViewport.intLive or _step == SvgViewport.intStart:
 			return
 
 
