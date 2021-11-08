@@ -13,30 +13,30 @@ from Args import *
 AppName = 'codeg'
 AppPrefs = {
 	'app': {
-		'initFit': 0.85,
-		'scheme': 'dark',
+		'initFit': [0.85],
+		'scheme': ['dark'],
 	},
 	'viewport': {
-		'fit': 0.7,
-		'fitGeo': .5,
-		'offsetX': 0.66,
+		'fit': [0.7],
+		'fitGeo': [.5],
+		'offsetX': [0.66],
 
-		'panMargins': .2,
-		'scaleMin': 10,
-		'scaleMax': 1000,
-		'spotDist': 3,
-		'zoomStep': 1.1
+		'panMargins': [.2],
+		'scaleMin': [10],
+		'scaleMax': [1000],
+		'spotDist': [3],
+		'zoomStep': [1.1],
 	}
 }
 AppFields = {
 	'app': {
-		'wSize': None,
-		'wMaxi': False,
+		'wSize': [None],
+		'wMaxi': [False],
 	},
 	'ui': {
-		"recentProject": [],
-		"recentLoaded": [],
-		"recentSaved": [],
+		'recentProject': [[]],
+		'recentLoaded': [[]],
+		'recentSaved': [[]],
 	}
 }
 

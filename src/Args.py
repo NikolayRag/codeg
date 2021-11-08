@@ -64,7 +64,7 @@ class Args():
 
 			cBlock = getattr(Args, blockN)
 			for argN, argV in blockV.items():
-				setattr(cBlock, argN, argV)
+				setattr(cBlock, argN, argV[0])
 
 				cBlock._setData(argN, _store)
 
