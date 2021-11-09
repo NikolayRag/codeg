@@ -22,6 +22,7 @@ from .BindFilter import *
 
 
 class AppWindow(QObject):
+	sigPrefScheme = Signal()
 	sigPreexit = Signal(object)
 
 	sigGeoSelect = Signal(object, bool)
@@ -416,7 +417,12 @@ class AppWindow(QObject):
 ### OPTIONS ###
 
 	def prefsList(self):
-		wPrefs = PrefsWidget(self.wMain, Args._list())
+		pinScheme = Args.Application.scheme
 
+		wPrefs = PrefsWidget(self.wMain, Args._list())
 		if not wPrefs.exec():
 			return
+
+
+		if Args.Application.scheme != pinScheme:
+			self.sigPrefScheme.emit()
