@@ -114,13 +114,20 @@ class PrefsWidget():
 				elif cType==bool:
 					fieldV = fieldV.checkState() == Qt.Checked
 
-				elif type(fieldV) == QComboBox:
-					fieldV = fieldV.currentText()
+				elif cType==str:
+					if type(fieldV) == QComboBox:
+						fieldV = fieldV.currentText()
+
+					else:
+						fieldV = fieldV.text()
 
 				else:
-					fieldV = fieldV.text()
+					print('Unknown pref type:', fieldN, cType)
+					cType = None
 
-				setattr(cBock, fieldN, cType(fieldV))
+				
+				if cType:
+					setattr(cBock, fieldN, cType(fieldV))
 
 
 		return True
