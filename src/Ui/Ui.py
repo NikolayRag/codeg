@@ -138,7 +138,9 @@ class Ui():
 		self.qApp.setStyle(QStyleFactory.create('fusion'))
 
 
-		self.appWindow = AppWindow(self.styleList[Args.Application.scheme])
+		self.appWindow = AppWindow()
+
+		self.prefScheme()
 
 
 		self.appWindow.sigPreexit.connect(self.preexit)
@@ -189,6 +191,11 @@ class Ui():
 
 
 		self.sceneCreate()
+
+
+
+	def prefScheme(self):
+		self.appWindow.setStyle(self.styleList[Args.Application.scheme])
 
 
 

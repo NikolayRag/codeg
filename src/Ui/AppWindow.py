@@ -63,14 +63,16 @@ class AppWindow(QObject):
 	rtSize = []
 
 
-	def __init__(self, _styleFile=None):
+	def __init__(self):
 		QObject.__init__(self)
-
 
 		self.rtSize = [None, None]
 
-#  todo 244 (feature) +0: add drop scene, svg files and tag text
+
 		cMain = self.wMain = QUiLoader().load(self.defUi)
+		cMain.setWindowTitle('codeg');
+
+#  todo 244 (feature) +0: add drop scene, svg files and tag text
 		self.tmpFilterMain = BindFilter({
 			QEvent.Close: lambda event: self.sigPreexit.emit(event) or True,
 			QEvent.Resize: lambda e: self.resized(e, True),
@@ -79,13 +81,6 @@ class AppWindow(QObject):
 			QEvent.Drop: lambda e: e.mimeData().hasUrls() and self.sigDrop.emit(e.mimeData().urls()),
 		 })
 		cMain.installEventFilter(self.tmpFilterMain)
-
-
-		if _styleFile:
-			with open(_styleFile) as fQss:
-				cMain.setStyleSheet(fQss.read())
-
-		cMain.setWindowTitle('codeg');
 
 		
 		#widgets time
@@ -156,6 +151,13 @@ class AppWindow(QObject):
 		self.wBtnMarkAdd.clicked.connect(self.sigMarkAdd)
 		self.wBtnPrefs.clicked.connect(self.prefsList)
 		
+
+
+	def setStyle(self, _styleFn):
+		with open(_styleFn) as fQss:
+			self.wMain.setStyleSheet(fQss.read())
+
+
 
 	def show(self):
 		self.wMain.show()
