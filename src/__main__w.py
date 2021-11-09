@@ -11,7 +11,7 @@ from Args import *
 
 
 AppName = 'codeg'
-AppPrefs = {
+AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 	'Application': {
 		'initFit': [0.85],
 		'scheme': ['dark', ['dark','light'], str, 'Style scheme'],
@@ -27,7 +27,7 @@ AppPrefs = {
 		'panMargins': [.2, [0,.5], float, 'Pan limit margins'],
 		'scaleMin': [10],
 		'scaleMax': [1000],
-		'spotDist': [3, [0,30], float, "Mouse interaction \nspot size"],
+		'spotDist': [3, [0,30], int, "Mouse starting spot size"],
 		'zoomStep': [1.1, [1,2], float, 'Mouse wheel zoom multiplier'],
 	},
 	'Ui': {
