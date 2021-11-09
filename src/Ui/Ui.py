@@ -140,9 +140,8 @@ class Ui():
 
 		self.appWindow = AppWindow()
 
-		self.prefScheme()
 
-
+		self.appWindow.sigPrefScheme.connect(self.prefScheme)
 		self.appWindow.sigPreexit.connect(self.preexit)
 
 		self.appWindow.sigGeoSelect.connect(self.geoSetSelect)
@@ -164,30 +163,28 @@ class Ui():
 
 		self.markDefault = self.data.markNew(
 			filterName='FilterSetSVG',
-			data=self.styleSVG[Args.Application.scheme]['default'],
 			priority=-5,
 		)
 		self.markInactive = self.data.markNew(
 			filterName='FilterSetSVG',
-			data=self.styleSVG[Args.Application.scheme]['inactive'],
 			priority=-4,
 		)
 		self.markOff = self.data.markNew(
 			filterName='FilterSetSVG',
-			data=self.styleSVG[Args.Application.scheme]['off'],
 			priority=-3,
 #			data={'visible':False} #mark-level visibility for example
 		)
 		self.markSelect = self.data.markNew(
 			filterName='FilterSetSVG',
-			data=self.styleSVG[Args.Application.scheme]['select'],
 			priority=-2,
 		)
 		self.markHover = self.data.markNew(
 			filterName='FilterSetSVG',
-			data=self.styleSVG[Args.Application.scheme]['hover'],
 			priority=-1,
 		)
+
+
+		self.prefScheme()
 
 
 		self.sceneCreate()
@@ -196,6 +193,20 @@ class Ui():
 
 	def prefScheme(self):
 		self.appWindow.setStyle(self.styleList[Args.Application.scheme])
+
+
+		self.markDefault.setData(self.styleSVG[Args.Application.scheme]['default'])
+		self.markInactive.setData(self.styleSVG[Args.Application.scheme]['inactive'])
+		self.markOff.setData(self.styleSVG[Args.Application.scheme]['off'])
+		self.markSelect.setData(self.styleSVG[Args.Application.scheme]['select'])
+		self.markHover.setData(self.styleSVG[Args.Application.scheme]['hover'])
+
+		if self.activeScene:
+			for geoBlock in self.activeScene.geoList():
+				for geoItem in geoBlock.getGeo():
+					geoItem.marksSolve(filterStep='UI', force=True)
+
+		self.appWindow.geoWidgetTouched()
 
 
 
