@@ -286,8 +286,14 @@ class AppWindow(QObject):
 
 
 
-	def geoWidgetTouched(self, _block, _descr):
-		_descr.setXml( _block.xmlString() )
+	def geoWidgetTouched(self, _block=None, _descr=None):
+		if _block:
+			_descr.setXml( _block.xmlString() )
+			return
+
+
+		for geoBlock, geoDescr in self.widgetGeo.getBlocks(True).items():
+			geoDescr.setXml( geoBlock.xmlString() )
 
 
 
