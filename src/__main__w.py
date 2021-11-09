@@ -14,21 +14,21 @@ AppName = 'codeg'
 AppPrefs = {
 	'Application': {
 		'initFit': [0.85],
-		'scheme': ['dark', True, str, 'Style scheme'],
+		'scheme': ['dark', ['dark','light'], str, 'Style scheme'],
 
 		'wSize': [None],
 		'wMaxi': [False],
 	},
 	'Viewport': {
-		'fit': [0.7, True, float, 'Fit ratio'],
-		'fitGeo': [.5, True, float, 'Fit geometry ratio'],
-		'offsetX': [0.66, True, float, 'Fit center'],
+		'fit': [0.7, [0.,1], float, 'Fit ratio'],
+		'fitGeo': [.5, [0,1], float, 'Fit geometry ratio'],
+		'offsetX': [0.66, [0,1], float, 'Fit center'],
 
-		'panMargins': [.2, True, float, 'Pan limit margins'],
+		'panMargins': [.2, [0,.5], float, 'Pan limit margins'],
 		'scaleMin': [10],
 		'scaleMax': [1000],
-		'spotDist': [3, True, float, "Mouse interaction \nspot size"],
-		'zoomStep': [1.1, True, float, 'Mouse wheel zoom multiplier'],
+		'spotDist': [3, [0,30], float, "Mouse interaction \nspot size"],
+		'zoomStep': [1.1, [1,2], float, 'Mouse wheel zoom multiplier'],
 	},
 	'Ui': {
 		'recentProject': [[]],

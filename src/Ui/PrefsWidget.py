@@ -30,7 +30,34 @@ class PrefsWidget():
 					continue
 
 
-				fieldVal = QLineEdit(str(getattr(arg, prefN)))
+				cVal = getattr(arg, prefN)
+				cData = arg._getData()[prefN][0]
+
+
+				if prefV[1] == str:
+					if type(cData) == list:
+						fieldVal = QComboBox()
+						for opt in cData:
+							fieldVal.addItem(opt)
+
+					else:
+						fieldVal = QLineEdit(cVal)
+
+
+				if prefV[1] == float or prefV[1] == int:
+					floatMul = 100 if prefV[1]==float else 1
+
+					fieldVal = QSlider(Qt.Horizontal)
+					fieldVal.setRange(cData[0]*floatMul, cData[1]*floatMul)
+					fieldVal.setValue(cVal*floatMul)
+
+
+				if prefV[1] == bool:
+					fieldVal = QCheckBox()
+					fieldVal.setCheckState(Qt.Checked if cVal else Qt.Unchecked)
+
+
+
 				wForm.addRow(prefV[2], fieldVal)
 
 				blockDict[prefN] = fieldVal
@@ -54,7 +81,22 @@ class PrefsWidget():
 		for cBock, fields in self.links.items():
 			for fieldN, fieldV in fields.items():
 				cType = cBock._getData()[fieldN][1]
-				setattr(cBock, fieldN, cType(fieldV.text()))
+
+				if cType==float:
+					fieldV = fieldV.value() *.01
+				elif cType==int:
+					fieldV = fieldV.value()
+
+				elif cType==bool:
+					fieldV = fieldV.checkState() == Qt.Checked
+
+				elif type(fieldV) == QComboBox:
+					fieldV = fieldV.currentText()
+
+				else:
+					fieldV = fieldV.text()
+
+				setattr(cBock, fieldN, cType(fieldV))
 
 
 		return True
