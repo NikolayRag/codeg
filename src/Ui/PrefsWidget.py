@@ -64,7 +64,7 @@ class PrefsWidget():
 					fieldSpinner.setButtonSymbols(QAbstractSpinBox.NoButtons)
 					fieldSpinner.setRange(cData[0], cData[1])
 					fieldSpinner.setValue(cVal)
-					fieldSpinner.setSingleStep(.05)
+					fieldSpinner.setSingleStep(.05 if prefV[1]==float else 1)
 
 					fieldVal = QSlider(Qt.Horizontal)
 					fieldVal.setRange(cData[0]*floatMul, cData[1]*floatMul)
