@@ -61,12 +61,14 @@ class AppWindow(QObject):
 	allWidgetsMarks = {}
 
 	rtSize = []
+	rtPos = []
 
 
 	def __init__(self):
 		QObject.__init__(self)
 
 		self.rtSize = [None, None]
+		self.rtPos = [None, None]
 
 
 		cMain = self.wMain = QUiLoader().load(self.defUi)
@@ -75,6 +77,7 @@ class AppWindow(QObject):
 #  todo 244 (feature) +0: add drop scene, svg files and tag text
 		self.tmpFilterMain = BindFilter({
 			QEvent.Close: lambda event: self.sigPreexit.emit(event) or True,
+			QEvent.Move: self.moved,
 			QEvent.Resize: lambda e: self.resized(e, True),
 			QEvent.WindowStateChange: self.resized,
 			QEvent.DragEnter: lambda e: e.acceptProposedAction(),
@@ -166,9 +169,15 @@ class AppWindow(QObject):
 
 
 
-	def windowSize(self):
-		return [self.rtSize[1], self.wMain.isMaximized()]
+	def windowGeometry(self):
+		return [self.rtSize[1], self.rtPos[1], self.wMain.isMaximized()]
 
+
+
+	def moved(self, _e):
+#		print('mv', self.rtPos, 'to', _e.pos(), 'maxed' if self.wMain.isMaximized() else '')
+		self.rtPos[0] = self.rtPos[1]
+		self.rtPos[1] = _e.pos()
 
 
 	def resized(self, _e, _resize=False):
@@ -178,15 +187,20 @@ class AppWindow(QObject):
 			return
 
 		if self.wMain.isMaximized():
+#			print('x', self.rtPos)
 			self.rtSize[1] = self.rtSize[0]
+			self.rtPos[1] = self.rtPos[0]
 
 
 
-	def resize(self, _size, maximize=None):
+	def windowGeometrySet(self, _size, _pos, maximize=None):
 		self.wMain.resize( _size )
+
+		self.wMain.move( _pos )
 
 		if maximize:
 			self.wMain.showMaximized()
+
 
 
 

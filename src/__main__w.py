@@ -17,6 +17,7 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 		'scheme': ['dark', ['dark','light'], str, 'Style scheme'],
 
 		'wSize': [None],
+		'wPos': [None],
 		'wMaxi': [False],
 	},
 	'Viewport': {

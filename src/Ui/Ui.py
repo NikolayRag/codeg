@@ -219,18 +219,25 @@ class Ui():
 	def exec(self):
 		self.appWindow.show()
 
+
 		#maximized after show() to keep unmaximized size
+		cPos = Args.Application.wPos and QPoint(*Args.Application.wPos)
+		cMargin = QApplication.primaryScreen().size() *(1-Args.Application.initFit)
+		cPos = cPos or QPoint(cMargin.width(), cMargin.height())
+
 		cSize = Args.Application.wSize and QSize(*Args.Application.wSize)
 		cSize = cSize or QApplication.primaryScreen().size() *Args.Application.initFit
-		self.appWindow.resize(cSize, Args.Application.wMaxi)
+		self.appWindow.windowGeometrySet(cSize, cPos, Args.Application.wMaxi)
 
 
 		self.qApp.exec_()
 
 
-		wSize = self.appWindow.windowSize()
+		wSize = self.appWindow.windowGeometry()
+		print(wSize)
 		Args.Application.wSize = (wSize[0].width(), wSize[0].height())
-		Args.Application.wMaxi = wSize[1]
+		Args.Application.wPos = (wSize[1].x(), wSize[1].y())
+		Args.Application.wMaxi = wSize[2]
 
 
 
