@@ -694,6 +694,9 @@
 !feature 245: +0 "src\Ui\AppWindow.py" ki 21/11/08 14:11:32
 	drop svg
 
--widget, feature 246: +0 "src\Ui\PrefsWidget.py" ki 21/11/09 13:48:07
+-widget, feature 246: +0 "src\Ui\PrefsWidget.py" ki 21/11/09 13:51:01
 	add reset settings
+
+ fix, app 247: +0 "src\Ui\AppWindow.py" ki 21/11/09 21:05:18
+	window pisition ruined if opened-closed maximized
 

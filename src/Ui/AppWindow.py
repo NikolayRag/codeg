@@ -174,6 +174,7 @@ class AppWindow(QObject):
 
 
 
+#  todo 247 (fix, app) +0: window pisition ruined if opened-closed maximized
 	def moved(self, _e):
 #		print('mv', self.rtPos, 'to', _e.pos(), 'maxed' if self.wMain.isMaximized() else '')
 		self.rtPos[0] = self.rtPos[1]
