@@ -155,8 +155,9 @@ class Scene():
 		for cGeo in geo.getGeo():
 			for cMark in _marks:
 				cGeo.markSet(cMark, True)
-				if _solve:
-					cGeo.marksSolve(filterStep=_solve)
+
+			if _solve:
+				cGeo.marksSolve(filterStep=_solve)
 
 
 		self.dirtyFlag = True
