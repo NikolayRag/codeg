@@ -40,6 +40,10 @@ class PrefsWidget():
 						for opt in cData:
 							fieldVal.addItem(opt)
 
+						if cVal in cData:
+							fieldVal.setCurrentIndex(cData.index(cVal))
+
+
 					else:
 						fieldVal = QLineEdit(cVal)
 
