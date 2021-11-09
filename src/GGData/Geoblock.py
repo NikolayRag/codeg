@@ -301,14 +301,14 @@ class Geoitem():
 
 
 #  todo 133 (mark, optimize, decide) -1: Need to cache data?
-	def marksSolve(self, filterStep=None):
+	def marksSolve(self, filterStep=None, force=False):
 		self.dataApplied = dict(self.dataOwn)
 
 		markSortedA = sorted(self.marks, key=lambda m: m.priority)
 
 
 		for cMark in markSortedA:
-			filterData = cMark.applyFilter(self, self.dirtyRuntime and filterStep)
+			filterData = cMark.applyFilter(self, (self.dirtyRuntime or force) and filterStep)
 
 			for cData in filterData:
 				self.dataApplied[cData] = filterData[cData]
