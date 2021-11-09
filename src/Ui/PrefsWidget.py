@@ -34,37 +34,56 @@ class PrefsWidget():
 				cData = arg._getData()[prefN][0]
 
 
+				fieldVal = fieldW = None
+
 				if prefV[1] == str:
 					if type(cData) == list:
-						fieldVal = QComboBox()
+						fieldW = QComboBox()
 						for opt in cData:
-							fieldVal.addItem(opt)
+							fieldW.addItem(opt)
 
 						if cVal in cData:
-							fieldVal.setCurrentIndex(cData.index(cVal))
+							fieldW.setCurrentIndex(cData.index(cVal))
 
 
 					else:
-						fieldVal = QLineEdit(cVal)
+						fieldW = QLineEdit(cVal)
 
+
+				def spinslide(spin, slide, mul):
+					slide.valueChanged.connect(lambda v: spin.setValue(v/mul))
+					spin.valueChanged.connect(lambda v: slide.setValue(v*mul))
 
 				if prefV[1] == float or prefV[1] == int:
 					floatMul = 100 if prefV[1]==float else 1
+
+					fieldSpinner = QDoubleSpinBox() if prefV[1]==float else QSpinBox()
+					fieldSpinner.setMinimumWidth(40)
+					fieldSpinner.setMaximumWidth(40)
+					fieldSpinner.setButtonSymbols(QAbstractSpinBox.NoButtons)
+					fieldSpinner.setRange(cData[0], cData[1])
+					fieldSpinner.setValue(cVal)
+					fieldSpinner.setSingleStep(.05)
 
 					fieldVal = QSlider(Qt.Horizontal)
 					fieldVal.setRange(cData[0]*floatMul, cData[1]*floatMul)
 					fieldVal.setValue(cVal*floatMul)
 
+					spinslide(fieldSpinner, fieldVal, floatMul)
+
+					fieldW = QHBoxLayout()
+					fieldW.addWidget(fieldSpinner)
+					fieldW.addWidget(fieldVal)
+
 
 				if prefV[1] == bool:
-					fieldVal = QCheckBox()
-					fieldVal.setCheckState(Qt.Checked if cVal else Qt.Unchecked)
+					fieldW = QCheckBox()
+					fieldW.setCheckState(Qt.Checked if cVal else Qt.Unchecked)
 
 
+				wForm.addRow(prefV[2], fieldW)
 
-				wForm.addRow(prefV[2], fieldVal)
-
-				blockDict[prefN] = fieldVal
+				blockDict[prefN] = fieldVal or fieldW
 
 
 			if blockDict:
