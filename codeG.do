@@ -694,3 +694,6 @@
 !feature 245: +0 "src\Ui\AppWindow.py" ki 21/11/08 14:11:32
 	drop svg
 
+-widget, feature 246: +0 "src\Ui\PrefsWidget.py" ki 21/11/09 13:48:07
+	add reset settings
+

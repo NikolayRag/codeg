@@ -3,6 +3,7 @@ from PySide2.QtGui import *
 from PySide2.QtCore import *
 from PySide2.QtUiTools import *
 
+# -todo 246 (widget, feature) +0: add reset settings
 
 class PrefsWidget():
 	defUi = './Ui/PrefsWidget.ui'
