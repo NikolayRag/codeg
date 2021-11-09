@@ -8,5 +8,5 @@ class FilterSetSVG(Markfilter):
 
 
 	def run(self, _geo, _data):
-		for cTag in self.dataOwn:
-			_geo.setTag(cTag, self.dataOwn[cTag], dirty=False)
+		for cTag in _data:
+			_geo.setTag(cTag, _data[cTag], dirty=False)

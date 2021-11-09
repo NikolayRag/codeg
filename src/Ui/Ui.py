@@ -164,28 +164,28 @@ class Ui():
 
 		self.markDefault = self.data.markNew(
 			filterName='FilterSetSVG',
-			filterData=self.styleSVG[Args.Application.scheme]['default'],
+			data=self.styleSVG[Args.Application.scheme]['default'],
 			priority=-5,
 		)
 		self.markInactive = self.data.markNew(
 			filterName='FilterSetSVG',
-			filterData=self.styleSVG[Args.Application.scheme]['inactive'],
+			data=self.styleSVG[Args.Application.scheme]['inactive'],
 			priority=-4,
 		)
 		self.markOff = self.data.markNew(
 			filterName='FilterSetSVG',
-			filterData=self.styleSVG[Args.Application.scheme]['off'],
+			data=self.styleSVG[Args.Application.scheme]['off'],
 			priority=-3,
 #			data={'visible':False} #mark-level visibility for example
 		)
 		self.markSelect = self.data.markNew(
 			filterName='FilterSetSVG',
-			filterData=self.styleSVG[Args.Application.scheme]['select'],
+			data=self.styleSVG[Args.Application.scheme]['select'],
 			priority=-2,
 		)
 		self.markHover = self.data.markNew(
 			filterName='FilterSetSVG',
-			filterData=self.styleSVG[Args.Application.scheme]['hover'],
+			data=self.styleSVG[Args.Application.scheme]['hover'],
 			priority=-1,
 		)
 
