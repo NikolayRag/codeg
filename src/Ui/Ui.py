@@ -62,7 +62,7 @@ class Ui():
 			},
 			'inactive': {
 				'stroke-width':'1px',
-				'stroke':'#bbb',
+				'stroke':'#ddd',
 				'fill':'none',
 			},
 			'off': {
@@ -92,7 +92,7 @@ class Ui():
 			},
 			'inactive': {
 				'stroke-width':'1px',
-				'stroke':'#777',
+				'stroke':'#444',
 				'fill':'none',
 			},
 			'off': {
