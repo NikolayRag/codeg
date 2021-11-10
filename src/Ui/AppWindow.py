@@ -178,7 +178,7 @@ class AppWindow(QObject):
 	def moved(self, _e):
 		if self.rtPos[1]:
 			self.rtPos[0] = self.rtPos[1]
-			self.rtPos[1] = _e.pos()
+			self.rtPos[1] = self.wMain.pos()
 		else:
 			self.rtPos[1] = self.rtPos[0]
 
@@ -186,7 +186,7 @@ class AppWindow(QObject):
 	def resized(self, _e):
 		if self.rtSize[1]:
 			self.rtSize[0] = self.rtSize[1]
-			self.rtSize[1] = _e.size()
+			self.rtSize[1] = self.wMain.size()
 		else:
 			self.rtSize[1] = self.rtSize[0]
 
@@ -206,7 +206,7 @@ class AppWindow(QObject):
 		if maximize:
 			self.wMain.showMaximized()
 
-		#correct values to pass to following events
+		#marker values to pass to following events
 		self.rtSize = [_size,None]
 		self.rtPos = [_pos,None]
 
