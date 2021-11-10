@@ -6,10 +6,10 @@
 
 # -todo 186 (feature, module-ui, module-dispatch, v2) +0: live cut visualize
 #  todo 190 (feature, module-ui) +0: live cut visualize from standalone dispatcher, with some echo protocol
-# =todo 117 (ux, module-ui) +0: add app settings
+# +todo 117 (ux, module-ui) +0: add app settings
 # -todo 184 (ux, module-ui) +0: save/load app settings with project
 
-# =todo 178 (ux) +0: suggest recent at load
+# =todo 178 (ux, feature) +0: suggest recent at load
 
 # =todo 175 (module-ui, module-data, geo) +0: clone geo
 # =todo 176 (module-ui, module-data, geo) +0: del geo
@@ -126,7 +126,7 @@ class Ui():
 	activeScene = None
 
 
-# -todo 148 (module-ui, fix) +0: review scene life cycle
+
 	def __init__(self, _data, _dispatch):
 		self.data = _data
 		self.dispatch = _dispatch
@@ -353,7 +353,7 @@ class Ui():
 
 
 
-# =todo 182 (ux) +0: fix save saved project
+# =todo 182 (ux) +0: save saved project with increment
 #  todo 196 (module-data, api) +0: deal with Markfilter data fields within Mark
 # =todo 198 (data, fix) +0: move save/load routines to GGData
 # =todo 203 (ux, clean) +0: scene load/save error handling

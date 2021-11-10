@@ -345,7 +345,6 @@ class AppWindow(QObject):
 ### MARKS ###
 
 
-# =todo 152 (module-ui, mark) +0: make select by mark
 #  todo 153 (module-ui, mark) +0: manage mark fields list
 #  todo 145 (module-ui, widgets) +0: make Marks arrangable with priority change (DragList)
 	def markAddWidget(self, _mark, _open=False, colorName=''):

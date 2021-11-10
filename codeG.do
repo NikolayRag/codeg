@@ -331,7 +331,7 @@
 +ux, module-ui 116: +0 "src\Ui\Ui.py" ki 21/11/08 14:29:12
 	choose style in app settings
 
-=ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/10/25 15:25:56
++ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/11/10 13:44:45
 	add app settings
 
 !refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" ki 21/10/23 03:36:50
@@ -415,7 +415,7 @@
 -module-ui, fix 147: +0 "src\Ui\GeoWidget.py" ki 21/10/29 21:04:50
 	use blank layer space to from-to hover mouse selection
 
--module-ui, fix 148: +0 "src\Ui\Ui.py" ki 21/10/23 03:35:32
++module-ui, fix 148: +0 "src\Ui\Ui.py" ki 21/11/10 13:46:22
 	review scene life cycle
 
  module-ui, feature 149: +0 "src\Ui\Ui.py" kii 21/10/11 22:19:18
@@ -424,10 +424,10 @@
 +ux, widgets 150: +0 "src\Ui\AppWindow.py" ki 21/10/22 22:12:51
 	Make GeoWidget
 
-=module-ui, mark 152: +0 "src\Ui\AppWindow.py" ki 21/10/25 15:42:32
+!module-ui, mark 152: +0 "src\Ui\AppWindow.py" ki 21/11/10 13:47:39
 	make select by mark
 
- module-ui, mark 153: +0 "src\Ui\AppWindow.py" kii 21/10/12 01:50:38
+ module-ui, mark 153: +0 "src\Ui\AppWindow.py" ki 21/11/10 13:47:40
 	manage mark fields list
 
 +module-data, scene 155: +0 "src\GGData\GGData.py" kii 21/10/14 15:09:14
@@ -499,7 +499,7 @@
 +ux 177: +0 "src\Ui\Ui.py" ki 21/10/23 05:34:36
 	check dirty at exit
 
-=ux 178: +0 "src\Ui\Ui.py" ki 21/10/23 05:36:47
+=ux, feature 178: +0 "src\Ui\Ui.py" ki 21/11/10 13:44:57
 	suggest recent at load
 
 =clean 179: -1 "src\Ui\Ui.py" ki 21/11/08 14:29:06
@@ -511,8 +511,8 @@
 -decide 181: +0 "src\GGData\Geoblock.py" ki 21/11/05 20:04:13
 	geometry embed method
 
-=ux 182: +0 "src\Ui\Ui.py" ki 21/10/19 06:59:59
-	fix save saved project
+=ux 182: +0 "src\Ui\Ui.py" ki 21/11/10 13:46:58
+	save saved project with increment
 
 -ux, module-ui 183: +1 "src\Ui\Ui.py" ki 21/10/19 20:47:46
 	brush Scene routines
@@ -697,6 +697,6 @@
 -widget, feature 246: +0 "src\Ui\PrefsWidget.py" ki 21/11/09 13:51:01
 	add reset settings
 
- fix, app 247: +0 "src\Ui\AppWindow.py" ki 21/11/09 21:05:18
++fix, app 247: +0 "src\Ui\AppWindow.py" ki 21/11/10 03:27:45
 	window pisition ruined if opened-closed maximized
 
