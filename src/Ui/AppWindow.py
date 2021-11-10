@@ -78,8 +78,8 @@ class AppWindow(QObject):
 		self.tmpFilterMain = BindFilter({
 			QEvent.Close: lambda event: self.sigPreexit.emit(event) or True,
 			QEvent.Move: self.moved,
-			QEvent.Resize: lambda e: self.resized(e, True),
-			QEvent.WindowStateChange: self.resized,
+			QEvent.Resize: self.resized,
+			QEvent.WindowStateChange: self.maximized,
 			QEvent.DragEnter: lambda e: e.acceptProposedAction(),
 			QEvent.Drop: lambda e: e.mimeData().hasUrls() and self.sigDrop.emit(e.mimeData().urls()),
 		 })
@@ -174,21 +174,25 @@ class AppWindow(QObject):
 
 
 
-#  todo 247 (fix, app) +0: window pisition ruined if opened-closed maximized
+	#specific logic relied on events order
 	def moved(self, _e):
-#		print('mv', self.rtPos, 'to', _e.pos(), 'maxed' if self.wMain.isMaximized() else '')
-		self.rtPos[0] = self.rtPos[1]
-		self.rtPos[1] = _e.pos()
+		if self.rtPos[1]:
+			self.rtPos[0] = self.rtPos[1]
+			self.rtPos[1] = _e.pos()
+		else:
+			self.rtPos[1] = self.rtPos[0]
 
 
-	def resized(self, _e, _resize=False):
-		if _resize:
+	def resized(self, _e):
+		if self.rtSize[1]:
 			self.rtSize[0] = self.rtSize[1]
 			self.rtSize[1] = _e.size()
-			return
+		else:
+			self.rtSize[1] = self.rtSize[0]
 
+
+	def maximized(self, _e):
 		if self.wMain.isMaximized():
-#			print('x', self.rtPos)
 			self.rtSize[1] = self.rtSize[0]
 			self.rtPos[1] = self.rtPos[0]
 
@@ -202,6 +206,9 @@ class AppWindow(QObject):
 		if maximize:
 			self.wMain.showMaximized()
 
+		#correct values to pass to following events
+		self.rtSize = [_size,None]
+		self.rtPos = [_pos,None]
 
 
 
