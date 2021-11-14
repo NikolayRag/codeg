@@ -39,8 +39,8 @@ class AppWindow(QObject):
 	sigDrop = Signal(list)
 
 	sigDevChange = Signal(str, object)
-	sigDispatch = Signal(object)
-	sigStoreG = Signal(object)
+	sigDispatchFire = Signal(object)
+	sigDispatchShot = Signal(object)
 
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
@@ -129,7 +129,7 @@ class AppWindow(QObject):
 		self.wBtnOpen = cMain.findChild(QWidget, "btnOpen")
 		self.wBtnSave = cMain.findChild(QWidget, "btnSave")
 		self.wBtnLoad = cMain.findChild(QWidget, "btnLoad")
-		self.wBtnStore = cMain.findChild(QWidget, "btnStore")
+		self.wBtnDispShot = cMain.findChild(QWidget, "btnDispShot")
 		self.wBtnPaste = cMain.findChild(QWidget, "btnPaste")
 		self.wBtnPrefs = cMain.findChild(QWidget, "btnPrefs")
 
@@ -139,7 +139,7 @@ class AppWindow(QObject):
 #  todo 48 (module-ui) +0: update device list
 #  todo 49 (module-ui, ux) +0: save/restore active device between sessions
 		self.wListDevs = cMain.findChild(QComboBox, "listDevs")
-		self.wBtnProccess = cMain.findChild(QWidget, "btnProccess")
+		self.wBtnDispFire = cMain.findChild(QWidget, "btnDispFire")
 		self.wFrameDev = cMain.findChild(QTextEdit, "frameDev")
 
 
@@ -150,8 +150,8 @@ class AppWindow(QObject):
 		self.wBtnPaste.clicked.connect(self.sigPaste)
 		self.wBtnSave.clicked.connect(lambda: self.sigSceneSave.emit(self.wMain))
 		self.wBtnLoad.clicked.connect(lambda: self.sigSceneLoad.emit(self.wMain))
-		self.wBtnStore.clicked.connect(lambda: self.sigStoreG.emit(self.wMain))
-		self.wBtnProccess.clicked.connect(self.dispatchRun)
+		self.wBtnDispShot.clicked.connect(lambda: self.sigDispatchShot.emit(self.wMain))
+		self.wBtnDispFire.clicked.connect(self.dispatchRun)
 		self.wBtnMarkAdd.clicked.connect(self.sigMarkAdd)
 		self.wListDevs.currentIndexChanged.connect(lambda i: self.sigDevChange.emit(self.wListDevs.currentText(), self.wListDevs.currentData()))
 		self.wBtnPrefs.clicked.connect(self.prefsList)
@@ -412,8 +412,6 @@ class AppWindow(QObject):
 
 
 	def slotNewScene(self, _scene):
-		self.wBtnStore.setEnabled(True)
-		self.wBtnProccess.setEnabled(True)
 		self.widgetGeo.clean()
 
 

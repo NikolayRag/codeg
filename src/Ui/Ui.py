@@ -161,8 +161,8 @@ class Ui():
 		self.appWindow.sigPaste.connect(self.paste)
 
 		self.appWindow.sigDevChange.connect(self.dispatchChanged)
-		self.appWindow.sigDispatch.connect(self.dispatchSend)
-		self.appWindow.sigStoreG.connect(self.storeG)
+		self.appWindow.sigDispatchFire.connect(self.dispatchSend)
+		self.appWindow.sigDispatchShot.connect(self.dispatchShot)
 
 
 		#default device as template, overrided at actual dispatch
@@ -447,7 +447,7 @@ class Ui():
 
 
 # -todo 119 (refactor, module-ui, module-data) +0: clean for dispatch
-	def storeG(self, _parent):
+	def dispatchShot(self, _parent):
 		cRecentA = Args.Ui.recentSaved
 
 		cLast = cRecentA[len(cRecentA)-1] if len(cRecentA) else ''

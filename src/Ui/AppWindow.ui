@@ -118,26 +118,6 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="btnStore">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>resource/icon-pack.svg</normaloff>resource/icon-pack.svg</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>24</width>
-              <height>24</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QToolButton" name="btnDispatcher">
             <property name="text">
              <string/>
@@ -518,7 +498,7 @@
              <item row="1" column="1">
               <widget class="QComboBox" name="listDevs"/>
              </item>
-             <item row="0" column="0" colspan="3">
+             <item row="0" column="0" colspan="4">
               <widget class="QTextEdit" name="frameDev">
                <property name="maximumSize">
                 <size>
@@ -531,11 +511,8 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="2">
-              <widget class="QPushButton" name="btnProccess">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
+             <item row="1" column="3">
+              <widget class="QPushButton" name="btnDispFire">
                <property name="text">
                 <string/>
                </property>
@@ -566,6 +543,23 @@
                 </size>
                </property>
               </spacer>
+             </item>
+             <item row="1" column="2">
+              <widget class="QPushButton" name="btnDispShot">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>resource/icon-pack.svg</normaloff>resource/icon-pack.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>24</width>
+                 <height>24</height>
+                </size>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
