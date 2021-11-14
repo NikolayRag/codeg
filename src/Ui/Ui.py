@@ -160,6 +160,7 @@ class Ui():
 		self.appWindow.sigAddFile.connect(self.addFile)
 		self.appWindow.sigPaste.connect(self.paste)
 
+		self.appWindow.sigDevChange.connect(self.dispatchChanged)
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
 		self.appWindow.sigStoreG.connect(self.storeG)
 
@@ -173,8 +174,6 @@ class Ui():
 			cDevName = list(devList.keys())[0]
 
 		self.appWindow.dispatchFill(devList, cDevName)
-
-		self.activeDevice = devList[cDevName]
 
 
 		self.markDefault = self.data.markNew(
@@ -473,6 +472,12 @@ class Ui():
 
 
 # -todo 88 (fix, gcode) +0: use dispatch both for file save
+	def dispatchChanged(self, _dev):
+		print("Device changed to", _dev)
+		self.activeDevice = _dev
+
+
+
 	def dispatchSend(self, _device):
 		return self.dispatch.runDevice(_device, self.activeScene, self.appWindow.dispatchLog)
 

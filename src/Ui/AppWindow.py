@@ -38,6 +38,7 @@ class AppWindow(QObject):
 	sigPaste = Signal()
 	sigDrop = Signal(list)
 
+	sigDevChange = Signal(object)
 	sigDispatch = Signal(object)
 	sigStoreG = Signal(object)
 
@@ -152,6 +153,7 @@ class AppWindow(QObject):
 		self.wBtnStore.clicked.connect(lambda: self.sigStoreG.emit(self.wMain))
 		self.wBtnProccess.clicked.connect(self.dispatchRun)
 		self.wBtnMarkAdd.clicked.connect(self.sigMarkAdd)
+		self.wListDevs.currentIndexChanged.connect(lambda i: self.sigDevChange.emit(self.wListDevs.currentData()))
 		self.wBtnPrefs.clicked.connect(self.prefsList)
 		
 
