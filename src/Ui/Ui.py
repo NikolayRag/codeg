@@ -207,6 +207,7 @@ class Ui():
 
 
 
+# -todo 248 (ux, feature) +0: update default plate size
 	def prefScheme(self):
 		self.appWindow.setStyle(self.styleList[Args.Application.scheme])
 

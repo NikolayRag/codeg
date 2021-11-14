@@ -49,10 +49,10 @@
 =spec, module-dispatch 17: +0 "" kii 21/08/10 05:55:57
 	send to serial-usb (arduino)
 
- spec, module-dispatch, v2 18: +0 "src\GGData\GGData.py" ki 21/10/26 01:06:10
-	standalone dispatcher
+ api, module-dispatch, v2 18: +0 "src\Ui\DispatchLink.py" ki 21/11/15 01:01:52
+	standalone dispatcher over *cloud*
 
- spec, module-dispatch 19: +0 "src\GGData\GGData.py" ki 21/10/20 22:59:40
+!spec, module-dispatch 19: +0 "src\GGData\GGData.py" ki 21/11/15 01:00:55
 	send to codegg
 
  module-ui, error 20: +0 "src\Ui\Ui.py" ki 21/10/30 00:44:46
@@ -427,7 +427,7 @@
 !module-ui, mark 152: +0 "src\Ui\AppWindow.py" ki 21/11/10 13:47:39
 	make select by mark
 
- module-ui, mark 153: +0 "src\Ui\AppWindow.py" ki 21/11/10 13:47:40
+ module-ui, mark 153: +0 "src\Ui\AppWindow.py" ki 21/11/10 15:25:28
 	manage mark fields list
 
 +module-data, scene 155: +0 "src\GGData\GGData.py" kii 21/10/14 15:09:14
@@ -699,4 +699,13 @@
 
 +fix, app 247: +0 "src\Ui\AppWindow.py" ki 21/11/10 03:27:45
 	window pisition ruined if opened-closed maximized
+
+-ux, feature 248: +0 "src\Ui\Ui.py" ki 21/11/14 23:40:28
+	update default plate size
+
+!module-dispatch, app, feature 249: +0 "src\Ui\DispatchLink.py" ki 21/11/15 01:01:08
+	dis
+
+=ux, module-dispatch 250: +0 "src\Ui\AppWindow.py" ki 21/11/15 01:04:01
+	react on device changed
 

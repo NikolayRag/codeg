@@ -3,8 +3,6 @@
 
 #  todo 201 (geo, feature) +0: update reference geometry 
 
-#  todo 18 (spec, module-dispatch, v2) +0: standalone dispatcher
-#  todo 19 (spec, module-dispatch) +0: send to codegg
 
 #  todo 25 (module-data, formats) +0: load .nc gcode
 
