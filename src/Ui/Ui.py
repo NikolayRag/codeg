@@ -446,6 +446,20 @@ class Ui():
 
 
 
+### DISPATCH ###
+
+
+	def dispatchChanged(self, _name, _dev):
+		print("Device changed to", _name, _dev)
+
+		Args.Device.last = _name
+
+		self.activeDevice = _dev
+		if self.activeScene:
+			self.appWindow.gridSize(_dev.getPlate())
+
+
+
 # -todo 119 (refactor, module-ui, module-data) +0: clean for dispatch
 	def dispatchShot(self, _parent):
 		cRecentA = Args.Ui.recentSaved
@@ -472,17 +486,6 @@ class Ui():
 
 
 # -todo 88 (fix, gcode) +0: use dispatch both for file save
-	def dispatchChanged(self, _name, _dev):
-		print("Device changed to", _name, _dev)
-
-		Args.Device.last = _name
-
-		self.activeDevice = _dev
-		if self.activeScene:
-			self.appWindow.gridSize(_dev.getPlate())
-
-
-
 	def dispatchSend(self, _device):
 		return self.dispatch.runDevice(_device, self.activeScene.traceG(), self.appWindow.dispatchLog)
 
