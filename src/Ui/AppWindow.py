@@ -38,7 +38,7 @@ class AppWindow(QObject):
 	sigPaste = Signal()
 	sigDrop = Signal(list)
 
-	sigDispatch = Signal(str)
+	sigDispatch = Signal(object)
 	sigStoreG = Signal(object)
 
 
@@ -137,7 +137,7 @@ class AppWindow(QObject):
 #  todo 47 (module-dispatch, module-ui, ux) +0: change device list to button+list
 #  todo 48 (module-ui) +0: update device list
 #  todo 49 (module-ui, ux) +0: save/restore active device between sessions
-		self.wListPorts = cMain.findChild(QWidget, "listPorts")
+		self.wListPorts = cMain.findChild(QComboBox, "listPorts")
 		self.wBtnProccess = cMain.findChild(QWidget, "btnProccess")
 		self.wFrameDev = cMain.findChild(QTextEdit, "frameDev")
 
@@ -386,14 +386,17 @@ class AppWindow(QObject):
 ### DISPATCH ###
 
 # -todo 59 (module-ui, ux, clean) +0: make updatable connections list
-	def connList(self, _portsA):
-		for port in _portsA:
-			self.wListPorts.insertItem(0,port)
+	def dispatchFill(self, _devices, _default):
+		for devName, devObj in _devices.items():
+			self.wListPorts.addItem(devName, devObj)
+
+			if devName == _default:
+				self.wListPorts.setCurrentIndex(self.wListPorts.count()-1)
 
 
 
 	def dispatchRun(self):
-		self.sigDispatch.emit( self.wListPorts.currentText() )
+		self.sigDispatch.emit( self.wListPorts.currentData() )
 
 
 

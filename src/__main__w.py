@@ -20,6 +20,11 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 		'wPos': [None],
 		'wMaxi': [False],
 	},
+	'Device': {
+		'width': [300, [0.,10000], float, 'Default Width'],
+		'height': [200, [0.,10000], float, 'Default Height'],
+		'last': ['Default'],
+	},
 	'Viewport': {
 		'fit': [0.7, [0.,1], float, 'Fit ratio'],
 		'fitGeo': [.5, [0,1], float, 'Fit geometry ratio'],

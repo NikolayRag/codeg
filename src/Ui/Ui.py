@@ -33,6 +33,7 @@
 import json
 
 
+from .DispatchLink import *
 from .AppWindow import *
 from .Utils import *
 
@@ -125,7 +126,7 @@ class Ui():
 	# runtime
 
 	activeScene = None
-
+	activeDevice = None
 
 
 	def __init__(self, _data, _dispatch=None):
@@ -139,7 +140,7 @@ class Ui():
 
 		self.data = _data
 
-		self.dispatch = _dispatch
+		self.dispatch = DispatchLink()
 
 		self.appWindow = AppWindow()
 
@@ -163,7 +164,16 @@ class Ui():
 		self.appWindow.sigStoreG.connect(self.storeG)
 
 
-		self.appWindow.connList(self.dispatch.getDevices())
+		#default device as template, overrided at actual dispatch
+		devList = self.dispatch.getDevices()
+		
+		cDevName = Args.Device.last
+		if Args.Device.last not in devList:
+			cDevName = list(devList.keys())[0]
+
+		self.appWindow.dispatchFill(devList, cDevName)
+
+		self.activeDevice = devList[cDevName]
 
 
 		self.markDefault = self.data.markNew(
@@ -264,8 +274,7 @@ class Ui():
 		self.activeScene = self.data.sceneGet(_name)
 		self.appWindow.slotNewScene(self.activeScene)
 
-		cCnc = self.dispatch.getCnc()
-		self.appWindow.gridSize( cCnc.table() )
+		self.appWindow.gridSize(self.activeDevice.getPlate())
 		self.appWindow.viewportFit()
 
 
@@ -407,7 +416,7 @@ class Ui():
 
 
 		cGBlock = self.activeScene.geoAdd(fileName, [self.markDefault], 'UI')
-		cOffset = QPointF(*self.dispatch.getCnc().table())
+		cOffset = QPointF(*self.activeDevice.getPlate())
 		cGBlock.xformSet(offset=(0,-cOffset.y()))
 		gDscr = self.appWindow.geoAddWidget(cGBlock)
 
@@ -419,7 +428,7 @@ class Ui():
 		clipboard = QGuiApplication.clipboard()
 
 		cGBlock = self.activeScene.geoAdd(clipboard.text(), [self.markDefault], 'UI', name='paste', raw=True)
-		cOffset = QPointF(*self.dispatch.getCnc().table())
+		cOffset = QPointF(*self.activeDevice.getPlate())
 		cGBlock.xformSet(offset=(0,-cOffset.y()))
 		gDscr = self.appWindow.geoAddWidget(cGBlock)
 
@@ -453,8 +462,8 @@ class Ui():
 
 
 # -todo 88 (fix, gcode) +0: use dispatch both for file save
-	def dispatchSend(self, _name):
-		return self.dispatch.runDevice(self.activeScene, _name, self.appWindow.dispatchLog)
+	def dispatchSend(self, _device):
+		return self.dispatch.runDevice(_device, self.activeScene, self.appWindow.dispatchLog)
 
 
 
