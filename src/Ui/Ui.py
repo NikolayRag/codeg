@@ -484,7 +484,7 @@ class Ui():
 
 
 	def dispatchSend(self, _device):
-		return self.dispatch.runDevice(_device, self.activeScene, self.appWindow.dispatchLog)
+		return self.dispatch.runDevice(_device, self.activeScene.traceG(), self.appWindow.dispatchLog)
 
 
 

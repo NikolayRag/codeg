@@ -41,5 +41,5 @@ class DispatchLink():
 
 
 	def runDevice(self, _dev, _data, _logCB=None):
-		print('Dispatch', _dev)
+		print('Dispatch', len(_data), 'commands to', _dev)
 		return
