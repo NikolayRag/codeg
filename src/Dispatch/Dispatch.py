@@ -27,15 +27,10 @@ class Dispatch():
 	listPorts = []
 	port = None
 
-	data = None
-
 	cnc = None
 
 
-	def __init__(self, _data):
-		self.data = _data
-
-
+	def __init__(self):
 		self.cnc = CNC()
 
 
