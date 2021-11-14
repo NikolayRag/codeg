@@ -113,23 +113,22 @@ class Ui():
 		}
 	}
 
-	args = None
 
-	appWindow = None
 
-	data = None
+	# statics
 	qApp = None
+	appWindow = None
+	data = None
+	dispatch = None
 
 
-	#runtime
+	# runtime
 
 	activeScene = None
 
 
 
-	def __init__(self, _data, _dispatch):
-		self.data = _data
-		self.dispatch = _dispatch
+	def __init__(self, _data, _dispatch=None):
 
 
 		#init
@@ -137,6 +136,10 @@ class Ui():
 		self.qApp = QApplication()
 		self.qApp.setStyle(QStyleFactory.create('fusion'))
 
+
+		self.data = _data
+
+		self.dispatch = _dispatch
 
 		self.appWindow = AppWindow()
 
@@ -156,9 +159,11 @@ class Ui():
 		self.appWindow.sigAddFile.connect(self.addFile)
 		self.appWindow.sigPaste.connect(self.paste)
 
-		self.appWindow.connList(self.dispatch.getDevices())
 		self.appWindow.sigDispatch.connect(self.dispatchSend)
 		self.appWindow.sigStoreG.connect(self.storeG)
+
+
+		self.appWindow.connList(self.dispatch.getDevices())
 
 
 		self.markDefault = self.data.markNew(
@@ -258,7 +263,9 @@ class Ui():
 	def sceneCreate(self, _name=''):
 		self.activeScene = self.data.sceneGet(_name)
 		self.appWindow.slotNewScene(self.activeScene)
-		self.appWindow.gridSize( self.dispatch.getCnc().table() )
+
+		cCnc = self.dispatch.getCnc()
+		self.appWindow.gridSize( cCnc.table() )
 		self.appWindow.viewportFit()
 
 
