@@ -478,6 +478,8 @@ class Ui():
 		Args.Device.last = _name
 
 		self.activeDevice = _dev
+		if self.activeScene:
+			self.appWindow.gridSize(_dev.getPlate())
 
 
 
