@@ -472,8 +472,11 @@ class Ui():
 
 
 # -todo 88 (fix, gcode) +0: use dispatch both for file save
-	def dispatchChanged(self, _dev):
-		print("Device changed to", _dev)
+	def dispatchChanged(self, _name, _dev):
+		print("Device changed to", _name, _dev)
+
+		Args.Device.last = _name
+
 		self.activeDevice = _dev
 
 
