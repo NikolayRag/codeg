@@ -169,6 +169,7 @@ class Ui():
 		
 		cDevName = Args.Device.last
 		if Args.Device.last not in devList:
+			self.alert('Device not found', f"{Args.Device.last} not present, Default used temporary")
 			cDevName = list(devList.keys())[0]
 
 		self.appWindow.dispatchFill(devList, cDevName)
@@ -249,6 +250,15 @@ class Ui():
 		Args.Application.wSize = (wSize[0].width(), wSize[0].height())
 		Args.Application.wPos = (wSize[1].x(), wSize[1].y())
 		Args.Application.wMaxi = wSize[2]
+
+
+
+	def alert(self, _head, _msg):
+		msgBox = QMessageBox()
+		msgBox.setText(_head)
+		msgBox.setInformativeText(_msg)
+		msgBox.setStandardButtons(QMessageBox.Ok)
+		msgBox.exec()
 
 
 
