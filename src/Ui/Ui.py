@@ -461,6 +461,7 @@ class Ui():
 
 
 # -todo 119 (refactor, module-ui, module-data) +0: clean for dispatch
+# todo 88 (fix, gcode, unsure) +0: use dispatch both for file save
 	def dispatchShot(self, _parent):
 		cRecentA = Args.Ui.recentSaved
 
@@ -485,7 +486,6 @@ class Ui():
 
 
 
-# -todo 88 (fix, gcode) +0: use dispatch both for file save
 	def dispatchSend(self, _device):
 		return self.dispatch.runDevice(_device, self.activeScene.traceG(), self.appWindow.dispatchLog)
 

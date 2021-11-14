@@ -250,7 +250,7 @@
 +fix, gcode 87: +0 "src\Ui\Ui.py" kii 21/08/28 18:02:01
 	place svg layers more generally
 
--fix, gcode 88: +0 "src\Ui\Ui.py" kii 21/09/03 02:02:12
+ fix, gcode, unsure 88: +0 "src\Ui\Ui.py" ki 21/11/15 02:17:12
 	use dispatch both for file save
 
 +ux, module-ui, fix 89: +0 "src\Ui\AppWindow.py" ki 21/11/08 14:31:39
@@ -337,7 +337,7 @@
 !refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" ki 21/10/23 03:36:50
 	clean for minor import
 
--refactor, module-ui, module-data 119: +0 "src\Ui\Ui.py" ki 21/11/05 20:05:08
+-refactor, module-ui, module-data 119: +0 "src\Ui\Ui.py" ki 21/11/15 02:17:52
 	clean for dispatch
 
 +refactor, module-ui, module-data, fix 120: +0 "src\Ui\Ui.py" kii 21/10/09 20:33:56
