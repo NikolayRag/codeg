@@ -98,7 +98,7 @@ class Ui():
 			'off': {
 				'fill':'#f8f8f8',
 				'stroke':'#888',
-				'opacity': '.3',
+				'opacity': '.5',
 				'fill-opacity':'0.1',
 			},
 			'select': {
