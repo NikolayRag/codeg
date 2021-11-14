@@ -137,7 +137,7 @@ class AppWindow(QObject):
 #  todo 47 (module-dispatch, module-ui, ux) +0: change device list to button+list
 #  todo 48 (module-ui) +0: update device list
 #  todo 49 (module-ui, ux) +0: save/restore active device between sessions
-		self.wListPorts = cMain.findChild(QComboBox, "listPorts")
+		self.wListDevs = cMain.findChild(QComboBox, "listDevs")
 		self.wBtnProccess = cMain.findChild(QWidget, "btnProccess")
 		self.wFrameDev = cMain.findChild(QTextEdit, "frameDev")
 
@@ -389,15 +389,15 @@ class AppWindow(QObject):
 # =todo 250 (ux, module-dispatch) +0: react on device changed
 	def dispatchFill(self, _devices, _default):
 		for devName, devObj in _devices.items():
-			self.wListPorts.addItem(devName, devObj)
+			self.wListDevs.addItem(devName, devObj)
 
 			if devName == _default:
-				self.wListPorts.setCurrentIndex(self.wListPorts.count()-1)
+				self.wListDevs.setCurrentIndex(self.wListDevs.count()-1)
 
 
 
 	def dispatchRun(self):
-		self.sigDispatch.emit( self.wListPorts.currentData() )
+		self.sigDispatch.emit( self.wListDevs.currentData() )
 
 
 

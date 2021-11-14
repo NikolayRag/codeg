@@ -516,7 +516,7 @@
               <number>0</number>
              </property>
              <item row="1" column="1">
-              <widget class="QComboBox" name="listPorts"/>
+              <widget class="QComboBox" name="listDevs"/>
              </item>
              <item row="0" column="0" colspan="3">
               <widget class="QTextEdit" name="frameDev">
