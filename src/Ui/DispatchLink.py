@@ -1,3 +1,7 @@
+from PySide2.QtCore import *
+
+
+
 class CNCNull():
 	size = None
 
@@ -17,12 +21,18 @@ class CNCNull():
 # Interface for separate Dispatch
 # Dispatch connected either inline, or as app link
 #  todo 18 (api, module-dispatch, v2) +0: standalone dispatcher over *cloud*
-class DispatchLink():
+class DispatchLink(QObject):
+	sigDispatchSent = Signal(object)
+
+
 	dispatcher = None
 	defaults = {}
 
 
+
 	def __init__(self, _defaults, _dispatch=None):
+		QObject.__init__(self)
+
 		self.dispatcher = _dispatch
 		self.defaults = _defaults
 
