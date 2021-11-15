@@ -495,19 +495,6 @@
              <property name="bottomMargin">
               <number>0</number>
              </property>
-             <item row="0" column="0" colspan="3">
-              <widget class="QTextEdit" name="frameDev">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Plain</enum>
-               </property>
-              </widget>
-             </item>
              <item row="1" column="0">
               <widget class="QComboBox" name="listDevs">
                <property name="sizePolicy">
@@ -561,6 +548,25 @@
                  <width>24</width>
                  <height>24</height>
                 </size>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0" colspan="3">
+              <widget class="QPlainTextEdit" name="frameDev">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <property name="undoRedoEnabled">
+                <bool>false</bool>
+               </property>
+               <property name="lineWrapMode">
+                <enum>QPlainTextEdit::NoWrap</enum>
                </property>
               </widget>
              </item>

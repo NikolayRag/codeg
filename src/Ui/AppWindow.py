@@ -140,7 +140,7 @@ class AppWindow(QObject):
 #  todo 49 (module-ui, ux) +0: save/restore active device between sessions
 		self.wListDevs = cMain.findChild(QComboBox, "listDevs")
 		self.wBtnDispFire = cMain.findChild(QWidget, "btnDispFire")
-		self.wFrameDev = cMain.findChild(QTextEdit, "frameDev")
+		self.wFrameDev = cMain.findChild(QPlainTextEdit, "frameDev")
 
 
 		self.wBtnFit.clicked.connect(self.viewportFit)
@@ -399,7 +399,7 @@ class AppWindow(QObject):
 
 
 	def dispatchLog(self, _txt):
-		self.wFrameDev.insertPlainText(_txt)
+		self.wFrameDev.appendPlainText(_txt)
 
 
 
