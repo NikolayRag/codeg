@@ -1,7 +1,3 @@
-from Args import *
-
-
-
 class CNCNull():
 	size = None
 
@@ -23,20 +19,25 @@ class CNCNull():
 #  todo 18 (api, module-dispatch, v2) +0: standalone dispatcher over *cloud*
 class DispatchLink():
 	dispatcher = None
+	defaults = {}
 
 
-
-	def __init__(self, _dispatch=None):
+	def __init__(self, _defaults, _dispatch=None):
 		self.dispatcher = _dispatch
+		self.defaults = _defaults
 
 
 
 	def getDevices(self):
+		devs = {}
+		for devN, devDim in self.defaults.items():
+			devs[devN] = CNCNull(*devDim)
+
+
 		if self.dispatcher:
-			return self.dispatcher.getDevices()
+			devs = {**devs, **self.dispatcher.getDevices()}
 
-
-		return {'Default': CNCNull(Args.Device.width, Args.Device.height)}
+		return devs
 
 
 

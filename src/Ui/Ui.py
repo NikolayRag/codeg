@@ -36,6 +36,7 @@ import json
 from .DispatchLink import *
 from .AppWindow import *
 from .Utils import *
+from Args import *
 
 
 
@@ -140,7 +141,7 @@ class Ui():
 
 		self.data = _data
 
-		self.dispatch = DispatchLink()
+		self.dispatch = DispatchLink({'Mockup':(Args.Device.width, Args.Device.height)})
 
 		self.appWindow = AppWindow()
 
