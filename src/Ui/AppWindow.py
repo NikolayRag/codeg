@@ -403,7 +403,7 @@ class AppWindow(QObject):
 
 
 
-### HIPE ###
+### SCENE ###
 
 
 	def slotNewScene(self, _scene):
@@ -436,12 +436,8 @@ class AppWindow(QObject):
 
 
 
-	def reactStoreG(self):
-		None
-
-
-
 ### OPTIONS ###
+
 
 	def prefsList(self):
 		pinScheme = Args.Application.scheme
