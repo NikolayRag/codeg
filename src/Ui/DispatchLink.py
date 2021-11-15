@@ -51,6 +51,6 @@ class DispatchLink(QObject):
 
 
 
-	def runDevice(self, _dev, _data, _logCB=None):
-		print('Dispatch', len(_data), 'commands to', _dev)
-		return
+	def runDevice(self, _dev, _data):
+		for cg in _data:
+			self.sigDispatchSent.emit(cg)

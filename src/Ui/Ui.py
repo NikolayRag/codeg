@@ -166,6 +166,8 @@ class Ui():
 		self.appWindow.sigDispatchShot.connect(self.dispatchShot)
 
 
+		self.dispatch.sigDispatchSent.connect(self.appWindow.dispatchLog)
+
 		#default device as template, overrided at actual dispatch
 		devList = self.dispatch.getDevices()
 		
@@ -488,7 +490,7 @@ class Ui():
 
 
 	def dispatchSend(self, _device):
-		return self.dispatch.runDevice(_device, self.activeScene.traceG(), self.appWindow.dispatchLog)
+		return self.dispatch.runDevice(_device, self.activeScene.traceG())
 
 
 
