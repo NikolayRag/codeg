@@ -51,6 +51,7 @@ class DispatchLink(QObject):
 
 
 
+# -todo 20 (module-dispatch, error ) +0: handle errors, maybe status string
 	def runDevice(self, _dev, _data):
 		for cg in _data:
 			self.sigDispatchSent.emit(cg)

@@ -436,7 +436,6 @@ class AppWindow(QObject):
 
 
 
-#  todo 20 (module-ui, error) +0: handle errors, maybe status string
 	def reactStoreG(self):
 		None
 

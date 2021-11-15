@@ -55,7 +55,7 @@
 !spec, module-dispatch 19: +0 "src\GGData\GGData.py" ki 21/11/15 01:00:55
 	send to codegg
 
- module-ui, error 20: +0 "src\Ui\Ui.py" ki 21/10/30 00:44:46
+-module-dispatch, error 20: +0 "src\Ui\DispatchLink.py" ki 21/11/16 01:44:20
 	handle errors, maybe status string
 
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
@@ -708,4 +708,7 @@
 
 =ux, module-dispatch 250: +0 "src\Ui\AppWindow.py" ki 21/11/15 01:04:01
 	react on device changed
+
+ module-dispatch, feature 251: +0 "src\Ui\Ui.py" ki 21/11/15 16:41:27
+	make generation async
 
