@@ -489,7 +489,7 @@ class Ui():
 
 
 
-#  todo 251 (module-dispatch, feature) +0: make generation async
+#  todo 251 (module-dispatch, feature) +0: make generation by iterator
 	def dispatchSend(self, _device):
 		return self.dispatch.runDevice(_device, self.activeScene.traceG())
 

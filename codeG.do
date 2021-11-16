@@ -61,7 +61,7 @@
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
 	dup
 
-=module-dispatch, ux 22: +0 "src\Dispatch\Dispatch.py" ki 21/10/17 17:36:52
+=module-dispatch, ux 22: +1 "src\Dispatch\DispatchManager.py" ki 21/11/16 21:26:11
 	make dispatch interruptable
 
 -module-ui, ux 23: +0 "src\Ui\Ui.py" kii 21/09/09 21:27:51
@@ -166,13 +166,13 @@
 -module-ui, ux, clean 59: +0 "src\Ui\AppWindow.py" ki 21/11/04 04:09:46
 	make updatable connections list
 
-=module-dispatch 60: +0 "src\Dispatch\Dispatch.py" kii 21/08/28 18:03:33
+-module-dispatch 60: +0 "src\Dispatch\DispatchManager.py" ki 21/11/16 21:25:46
 	show gcodes live proto
 
 =module-dispatch 61: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 03:45:15
 	CNC control
 
-=module-dispatch 62: +0 "src\Dispatch\Dispatch.py" kii 21/08/15 22:52:53
+-module-dispatch 62: +0 "src\Dispatch\DispatchManager.py" ki 21/11/16 21:25:57
 	live device control
 
 +module-ui, ux 63: +0 "src\Ui\Ui.py" kii 21/09/02 03:50:54
@@ -709,6 +709,9 @@
 =ux, module-dispatch 250: +0 "src\Ui\AppWindow.py" ki 21/11/15 01:04:01
 	react on device changed
 
- module-dispatch, feature 251: +0 "src\Ui\Ui.py" ki 21/11/15 16:41:27
-	make generation async
+ module-dispatch, feature 251: +0 "src\Ui\Ui.py" ki 21/11/16 19:49:41
+	make generation by iterator
+
+ module-dispatch, feature 252: +0 "src\Ui\DispatchLink.py" ki 21/11/16 19:50:31
+	dispatch async
 
