@@ -2,7 +2,7 @@ from PySide2.QtCore import *
 
 
 
-class CNCNull():
+class EngineNull():
 	size = None
 
 
@@ -41,7 +41,7 @@ class DispatchLink(QObject):
 	def getDevices(self):
 		devs = {}
 		for devN, devDim in self.defaults.items():
-			devs[devN] = CNCNull(*devDim)
+			devs[devN] = EngineNull(*devDim)
 
 
 		if self.dispatcher:
