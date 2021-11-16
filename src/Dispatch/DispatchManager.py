@@ -31,18 +31,18 @@ class DispatchManager():
 		self.allDevices = {}
 
 		for eName, eDef in _defs.items():
-			self.deviceDefine(eName, eDef[0], eDef[1])
+			self.deviceDefine(eName, eDef[0], eDef[1], eDef[2])
 		
 
 
-	def deviceDefine(self, _name, _eName, _def=None):
+	def deviceDefine(self, _name, _eName, _size, _def=None):
 		if _eName not in self.allEngines:
 			print('Warning: engine', _eName, 'is unknown')
 
 			return
 
 
-		self.allDevices[_name] = self.allEngines[_eName](_def)
+		self.allDevices[_name] = self.allEngines[_eName](_size, _def)
 
 
 
