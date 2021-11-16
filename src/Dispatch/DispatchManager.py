@@ -46,5 +46,5 @@ class DispatchManager():
 
 
 
-	def getDevices(self):
+	def deviceList(self):
 		return dict(self.allDevices)

@@ -45,7 +45,7 @@ class DispatchLink(QObject):
 
 
 		if self.dispatcher:
-			devs = {**devs, **self.dispatcher.getDevices()}
+			devs = {**devs, **self.dispatcher.deviceList()}
 
 		return devs
 
