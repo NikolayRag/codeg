@@ -7,6 +7,10 @@
 # -todo 68 (module-dispatch) +0: queue control
 
 
+'''
+Dispatch Engines creation fabric
+
+'''
 class DispatchManager():
 	def __init__(self):
 		None
