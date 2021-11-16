@@ -19,10 +19,11 @@ from .Engines import *
 
 
 class DispatchManager():
+	allEngines = {}
 	def __init__(self):
-		None
+		self.allEngines = {a.__name__:a for a in DispatchEngine.__subclasses__()}
 
 
 
 	def getDevices(self):
-		return {}
+		return dict(self.allDevices)
