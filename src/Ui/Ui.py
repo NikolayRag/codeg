@@ -141,7 +141,7 @@ class Ui():
 
 		self.data = _data
 
-		self.dispatch = DispatchLink({'Mockup':(Args.Device.width, Args.Device.height)})
+		self.dispatch = DispatchLink({'Mockup':(Args.Device.width, Args.Device.height)}, _dispatch)
 
 		self.appWindow = AppWindow()
 

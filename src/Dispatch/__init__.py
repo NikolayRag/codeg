@@ -1,2 +1,2 @@
-from .Dispatch import *
+from .DispatchManager import *
 

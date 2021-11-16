@@ -48,7 +48,7 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 if __name__ == '__main__':
 	Args(AppPrefs, AppName)
 
-	cDis = Dispatch()
+	cDis = DispatchManager()
 
 	cGG = GGData()
 
