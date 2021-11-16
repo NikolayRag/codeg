@@ -173,7 +173,7 @@ class Ui():
 		
 		cDevName = Args.Device.last
 		if Args.Device.last not in devList:
-			self.alert('Device not found', f"{Args.Device.last} not present, Default used temporary")
+			self.alert('Device not found:', f"{Args.Device.last} not present")
 			cDevName = list(devList.keys())[0]
 
 		self.appWindow.dispatchFill(devList, cDevName)
