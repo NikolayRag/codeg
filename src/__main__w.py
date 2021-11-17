@@ -51,10 +51,11 @@ deviceDefs = {
 if __name__ == '__main__':
 	Args(AppPrefs, AppName)
 
-	disFB = DispatchEngine('Mockup', (Args.Device.width, Args.Device.height))
-	cDis = DispatchManager(deviceDefs)
 
 	cGG = GGData()
+
+	disFB = DispatchEngine('Mockup', (Args.Device.width, Args.Device.height))
+	cDis = DispatchManager(deviceDefs)
 
 	cUi = Ui(cGG, fallbackEngine=disFB, dispatch=cDis)
 	cUi.exec()
