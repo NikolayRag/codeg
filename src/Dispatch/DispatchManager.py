@@ -35,14 +35,14 @@ class DispatchManager():
 		
 
 
-	def deviceDefine(self, _name, _eName, _size, _def=None):
-		if _eName not in self.allEngines:
-			print('Warning: engine', _eName, 'is unknown')
+	def deviceDefine(self, _name, _engine, _size, _def=None):
+		if _engine not in self.allEngines:
+			print('Warning: engine', _engine, 'is unknown')
 
 			return
 
 
-		self.allDevices[_name] = self.allEngines[_eName](_name, _size, _def)
+		self.allDevices[_name] = self.allEngines[_engine](_name, _size, _def)
 
 
 
