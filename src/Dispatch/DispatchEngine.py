@@ -6,7 +6,7 @@ class DispatchEngine():
 
 
 
-	def __init__(self, _name, _size, _def):
+	def __init__(self, _name, _size, _def=None):
 		self.name = _name
 		self.size = _size
 		self.definition = _def

@@ -130,7 +130,7 @@ class Ui():
 	activeDevice = None
 
 
-	def __init__(self, _data, _dispatch=None):
+	def __init__(self, _data, fallbackEngine=None, dispatch=None):
 
 
 		#init
@@ -141,7 +141,7 @@ class Ui():
 
 		self.data = _data
 
-		self.dispatch = DispatchLink({'Mockup':(Args.Device.width, Args.Device.height)}, _dispatch)
+		self.dispatch = DispatchLink(fallbackEngine, dispatch)
 
 		self.appWindow = AppWindow()
 

@@ -2,22 +2,6 @@ from PySide2.QtCore import *
 
 
 
-class EngineNull():
-	size = None
-
-
-
-	def __init__(self, _width, _height):
-		self.size = (_width, _height)
-
-
-
-	def getPlate(self):
-		return self.size
-
-
-
-
 # Interface for separate Dispatch
 # Dispatch connected either inline, or as app link
 #  todo 18 (api, module-dispatch, v2) +0: standalone dispatcher over *cloud*
@@ -26,23 +10,20 @@ class DispatchLink(QObject):
 
 
 	dispatcher = None
-	defaults = {}
+	fallbackEng = {}
 
 
 
-	def __init__(self, _defaults, _dispatch=None):
+	def __init__(self, _fallbackEng, _dispatch=None):
 		QObject.__init__(self)
 
 		self.dispatcher = _dispatch
-		self.defaults = _defaults
+		self.fallbackEng = _fallbackEng
 
 
 
 	def getDevices(self):
-		devs = {}
-		for devN, devDim in self.defaults.items():
-			devs[devN] = EngineNull(*devDim)
-
+		devs = {self.fallbackEng.getName(): self.fallbackEng} if self.fallbackEng else {}
 
 		if self.dispatcher:
 			devs = {**devs, **self.dispatcher.deviceList()}
