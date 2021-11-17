@@ -36,4 +36,5 @@ class DispatchLink(QObject):
 #  todo 252 (module-dispatch, feature) +0: dispatch async
 	def runDevice(self, _dev, _data):
 		for cg in _data:
+			_dev.sink(cg)
 			self.sigDispatchSent.emit(cg)
