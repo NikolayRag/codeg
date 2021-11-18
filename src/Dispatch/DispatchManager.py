@@ -43,7 +43,8 @@ class DispatchManager():
 			return
 
 
-		self.allDevices[_name] = self.allEngines[_engine](_name, _size, _definition)
+		newDev = self.allEngines[_engine](_name, _size, _definition)
+		self.allDevices[newDev.getName()] = newDev
 
 
 
