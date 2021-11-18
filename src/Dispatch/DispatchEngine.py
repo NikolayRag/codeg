@@ -1,8 +1,8 @@
 class DispatchEngine():
-	nameRoot = ''
+	nameBase = ''
 	name = ''
 
-	sizeRoot = None
+	sizeBase = None
 	size = None
 
 	definition = None
@@ -10,19 +10,19 @@ class DispatchEngine():
 
 
 	def __init__(self, _name, _size, _definition=None):
-		self.nameRoot = self.name = _name
-		self.sizeRoot = self.size = _size
+		self.nameBase = _name
+		self.sizeBase = _size
 		self.definition = _definition
 
 
 
 	def getPlate(self):
-		return self.size
+		return self.size or self.sizeBase
 
 
 
 	def getName(self):
-		return self.name
+		return self.name or self.nameBase
 
 
 
