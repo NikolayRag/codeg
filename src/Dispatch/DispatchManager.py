@@ -30,6 +30,7 @@ class DispatchManager():
 
 		self.allDevices = {}
 
+#  todo 253 (module-dispatch, ux) +0: find all suitable devices
 		for eName, eDef in _definitions.items():
 			self.deviceDefine(eName, eDef[0], eDef[1], eDef[2])
 		
