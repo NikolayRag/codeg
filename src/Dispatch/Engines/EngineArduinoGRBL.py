@@ -50,10 +50,9 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 
-
-	def __init__(self, _name, _size, _privData=None):
+	def __init__(self, _name, size=None, privData=None):
 		cName = f"{self.nameBase} ({_name})"
-		DispatchEngine.__init__(self, cName, _size or self.sizeBase, _privData)
+		DispatchEngine.__init__(self, cName, size, privData=privData)
 
 
 		self.port = _name

@@ -55,8 +55,9 @@ if __name__ == '__main__':
 
 	cGG = GGData()
 
-	disFB = DispatchEngine('Mockup', (Args.Device.width, Args.Device.height))
 	cDis = DispatchManager(deviceDefs)
+	fallbackSize = (Args.Device.width, Args.Device.height)
+	disFB = DispatchEngine('Mock', size=fallbackSize)
 
 	cUi = Ui(cGG, fallbackEngine=disFB, dispatch=cDis)
 	cUi.exec()
