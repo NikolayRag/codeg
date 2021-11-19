@@ -44,7 +44,6 @@ class EngineArduinoGRBL(DispatchEngine):
 				cDev = EngineArduinoGRBL(portN.device, {'v':cEcho})
 				instances.append(cDev)
 
-			cPortsA = serial.tools.list_ports.comports(include_links=True)
 
 		return instances
 
