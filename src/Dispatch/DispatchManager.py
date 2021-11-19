@@ -31,9 +31,9 @@ class DispatchManager():
 		self.allDevices = {}
 		self.devicesScan(_definitions)
 
-#  todo 253 (module-dispatch, ux) +0: find all suitable devices
 
 
+# =todo 254 (module-dispatch, ux) +0: make devices async
 	def devicesScan(self, _definitions):
 		for engN, cEng in self.allEngines.items():
 			engDefs = _definitions[engN] if engN in _definitions else None

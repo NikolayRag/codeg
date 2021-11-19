@@ -715,6 +715,9 @@
  module-dispatch, feature 252: +0 "src\Ui\DispatchLink.py" ki 21/11/16 19:50:31
 	dispatch async
 
- module-dispatch, ux 253: +0 "src\Dispatch\DispatchManager.py" ki 21/11/18 06:34:26
++module-dispatch, ux 253: +0 "src\Dispatch\DispatchManager.py" ki 21/11/19 05:09:06
 	find all suitable devices
+
+=module-dispatch, ux 254: +0 "src\Dispatch\DispatchManager.py" ki 21/11/19 05:28:38
+	make devices async
 
