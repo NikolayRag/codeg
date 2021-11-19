@@ -34,14 +34,14 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 
-	def enumerate(_defSize=None):
+	def enumerate():
 		instances = []
 
 		cPortsA = serial.tools.list_ports.comports()
 		for portN in cPortsA:
 			cEcho = EngineArduinoGRBL.deviceDetect(portN, 115200)
 			if cEcho:
-				cDev = EngineArduinoGRBL(portN.device, _defSize, {'v':cEcho})
+				cDev = EngineArduinoGRBL(portN.device, {'v':cEcho})
 				instances.append(cDev)
 
 			cPortsA = serial.tools.list_ports.comports(include_links=True)

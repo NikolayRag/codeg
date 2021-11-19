@@ -44,7 +44,6 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 }
 
 deviceDefs = {
-	'EngineArduinoGRBL': (400,300),
 }
 
 
@@ -55,9 +54,9 @@ if __name__ == '__main__':
 
 	cGG = GGData()
 
-	cDis = DispatchManager(deviceDefs)
 	fallbackSize = (Args.Device.width, Args.Device.height)
 	disFB = DispatchEngine('Mock', size=fallbackSize)
+	cDis = DispatchManager(size=fallbackSize, definitions=deviceDefs)
 
 	cUi = Ui(cGG, fallbackEngine=disFB, dispatch=cDis)
 	cUi.exec()
