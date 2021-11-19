@@ -44,6 +44,7 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 }
 
 deviceDefs = {
+	'EngineArduinoGRBL': {'rate':115200},
 }
 
 

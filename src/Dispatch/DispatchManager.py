@@ -24,12 +24,12 @@ class DispatchManager():
 
 
 
-	def __init__(self, size=(100,100), _definitions={}):
+	def __init__(self, size=(100,100), definitions={}):
 		self.allEngines = {a.__name__:a for a in DispatchEngine.__subclasses__()}
 
-
 		self.allDevices = {}
-		self.devicesScan(_definitions)
+		self.devicesScan(definitions)
+
 		for cDev in self.allDevices.values():
 			cDev.defSize(size)
 
