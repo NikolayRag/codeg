@@ -23,6 +23,7 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 	'Device': {
 		'width': [300, [0.,10000], float, 'Default Width'],
 		'height': [200, [0.,10000], float, 'Default Height'],
+		'GRBLbps': ['115200', ['9600', '115200'], str, 'GRBL bitrate'],
 		'last': ['Mockup'],
 	},
 	'Viewport': {
@@ -43,10 +44,6 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 	}
 }
 
-deviceDefs = {
-	'EngineArduinoGRBL': {'rate':115200},
-}
-
 
 
 if __name__ == '__main__':
@@ -55,9 +52,15 @@ if __name__ == '__main__':
 
 	cGG = GGData()
 
+
 	fallbackSize = (Args.Device.width, Args.Device.height)
 	disFB = DispatchEngine('Mock', size=fallbackSize)
+
+	deviceDefs = {
+		'EngineArduinoGRBL': {'rate':int(Args.Device.GRBLbps)},
+	}
 	cDis = DispatchManager(size=fallbackSize, definitions=deviceDefs)
+
 
 	cUi = Ui(cGG, fallbackEngine=disFB, dispatch=cDis)
 	cUi.exec()
