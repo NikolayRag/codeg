@@ -5,14 +5,14 @@ class DispatchEngine():
 	sizeBase = None
 	size = None
 
-	definition = None
+	privData = None
 
 
 
-	def __init__(self, _name, _size, _definition=None):
+	def __init__(self, _name, _size, _privData=None):
 		self.nameBase = _name
 		self.sizeBase = _size
-		self.definition = _definition
+		self.privData = _privData
 
 
 
