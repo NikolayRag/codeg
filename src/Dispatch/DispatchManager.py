@@ -29,22 +29,16 @@ class DispatchManager():
 
 
 		self.allDevices = {}
+		self.devicesScan(_definitions)
 
 #  todo 253 (module-dispatch, ux) +0: find all suitable devices
-		for eName, eDef in _definitions.items():
-			self.deviceDefine(eName, eDef[0], eDef[1], eDef[2])
-		
 
 
-	def deviceDefine(self, _name, _engine, _size, _definition=None):
-		if _engine not in self.allEngines:
-			print('Warning: engine', _engine, 'is unknown')
-
-			return
-
-
-		newDev = self.allEngines[_engine](_name, _size, _definition)
-		self.allDevices[newDev.getName()] = newDev
+	def devicesScan(self, _definitions):
+		for engN, cEng in self.allEngines.items():
+			engDefs = _definitions[engN] if engN in _definitions else None
+			for cDev in cEng.enumerate(engDefs):
+				self.allDevices[cDev.getName()]= cDev
 
 
 
