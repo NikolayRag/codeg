@@ -15,7 +15,7 @@ class EngineArduinoGRBL(DispatchEngine):
 	def deviceDetect(_dev, _bps):
 		try:
 			port = serial.Serial(_dev.device, _bps,
-				timeout=2,
+				timeout=4,
 			    parity=serial.PARITY_NONE,
 	    		stopbits=serial.STOPBITS_ONE,
 	    		bytesize=serial.EIGHTBITS,
