@@ -7,15 +7,13 @@ class DispatchEngine():
 
 	privData = None
 
-	instances = {}
-
 
 
 	### OVERLOAD ###
 
-	@classmethod
-	def enumerate(it, _defSize=None):
-		return it.instances
+	#_defs format is variant and specific to engine
+	def enumerate(it, _defs=None):
+		return []
 
 
 
