@@ -2,7 +2,7 @@ class DispatchEngine():
 	nameBase = ''
 	name = ''
 
-	sizeBase = None
+	sizeBase = (100,100)
 	size = None
 
 	privData = None
@@ -14,14 +14,15 @@ class DispatchEngine():
 	### OVERLOAD ###
 
 	@classmethod
-	def enumerate(it, _defs=None):
+	def enumerate(it, _defSize=None):
 		return it.instances
 
 
 
-	def __init__(self, _name, _size, _privData=None):
+	def __init__(self, _name, _size=None, _privData=None):
 		self.nameBase = _name
-		self.sizeBase = _size
+		if _size:
+			self.sizeBase = _size
 		self.privData = _privData
 
 

@@ -9,7 +9,6 @@ from ..DispatchEngine import *
 
 class EngineArduinoGRBL(DispatchEngine):
 	nameBase = 'GRBL'
-	sizeBase = (10,10)
 
 
 
@@ -37,7 +36,7 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 	@classmethod
-	def enumerate(it, _defs=None):
+	def enumerate(it, _defSize=None):
 		if not it.instances:
 			it.instances = []
 
@@ -45,7 +44,7 @@ class EngineArduinoGRBL(DispatchEngine):
 			for portN in cPortsA:
 				cEcho = it.deviceDetect(portN, 115200)
 				if cEcho:
-					cDev = it(portN.device, _defs, {'v':cEcho})
+					cDev = it(portN.device, _defSize, {'v':cEcho})
 					it.instances.append(cDev)
 
 
