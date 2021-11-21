@@ -490,7 +490,7 @@ class Ui():
 
 #  todo 251 (module-dispatch, feature) +0: make generation by iterator
 	def dispatchSend(self):
-		return self.dispatch.runDevice(self.activeDevice, self.activeScene.traceG())
+		self.dispatch.runDevice(self.activeDevice, self.activeScene.traceG())
 
 
 
