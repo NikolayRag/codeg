@@ -38,5 +38,5 @@ class DispatchEngine():
 
 
 
-	def sink(self, _data):
+	def sink(self, _data=None):
 		return True
