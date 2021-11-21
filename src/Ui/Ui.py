@@ -447,8 +447,8 @@ class Ui():
 ### DISPATCH ###
 
 
-		print("Device changed to", _name, _dev)
 	def dispatchChanged(self, _name, _enabled):
+		print(f"Device changed to \"{_name}\"", 'mock' if not _enabled else '')
 
 		Args.Device.last = _name
 

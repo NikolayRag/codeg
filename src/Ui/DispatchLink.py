@@ -5,8 +5,10 @@ from PySide2.QtCore import *
 
 
 
-# Interface for separate Dispatch
-# Dispatch connected either inline, or as app link
+'''
+Interface for separate Dispatch
+Dispatch connected either inline, or as app link
+'''
 #  todo 18 (api, module-dispatch, v2) +0: standalone dispatcher over *cloud*
 class DispatchLink(QObject):
 	sigDispatchSent = Signal(object)
