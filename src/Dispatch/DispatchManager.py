@@ -53,3 +53,9 @@ class DispatchManager():
 		self.devicesScan()
 
 		return dict(self.allDevices)
+
+
+
+	def deviceSize(self, _dev):
+		if _dev in self.allDevices.values():
+			return _dev.getPlate()

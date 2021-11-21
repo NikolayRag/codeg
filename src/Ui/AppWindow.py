@@ -390,6 +390,12 @@ class AppWindow(QObject):
 # -todo 59 (module-ui, ux, clean) +0: make updatable connections list
 # =todo 250 (ux, module-dispatch) +0: react on device changed
 	def dispatchFill(self, _devices, _default):
+		if _default not in _devices:
+			print('Device not found:', f"{_default} not present")
+
+			_devices = {**{_default:None}, **_devices}
+
+
 		for devName, devObj in _devices.items():
 			self.wListDevs.addItem(devName, devObj)
 
