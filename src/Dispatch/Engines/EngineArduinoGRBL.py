@@ -103,7 +103,7 @@ class EngineArduinoGRBL(DispatchEngine):
 				self.port.close()
 				self.port = None
 
-				return
+				return False
 
 
 		self.port.write(str.encode(_data + '\n'))

@@ -48,12 +48,12 @@ class DispatchLink(QObject):
 				continue
 
 			res = self.dispatcher.deviceSend(_dev, cg)
-			self.sigDispatchSent.emit(f"+ {cg}" if res==True else f"  {res}:\n- {cg}")
+			self.sigDispatchSent.emit(f"+ {cg}" if res==True else f"  {res or 'Warning'}:\n- {cg}")
 
-			if not res:
+			if res==False:
 				self.sigDispatchFinish.emit(False)
 
-				break
+				return
 
 
 		res = self.dispatcher.deviceSend(_dev, None)
