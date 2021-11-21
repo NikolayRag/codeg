@@ -34,6 +34,7 @@ class DispatchManager():
 		self.defaultSize = size
 
 
+
 # =todo 254 (module-dispatch, ux) +0: scan devices parallel
 	def devicesScan(self):
 		for engN, cEng in self.allEngines.items():
@@ -62,3 +63,8 @@ class DispatchManager():
 	def deviceSize(self, _dev):
 		if _dev in self.allDevices.values():
 			return _dev.getPlate()
+
+
+	def deviceSend(self, _dev, _data):
+		if _dev in self.allDevices.values():
+			_dev.sink(_data)
