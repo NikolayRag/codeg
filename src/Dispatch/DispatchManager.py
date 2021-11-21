@@ -68,4 +68,5 @@ class DispatchManager():
 
 	def deviceSend(self, _dev, _data=None):
 		if _dev in self.allDevices:
-			self.allDevices[_dev].sink(_data)
+			res = self.allDevices[_dev].sink(_data)
+			return res
