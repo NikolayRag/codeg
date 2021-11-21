@@ -12,6 +12,7 @@ Dispatch connected either inline, or as app link
 #  todo 18 (api, module-dispatch, v2) +0: standalone dispatcher over *cloud*
 class DispatchLink(QObject):
 	sigDispatchSent = Signal(object)
+	sigDispatchFinish = Signal(bool)
 	sigDeviceListed = Signal(list)
 
 
@@ -50,10 +51,14 @@ class DispatchLink(QObject):
 			self.sigDispatchSent.emit(f"+ {cg}" if res==True else f"  {res}:\n- {cg}")
 
 			if not res:
+				self.sigDispatchFinish.emit(False)
+
 				break
 
 
-		self.dispatcher.deviceSend(_dev, None)
+		res = self.dispatcher.deviceSend(_dev, None)
+
+		self.sigDispatchFinish.emit(bool(res))
 
 
 
