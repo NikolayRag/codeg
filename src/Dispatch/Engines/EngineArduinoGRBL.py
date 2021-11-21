@@ -26,6 +26,8 @@ class EngineArduinoGRBL(DispatchEngine):
 				return
 
 			echo = port.readline().decode()
+			port.close()
+
 			if echo[:5]=='Grbl ':
 				return echo
 
