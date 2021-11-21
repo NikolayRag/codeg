@@ -17,10 +17,8 @@ class DispatchEngine():
 
 
 
-	def __init__(self, _name, size=None, privData=None):
+	def __init__(self, _name, privData=None):
 		self.nameBase = _name
-		if size:
-			self.defSize(size)
 		self.privData = privData
 
 

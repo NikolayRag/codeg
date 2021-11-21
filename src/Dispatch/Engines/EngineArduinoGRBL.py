@@ -42,7 +42,10 @@ class EngineArduinoGRBL(DispatchEngine):
 			cRate = _defs['rate'] if 'rate' in _defs else 115200
 			cEcho = EngineArduinoGRBL.deviceDetect(portN, cRate)
 			if cEcho:
-				cDev = EngineArduinoGRBL(portN.device, {'v':cEcho})
+				cDev = EngineArduinoGRBL(
+					f"{EngineArduinoGRBL.nameBase} ({portN.device})",
+					privData={'port':portN.device, 'rate':cRate, 'v':cEcho}
+				)
 				instances.append(cDev)
 
 
@@ -50,9 +53,8 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 
-	def __init__(self, _name, size=None, privData=None):
-		cName = f"{self.nameBase} ({_name})"
-		DispatchEngine.__init__(self, cName, size, privData=privData)
+	def __init__(self, _name, privData=None):
+		DispatchEngine.__init__(self, _name, privData=privData)
 
 
 		self.port = _name
