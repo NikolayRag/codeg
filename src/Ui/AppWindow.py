@@ -396,8 +396,6 @@ class AppWindow(QObject):
 
 
 		if _default not in _devices:
-			print('Device not found:', f"{_default} not present")
-
 			self.wListDevs.addItem(_default, False)
 			self.wListDevs.setCurrentIndex(self.wListDevs.count()-1)
 
