@@ -90,11 +90,27 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 
+# =todo 259 (fix, module-dispatch) +0: test device errors
+	def send(self, _data):
+		try:
+			self.port and self.port.write(str.encode(_data + '\n'))
+
+			res = self.port and self.port.readline().decode().strip()
+
+			return True if res=='ok' else res
+
+		except Exception as e:
+			self.port and self.port.close()
+			self.port = None
+
+			return False
+
+
+
 	def sink(self, _data):
 		if not _data:
 			if self.port:
-				self.port.write(str.encode(self.privData['tail'] +'\n'))
-				self.port.close()
+				self.send(self.privData['tail']) and self.port.close()
 				self.port = None
 
 				return True
@@ -104,20 +120,13 @@ class EngineArduinoGRBL(DispatchEngine):
 			if not self.begin():
 				print(f"Device \"{self.getName()}\" unavailable")
 
-				self.port.close()
+				self.port and self.port.close()
 				self.port = None
 
 				return False
 
-			self.port.write(str.encode(self.privData['head']))
+			return self.send(self.privData['head'])
 
 
-		self.port.write(str.encode(_data + '\n'))
-
-
-		res = self.port.readline().decode().strip()
-		if res=='ok':
-			res=True
-
-
+		res = self.send(_data)
 		return res

@@ -733,3 +733,6 @@
  module-dispatch, error, ux 258: +0 "src\Ui\DispatchLink.py" ki 21/11/22 02:03:58
 	handle retries
 
+=fix, module-dispatch 259: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/11/22 02:36:42
+	test device errors
+
