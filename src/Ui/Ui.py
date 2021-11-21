@@ -167,6 +167,7 @@ class Ui():
 
 
 		self.dispatch.sigDispatchSent.connect(self.appWindow.dispatchLog)
+		self.dispatch.sigDeviceListed.connect(print)
 
 		#default device as template, overrided at actual dispatch
 		devList = self.dispatch.getDevices()

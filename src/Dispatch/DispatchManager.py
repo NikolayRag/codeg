@@ -19,6 +19,9 @@ from .Engines import *
 
 
 class DispatchManager():
+	definitions = {} #{engine: data}
+
+
 	allEngines = {}
 	allDevices = {}
 
@@ -27,22 +30,26 @@ class DispatchManager():
 	def __init__(self, size=(100,100), definitions={}):
 		self.allEngines = {a.__name__:a for a in DispatchEngine.__subclasses__()}
 
-		self.allDevices = {}
-		self.devicesScan(definitions)
-
-		for cDev in self.allDevices.values():
-			cDev.defSize(size)
+		self.definitions = definitions
+		self.defaultSize = size
 
 
-
-# =todo 254 (module-dispatch, ux) +0: make devices async
-	def devicesScan(self, _definitions):
+# =todo 254 (module-dispatch, ux) +0: scan devices parallel
+	def devicesScan(self):
 		for engN, cEng in self.allEngines.items():
-			engDefs = _definitions[engN] if engN in _definitions else None
+			engDefs = self.definitions[engN] if engN in self.definitions else None
 			for cDev in cEng.enumerate(engDefs):
 				self.allDevices[cDev.getName()]= cDev
 
 
+		for cDev in self.allDevices.values():
+			cDev.defSize(self.defaultSize)
+
+
 
 	def deviceList(self):
+		self.allDevices = {}
+
+		self.devicesScan()
+
 		return dict(self.allDevices)

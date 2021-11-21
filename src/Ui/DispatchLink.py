@@ -1,3 +1,6 @@
+from threading import *
+
+
 from PySide2.QtCore import *
 
 
@@ -7,6 +10,7 @@ from PySide2.QtCore import *
 #  todo 18 (api, module-dispatch, v2) +0: standalone dispatcher over *cloud*
 class DispatchLink(QObject):
 	sigDispatchSent = Signal(object)
+	sigDeviceListed = Signal(dict)
 
 
 	dispatcher = None
@@ -26,7 +30,8 @@ class DispatchLink(QObject):
 		devs = {self.fallbackEng.getName(): self.fallbackEng} if self.fallbackEng else {}
 
 		if self.dispatcher:
-			devs = {**devs, **self.dispatcher.deviceList()}
+			Thread(target=lambda: self.sigDeviceListed.emit({**devs, **self.dispatcher.deviceList()})).start()
+
 
 		return devs
 
