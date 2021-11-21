@@ -39,7 +39,7 @@ class AppWindow(QObject):
 	sigDrop = Signal(list)
 
 	sigDevChange = Signal(str, object)
-	sigDispatchFire = Signal(object)
+	sigDispatchFire = Signal()
 	sigDispatchShot = Signal(object)
 
 
@@ -151,7 +151,7 @@ class AppWindow(QObject):
 		self.wBtnSave.clicked.connect(lambda: self.sigSceneSave.emit(self.wMain))
 		self.wBtnLoad.clicked.connect(lambda: self.sigSceneLoad.emit(self.wMain))
 		self.wBtnDispShot.clicked.connect(lambda: self.sigDispatchShot.emit(self.wMain))
-		self.wBtnDispFire.clicked.connect(lambda: self.sigDispatchFire.emit( self.wListDevs.currentData() ))
+		self.wBtnDispFire.clicked.connect(self.sigDispatchFire)
 		self.wBtnMarkAdd.clicked.connect(self.sigMarkAdd)
 		self.wListDevs.currentIndexChanged.connect(lambda i: self.sigDevChange.emit(self.wListDevs.currentText(), self.wListDevs.currentData()))
 		self.wBtnPrefs.clicked.connect(self.prefsList)
