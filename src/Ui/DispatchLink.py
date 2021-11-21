@@ -14,26 +14,21 @@ class DispatchLink(QObject):
 
 
 	dispatcher = None
-	fallbackEng = {}
+	fallbackPlate = None
 
 
 
-	def __init__(self, _fallbackEng, _dispatch=None):
+	def __init__(self, _fallbackPlate=(100,100), _dispatch=None):
 		QObject.__init__(self)
 
 		self.dispatcher = _dispatch
-		self.fallbackEng = _fallbackEng
+		self.fallbackPlate = _fallbackPlate
 
 
 
 	def getDevices(self):
-		devFB = {self.fallbackEng.getName(): self.fallbackEng} if self.fallbackEng else {}
-
 		if self.dispatcher:
-			Thread(target=lambda: self.sigDeviceListed.emit({**devFB, **self.dispatcher.deviceList()})).start()
-
-
-		return devFB
+			Thread(target=lambda: self.sigDeviceListed.emit(self.dispatcher.deviceList())).start()
 
 
 
@@ -41,5 +36,12 @@ class DispatchLink(QObject):
 #  todo 252 (module-dispatch, feature) +0: dispatch async
 	def runDevice(self, _dev, _data):
 		for cg in _data:
-			_dev.sink(cg)
+			_dev and _dev.sink(cg)
 			self.sigDispatchSent.emit(cg)
+
+
+
+	def devicePlate(self, _dev):
+		size = self.dispatcher and self.dispatcher.deviceSize(_dev)
+
+		return size or self.fallbackPlate

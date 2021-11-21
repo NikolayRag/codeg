@@ -54,15 +54,13 @@ if __name__ == '__main__':
 
 
 	fallbackSize = (Args.Device.width, Args.Device.height)
-	disFB = DispatchEngine('Mock', size=fallbackSize)
-
 	deviceDefs = {
 		'EngineArduinoGRBL': {'rate':int(Args.Device.GRBLbps)},
 	}
 	cDis = DispatchManager(size=fallbackSize, definitions=deviceDefs)
 
 
-	cUi = Ui(cGG, fallbackEngine=disFB, dispatch=cDis)
+	cUi = Ui(cGG, fallbackSize, dispatch=cDis)
 	cUi.exec()
 
 

@@ -130,7 +130,7 @@ class Ui():
 	activeDevice = None
 
 
-	def __init__(self, _data, fallbackEngine=None, dispatch=None):
+	def __init__(self, _data, _fallbackSize, dispatch=None):
 
 
 		#init
@@ -141,7 +141,7 @@ class Ui():
 
 		self.data = _data
 
-		self.dispatch = DispatchLink(fallbackEngine, dispatch)
+		self.dispatch = DispatchLink(_fallbackSize, dispatch)
 
 		self.appWindow = AppWindow()
 
@@ -170,14 +170,8 @@ class Ui():
 		self.dispatch.sigDeviceListed.connect(print)
 
 		#default device as template, overrided at actual dispatch
-		devList = self.dispatch.getDevices()
-		
-		cDevName = Args.Device.last
-		if Args.Device.last not in devList:
-			self.alert('Device not found:', f"{Args.Device.last} not present")
-			cDevName = list(devList.keys())[0]
-
-		self.appWindow.dispatchFill(devList, cDevName)
+		self.dispatch.getDevices()
+		self.appWindow.dispatchFill({}, Args.Device.last)
 
 
 		self.markDefault = self.data.markNew(
@@ -288,7 +282,7 @@ class Ui():
 		self.activeScene = self.data.sceneGet(_name)
 		self.appWindow.slotNewScene(self.activeScene)
 
-		self.appWindow.gridSize(self.activeDevice.getPlate())
+		self.appWindow.gridSize(self.dispatch.devicePlate(self.activeDevice))
 		self.appWindow.viewportFit()
 
 
@@ -430,7 +424,7 @@ class Ui():
 
 
 		cGBlock = self.activeScene.geoAdd(fileName, [self.markDefault], 'UI')
-		cOffset = QPointF(*self.activeDevice.getPlate())
+		cOffset = QPointF(*self.dispatch.devicePlate(self.activeDevice))
 		cGBlock.xformSet(offset=(0,-cOffset.y()))
 		gDscr = self.appWindow.geoAddWidget(cGBlock)
 
@@ -442,7 +436,7 @@ class Ui():
 		clipboard = QGuiApplication.clipboard()
 
 		cGBlock = self.activeScene.geoAdd(clipboard.text(), [self.markDefault], 'UI', name='paste', raw=True)
-		cOffset = QPointF(*self.activeDevice.getPlate())
+		cOffset = QPointF(*self.dispatch.devicePlate(self.activeDevice))
 		cGBlock.xformSet(offset=(0,-cOffset.y()))
 		gDscr = self.appWindow.geoAddWidget(cGBlock)
 
@@ -460,7 +454,7 @@ class Ui():
 
 		self.activeDevice = _dev
 		if self.activeScene:
-			self.appWindow.gridSize(_dev.getPlate())
+			self.appWindow.gridSize(self.dispatch.devicePlate(self.activeDevice))
 
 
 
