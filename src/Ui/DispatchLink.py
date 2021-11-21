@@ -27,13 +27,13 @@ class DispatchLink(QObject):
 
 
 	def getDevices(self):
-		devs = {self.fallbackEng.getName(): self.fallbackEng} if self.fallbackEng else {}
+		devFB = {self.fallbackEng.getName(): self.fallbackEng} if self.fallbackEng else {}
 
 		if self.dispatcher:
-			Thread(target=lambda: self.sigDeviceListed.emit({**devs, **self.dispatcher.deviceList()})).start()
+			Thread(target=lambda: self.sigDeviceListed.emit({**devFB, **self.dispatcher.deviceList()})).start()
 
 
-		return devs
+		return devFB
 
 
 
