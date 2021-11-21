@@ -56,15 +56,17 @@ class DispatchManager():
 
 		self.devicesScan()
 
-		return dict(self.allDevices)
+		return list(self.allDevices.keys())
 
 
 
 	def deviceSize(self, _dev):
-		if _dev in self.allDevices.values():
-			return _dev.getPlate()
+		if _dev in self.allDevices:
+			return self.allDevices[_dev].getPlate()
+
 
 
 	def deviceSend(self, _dev, _data):
-		if _dev in self.allDevices.values():
-			_dev.sink(_data)
+		if _dev in self.allDevices:
+			print('_dev', out)
+#			self.allDevices[_dev].sink(_data)

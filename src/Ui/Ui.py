@@ -447,14 +447,17 @@ class Ui():
 ### DISPATCH ###
 
 
-	def dispatchChanged(self, _name, _dev):
 		print("Device changed to", _name, _dev)
+	def dispatchChanged(self, _name, _enabled):
 
 		Args.Device.last = _name
 
-		self.activeDevice = _dev
+		self.activeDevice = _name
 		if self.activeScene:
 			self.appWindow.gridSize(self.dispatch.devicePlate(self.activeDevice))
+
+
+		self.appWindow.wBtnDispFire.setEnabled(_enabled)
 
 
 

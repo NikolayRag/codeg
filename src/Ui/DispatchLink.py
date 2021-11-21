@@ -10,7 +10,7 @@ from PySide2.QtCore import *
 #  todo 18 (api, module-dispatch, v2) +0: standalone dispatcher over *cloud*
 class DispatchLink(QObject):
 	sigDispatchSent = Signal(object)
-	sigDeviceListed = Signal(dict)
+	sigDeviceListed = Signal(list)
 
 
 	dispatcher = None
