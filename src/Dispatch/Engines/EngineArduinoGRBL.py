@@ -64,3 +64,54 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 
+	def begin(self):
+		try:
+			self.port = serial.Serial(self.privData['port'], self.privData['rate'],
+				timeout=4,
+			    parity=serial.PARITY_NONE,
+	    		stopbits=serial.STOPBITS_ONE,
+	    		bytesize=serial.EIGHTBITS,
+    		)
+
+
+			echo = self.port.readline().decode()
+			if echo:
+				echo = self.port.readline().decode()
+				if echo[:5]=='Grbl ':
+					return True
+
+
+		except Exception as e:
+			print(f"Device \"{self.getName()}\" error")
+			None
+
+
+
+	def sink(self, _data):
+		if not _data:
+			if self.port:
+				self.port.close()
+				self.port = None
+
+				return True
+
+
+		if not self.port:
+			if not self.begin():
+				print(f"Device \"{self.getName()}\" unavailable")
+
+				self.port.close()
+				self.port = None
+
+				return
+
+
+		self.port.write(str.encode(_data + '\n'))
+
+
+		res = self.port.readline().decode().strip()
+		if res=='ok':
+			res=True
+
+
+		return res
