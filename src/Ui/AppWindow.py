@@ -402,6 +402,8 @@ class AppWindow(QObject):
 			self.wListDevs.addItem(devName, devObj)
 
 			if devName == _default:
+				self.wBtnDispFire.setEnabled(not not devObj)
+
 				self.wListDevs.setCurrentIndex(self.wListDevs.count()-1)
 
 
