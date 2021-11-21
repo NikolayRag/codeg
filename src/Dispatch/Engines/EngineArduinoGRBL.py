@@ -60,6 +60,9 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 	def __init__(self, _name, privData=None):
+		privData['head'] = 'F8000'
+		privData['tail'] = ''
+
 		DispatchEngine.__init__(self, _name, privData=privData)
 
 
@@ -90,6 +93,7 @@ class EngineArduinoGRBL(DispatchEngine):
 	def sink(self, _data):
 		if not _data:
 			if self.port:
+				self.port.write(str.encode(self.privData['tail'] +'\n'))
 				self.port.close()
 				self.port = None
 
@@ -104,6 +108,8 @@ class EngineArduinoGRBL(DispatchEngine):
 				self.port = None
 
 				return False
+
+			self.port.write(str.encode(self.privData['head']))
 
 
 		self.port.write(str.encode(_data + '\n'))
