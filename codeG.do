@@ -55,7 +55,7 @@
 !spec, module-dispatch 19: +0 "src\GGData\GGData.py" ki 21/11/15 01:00:55
 	send to codegg
 
--module-dispatch, error 20: +0 "src\Ui\DispatchLink.py" ki 21/11/16 01:44:20
+-module-dispatch, error 20: +0 "src\Ui\DispatchLink.py" ki 21/11/22 01:47:33
 	handle errors, maybe status string
 
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
@@ -729,4 +729,7 @@
 
  ux 257: +0 "src\Ui\Ui.py" ki 21/11/21 22:22:18
 	handle nonexistent device
+
+ module-dispatch, error, ux 258: +0 "src\Ui\DispatchLink.py" ki 21/11/22 02:03:58
+	handle retries
 
