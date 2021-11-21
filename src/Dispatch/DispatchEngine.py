@@ -39,7 +39,7 @@ class DispatchEngine():
 
 
 	'''
-	Override: actually recieve data, None to finish session.
+	Overload: actually recieve data, None to finish session.
 
 	Return True for no errors, False for critical, any other for warning
 	'''
