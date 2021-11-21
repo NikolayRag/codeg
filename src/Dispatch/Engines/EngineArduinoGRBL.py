@@ -1,10 +1,8 @@
-import json
 import serial
 import serial.tools.list_ports
 
 
 from ..DispatchEngine import *
-
 
 
 class EngineArduinoGRBL(DispatchEngine):
