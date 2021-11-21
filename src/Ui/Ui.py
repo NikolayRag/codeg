@@ -458,6 +458,7 @@ class Ui():
 			self.appWindow.gridSize(self.dispatch.devicePlate(self.activeDevice))
 
 
+#  todo 257 (ux) +0: handle nonexistent device
 		self.appWindow.wBtnDispFire.setEnabled(_enabled)
 
 

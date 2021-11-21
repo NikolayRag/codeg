@@ -49,7 +49,7 @@
 =spec, module-dispatch 17: +0 "" kii 21/08/10 05:55:57
 	send to serial-usb (arduino)
 
- api, module-dispatch, v2 18: +0 "src\Ui\DispatchLink.py" ki 21/11/15 01:01:52
+ api, module-dispatch, v2 18: +0 "src\Ui\DispatchLink.py" ki 21/11/21 20:55:24
 	standalone dispatcher over *cloud*
 
 !spec, module-dispatch 19: +0 "src\GGData\GGData.py" ki 21/11/15 01:00:55
@@ -712,12 +712,21 @@
  module-dispatch, feature 251: +0 "src\Ui\Ui.py" ki 21/11/16 19:49:41
 	make generation by iterator
 
- module-dispatch, feature 252: +0 "src\Ui\DispatchLink.py" ki 21/11/16 19:50:31
+=module-dispatch, feature 252: +0 "src\Ui\DispatchLink.py" ki 21/11/21 22:46:31
 	dispatch async
 
 +module-dispatch, ux 253: +0 "src\Dispatch\DispatchManager.py" ki 21/11/19 05:09:06
 	find all suitable devices
 
-=module-dispatch, ux 254: +0 "src\Dispatch\DispatchManager.py" ki 21/11/19 05:28:38
-	make devices async
+=module-dispatch, ux 254: +0 "src\Dispatch\DispatchManager.py" ki 21/11/21 02:50:23
+	scan devices parallel
+
++module-dispatch, fix 255: +0 "src\Ui\DispatchLink.py" ki 21/11/21 22:44:04
+	use engines by reference only
+
++module-dispatch, ux 256: +0 "src\Ui\DispatchLink.py" ki 21/11/21 19:59:23
+	list devices nonblocking
+
+ ux 257: +0 "src\Ui\Ui.py" ki 21/11/21 22:22:18
+	handle nonexistent device
 
