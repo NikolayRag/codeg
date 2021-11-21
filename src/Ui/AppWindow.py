@@ -396,6 +396,8 @@ class AppWindow(QObject):
 			_devices = {**{_default:None}, **_devices}
 
 
+		self.wListDevs.clear()
+
 		for devName, devObj in _devices.items():
 			self.wListDevs.addItem(devName, devObj)
 
