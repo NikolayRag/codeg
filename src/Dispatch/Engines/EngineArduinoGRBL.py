@@ -11,6 +11,12 @@ class EngineArduinoGRBL(DispatchEngine):
 	nameBase = 'GRBL'
 
 
+	#runtime
+
+	privData = None
+	port = None
+
+
 
 	def deviceDetect(_dev, _bps):
 		try:
@@ -59,5 +65,4 @@ class EngineArduinoGRBL(DispatchEngine):
 		DispatchEngine.__init__(self, _name, privData=privData)
 
 
-		self.port = _name
 
