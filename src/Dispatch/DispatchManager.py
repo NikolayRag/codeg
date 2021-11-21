@@ -47,6 +47,9 @@ class DispatchManager():
 
 
 
+	'''
+	Return {name: referenceId}
+	'''
 	def deviceList(self):
 		self.allDevices = {}
 
