@@ -21,7 +21,7 @@ class SvgDescriptor():
 	def __init__(self, _canvas, _recomputeCB, _xml=None, z=0, ghost=False):
 		self.canvas = _canvas
 		self.recomputeCB = _recomputeCB
-		self.idGeo = self.canvas.layerNew(z)
+		self.idGeo = self.canvas.layerNew(z=z)
 
 		self.ghost(ghost)
 
