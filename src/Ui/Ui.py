@@ -3,7 +3,6 @@
 #  todo 149 (module-ui, feature) +0: multiscene
 #  todo 191 (filter, feature) +2: outline, fill and shape-intersect filters
 
-# -todo 186 (feature, module-ui, module-dispatch, v2) +0: live cut visualize
 # -todo 184 (ux, module-ui) +0: save/load app settings with project
 
 # =todo 178 (ux, feature) +0: suggest recent at load
@@ -19,7 +18,6 @@
 # -todo 173 (module-ui, ux, mark) +0: hover mark show toolbox
 
 #  todo 208 (viewport) +0: viewport controls
-# -todo 168 (module-ui, viewport, v2) +0: select by viewport
 
 # =todo 166 (module-ui, ux) +0: icons
 #  todo 222 (feature) +2: independent undo/preset stack for any Geo and Mark
@@ -377,7 +375,7 @@ class Ui():
 
 # =todo 182 (ux) +0: save saved project with increment
 #  todo 196 (module-data, api) +0: deal with Markfilter data fields within Mark
-# =todo 198 (data, fix) +0: move save/load routines to GGData
+# -todo 198 (data, fix) +0: move save/load routines to GGData
 # =todo 203 (ux, clean) +0: scene load/save error handling
 	def sceneSave(self, _parent):
 		cRecentA = Args.Ui.recentProject
@@ -490,6 +488,7 @@ class Ui():
 	def dispatchSend(self):
 		cSession = self.dispatch.runDevice(self.activeDevice, self.activeScene.traceG())
 		
+# -todo 264 (module-ui, module-dispatch, fix) +0: use actual box
 		self.appWindow.dispatchFeed(mode=True, data=(0,0,*self.dispatch.devicePlate(self.activeDevice)))
 
 

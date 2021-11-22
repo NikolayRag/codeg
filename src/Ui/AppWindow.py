@@ -462,7 +462,6 @@ class AppWindow(QObject):
 
 ### DISPATCH ###
 
-# =todo 250 (ux, module-dispatch) +0: react on device changed
 	def dispatchFill(self, _devices, _default):
 		self.wListDevs.blockSignals(True)
 		self.wListDevs.clear()
@@ -482,6 +481,7 @@ class AppWindow(QObject):
 
 
 
+# -todo 265 (feature, ux, module-dispatch) +0: show live statistics
 	def dispatchFeed(self, mode=None, data=None):
 		if mode == True:
 			self.wFrameDev.appendPlainText("Dispatch new session\n")
@@ -499,7 +499,6 @@ class AppWindow(QObject):
 		self.wFrameDev.appendPlainText(f"{round(progress*100,1)}% " + ('+' if res==True else f"  {res or 'Warning'}:\n- ") + echo)
 
 
-#  todo 262 (feature, module-ui, module-dispatch) +0: add functional cut feedback, require interactive vp layering
 		if not echo:
 			return
 

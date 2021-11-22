@@ -469,7 +469,7 @@
 +module-ui, viewport 167: +0 "src\Ui\Ui.py" ki 21/10/24 05:53:45
 	deselect geo by viewport
 
--module-ui, viewport, v2 168: +0 "src\Ui\Ui.py" ki 21/10/24 05:53:46
++module-ui, viewport, v2 168: +0 "src\Ui\Ui.py" ki 21/11/23 00:27:58
 	select by viewport
 
 =module-ui, ux, mark 169: +0 "src\Ui\Ui.py" ki 21/10/18 18:42:31
@@ -517,10 +517,10 @@
 -ux, module-ui 183: +1 "src\Ui\Ui.py" ki 21/10/19 20:47:46
 	brush Scene routines
 
--ux, module-ui 184: +0 "src\Ui\Ui.py" ki 21/11/22 05:50:42
+-ux, module-ui 184: +0 "src\Ui\Ui.py" ki 21/11/23 00:28:46
 	save/load app settings with project
 
--feature, module-ui, module-dispatch, v2 186: +0 "src\Ui\Ui.py" ki 21/10/24 04:25:52
++feature, module-ui, module-dispatch, v2 186: +0 "src\Ui\Ui.py" ki 21/11/23 00:28:46
 	live cut visualize
 
 !dispatch, feature 187: +0 "src\Ui\Ui.py" ki 21/10/20 22:57:58
@@ -556,7 +556,7 @@
 =data, fix 197: +0 "src\Ui\Ui.py" ki 21/11/04 04:06:17
 	deal with missing svg link
 
-=data, fix 198: +0 "src\Ui\Ui.py" ki 21/10/23 07:20:24
+-data, fix 198: +0 "src\Ui\Ui.py" ki 21/11/23 00:27:12
 	move save/load routines to GGData
 
 +module-data, module-ui, feature, api 199: +0 "src\Ui\AppWindow.py" ki 21/10/29 21:14:32
@@ -706,7 +706,7 @@
 !module-dispatch, app, feature 249: +0 "src\Ui\DispatchLink.py" ki 21/11/15 01:01:08
 	dis
 
-=ux, module-dispatch 250: +0 "src\Ui\AppWindow.py" ki 21/11/15 01:04:01
++ux, module-dispatch 250: +0 "src\Ui\AppWindow.py" ki 21/11/23 00:24:20
 	react on device changed
 
  module-dispatch, feature 251: +0 "src\Ui\Ui.py" ki 21/11/16 19:49:41
@@ -742,6 +742,15 @@
 =module-dispatch, feature 261: +0 "src\Ui\DispatchLink.py" ki 21/11/22 04:09:58
 	add basic dispatch session manager
 
- feature, module-ui, module-dispatch 262: +0 "src\Ui\AppWindow.py" ki 21/11/22 15:52:26
-	add functional cut feedback, require interactive vp layering
++feature, module-ui, module-dispatch 262: +0 "src\Ui\AppWindow.py" ki 21/11/23 00:25:46
+	add functional cut feedback
+
+-module-dispatch, feature 263: +0 "src\Ui\DispatchLink.py" ki 21/11/22 22:49:17
+	add dispatch queue
+
+-module-ui, module-dispatch, fix 264: +0 "src\Ui\Ui.py" ki 21/11/22 23:40:08
+	use actual box
+
+-feature, ux, module-dispatch 265: +0 "src\Ui\AppWindow.py" ki 21/11/23 00:26:44
+	show live statistics
 
