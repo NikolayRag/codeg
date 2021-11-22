@@ -90,8 +90,8 @@ class DispatchLink(QObject):
 			return
 
 
-		def bindDev(_data):
-			return self.dispatcher.deviceSend(_dev, _data)
+		def bindDev(_d):
+			return self.dispatcher.deviceSend(_dev, _d)
 
 		cSession = DispatchSession(bindDev, _data)
 		cSession.sigFinish.connect(self.sigDispatchFinish)
