@@ -395,7 +395,6 @@ class AppWindow(QObject):
 
 ### DISPATCH ###
 
-# -todo 59 (module-ui, ux, clean) +0: make updatable connections list
 # =todo 250 (ux, module-dispatch) +0: react on device changed
 	def dispatchFill(self, _devices, _default):
 		self.wListDevs.blockSignals(True)

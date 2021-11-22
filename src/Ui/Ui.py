@@ -21,7 +21,6 @@
 #  todo 208 (viewport) +0: viewport controls
 # -todo 168 (module-ui, viewport, v2) +0: select by viewport
 
-# =todo 165 (feature, dispatch) +0: device definition
 # =todo 166 (module-ui, ux) +0: icons
 #  todo 222 (feature) +2: independent undo/preset stack for any Geo and Mark
 
@@ -544,7 +543,7 @@ class Ui():
 
 ### MARKS ###
 
-# =todo 164 (feature, module-ui) -1: auto-apply new Mark to selection
+# -todo 164 (feature, module-ui, unsure) -1: auto-apply new Mark to selection
 	def markCreate(self):
 		randomColor = QColor.fromHsvF(
 			Counter.next('hue',.3)%1.,

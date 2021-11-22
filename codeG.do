@@ -166,19 +166,19 @@
 -module-ui, ux, clean 59: +0 "src\Ui\AppWindow.py" ki 21/11/04 04:09:46
 	make updatable connections list
 
--module-dispatch 60: +0 "src\Dispatch\DispatchManager.py" ki 21/11/16 21:25:46
++module-dispatch 60: +0 "src\Dispatch\DispatchManager.py" ki 21/11/22 17:03:37
 	show gcodes live proto
 
-=module-dispatch 61: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 03:45:15
+=module-dispatch 61: +0 "src\Dispatch\DispatchManager.py" ki 21/11/22 17:03:38
 	CNC control
 
--module-dispatch 62: +0 "src\Dispatch\DispatchManager.py" ki 21/11/16 21:25:57
+!module-dispatch 62: +0 "src\Dispatch\DispatchManager.py" ki 21/11/22 17:03:25
 	live device control
 
 +module-ui, ux 63: +0 "src\Ui\Ui.py" kii 21/09/02 03:50:54
 	basic layer control, on-off
 
--module-dispatch 64: +0 "src\Dispatch\Dispatch.py" kii 21/08/17 15:28:44
+-module-dispatch 64: +0 "src\Dispatch\DispatchManager.py" ki 21/11/22 17:03:26
 	dispatch queue
 
 !module-dispatch 65: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:38:19
@@ -457,13 +457,13 @@
 !feature, save 163: +0 "src\Ui\Ui.py" ki 21/10/17 18:28:32
 	Scene save/load
 
-=feature, module-ui 164: -1 "src\Ui\Ui.py" ki 21/10/17 18:51:23
+-feature, module-ui, unsure 164: -1 "src\Ui\Ui.py" ki 21/11/22 17:05:12
 	auto-apply new Mark to selection
 
 =feature, dispatch 165: +0 "src\Ui\Ui.py" ki 21/10/18 18:41:17
 	device definition
 
-=module-ui, ux 166: +0 "src\Ui\Ui.py" ki 21/10/18 18:41:19
+=module-ui, ux 166: +0 "src\Ui\Ui.py" ki 21/11/22 17:01:53
 	icons
 
 +module-ui, viewport 167: +0 "src\Ui\Ui.py" ki 21/10/24 05:53:45
