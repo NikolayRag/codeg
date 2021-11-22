@@ -162,8 +162,8 @@ class Ui():
 		self.appWindow.sigDispatchShot.connect(self.dispatchShot)
 
 
-		self.dispatch.sigDispatchSent.connect(lambda d,res,v:self.appWindow.dispatchLog(f"{round(v*100,1)}% " + ('+' if res==True else f"  {res or 'Warning'}:\n- "), d))
-		self.dispatch.sigDispatchFinish.connect(lambda res:self.appWindow.dispatchLog(f"Dispatch {'ok' if res else 'error'}\n"))
+		self.dispatch.sigDispatchSent.connect(lambda d,res,v:self.appWindow.dispatchFeed(data=(d,res,v)))
+		self.dispatch.sigDispatchFinish.connect(lambda res:self.appWindow.dispatchFeed(mode=False, data=res))
 
 		self.dispatch.sigDeviceListed.connect(lambda devA:self.appWindow.dispatchFill(devA, Args.Device.last))
 
@@ -489,6 +489,9 @@ class Ui():
 #  todo 251 (module-dispatch, feature) +0: make generation by iterator
 	def dispatchSend(self):
 		cSession = self.dispatch.runDevice(self.activeDevice, self.activeScene.traceG())
+		
+		self.appWindow.dispatchFeed(mode=True, data=(0,0,*self.dispatch.devicePlate(self.activeDevice)))
+
 
 
 

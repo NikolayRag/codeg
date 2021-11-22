@@ -442,15 +442,30 @@ class AppWindow(QObject):
 
 
 
-	def dispatchLog(self, _txt, _data=''):
-		self.wFrameDev.appendPlainText(_txt+_data)
+	def dispatchFeed(self, mode=None, data=None):
+		if mode == True:
+			self.wFrameDev.appendPlainText("Dispatch new session\n")
+
+			return
+
+
+		if mode == False:
+			self.wFrameDev.appendPlainText(f"Dispatch {'ok' if data else 'error'}\n")
+
+			return
+
+		echo, res, progress = data
+		self.wFrameDev.appendPlainText(f"{round(progress*100,1)}% " + ('+' if res==True else f"  {res or 'Warning'}:\n- ") + echo)
+
 
 #  todo 262 (feature, module-ui, module-dispatch) +0: add functional cut feedback, require interactive vp layering
-		if _data:
-			_data = re.findall("[XY]-?[\d\.]+", _data)
+		if not echo:
+			return
 
-			if len(_data)==2 and len(_data[0])>1 and len(_data[1])>1 and _data[0][0]=='X' and _data[1][0]=='Y':
-				self.tracer.moveto(float(_data[0][1:]), -float(_data[1][1:]), False)
+		coords = re.findall("[XY]-?[\d\.]+", echo)
+
+		if len(coords)==2 and len(coords[0])>1 and len(coords[1])>1 and coords[0][0]=='X' and coords[1][0]=='Y':
+			self.tracer.moveto(float(coords[0][1:]), -float(coords[1][1:]), False)
 
 
 
