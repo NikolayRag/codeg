@@ -160,7 +160,7 @@ class Ui():
 		self.appWindow.sigDispatchShot.connect(self.dispatchShot)
 
 
-		self.dispatch.sigDispatchSent.connect(lambda d,res,v:self.appWindow.dispatchFeed(data=(d,res,v)))
+		self.dispatch.sigDispatchSent.connect(lambda echo,res,prg:self.appWindow.dispatchFeed(data=(echo,res,prg)))
 		self.dispatch.sigDispatchFinish.connect(lambda res:self.appWindow.dispatchFeed(mode=False, data=res))
 
 		self.dispatch.sigDeviceListed.connect(lambda devA:self.appWindow.dispatchFill(devA, Args.Device.last))

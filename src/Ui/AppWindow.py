@@ -498,12 +498,10 @@ class AppWindow(QObject):
 
 			return
 
+
 		echo, res, progress = data
 		self.wFrameDev.appendPlainText(f"{round(progress*100,1)}% " + ('+' if res==True else f"  {res or 'Warning'}:\n- ") + echo)
 
-
-		if not echo:
-			return
 
 		coords = re.findall("[XY]-?[\d\.]+", echo)
 
