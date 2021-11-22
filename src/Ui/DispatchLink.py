@@ -35,7 +35,6 @@ class DispatchLink(QObject):
 
 
 
-# -todo 20 (module-dispatch, error) +0: handle errors, maybe status string
 # =todo 252 (module-dispatch, feature) +0: dispatch async
 #  todo 258 (module-dispatch, error, ux) +0: handle retries
 	def runDevice(self, _dev, _data):

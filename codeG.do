@@ -55,7 +55,7 @@
 !spec, module-dispatch 19: +0 "src\GGData\GGData.py" ki 21/11/15 01:00:55
 	send to codegg
 
--module-dispatch, error 20: +0 "src\Ui\DispatchLink.py" ki 21/11/22 01:47:33
++module-dispatch, error 20: +0 "src\Ui\DispatchLink.py" ki 21/11/22 03:37:24
 	handle errors, maybe status string
 
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
@@ -712,7 +712,7 @@
  module-dispatch, feature 251: +0 "src\Ui\Ui.py" ki 21/11/16 19:49:41
 	make generation by iterator
 
-=module-dispatch, feature 252: +0 "src\Ui\DispatchLink.py" ki 21/11/21 22:46:31
+=module-dispatch, feature 252: +0 "src\Ui\DispatchLink.py" ki 21/11/22 03:37:24
 	dispatch async
 
 +module-dispatch, ux 253: +0 "src\Dispatch\DispatchManager.py" ki 21/11/19 05:09:06
