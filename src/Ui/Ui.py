@@ -167,6 +167,7 @@ class Ui():
 
 
 		self.dispatch.sigDispatchSent.connect(self.appWindow.dispatchLog)
+		self.dispatch.sigDispatchFire.connect(lambda sess:self.appWindow.dispatchLog(f"Dispatch new session\n"))
 		self.dispatch.sigDispatchFinish.connect(lambda res:self.appWindow.dispatchLog(f"Dispatch {'ok' if res else 'error'}\n"))
 		self.dispatch.sigDeviceListed.connect(lambda devA:self.appWindow.dispatchFill(devA, Args.Device.last))
 
