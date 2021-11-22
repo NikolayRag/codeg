@@ -6,7 +6,7 @@ from PySide2.QtCore import *
 
 
 class DispatchSession(Thread, QObject):
-	sigSent = Signal(object)
+	sigSent = Signal(object, object, float)
 	sigFinish = Signal(bool)
 
 
@@ -28,7 +28,7 @@ class DispatchSession(Thread, QObject):
 				continue
 
 			res = self.runCb(cg)
-			self.sigSent.emit(f"+ {cg}" if res==True else f"  {res or 'Warning'}:\n- {cg}")
+			self.sigSent.emit(cg, res, dI/len(self.runData))
 
 			if res==False:
 				self.sigFinish.emit(False)
@@ -50,7 +50,7 @@ Dispatch connected either inline, or as app link
 #  todo 18 (api, module-dispatch, v2) +0: standalone dispatcher over *cloud*
 class DispatchLink(QObject):
 	sigDispatchFire = Signal(object)
-	sigDispatchSent = Signal(object)
+	sigDispatchSent = Signal(object, object, float)
 	sigDispatchFinish = Signal(bool)
 	sigDeviceListed = Signal(list)
 
