@@ -30,6 +30,7 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 		'fit': [0.7, [0.,1], float, 'Fit ratio'],
 		'fitGeo': [.5, [0,1], float, 'Fit geometry ratio'],
 		'offsetX': [0.66, [0,1], float, 'Fit center'],
+		'traceLayer': [False],
 
 		'panMargins': [.2, [0,.5], float, 'Pan limit margins'],
 		'scaleMin': [10],

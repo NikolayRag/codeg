@@ -1,0 +1,7 @@
+<svg width="10" height="10" xmlns="http://www.w3.org/2000/svg">
+<g>
+  <line x1="-5" x2="5" y1="0.00" y2="0.00" stroke='#f00' stroke-width='1px'/>
+  <line y1="-5" y2="5" x1="0.00" x2="0.00" stroke='#0f0' stroke-width='1px'/>
+  <circle cy="0" cx="0" r="2px" stroke='#00f' fill='#fff' stroke-width='1px'/>
+</g>
+</svg>

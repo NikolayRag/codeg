@@ -2,6 +2,7 @@
 #  todo 34 (module-ui, widgets) +0: transform reset
 
 
+import re
 import os
 import webbrowser
 
@@ -47,6 +48,7 @@ class AppWindow(QObject):
 
 	defSelection = 'resource\\select.svg'
 	defGrid = 'resource\\grid.svg' #1-unit size
+	defTracePoint = 'resource\\tracepoint.svg'
 	defUi = './Ui/AppWindow.ui'
 
 
@@ -56,6 +58,9 @@ class AppWindow(QObject):
 	selectionCache = []
 
 	gridDescription = None
+
+	tracePtDescription = None
+
 
 #  todo 212 (module-ui, clean, widget) +0: MarkWidget collection class
 	widgetGeo = None
@@ -123,6 +128,8 @@ class AppWindow(QObject):
 
 
 		self.wBtnFit = cMain.findChild(QWidget, "btnFit")
+		self.wBtnTraceView = cMain.findChild(QWidget, "btnTraceView")
+		self.wBtnTraceView.setChecked(Args.Viewport.traceLayer)
 
 		self.wBtnCaption = cMain.findChild(QWidget, "btnCaption")
 		self.wBtnWipe = cMain.findChild(QWidget, "btnWipe")
@@ -144,6 +151,7 @@ class AppWindow(QObject):
 
 
 		self.wBtnFit.clicked.connect(self.viewportFit)
+		self.wBtnTraceView.toggled.connect(self.traceToggle)
 		self.wBtnCaption.clicked.connect(self.about)
 		self.wBtnWipe.clicked.connect(self.sigSceneReset)
 		self.wBtnOpen.clicked.connect(lambda: self.sigAddFile.emit(self.wMain))
@@ -408,8 +416,14 @@ class AppWindow(QObject):
 
 
 
-	def dispatchLog(self, _txt):
-		self.wFrameDev.appendPlainText(_txt)
+	def dispatchLog(self, _txt, _data=''):
+		self.wFrameDev.appendPlainText(_txt+_data)
+
+		if _data:
+			_data = re.findall("[XY]-?[\d\.]+", _data)
+
+			if len(_data)==2 and len(_data[0])>1 and len(_data[1])>1 and _data[0][0]=='X' and _data[1][0]=='Y':
+				self.tracePtDescription.place((float(_data[0][1:]), -float(_data[1][1:])))
 
 
 
@@ -438,6 +452,11 @@ class AppWindow(QObject):
 		self.selectionDescription = self.wSvgViewport.canvasAdd(self.defSelection, z=99)
 		self.selectionDescription.show(False)
 
+		self.tracePtDescription = self.wSvgViewport.canvasAdd(self.defTracePoint, z=100)
+		self.tracePtDescription.show(Args.Viewport.traceLayer)
+		self.tracePtDescription.ghost(True)
+		self.tracePtDescription.static(True)
+
 
 
 	def gridSize(self, _size):
@@ -445,6 +464,10 @@ class AppWindow(QObject):
 		self.gridDescription.place((0,-_size[1]))
 
 
+
+	def traceToggle(self, _state):
+		self.tracePtDescription.show(_state)
+		Args.Viewport.traceLayer = _state
 
 ### OPTIONS ###
 

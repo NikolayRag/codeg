@@ -411,6 +411,20 @@
                 <item row="1" column="5">
                  <layout class="QHBoxLayout" name="horizontalLayout_2">
                   <item>
+                   <widget class="QToolButton" name="btnTraceView">
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset>
+                      <normaloff>resource/icon-focuspoint.svg</normaloff>resource/icon-focuspoint.svg</iconset>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QToolButton" name="btnFit">
                     <property name="text">
                      <string>Fit</string>
