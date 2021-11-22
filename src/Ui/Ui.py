@@ -162,7 +162,6 @@ class Ui():
 		self.appWindow.sigDispatchShot.connect(self.dispatchShot)
 
 
-		self.dispatch.sigDispatchFire.connect(lambda sess:self.appWindow.dispatchLog(f"Dispatch new session\n"))
 		self.dispatch.sigDispatchSent.connect(lambda d,res,v:self.appWindow.dispatchLog(f"{round(v*100,1)}% " + ('+' if res==True else f"  {res or 'Warning'}:\n- "), d))
 		self.dispatch.sigDispatchFinish.connect(lambda res:self.appWindow.dispatchLog(f"Dispatch {'ok' if res else 'error'}\n"))
 
@@ -489,7 +488,7 @@ class Ui():
 
 #  todo 251 (module-dispatch, feature) +0: make generation by iterator
 	def dispatchSend(self):
-		self.dispatch.runDevice(self.activeDevice, self.activeScene.traceG())
+		cSession = self.dispatch.runDevice(self.activeDevice, self.activeScene.traceG())
 
 
 

@@ -99,7 +99,7 @@ class DispatchLink(QObject):
 		cSession.start()
 
 		self.allSessions.append(cSession)
-		self.sigDispatchFire.emit(cSession)
+		return cSession
 
 
 
