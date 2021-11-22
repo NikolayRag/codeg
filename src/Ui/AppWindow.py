@@ -25,6 +25,7 @@ from .BindFilter import *
 class Tracer():
 	canvas = None
 	focus = None
+	osd = None
 
 
 	canvasHead = None
@@ -33,13 +34,15 @@ class Tracer():
 	visible = True
 
 
-	def __init__(self, _descrCanvas, _descrFocus):
+	def __init__(self, _descrCanvas, _descrFocus, _osd=None):
 		self.canvas = _descrCanvas
 		self.canvas.ghost(True)
 
 		self.focus = _descrFocus
 		self.focus.ghost(True)
 		self.focus.static(True)
+
+		self.osd = _osd
 
 
 
