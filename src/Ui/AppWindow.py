@@ -22,6 +22,9 @@ from .BindFilter import *
 
 
 
+'''
+Viewport dispatch OSD
+'''
 class Tracer():
 	canvas = None
 	focus = None
@@ -538,7 +541,7 @@ class AppWindow(QObject):
 		dCanvas = self.wSvgViewport.canvasAdd(z=100)
 		dFocus = self.wSvgViewport.canvasAdd(self.defTracePoint, z=101)
 		self.tracer = Tracer(dCanvas, dFocus)
-		self.tracer.show(Args.Viewport.traceLayer)
+		self.traceToggle(Args.Viewport.traceLayer)
 
 
 
