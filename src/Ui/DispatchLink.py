@@ -6,7 +6,7 @@ from PySide2.QtCore import *
 
 
 class DispatchSession(Thread, QObject):
-	sigSent = Signal(object, object, float)
+	sigSent = Signal(object)
 	sigFinish = Signal(bool)
 
 
