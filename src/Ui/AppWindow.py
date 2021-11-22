@@ -27,6 +27,11 @@ class Tracer():
 	focus = None
 
 
+	canvasHead = None
+	canvasBody = []
+
+	visible = True
+
 
 	def __init__(self, _descrCanvas, _descrFocus):
 		self.canvas = _descrCanvas
@@ -38,14 +43,49 @@ class Tracer():
 
 
 
+	def reset(self, _x, _y, _w, _h):
+		self.canvasHead = [_x, _y, _w, _h]
+		self.canvasBody = []
+
+		self.canvas.place((_x, _y))
+		self.canvasBuild((_x, _y))
+
+
+
 	def moveto(self, _x, _y, _on=False):
 		self.focus and self.focus.place((_x, _y))
+
+		self.canvasBuild((_x,_y))
 
 
 
 	def show(self, _state):
+		self.visible = _state
+		if _state and self.canvasHead:
+			self.canvasBuild()
+
+
 		self.canvas.show(_state)
 		self.focus.show(_state)
+
+
+
+	def canvasBuild(self, _add=None):
+		if _add:
+			self.canvasBody += [f"{_add[0]},{_add[1]}"]
+
+		if not self.visible:
+			return
+
+
+		out = [f"<svg width='{self.canvasHead[2]}' height='{self.canvasHead[3]}' xmlns='http://www.w3.org/2000/svg'>"]
+		out += ["<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"]
+		out += self.canvasBody
+		out += ["'/>"]
+
+		out += ["</svg>"]
+
+		self.canvas.setXml(' '.join(out).encode())
 
 
 
@@ -445,6 +485,7 @@ class AppWindow(QObject):
 	def dispatchFeed(self, mode=None, data=None):
 		if mode == True:
 			self.wFrameDev.appendPlainText("Dispatch new session\n")
+			self.tracer.reset(*data)
 
 			return
 
@@ -494,7 +535,7 @@ class AppWindow(QObject):
 		self.selectionDescription = self.wSvgViewport.canvasAdd(self.defSelection, z=99)
 		self.selectionDescription.show(False)
 
-		dCanvas = self.wSvgViewport.canvasAdd(z=101)
+		dCanvas = self.wSvgViewport.canvasAdd(z=100)
 		dFocus = self.wSvgViewport.canvasAdd(self.defTracePoint, z=101)
 		self.tracer = Tracer(dCanvas, dFocus)
 		self.tracer.show(Args.Viewport.traceLayer)
