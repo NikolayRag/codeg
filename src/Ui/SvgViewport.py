@@ -74,6 +74,11 @@ class SvgDescriptor():
 
 
 
+	def static(self, _static):
+		self.canvas.layerStatic(self.idGeo, _static)
+
+
+
 '''
 Main scene widget
 '''
@@ -342,6 +347,8 @@ class SvgCanvasLayer(QSvgRenderer):
 
 	scale = (1, 1)
 	offset = (0, 0)
+	static = False
+
 
 
 	def __init__(self, _parent, z=0):
@@ -355,6 +362,10 @@ class SvgCanvasLayer(QSvgRenderer):
 		self.ghost = _ghost
 
 
+	def setStatic(self, _static):
+		self.static = _static
+
+
 
 	def setDisplay(self, _display):
 		self.display = _display
@@ -365,11 +376,14 @@ class SvgCanvasLayer(QSvgRenderer):
 		self.scale = _scale
 
 
-	def layerSize(self):
+	def layerSize(self, _xs=1., _ys=1.):
+		if not self.static:
+			_xs = _ys = 1.
+
 		defSize = self.defaultSize()
 		if defSize.width()==-1 or defSize.height()==-1:
 			return (0,0)
-		return (defSize.width()*self.scale[0], defSize.height()*self.scale[1])
+		return (defSize.width()*self.scale[0]/_xs, defSize.height()*self.scale[1]/_ys)
 
 
 
@@ -501,14 +515,22 @@ class SvgCanvas(QWidget):
 
 
 
+	def layerStatic(self, _lId, _static):
+		cLayer = self.layers[_lId]
+		cLayer.setStatic(_static)
+
+		self.recompute()
+
+
+
 	def recompute(self, _update=True):
-			allLayerXforms = [[*l.layerOffset(True), *l.layerSize()] for l in self.layers.values() if l.display and not l.ghost]
+			allLayerXforms = [[*l.layerOffset(True), *l.layerSize(self.scaleX,self.scaleY)] for l in self.layers.values() if l.display and not l.ghost]
 			allMinMax = list(zip(*[ [x, x+w, y, y+h] for x,y,w,h in allLayerXforms ]))
 			allMinMax = allMinMax or [[0], [self.defaultWidth], [0], [self.defaultHeight]]
 			self.docXMin, self.docXMax = map(sorted(allMinMax[0]+allMinMax[1]).__getitem__, [0,-1])
 			self.docYMin, self.docYMax = map(sorted(allMinMax[2]+allMinMax[3]).__getitem__, [0,-1])
 
-			allLayerXforms = [[*l.layerOffset(True), *l.layerSize()] for l in self.layers.values() if l.display]
+			allLayerXforms = [[*l.layerOffset(True), *l.layerSize(self.scaleX,self.scaleY)] for l in self.layers.values() if l.display]
 			allMinMax = list(zip(*[ [x, x+w, y, y+h] for x,y,w,h in allLayerXforms ]))
 			allMinMax = allMinMax or [[0], [self.defaultWidth], [0], [self.defaultHeight]]
 			self.ghostXMin, self.ghostXMax = map(sorted(allMinMax[0]+allMinMax[1]).__getitem__, [0,-1])
@@ -529,7 +551,7 @@ class SvgCanvas(QWidget):
 			if not l.display:
 				continue
 
-			lSize = QSizeF(*l.layerSize())
+			lSize = QSizeF(*l.layerSize(self.scaleX,self.scaleY))
 			lPos = QPointF(*l.layerOffset())
 
 			p.setViewport(
