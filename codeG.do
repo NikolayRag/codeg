@@ -91,7 +91,7 @@
 +module-ui, spec, viewport 32: +1 "src\Ui\SvgViewport.py" kii 21/08/02 21:57:55
 	make isolated viewport widget
 
- module-ui, widgets 33: +0 "src\Ui\AppWindow.py" kii 21/08/04 14:07:26
+ module-ui, widgets 33: +0 "src\Ui\AppWindow.py" ki 21/11/22 22:07:48
 	zoom slider
 
  module-ui, widgets 34: +0 "src\Ui\AppWindow.py" kii 21/08/02 05:05:28

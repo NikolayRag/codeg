@@ -89,7 +89,6 @@ class DispatchLink(QObject):
 			print ('No dispatcher')
 			return
 
-
 		def bindDev(_d):
 			return self.dispatcher.deviceSend(_dev, _d)
 
