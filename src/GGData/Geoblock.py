@@ -171,7 +171,7 @@ class Geoblock():
 			refItem = _shape.data()
 			cycle = refItem.dataGet('Laser Cycle', 100)
 
-			return( f"S{int(cycle)} G1" )
+			return( [f"S{int(cycle)}", "G1"] )
 
 
 		self.svgeo.set(shapeIn=shapeInHook, shapePre=shapePreHook, shapeOut = 'S0')
@@ -183,7 +183,7 @@ class Geoblock():
 
 		out = []
 		for g in self.svgeo.generate( xform=xform ):
-			out += g
+			out.append(g)
 
 
 		return out
