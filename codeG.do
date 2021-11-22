@@ -736,3 +736,6 @@
 =fix, module-dispatch 259: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/11/22 02:36:42
 	test device errors
 
+=module-dispatch, test 260: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/11/22 03:35:21
+	test GRBL 
+
