@@ -712,7 +712,7 @@
  module-dispatch, feature 251: +0 "src\Ui\Ui.py" ki 21/11/16 19:49:41
 	make generation by iterator
 
-=module-dispatch, feature 252: +0 "src\Ui\DispatchLink.py" ki 21/11/22 03:37:24
++module-dispatch, feature 252: +0 "src\Ui\DispatchLink.py" ki 21/11/22 04:48:13
 	dispatch async
 
 +module-dispatch, ux 253: +0 "src\Dispatch\DispatchManager.py" ki 21/11/19 05:09:06
@@ -736,6 +736,9 @@
 =fix, module-dispatch 259: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/11/22 02:36:42
 	test device errors
 
-=module-dispatch, test 260: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/11/22 03:35:21
+=module-dispatch, test 260: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/11/22 04:29:58
 	test GRBL 
+
+=module-dispatch, feature 261: +0 "src\Ui\DispatchLink.py" ki 21/11/22 04:09:58
+	add basic dispatch session manager
 
