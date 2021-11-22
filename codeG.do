@@ -64,7 +64,7 @@
 =module-dispatch, ux 22: +1 "src\Dispatch\DispatchManager.py" ki 21/11/16 21:26:11
 	make dispatch interruptable
 
--module-ui, ux 23: +0 "src\Ui\Ui.py" kii 21/09/09 21:27:51
+-module-ui, ux 23: +0 "src\Ui\Ui.py" ki 21/11/22 15:16:12
 	show progress for time consuming operations
 
 !module-data, formats 24: +0 "" kii 21/07/31 16:33:32
@@ -331,7 +331,7 @@
 +ux, module-ui 116: +0 "src\Ui\Ui.py" ki 21/11/08 14:29:12
 	choose style in app settings
 
-+ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/11/10 13:44:45
++ux, module-ui 117: +0 "src\Ui\Ui.py" ki 21/11/22 05:50:40
 	add app settings
 
 !refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" ki 21/10/23 03:36:50
@@ -517,7 +517,7 @@
 -ux, module-ui 183: +1 "src\Ui\Ui.py" ki 21/10/19 20:47:46
 	brush Scene routines
 
--ux, module-ui 184: +0 "src\Ui\Ui.py" ki 21/11/08 14:27:53
+-ux, module-ui 184: +0 "src\Ui\Ui.py" ki 21/11/22 05:50:42
 	save/load app settings with project
 
 -feature, module-ui, module-dispatch, v2 186: +0 "src\Ui\Ui.py" ki 21/10/24 04:25:52
@@ -532,8 +532,8 @@
 -module-data, api, decide 189: +1 "src\GGData\GGData.py" ki 21/10/24 03:26:05
 	make all indirect (by id) controls
 
- feature, module-ui 190: +0 "src\Ui\Ui.py" ki 21/10/20 23:29:53
-	live cut visualize from standalone dispatcher, with some echo protocol
++feature, module-ui 190: +0 "src\Ui\Ui.py" ki 21/11/22 17:01:11
+	live cut visualize from standalone dispatcher
 
  filter, feature 191: +2 "src\Ui\Ui.py" ki 21/10/20 23:58:14
 	outline, fill and shape-intersect filters
@@ -741,4 +741,7 @@
 
 =module-dispatch, feature 261: +0 "src\Ui\DispatchLink.py" ki 21/11/22 04:09:58
 	add basic dispatch session manager
+
+ feature, module-ui, module-dispatch 262: +0 "src\Ui\AppWindow.py" ki 21/11/22 15:52:26
+	add functional cut feedback, require interactive vp layering
 

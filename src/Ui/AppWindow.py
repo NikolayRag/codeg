@@ -419,6 +419,7 @@ class AppWindow(QObject):
 	def dispatchLog(self, _txt, _data=''):
 		self.wFrameDev.appendPlainText(_txt+_data)
 
+#  todo 262 (feature, module-ui, module-dispatch) +0: add functional cut feedback, require interactive vp layering
 		if _data:
 			_data = re.findall("[XY]-?[\d\.]+", _data)
 

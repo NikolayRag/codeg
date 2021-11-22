@@ -1,12 +1,9 @@
-#  todo 20 (module-ui, error) +0: handle errors, maybe status string
 # -todo 23 (module-ui, ux) +0: show progress for time consuming operations
 #  todo 27 (module-data, module-ui, ux) +0: allow append gcode from text buffer
 #  todo 149 (module-ui, feature) +0: multiscene
 #  todo 191 (filter, feature) +2: outline, fill and shape-intersect filters
 
 # -todo 186 (feature, module-ui, module-dispatch, v2) +0: live cut visualize
-#  todo 190 (feature, module-ui) +0: live cut visualize from standalone dispatcher, with some echo protocol
-# +todo 117 (ux, module-ui) +0: add app settings
 # -todo 184 (ux, module-ui) +0: save/load app settings with project
 
 # =todo 178 (ux, feature) +0: suggest recent at load
