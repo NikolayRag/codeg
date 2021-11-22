@@ -22,6 +22,33 @@ from .BindFilter import *
 
 
 
+class Tracer():
+	canvas = None
+	focus = None
+
+
+
+	def __init__(self, _descrCanvas, _descrFocus):
+		self.canvas = _descrCanvas
+		self.canvas.ghost(True)
+
+		self.focus = _descrFocus
+		self.focus.ghost(True)
+		self.focus.static(True)
+
+
+
+	def moveto(self, _x, _y, _on=False):
+		self.focus and self.focus.place((_x, _y))
+
+
+
+	def show(self, _state):
+		self.canvas.show(_state)
+		self.focus.show(_state)
+
+
+
 class AppWindow(QObject):
 	sigPrefScheme = Signal()
 	sigPreexit = Signal(object)
@@ -59,7 +86,7 @@ class AppWindow(QObject):
 
 	gridDescription = None
 
-	tracePtDescription = None
+	tracer = None
 
 
 #  todo 212 (module-ui, clean, widget) +0: MarkWidget collection class
@@ -423,7 +450,7 @@ class AppWindow(QObject):
 			_data = re.findall("[XY]-?[\d\.]+", _data)
 
 			if len(_data)==2 and len(_data[0])>1 and len(_data[1])>1 and _data[0][0]=='X' and _data[1][0]=='Y':
-				self.tracePtDescription.place((float(_data[0][1:]), -float(_data[1][1:])))
+				self.tracer.moveto(float(_data[0][1:]), -float(_data[1][1:]), False)
 
 
 
@@ -452,10 +479,10 @@ class AppWindow(QObject):
 		self.selectionDescription = self.wSvgViewport.canvasAdd(self.defSelection, z=99)
 		self.selectionDescription.show(False)
 
-		self.tracePtDescription = self.wSvgViewport.canvasAdd(self.defTracePoint, z=100)
-		self.tracePtDescription.show(Args.Viewport.traceLayer)
-		self.tracePtDescription.ghost(True)
-		self.tracePtDescription.static(True)
+		dCanvas = self.wSvgViewport.canvasAdd(z=101)
+		dFocus = self.wSvgViewport.canvasAdd(self.defTracePoint, z=101)
+		self.tracer = Tracer(dCanvas, dFocus)
+		self.tracer.show(Args.Viewport.traceLayer)
 
 
 
@@ -466,8 +493,10 @@ class AppWindow(QObject):
 
 
 	def traceToggle(self, _state):
-		self.tracePtDescription.show(_state)
+		self.tracer.show(_state)
 		Args.Viewport.traceLayer = _state
+
+
 
 ### OPTIONS ###
 
