@@ -62,6 +62,7 @@ class EngineArduinoGRBL(DispatchEngine):
 	def __init__(self, _name, privData=None):
 		privData['head'] = 'F8000'
 		privData['tail'] = ''
+		privData['pokes'] = 2
 
 		DispatchEngine.__init__(self, _name, privData=privData)
 
@@ -95,9 +96,11 @@ class EngineArduinoGRBL(DispatchEngine):
 		try:
 			self.port and self.port.write(str.encode(_data + '\n'))
 
-			res = self.port and self.port.readline().decode().strip()
+			for i in range(self.privData['pokes']):
+				res = self.port and self.port.readline().decode().strip()
+				if res:
+					return True if res=='ok' else res
 
-			return True if res=='ok' else res
 
 		except Exception as e:
 			self.port and self.port.close()
