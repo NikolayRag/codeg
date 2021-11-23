@@ -7,7 +7,7 @@ from PySide2.QtCore import *
 
 # =todo 261 (module-dispatch, feature) +0: add basic dispatch session manager
 class DispatchSession(Thread, QObject):
-	sigSent = Signal(object, object, float)
+	sigSent = Signal(object, object)
 	sigFinish = Signal(bool)
 
 
@@ -23,14 +23,12 @@ class DispatchSession(Thread, QObject):
 
 	def run(self):
 
-		dI = 0
 		for cg in self.runData:
-			dI += 1
 			if not cg:
 				continue
 
 			res = self.runCb(cg)
-			self.sigSent.emit(cg, res, dI/len(self.runData))
+			self.sigSent.emit(cg, res)
 
 			if res==False:
 				self.sigFinish.emit(False)
@@ -63,7 +61,7 @@ Dispatch connected either inline, or as app link
 class DispatchLink(QObject):
 	sigDeviceFound = Signal(str)
 	sigDeviceListed = Signal(list)
-	sigDispatchSent = Signal(object, object, float)
+	sigDispatchSent = Signal(object, object)
 	sigDispatchFinish = Signal(bool)
 
 

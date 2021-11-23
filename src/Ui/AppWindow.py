@@ -76,7 +76,7 @@ class Tracer():
 
 
 
-	def feed(self, _cmd, _res, _progress):
+	def feed(self, _cmd, _res):
 		coords = re.findall("[XY]-?[\d\.]+", _cmd)
 
 		if len(coords)==2 and len(coords[0])>1 and len(coords[1])>1 and coords[0][0]=='X' and coords[1][0]=='Y':
@@ -530,10 +530,9 @@ class AppWindow(QObject):
 			return
 
 
-		echo, res, progress = data
-		self.wFrameDev.appendPlainText(f"{round(progress*100,1)}% " + ('+' if res==True else f"  {res or 'Warning'}:\n- ") + echo)
-
-		self.tracer.feed(echo, res, progress)
+		echo, res = data
+		self.wFrameDev.appendPlainText(('+' if res==True else f"  {res or 'Warning'}:\n- ") + echo)
+		self.tracer.feed(echo, res)
 
 
 
