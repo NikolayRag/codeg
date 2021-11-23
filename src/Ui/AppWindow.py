@@ -54,17 +54,6 @@ class Tracer():
 
 
 
-	def reset(self, _session):
-		self.session = _session
-
-		self.canvasHead = _session.viewBox()
-		self.canvasBody = []
-
-		self.canvas.place(self.canvasHead[0:2])
-		self.canvasBuild(self.canvasHead[0:2])
-
-
-
 	def show(self, _state):
 		self.visible = _state
 		if _state and self.canvasHead:
@@ -73,6 +62,17 @@ class Tracer():
 
 		self.canvas.show(_state)
 		self.focus.show(_state)
+
+
+
+	def reset(self, _session):
+		self.session = _session
+
+		self.canvasHead = _session.viewBox()
+		self.canvasBody = []
+
+		self.canvas.place(self.canvasHead[0:2])
+		self.canvasBuild(self.canvasHead[0:2])
 
 
 
