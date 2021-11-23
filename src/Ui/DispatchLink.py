@@ -43,6 +43,10 @@ class DispatchSession(Thread, QObject):
 
 
 
+	def pathLen(self):
+		return len(self.runData)
+
+
 
 '''
 Interface for separate Dispatch
