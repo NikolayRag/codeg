@@ -172,11 +172,12 @@ class Scene():
 
 
 	def traceG(self, _x=0, _y=0):
-		out = ['G90 M4', 'S0']
+		data = ['G90 M4', 'S0']
 
 		for cObj in self.geoList():
-			out += cObj.trace(_x, _y)
+			data += cObj.trace(_x, _y)
 
-		out += ['M5', 'G0', 'X0Y0']
-		return out
+		data += ['M5', 'G0', 'X0Y0']
+
+		return {'meta': (0,0,400,400), 'data': data}
 

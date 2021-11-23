@@ -477,7 +477,7 @@ class Ui():
 		fileName = cDialog.selectedFiles()[0]
 
 		with open(fileName, 'w') as f:
-			f.write("\n".join(self.activeScene.traceG()))
+			f.write("\n".join(self.activeScene.traceG()['data']))
 
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
