@@ -757,3 +757,6 @@
  module-dispatch, test 266: +0 "src\Dispatch\DispatchManager.py" ki 21/11/23 23:23:09
 	handle device rescan interfere case
 
++module-dispatch, module-ui 267: +0 "src\Ui\AppWindow.py" ki 21/11/24 00:09:59
+	instant update 
+
