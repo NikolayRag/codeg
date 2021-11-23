@@ -164,6 +164,7 @@ class Ui():
 		self.dispatch.sigDispatchFinish.connect(lambda res:self.appWindow.dispatchFeed(mode=False, data=res))
 
 		self.dispatch.sigDeviceListed.connect(lambda devA:self.appWindow.dispatchFill(devA, Args.Device.last))
+		self.dispatch.sigDeviceFound.connect(lambda devA:self.appWindow.dispatchFill(devA, Args.Device.last, add=True))
 
 		#default device as template, overrided at actual dispatch
 		self.dispatch.getDevices()

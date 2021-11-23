@@ -468,7 +468,14 @@ class AppWindow(QObject):
 
 ### DISPATCH ###
 
-	def dispatchFill(self, _devices, _default):
+
+	def dispatchFill(self, _devices, _default, add=False):
+		oldList = {self.wListDevs.itemText(i):self.wListDevs.itemData(i) for i in range(self.wListDevs.count())}
+
+		if add:
+			_devices = set([_devices]) | set(oldList.keys())
+
+
 		self.wListDevs.blockSignals(True)
 		self.wListDevs.clear()
 		self.wListDevs.blockSignals(False)
