@@ -13,7 +13,6 @@ class EngineArduinoGRBL(DispatchEngine):
 
 	#runtime
 
-	privData = None
 	port = None
 
 

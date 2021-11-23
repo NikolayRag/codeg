@@ -9,14 +9,6 @@ class DispatchEngine():
 
 
 
-	### OVERLOAD ###
-
-	#_defs format is variant and specific to engine
-	def enumerate(it, _defs=None):
-		return []
-
-
-
 	def __init__(self, _name, privData=None):
 		self.nameBase = _name
 		self.privData = privData
@@ -38,8 +30,19 @@ class DispatchEngine():
 
 
 
+	### OVERLOAD ###
+
 	'''
-	Overload: actually recieve data, None to finish session.
+	Return {name: privData, ...} devices definition list to be inited later.
+	_defs format is variant and specific to engine.
+	'''
+	def enumerate(it, _defs=None):
+		return {}
+
+
+
+	'''
+	Actually recieve data, None to finish session.
 
 	Return True for no errors, False for critical, any other for warning
 	'''
