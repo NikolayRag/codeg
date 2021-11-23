@@ -6,6 +6,7 @@ from PySide2.QtCore import *
 
 
 # =todo 261 (module-dispatch, feature) +0: add basic dispatch session manager
+# =todo 268 (module-dispatch, feature) +0: handle concurent sessions
 class DispatchSession(Thread, QObject):
 	sigSent = Signal(object, object)
 	sigFinish = Signal(bool)

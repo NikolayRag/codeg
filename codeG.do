@@ -739,7 +739,7 @@
 =module-dispatch, test 260: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/11/22 04:29:58
 	test GRBL 
 
-=module-dispatch, feature 261: +0 "src\Ui\DispatchLink.py" ki 21/11/22 04:09:58
+=module-dispatch, feature 261: +0 "src\Ui\DispatchLink.py" ki 21/11/24 02:47:22
 	add basic dispatch session manager
 
 +feature, module-ui, module-dispatch 262: +0 "src\Ui\AppWindow.py" ki 21/11/23 00:25:46
@@ -759,4 +759,7 @@
 
 +module-dispatch, module-ui 267: +0 "src\Ui\AppWindow.py" ki 21/11/24 00:09:59
 	instant update 
+
+=module-dispatch, feature 268: +0 "src\Ui\DispatchLink.py" ki 21/11/24 02:48:06
+	handle concurent sessions
 
