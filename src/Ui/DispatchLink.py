@@ -51,6 +51,7 @@ Dispatch connected either inline, or as app link
 #  todo 18 (api, module-dispatch, v2) +0: standalone dispatcher over *cloud*
 #  todo 258 (module-dispatch, error, ux) +0: handle retries
 class DispatchLink(QObject):
+	sigDeviceFound = Signal(str)
 	sigDeviceListed = Signal(list)
 	sigDispatchSent = Signal(object, object, float)
 	sigDispatchFinish = Signal(bool)
@@ -79,7 +80,7 @@ class DispatchLink(QObject):
 
 	def getDevices(self):
 		if self.dispatcher:
-			Thread(target=lambda: self.sigDeviceListed.emit(self.dispatcher.deviceList())).start()
+			Thread(target=lambda: self.sigDeviceListed.emit(self.dispatcher.deviceList(self.sigDeviceFound.emit))).start()
 
 
 
