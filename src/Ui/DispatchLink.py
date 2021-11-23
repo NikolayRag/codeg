@@ -51,10 +51,9 @@ Dispatch connected either inline, or as app link
 #  todo 18 (api, module-dispatch, v2) +0: standalone dispatcher over *cloud*
 #  todo 258 (module-dispatch, error, ux) +0: handle retries
 class DispatchLink(QObject):
-	sigDispatchFire = Signal(object)
+	sigDeviceListed = Signal(list)
 	sigDispatchSent = Signal(object, object, float)
 	sigDispatchFinish = Signal(bool)
-	sigDeviceListed = Signal(list)
 
 
 	dispatcher = None
