@@ -61,20 +61,6 @@ class Tracer():
 
 
 
-	def feed(self, _cmd, _res, _progress):
-		coords = re.findall("[XY]-?[\d\.]+", _cmd)
-
-		if len(coords)==2 and len(coords[0])>1 and len(coords[1])>1 and coords[0][0]=='X' and coords[1][0]=='Y':
-			self.moveto(float(coords[0][1:]), -float(coords[1][1:]), False)
-
-
-	def moveto(self, _x, _y, _on=False):
-		self.focus and self.focus.place((_x, _y))
-
-		self.canvasBuild((_x,_y))
-
-
-
 	def show(self, _state):
 		self.visible = _state
 		if _state and self.canvasHead:
@@ -83,6 +69,21 @@ class Tracer():
 
 		self.canvas.show(_state)
 		self.focus.show(_state)
+
+
+
+	def feed(self, _cmd, _res, _progress):
+		coords = re.findall("[XY]-?[\d\.]+", _cmd)
+
+		if len(coords)==2 and len(coords[0])>1 and len(coords[1])>1 and coords[0][0]=='X' and coords[1][0]=='Y':
+			self.moveto(float(coords[0][1:]), -float(coords[1][1:]), False)
+
+
+
+	def moveto(self, _x, _y, _on=False):
+		self.focus and self.focus.place((_x, _y))
+
+		self.canvasBuild((_x,_y))
 
 
 
