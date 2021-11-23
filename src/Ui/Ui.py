@@ -490,7 +490,7 @@ class Ui():
 		cSession = self.dispatch.runDevice(self.activeDevice, self.activeScene.traceG())
 		
 # -todo 264 (module-ui, module-dispatch, fix) +0: use actual box
-		self.appWindow.dispatchFeed(mode=True, data=(0,0,*self.dispatch.devicePlate(self.activeDevice)))
+		self.appWindow.dispatchFeed(mode=True, data=cSession)
 
 
 

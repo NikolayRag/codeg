@@ -34,6 +34,8 @@ class Tracer():
 	osd = None
 
 
+	session = None
+
 	canvasHead = None
 	canvasBody = []
 
@@ -52,12 +54,14 @@ class Tracer():
 
 
 
-	def reset(self, _x, _y, _w, _h):
-		self.canvasHead = [_x, _y, _w, _h]
+	def reset(self, _session):
+		self.session = _session
+
+		self.canvasHead = _session.viewBox()
 		self.canvasBody = []
 
-		self.canvas.place((_x, _y))
-		self.canvasBuild((_x, _y))
+		self.canvas.place(self.canvasHead[0:2])
+		self.canvasBuild(self.canvasHead[0:2])
 
 
 
@@ -514,7 +518,7 @@ class AppWindow(QObject):
 	def dispatchFeed(self, mode=None, data=None):
 		if mode == True:
 			self.wFrameDev.appendPlainText("Dispatch new session\n")
-			self.tracer.reset(*data)
+			self.tracer.reset(data)
 
 			return
 
