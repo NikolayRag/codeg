@@ -44,6 +44,11 @@ class DispatchSession(Thread, QObject):
 
 
 
+	def viewBox(self):
+		return list(self.runMeta)
+
+
+
 	def pathLen(self):
 		return len(self.runData)
 
