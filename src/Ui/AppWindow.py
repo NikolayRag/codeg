@@ -61,6 +61,13 @@ class Tracer():
 
 
 
+	def feed(self, _cmd, _res, _progress):
+		coords = re.findall("[XY]-?[\d\.]+", _cmd)
+
+		if len(coords)==2 and len(coords[0])>1 and len(coords[1])>1 and coords[0][0]=='X' and coords[1][0]=='Y':
+			self.moveto(float(coords[0][1:]), -float(coords[1][1:]), False)
+
+
 	def moveto(self, _x, _y, _on=False):
 		self.focus and self.focus.place((_x, _y))
 
@@ -516,11 +523,7 @@ class AppWindow(QObject):
 		echo, res, progress = data
 		self.wFrameDev.appendPlainText(f"{round(progress*100,1)}% " + ('+' if res==True else f"  {res or 'Warning'}:\n- ") + echo)
 
-
-		coords = re.findall("[XY]-?[\d\.]+", echo)
-
-		if len(coords)==2 and len(coords[0])>1 and len(coords[1])>1 and coords[0][0]=='X' and coords[1][0]=='Y':
-			self.tracer.moveto(float(coords[0][1:]), -float(coords[1][1:]), False)
+		self.tracer.feed(echo, res, progress)
 
 
 
