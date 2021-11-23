@@ -83,6 +83,7 @@ class DispatchLink(QObject):
 			Thread(target=lambda: self.sigDeviceListed.emit(self.dispatcher.deviceList())).start()
 
 
+
 # -todo 263 (module-dispatch, feature) +0: add dispatch queue
 	def runDevice(self, _dev, _data):
 		if not self.dispatcher:

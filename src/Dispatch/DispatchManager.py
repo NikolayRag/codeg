@@ -43,12 +43,14 @@ class EventAcc(Event):
 
 
 
+
 class DispatchManager():
 
 	allEngines = {}
 	allDevices = {}
 
 
+	defaultSize = ()
 	definitions = {} #{engine: data}
 
 
@@ -67,8 +69,6 @@ class DispatchManager():
 
 	Return {name: referenceId}
 	'''
-
-
 #  todo 266 (module-dispatch, test) +0: handle device rescan interfere case
 	def deviceList(self, _cb=None):
 		self.allDevices = {}
