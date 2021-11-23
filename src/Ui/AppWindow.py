@@ -79,6 +79,10 @@ class Tracer():
 			self.moveto(float(coords[0][1:]), -float(coords[1][1:]), False)
 
 
+	def final(self, _res):
+		print('Finished', _res)
+
+
 
 	def moveto(self, _x, _y, _on=False):
 		self.focus and self.focus.place((_x, _y))
@@ -517,6 +521,7 @@ class AppWindow(QObject):
 
 		if mode == False:
 			self.wFrameDev.appendPlainText(f"Dispatch {'ok' if data else 'error'}\n")
+			self.tracer.final(data)
 
 			return
 
