@@ -10,6 +10,8 @@
 Dispatch Engines creation fabric and manager
 '''
 
+from threading import *
+
 
 from .DispatchEngine import *
 from .Engines import *
@@ -35,26 +37,46 @@ class DispatchManager():
 
 
 # =todo 254 (module-dispatch, ux) +0: scan devices parallel
-	def devicesScan(self):
+	def devicesScan(self, _cb=None):
+		evDone = Event()
+		evDone.count = 0
+
+
+		def devOk(_dev, _ev):
+			if _dev.test():
+				_cb and _cb(_dev.getName())
+
+				self.allDevices[_dev.getName()]= _dev
+
+
+			_ev.count -= 1
+			if not _ev.count:
+				_ev.set()
+
+
 		for engN, cEng in self.allEngines.items():
 			engDefs = self.definitions[engN] if engN in self.definitions else None
-			for devName, devData in cEng.enumerate(engDefs).items():
+			devEnum = cEng.enumerate(engDefs)
+			evDone.count += len(devEnum)
+
+			for devName, devData in devEnum.items():
 				cDev = cEng(devName, privData=devData)
-				print('try', cDev.getName())
-				if cDev.test():
-					print('ok')
-					self.allDevices[cDev.getName()]= cDev
-					cDev.defSize(self.defaultSize)
+				cDev.defSize(self.defaultSize)
+
+				Thread(target=lambda: devOk(cDev, evDone)).start()
+
+
+		evDone.wait()
 
 
 
 	'''
 	Return {name: referenceId}
 	'''
-	def deviceList(self):
+	def deviceList(self, _cb=None):
 		self.allDevices = {}
 
-		self.devicesScan()
+		self.devicesScan(_cb)
 
 		return list(self.allDevices.keys())
 
