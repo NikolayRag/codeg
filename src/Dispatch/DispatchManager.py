@@ -38,12 +38,13 @@ class DispatchManager():
 	def devicesScan(self):
 		for engN, cEng in self.allEngines.items():
 			engDefs = self.definitions[engN] if engN in self.definitions else None
-			for cDev in cEng.enumerate(engDefs):
-				self.allDevices[cDev.getName()]= cDev
-
-
-		for cDev in self.allDevices.values():
-			cDev.defSize(self.defaultSize)
+			for devName, devData in cEng.enumerate(engDefs).items():
+				cDev = cEng(devName, privData=devData)
+				print('try', cDev.getName())
+				if cDev.test():
+					print('ok')
+					self.allDevices[cDev.getName()]= cDev
+					cDev.defSize(self.defaultSize)
 
 
 
