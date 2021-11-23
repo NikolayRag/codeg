@@ -26,6 +26,9 @@ from .BindFilter import *
 Viewport dispatch OSD
 '''
 class Tracer():
+	decayDraw = 100.
+
+
 	canvas = None
 	focus = None
 	osd = None
@@ -80,7 +83,8 @@ class Tracer():
 		if _add:
 			self.canvasBody += [f"{_add[0]},{_add[1]}"]
 
-		if not self.visible:
+		l = len(self.canvasBody)
+		if not self.visible or (l% (int(l/self.decayDraw)+1)):
 			return
 
 
