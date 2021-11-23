@@ -718,7 +718,7 @@
 +module-dispatch, ux 253: +0 "src\Dispatch\DispatchManager.py" ki 21/11/19 05:09:06
 	find all suitable devices
 
-=module-dispatch, ux 254: +0 "src\Dispatch\DispatchManager.py" ki 21/11/21 02:50:23
++module-dispatch, ux 254: +0 "src\Dispatch\DispatchManager.py" ki 21/11/23 23:11:13
 	scan devices parallel
 
 +module-dispatch, fix 255: +0 "src\Ui\DispatchLink.py" ki 21/11/21 22:44:04
@@ -753,4 +753,7 @@
 
 -feature, ux, module-dispatch 265: +0 "src\Ui\AppWindow.py" ki 21/11/23 00:26:44
 	show live statistics
+
+ module-dispatch, test 266: +0 "src\Dispatch\DispatchManager.py" ki 21/11/23 23:23:09
+	handle device rescan interfere case
 
