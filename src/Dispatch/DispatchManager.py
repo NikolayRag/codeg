@@ -18,6 +18,31 @@ from .Engines import *
 
 
 
+class EventAcc(Event):
+	acc = 0
+
+
+	def __init__(self):
+		Event.__init__(self)
+
+		self.acc = 0
+
+
+	def inc(self, v=1):
+		self.acc += v
+
+
+	def dec(self, v=1):
+		self.acc -= v
+		if not self.acc:
+			self.set()
+
+
+	def waitAll(self, timeout=None):
+		self.wait(timeout)
+
+
+
 class DispatchManager():
 
 	allEngines = {}
@@ -48,8 +73,7 @@ class DispatchManager():
 	def deviceList(self, _cb=None):
 		self.allDevices = {}
 
-		evDone = Event()
-		evDone.count = 0 #bad style
+		evDone = EventAcc()
 
 
 		def devOk(_dev, _ev):
@@ -59,15 +83,13 @@ class DispatchManager():
 				self.allDevices[_dev.getName()]= _dev
 
 
-			_ev.count -= 1
-			if not _ev.count:
-				_ev.set()
+			_ev.dec()
 
 
 		for engN, cEng in self.allEngines.items():
 			engDefs = self.definitions[engN] if engN in self.definitions else None
 			devEnum = cEng.enumerate(engDefs)
-			evDone.count += len(devEnum)
+			evDone.inc(len(devEnum))
 
 			for devName, devData in devEnum.items():
 				cDev = cEng(devName, privData=devData)
@@ -76,7 +98,7 @@ class DispatchManager():
 				Thread(target=lambda: devOk(cDev, evDone)).start()
 
 
-		evDone.wait()
+		evDone.waitAll()
 
 		return list(self.allDevices.keys())
 
