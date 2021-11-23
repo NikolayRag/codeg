@@ -36,10 +36,20 @@ class DispatchManager():
 
 
 
-# =todo 254 (module-dispatch, ux) +0: scan devices parallel
-	def devicesScan(self, _cb=None):
+	'''
+	Enumerate and scan devices.
+	_cb callback provided is called with valid device name when found
+
+	Return {name: referenceId}
+	'''
+
+
+#  todo 266 (module-dispatch, test) +0: handle device rescan interfere case
+	def deviceList(self, _cb=None):
+		self.allDevices = {}
+
 		evDone = Event()
-		evDone.count = 0
+		evDone.count = 0 #bad style
 
 
 		def devOk(_dev, _ev):
@@ -67,16 +77,6 @@ class DispatchManager():
 
 
 		evDone.wait()
-
-
-
-	'''
-	Return {name: referenceId}
-	'''
-	def deviceList(self, _cb=None):
-		self.allDevices = {}
-
-		self.devicesScan(_cb)
 
 		return list(self.allDevices.keys())
 
