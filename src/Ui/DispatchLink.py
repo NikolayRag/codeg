@@ -15,6 +15,7 @@ class DispatchSession(Thread, QObject):
 		Thread.__init__(self)
 		QObject.__init__(self)
 
+
 		self.runCb = _cb
 		self.runMeta = _data['meta']
 		self.runData = _data['data']
