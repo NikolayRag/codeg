@@ -144,3 +144,18 @@ class EngineArduinoGRBL(DispatchEngine):
 
 		res = self.send(_data)
 		return res
+
+
+
+	def test(self):
+		if self.port:
+			return True
+
+
+		if not self.begin():
+			return False
+
+
+		self.end()
+
+		return True

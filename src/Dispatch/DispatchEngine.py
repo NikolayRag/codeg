@@ -48,3 +48,11 @@ class DispatchEngine():
 	'''
 	def sink(self, _data=None):
 		return True
+
+
+
+	'''
+	Return True if object is valid device.
+	'''
+	def test(self):
+		return False
