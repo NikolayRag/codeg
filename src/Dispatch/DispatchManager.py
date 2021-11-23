@@ -7,8 +7,7 @@
 
 
 '''
-Dispatch Engines creation fabric
-
+Dispatch Engines creation fabric and manager
 '''
 
 
@@ -18,11 +17,12 @@ from .Engines import *
 
 
 class DispatchManager():
-	definitions = {} #{engine: data}
-
 
 	allEngines = {}
 	allDevices = {}
+
+
+	definitions = {} #{engine: data}
 
 
 
