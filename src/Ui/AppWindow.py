@@ -92,7 +92,7 @@ class Tracer():
 
 
 	def final(self, _res):
-		None
+		self.canvasBuild()
 
 
 
@@ -108,7 +108,7 @@ class Tracer():
 			self.canvasBody += [f"{_add[0]-self.canvasVBox[0]},{_add[1]-self.canvasVBox[1]}"]
 
 		l = len(self.canvasBody)
-		if not self.visible or (l% (int(l/self.decayDraw)+1)):
+		if _add and (not self.visible or (l% (int(l/self.decayDraw)+1))):
 			return
 
 
