@@ -112,7 +112,7 @@ class Tracer():
 			return
 
 
-		out = [f"<svg width='{self.canvasHead[2]}' height='{self.canvasHead[3]}' xmlns='http://www.w3.org/2000/svg'>"]
+		out = [f"<svg width='{int(self.canvasHead[2])}' height='{int(self.canvasHead[3])}' xmlns='http://www.w3.org/2000/svg'>"]
 		out += ["<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"]
 		out += self.canvasBody
 		out += ["'/>"]
