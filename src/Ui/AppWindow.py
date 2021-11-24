@@ -83,8 +83,16 @@ class Tracer():
 			self.moveto(float(coords[0][1:]), -float(coords[1][1:]), False)
 
 
+		l = len(self.canvasBody)
+		progress = round(100.*l/self.session.pathLen(),2)
+		step = int(l/self.decayDraw)+1
+		if _res != True:
+			print(f'Step {l}/{step}: {progress}% with {_res}')
+
+
+
 	def final(self, _res):
-		print('Finished', _res)
+		None
 
 
 
