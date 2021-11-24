@@ -58,7 +58,6 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 		except Exception as e:
-			print(f"Device \"{self.getName()}\" error")
 			None
 
 
