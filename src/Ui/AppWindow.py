@@ -523,21 +523,20 @@ class AppWindow(QObject):
 
 
 # -todo 265 (feature, ux, module-dispatch) +0: show live statistics
-	def dispatchFeed(self, mode=None, data=None):
-		if mode == True:
+	def traceSet(self, data, start=False):
+		if start:
 			self.wFrameDev.appendPlainText("Dispatch new session\n")
 			self.tracer.reset(data)
 
 			return
 
 
-		if mode == False:
-			self.wFrameDev.appendPlainText(f"Dispatch {'ok' if data else 'error'}\n")
-			self.tracer.final(data)
-
-			return
+		self.wFrameDev.appendPlainText(f"Dispatch {'ok' if data else 'error'}\n")
+		self.tracer.final(data)
 
 
+
+	def traceFeed(self, data=None):
 		echo, res = data
 		self.wFrameDev.appendPlainText(('+' if res==True else f"  {res or 'Warning'}:\n- ") + echo)
 		self.tracer.feed(echo, res)
