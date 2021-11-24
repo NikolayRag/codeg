@@ -522,7 +522,6 @@ class AppWindow(QObject):
 
 
 
-# -todo 265 (feature, ux, module-dispatch) +0: show live statistics
 	def traceSet(self, data, start=False):
 		if start:
 			self.wFrameDev.appendPlainText("Dispatch new session\n")

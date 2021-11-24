@@ -74,7 +74,6 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 
-# =todo 259 (fix, module-dispatch) +0: test device errors
 	def send(self, _data):
 		try:
 			self.port and self.port.write(str.encode(_data + '\n'))

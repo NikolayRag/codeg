@@ -91,7 +91,7 @@
 +module-ui, spec, viewport 32: +1 "src\Ui\SvgViewport.py" kii 21/08/02 21:57:55
 	make isolated viewport widget
 
- module-ui, widgets 33: +0 "src\Ui\AppWindow.py" ki 21/11/22 22:07:48
+ module-ui, widgets 33: +0 "src\Ui\AppWindow.py" ki 21/11/24 04:41:06
 	zoom slider
 
  module-ui, widgets 34: +0 "src\Ui\AppWindow.py" kii 21/08/02 05:05:28
@@ -733,7 +733,7 @@
  module-dispatch, error, ux 258: +0 "src\Ui\DispatchLink.py" ki 21/11/22 02:03:58
 	handle retries
 
-=fix, module-dispatch 259: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/11/22 02:36:42
++fix, module-dispatch 259: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/11/24 04:26:41
 	test device errors
 
 =module-dispatch, test 260: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/11/22 04:29:58
@@ -751,7 +751,7 @@
 -module-ui, module-dispatch, fix 264: +0 "src\Ui\Ui.py" ki 21/11/22 23:40:08
 	use actual box
 
--feature, ux, module-dispatch 265: +0 "src\Ui\AppWindow.py" ki 21/11/23 00:26:44
++feature, ux, module-dispatch 265: +0 "src\Ui\AppWindow.py" ki 21/11/24 04:06:22
 	show live statistics
 
  module-dispatch, test 266: +0 "src\Dispatch\DispatchManager.py" ki 21/11/23 23:23:09
