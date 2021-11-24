@@ -68,7 +68,7 @@ class Geoblock():
 
 	def bbox(self):
 		if self.box:
-			return
+			return self.box
 
 
 		self.box = list(self.allItems[0].bbox()) if self.allItems else [[0,0],[0,0]]
