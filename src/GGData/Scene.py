@@ -174,10 +174,23 @@ class Scene():
 	def traceG(self, _x=0, _y=0):
 		data = ['G90 M4', 'S0']
 
+		bbox = None
 		for cObj in self.geoList():
 			data += cObj.trace(_x, _y)
 
+			cBox = cObj.bbox()
+			bbox = bbox or cBox
+
+			if bbox[0]>cBox[0]: bbox[0]=cBox[0]
+			if bbox[1]<cBox[1]: bbox[1]=cBox[1]
+			if bbox[2]>cBox[2]: bbox[2]=cBox[2]
+			if bbox[3]<cBox[3]: bbox[3]=cBox[3]
+
+
 		data += ['M5', 'G0', 'X0Y0']
 
-		return {'meta': (0,0,400,400), 'data': data}
+		return {
+			'meta': bbox,
+			'data': data
+		}
 

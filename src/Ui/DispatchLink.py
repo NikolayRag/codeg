@@ -18,7 +18,8 @@ class DispatchSession(Thread, QObject):
 
 
 		self.runCb = _cb
-		self.runMeta = _data['meta']
+		bbox = _data['meta']
+		self.runBox = [bbox[0], bbox[2], bbox[1]-bbox[0], bbox[3]-bbox[2]]
 		self.runData = _data['data']
 
 
@@ -45,7 +46,7 @@ class DispatchSession(Thread, QObject):
 
 
 	def viewBox(self):
-		return list(self.runMeta)
+		return list(self.runBox)
 
 
 
