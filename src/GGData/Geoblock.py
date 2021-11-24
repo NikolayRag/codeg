@@ -71,10 +71,18 @@ class Geoblock():
 			return self.box
 
 
-		self.box = list(self.allItems[0].bbox()) if self.allItems else [[0,0],[0,0]]
+		self.box = None if self.allItems else [0,0,0,0]
 
-		for cObj in self.allItems[1:]:
+		for cObj in self.allItems:
 			cBox = cObj.bbox()
+			cBox = [
+				(cBox[0]+self.matrix[0][2])*self.matrix[0][0],
+				(cBox[1]+self.matrix[0][2])*self.matrix[0][0],
+				(cBox[2]+self.matrix[1][2])*self.matrix[1][1],
+				(cBox[2]+self.matrix[1][2])*self.matrix[1][1],
+			]
+
+			self.box = self.box or cBox
 
 			if self.box[0]>cBox[0]: self.box[0]=cBox[0]
 			if self.box[1]<cBox[1]: self.box[1]=cBox[1]
