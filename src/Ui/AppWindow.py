@@ -34,6 +34,7 @@ class Tracer():
 
 	canvas = None
 	focus = None
+	spots = None
 	osd = None
 
 
@@ -41,17 +42,22 @@ class Tracer():
 
 	canvasVBox = None
 	canvasBody = []
+	canvasSpots = []
 
 	visible = True
 
 
-	def __init__(self, _descrCanvas, _descrFocus, _osd=None):
+	def __init__(self, _descrCanvas, _descrFocus, _descrSpots, _osd=None):
 		self.canvas = _descrCanvas
 		self.canvas.ghost(True)
 
 		self.focus = _descrFocus
 		self.focus.ghost(True)
 		self.focus.static(True)
+
+		self.spots = _descrSpots
+		self.spots.ghost(True)
+#		self.spots.static(True)
 
 		self.osd = _osd
 
@@ -65,6 +71,7 @@ class Tracer():
 
 		self.canvas.show(_state)
 		self.focus.show(_state)
+		self.spots.show(_state)
 
 
 
@@ -73,9 +80,12 @@ class Tracer():
 
 		self.canvasVBox = _session.viewBox()
 		self.canvasBody = [[]]
+		self.canvasSpots = []
 
 		self.canvas.place(self.canvasVBox[0:2])
 		self.canvasBuild([0,0])
+		
+		self.spots.place(self.canvasVBox[0:2])
 
 
 
@@ -92,10 +102,21 @@ class Tracer():
 			self.moveto(float(coords[0][1:]), -float(coords[1][1:]), False)
 
 
-		l = len(self.canvasBody)
+		l = sum(len(x) for x in self.canvasBody)
 		progress = round(100.*l/self.session.pathLen(),2)
 		step = int(l/self.decayDraw)+1
+
 		if _res != True:
+			col = '#bb0' if _res else '#f00'
+			self.canvasSpots += [f"<circle cx='{float(coords[0][1:])-self.canvasVBox[0]}' cy='{-float(coords[1][1:])-self.canvasVBox[1]}' r='1px' vector-effect='non-scaling-stroke' stroke='{col}' fill='{col}' stroke-width='3px'/>"]
+
+			cSpot = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
+			for sp in self.canvasSpots:
+				cSpot += [sp]
+			cSpot += ["</svg>"]
+
+			self.spots.setXml(' '.join(cSpot).encode())
+
 			print(f'Step {l}/{step}: {progress}% with {_res}')
 
 
@@ -584,7 +605,8 @@ class AppWindow(QObject):
 
 		dCanvas = self.wSvgViewport.canvasAdd(z=100)
 		dFocus = self.wSvgViewport.canvasAdd(self.defTracePoint, z=101)
-		self.tracer = Tracer(dCanvas, dFocus)
+		dSpots = self.wSvgViewport.canvasAdd(z=102)
+		self.tracer = Tracer(dCanvas, dFocus, dSpots)
 		self.traceToggle(Args.Viewport.traceLayer)
 
 
