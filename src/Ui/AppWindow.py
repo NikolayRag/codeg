@@ -176,6 +176,7 @@ class AppWindow(QObject):
 	sigPaste = Signal()
 	sigDrop = Signal(list)
 
+	sigDevScan = Signal()
 	sigDevChange = Signal(str, object)
 	sigDispatchFire = Signal()
 	sigDispatchShot = Signal(object)
@@ -282,6 +283,7 @@ class AppWindow(QObject):
 #  todo 47 (module-dispatch, module-ui, ux) +0: change device list to button+list
 #  todo 48 (module-ui) +0: update device list
 #  todo 49 (module-ui, ux) +0: save/restore active device between sessions
+		self.wBtnRescan = cMain.findChild(QWidget, "btnRescan")
 		self.wListDevs = cMain.findChild(QComboBox, "listDevs")
 		self.wBtnDispFire = cMain.findChild(QWidget, "btnDispFire")
 		self.wFrameDev = cMain.findChild(QPlainTextEdit, "frameDev")
@@ -295,6 +297,7 @@ class AppWindow(QObject):
 		self.wBtnPaste.clicked.connect(self.sigPaste)
 		self.wBtnSave.clicked.connect(lambda: self.sigSceneSave.emit(self.wMain))
 		self.wBtnLoad.clicked.connect(lambda: self.sigSceneLoad.emit(self.wMain))
+		self.wBtnRescan.clicked.connect(self.sigDevScan)
 		self.wBtnDispShot.clicked.connect(lambda: self.sigDispatchShot.emit(self.wMain))
 		self.wBtnDispFire.clicked.connect(self.sigDispatchFire)
 		self.wBtnMarkAdd.clicked.connect(self.sigMarkAdd)

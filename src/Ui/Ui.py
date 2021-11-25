@@ -155,6 +155,7 @@ class Ui():
 		self.appWindow.sigAddFile.connect(self.addFile)
 		self.appWindow.sigPaste.connect(self.paste)
 
+		self.appWindow.sigDevScan.connect(lambda: self.dispatch.getDevices())
 		self.appWindow.sigDevChange.connect(self.dispatchChanged)
 		self.appWindow.sigDispatchFire.connect(self.dispatchSend)
 		self.appWindow.sigDispatchShot.connect(self.dispatchShot)
