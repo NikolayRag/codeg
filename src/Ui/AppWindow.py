@@ -82,6 +82,7 @@ class Tracer():
 	def feed(self, _cmd, _res):
 		edge = re.findall("S[\d]+", _cmd)
 		if len(edge)==1 and float(edge[0][1:])==0:
+			self.canvasBuild()
 			self.canvasBody.append([])
 
 
