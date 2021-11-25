@@ -69,7 +69,7 @@ class Tracer():
 		self.session = _session
 
 		self.canvasVBox = _session.viewBox()
-		self.canvasBody = []
+		self.canvasBody = [[]]
 
 		self.canvas.place(self.canvasVBox[0:2])
 		self.canvasBuild([0,0])
@@ -77,6 +77,11 @@ class Tracer():
 
 
 	def feed(self, _cmd, _res):
+		edge = re.findall("S[\d]+", _cmd)
+		if len(edge)==1 and float(edge[0][1:])==0:
+			self.canvasBody.append([])
+
+
 		coords = re.findall("[XY]-?[\d\.]+", _cmd)
 
 		if len(coords)==2 and len(coords[0])>1 and len(coords[1])>1 and coords[0][0]=='X' and coords[1][0]=='Y':
@@ -105,17 +110,21 @@ class Tracer():
 
 	def canvasBuild(self, _add=None):
 		if _add:
-			self.canvasBody += [f"{_add[0]-self.canvasVBox[0]},{_add[1]-self.canvasVBox[1]}"]
+			self.canvasBody[-1] += [f"{_add[0]-self.canvasVBox[0]},{_add[1]-self.canvasVBox[1]}"]
 
-		l = len(self.canvasBody)
+		l = sum(len(x) for x in self.canvasBody)
 		if _add and (not self.visible or (l% (int(l/self.decayDraw)+1))):
 			return
 
 
 		out = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
-		out += ["<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"]
-		out += self.canvasBody
-		out += ["'/>"]
+		for sh in self.canvasBody:
+			if not sh:
+				continue
+
+			out += ["<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"]
+			out += sh
+			out += ["'/>"]
 
 		out += ["</svg>"]
 
