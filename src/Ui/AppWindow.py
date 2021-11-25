@@ -26,6 +26,9 @@ from .BindFilter import *
 Viewport dispatch OSD
 '''
 class Tracer():
+	outHeadInter = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#590' stroke-dasharray='3' fill='none' points='"
+	outHeadShape = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"
+
 	decayDraw = 100.
 
 
@@ -117,14 +120,16 @@ class Tracer():
 			return
 
 
+		last = None
+
 		out = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
 		for sh in self.canvasBody:
-			if not sh:
-				continue
+			if last:
+				out += [self.outHeadInter] + last + [sh[0]] + ["'/>"]
 
-			out += ["<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"]
-			out += sh
-			out += ["'/>"]
+			out += [self.outHeadShape] + sh + ["'/>"]
+
+			last = [sh[-1]]
 
 		out += ["</svg>"]
 
