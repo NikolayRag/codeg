@@ -33,6 +33,7 @@ class DispatchSession(Thread, QObject):
 			res = self.runCb(cg)
 			self.sigSent.emit(cg, res)
 
+#  todo 275 (module-dispatch, clean) +0: rescan device at stop state
 			if res==False:
 				self.sigFinish.emit(False)
 

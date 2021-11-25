@@ -763,3 +763,27 @@
 =module-dispatch, feature 268: +0 "src\Ui\DispatchLink.py" ki 21/11/24 02:48:06
 	handle concurent sessions
 
+ module-ui, clean, fix 269: +1 "src\Ui\AppWindow.py" ki 21/11/26 00:11:46
+	make painting reasonable
+
+ module-dispatch, clean 270: +0 "src\Dispatch\DispatchEngine.py" ki 21/11/26 01:44:10
+	add device queue control
+
+ ux, clean 271: +0 "src\Ui\AppWindow.py" ki 21/11/26 01:46:32
+	trace detailed stats
+
+=ux, clean 272: +0 "src\Ui\AppWindow.py" ki 21/11/26 01:47:27
+	trace show error/warning position
+
+ ux, clean 273: +0 "src\Ui\AppWindow.py" ki 21/11/26 01:48:19
+	rewindable trace history
+
+ ux, clean 274: +0 "src\Ui\AppWindow.py" ki 21/11/26 01:49:23
+	make paint nonblocking
+
+ module-dispatch, clean 275: +0 "src\Ui\DispatchLink.py" ki 21/11/26 02:45:55
+	rescan device at stop state
+
+ ux, clean 276: +0 "src\Ui\Ui.py" ki 21/11/26 02:57:08
+	clean rescan cycle
+

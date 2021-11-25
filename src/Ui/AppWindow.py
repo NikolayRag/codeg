@@ -25,6 +25,10 @@ from .BindFilter import *
 '''
 Viewport dispatch OSD
 '''
+#  todo 271 (ux, clean) +0: trace detailed stats
+# =todo 272 (ux, clean) +0: trace show error/warning position
+#  todo 273 (ux, clean) +0: rewindable trace history
+#  todo 274 (ux, clean) +0: make paint nonblocking
 class Tracer():
 	outHeadInter = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#590' stroke-dasharray='3' fill='none' points='"
 	outHeadShape = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"
@@ -144,6 +148,7 @@ class Tracer():
 
 		last = None
 
+#  todo 269 (module-ui, clean, fix) +1: make painting reasonable
 		out = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
 		for sh in self.canvasBody:
 			if last:
