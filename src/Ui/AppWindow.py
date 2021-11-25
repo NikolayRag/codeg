@@ -99,7 +99,7 @@ class Tracer():
 		coords = re.findall("[XY]-?[\d\.]+", _cmd)
 
 		if len(coords)==2 and len(coords[0])>1 and len(coords[1])>1 and coords[0][0]=='X' and coords[1][0]=='Y':
-			self.moveto(float(coords[0][1:]), -float(coords[1][1:]), False)
+			self.moveto(float(coords[0][1:]), -float(coords[1][1:]))
 
 
 		l = sum(len(x) for x in self.canvasBody)
@@ -126,7 +126,7 @@ class Tracer():
 
 
 
-	def moveto(self, _x, _y, _on=False):
+	def moveto(self, _x, _y):
 		self.focus and self.focus.place((_x, _y))
 
 		self.canvasBuild((_x,_y))
