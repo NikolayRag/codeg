@@ -163,7 +163,7 @@ class Ui():
 
 
 		self.dispatch.sigDispatchSent.connect(self.appWindow.traceFeed)
-		self.dispatch.sigDispatchFinish.connect(lambda res:self.appWindow.traceSet(res, None))
+		self.dispatch.sigDispatchFinish.connect(self.appWindow.traceSet)
 
 		self.dispatch.sigDeviceListed.connect(lambda devA:self.appWindow.dispatchFill(devA, Args.Device.last))
 		self.dispatch.sigDeviceFound.connect(lambda devA:self.appWindow.dispatchFill(devA, Args.Device.last, add=True))
