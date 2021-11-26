@@ -395,20 +395,7 @@
                   </layout>
                  </widget>
                 </item>
-                <item row="0" column="5">
-                 <spacer name="verticalSpacer_2">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item row="1" column="5">
+                <item row="1" column="7">
                  <layout class="QHBoxLayout" name="horizontalLayout_2">
                   <item>
                    <widget class="QToolButton" name="btnTraceView">
@@ -433,7 +420,7 @@
                   </item>
                  </layout>
                 </item>
-                <item row="1" column="4">
+                <item row="1" column="4" colspan="3">
                  <spacer name="horizontalSpacer_4">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
@@ -488,6 +475,111 @@
                   </item>
                  </layout>
                 </item>
+                <item row="0" column="4">
+                 <spacer name="verticalSpacer">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="0" column="6" colspan="2">
+                 <layout class="QGridLayout" name="layTrace">
+                  <property name="leftMargin">
+                   <number>3</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>3</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>3</number>
+                  </property>
+                  <property name="horizontalSpacing">
+                   <number>3</number>
+                  </property>
+                  <item row="0" column="1">
+                   <widget class="QPlainTextEdit" name="frameDev">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>140</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Plain</enum>
+                    </property>
+                    <property name="lineWidth">
+                     <number>0</number>
+                    </property>
+                    <property name="undoRedoEnabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QPlainTextEdit::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QProgressBar" name="traceProg">
+                    <property name="maximumSize">
+                     <size>
+                      <width>140</width>
+                      <height>12</height>
+                     </size>
+                    </property>
+                    <property name="value">
+                     <number>0</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QPlainTextEdit" name="labStats">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>140</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="verticalScrollBarPolicy">
+                     <enum>Qt::ScrollBarAlwaysOff</enum>
+                    </property>
+                    <property name="horizontalScrollBarPolicy">
+                     <enum>Qt::ScrollBarAlwaysOff</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="0" column="5">
+                 <spacer name="horizontalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
                </layout>
               </widget>
              </item>
@@ -509,17 +601,7 @@
              <property name="bottomMargin">
               <number>0</number>
              </property>
-             <item row="1" column="1">
-              <widget class="QComboBox" name="listDevs">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="3">
+             <item row="0" column="3">
               <widget class="QPushButton" name="btnDispFire">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -542,7 +624,14 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="2">
+             <item row="0" column="0">
+              <widget class="QToolButton" name="btnRescan">
+               <property name="text">
+                <string>re</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
               <widget class="QPushButton" name="btnDispShot">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -565,29 +654,13 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="0">
-              <widget class="QToolButton" name="btnRescan">
-               <property name="text">
-                <string>re</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0" colspan="4">
-              <widget class="QPlainTextEdit" name="frameDev">
+             <item row="0" column="1">
+              <widget class="QComboBox" name="listDevs">
                <property name="sizePolicy">
-                <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Plain</enum>
-               </property>
-               <property name="undoRedoEnabled">
-                <bool>false</bool>
-               </property>
-               <property name="lineWrapMode">
-                <enum>QPlainTextEdit::NoWrap</enum>
                </property>
               </widget>
              </item>

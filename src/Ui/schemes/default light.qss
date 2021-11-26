@@ -25,6 +25,11 @@
 #scrollMarks QWidget { background-color: rgba(0,0,0,0); }
 #listObjects, #listObjects QWidget { background-color: rgba(0,0,0,0); }
 
+
+#layTrace { background-color: rgba(0,0,0,0); }
+#frameDev, #labStats { background-color: rgba(0,0,0,32); }
+
+
 QScrollBar {
 	border: 1px solid #ccc;
 	border-radius: 5px;

@@ -148,7 +148,14 @@ class AppWindow(QObject):
 		self.wBtnRescan = cMain.findChild(QWidget, "btnRescan")
 		self.wListDevs = cMain.findChild(QComboBox, "listDevs")
 		self.wBtnDispFire = cMain.findChild(QWidget, "btnDispFire")
-		self.wFrameDev = cMain.findChild(QPlainTextEdit, "frameDev")
+
+
+		self.wFrameDev = cMain.findChild(QWidget, "frameDev")
+		self.wLabStats = cMain.findChild(QWidget, "labStats")
+		self.wTraceProg = cMain.findChild(QWidget, "traceProg")
+
+		fm = QFontMetrics(self.wLabStats.document().defaultFont())
+		self.wLabStats.setMaximumHeight(fm.height()*3)
 
 
 		self.wBtnFit.clicked.connect(self.viewportFit)
@@ -167,7 +174,10 @@ class AppWindow(QObject):
 		self.wBtnPrefs.clicked.connect(self.prefsList)
 		
 #  todo 280 (ui, feature) +0: makeTracer Ui-wide
-		self.tracer = Tracer(lambda z:self.wSvgViewport.canvasAdd(z=100+z))
+		self.tracer = Tracer(
+			lambda z:self.wSvgViewport.canvasAdd(z=100+z),
+			[self.wFrameDev, self.wLabStats, self.wTraceProg]
+		)
 		self.traceToggle(Args.Viewport.traceLayer)
 
 
@@ -483,6 +493,9 @@ class AppWindow(QObject):
 
 	def traceToggle(self, _state):
 		self.tracer.show(_state)
+		self.wFrameDev.setVisible(_state)
+		self.wLabStats.setVisible(_state)
+		self.wTraceProg.setVisible(_state)
 		Args.Viewport.traceLayer = _state
 
 
