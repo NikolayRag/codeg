@@ -132,6 +132,7 @@ class Tracer():
 
 	def spot(self, _x, _y, _xml):
 		cSpot = self.svgGen(2)
+		cSpot.show(self.visible)
 		cSpot.ghost(True)
 		cSpot.static(True)
 		cSpot.setXml(_xml)
