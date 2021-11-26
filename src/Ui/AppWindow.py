@@ -166,6 +166,9 @@ class AppWindow(QObject):
 		self.wListDevs.currentIndexChanged.connect(lambda i: self.sigDevChange.emit(self.wListDevs.currentText(), self.wListDevs.currentData()))
 		self.wBtnPrefs.clicked.connect(self.prefsList)
 		
+		self.tracer = Tracer(lambda z:self.wSvgViewport.canvasAdd(z=100+z))
+		self.traceToggle(Args.Viewport.traceLayer)
+
 
 
 	def setStyle(self, _styleFn):
@@ -467,8 +470,7 @@ class AppWindow(QObject):
 		self.selectionDescription = self.wSvgViewport.canvasAdd(self.defSelection, z=99)
 		self.selectionDescription.show(False)
 
-		self.tracer = Tracer(lambda z:self.wSvgViewport.canvasAdd(z=100+z))
-		self.traceToggle(Args.Viewport.traceLayer)
+		self.tracer.reset()
 
 
 
