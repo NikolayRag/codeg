@@ -123,10 +123,10 @@ class Tracer():
 
 
 		if _res != True:
-			self.osd[0].appendPlainText((f"  {_res or 'Warning'}:\n ") + _cmd)
+			self.osd[0].appendPlainText((f"{_res or 'Warning'}:\n ") + _cmd)
 
-			cPoint = self.pointWarning if _res else self.pointError
-			self.spot(float(coords[0][1:]), -float(coords[1][1:]), cPoint)
+			cPoint = self.pointError if _res else self.pointWarning
+			self.spot(float(coords[0][1:]), -float(coords[1][1:]), self.pointWarning)
 
 
 
