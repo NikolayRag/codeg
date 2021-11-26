@@ -33,7 +33,7 @@ class EngineArduinoGRBL(DispatchEngine):
 	def __init__(self, _name, privData=None):
 		privData['head'] = 'F8000'
 		privData['tail'] = ''
-		privData['pokes'] = 2
+		privData['pokes'] = 3
 
 		_name = f"{self.nameBase} ({_name})"
 		DispatchEngine.__init__(self, _name, privData=privData)
