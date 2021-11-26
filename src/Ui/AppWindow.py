@@ -150,6 +150,7 @@ class AppWindow(QObject):
 		self.wBtnDispFire = cMain.findChild(QWidget, "btnDispFire")
 
 
+#  todo 281 (ui, clean) +0: make Tracer OSD unweird
 		self.wFrameDev = cMain.findChild(QWidget, "frameDev")
 		self.wLabStats = cMain.findChild(QWidget, "labStats")
 		self.wTraceProg = cMain.findChild(QWidget, "traceProg")

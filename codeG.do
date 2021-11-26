@@ -769,13 +769,13 @@
  module-dispatch, clean 270: +0 "src\Dispatch\DispatchEngine.py" ki 21/11/26 01:44:10
 	add device queue control
 
- ux, clean 271: +0 "src\Ui\AppWindow.py" ki 21/11/26 01:46:32
-	trace detailed stats
+=ux, clean 271: +0 "src\Ui\Tracer.py" ki 21/11/26 22:30:27
+	Trace OSD
 
-=ux, clean 272: +0 "src\Ui\AppWindow.py" ki 21/11/26 01:47:27
++ux, clean 272: +0 "src\Ui\Tracer.py" ki 21/11/26 22:30:09
 	trace show error/warning position
 
- ux, clean 273: +0 "src\Ui\AppWindow.py" ki 21/11/26 01:48:19
+ ux, clean 273: +0 "src\Ui\Tracer.py" ki 21/11/26 22:30:10
 	rewindable trace history
 
  ux, clean 274: +0 "src\Ui\AppWindow.py" ki 21/11/26 01:49:23
@@ -798,4 +798,7 @@
 
  ui, feature 280: +0 "src\Ui\AppWindow.py" ki 21/11/26 22:29:01
 	makeTracer Ui-wide
+
+ ui, clean 281: +0 "src\Ui\AppWindow.py" ki 21/11/26 23:58:55
+	make Tracer OSD unweird
 
