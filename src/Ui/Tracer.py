@@ -106,8 +106,9 @@ class Tracer():
 
 	def feed(self, _res, _cmd):
 		self.osd[1].setPlainText(f"Shapes: {len(self.canvasBody)}\nPoints: {sum(len(x) for x in self.canvasBody)}")
-		self.feedLen += 1
 		self.osd[2].setValue(100*self.feedLen/self.session.pathLen())
+		self.feedLen += 1
+
 
 		edge = re.findall("S[\d]+", _cmd)
 		if len(edge)==1 and float(edge[0][1:])==0:
