@@ -137,7 +137,7 @@ class Tracer():
 		cSpot.ghost(True)
 		cSpot.static(True)
 		cSpot.setXml(_xml)
-		cSpot.place((_x, -_y))
+		cSpot.place((_x, _y))
 
 		self.spots.append(cSpot)
 
@@ -153,7 +153,7 @@ class Tracer():
 	def canvasBuild(self, _add=None):
 		if _add:
 			if not self.canvasBody[-1]:
-				self.spot(float(_add[0]), -float(_add[1]), self.pointShape)
+				self.spot(float(_add[0]), float(_add[1]), self.pointShape)
 
 			self.canvasBody[-1] += [f"{_add[0]-self.canvasVBox[0]},{_add[1]-self.canvasVBox[1]}"]
 
