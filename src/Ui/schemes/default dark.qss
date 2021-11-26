@@ -35,7 +35,7 @@ QProgressBar {
 	border-radius: 2px;
 	border: 1px solid #171717;
 }
-QProgressBar::chunk { background-color: #357; margin: 2px; }
+QProgressBar::chunk { background-color: #357; margin: 0; }
 
 QScrollBar {
 	border: 1px solid #474747;
