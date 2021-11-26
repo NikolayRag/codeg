@@ -78,7 +78,7 @@ class DispatchManager():
 
 		def devOk(_dev, _ev):
 			if _dev.test():
-				_cb and _cb(_dev.getName(), True)
+				_cb and _cb(_dev.getName())
 
 				self.allDevices[_dev.getName()]= _dev
 
