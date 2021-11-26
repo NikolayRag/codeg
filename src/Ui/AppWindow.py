@@ -30,6 +30,8 @@ Viewport dispatch OSD
 #  todo 273 (ux, clean) +0: rewindable trace history
 #  todo 274 (ux, clean) +0: make paint nonblocking
 class Tracer():
+	defTracePoint = 'resource\\tracepoint.svg'
+
 	outHeadInter = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#590' stroke-dasharray='3' fill='none' points='"
 	outHeadShape = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"
 
@@ -51,15 +53,16 @@ class Tracer():
 	visible = True
 
 
-	def __init__(self, _descrCanvas, _descrFocus, _descrSpots, _osd=None):
-		self.canvas = _descrCanvas
+	def __init__(self, _svgGen, _osd=None):
+		self.canvas = _svgGen(0)
 		self.canvas.ghost(True)
 
-		self.focus = _descrFocus
+		self.focus = _svgGen(1)
+		self.focus.setXml(self.defTracePoint)
 		self.focus.ghost(True)
 		self.focus.static(True)
 
-		self.spots = _descrSpots
+		self.spots = _svgGen(2)
 		self.spots.ghost(True)
 #		self.spots.static(True)
 
@@ -191,7 +194,6 @@ class AppWindow(QObject):
 
 	defSelection = 'resource\\select.svg'
 	defGrid = 'resource\\grid.svg' #1-unit size
-	defTracePoint = 'resource\\tracepoint.svg'
 	defUi = './Ui/AppWindow.ui'
 
 
@@ -610,10 +612,7 @@ class AppWindow(QObject):
 		self.selectionDescription = self.wSvgViewport.canvasAdd(self.defSelection, z=99)
 		self.selectionDescription.show(False)
 
-		dCanvas = self.wSvgViewport.canvasAdd(z=100)
-		dFocus = self.wSvgViewport.canvasAdd(self.defTracePoint, z=101)
-		dSpots = self.wSvgViewport.canvasAdd(z=102)
-		self.tracer = Tracer(dCanvas, dFocus, dSpots)
+		self.tracer = Tracer(lambda z:self.wSvgViewport.canvasAdd(z=100+z))
 		self.traceToggle(Args.Viewport.traceLayer)
 
 
