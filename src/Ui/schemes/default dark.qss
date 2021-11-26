@@ -30,6 +30,13 @@
 #frameDev, #labStats { background-color: rgba(0,0,0,32); }
 
 
+QProgressBar {
+	text-align: center;
+	border-radius: 2px;
+	border: 1px solid #171717;
+}
+QProgressBar::chunk { background-color: #357; margin: 2px; }
+
 QScrollBar {
 	border: 1px solid #474747;
 	border-radius: 5px;
