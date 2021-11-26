@@ -31,12 +31,15 @@ Viewport dispatch OSD
 #  todo 274 (ux, clean) +0: make paint nonblocking
 class Tracer():
 	pointTrace = 'resource\\point-trace.svg'
+	pointShape = 'resource\\point-shape.svg'
 
 	outHeadInter = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#590' stroke-dasharray='3' fill='none' points='"
 	outHeadShape = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"
 
 	decayDraw = 100.
 
+
+	svgGen = None
 
 	canvas = None
 	focus = None
@@ -48,12 +51,13 @@ class Tracer():
 
 	canvasVBox = None
 	canvasBody = []
-	canvasSpots = []
 
 	visible = True
 
 
 	def __init__(self, _svgGen, _osd=None):
+		self.svgGen = _svgGen
+
 		self.canvas = _svgGen(0)
 		self.canvas.ghost(True)
 
@@ -62,9 +66,7 @@ class Tracer():
 		self.focus.ghost(True)
 		self.focus.static(True)
 
-		self.spots = _svgGen(2)
-		self.spots.ghost(True)
-#		self.spots.static(True)
+		self.spots = []
 
 		self.osd = _osd
 
@@ -78,7 +80,8 @@ class Tracer():
 
 		self.canvas.show(_state)
 		self.focus.show(_state)
-		self.spots.show(_state)
+		for sp in self.spots:
+			sp.show(_state)
 
 
 
@@ -87,12 +90,13 @@ class Tracer():
 
 		self.canvasVBox = _session.viewBox()
 		self.canvasBody = [[]]
-		self.canvasSpots = []
 
 		self.canvas.place(self.canvasVBox[0:2])
 		self.canvasBuild([0,0])
 		
-		self.spots.place(self.canvasVBox[0:2])
+		for sp in self.spots:
+			sp.remove()
+		self.spots = []	
 
 
 
@@ -114,15 +118,6 @@ class Tracer():
 		step = int(l/self.decayDraw)+1
 
 		if _res != True:
-			col = '#bb0' if _res else '#f00'
-			self.canvasSpots += [f"<circle cx='{float(coords[0][1:])-self.canvasVBox[0]}' cy='{-float(coords[1][1:])-self.canvasVBox[1]}' r='1px' vector-effect='non-scaling-stroke' stroke='{col}' fill='{col}' stroke-width='3px'/>"]
-
-			cSpot = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
-			for sp in self.canvasSpots:
-				cSpot += [sp]
-			cSpot += ["</svg>"]
-
-			self.spots.setXml(' '.join(cSpot).encode())
 
 			print(f'Step {l}/{step}: {progress}% with {_res}')
 
@@ -130,6 +125,17 @@ class Tracer():
 
 	def final(self, _res):
 		self.canvasBuild()
+
+
+
+	def spot(self, _x, _y, _xml):
+		cSpot = self.svgGen(2)
+		cSpot.ghost(True)
+		cSpot.static(True)
+		cSpot.setXml(_xml)
+		cSpot.place((_x, -_y))
+
+		self.spots.append(cSpot)
 
 
 
@@ -142,6 +148,9 @@ class Tracer():
 
 	def canvasBuild(self, _add=None):
 		if _add:
+			if not self.canvasBody[-1]:
+				self.spot(float(_add[0]), -float(_add[1]), self.pointShape)
+
 			self.canvasBody[-1] += [f"{_add[0]-self.canvasVBox[0]},{_add[1]-self.canvasVBox[1]}"]
 
 		l = sum(len(x) for x in self.canvasBody)
