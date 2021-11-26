@@ -130,7 +130,6 @@ class Tracer():
 
 
 
-
 	def final(self, _res):
 		self.osd[1].setPlainText(f"Shapes: {len(self.canvasBody)-2}\nPoints: {sum(len(x) for x in self.canvasBody)}")
 		self.osd[0].appendPlainText(f"Dispatch {'ok' if _res else 'error'}")
