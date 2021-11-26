@@ -440,19 +440,14 @@ class AppWindow(QObject):
 
 	def traceSet(self, data, start=False):
 		if start:
-			self.wFrameDev.appendPlainText("Dispatch new session\n")
 			self.tracer.reset(data)
 
-			return
-
-
-		self.wFrameDev.appendPlainText(f"Dispatch {'ok' if data else 'error'}\n")
-		self.tracer.final(data)
+		else:
+			self.tracer.final(data)
 
 
 
 	def traceFeed(self, _res, _echo):
-		self.wFrameDev.appendPlainText(('+' if _res==True else f"  {_res or 'Warning'}:\n- ") + _echo)
 		self.tracer.feed(_res, _echo)
 
 

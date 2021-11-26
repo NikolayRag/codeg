@@ -32,6 +32,7 @@ class Tracer():
 
 	canvasVBox = None
 	canvasBody = []
+	feedLen = 0
 
 	visible = True
 
@@ -83,10 +84,16 @@ class Tracer():
 			return
 
 
+		self.osd[0].appendPlainText("Dispatch new session")
+		self.osd[1].setPlainText('')
+		self.osd[2].setValue(0)
+
+
 		self.session = _session
 
 		self.canvasVBox = _session.viewBox()
 		self.canvasBody = [[]]
+		self.feedLen = 0
 
 		self.canvas.place(self.canvasVBox[0:2])
 		self.canvasBuild([0,0])
@@ -98,10 +105,12 @@ class Tracer():
 
 
 	def feed(self, _res, _cmd):
+		self.osd[1].setPlainText(f"Shapes: {len(self.canvasBody)}\nPoints: {sum(len(x) for x in self.canvasBody)}")
+		self.feedLen += 1
+		self.osd[2].setValue(100*self.feedLen/self.session.pathLen())
+
 		edge = re.findall("S[\d]+", _cmd)
 		if len(edge)==1 and float(edge[0][1:])==0:
-			print(f"Shape {len(self.canvasBody)}")
-
 			self.canvasBuild()
 			self.canvasBody.append([])
 
@@ -112,19 +121,18 @@ class Tracer():
 			self.moveto(float(coords[0][1:]), -float(coords[1][1:]))
 
 
-		l = sum(len(x) for x in self.canvasBody)
-		progress = round(100.*l/self.session.pathLen(),2)
-		step = int(l/self.decayDraw)+1
-
 		if _res != True:
+			self.osd[0].appendPlainText((f"  {_res or 'Warning'}:\n ") + _cmd)
+
 			cPoint = self.pointWarning if _res else self.pointError
 			self.spot(float(coords[0][1:]), -float(coords[1][1:]), cPoint)
 
-			print(f'Step {l}/{step}: {progress}% with {_res}')
 
 
 
 	def final(self, _res):
+		self.osd[0].appendPlainText(f"Dispatch {'ok' if _res else 'error'}")
+
 		self.canvasBuild()
 
 
