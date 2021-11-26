@@ -105,7 +105,7 @@ class Tracer():
 
 
 	def feed(self, _res, _cmd):
-		self.osd[1].setPlainText(f"Shapes: {len(self.canvasBody)}\nPoints: {sum(len(x) for x in self.canvasBody)}")
+		self.osd[1].setPlainText(f"Shapes: {len(self.canvasBody)-1}\nPoints: {sum(len(x) for x in self.canvasBody)}")
 		self.osd[2].setValue(100*self.feedLen/self.session.pathLen())
 		self.feedLen += 1
 
@@ -132,6 +132,7 @@ class Tracer():
 
 
 	def final(self, _res):
+		self.osd[1].setPlainText(f"Shapes: {len(self.canvasBody)-2}\nPoints: {sum(len(x) for x in self.canvasBody)}")
 		self.osd[0].appendPlainText(f"Dispatch {'ok' if _res else 'error'}")
 
 		self.canvasBuild()
