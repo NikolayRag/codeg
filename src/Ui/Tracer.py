@@ -33,6 +33,7 @@ class Tracer():
 	canvasVBox = None
 	canvasBody = []
 	feedLen = 0
+	lastSpot = (0,0)
 
 	visible = True
 
@@ -94,6 +95,7 @@ class Tracer():
 		self.canvasVBox = _session.viewBox()
 		self.canvasBody = [[]]
 		self.feedLen = 0
+		self.lastSpot = (0,0)
 
 		self.canvas.place(self.canvasVBox[0:2])
 		self.canvasBuild([0,0])
@@ -119,14 +121,15 @@ class Tracer():
 		coords = re.findall("[XY]-?[\d\.]+", _cmd)
 
 		if len(coords)==2 and len(coords[0])>1 and len(coords[1])>1 and coords[0][0]=='X' and coords[1][0]=='Y':
-			self.moveto(float(coords[0][1:]), -float(coords[1][1:]))
+			self.lastSpot = (float(coords[0][1:]), -float(coords[1][1:]))
+			self.moveto(self.lastSpot)
 
 
 		if _res != True:
 			self.osd[0].appendPlainText((f"{_res or 'Warning'}:\n ") + _cmd)
 
 			cPoint = self.pointError if _res else self.pointWarning
-			self.spot(float(coords[0][1:]), -float(coords[1][1:]), self.pointWarning)
+			self.spot(self.lastSpot, cPoint)
 
 
 
@@ -138,29 +141,29 @@ class Tracer():
 
 
 
-	def spot(self, _x, _y, _xml):
+	def spot(self, _xy, _xml):
 		cSpot = self.svgGen(2)
 		cSpot.show(self.visible)
 		cSpot.ghost(True)
 		cSpot.static(True)
 		cSpot.setXml(_xml)
-		cSpot.place((_x, _y))
+		cSpot.place(_xy)
 
 		self.spots.append(cSpot)
 
 
 
-	def moveto(self, _x, _y):
-		self.focus and self.focus.place((_x, _y))
+	def moveto(self, _xy):
+		self.focus and self.focus.place(_xy)
 
-		self.canvasBuild((_x,_y))
+		self.canvasBuild(_xy)
 
 
 
 	def canvasBuild(self, _add=None):
 		if _add:
 			if not self.canvasBody[-1]:
-				self.spot(float(_add[0]), float(_add[1]), self.pointShape)
+				self.spot((float(_add[0]), float(_add[1])), self.pointShape)
 
 			self.canvasBody[-1] += [f"{_add[0]-self.canvasVBox[0]},{_add[1]-self.canvasVBox[1]}"]
 
