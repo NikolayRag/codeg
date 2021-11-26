@@ -93,7 +93,7 @@ class Tracer():
 
 
 
-	def feed(self, _cmd, _res):
+	def feed(self, _res, _cmd):
 		edge = re.findall("S[\d]+", _cmd)
 		if len(edge)==1 and float(edge[0][1:])==0:
 			self.canvasBuild()
@@ -579,10 +579,9 @@ class AppWindow(QObject):
 
 
 
-	def traceFeed(self, data=None):
-		echo, res = data
-		self.wFrameDev.appendPlainText(('+' if res==True else f"  {res or 'Warning'}:\n- ") + echo)
-		self.tracer.feed(echo, res)
+	def traceFeed(self, _res, _echo):
+		self.wFrameDev.appendPlainText(('+' if _res==True else f"  {_res or 'Warning'}:\n- ") + _echo)
+		self.tracer.feed(_res, _echo)
 
 
 
