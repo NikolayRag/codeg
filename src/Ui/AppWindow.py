@@ -32,6 +32,8 @@ Viewport dispatch OSD
 class Tracer():
 	pointTrace = 'resource\\point-trace.svg'
 	pointShape = 'resource\\point-shape.svg'
+	pointWarning = 'resource\\point-warning.svg'
+	pointError = 'resource\\point-error.svg'
 
 	outHeadInter = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#590' stroke-dasharray='3' fill='none' points='"
 	outHeadShape = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"
@@ -118,6 +120,8 @@ class Tracer():
 		step = int(l/self.decayDraw)+1
 
 		if _res != True:
+			cPoint = self.pointWarning if _res else self.pointError
+			self.spot(float(coords[0][1:]), -float(coords[1][1:]), cPoint)
 
 			print(f'Step {l}/{step}: {progress}% with {_res}')
 
