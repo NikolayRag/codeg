@@ -30,7 +30,7 @@ Viewport dispatch OSD
 #  todo 273 (ux, clean) +0: rewindable trace history
 #  todo 274 (ux, clean) +0: make paint nonblocking
 class Tracer():
-	defTracePoint = 'resource\\tracepoint.svg'
+	pointTrace = 'resource\\point-trace.svg'
 
 	outHeadInter = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#590' stroke-dasharray='3' fill='none' points='"
 	outHeadShape = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"
@@ -58,7 +58,7 @@ class Tracer():
 		self.canvas.ghost(True)
 
 		self.focus = _svgGen(1)
-		self.focus.setXml(self.defTracePoint)
+		self.focus.setXml(self.pointTrace)
 		self.focus.ghost(True)
 		self.focus.static(True)
 
