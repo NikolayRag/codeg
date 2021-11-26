@@ -61,8 +61,8 @@
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
 	dup
 
-=module-dispatch, ux 22: +1 "src\Dispatch\DispatchManager.py" ki 21/11/16 21:26:11
-	make dispatch interruptable
+=module-dispatch, ux 22: +1 "src\Dispatch\DispatchManager.py" ki 21/11/26 04:06:12
+	make dispatch interruptable and terminatable
 
 -module-ui, ux 23: +0 "src\Ui\Ui.py" ki 21/11/22 15:16:12
 	show progress for time consuming operations
@@ -784,6 +784,15 @@
  module-dispatch, clean 275: +0 "src\Ui\DispatchLink.py" ki 21/11/26 02:45:55
 	rescan device at stop state
 
- ux, clean 276: +0 "src\Ui\Ui.py" ki 21/11/26 02:57:08
-	clean rescan cycle
+ ux, clean 276: +0 "src\Ui\Ui.py" ki 21/11/26 03:04:07
+	clean device rescan cycle
+
+!! 277: +0 "src\Ui\DispatchLink.py" ki 21/11/26 14:56:19
+	test
+
+!! 278: +0 "src\Ui\DispatchLink.py" ki 21/11/26 14:56:17
+	
+
+ viewport, fix 279: +0 "src\Ui\SvgViewport.py" ki 21/11/26 18:11:17
+	make removed SvgDescriptor safe
 

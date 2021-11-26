@@ -155,7 +155,7 @@ class Ui():
 		self.appWindow.sigAddFile.connect(self.addFile)
 		self.appWindow.sigPaste.connect(self.paste)
 
-#  todo 276 (ux, clean) +0: clean rescan cycle
+#  todo 276 (ux, clean) +0: clean device rescan cycle
 		self.appWindow.sigDevScan.connect(lambda: self.dispatch.getDevices())
 		self.appWindow.sigDevChange.connect(self.dispatchChanged)
 		self.appWindow.sigDispatchFire.connect(self.dispatchSend)

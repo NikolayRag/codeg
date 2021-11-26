@@ -79,6 +79,7 @@ class SvgDescriptor():
 
 
 
+#  todo 279 (viewport, fix) +0: make removed SvgDescriptor safe
 	def remove(self):
 		self.canvas.layerRemove(self.idGeo)
 
