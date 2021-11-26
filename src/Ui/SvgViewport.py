@@ -79,6 +79,11 @@ class SvgDescriptor():
 
 
 
+	def remove(self):
+		self.canvas.layerRemove(self.idGeo)
+
+
+
 '''
 Main scene widget
 '''
@@ -518,6 +523,13 @@ class SvgCanvas(QWidget):
 	def layerStatic(self, _lId, _static):
 		cLayer = self.layers[_lId]
 		cLayer.setStatic(_static)
+
+		self.recompute()
+
+
+
+	def layerRemove(self, _lId):
+		del self.layers[_lId]
 
 		self.recompute()
 
