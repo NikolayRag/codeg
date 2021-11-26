@@ -190,7 +190,7 @@ class Scene():
 		data += ['M5', 'G0', 'X0Y0']
 
 		return {
-			'meta': bbox,
+			'meta': bbox or (0,1,0,1),
 			'data': data
 		}
 
