@@ -166,7 +166,7 @@ class AppWindow(QObject):
 		self.wListDevs.currentIndexChanged.connect(lambda i: self.sigDevChange.emit(self.wListDevs.currentText(), self.wListDevs.currentData()))
 		self.wBtnPrefs.clicked.connect(self.prefsList)
 		
-#  todo 280 (ui, feature) +0: makeTracer app-wide
+#  todo 280 (ui, feature) +0: makeTracer Ui-wide
 		self.tracer = Tracer(lambda z:self.wSvgViewport.canvasAdd(z=100+z))
 		self.traceToggle(Args.Viewport.traceLayer)
 

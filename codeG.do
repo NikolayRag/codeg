@@ -796,6 +796,6 @@
  viewport, fix 279: +0 "src\Ui\SvgViewport.py" ki 21/11/26 18:11:17
 	make removed SvgDescriptor safe
 
- ui, feature 280: +0 "src\Ui\AppWindow.py" ki 21/11/26 22:27:38
-	makeTracer app-wide
+ ui, feature 280: +0 "src\Ui\AppWindow.py" ki 21/11/26 22:29:01
+	makeTracer Ui-wide
 
