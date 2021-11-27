@@ -165,12 +165,12 @@ class Ui():
 		self.dispatch.sigDispatchSent.connect(self.appWindow.traceFeed)
 		self.dispatch.sigDispatchFinish.connect(self.appWindow.traceSet)
 
-		self.dispatch.sigDeviceListed.connect(lambda devA:self.appWindow.dispatchFill(devA, Args.Device.last))
-		self.dispatch.sigDeviceFound.connect(lambda devA:self.appWindow.dispatchFill(devA, Args.Device.last, add=True))
+		self.dispatch.sigDeviceListed.connect(lambda devA:self.appWindow.dispatchFill(devA, Args.Dispatch.last))
+		self.dispatch.sigDeviceFound.connect(lambda devA:self.appWindow.dispatchFill(devA, Args.Dispatch.last, add=True))
 
 		#default device as template, overrided at actual dispatch
 		self.dispatch.getDevices()
-		self.appWindow.dispatchFill({}, Args.Device.last)
+		self.appWindow.dispatchFill({}, Args.Dispatch.last)
 
 
 		self.markDefault = self.data.markNew(
@@ -449,7 +449,7 @@ class Ui():
 	def dispatchChanged(self, _name, _enabled):
 		print(f"Device changed to \"{_name}\"", 'mock' if not _enabled else '')
 
-		Args.Device.last = _name
+		Args.Dispatch.last = _name
 
 		self.activeDevice = _name
 		if self.activeScene:

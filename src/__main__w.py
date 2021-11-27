@@ -20,9 +20,9 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 		'wPos': [None],
 		'wMaxi': [False],
 	},
-	'Device': {
-		'width': [300, [0.,10000], float, 'Default Width'],
-		'height': [200, [0.,10000], float, 'Default Height'],
+	'Dispatch': {
+		'width': [300, [0.,1000], float, 'Mock width'],
+		'height': [200, [0.,1000], float, 'Mock height'],
 		'GRBLbps': ['115200', ['9600', '115200'], str, 'GRBL bitrate'],
 		'last': ['Mockup'],
 	},
@@ -30,7 +30,7 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 		'fit': [0.7, [0.,1], float, 'Fit ratio'],
 		'fitGeo': [.5, [0,1], float, 'Fit geometry ratio'],
 		'offsetX': [0.66, [0,1], float, 'Fit center'],
-		'traceLayer': [False],
+		'visTracer': [False],
 
 		'panMargins': [.2, [0,.5], float, 'Pan limit margins'],
 		'scaleMin': [10],
@@ -54,9 +54,9 @@ if __name__ == '__main__':
 	cGG = GGData()
 
 
-	fallbackSize = (Args.Device.width, Args.Device.height)
+	fallbackSize = (Args.Dispatch.width, Args.Dispatch.height)
 	deviceDefs = {
-		'EngineArduinoGRBL': {'rate':int(Args.Device.GRBLbps)},
+		'EngineArduinoGRBL': {'rate':int(Args.Dispatch.GRBLbps)},
 	}
 	cDis = DispatchManager(size=fallbackSize, definitions=deviceDefs)
 

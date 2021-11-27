@@ -129,7 +129,7 @@ class AppWindow(QObject):
 
 		self.wBtnFit = cMain.findChild(QWidget, "btnFit")
 		self.wBtnTraceView = cMain.findChild(QWidget, "btnTraceView")
-		self.wBtnTraceView.setChecked(Args.Viewport.traceLayer)
+		self.wBtnTraceView.setChecked(Args.Viewport.visTracer)
 
 		self.wBtnCaption = cMain.findChild(QWidget, "btnCaption")
 		self.wBtnWipe = cMain.findChild(QWidget, "btnWipe")
@@ -179,7 +179,7 @@ class AppWindow(QObject):
 			lambda z:self.wSvgViewport.canvasAdd(z=100+z),
 			[self.wFrameDev, self.wLabStats, self.wTraceProg]
 		)
-		self.traceToggle(Args.Viewport.traceLayer)
+		self.traceToggle(Args.Viewport.visTracer)
 
 
 
@@ -492,7 +492,7 @@ class AppWindow(QObject):
 		self.wFrameDev.setVisible(_state)
 		self.wLabStats.setVisible(_state)
 		self.wTraceProg.setVisible(_state)
-		Args.Viewport.traceLayer = _state
+		Args.Viewport.visTracer = _state
 
 
 
