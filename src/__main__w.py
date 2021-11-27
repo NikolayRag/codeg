@@ -25,6 +25,7 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 		'height': [200, [0.,1000], float, 'Mock height'],
 		'GRBLbps': ['115200', ['9600', '115200'], str, 'GRBL bitrate'],
 		'last': ['Mockup'],
+		'visDispatch': [False],
 	},
 	'Viewport': {
 		'fit': [0.7, [0.,1], float, 'Fit ratio'],

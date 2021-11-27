@@ -140,8 +140,12 @@ class AppWindow(QObject):
 		self.wBtnPaste = cMain.findChild(QWidget, "btnPaste")
 		self.wBtnPrefs = cMain.findChild(QWidget, "btnPrefs")
 
+		self.wBtnDispatcher = cMain.findChild(QWidget, "btnDispatcher")
+		self.wBtnDispatcher.setChecked(Args.Dispatch.visDispatch)
 		self.wFrameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
-		self.wFrameDispatcher.setVisible(False)
+		self.wBtnDispatcher.toggled.connect(self.dispatchToggle)
+		self.dispatchToggle(Args.Dispatch.visDispatch)
+
 #  todo 47 (module-dispatch, module-ui, ux) +0: change device list to button+list
 #  todo 48 (module-ui) +0: update device list
 #  todo 49 (module-ui, ux) +0: save/restore active device between sessions
@@ -411,6 +415,13 @@ class AppWindow(QObject):
 
 
 ### DISPATCH ###
+
+
+	def dispatchToggle(self, _state):
+		self.wFrameDispatcher.setVisible(_state)
+
+		Args.Dispatch.visDispatch = _state
+
 
 
 	def dispatchFill(self, _devices, _default, add=False):
