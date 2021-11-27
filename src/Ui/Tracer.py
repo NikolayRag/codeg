@@ -5,7 +5,6 @@ import re
 '''
 Dispatch live tracer
 '''
-# =todo 271 (ux, clean) +0: Trace OSD
 #  todo 273 (ux, clean) +0: rewindable trace history
 #  todo 274 (ux, clean) +0: make paint nonblocking
 class Tracer():

@@ -154,7 +154,6 @@ class AppWindow(QObject):
 		self.wBtnDispFire = cMain.findChild(QWidget, "btnDispFire")
 
 
-#  todo 281 (ui, clean) +0: make Tracer OSD unweird
 		self.wFrameDev = cMain.findChild(QWidget, "frameDev")
 		self.wLabStats = cMain.findChild(QWidget, "labStats")
 		self.wTraceProg = cMain.findChild(QWidget, "traceProg")
@@ -179,6 +178,7 @@ class AppWindow(QObject):
 		self.wBtnPrefs.clicked.connect(self.prefsList)
 		
 #  todo 280 (ui, feature) +0: makeTracer Ui-wide
+#  todo 281 (ui, clean) +0: make Tracer OSD unweird
 		self.tracer = Tracer(
 			lambda z:self.wSvgViewport.canvasAdd(z=100+z),
 			[self.wFrameDev, self.wLabStats, self.wTraceProg]

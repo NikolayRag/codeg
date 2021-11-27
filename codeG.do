@@ -130,7 +130,7 @@
 =module-ui 46: +0 "" kii 21/08/03 13:39:59
 	fill connection port list
 
- module-dispatch, module-ui, ux 47: +0 "src\Ui\AppWindow.py" kii 21/08/03 19:25:49
+ module-dispatch, module-ui, ux 47: +0 "src\Ui\AppWindow.py" ki 21/11/27 03:05:20
 	change device list to button+list
 
  module-ui 48: +0 "src\Dispatch\Dispatch.py" kii 21/08/03 13:12:51
@@ -769,13 +769,13 @@
  module-dispatch, clean 270: +0 "src\Dispatch\DispatchEngine.py" ki 21/11/26 01:44:10
 	add device queue control
 
-=ux, clean 271: +0 "src\Ui\Tracer.py" ki 21/11/26 22:30:27
++ux, clean 271: +0 "src\Ui\Tracer.py" ki 21/11/27 02:46:15
 	Trace OSD
 
 +ux, clean 272: +0 "src\Ui\Tracer.py" ki 21/11/26 22:30:09
 	trace show error/warning position
 
- ux, clean 273: +0 "src\Ui\Tracer.py" ki 21/11/26 22:30:10
+ ux, clean 273: +0 "src\Ui\Tracer.py" ki 21/11/27 02:46:16
 	rewindable trace history
 
  ux, clean 274: +0 "src\Ui\AppWindow.py" ki 21/11/26 01:49:23
