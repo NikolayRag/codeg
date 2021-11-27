@@ -84,7 +84,7 @@ class Tracer():
 			return
 
 
-		self.osd[0].appendPlainText("Dispatch new session")
+		self.osd[0].appendPlainText("Dispatch begin")
 		self.osd[1].setPlainText('')
 		self.osd[2].setValue(0)
 
@@ -134,7 +134,7 @@ class Tracer():
 
 	def final(self, _res):
 		self.osd[1].setPlainText(f"Shapes: {len(self.canvasBody)-2}\nPoints: {sum(len(x) for x in self.canvasBody)-1}")
-		self.osd[0].appendPlainText(f"Dispatch {'ok' if _res else 'error'}")
+		self.osd[0].appendPlainText(f"Dispatch {'end' if _res else 'error'}")
 		if not _res:
 			self.spot(self.lastSpot, self.pointError)
 
