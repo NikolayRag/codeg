@@ -21,7 +21,7 @@ class Tracer():
 
 	svgGen = None
 
-	__canvas = None
+	layShapes = None
 	focus = None
 	layers = None
 	osd = None
@@ -40,10 +40,8 @@ class Tracer():
 	def __init__(self, _svgGen, _osd=None):
 		self.svgGen = _svgGen
 
-		self.__canvas = _svgGen(0)
-		self.__canvas.ghost(True)
-
 		self.layers = []
+		self.layShapes = []
 
 		self.osd = _osd
 
@@ -55,24 +53,24 @@ class Tracer():
 			self.canvasBuild()
 
 
-		self.__canvas.show(_state)
 		self.focus and self.focus.show(_state)
 		for sp in self.layers:
+			sp.show(_state)
+		for sp in self.layShapes:
 			sp.show(_state)
 
 
 
 	def reset(self, _session=None):
-		self.__canvas = self.svgGen(0)
-		self.__canvas.ghost(True)
-		if self.canvasVBox:
-			self.__canvas.place(self.canvasVBox[0:2])
-
 		self.focus and self.focus.remove()
 		self.focus = self.svgGen(1)
 		self.focus.setXml(self.pointTrace)
 		self.focus.ghost(True)
 		self.focus.static(True)
+
+		for sp in self.layShapes:
+			sp.remove()
+		self.layShapes = []	
 
 		for sp in self.layers:
 			sp.remove()
@@ -93,11 +91,10 @@ class Tracer():
 		self.session = _session
 
 		self.canvasVBox = _session.viewBox()
-		self.canvasBody = [[]]
 		self.feedLen = 0
 		self.lastSpot = (0,0)
 
-		self.__canvas.place(self.canvasVBox[0:2])
+		self.canvasBody = []
 		self.canvasBuild([0,0])
 
 
@@ -111,7 +108,7 @@ class Tracer():
 		edge = re.findall("S[\d]+", _cmd)
 		if len(edge)==1 and float(edge[0][1:])==0:
 			self.canvasBuild()
-			self.canvasBody.append([])
+			self.canvasBody = []
 
 
 		coords = re.findall("[XY]-?[\d\.]+", _cmd)
@@ -160,28 +157,31 @@ class Tracer():
 
 	def canvasBuild(self, _add=None):
 		if _add:
-			if not self.canvasBody[-1]:
+			if not self.canvasBody or not self.layShapes:
+				self.layShapes.append(self.svgGen(0))
+				self.layShapes[-1].ghost(True)
+				self.layShapes[-1].place(self.canvasVBox[0:2])
+
 				self.spot((float(_add[0]), float(_add[1])), self.pointShape)
 
-			self.canvasBody[-1] += [f"{_add[0]-self.canvasVBox[0]},{_add[1]-self.canvasVBox[1]}"]
+			self.canvasBody += [f"{_add[0]-self.canvasVBox[0]},{_add[1]-self.canvasVBox[1]}"]
 
-		l = sum(len(x) for x in self.canvasBody)
-		if _add and (not self.visible or (l% (int(l/self.decayDraw)+1))):
-			return
+			
+			l = len(self.canvasBody)
+			if not self.visible or (l% (int(l/self.decayDraw)+1)):
+				return
 
 
-		last = None
+#		last = None
 
 #  todo 269 (module-ui, clean, fix) +1: make painting reasonable
 		out = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
-		for sh in self.canvasBody:
-			if last:
-				out += [self.outHeadInter] + last + [sh[0]] + ["'/>"]
+#		if last:
+#			out += [self.outHeadInter] + last + [self.canvasBody[0]] + ["'/>"]
 
-			out += [self.outHeadShape] + sh + ["'/>"]
-
-			last = [sh[-1]]
+		out += [self.outHeadShape] + self.canvasBody + ["'/>"]
+#		last = [self.canvasBody[-1]]
 
 		out += ["</svg>"]
 
-		self.__canvas.setXml(' '.join(out).encode())
+		self.layShapes[-1].setXml(' '.join(out).encode())
