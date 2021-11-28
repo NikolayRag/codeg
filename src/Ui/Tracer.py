@@ -98,7 +98,7 @@ class Tracer():
 		self.lastSpot = (0,0)
 
 		self.canvasBody = []
-		self.canvasBuild([0,0])
+		self.moveto(self.lastSpot)
 
 		self.lenFeed = 0
 		self.lenPoints = 0
