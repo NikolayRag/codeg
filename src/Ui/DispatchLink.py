@@ -6,7 +6,7 @@ from PySide2.QtCore import *
 
 
 # =todo 261 (module-dispatch, feature) +0: add basic dispatch session manager
-# =todo 268 (module-dispatch, feature) +0: handle concurent sessions
+#  todo 268 (module-dispatch, feature) +0: handle concurent sessions
 class DispatchSession(Thread, QObject):
 	sigSent = Signal(object, object)
 	sigFinish = Signal(bool)
@@ -96,7 +96,7 @@ class DispatchLink(QObject):
 
 
 
-# -todo 263 (module-dispatch, feature) +0: add dispatch queue
+# =todo 263 (module-dispatch, feature) +0: add dispatch queue
 	def runDevice(self, _dev, _data):
 		if not self.dispatcher:
 			print ('No dispatcher')

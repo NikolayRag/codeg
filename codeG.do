@@ -733,7 +733,7 @@
  module-dispatch, error, ux 258: +0 "src\Ui\DispatchLink.py" ki 21/11/22 02:03:58
 	handle retries
 
-+fix, module-dispatch 259: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/11/24 04:26:41
++fix, module-dispatch 259: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/11/28 21:55:23
 	test device errors
 
 =module-dispatch, test 260: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/11/22 04:29:58
@@ -745,7 +745,7 @@
 +feature, module-ui, module-dispatch 262: +0 "src\Ui\AppWindow.py" ki 21/11/23 00:25:46
 	add functional cut feedback
 
--module-dispatch, feature 263: +0 "src\Ui\DispatchLink.py" ki 21/11/22 22:49:17
+=module-dispatch, feature 263: +0 "src\Ui\DispatchLink.py" ki 21/11/27 03:41:51
 	add dispatch queue
 
 -module-ui, module-dispatch, fix 264: +0 "src\Ui\Ui.py" ki 21/11/22 23:40:08
@@ -760,13 +760,13 @@
 +module-dispatch, module-ui 267: +0 "src\Ui\AppWindow.py" ki 21/11/24 00:09:59
 	instant update 
 
-=module-dispatch, feature 268: +0 "src\Ui\DispatchLink.py" ki 21/11/24 02:48:06
+ module-dispatch, feature 268: +0 "src\Ui\DispatchLink.py" ki 21/11/27 03:41:18
 	handle concurent sessions
 
- module-ui, clean, fix 269: +1 "src\Ui\AppWindow.py" ki 21/11/26 00:11:46
+=module-ui, clean, fix 269: +1 "src\Ui\Tracer.py" ki 21/11/28 23:33:00
 	make painting reasonable
 
- module-dispatch, clean 270: +0 "src\Dispatch\DispatchEngine.py" ki 21/11/26 01:44:10
+ module-dispatch, clean 270: +0 "src\Dispatch\DispatchEngine.py" ki 21/11/27 03:35:01
 	add device queue control
 
 +ux, clean 271: +0 "src\Ui\Tracer.py" ki 21/11/27 02:46:15
@@ -801,4 +801,7 @@
 
  ui, clean 281: +0 "src\Ui\AppWindow.py" ki 21/11/26 23:58:55
 	make Tracer OSD unweird
+
+=ui, performance 282: +0 "src\Ui\Tracer.py" ki 21/11/29 02:10:46
+	Tracer separate shapes visibility
 

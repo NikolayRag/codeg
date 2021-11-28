@@ -47,6 +47,7 @@ class Tracer():
 
 
 
+# =todo 282 (ui, performance) +0: Tracer separate shapes visibility
 	def show(self, _state):
 		self.visible = _state
 		if _state and self.canvasVBox:
@@ -61,6 +62,7 @@ class Tracer():
 
 
 
+	#called with no session after SvgViewport recreated
 	def reset(self, _session=None):
 		self.focus and self.focus.remove()
 		self.focus = self.svgGen(1)
@@ -89,8 +91,8 @@ class Tracer():
 
 
 		self.session = _session
-
 		self.canvasVBox = _session.viewBox()
+
 		self.feedLen = 0
 		self.lastSpot = (0,0)
 
@@ -174,7 +176,7 @@ class Tracer():
 
 #		last = None
 
-#  todo 269 (module-ui, clean, fix) +1: make painting reasonable
+# =todo 269 (module-ui, clean, fix) +1: make painting reasonable
 		out = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
 #		if last:
 #			out += [self.outHeadInter] + last + [self.canvasBody[0]] + ["'/>"]
