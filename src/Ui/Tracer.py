@@ -32,6 +32,8 @@ class Tracer():
 	canvasVBox = None
 	canvasBody = []
 	lenFeed = 0
+	lenPoints = 0
+	lenShapes = 0
 	lastSpot = (0,0)
 
 	visible = True
@@ -93,16 +95,19 @@ class Tracer():
 		self.session = _session
 		self.canvasVBox = _session.viewBox()
 
-		self.lenFeed = 0
 		self.lastSpot = (0,0)
 
 		self.canvasBody = []
 		self.canvasBuild([0,0])
 
+		self.lenFeed = 0
+		self.lenPoints = 0
+		self.lenShapes = 0
+
 
 
 	def feed(self, _res, _cmd):
-#		self.osd[1].setPlainText(f"Shapes: {len(self.canvasBody)-1}\nPoints: {sum(len(x) for x in self.canvasBody)-1}")
+		self.osd[1].setPlainText(f"Shapes: {self.lenShapes}\nPoints: {self.lenPoints}")
 		self.lenFeed += 1
 		self.osd[2].setValue(100*self.lenFeed/self.session.pathLen())
 
@@ -129,7 +134,9 @@ class Tracer():
 
 
 	def final(self, _res):
-#		self.osd[1].setPlainText(f"Shapes: {len(self.canvasBody)-2}\nPoints: {sum(len(x) for x in self.canvasBody)-1}")
+		self.lenPoints -= 1 #last shape is park
+		self.lenShapes -= 1
+		self.osd[1].setPlainText(f"Shapes: {self.lenShapes}\nPoints: {self.lenPoints}")
 		self.osd[0].appendPlainText(f"Dispatch {'end' if _res else 'error'}")
 		if not _res:
 			self.spot(self.lastSpot, self.pointError)
@@ -159,7 +166,11 @@ class Tracer():
 
 	def canvasBuild(self, _add=None):
 		if _add:
+			self.lenPoints += 1
+
 			if not self.canvasBody or not self.layShapes:
+				self.lenShapes += 1
+
 				self.layShapes.append(self.svgGen(0))
 				self.layShapes[-1].ghost(True)
 				self.layShapes[-1].place(self.canvasVBox[0:2])
