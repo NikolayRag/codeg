@@ -63,24 +63,25 @@ class Tracer():
 
 
 	def reset(self, _session=None):
+		self.__canvas = self.svgGen(0)
+		self.__canvas.ghost(True)
+		if self.canvasVBox:
+			self.__canvas.place(self.canvasVBox[0:2])
+
+		self.focus and self.focus.remove()
+		self.focus = self.svgGen(1)
+		self.focus.setXml(self.pointTrace)
+		self.focus.ghost(True)
+		self.focus.static(True)
+
+		for sp in self.layers:
+			sp.remove()
+		self.layers = []	
+
+		self.show(self.visible)
+
+
 		if not _session:
-			self.__canvas = self.svgGen(0)
-			self.__canvas.ghost(True)
-			if self.canvasVBox:
-				self.__canvas.place(self.canvasVBox[0:2])
-
-			self.focus and self.focus.remove()
-			self.focus = self.svgGen(1)
-			self.focus.setXml(self.pointTrace)
-			self.focus.ghost(True)
-			self.focus.static(True)
-
-			for sp in self.layers:
-				sp.remove()
-			self.layers = []	
-
-			self.show(self.visible)
-
 			return
 
 
