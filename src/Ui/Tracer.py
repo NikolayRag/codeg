@@ -21,7 +21,7 @@ class Tracer():
 
 	svgGen = None
 
-	canvas = None
+	__canvas = None
 	focus = None
 	layers = None
 	osd = None
@@ -40,8 +40,8 @@ class Tracer():
 	def __init__(self, _svgGen, _osd=None):
 		self.svgGen = _svgGen
 
-		self.canvas = _svgGen(0)
-		self.canvas.ghost(True)
+		self.__canvas = _svgGen(0)
+		self.__canvas.ghost(True)
 
 		self.focus = _svgGen(1)
 		self.focus.setXml(self.pointTrace)
@@ -60,7 +60,7 @@ class Tracer():
 			self.canvasBuild()
 
 
-		self.canvas.show(_state)
+		self.__canvas.show(_state)
 		self.focus.show(_state)
 		for sp in self.layers:
 			sp.show(_state)
@@ -69,10 +69,10 @@ class Tracer():
 
 	def reset(self, _session=None):
 		if not _session:
-			self.canvas = self.svgGen(0)
-			self.canvas.ghost(True)
+			self.__canvas = self.svgGen(0)
+			self.__canvas.ghost(True)
 			if self.canvasVBox:
-				self.canvas.place(self.canvasVBox[0:2])
+				self.__canvas.place(self.canvasVBox[0:2])
 
 			self.focus = self.svgGen(1)
 			self.focus.setXml(self.pointTrace)
@@ -96,7 +96,7 @@ class Tracer():
 		self.feedLen = 0
 		self.lastSpot = (0,0)
 
-		self.canvas.place(self.canvasVBox[0:2])
+		self.__canvas.place(self.canvasVBox[0:2])
 		self.canvasBuild([0,0])
 		
 		for sp in self.layers:
@@ -187,4 +187,4 @@ class Tracer():
 
 		out += ["</svg>"]
 
-		self.canvas.setXml(' '.join(out).encode())
+		self.__canvas.setXml(' '.join(out).encode())
