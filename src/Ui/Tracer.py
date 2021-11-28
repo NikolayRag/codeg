@@ -23,7 +23,7 @@ class Tracer():
 
 	canvas = None
 	focus = None
-	spots = None
+	layers = None
 	osd = None
 
 
@@ -48,7 +48,7 @@ class Tracer():
 		self.focus.ghost(True)
 		self.focus.static(True)
 
-		self.spots = []
+		self.layers = []
 
 		self.osd = _osd
 
@@ -62,7 +62,7 @@ class Tracer():
 
 		self.canvas.show(_state)
 		self.focus.show(_state)
-		for sp in self.spots:
+		for sp in self.layers:
 			sp.show(_state)
 
 
@@ -99,9 +99,9 @@ class Tracer():
 		self.canvas.place(self.canvasVBox[0:2])
 		self.canvasBuild([0,0])
 		
-		for sp in self.spots:
+		for sp in self.layers:
 			sp.remove()
-		self.spots = []	
+		self.layers = []	
 
 
 
@@ -150,7 +150,7 @@ class Tracer():
 		cSpot.setXml(_xml)
 		cSpot.place(_xy)
 
-		self.spots.append(cSpot)
+		self.layers.append(cSpot)
 
 
 
