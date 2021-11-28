@@ -31,7 +31,7 @@ class Tracer():
 
 	canvasVBox = None
 	canvasBody = []
-	feedLen = 0
+	lenFeed = 0
 	lastSpot = (0,0)
 
 	visible = True
@@ -93,7 +93,7 @@ class Tracer():
 		self.session = _session
 		self.canvasVBox = _session.viewBox()
 
-		self.feedLen = 0
+		self.lenFeed = 0
 		self.lastSpot = (0,0)
 
 		self.canvasBody = []
@@ -103,8 +103,8 @@ class Tracer():
 
 	def feed(self, _res, _cmd):
 #		self.osd[1].setPlainText(f"Shapes: {len(self.canvasBody)-1}\nPoints: {sum(len(x) for x in self.canvasBody)-1}")
-		self.feedLen += 1
-		self.osd[2].setValue(100*self.feedLen/self.session.pathLen())
+		self.lenFeed += 1
+		self.osd[2].setValue(100*self.lenFeed/self.session.pathLen())
 
 
 		edge = re.findall("S[\d]+", _cmd)
