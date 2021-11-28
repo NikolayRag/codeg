@@ -499,12 +499,15 @@ class AppWindow(QObject):
 
 
 	def traceToggle(self, _state):
+		self.wSvgViewport.canvasUpdate(False)
+
 		self.tracer.show(_state)
 		self.wFrameDev.setVisible(_state)
 		self.wLabStats.setVisible(_state)
 		self.wTraceProg.setVisible(_state)
 		Args.Viewport.visTracer = _state
 
+		self.wSvgViewport.canvasUpdate(True)
 
 
 ### OPTIONS ###

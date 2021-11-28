@@ -340,6 +340,11 @@ class SvgViewport(QWidget):
 
 
 
+	def canvasUpdate(self, _set=None):
+		self.canvas.recompute(_set)
+
+
+
 '''
 Scene canvas 
 '''
@@ -436,6 +441,8 @@ class SvgCanvas(QWidget):
 	layerMaxId = 0
 	docXMin = docXMax = docYMin = docYMax = 0
 	ghostXMin = ghostXMax = ghostYMin = ghostYMax = 0
+
+	updateEnabled = True
 
 	
 	offset = QPoint(0,0)
@@ -536,7 +543,14 @@ class SvgCanvas(QWidget):
 
 
 
-	def recompute(self, _update=True):
+	def recompute(self, _set=None):
+			if _set != None:
+				self.updateEnabled = _set
+
+			if not self.updateEnabled:
+				return
+
+
 			allLayerXforms = [[*l.layerOffset(True), *l.layerSize(self.scaleX,self.scaleY)] for l in self.layers.values() if l.display and not l.ghost]
 			allMinMax = list(zip(*[ [x, x+w, y, y+h] for x,y,w,h in allLayerXforms ]))
 			allMinMax = allMinMax or [[0], [self.defaultWidth], [0], [self.defaultHeight]]
@@ -549,8 +563,7 @@ class SvgCanvas(QWidget):
 			self.ghostXMin, self.ghostXMax = map(sorted(allMinMax[0]+allMinMax[1]).__getitem__, [0,-1])
 			self.ghostYMin, self.ghostYMax = map(sorted(allMinMax[2]+allMinMax[3]).__getitem__, [0,-1])
 
-			if _update:
-				self.update()
+			self.update()
 
 
 
