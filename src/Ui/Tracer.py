@@ -43,11 +43,6 @@ class Tracer():
 		self.__canvas = _svgGen(0)
 		self.__canvas.ghost(True)
 
-		self.focus = _svgGen(1)
-		self.focus.setXml(self.pointTrace)
-		self.focus.ghost(True)
-		self.focus.static(True)
-
 		self.layers = []
 
 		self.osd = _osd
@@ -61,7 +56,7 @@ class Tracer():
 
 
 		self.__canvas.show(_state)
-		self.focus.show(_state)
+		self.focus and self.focus.show(_state)
 		for sp in self.layers:
 			sp.show(_state)
 
@@ -74,10 +69,15 @@ class Tracer():
 			if self.canvasVBox:
 				self.__canvas.place(self.canvasVBox[0:2])
 
+			self.focus and self.focus.remove()
 			self.focus = self.svgGen(1)
 			self.focus.setXml(self.pointTrace)
 			self.focus.ghost(True)
 			self.focus.static(True)
+
+			for sp in self.layers:
+				sp.remove()
+			self.layers = []	
 
 			self.show(self.visible)
 
@@ -98,10 +98,6 @@ class Tracer():
 
 		self.__canvas.place(self.canvasVBox[0:2])
 		self.canvasBuild([0,0])
-		
-		for sp in self.layers:
-			sp.remove()
-		self.layers = []	
 
 
 
