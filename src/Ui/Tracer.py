@@ -96,9 +96,8 @@ class Tracer():
 		self.canvasVBox = _session.viewBox()
 
 		self.lastSpot = (0,0)
-
-		self.canvasBody = []
-		self.moveto(self.lastSpot)
+		self.canvasBody = [(0,0)]
+		self.moveto((0,0))
 
 		self.lenFeed = 0
 		self.lenPoints = 0
@@ -115,14 +114,13 @@ class Tracer():
 		edge = re.findall("S[\d]+", _cmd)
 		if len(edge)==1 and float(edge[0][1:])==0:
 			self.canvasBuild()
-			self.canvasBody = []
+			self.canvasBody = [self.lastSpot]
 
 
 		coords = re.findall("[XY]-?[\d\.]+", _cmd)
 
 		if len(coords)==2 and len(coords[0])>1 and len(coords[1])>1 and coords[0][0]=='X' and coords[1][0]=='Y':
-			self.lastSpot = (float(coords[0][1:]), -float(coords[1][1:]))
-			self.moveto(self.lastSpot)
+			self.moveto((float(coords[0][1:]), -float(coords[1][1:])))
 
 
 		if _res != True:
@@ -166,7 +164,7 @@ class Tracer():
 		self.focus and self.focus.place(_xy)
 
 
-		if not self.canvasBody or not self.layShapes:
+		if len(self.canvasBody)==1:
 			self.lenShapes += 1
 
 			self.layShapes.append(self.svgGen(0))
@@ -192,7 +190,7 @@ class Tracer():
 #		if last:
 #			out += [self.outHeadInter] + last + [self.canvasBody[0]] + ["'/>"]
 
-		out += [self.outHeadShape] + self.canvasBody + ["'/>"]
+		out += [self.outHeadShape] + self.canvasBody[1:] + ["'/>"]
 #		last = [self.canvasBody[-1]]
 
 		out += ["</svg>"]
