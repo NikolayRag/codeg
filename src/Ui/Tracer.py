@@ -51,18 +51,24 @@ class Tracer():
 
 
 # =todo 282 (ui, performance) +0: Tracer separate shapes visibility
-	def show(self, _state, _stateShapes):
-		self.visible = _state
-		self.visibleShapes = _stateShapes
-		if _stateShapes and self.canvasVBox:
-			self.canvasBuild()
+	def show(self, main=None, shapes=None):
+		if main != None:
+			self.visible = main
+
+			self.focus and self.focus.show(main)
+			for sp in self.layers:
+				sp.show(main)
 
 
-		self.focus and self.focus.show(_state)
-		for sp in self.layers:
-			sp.show(_state)
-		for sp in self.layShapes:
-			sp.show(_stateShapes)
+		if shapes != None:
+			self.visibleShapes = shapes
+
+			if shapes and self.canvasVBox:
+				self.canvasBuild()
+
+			for sp in self.layShapes:
+				sp.show(shapes)
+
 
 
 
