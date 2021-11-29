@@ -37,6 +37,7 @@ class Tracer():
 	lastSpot = (0,0)
 
 	visible = True
+	visibleShapes = True
 
 
 	def __init__(self, _svgGen, _osd=None):
@@ -50,9 +51,10 @@ class Tracer():
 
 
 # =todo 282 (ui, performance) +0: Tracer separate shapes visibility
-	def show(self, _state):
+	def show(self, _state, _stateShapes):
 		self.visible = _state
-		if _state and self.canvasVBox:
+		self.visibleShapes = _stateShapes
+		if _stateShapes and self.canvasVBox:
 			self.canvasBuild()
 
 
@@ -60,7 +62,7 @@ class Tracer():
 		for sp in self.layers:
 			sp.show(_state)
 		for sp in self.layShapes:
-			sp.show(_state)
+			sp.show(_stateShapes)
 
 
 
@@ -81,7 +83,7 @@ class Tracer():
 			sp.remove()
 		self.layers = []	
 
-		self.show(self.visible)
+		self.show(self.visible, self.visibleShapes)
 
 
 		if not _session:
@@ -167,7 +169,7 @@ class Tracer():
 
 		if not self.canvasBody:
 			cShape = self.svgGen(0)
-			cShape.show(self.visible)
+			cShape.show(self.visibleShapes)
 			cShape.ghost(True)
 			cShape.place(self.canvasVBox[0:2])
 			self.layShapes.append(cShape)
@@ -180,7 +182,7 @@ class Tracer():
 
 		
 		l = len(self.canvasBody)
-		if self.visible and not(l% (int(l/self.decayDraw)+1)):
+		if self.visibleShapes and not(l% (int(l/self.decayDraw)+1)):
 			self.canvasBuild()
 
 
