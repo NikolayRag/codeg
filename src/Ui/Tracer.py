@@ -194,6 +194,7 @@ class Tracer():
 
 
 		if not self.canvasBody:
+# -todo 269 (module-ui, clean, fix) +1: make painting reasonable
 #cut for use with layResult
 			if self.layShapes:
 				self.layShapes[0].remove()
@@ -224,7 +225,6 @@ class Tracer():
 		outSh = [self.outHeadInter] + self.canvasBody[:2] + ["'/>"]
 		outSh += [self.outHeadShape] + self.canvasBody[1:] + ["'/>"]
 
-# =todo 269 (module-ui, clean, fix) +1: make painting reasonable
 		out = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
 		out += outSh
 		out += ["</svg>"]

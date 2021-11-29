@@ -763,7 +763,7 @@
  module-dispatch, feature 268: +0 "src\Ui\DispatchLink.py" ki 21/11/27 03:41:18
 	handle concurent sessions
 
-=module-ui, clean, fix 269: +1 "src\Ui\Tracer.py" ki 21/11/28 23:33:00
+-module-ui, clean, fix 269: +1 "src\Ui\Tracer.py" ki 21/11/29 06:49:56
 	make painting reasonable
 
  module-dispatch, clean 270: +0 "src\Dispatch\DispatchEngine.py" ki 21/11/27 03:35:01
@@ -804,4 +804,7 @@
 
 =ui, performance 282: +0 "src\Ui\Tracer.py" ki 21/11/29 02:10:46
 	Tracer separate shapes visibility
+
+=performance 283: +0 "src\Ui\Tracer.py" ki 21/11/29 05:13:00
+	add shape into result layer
 
