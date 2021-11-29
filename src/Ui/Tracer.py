@@ -158,33 +158,33 @@ class Tracer():
 
 
 	def moveto(self, _xy):
+		self.lenPoints += 1
+
+		self.lastSpot = _xy
+
+
 		self.focus and self.focus.place(_xy)
 
-		self.canvasBuild(_xy)
+
+		if not self.canvasBody or not self.layShapes:
+			self.lenShapes += 1
+
+			self.layShapes.append(self.svgGen(0))
+			self.layShapes[-1].ghost(True)
+			self.layShapes[-1].place(self.canvasVBox[0:2])
+
+			self.spot((float(_xy[0]), float(_xy[1])), self.pointShape)
+
+		self.canvasBody += [f"{_xy[0]-self.canvasVBox[0]},{_xy[1]-self.canvasVBox[1]}"]
+
+		
+		l = len(self.canvasBody)
+		if self.visible and not(l% (int(l/self.decayDraw)+1)):
+			self.canvasBuild()
 
 
 
-	def canvasBuild(self, _add=None):
-		if _add:
-			self.lenPoints += 1
-
-			if not self.canvasBody or not self.layShapes:
-				self.lenShapes += 1
-
-				self.layShapes.append(self.svgGen(0))
-				self.layShapes[-1].ghost(True)
-				self.layShapes[-1].place(self.canvasVBox[0:2])
-
-				self.spot((float(_add[0]), float(_add[1])), self.pointShape)
-
-			self.canvasBody += [f"{_add[0]-self.canvasVBox[0]},{_add[1]-self.canvasVBox[1]}"]
-
-			
-			l = len(self.canvasBody)
-			if not self.visible or (l% (int(l/self.decayDraw)+1)):
-				return
-
-
+	def canvasBuild(self):
 #		last = None
 
 # =todo 269 (module-ui, clean, fix) +1: make painting reasonable
