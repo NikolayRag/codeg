@@ -62,8 +62,6 @@ class Tracer():
 			for sp in self.laySpots:
 				sp.show(main)
 
-			self.layResult and self.layResult.show(main)
-
 
 		if shapes != None:
 			self.visibleShapes = shapes
@@ -73,6 +71,8 @@ class Tracer():
 
 			for sp in self.layShapes:
 				sp.show(shapes)
+
+			self.layResult and self.layResult.show(shapes)
 
 
 
