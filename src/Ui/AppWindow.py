@@ -141,10 +141,8 @@ class AppWindow(QObject):
 		self.wBtnPrefs = cMain.findChild(QWidget, "btnPrefs")
 
 		self.wBtnDispatcher = cMain.findChild(QWidget, "btnDispatcher")
-		self.wBtnDispatcher.setChecked(Args.Dispatch.visDispatch)
 		self.wFrameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
-		self.wBtnDispatcher.toggled.connect(self.dispatchToggle)
-		self.dispatchToggle(Args.Dispatch.visDispatch)
+		self.wBtnDispatcher.setChecked(Args.Dispatch.visDispatch)
 
 #  todo 47 (module-dispatch, module-ui, ux) +0: change device list to button+list
 #  todo 48 (module-ui) +0: update device list
@@ -163,6 +161,7 @@ class AppWindow(QObject):
 
 
 		self.wBtnFit.clicked.connect(self.viewportFit)
+		self.wBtnDispatcher.toggled.connect(self.dispatchToggle)
 		self.wBtnTraceView.toggled.connect(self.traceToggle)
 		self.wBtnCaption.clicked.connect(self.about)
 		self.wBtnWipe.clicked.connect(self.sigSceneReset)
@@ -183,6 +182,8 @@ class AppWindow(QObject):
 			lambda z:self.wSvgViewport.canvasAdd(z=100+z),
 			[self.wFrameDev, self.wLabStats, self.wTraceProg]
 		)
+
+		self.dispatchToggle(Args.Dispatch.visDispatch)
 		self.traceToggle(Args.Viewport.visTracer)
 
 
@@ -418,7 +419,16 @@ class AppWindow(QObject):
 
 
 	def dispatchToggle(self, _state):
+		self.wFrameDev.setVisible(_state)
+		self.wLabStats.setVisible(_state)
+		self.wTraceProg.setVisible(_state)
+
+		self.wSvgViewport.canvasUpdate(False)
+		self.tracer.show(main=_state, shapes=_state)
+		self.wSvgViewport.canvasUpdate(True)
+
 		self.wFrameDispatcher.setVisible(_state)
+		self.wBtnTraceView.setVisible(_state)
 
 		Args.Dispatch.visDispatch = _state
 
@@ -500,14 +510,10 @@ class AppWindow(QObject):
 
 	def traceToggle(self, _state):
 		self.wSvgViewport.canvasUpdate(False)
-
-		self.tracer.show(_state, _state)
-		self.wFrameDev.setVisible(_state)
-		self.wLabStats.setVisible(_state)
-		self.wTraceProg.setVisible(_state)
-		Args.Viewport.visTracer = _state
-
+		self.tracer.show(shapes=_state)
 		self.wSvgViewport.canvasUpdate(True)
+
+		Args.Viewport.visTracer = _state
 
 
 ### OPTIONS ###
