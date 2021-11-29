@@ -22,8 +22,8 @@ class Tracer():
 	svgGen = None
 
 	layShapes = None
-	focus = None
-	layers = None
+	layFocus = None
+	laySpots = None
 	osd = None
 
 
@@ -43,7 +43,7 @@ class Tracer():
 	def __init__(self, _svgGen, _osd=None):
 		self.svgGen = _svgGen
 
-		self.layers = []
+		self.laySpots = []
 		self.layShapes = []
 
 		self.osd = _osd
@@ -55,8 +55,8 @@ class Tracer():
 		if main != None:
 			self.visible = main
 
-			self.focus and self.focus.show(main)
-			for sp in self.layers:
+			self.layFocus and self.layFocus.show(main)
+			for sp in self.laySpots:
 				sp.show(main)
 
 
@@ -74,20 +74,20 @@ class Tracer():
 
 	#called with no session after SvgViewport recreated
 	def reset(self, _session=None):
-		self.focus and self.focus.remove()
-		self.focus = self.svgGen(1)
-		self.focus.setXml(self.pointTrace)
-		self.focus.ghost(True)
-		self.focus.static(True)
+		self.layFocus and self.layFocus.remove()
+		self.layFocus = self.svgGen(1)
+		self.layFocus.setXml(self.pointTrace)
+		self.layFocus.ghost(True)
+		self.layFocus.static(True)
 
 		for sp in self.layShapes:
 			sp.remove()
 		self.layShapes = []	
 		self.canvasBody = []
 
-		for sp in self.layers:
+		for sp in self.laySpots:
 			sp.remove()
-		self.layers = []	
+		self.laySpots = []	
 
 		self.show(self.visible, self.visibleShapes)
 
@@ -160,7 +160,7 @@ class Tracer():
 		cSpot.setXml(_xml)
 		cSpot.place(_xy)
 
-		self.layers.append(cSpot)
+		self.laySpots.append(cSpot)
 
 
 
@@ -168,7 +168,7 @@ class Tracer():
 		self.lastSpot = _xy
 
 
-		self.focus and self.focus.place(_xy)
+		self.layFocus and self.layFocus.place(_xy)
 
 
 		if not self.canvasBody:
