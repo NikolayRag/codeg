@@ -221,7 +221,6 @@ class Tracer():
 
 
 	def canvasBuild(self):
-#		last = None
 		outSh = [self.outHeadInter] + self.canvasBody[:2] + ["'/>"]
 		outSh += [self.outHeadShape] + self.canvasBody[1:] + ["'/>"]
 
