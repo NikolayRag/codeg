@@ -433,6 +433,9 @@ class SvgCanvasLayer(QSvgRenderer):
 
 
 
+from threading import *
+
+
 class SvgCanvas(QWidget):
 	defaultWidth = 0
 	defaultHeight = 0
@@ -443,6 +446,8 @@ class SvgCanvas(QWidget):
 	ghostXMin = ghostXMax = ghostYMin = ghostYMax = 0
 
 	updateEnabled = True
+	recompGate = None
+	recompFree = True
 
 	
 	offset = QPoint(0,0)
@@ -465,6 +470,8 @@ class SvgCanvas(QWidget):
 		self.layers[-1].setGhost(True)
 		self.layers[-1].setLayerOffset((-10000,-10000))
 
+		self.recompGate = Event()
+		self.recompGate.set()
 		self.recompute()
 
 
@@ -544,26 +551,44 @@ class SvgCanvas(QWidget):
 
 
 	def recompute(self, _set=None):
-			if _set != None:
-				self.updateEnabled = _set
 
-			if not self.updateEnabled:
-				return
+		def runRe():
+			self.recompGate.wait()
+			self.recompGate.clear()
+
+			self.recompFree = True
 
 
-			allLayerXforms = [[*l.layerOffset(True), *l.layerSize(self.scaleX,self.scaleY)] for l in self.layers.values() if l.display and not l.ghost]
+			cLayers = list(self.layers.values())
+
+			allLayerXforms = [[*l.layerOffset(True), *l.layerSize(self.scaleX,self.scaleY)] for l in cLayers if l.display and not l.ghost]
 			allMinMax = list(zip(*[ [x, x+w, y, y+h] for x,y,w,h in allLayerXforms ]))
 			allMinMax = allMinMax or [[0], [self.defaultWidth], [0], [self.defaultHeight]]
 			self.docXMin, self.docXMax = map(sorted(allMinMax[0]+allMinMax[1]).__getitem__, [0,-1])
 			self.docYMin, self.docYMax = map(sorted(allMinMax[2]+allMinMax[3]).__getitem__, [0,-1])
 
-			allLayerXforms = [[*l.layerOffset(True), *l.layerSize(self.scaleX,self.scaleY)] for l in self.layers.values() if l.display]
+			allLayerXforms = [[*l.layerOffset(True), *l.layerSize(self.scaleX,self.scaleY)] for l in cLayers if l.display]
 			allMinMax = list(zip(*[ [x, x+w, y, y+h] for x,y,w,h in allLayerXforms ]))
 			allMinMax = allMinMax or [[0], [self.defaultWidth], [0], [self.defaultHeight]]
 			self.ghostXMin, self.ghostXMax = map(sorted(allMinMax[0]+allMinMax[1]).__getitem__, [0,-1])
 			self.ghostYMin, self.ghostYMax = map(sorted(allMinMax[2]+allMinMax[3]).__getitem__, [0,-1])
 
 			self.update()
+
+			self.recompGate.set()
+
+
+		if _set != None:
+			self.updateEnabled = _set
+
+		if not self.updateEnabled:
+			return
+
+
+		#at most one subsequent call when already started
+		if self.recompFree:
+			self.recompFree = False
+			Thread(target=runRe).start()
 
 
 
