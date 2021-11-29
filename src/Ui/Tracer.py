@@ -75,6 +75,7 @@ class Tracer():
 		for sp in self.layShapes:
 			sp.remove()
 		self.layShapes = []	
+		self.canvasBody = []
 
 		for sp in self.layers:
 			sp.remove()
@@ -96,7 +97,6 @@ class Tracer():
 		self.canvasVBox = _session.viewBox()
 
 		self.lastSpot = (0,0)
-		self.canvasBody = [(0,0)]
 		self.moveto((0,0))
 
 		self.lenFeed = 0
@@ -114,7 +114,8 @@ class Tracer():
 		edge = re.findall("S[\d]+", _cmd)
 		if len(edge)==1 and float(edge[0][1:])==0:
 			self.canvasBuild()
-			self.canvasBody = [self.lastSpot]
+			self.canvasBody = []
+			self.moveto(self.lastSpot)
 
 
 		coords = re.findall("[XY]-?[\d\.]+", _cmd)
@@ -164,13 +165,15 @@ class Tracer():
 		self.focus and self.focus.place(_xy)
 
 
+		if not self.canvasBody:
+			cShape = self.svgGen(0)
+			cShape.show(self.visible)
+			cShape.ghost(True)
+			cShape.place(self.canvasVBox[0:2])
+			self.layShapes.append(cShape)
+
 		if len(self.canvasBody)==1:
 			self.lenShapes += 1
-
-			self.layShapes.append(self.svgGen(0))
-			self.layShapes[-1].ghost(True)
-			self.layShapes[-1].place(self.canvasVBox[0:2])
-
 			self.spot((float(_xy[0]), float(_xy[1])), self.pointShape)
 
 		self.canvasBody += [f"{_xy[0]-self.canvasVBox[0]},{_xy[1]-self.canvasVBox[1]}"]
@@ -187,12 +190,8 @@ class Tracer():
 
 # =todo 269 (module-ui, clean, fix) +1: make painting reasonable
 		out = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
-#		if last:
-#			out += [self.outHeadInter] + last + [self.canvasBody[0]] + ["'/>"]
-
+		out += [self.outHeadInter] + self.canvasBody[:2] + ["'/>"]
 		out += [self.outHeadShape] + self.canvasBody[1:] + ["'/>"]
-#		last = [self.canvasBody[-1]]
-
 		out += ["</svg>"]
 
-		self.layShapes[-1].setXml(' '.join(out).encode())
+		self.layShapes and self.layShapes[-1].setXml(' '.join(out).encode())
