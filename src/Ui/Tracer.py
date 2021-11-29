@@ -159,8 +159,6 @@ class Tracer():
 
 
 	def moveto(self, _xy):
-		self.lenPoints += 1
-
 		self.lastSpot = _xy
 
 
@@ -173,6 +171,9 @@ class Tracer():
 			cShape.ghost(True)
 			cShape.place(self.canvasVBox[0:2])
 			self.layShapes.append(cShape)
+
+		else:
+			self.lenPoints += 1
 
 		if len(self.canvasBody)==1:
 			self.lenShapes += 1
