@@ -197,7 +197,8 @@ class Tracer():
 # -todo 269 (module-ui, clean, fix) +1: make painting reasonable
 #cut for use with layResult
 			if self.layShapes:
-				self.layShapes[0].remove()
+				self.layShapes[-1].remove()
+				self.layShapes = []
 ##
 			cShape = self.svgGen(0)
 			cShape.show(self.visibleShapes)
