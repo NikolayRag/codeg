@@ -41,7 +41,7 @@ class Tracer():
 
 	dtStart = 0
 
-	visible = True
+	visibleSpots = True
 	visibleShapes = True
 
 
@@ -57,13 +57,13 @@ class Tracer():
 
 
 # =todo 282 (ui, performance) +0: Tracer separate shapes visibility
-	def show(self, main=None, shapes=None):
-		if main != None:
-			self.visible = main
+	def show(self, spots=None, shapes=None):
+		if spots != None:
+			self.visibleSpots = spots
 
-			self.layFocus and self.layFocus.show(main)
+			self.layFocus and self.layFocus.show(spots)
 			for sp in self.laySpots:
-				sp.show(main)
+				sp.show(spots)
 
 
 		if shapes != None:
@@ -104,7 +104,7 @@ class Tracer():
 			sp.remove()
 		self.laySpots = []	
 
-		self.show(self.visible, self.visibleShapes)
+		self.show(self.visibleSpots, self.visibleShapes)
 
 
 		if not _session:
@@ -183,7 +183,7 @@ class Tracer():
 
 	def spot(self, _xy, _xml):
 		cSpot = self.svgGen(2)
-		cSpot.show(self.visible)
+		cSpot.show(self.visibleSpots)
 		cSpot.ghost(True)
 		cSpot.static(True)
 		cSpot.setXml(_xml)

@@ -424,7 +424,7 @@ class AppWindow(QObject):
 		self.wTraceProg.setVisible(_state)
 
 		self.wSvgViewport.canvasUpdate(False)
-		self.tracer.show(main=_state, shapes=_state)
+		self.tracer.show(spots=_state, shapes=_state)
 		self.wSvgViewport.canvasUpdate(True)
 
 		self.wFrameDispatcher.setVisible(_state)
