@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 
 
 
@@ -37,6 +38,8 @@ class Tracer():
 	lenPoints = 0
 	lenShapes = 0
 	lastSpot = (0,0)
+
+	dtStart = 0
 
 	visible = True
 	visibleShapes = True
@@ -124,10 +127,13 @@ class Tracer():
 		self.lenPoints = 0
 		self.lenShapes = 0
 
+		self.dtStart = datetime.now()
+
 
 
 	def feed(self, _res, _cmd):
-		self.osd[1].setPlainText(f"Shapes: {self.lenShapes}\nPoints: {self.lenPoints}")
+		dt = datetime.now()-self.dtStart
+		self.osd[1].setPlainText(f"time: {str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
 		self.lenFeed += 1
 		self.osd[2].setValue(100*self.lenFeed/self.session.pathLen())
 
@@ -165,7 +171,8 @@ class Tracer():
 	def final(self, _res):
 		self.lenPoints -= 1 #last shape is park
 		self.lenShapes -= 1
-		self.osd[1].setPlainText(f"Shapes: {self.lenShapes}\nPoints: {self.lenPoints}")
+		dt = datetime.now()-self.dtStart
+		self.osd[1].setPlainText(f"time: {str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
 		self.osd[0].appendPlainText(f"Dispatch {'end' if _res else 'error'}")
 		if not _res:
 			self.spot(self.lastSpot, self.pointError)
