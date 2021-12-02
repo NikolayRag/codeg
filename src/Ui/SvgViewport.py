@@ -546,20 +546,20 @@ class SvgCanvas(QWidget):
 	def recompute(self, _set=None):
 
 		def runRe():
+			defMinMax = ((0,), (self.defaultWidth,), (0,), (self.defaultHeight,))
 
 			cLayers = list(self.layers.values())
+			allLayerXforms = [[*l.layerOffset(True), *l.layerSize(self.scaleX,self.scaleY), l.ghost] for l in cLayers if l.display]
 
-			allLayerXforms = [[*l.layerOffset(True), *l.layerSize(self.scaleX,self.scaleY)] for l in cLayers if l.display and not l.ghost]
-			allMinMax = list(zip(*[ [x, x+w, y, y+h] for x,y,w,h in allLayerXforms ]))
-			allMinMax = allMinMax or [[0], [self.defaultWidth], [0], [self.defaultHeight]]
-			self.docXMin, self.docXMax = map(sorted(allMinMax[0]+allMinMax[1]).__getitem__, [0,-1])
-			self.docYMin, self.docYMax = map(sorted(allMinMax[2]+allMinMax[3]).__getitem__, [0,-1])
+			minMax = tuple(zip(*[ [x, x+w, y, y+h] for x,y,w,h,g in allLayerXforms if not g]))
+			minMax = minMax or defMinMax
+			self.docXMin, self.docXMax = map(sorted(minMax[0]+minMax[1]).__getitem__, [0,-1])
+			self.docYMin, self.docYMax = map(sorted(minMax[2]+minMax[3]).__getitem__, [0,-1])
 
-			allLayerXforms = [[*l.layerOffset(True), *l.layerSize(self.scaleX,self.scaleY)] for l in cLayers if l.display]
-			allMinMax = list(zip(*[ [x, x+w, y, y+h] for x,y,w,h in allLayerXforms ]))
-			allMinMax = allMinMax or [[0], [self.defaultWidth], [0], [self.defaultHeight]]
-			self.ghostXMin, self.ghostXMax = map(sorted(allMinMax[0]+allMinMax[1]).__getitem__, [0,-1])
-			self.ghostYMin, self.ghostYMax = map(sorted(allMinMax[2]+allMinMax[3]).__getitem__, [0,-1])
+			minMax = tuple(zip(*[ [x, x+w, y, y+h] for x,y,w,h,g in allLayerXforms if g]))
+			minMax = minMax or defMinMax
+			self.ghostXMin, self.ghostXMax = map(sorted(minMax[0]+minMax[1]+(self.docXMin,self.docXMax)).__getitem__, [0,-1])
+			self.ghostYMin, self.ghostYMax = map(sorted(minMax[2]+minMax[3]+(self.docYMin,self.docYMax)).__getitem__, [0,-1])
 
 			self.update()
 
