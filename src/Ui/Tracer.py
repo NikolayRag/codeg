@@ -10,7 +10,6 @@ Dispatch live tracer
 #  todo 274 (ux, clean) +0: make paint nonblocking
 class Tracer():
 	pointTrace = 'resource\\point-trace.svg'
-	pointShape = 'resource\\point-shape.svg'
 	pointWarning = 'resource\\point-warning.svg'
 	pointError = 'resource\\point-error.svg'
 
@@ -220,7 +219,6 @@ class Tracer():
 
 		if len(self.canvasBody)==1:
 			self.lenShapes += 1
-			self.spot((float(_xy[0]), float(_xy[1])), self.pointShape)
 
 		self.canvasBody += [f"{_xy[0]-self.canvasVBox[0]},{_xy[1]-self.canvasVBox[1]}"]
 
@@ -234,6 +232,8 @@ class Tracer():
 
 	def canvasBuild(self):
 		outSh = [self.outHeadInter] + self.canvasBody[:2] + ["'/>"]
+		if len(self.canvasBody)>1:
+			outSh += [f"<path d='M{self.canvasBody[1]} h0.0000001' stroke='#0f0' stroke-linecap='round' vector-effect='non-scaling-stroke' stroke-width='6px'/>"]
 		outSh += [self.outHeadShape] + self.canvasBody[1:] + ["'/>"]
 
 		out = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
