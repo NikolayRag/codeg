@@ -1,3 +1,9 @@
+'''
+Also tracer is optimised to be *fast*,
+it blocks dispatch by single-threaded svg update if on,
+that can and will interfere with entire cut proccess
+at late event when there's lot of painted feed present already.
+'''
 import re
 from datetime import datetime
 
@@ -230,6 +236,7 @@ class Tracer():
 
 
 
+
 	def canvasBuild(self):
 		outSh = [self.outHeadInter] + self.canvasBody[:2] + ["'/>"]
 		if len(self.canvasBody)>1:
@@ -239,6 +246,7 @@ class Tracer():
 		out = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
 		out += outSh
 		out += ["</svg>"]
+
 		self.layShapes and self.layShapes[-1].setXml(' '.join(out).encode())
 
 		return outSh
