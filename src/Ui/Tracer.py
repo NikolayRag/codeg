@@ -17,7 +17,7 @@ class Tracer():
 	outHeadInter = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#590' stroke-dasharray='3' fill='none' points='"
 	outHeadShape = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"
 
-	decayDraw = 100.
+	drawTrigger = 1
 
 
 	svgGen = None
@@ -150,6 +150,8 @@ class Tracer():
 
 
 			self.canvasBuild()
+
+			self.drawTrigger = 1
 			self.canvasBody = []
 			self.moveto(self.lastSpot)
 
@@ -224,7 +226,8 @@ class Tracer():
 
 		
 		l = len(self.canvasBody)
-		if self.visibleShapes and not(l% (int(l/self.decayDraw)+1)):
+		if self.visibleShapes and l>self.drawTrigger:
+			self.drawTrigger = l*1.01+self.lenPoints*.01
 			self.canvasBuild()
 
 
