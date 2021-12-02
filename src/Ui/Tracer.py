@@ -22,7 +22,7 @@ class Tracer():
 
 	svgGen = None
 
-	layResult = None
+	#layResult = None
 	layShapes = None
 	layFocus = None
 	laySpots = None
@@ -75,7 +75,7 @@ class Tracer():
 			for sp in self.layShapes:
 				sp.show(shapes)
 
-			self.layResult and self.layResult.show(shapes)
+			#self.layResult and self.layResult.show(shapes)
 
 
 
@@ -88,10 +88,10 @@ class Tracer():
 		self.layFocus.ghost(True)
 		self.layFocus.static(True)
 
-		self.layResult and self.layResult.remove()
-		self.layResult = self.svgGen(0)
-		self.layResult.ghost(True)
-		self.canvasVBox and self.layResult.place(self.canvasVBox[0:2])
+		#self.layResult and self.layResult.remove()
+		#self.layResult = self.svgGen(0)
+		#self.layResult.ghost(True)
+		#self.canvasVBox and self.layResult.place(self.canvasVBox[0:2])
 
 
 		for sp in self.layShapes:
@@ -118,7 +118,7 @@ class Tracer():
 
 		self.session = _session
 		self.canvasVBox = _session.viewBox()
-		self.layResult.place(self.canvasVBox[0:2])
+		#self.layResult.place(self.canvasVBox[0:2])
 
 		self.lastSpot = (0,0)
 		self.moveto((0,0))
@@ -140,16 +140,16 @@ class Tracer():
 
 		edge = re.findall("S[\d]+", _cmd)
 		if len(edge)==1 and float(edge[0][1:])==0:
-			# =todo 283 (performance) +0: add shape into result layer
-			self.shapesList.append(self.canvasBuild())
+#			self.shapesList.append(self.canvasBuild())
 
-			cShapeAll = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
-			for sh in self.shapesList:
-				cShapeAll += sh
-			cShapeAll += ["</svg>"]
-			self.layResult.setXml(' '.join(cShapeAll).encode())
+#			cShapeAll = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
+#			for sh in self.shapesList:
+#				cShapeAll += sh
+#			cShapeAll += ["</svg>"]
+##			self.layResult.setXml(' '.join(cShapeAll).encode())
 
 
+			self.canvasBuild()
 			self.canvasBody = []
 			self.moveto(self.lastSpot)
 
@@ -202,10 +202,10 @@ class Tracer():
 
 		if not self.canvasBody:
 # -todo 269 (module-ui, clean, fix) +1: make painting reasonable
-#cut for use with layResult
-			if self.layShapes:
-				self.layShapes[-1].remove()
-				self.layShapes = []
+##use with layResult
+#			if self.layShapes:
+#				self.layShapes[-1].remove()
+#				self.layShapes = []
 ##
 			cShape = self.svgGen(0)
 			cShape.show(self.visibleShapes)
