@@ -433,9 +433,6 @@ class SvgCanvasLayer(QSvgRenderer):
 
 
 
-from threading import *
-
-
 class SvgCanvas(QWidget):
 	defaultWidth = 0
 	defaultHeight = 0
@@ -446,8 +443,6 @@ class SvgCanvas(QWidget):
 	ghostXMin = ghostXMax = ghostYMin = ghostYMax = 0
 
 	updateEnabled = True
-	recompGate = None
-	recompFree = True
 
 	
 	offset = QPoint(0,0)
@@ -470,8 +465,6 @@ class SvgCanvas(QWidget):
 		self.layers[-1].setGhost(True)
 		self.layers[-1].setLayerOffset((-10000,-10000))
 
-		self.recompGate = Event()
-		self.recompGate.set()
 		self.recompute()
 
 
@@ -553,11 +546,6 @@ class SvgCanvas(QWidget):
 	def recompute(self, _set=None):
 
 		def runRe():
-			self.recompGate.wait()
-			self.recompGate.clear()
-
-			self.recompFree = True
-
 
 			cLayers = list(self.layers.values())
 
@@ -575,8 +563,6 @@ class SvgCanvas(QWidget):
 
 			self.update()
 
-			self.recompGate.set()
-
 
 		if _set != None:
 			self.updateEnabled = _set
@@ -585,10 +571,7 @@ class SvgCanvas(QWidget):
 			return
 
 
-		#at most one subsequent call when already started
-		if self.recompFree:
-			self.recompFree = False
-			Thread(target=runRe).start()
+		runRe()
 
 
 
