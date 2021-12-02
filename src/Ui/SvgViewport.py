@@ -544,7 +544,7 @@ class SvgCanvas(QWidget):
 
 
 	def recompute(self, _set=None):
-
+#  todo 286 (viewport, optimize) +0: recompute viewport nonblocking
 		def runRe():
 			defMinMax = ((0,), (self.defaultWidth,), (0,), (self.defaultHeight,))
 

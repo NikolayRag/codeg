@@ -104,6 +104,7 @@ class DispatchManager():
 
 
 
+	#  todo 284 (module-dispatch, clean) +0: add deviceMeta
 	def deviceSize(self, _dev):
 		if _dev in self.allDevices:
 			return self.allDevices[_dev].getPlate()

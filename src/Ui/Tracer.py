@@ -4,16 +4,17 @@ it blocks dispatch by single-threaded svg update if on,
 that can and will interfere with entire cut proccess
 at late event when there's lot of painted feed present already.
 '''
+# =todo 274 (ux, fix) +1: make Tracer paint nonblocking
+
 import re
 from datetime import datetime
 
 
-
+# =todo 285 (ux, fix) +0: optimize hidden Tracer
 '''
 Dispatch live tracer
 '''
 #  todo 273 (ux, clean) +0: rewindable trace history
-#  todo 274 (ux, clean) +0: make paint nonblocking
 class Tracer():
 	pointTrace = 'resource\\point-trace.svg'
 	pointWarning = 'resource\\point-warning.svg'
@@ -208,7 +209,6 @@ class Tracer():
 
 
 		if not self.canvasBody:
-# -todo 269 (module-ui, clean, fix) +1: make painting reasonable
 ##use with layResult
 #			if self.layShapes:
 #				self.layShapes[-1].remove()

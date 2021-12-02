@@ -709,8 +709,8 @@
 +ux, module-dispatch 250: +0 "src\Ui\AppWindow.py" ki 21/11/23 00:24:20
 	react on device changed
 
- module-dispatch, feature 251: +0 "src\Ui\Ui.py" ki 21/11/16 19:49:41
-	make generation by iterator
+ module-dispatch, feature 251: +0 "src\Ui\Ui.py" ki 21/11/30 00:18:55
+	make generation by iterator (need scene snapshot)
 
 +module-dispatch, feature 252: +0 "src\Ui\DispatchLink.py" ki 21/11/22 04:48:13
 	dispatch async
@@ -807,4 +807,7 @@
 
 =performance 283: +0 "src\Ui\Tracer.py" ki 21/11/29 05:13:00
 	add shape into result layer
+
+ module-dispatch, clean 284: +0 "src\Dispatch\DispatchManager.py" ki 21/11/30 00:27:32
+	add deviceMeta
 
