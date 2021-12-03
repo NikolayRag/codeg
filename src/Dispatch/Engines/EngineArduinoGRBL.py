@@ -108,7 +108,9 @@ class EngineArduinoGRBL(DispatchEngine):
 
 				return False
 
-			return self.send(self.privData['head'])
+			res = self.send(self.privData['head'])
+			if not res:
+				return False
 
 
 		res = self.send(_data)
