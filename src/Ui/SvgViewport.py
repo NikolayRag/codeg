@@ -580,11 +580,10 @@ class SvgCanvas(QWidget):
 		p.setRenderHint(QPainter.Antialiasing)
 
 
-		lOrdered = sorted(self.layers.values(), key=lambda l: l.zindex())
-		for l in lOrdered:
-			if not l.display:
-				continue
+		lVis = [l for l in self.layers.values() if l.display]
 
+		lOrdered = sorted(lVis, key=lambda l: l.z)
+		for l in lOrdered:
 			lSize = QSizeF(*l.layerSize(self.scaleX,self.scaleY))
 			lPos = QPointF(*l.layerOffset())
 
