@@ -11,6 +11,92 @@ from datetime import datetime
 
 
 # =todo 285 (ux, fix) +0: optimize hidden Tracer
+
+class TraceShape():
+	outHeadInter = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#590' stroke-dasharray='3' fill='none' points='"
+	outHeadShape = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"
+
+
+
+	def create(self):
+		if self.svgGen and not self.svgDescr:
+			self.svgDescr = self.svgGen()
+		
+		if self.svgDescr:
+			self.svgDescr.ghost(True)
+			self.svgDescr.place(self.viewbox[0:2])
+
+
+		return self.svgDescr
+
+
+
+	def draw(self):
+		if self.visible and self.updated and self.create():
+			out = [f"<svg width='{int(self.viewbox[2])}' height='{int(self.viewbox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
+			out += self.snapshot()
+			out += ["</svg>"]
+
+			self.svgDescr.setXml(' '.join(out).encode())
+
+			self.updated = False
+
+
+
+	def __init__(self, _svgGen, _visible=True, _viewbox=(0,0,1,1)):
+		self.visible = _visible
+		self.drawn = False
+		self.data = []
+		self.viewbox = _viewbox
+
+		self.svgDescr = None
+		self.svgGen = _svgGen
+
+
+		self.updated = False
+
+
+
+	def show(self, _vis):
+		self.visible = _vis
+		if _vis:
+			self.draw()
+
+		self.svgDescr and self.svgDescr.show(_vis)
+
+
+
+	def add(self, _data):
+		self.data.append(f'{_data[0]},{_data[1]}')
+		self.updated = True
+
+#		self.draw() #degrade control needed
+
+
+
+	def dataLen(self):
+		return len(self.data)
+
+
+
+	def snapshot(self):
+		outSh = [self.outHeadInter] + self.data[:2] + ["'/>"]
+		if len(self.data)>1:
+			outSh += [f"<path d='M{self.data[1]} h0.0000001' stroke='#0f0' stroke-linecap='round' vector-effect='non-scaling-stroke' stroke-width='6px'/>"]
+		outSh += [self.outHeadShape] + self.data[1:] + ["'/>"]
+
+		return outSh
+
+
+
+	def remove(self):
+		self.svgDescr and self.svgDescr.remove()
+
+		self.svgDescr = None
+
+
+
+
 '''
 Dispatch live tracer
 '''
@@ -20,8 +106,8 @@ class Tracer():
 	pointWarning = 'resource\\point-warning.svg'
 	pointError = 'resource\\point-error.svg'
 
-	outHeadInter = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#590' stroke-dasharray='3' fill='none' points='"
-	outHeadShape = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"
+#	outHeadInter = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#590' stroke-dasharray='3' fill='none' points='"
+#	outHeadShape = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"
 
 	drawTrigger = 1
 
@@ -38,7 +124,6 @@ class Tracer():
 	session = None
 
 	canvasVBox = None
-	canvasBody = []
 	shapesList = []
 	lenFeed = 0
 	lenPoints = 0
@@ -75,9 +160,6 @@ class Tracer():
 		if shapes != None:
 			self.visibleShapes = shapes
 
-			if shapes and self.canvasVBox:
-				self.canvasBuild()
-
 			for sp in self.layShapes:
 				sp.show(shapes)
 
@@ -103,7 +185,6 @@ class Tracer():
 		for sp in self.layShapes:
 			sp.remove()
 		self.layShapes = []	
-		self.canvasBody = []
 		self.shapesList = []
 
 		for sp in self.laySpots:
@@ -131,7 +212,6 @@ class Tracer():
 
 		self.lenFeed = 0
 		self.lenPoints = 0
-		self.lenShapes = 0
 
 		self.dtStart = datetime.now()
 
@@ -139,14 +219,14 @@ class Tracer():
 
 	def feed(self, _res, _cmd):
 		dt = datetime.now()-self.dtStart
-		self.osd[1].setPlainText(f"time: {str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
+		self.osd[1].setPlainText(f"time: {str(dt)[:-5]}\nsh/pt: {len(self.layShapes)-1}/{self.lenPoints}")
 		self.lenFeed += 1
 		self.osd[2].setValue(100*self.lenFeed/self.session.pathLen())
 
 
 		edge = re.findall("S[\d]+", _cmd)
 		if len(edge)==1 and float(edge[0][1:])==0:
-#			self.shapesList.append(self.canvasBuild())
+#			self.shapesList.append(self.layShapes[-1].snapshot())
 
 #			cShapeAll = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
 #			for sh in self.shapesList:
@@ -155,11 +235,8 @@ class Tracer():
 ##			self.layResult.setXml(' '.join(cShapeAll).encode())
 
 
-			self.canvasBuild()
-
 			self.drawTrigger = 1
-			self.canvasBody = []
-			self.moveto(self.lastSpot)
+			self.moveto(self.lastSpot, True)
 
 
 		coords = re.findall("[XY]-?[\d\.]+", _cmd)
@@ -177,15 +254,14 @@ class Tracer():
 
 
 	def final(self, _res):
+		self.moveto(self.lastSpot, True)
+
 		self.lenPoints -= 1 #last shape is park
-		self.lenShapes -= 1
 		dt = datetime.now()-self.dtStart
-		self.osd[1].setPlainText(f"time: {str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
+		self.osd[1].setPlainText(f"time: {str(dt)[:-5]}\nsh/pt: {len(self.layShapes)-3}/{self.lenPoints}")
 		self.osd[0].appendPlainText(f"Dispatch {'end' if _res else 'error'}")
 		if not _res:
 			self.spot(self.lastSpot, self.pointError)
-
-		self.canvasBuild()
 
 
 
@@ -201,53 +277,28 @@ class Tracer():
 
 
 
-	def moveto(self, _xy):
+	def moveto(self, _xy, _new=False):
 		self.lastSpot = _xy
 
 
 		self.layFocus and self.layFocus.place(_xy)
 
 
-		if not self.canvasBody:
-##use with layResult
-#			if self.layShapes:
-#				self.layShapes[-1].remove()
-#				self.layShapes = []
-##
-			cShape = self.svgGen(0)
-			cShape.show(self.visibleShapes)
-			cShape.ghost(True)
-			cShape.place(self.canvasVBox[0:2])
+		if not self.layShapes or _new:
+			self.layShapes and self.layShapes[-1].draw()
+
+			cShape = TraceShape(lambda:self.svgGen(0), self.visibleShapes, self.canvasVBox)
 			self.layShapes.append(cShape)
 
 		else:
 			self.lenPoints += 1
 
-		if len(self.canvasBody)==1:
-			self.lenShapes += 1
 
-		self.canvasBody += [f"{_xy[0]-self.canvasVBox[0]},{_xy[1]-self.canvasVBox[1]}"]
+		self.layShapes[-1].add((_xy[0]-self.canvasVBox[0],_xy[1]-self.canvasVBox[1]))
 
 		
-		l = len(self.canvasBody)
-		if self.visibleShapes and l>self.drawTrigger:
+		l = self.layShapes[-1].dataLen()
+		if l>self.drawTrigger:
 			self.drawTrigger = l*1.01+self.lenPoints*.01
-			if self.lenShapes<1000:
-				self.canvasBuild()
-
-
-
-
-	def canvasBuild(self):
-		outSh = [self.outHeadInter] + self.canvasBody[:2] + ["'/>"]
-		if len(self.canvasBody)>1:
-			outSh += [f"<path d='M{self.canvasBody[1]} h0.0000001' stroke='#0f0' stroke-linecap='round' vector-effect='non-scaling-stroke' stroke-width='6px'/>"]
-		outSh += [self.outHeadShape] + self.canvasBody[1:] + ["'/>"]
-
-		out = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
-		out += outSh
-		out += ["</svg>"]
-
-		self.layShapes and self.layShapes[-1].setXml(' '.join(out).encode())
-
-		return outSh
+			if len(self.layShapes)<1000:
+				self.layShapes[-1].draw()
