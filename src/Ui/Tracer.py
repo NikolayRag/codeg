@@ -232,7 +232,8 @@ class Tracer():
 		l = len(self.canvasBody)
 		if self.visibleShapes and l>self.drawTrigger:
 			self.drawTrigger = l*1.01+self.lenPoints*.01
-			self.canvasBuild()
+			if self.lenShapes<1000:
+				self.canvasBuild()
 
 
 
