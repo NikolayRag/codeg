@@ -94,10 +94,10 @@ class EngineArduinoGRBL(DispatchEngine):
 	def sink(self, _data):
 		if not _data:
 			if self.port:
-				self.send(self.privData['tail'])
+				res = self.send(self.privData['tail'])
 				self.end()
 
-				return True
+				return res
 
 
 		if not self.port:
