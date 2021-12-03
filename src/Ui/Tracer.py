@@ -4,13 +4,14 @@ it blocks dispatch by single-threaded svg update if on,
 that can and will interfere with entire cut proccess
 at late event when there's lot of painted feed present already.
 '''
-# =todo 274 (ux, fix) +1: make Tracer paint nonblocking
+# -todo 274 (ux, fix) +1: make Tracer paint nonblocking
+
+
 
 import re
 from datetime import datetime
 
 
-# =todo 285 (ux, fix) +0: optimize hidden Tracer
 
 class TraceShape():
 	outHeadInter = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#590' stroke-dasharray='3' fill='none' points='"
@@ -218,6 +219,8 @@ class Tracer():
 
 
 	def feed(self, _res, _cmd):
+#		self.osd[0].appendPlainText(_cmd)
+
 		dt = datetime.now()-self.dtStart
 		self.osd[1].setPlainText(f"time: {str(dt)[:-5]}\nsh/pt: {len(self.layShapes)-1}/{self.lenPoints}")
 		self.lenFeed += 1

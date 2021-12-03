@@ -1,3 +1,5 @@
+# =todo 287 (test) +0: scan devices while busy
+
 
 # =todo 22 (module-dispatch, ux) +1: make dispatch interruptable and terminatable
 # =todo 61 (module-dispatch) +0: CNC control
