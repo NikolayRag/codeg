@@ -129,7 +129,7 @@ class AppWindow(QObject):
 
 		self.wBtnFit = cMain.findChild(QWidget, "btnFit")
 		self.wBtnTraceLive = cMain.findChild(QWidget, "btnTraceLive")
-		self.wBtnTraceLive.setChecked(Args.Dispatch.visTracer)
+		self.wBtnTraceShapes = cMain.findChild(QWidget, "btnTraceShapes")
 
 		self.wBtnCaption = cMain.findChild(QWidget, "btnCaption")
 		self.wBtnWipe = cMain.findChild(QWidget, "btnWipe")
@@ -142,7 +142,6 @@ class AppWindow(QObject):
 
 		self.wBtnDispatcher = cMain.findChild(QWidget, "btnDispatcher")
 		self.wFrameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
-		self.wBtnDispatcher.setChecked(Args.Dispatch.visDispatch)
 
 #  todo 47 (module-dispatch, module-ui, ux) +0: change device list to button+list
 #  todo 48 (module-ui) +0: update device list
@@ -163,6 +162,7 @@ class AppWindow(QObject):
 		self.wBtnFit.clicked.connect(self.viewportFit)
 		self.wBtnDispatcher.toggled.connect(self.dispatchToggle)
 		self.wBtnTraceLive.toggled.connect(lambda v: self.traceToggle(live=v))
+		self.wBtnTraceShapes.toggled.connect(lambda v: self.traceToggle(shapes=v))
 		self.wBtnCaption.clicked.connect(self.about)
 		self.wBtnWipe.clicked.connect(self.sigSceneReset)
 		self.wBtnOpen.clicked.connect(lambda: self.sigAddFile.emit(self.wMain))
@@ -183,8 +183,12 @@ class AppWindow(QObject):
 			[self.wFrameDev, self.wLabStats, self.wTraceProg]
 		)
 
+		self.wBtnDispatcher.setChecked(Args.Dispatch.visDispatch)
+		self.wBtnTraceLive.setChecked(Args.Dispatch.visTracer)
+		self.wBtnTraceShapes.setEnabled(Args.Dispatch.visTracer)
+		self.wBtnTraceShapes.setChecked(Args.Dispatch.visTraceShapes)
+		self.traceToggle(live=Args.Dispatch.visTracer, shapes=Args.Dispatch.visTraceShapes)
 		self.dispatchToggle(Args.Dispatch.visDispatch)
-		self.traceToggle(live=Args.Dispatch.visTracer)
 
 
 
@@ -418,22 +422,6 @@ class AppWindow(QObject):
 ### DISPATCH ###
 
 
-	def dispatchToggle(self, _state):
-		self.wFrameDev.setVisible(_state)
-		self.wLabStats.setVisible(_state)
-		self.wTraceProg.setVisible(_state)
-
-		self.wSvgViewport.canvasUpdate(False)
-		self.tracer.show(spots=_state)
-		self.wSvgViewport.canvasUpdate(True)
-
-		self.wFrameDispatcher.setVisible(_state)
-		self.wBtnTraceLive.setVisible(_state)
-
-		Args.Dispatch.visDispatch = _state
-
-
-
 	def dispatchFill(self, _devices, _default, add=False):
 		oldList = {self.wListDevs.itemText(i):self.wListDevs.itemData(i) for i in range(self.wListDevs.count())}
 
@@ -459,13 +447,35 @@ class AppWindow(QObject):
 
 
 
-	def traceToggle(self, live=None):
-		self.wSvgViewport.canvasUpdate(False)
-		self.tracer.show(shapes=live)
-		self.wSvgViewport.canvasUpdate(True)
+	def dispatchToggle(self, _state):
+		Args.Dispatch.visDispatch = _state
 
+
+		self.traceToggle()
+
+		self.wFrameDev.setVisible(_state)
+		self.wLabStats.setVisible(_state)
+		self.wTraceProg.setVisible(_state)
+
+		self.wFrameDispatcher.setVisible(_state)
+		self.wBtnTraceLive.setVisible(_state)
+
+
+
+	def traceToggle(self, live=None, shapes=None):
 		if live != None:
+			self.wBtnTraceShapes.setEnabled(live)
 			Args.Dispatch.visTracer = live
+
+		if shapes != None:
+			Args.Dispatch.visTraceShapes = shapes
+
+		self.wSvgViewport.canvasUpdate(False)
+		self.tracer.show(
+			spots=(Args.Dispatch.visDispatch and Args.Dispatch.visTracer),
+			shapes=(Args.Dispatch.visDispatch and Args.Dispatch.visTracer and Args.Dispatch.visTraceShapes)
+		)
+		self.wSvgViewport.canvasUpdate(True)
 
 
 
