@@ -144,7 +144,7 @@ class Tracer():
 		self.laySpots = []
 		self.layShapes = []
 
-		self.osd = _osd
+		self.wLog, self.wStats, self.wProgress = _osd
 
 
 
@@ -194,9 +194,9 @@ class Tracer():
 
 		self.dtStart = datetime.now()
 
-		self.osd[0].appendPlainText(f"{str(self.dtStart)[:-5]}:\nDispatch begin")
-		self.osd[1].setPlainText('')
-		self.osd[2].setValue(0)
+		self.wLog.appendPlainText(f"{str(self.dtStart)[:-5]}:\nDispatch begin")
+		self.wStats.setPlainText('')
+		self.wProgress.setValue(0)
 
 
 		self.session = _session
@@ -213,12 +213,12 @@ class Tracer():
 
 
 	def feed(self, _res, _cmd):
-#		self.osd[0].appendPlainText(_cmd)
+#		self.wLog.appendPlainText(_cmd)
 
 		dt = datetime.now()-self.dtStart
-		self.osd[1].setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {len(self.layShapes)-1}/{self.lenPoints}")
+		self.wStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {len(self.layShapes)-1}/{self.lenPoints}")
 		self.lenFeed += 1
-		self.osd[2].setValue(100*self.lenFeed/self.session.pathLen())
+		self.wProgress.setValue(100*self.lenFeed/self.session.pathLen())
 
 
 		edge = re.findall("S([\d]+)", _cmd)
@@ -233,7 +233,7 @@ class Tracer():
 
 
 		if _res != True:
-			self.osd[0].appendPlainText((f"{_res or 'Warning'}:\n ") + _cmd)
+			self.wLog.appendPlainText((f"{_res or 'Warning'}:\n ") + _cmd)
 
 			cPoint = self.pointError if _res else self.pointWarning
 			self.spot(self.lastSpot, cPoint)
@@ -245,8 +245,8 @@ class Tracer():
 
 		self.lenPoints -= 1 #last shape is park
 		dt = datetime.now()-self.dtStart
-		self.osd[1].setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {len(self.layShapes)-3}/{self.lenPoints}")
-		self.osd[0].appendPlainText(f"{str(datetime.now())[:-5]}:\nDispatch {'end' if _res else 'error'}\nin {str(dt)[:-5]}\nwith {len(self.layShapes)-3}/{self.lenPoints} sh/pt\n")
+		self.wStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {len(self.layShapes)-3}/{self.lenPoints}")
+		self.wLog.appendPlainText(f"{str(datetime.now())[:-5]}:\nDispatch {'end' if _res else 'error'}\nin {str(dt)[:-5]}\nwith {len(self.layShapes)-3}/{self.lenPoints} sh/pt\n")
 		if not _res:
 			self.spot(self.lastSpot, self.pointError)
 
