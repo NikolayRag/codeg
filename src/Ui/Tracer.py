@@ -110,8 +110,8 @@ class Tracer():
 #	outHeadInter = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#590' stroke-dasharray='3' fill='none' points='"
 #	outHeadShape = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"
 
-	drawTrigger = 1
 
+	triggerDraw = 1
 
 	svgGen = None
 
@@ -238,7 +238,7 @@ class Tracer():
 ##			self.layResult.setXml(' '.join(cShapeAll).encode())
 
 
-			self.drawTrigger = 1
+			self.triggerDraw = 1
 			self.moveto(self.lastSpot, True)
 
 
@@ -300,7 +300,7 @@ class Tracer():
 
 		
 		l = self.layShapes[-1].dataLen()
-		if l>self.drawTrigger:
-			self.drawTrigger = l*1.01+self.lenPoints*.01
-			if len(self.layShapes)<1000:
-				self.layShapes[-1].draw()
+
+		if l>self.triggerDraw and len(self.layShapes)<1000:
+			self.triggerDraw = l*1.01+self.lenPoints*.01
+			self.layShapes[-1].draw()
