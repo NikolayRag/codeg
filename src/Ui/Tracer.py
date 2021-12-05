@@ -103,7 +103,7 @@ class TraceShape():
 # -todo 289 (tracer, ux) +0: add clean/pin Tracer echo
 
 '''
-Dispatch live tracer
+Dispatch ui and live tracer
 '''
 #  todo 273 (ux, clean) +0: rewindable trace history
 class Tracer():
