@@ -489,7 +489,7 @@ class Ui():
 
 #  todo 251 (module-dispatch, feature) +0: make generation by iterator
 	def dispatchSend(self):
-		cSession = self.dispatch.runDevice(self.activeDevice, self.activeScene.traceG())
+		cSession = self.dispatch.sessionStart(self.activeDevice, self.activeScene.traceG())
 		
 # -todo 264 (module-ui, module-dispatch, fix) +0: use actual box
 		cSession and self.appWindow.traceStart(cSession)

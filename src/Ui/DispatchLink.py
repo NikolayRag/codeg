@@ -97,7 +97,7 @@ class DispatchLink(QObject):
 
 
 # =todo 263 (module-dispatch, feature) +0: add dispatch queue
-	def runDevice(self, _dev, _data):
+	def sessionStart(self, _dev, _data):
 		if not self.dispatcher:
 			print ('No dispatcher')
 			return
