@@ -5,6 +5,7 @@ from PySide2.QtCore import *
 
 
 
+# =todo 290 (module-dispatch, feature) +0: dispatch end command
 # =todo 261 (module-dispatch, feature) +0: add basic dispatch session manager
 #  todo 268 (module-dispatch, feature) +0: handle concurent sessions
 class DispatchSession(Thread, QObject):
@@ -60,7 +61,7 @@ class DispatchSession(Thread, QObject):
 Interface for separate Dispatch
 Dispatch connected either inline, or as app link
 '''
-#  todo 18 (api, module-dispatch, v2) +0: standalone dispatcher over *cloud*
+#  todo 18 (API, module-dispatch, v2) +0: standalone dispatcher over *cloud*
 #  todo 258 (module-dispatch, error, ux) +0: handle retries
 class DispatchLink(QObject):
 	sigDeviceFound = Signal(str)
@@ -119,7 +120,6 @@ class DispatchLink(QObject):
 
 
 
-# =todo 263 (module-dispatch, feature) +0: add dispatch queue
 	def sessionStart(self, _dev, _data):
 		if not self.dispatcher:
 			print ('No dispatcher')

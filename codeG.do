@@ -49,7 +49,7 @@
 =spec, module-dispatch 17: +0 "" kii 21/08/10 05:55:57
 	send to serial-usb (arduino)
 
- API, module-dispatch, v2 18: +0 "src\Ui\DispatchLink.py" kii 21/11/21 20:55:24
+ API, module-dispatch, v2 18: +0 "src\Ui\DispatchLink.py" ki 21/12/05 04:55:41
 	standalone dispatcher over *cloud*
 
 !spec, module-dispatch 19: +0 "src\GGData\GGData.py" kii 21/11/15 01:00:55
@@ -601,8 +601,8 @@
  module-ui, clean, widget 212: +0 "src\Ui\AppWindow.py" kii 21/11/03 20:29:54
 	MarkWidget collection class
 
- ux, viewport 213: +0 "src\Ui\AppWindow.py" kii 21/10/30 02:39:45
-	place support viewport layer for block
+ ux, viewport 213: +0 "src\Ui\AppWindow.py" ki 21/12/05 13:22:27
+	geoblock overlay info
 
 +module-ui, viewport 214: +0 "src\Ui\AppWindow.py" kii 21/10/30 02:09:01
 	display inactive block differently
@@ -739,13 +739,13 @@
 =module-dispatch, test 260: +0 "src\Dispatch\engines\EngineArduinoGRBL.py" kii 21/11/22 04:29:58
 	test GRBL 
 
-=module-dispatch, feature 261: +0 "src\Ui\DispatchLink.py" kii 21/11/24 02:47:22
+=module-dispatch, feature 261: +0 "src\Ui\DispatchLink.py" ki 21/12/05 04:30:44
 	add basic dispatch session manager
 
 +feature, module-ui, module-dispatch 262: +0 "src\Ui\AppWindow.py" kii 21/11/23 00:25:46
 	add functional cut feedback
 
-=module-dispatch, feature 263: +0 "src\Ui\DispatchLink.py" kii 21/11/27 03:41:51
++module-dispatch, feature 263: +0 "src\Ui\DispatchLink.py" ki 21/12/05 05:29:34
 	add dispatch queue
 
 -module-ui, module-dispatch, fix 264: +0 "src\Ui\Ui.py" kii 21/11/22 23:40:08
@@ -820,9 +820,18 @@
 =test 287: +0 "src\Dispatch\DispatchManager.py" ki 21/12/04 00:41:47
 	scan devices while busy
 
--tracer, ui 288: +0 "src\Ui\Tracer.py" ki 21/12/05 03:16:30
++tracer, ui 288: +0 "src\Ui\AppWindow.py" ki 21/12/05 17:19:35
 	split shape/focus painting
 
--tracer, ux 289: +0 "src\Ui\Tracer.py" ki 21/12/05 03:17:21
+-tracer, ux 289: +0 "src\Ui\Tracer.py" ki 21/12/05 12:55:00
 	add clean/pin Tracer echo
+
+=module-dispatch, feature 290: +0 "src\Ui\DispatchLink.py" ki 21/12/05 04:31:11
+	dispatch end command
+
+=module-ui, tracer 291: +0 "src\Ui\AppWindow.py" ki 21/12/05 17:19:36
+	make Tracer an root ui for DispatchLink
+
+ tracer, ui 292: +0 "src\Ui\Tracer.py" ki 21/12/05 12:54:01
+	apply styles to Tracer
 

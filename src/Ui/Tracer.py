@@ -6,6 +6,7 @@ at late event when there's lot of painted feed present already.
 '''
 # -todo 274 (ux, fix) +1: make Tracer paint nonblocking
 
+#  todo 292 (tracer, ui) +0: apply styles to Tracer
 
 
 import re
@@ -99,7 +100,6 @@ class TraceShape():
 
 
 
-# -todo 288 (tracer, ui) +0: split shape/focus painting
 # -todo 289 (tracer, ux) +0: add clean/pin Tracer echo
 
 '''

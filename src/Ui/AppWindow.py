@@ -330,7 +330,7 @@ class AppWindow(QObject):
 
 
 ### GEO ###
-#  todo 213 (ux, viewport) +0: place support viewport layer for block
+#  todo 213 (ux, viewport) +0: geoblock overlay info
 	def geoAddWidget(self, _geo):
 		gX = _geo.xformSet()
 		gOffset = (gX[0][2], gX[1][2])
@@ -447,6 +447,7 @@ class AppWindow(QObject):
 
 
 
+# =todo 291 (module-ui, tracer) +0: make Tracer an root ui for DispatchLink
 	def dispatchToggle(self, _state):
 		Args.Dispatch.visDispatch = _state
 
