@@ -12,6 +12,10 @@ at late event when there's lot of painted feed present already.
 import re
 from datetime import datetime
 
+from PySide2.QtCore import *
+from PySide2.QtWidgets import *
+from PySide2.QtGui import *
+
 
 
 class TraceShape():
@@ -106,7 +110,10 @@ class TraceShape():
 Dispatch ui and live tracer
 '''
 #  todo 273 (ux, clean) +0: rewindable trace history
-class Tracer():
+class Tracer(QObject):
+	sigProgress = Signal(float)
+
+
 	pointTrace = 'resource\\point-trace.svg'
 	pointWarning = 'resource\\point-warning.svg'
 	pointError = 'resource\\point-error.svg'
@@ -136,12 +143,13 @@ class Tracer():
 	
 
 	def __init__(self, _args, _osd=None):
-		self.args = _args
+		QObject.__init__(self)
 
 		self.laySpots = []
 		self.layShapes = []
 
-		self.wViewport, self.wRoot, self.wLog, self.wStats, self.wProgress, self.wLive, self.wShapes = _osd
+		self.args = _args
+		self.wViewport, self.wRoot, self.wLog, self.wStats, self.wLive, self.wShapes = _osd
 
 
 		self.wLive.setChecked(self.args.visTracer)
@@ -223,7 +231,7 @@ class Tracer():
 
 		self.wLog.appendPlainText(f"{str(self.dtStart)[:-5]}:\nDispatch begin")
 		self.wStats.setPlainText('')
-		self.wProgress.setValue(0)
+		self.sigProgress.emit(0)
 
 
 		self.session = _session
@@ -245,7 +253,7 @@ class Tracer():
 		dt = datetime.now()-self.dtStart
 		self.wStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {len(self.layShapes)-1}/{self.lenPoints}")
 		self.lenFeed += 1
-		self.wProgress.setValue(100*self.lenFeed/self.session.pathLen())
+		self.sigProgress.emit(self.lenFeed/self.session.pathLen())
 
 
 		edge = re.findall("S([\d]+)", _cmd)
