@@ -110,8 +110,8 @@ class Tracer():
 #	outHeadInter = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#590' stroke-dasharray='3' fill='none' points='"
 #	outHeadShape = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"
 
-
 	triggerDraw = 1
+	triggerFocus = 5
 
 	svgGen = None
 
@@ -283,9 +283,6 @@ class Tracer():
 		self.lastSpot = _xy
 
 
-		self.layFocus and self.layFocus.place(_xy)
-
-
 		if not self.layShapes or _new:
 			self.layShapes and self.layShapes[-1].draw()
 
@@ -300,6 +297,9 @@ class Tracer():
 
 		
 		l = self.layShapes[-1].dataLen()
+
+		if l%self.triggerFocus == 2: #each Nth from start of shape (2nd pt)
+			self.layFocus and self.layFocus.place(_xy)
 
 		if l>self.triggerDraw and len(self.layShapes)<1000:
 			self.triggerDraw = l*1.01+self.lenPoints*.01
