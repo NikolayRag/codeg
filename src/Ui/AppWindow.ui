@@ -479,7 +479,7 @@
                 <item row="1" column="7">
                  <layout class="QHBoxLayout" name="horizontalLayout_2">
                   <item>
-                   <widget class="QToolButton" name="btnTraceView">
+                   <widget class="QToolButton" name="btnTraceLive">
                     <property name="text">
                      <string/>
                     </property>

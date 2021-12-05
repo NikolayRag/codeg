@@ -128,8 +128,8 @@ class AppWindow(QObject):
 
 
 		self.wBtnFit = cMain.findChild(QWidget, "btnFit")
-		self.wBtnTraceView = cMain.findChild(QWidget, "btnTraceView")
-		self.wBtnTraceView.setChecked(Args.Viewport.visTracer)
+		self.wBtnTraceLive = cMain.findChild(QWidget, "btnTraceLive")
+		self.wBtnTraceLive.setChecked(Args.Dispatch.visTracer)
 
 		self.wBtnCaption = cMain.findChild(QWidget, "btnCaption")
 		self.wBtnWipe = cMain.findChild(QWidget, "btnWipe")
@@ -162,7 +162,7 @@ class AppWindow(QObject):
 
 		self.wBtnFit.clicked.connect(self.viewportFit)
 		self.wBtnDispatcher.toggled.connect(self.dispatchToggle)
-		self.wBtnTraceView.toggled.connect(self.traceToggle)
+		self.wBtnTraceLive.toggled.connect(lambda v: self.traceToggle(live=v))
 		self.wBtnCaption.clicked.connect(self.about)
 		self.wBtnWipe.clicked.connect(self.sigSceneReset)
 		self.wBtnOpen.clicked.connect(lambda: self.sigAddFile.emit(self.wMain))
@@ -184,7 +184,7 @@ class AppWindow(QObject):
 		)
 
 		self.dispatchToggle(Args.Dispatch.visDispatch)
-		self.traceToggle(Args.Viewport.visTracer)
+		self.traceToggle(live=Args.Dispatch.visTracer)
 
 
 
@@ -428,7 +428,7 @@ class AppWindow(QObject):
 		self.wSvgViewport.canvasUpdate(True)
 
 		self.wFrameDispatcher.setVisible(_state)
-		self.wBtnTraceView.setVisible(_state)
+		self.wBtnTraceLive.setVisible(_state)
 
 		Args.Dispatch.visDispatch = _state
 
@@ -456,6 +456,16 @@ class AppWindow(QObject):
 
 			if devName == _default:
 				self.wListDevs.setCurrentIndex(self.wListDevs.count()-1)
+
+
+
+	def traceToggle(self, live=None):
+		self.wSvgViewport.canvasUpdate(False)
+		self.tracer.show(shapes=live)
+		self.wSvgViewport.canvasUpdate(True)
+
+		if live != None:
+			Args.Dispatch.visTracer = live
 
 
 
@@ -508,14 +518,6 @@ class AppWindow(QObject):
 		self.gridDescription.size(_size)
 		self.gridDescription.place((0,-_size[1]))
 
-
-
-	def traceToggle(self, _state):
-		self.wSvgViewport.canvasUpdate(False)
-		self.tracer.show(shapes=_state)
-		self.wSvgViewport.canvasUpdate(True)
-
-		Args.Viewport.visTracer = _state
 
 
 ### OPTIONS ###

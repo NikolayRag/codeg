@@ -26,12 +26,12 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 		'GRBLbps': ['115200', ['9600', '115200'], str, 'GRBL bitrate'],
 		'last': ['Mockup'],
 		'visDispatch': [False],
+		'visTracer': [False],
 	},
 	'Viewport': {
 		'fit': [0.7, [0.,1], float, 'Fit ratio'],
 		'fitGeo': [.5, [0,1], float, 'Fit geometry ratio'],
 		'offsetX': [0.66, [0,1], float, 'Fit center'],
-		'visTracer': [False],
 
 		'panMargins': [.2, [0,.5], float, 'Pan limit margins'],
 		'scaleMin': [10],
