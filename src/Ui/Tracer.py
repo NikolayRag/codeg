@@ -148,6 +148,11 @@ class Tracer():
 
 
 
+	def prepare(self, _session):
+		self.wLog.appendPlainText(f"Dispatch pending")
+
+
+
 	def show(self, spots=None, shapes=None):
 		if spots != None:
 			self.visibleSpots = spots

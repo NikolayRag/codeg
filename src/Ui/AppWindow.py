@@ -481,7 +481,7 @@ class AppWindow(QObject):
 
 
 	def traceQueue(self, _session):
-		print(_session)
+		self.tracer.prepare(_session)
 
 
 	def traceStart(self, _session):
