@@ -162,6 +162,7 @@ class Ui():
 		self.appWindow.sigDispatchShot.connect(self.dispatchShot)
 
 
+		self.dispatch.sigDispatchBegin.connect(self.appWindow.traceStart)
 		self.dispatch.sigDispatchSent.connect(self.appWindow.traceFeed)
 		self.dispatch.sigDispatchFinish.connect(self.appWindow.traceEnd)
 
@@ -489,10 +490,9 @@ class Ui():
 
 #  todo 251 (module-dispatch, feature) +0: make generation by iterator
 	def dispatchSend(self):
-		cSession = self.dispatch.sessionStart(self.activeDevice, self.activeScene.traceG())
+		self.dispatch.sessionStart(self.activeDevice, self.activeScene.traceG())
 		
 # -todo 264 (module-ui, module-dispatch, fix) +0: use actual box
-		cSession and self.appWindow.traceStart(cSession)
 
 
 

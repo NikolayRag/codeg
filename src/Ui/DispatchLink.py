@@ -65,6 +65,7 @@ Dispatch connected either inline, or as app link
 class DispatchLink(QObject):
 	sigDeviceFound = Signal(str)
 	sigDeviceListed = Signal(list)
+	sigDispatchBegin = Signal(object)
 	sigDispatchSent = Signal(object, object)
 	sigDispatchFinish = Signal(object, bool)
 
@@ -96,9 +97,24 @@ class DispatchLink(QObject):
 
 
 
-	def sessionFinish(self, _session, _res):
+	def sessionIgnite(self):
+		if self.allSessions:
+			self.allSessions[0].start()
+			self.sigDispatchBegin.emit(self.allSessions[0])
 
+
+
+	def sessionFinish(self, _session, _res):
 		self.sigDispatchFinish.emit(_session, _res)
+
+
+		if self.allSessions[0] == _session:
+			self.allSessions = self.allSessions[1:]
+
+			self.sessionIgnite()
+
+		else:
+			print('Dispatch out of order')
 
 
 
@@ -115,9 +131,10 @@ class DispatchLink(QObject):
 		cSession.sigFinish.connect(self.sessionFinish)
 		cSession.sigSent.connect(self.sigDispatchSent)
 
-		cSession.start()
-
 		self.allSessions.append(cSession)
+		if len(self.allSessions)==1:
+			self.sessionIgnite()
+
 		return cSession
 
 
