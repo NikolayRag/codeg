@@ -156,6 +156,7 @@ class AppWindow(QObject):
 		self.wBtnDispFire = cMain.findChild(QWidget, "btnDispFire")
 
 
+		self.wLayTrace = cMain.findChild(QWidget, "layTrace")
 		self.wFrameDev = cMain.findChild(QWidget, "frameDev")
 		self.wLabStats = cMain.findChild(QWidget, "labStats")
 		self.wTraceProg = cMain.findChild(QWidget, "traceProg")
@@ -166,8 +167,6 @@ class AppWindow(QObject):
 
 		self.wBtnFit.clicked.connect(self.viewportFit)
 		self.wBtnDispatcher.toggled.connect(self.dispatchToggle)
-		self.wBtnTraceLive.toggled.connect(lambda v: self.traceToggle(live=v))
-		self.wBtnTraceShapes.toggled.connect(lambda v: self.traceToggle(shapes=v))
 		self.wBtnCaption.clicked.connect(self.about)
 		self.wBtnWipe.clicked.connect(self.sigSceneReset)
 		self.wBtnOpen.clicked.connect(lambda: self.sigAddFile.emit(self.wMain))
@@ -184,8 +183,9 @@ class AppWindow(QObject):
 #  todo 280 (ui, feature) +0: makeTracer Ui-wide
 #  todo 281 (ui, clean) +0: make Tracer OSD unweird
 		self.tracer = Tracer(
+			Args.Dispatch,
 			lambda z:self.wSvgViewport.canvasAdd(z=100+z),
-			[self.wFrameDev, self.wLabStats, self.wTraceProg]
+			[self.wSvgViewport, self.wLayTrace, self.wFrameDev, self.wLabStats, self.wTraceProg, self.wBtnTraceLive, self.wBtnTraceShapes]
 		)
 		self.sigTraceQueue = self.tracer.prepare
 		self.sigTraceStart = self.tracer.reset
@@ -196,7 +196,6 @@ class AppWindow(QObject):
 		self.wBtnTraceLive.setChecked(Args.Dispatch.visTracer)
 		self.wBtnTraceShapes.setEnabled(Args.Dispatch.visTracer)
 		self.wBtnTraceShapes.setChecked(Args.Dispatch.visTraceShapes)
-		self.traceToggle(live=Args.Dispatch.visTracer, shapes=Args.Dispatch.visTraceShapes)
 		self.dispatchToggle(Args.Dispatch.visDispatch)
 
 
@@ -460,33 +459,9 @@ class AppWindow(QObject):
 	def dispatchToggle(self, _state):
 		Args.Dispatch.visDispatch = _state
 
+		self.tracer.showTracer(_state)
 
-		self.traceToggle()
-
-		self.wFrameDev.setVisible(_state)
-		self.wLabStats.setVisible(_state)
-		self.wTraceProg.setVisible(_state)
-
-		self.wFrameDispatcher.setVisible(_state)
-		self.wBtnTraceLive.setVisible(_state)
-
-
-
-	def traceToggle(self, live=None, shapes=None):
-		if live != None:
-			self.wBtnTraceShapes.setEnabled(live)
-			Args.Dispatch.visTracer = live
-
-		if shapes != None:
-			Args.Dispatch.visTraceShapes = shapes
-
-		self.wSvgViewport.canvasUpdate(False)
-		self.tracer.show(
-			spots=(Args.Dispatch.visDispatch and Args.Dispatch.visTracer),
-			shapes=(Args.Dispatch.visDispatch and Args.Dispatch.visTracer and Args.Dispatch.visTraceShapes)
-		)
-		self.wSvgViewport.canvasUpdate(True)
-
+#		self.wFrameDispatcher.setVisible(_state)
 
 
 

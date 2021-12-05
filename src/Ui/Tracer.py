@@ -133,18 +133,24 @@ class Tracer():
 
 	dtStart = 0
 
-	visibleSpots = True
-	visibleShapes = True
+	args = None
 
+	
 
-
-	def __init__(self, _svgGen, _osd=None):
+	def __init__(self, _args, _svgGen, _osd=None):
+		self.args = _args
 		self.svgGen = _svgGen
 
 		self.laySpots = []
 		self.layShapes = []
 
-		self.wLog, self.wStats, self.wProgress = _osd
+		self.wViewport, self.wRoot, self.wLog, self.wStats, self.wProgress, self.wLive, self.wShapes = _osd
+
+
+		self.wLive.toggled.connect(lambda v: self.showTracer(live=v))
+		self.wShapes.toggled.connect(lambda v: self.showTracer(shapes=v))
+
+		self.showTracer(live=self.args.visTracer, shapes=self.args.visTraceShapes)
 
 
 
@@ -153,20 +159,35 @@ class Tracer():
 
 
 
-	def show(self, spots=None, shapes=None):
-		if spots != None:
-			self.visibleSpots = spots
+	def showTracer(self, _vis=None, live=None, shapes=None):
+		self.wViewport.canvasUpdate(False)
 
-			self.layFocus and self.layFocus.show(spots)
-			for sp in self.laySpots:
-				sp.show(spots)
+
+		if _vis!=None:
+			self.args.visDispatch - _vis
+
+		self.wRoot.setVisible(self.args.visDispatch)
+
+
+		if live != None:
+			self.wShapes.setEnabled(live)
+			self.args.visTracer = live
+
+		live = (self.args.visDispatch and self.args.visTracer)
+		self.layFocus and self.layFocus.show(live)
+		for sp in self.laySpots:
+			sp.show(live)
 
 
 		if shapes != None:
-			self.visibleShapes = shapes
+			self.args.visTraceShapes = shapes
 
-			for sp in self.layShapes:
-				sp.show(shapes)
+		shapes = (self.args.visDispatch and self.args.visTracer and self.args.visTraceShapes)
+		for sp in self.layShapes:
+			sp.show(shapes)
+
+
+		self.wViewport.canvasUpdate(True)
 
 
 
@@ -187,14 +208,14 @@ class Tracer():
 		self.laySpots = []	
 
 
-		self.show(spots=self.visibleSpots)
 
 		if not _session:
-			self.show(shapes=self.visibleShapes)
+			self.showTracer()
 			return
 
 
 		self.layShapes = []	
+		self.showTracer()
 
 
 		self.dtStart = datetime.now()
@@ -259,7 +280,7 @@ class Tracer():
 
 	def spot(self, _xy, _xml):
 		cSpot = self.svgGen(2)
-		cSpot.show(self.visibleSpots)
+		cSpot.show(self.args.visDispatch and self.args.visTracer)
 		cSpot.ghost(True)
 		cSpot.static(True)
 		cSpot.setXml(_xml)
@@ -276,7 +297,10 @@ class Tracer():
 		if not self.layShapes or _new:
 			self.layShapes and self.layShapes[-1].draw()
 
-			cShape = TraceShape(lambda:self.svgGen(0), self.visibleShapes, self.canvasVBox)
+			cShape = TraceShape(lambda:self.svgGen(0),
+				self.args.visDispatch and self.args.visTracer and self.args.visTraceShapes,
+				self.canvasVBox
+			)
 			self.layShapes.append(cShape)
 
 		else:
