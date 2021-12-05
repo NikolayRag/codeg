@@ -227,8 +227,8 @@ class Tracer():
 		self.osd[2].setValue(100*self.lenFeed/self.session.pathLen())
 
 
-		edge = re.findall("S[\d]+", _cmd)
-		if len(edge)==1 and float(edge[0][1:])==0:
+		edge = re.findall("S([\d]+)", _cmd)
+		if edge and float(edge[0])==0:
 #			self.shapesList.append(self.layShapes[-1].snapshot())
 
 #			cShapeAll = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
@@ -242,10 +242,9 @@ class Tracer():
 			self.moveto(self.lastSpot, True)
 
 
-		coords = re.findall("[XY]-?[\d\.]+", _cmd)
-
-		if len(coords)==2 and len(coords[0])>1 and len(coords[1])>1 and coords[0][0]=='X' and coords[1][0]=='Y':
-			self.moveto((float(coords[0][1:]), -float(coords[1][1:])))
+		coords = re.findall("X(-?[\d\.]+)Y(-?[\d\.]+)", _cmd)
+		if coords:
+			self.moveto((float(coords[0][0]), -float(coords[0][1])))
 
 
 		if _res != True:
