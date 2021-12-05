@@ -192,7 +192,9 @@ class Tracer():
 		self.layShapes = []	
 
 
-		self.osd[0].appendPlainText("Dispatch begin")
+		self.dtStart = datetime.now()
+
+		self.osd[0].appendPlainText(f"{str(self.dtStart)[:-5]}:\nDispatch begin")
 		self.osd[1].setPlainText('')
 		self.osd[2].setValue(0)
 
@@ -207,7 +209,6 @@ class Tracer():
 		self.lenFeed = 0
 		self.lenPoints = 0
 
-		self.dtStart = datetime.now()
 
 
 
@@ -215,7 +216,7 @@ class Tracer():
 #		self.osd[0].appendPlainText(_cmd)
 
 		dt = datetime.now()-self.dtStart
-		self.osd[1].setPlainText(f"time: {str(dt)[:-5]}\nsh/pt: {len(self.layShapes)-1}/{self.lenPoints}")
+		self.osd[1].setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {len(self.layShapes)-1}/{self.lenPoints}")
 		self.lenFeed += 1
 		self.osd[2].setValue(100*self.lenFeed/self.session.pathLen())
 
@@ -244,8 +245,8 @@ class Tracer():
 
 		self.lenPoints -= 1 #last shape is park
 		dt = datetime.now()-self.dtStart
-		self.osd[1].setPlainText(f"time: {str(dt)[:-5]}\nsh/pt: {len(self.layShapes)-3}/{self.lenPoints}")
-		self.osd[0].appendPlainText(f"Dispatch {'end' if _res else 'error'}")
+		self.osd[1].setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {len(self.layShapes)-3}/{self.lenPoints}")
+		self.osd[0].appendPlainText(f"{str(datetime.now())[:-5]}:\nDispatch {'end' if _res else 'error'}\nin {str(dt)[:-5]}\nwith {len(self.layShapes)-3}/{self.lenPoints} sh/pt\n")
 		if not _res:
 			self.spot(self.lastSpot, self.pointError)
 
