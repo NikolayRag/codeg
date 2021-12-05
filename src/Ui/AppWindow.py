@@ -184,7 +184,6 @@ class AppWindow(QObject):
 #  todo 281 (ui, clean) +0: make Tracer OSD unweird
 		self.tracer = Tracer(
 			Args.Dispatch,
-			lambda z:self.wSvgViewport.canvasAdd(z=100+z),
 			[self.wSvgViewport, self.wLayTrace, self.wFrameDev, self.wLabStats, self.wTraceProg, self.wBtnTraceLive, self.wBtnTraceShapes]
 		)
 		self.sigTraceQueue = self.tracer.prepare

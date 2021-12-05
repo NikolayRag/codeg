@@ -115,8 +115,6 @@ class Tracer():
 	triggerDraw = 1
 	triggerFocus = 5
 
-	svgGen = None
-
 	layShapes = None
 	layFocus = None
 	laySpots = None
@@ -137,9 +135,8 @@ class Tracer():
 
 	
 
-	def __init__(self, _args, _svgGen, _osd=None):
+	def __init__(self, _args, _osd=None):
 		self.args = _args
-		self.svgGen = _svgGen
 
 		self.laySpots = []
 		self.layShapes = []
@@ -194,7 +191,7 @@ class Tracer():
 	#called with no session after SvgViewport recreated
 	def reset(self, _session=None):
 		self.layFocus and self.layFocus.remove()
-		self.layFocus = self.svgGen(1)
+		self.layFocus = self.wViewport.canvasAdd(z=101)
 		self.layFocus.setXml(self.pointTrace)
 		self.layFocus.ghost(True)
 		self.layFocus.static(True)
@@ -279,7 +276,7 @@ class Tracer():
 
 
 	def spot(self, _xy, _xml):
-		cSpot = self.svgGen(2)
+		cSpot = self.wViewport.canvasAdd(z=102)
 		cSpot.show(self.args.visDispatch and self.args.visTracer)
 		cSpot.ghost(True)
 		cSpot.static(True)
@@ -297,7 +294,7 @@ class Tracer():
 		if not self.layShapes or _new:
 			self.layShapes and self.layShapes[-1].draw()
 
-			cShape = TraceShape(lambda:self.svgGen(0),
+			cShape = TraceShape(lambda: self.wViewport.canvasAdd(z=100),
 				self.args.visDispatch and self.args.visTracer and self.args.visTraceShapes,
 				self.canvasVBox
 			)
