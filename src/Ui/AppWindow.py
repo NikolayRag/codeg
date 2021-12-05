@@ -44,6 +44,11 @@ class AppWindow(QObject):
 	sigDispatchFire = Signal()
 	sigDispatchShot = Signal(object)
 
+	sigTraceQueue = None
+	sigTraceStart = None
+	sigTraceFeed = None
+	sigTraceEnd = None
+
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
@@ -182,6 +187,10 @@ class AppWindow(QObject):
 			lambda z:self.wSvgViewport.canvasAdd(z=100+z),
 			[self.wFrameDev, self.wLabStats, self.wTraceProg]
 		)
+		self.sigTraceQueue = self.tracer.prepare
+		self.sigTraceStart = self.tracer.reset
+		self.sigTraceFeed = self.tracer.feed
+		self.sigTraceEnd = self.tracer.final
 
 		self.wBtnDispatcher.setChecked(Args.Dispatch.visDispatch)
 		self.wBtnTraceLive.setChecked(Args.Dispatch.visTracer)
@@ -478,22 +487,6 @@ class AppWindow(QObject):
 		)
 		self.wSvgViewport.canvasUpdate(True)
 
-
-
-	def traceQueue(self, _session):
-		self.tracer.prepare(_session)
-
-
-	def traceStart(self, _session):
-		self.tracer.reset(_session)
-
-
-	def traceFeed(self, _res, _echo):
-		self.tracer.feed(_res, _echo)
-
-
-	def traceEnd(self, _session, _res):
-		self.tracer.final(_res)
 
 
 
