@@ -467,7 +467,7 @@ class AppWindow(QObject):
 		self.tracer.feed(_res, _echo)
 
 
-	def traceEnd(self, _res):
+	def traceEnd(self, _session, _res):
 		self.tracer.final(_res)
 
 
