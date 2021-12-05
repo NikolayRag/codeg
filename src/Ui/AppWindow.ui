@@ -347,6 +347,10 @@
                           <property name="text">
                            <string>re</string>
                           </property>
+                          <property name="icon">
+                           <iconset>
+                            <normaloff>resource/icon-pack.svg</normaloff>resource/icon-pack.svg</iconset>
+                          </property>
                          </widget>
                         </item>
                         <item row="1" column="1" colspan="2">
@@ -365,7 +369,11 @@
                         <item row="1" column="3">
                          <widget class="QToolButton" name="btnDispFire">
                           <property name="text">
-                           <string>go</string>
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset>
+                            <normaloff>resource/icon-deliver.svg</normaloff>resource/icon-deliver.svg</iconset>
                           </property>
                          </widget>
                         </item>
@@ -448,6 +456,10 @@
                         <widget class="QToolButton" name="btnTraceShapes">
                          <property name="text">
                           <string>sh</string>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>resource/icon-add-image.svg</normaloff>resource/icon-add-image.svg</iconset>
                          </property>
                          <property name="checkable">
                           <bool>true</bool>
