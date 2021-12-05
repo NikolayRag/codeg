@@ -163,7 +163,7 @@ class Ui():
 
 
 		self.dispatch.sigDispatchSent.connect(self.appWindow.traceFeed)
-		self.dispatch.sigDispatchFinish.connect(self.appWindow.traceSet)
+		self.dispatch.sigDispatchFinish.connect(self.appWindow.traceEnd)
 
 		self.dispatch.sigDeviceListed.connect(lambda devA:self.appWindow.dispatchFill(devA, Args.Dispatch.last))
 		self.dispatch.sigDeviceFound.connect(lambda devA:self.appWindow.dispatchFill(devA, Args.Dispatch.last, add=True))
@@ -492,7 +492,7 @@ class Ui():
 		cSession = self.dispatch.runDevice(self.activeDevice, self.activeScene.traceG())
 		
 # -todo 264 (module-ui, module-dispatch, fix) +0: use actual box
-		self.appWindow.traceSet(cSession, True)
+		cSession and self.appWindow.traceStart(cSession)
 
 
 

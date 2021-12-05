@@ -459,18 +459,16 @@ class AppWindow(QObject):
 
 
 
-	def traceSet(self, data, start=False):
-		if start:
-			self.tracer.reset(data)
-
-		else:
-			self.tracer.final(data)
-
+	def traceStart(self, _session):
+		self.tracer.reset(_session)
 
 
 	def traceFeed(self, _res, _echo):
 		self.tracer.feed(_res, _echo)
 
+
+	def traceEnd(self, _res):
+		self.tracer.final(_res)
 
 
 ### SCENE ###
