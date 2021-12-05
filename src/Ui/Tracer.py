@@ -165,7 +165,7 @@ class Tracer():
 
 
 		if _vis!=None:
-			self.args.visDispatch - _vis
+			self.args.visDispatch = _vis
 
 		self.wRoot.setVisible(self.args.visDispatch)
 
