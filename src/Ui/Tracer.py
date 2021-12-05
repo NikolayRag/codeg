@@ -144,6 +144,10 @@ class Tracer():
 		self.wViewport, self.wRoot, self.wLog, self.wStats, self.wProgress, self.wLive, self.wShapes = _osd
 
 
+		self.wLive.setChecked(self.args.visTracer)
+		self.wShapes.setEnabled(self.args.visTracer)
+		self.wShapes.setChecked(self.args.visTraceShapes)
+
 		self.wLive.toggled.connect(lambda v: self.showTracer(live=v))
 		self.wShapes.toggled.connect(lambda v: self.showTracer(shapes=v))
 

@@ -192,9 +192,6 @@ class AppWindow(QObject):
 		self.sigTraceEnd = self.tracer.final
 
 		self.wBtnDispatcher.setChecked(Args.Dispatch.visDispatch)
-		self.wBtnTraceLive.setChecked(Args.Dispatch.visTracer)
-		self.wBtnTraceShapes.setEnabled(Args.Dispatch.visTracer)
-		self.wBtnTraceShapes.setChecked(Args.Dispatch.visTraceShapes)
 		self.dispatchToggle(Args.Dispatch.visDispatch)
 
 
