@@ -94,6 +94,8 @@ class TraceShape():
 		self.svgDescr and self.svgDescr.remove()
 
 		self.svgDescr = None
+		self.updated = True
+
 
 
 
@@ -184,17 +186,20 @@ class Tracer():
 
 		for sp in self.layShapes:
 			sp.remove()
-		self.layShapes = []	
 
 		for sp in self.laySpots:
 			sp.remove()
 		self.laySpots = []	
 
-		self.show(self.visibleSpots, self.visibleShapes)
 
+		self.show(spots=self.visibleSpots)
 
 		if not _session:
+			self.show(shapes=self.visibleShapes)
 			return
+
+
+		self.layShapes = []	
 
 
 		self.osd[0].appendPlainText("Dispatch begin")
