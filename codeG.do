@@ -802,8 +802,8 @@
  ui, clean 281: +0 "src\Ui\AppWindow.py" kii 21/11/26 23:58:55
 	make Tracer OSD unweird
 
-=ui, performance 282: +0 "src\Ui\Tracer.py" kii 21/11/29 02:10:46
-	Tracer separate shapes visibility
+!ui, performance 282: +0 "src\Ui\Tracer.py" ki 21/12/05 03:18:18
+	Tracer shapes separate visibility
 
 =performance 283: +0 "" kii 21/12/02 15:56:34
 	add shape into result layer
@@ -819,4 +819,10 @@
 
 =test 287: +0 "src\Dispatch\DispatchManager.py" ki 21/12/04 00:41:47
 	scan devices while busy
+
+-tracer, ui 288: +0 "src\Ui\Tracer.py" ki 21/12/05 03:16:30
+	split shape/focus painting
+
+-tracer, ux 289: +0 "src\Ui\Tracer.py" ki 21/12/05 03:17:21
+	add clean/pin Tracer echo
 

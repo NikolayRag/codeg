@@ -99,6 +99,8 @@ class TraceShape():
 
 
 
+# -todo 288 (tracer, ui) +0: split shape/focus painting
+# -todo 289 (tracer, ux) +0: add clean/pin Tracer echo
 
 '''
 Dispatch live tracer
@@ -149,7 +151,6 @@ class Tracer():
 
 
 
-# =todo 282 (ui, performance) +0: Tracer separate shapes visibility
 	def show(self, spots=None, shapes=None):
 		if spots != None:
 			self.visibleSpots = spots
