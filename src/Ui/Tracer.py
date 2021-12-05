@@ -125,7 +125,6 @@ class Tracer():
 	session = None
 
 	canvasVBox = None
-	shapesList = []
 	lenFeed = 0
 	lenPoints = 0
 	lenShapes = 0
@@ -137,12 +136,12 @@ class Tracer():
 	visibleShapes = True
 
 
+
 	def __init__(self, _svgGen, _osd=None):
 		self.svgGen = _svgGen
 
 		self.laySpots = []
 		self.layShapes = []
-		self.shapesList = []
 
 		self.osd = _osd
 
@@ -186,7 +185,6 @@ class Tracer():
 		for sp in self.layShapes:
 			sp.remove()
 		self.layShapes = []	
-		self.shapesList = []
 
 		for sp in self.laySpots:
 			sp.remove()
