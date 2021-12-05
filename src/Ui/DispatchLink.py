@@ -65,6 +65,7 @@ Dispatch connected either inline, or as app link
 class DispatchLink(QObject):
 	sigDeviceFound = Signal(str)
 	sigDeviceListed = Signal(list)
+	sigDispatchAdded = Signal(object)
 	sigDispatchBegin = Signal(object)
 	sigDispatchSent = Signal(object, object)
 	sigDispatchFinish = Signal(object, bool)
@@ -132,6 +133,7 @@ class DispatchLink(QObject):
 		cSession.sigSent.connect(self.sigDispatchSent)
 
 		self.allSessions.append(cSession)
+		self.sigDispatchAdded.emit(cSession)
 		if len(self.allSessions)==1:
 			self.sessionIgnite()
 

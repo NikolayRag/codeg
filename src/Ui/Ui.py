@@ -162,6 +162,7 @@ class Ui():
 		self.appWindow.sigDispatchShot.connect(self.dispatchShot)
 
 
+		self.dispatch.sigDispatchAdded.connect(self.appWindow.traceQueue)
 		self.dispatch.sigDispatchBegin.connect(self.appWindow.traceStart)
 		self.dispatch.sigDispatchSent.connect(self.appWindow.traceFeed)
 		self.dispatch.sigDispatchFinish.connect(self.appWindow.traceEnd)
