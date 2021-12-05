@@ -213,6 +213,7 @@ class Tracer(QObject):
 
 		for sp in self.laySpots:
 			sp.remove()
+#  todo 293 (Tracer, ux) +0: leave Traced spots after reset viewport
 		self.laySpots = []	
 
 

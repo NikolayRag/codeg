@@ -835,3 +835,6 @@
  tracer, ui 292: +0 "src\Ui\Tracer.py" ki 21/12/05 12:54:01
 	apply styles to Tracer
 
+ Tracer, ux 293: +0 "src\Ui\Tracer.py" ki 21/12/05 23:48:59
+	leave Traced spots after reset viewport
+
