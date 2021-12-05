@@ -111,15 +111,12 @@ class Tracer():
 	pointWarning = 'resource\\point-warning.svg'
 	pointError = 'resource\\point-error.svg'
 
-#	outHeadInter = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#590' stroke-dasharray='3' fill='none' points='"
-#	outHeadShape = "<polyline vector-effect='non-scaling-stroke' stroke-width='1px' stroke='#3b0' fill='none' points='"
 
 	triggerDraw = 1
 	triggerFocus = 5
 
 	svgGen = None
 
-	#layResult = None
 	layShapes = None
 	layFocus = None
 	laySpots = None
@@ -166,9 +163,6 @@ class Tracer():
 			for sp in self.layShapes:
 				sp.show(shapes)
 
-			#self.layResult and self.layResult.show(shapes)
-
-
 
 
 	#called with no session after SvgViewport recreated
@@ -178,11 +172,6 @@ class Tracer():
 		self.layFocus.setXml(self.pointTrace)
 		self.layFocus.ghost(True)
 		self.layFocus.static(True)
-
-		#self.layResult and self.layResult.remove()
-		#self.layResult = self.svgGen(0)
-		#self.layResult.ghost(True)
-		#self.canvasVBox and self.layResult.place(self.canvasVBox[0:2])
 
 
 		for sp in self.layShapes:
@@ -233,15 +222,6 @@ class Tracer():
 
 		edge = re.findall("S([\d]+)", _cmd)
 		if edge and float(edge[0])==0:
-#			self.shapesList.append(self.layShapes[-1].snapshot())
-
-#			cShapeAll = [f"<svg width='{int(self.canvasVBox[2])}' height='{int(self.canvasVBox[3])}' xmlns='http://www.w3.org/2000/svg'>"]
-#			for sh in self.shapesList:
-#				cShapeAll += sh
-#			cShapeAll += ["</svg>"]
-##			self.layResult.setXml(' '.join(cShapeAll).encode())
-
-
 			self.triggerDraw = 1
 			self.moveto(self.lastSpot, True)
 
