@@ -130,7 +130,6 @@ class Tracer(QObject):
 
 	session = None
 
-	canvasVBox = None
 	lenFeed = 0
 	lenPoints = 0
 	lenShapes = 0
@@ -235,8 +234,6 @@ class Tracer(QObject):
 
 
 		self.session = _session
-		self.canvasVBox = _session.viewBox()
-		#self.layResult.place(self.canvasVBox[0:2])
 
 		self.lastSpot = (0,0)
 		self.moveto((0,0))
@@ -303,12 +300,14 @@ class Tracer(QObject):
 		self.lastSpot = _xy
 
 
+		vBox = self.session.viewBox()
+
 		if not self.layShapes or _new:
 			self.layShapes and self.layShapes[-1].draw()
 
 			cShape = TraceShape(lambda: self.wViewport.canvasAdd(z=100),
 				self.args.visDispatch and self.args.visTracer and self.args.visTraceShapes,
-				self.canvasVBox
+				vBox
 			)
 			self.layShapes.append(cShape)
 
@@ -316,7 +315,7 @@ class Tracer(QObject):
 			self.lenPoints += 1
 
 
-		self.layShapes[-1].add((_xy[0]-self.canvasVBox[0],_xy[1]-self.canvasVBox[1]))
+		self.layShapes[-1].add((_xy[0]-vBox[0],_xy[1]-vBox[1]))
 
 		
 		l = self.layShapes[-1].dataLen()
