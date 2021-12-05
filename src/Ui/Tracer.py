@@ -151,7 +151,7 @@ class Tracer():
 		self.wLive.toggled.connect(lambda v: self.showTracer(live=v))
 		self.wShapes.toggled.connect(lambda v: self.showTracer(shapes=v))
 
-		self.showTracer(live=self.args.visTracer, shapes=self.args.visTraceShapes)
+		self.showTracer(self.args.visDispatch, live=self.args.visTracer, shapes=self.args.visTraceShapes)
 
 
 

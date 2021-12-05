@@ -146,6 +146,7 @@ class AppWindow(QObject):
 		self.wBtnPrefs = cMain.findChild(QWidget, "btnPrefs")
 
 		self.wBtnDispatcher = cMain.findChild(QWidget, "btnDispatcher")
+		self.wBtnDispatcher.setChecked(Args.Dispatch.visDispatch)
 		self.wFrameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
 
 #  todo 47 (module-dispatch, module-ui, ux) +0: change device list to button+list
@@ -166,7 +167,6 @@ class AppWindow(QObject):
 
 
 		self.wBtnFit.clicked.connect(self.viewportFit)
-		self.wBtnDispatcher.toggled.connect(self.dispatchToggle)
 		self.wBtnCaption.clicked.connect(self.about)
 		self.wBtnWipe.clicked.connect(self.sigSceneReset)
 		self.wBtnOpen.clicked.connect(lambda: self.sigAddFile.emit(self.wMain))
@@ -186,13 +186,13 @@ class AppWindow(QObject):
 			Args.Dispatch,
 			[self.wSvgViewport, self.wLayTrace, self.wFrameDev, self.wLabStats, self.wTraceProg, self.wBtnTraceLive, self.wBtnTraceShapes]
 		)
+		self.wBtnDispatcher.toggled.connect(self.tracer.showTracer)
+
 		self.sigTraceQueue = self.tracer.prepare
 		self.sigTraceStart = self.tracer.reset
 		self.sigTraceFeed = self.tracer.feed
 		self.sigTraceEnd = self.tracer.final
 
-		self.wBtnDispatcher.setChecked(Args.Dispatch.visDispatch)
-		self.dispatchToggle(Args.Dispatch.visDispatch)
 
 
 
@@ -452,15 +452,6 @@ class AppWindow(QObject):
 
 
 # =todo 291 (module-ui, tracer) +0: make Tracer an root ui for DispatchLink
-	def dispatchToggle(self, _state):
-		Args.Dispatch.visDispatch = _state
-
-		self.tracer.showTracer(_state)
-
-#		self.wFrameDispatcher.setVisible(_state)
-
-
-
 ### SCENE ###
 
 
