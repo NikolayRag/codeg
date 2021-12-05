@@ -5,7 +5,7 @@
 # =todo 61 (module-dispatch) +0: CNC control
 # -todo 64 (module-dispatch) +0: dispatch queue
 # -todo 68 (module-dispatch) +0: queue control
-# =todo 165 (feature, dispatch) +0: device definition
+# =todo 165 (feature, dispatch) +0: device settings definition
 
 
 '''

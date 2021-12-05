@@ -180,8 +180,8 @@ class AppWindow(QObject):
 		self.wListDevs.currentIndexChanged.connect(lambda i: self.sigDevChange.emit(self.wListDevs.currentText(), self.wListDevs.currentData()))
 		self.wBtnPrefs.clicked.connect(self.prefsList)
 		
-#  todo 280 (ui, feature) +0: makeTracer Ui-wide
-#  todo 281 (ui, clean) +0: make Tracer OSD unweird
+#  todo 280 (ui, feature) +0: paint with Tracer into geometry layers
+#  todo 281 (ui, clean) +0: make Tracer ui unweird
 		self.tracer = Tracer(
 			Args.Dispatch,
 			[self.wSvgViewport, self.wLayTrace, self.wFrameDev, self.wLabStats, self.wTraceProg, self.wBtnTraceLive, self.wBtnTraceShapes]
@@ -451,7 +451,6 @@ class AppWindow(QObject):
 
 
 
-# =todo 291 (module-ui, tracer) +0: make Tracer an root ui for DispatchLink
 ### SCENE ###
 
 

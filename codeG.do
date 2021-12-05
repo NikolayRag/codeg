@@ -460,8 +460,8 @@
 -feature, module-ui, unsure 164: -1 "src\Ui\Ui.py" kii 21/11/22 17:05:12
 	auto-apply new Mark to selection
 
-=feature, dispatch 165: +0 "src\Ui\Ui.py" kii 21/10/18 18:41:17
-	device definition
+=feature, dispatch 165: +0 "src\Dispatch\DispatchManager.py" ki 21/12/05 22:56:42
+	device settings definition
 
 =module-ui, ux 166: +0 "src\Ui\Ui.py" kii 21/11/22 17:01:53
 	icons
@@ -550,7 +550,7 @@
 +fix 195: +2 "src\Ui\Ui.py" kii 21/10/23 01:11:15
 	fix sysytem marks assignment
 
- module-data, API 196: +0 "src\Ui\Ui.py" kii 21/10/23 04:42:23
+ module-data, API 196: +0 "src\Ui\Ui.py" ki 21/12/05 22:54:41
 	deal with Markfilter data fields within Mark
 
 =data, fix 197: +0 "src\Ui\Ui.py" kii 21/11/04 04:06:17
@@ -796,11 +796,11 @@
  viewport, fix 279: +0 "src\Ui\SvgViewport.py" kii 21/11/26 18:11:17
 	make removed SvgDescriptor safe
 
- ui, feature 280: +0 "src\Ui\AppWindow.py" kii 21/11/26 22:29:01
-	makeTracer Ui-wide
+ ui, feature 280: +0 "src\Ui\AppWindow.py" ki 21/12/05 18:52:53
+	paint with Tracer into geometry layers
 
- ui, clean 281: +0 "src\Ui\AppWindow.py" kii 21/11/26 23:58:55
-	make Tracer OSD unweird
+ ui, clean 281: +0 "src\Ui\AppWindow.py" ki 21/12/05 18:53:05
+	make Tracer ui unweird
 
 !ui, performance 282: +0 "src\Ui\Tracer.py" ki 21/12/05 03:18:18
 	Tracer shapes separate visibility
@@ -829,7 +829,7 @@
 =module-dispatch, feature 290: +0 "src\Ui\DispatchLink.py" ki 21/12/05 04:31:11
 	dispatch end command
 
-=module-ui, tracer 291: +0 "src\Ui\AppWindow.py" ki 21/12/05 17:19:36
++module-ui, tracer 291: +0 "src\Ui\AppWindow.py" ki 21/12/05 22:36:23
 	make Tracer an root ui for DispatchLink
 
  tracer, ui 292: +0 "src\Ui\Tracer.py" ki 21/12/05 12:54:01
