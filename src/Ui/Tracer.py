@@ -245,7 +245,7 @@ class Tracer(QObject):
 
 
 
-	def feed(self, _res, _cmd):
+	def feed(self, _session, _res, _cmd):
 #		self.wLog.appendPlainText(_cmd)
 
 		dt = datetime.now()-self.dtStart
@@ -273,7 +273,7 @@ class Tracer(QObject):
 
 
 
-	def final(self, _res):
+	def final(self, _session, _res):
 		self.moveto(self.lastSpot, True)
 
 		self.lenPoints -= 1 #last shape is park

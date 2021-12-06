@@ -9,8 +9,9 @@ from PySide2.QtCore import *
 # =todo 261 (module-dispatch, feature) +0: add basic dispatch session manager
 #  todo 268 (module-dispatch, feature) +0: handle concurent sessions
 class DispatchSession(Thread, QObject):
-	sigSent = Signal(object, object)
-	sigFinish = Signal(object, bool)
+	sigStart = Signal()
+	sigFeed = Signal(object, object)
+	sigFinish = Signal(bool)
 
 
 	def __init__(self, _cb, _data):
@@ -26,24 +27,26 @@ class DispatchSession(Thread, QObject):
 
 
 	def run(self):
+		self.sigStart.emit()
+
 
 		for cg in self.runData:
 			if not cg:
 				continue
 
 			res = self.runCb(cg)
-			self.sigSent.emit(res, cg)
+			self.sigFeed.emit(res, cg)
 
 #  todo 275 (module-dispatch, clean) +0: rescan device at stop state
 			if res==False:
-				self.sigFinish.emit(self, False)
+				self.sigFinish.emit(False)
 
 				return
 
 
 		res = self.runCb(None)
 
-		self.sigFinish.emit(self, bool(res))
+		self.sigFinish.emit(bool(res))
 
 
 
@@ -68,7 +71,7 @@ class DispatchLink(QObject):
 	sigDeviceListed = Signal(list)
 	sigDispatchAdded = Signal(object)
 	sigDispatchBegin = Signal(object)
-	sigDispatchSent = Signal(object, object)
+	sigDispatchSent = Signal(object, object, object)
 	sigDispatchFinish = Signal(object, bool)
 
 
@@ -102,7 +105,6 @@ class DispatchLink(QObject):
 	def sessionIgnite(self):
 		if self.allSessions:
 			self.allSessions[0].start()
-			self.sigDispatchBegin.emit(self.allSessions[0])
 
 
 
@@ -129,8 +131,9 @@ class DispatchLink(QObject):
 			return self.dispatcher.deviceSend(_dev, _d)
 
 		cSession = DispatchSession(bindDev, _data)
-		cSession.sigFinish.connect(self.sessionFinish)
-		cSession.sigSent.connect(self.sigDispatchSent)
+		cSession.sigStart.connect(lambda: self.sigDispatchBegin.emit(cSession))
+		cSession.sigFeed.connect(lambda res, echo: self.sigDispatchSent.emit(cSession, res, echo))
+		cSession.sigFinish.connect(lambda res: self.sessionFinish(cSession, res))
 
 		self.allSessions.append(cSession)
 		self.sigDispatchAdded.emit(cSession)
