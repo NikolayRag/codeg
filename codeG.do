@@ -784,7 +784,7 @@
  module-dispatch, clean 275: +0 "src\Ui\DispatchLink.py" kii 21/11/26 02:45:55
 	rescan device at stop state
 
- ux, clean 276: +0 "src\Ui\Ui.py" kii 21/11/26 03:04:07
+-ux, clean 276: +0 "src\Ui\Ui.py" ki 21/12/08 02:44:14
 	clean device rescan cycle
 
 !! 277: +0 "src\Ui\DispatchLink.py" kii 21/11/26 14:56:19
