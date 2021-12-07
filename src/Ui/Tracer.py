@@ -125,7 +125,6 @@ class Tracer(QObject):
 	layShapes = None
 	layFocus = None
 	laySpots = None
-	osd = None
 
 
 	session = None
@@ -139,7 +138,8 @@ class Tracer(QObject):
 
 	visLive = False
 	visPaint = False
-	
+
+
 
 	def __init__(self, _vp, _osd=None):
 		QObject.__init__(self)
