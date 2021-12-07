@@ -160,12 +160,6 @@ class Tracer(QObject):
 			self.visPaint = _shapes
 
 
-
-	def prepare(self, _session):
-		self.wLog.appendPlainText(f"Dispatch pending")
-
-
-
 		self.wViewport.canvasUpdate(False)
 
 		self.layFocus and self.layFocus.show(self.visLive)
@@ -179,6 +173,9 @@ class Tracer(QObject):
 		self.wViewport.canvasUpdate(True)
 
 
+
+	def prepare(self, _session):
+		self.wLog.appendPlainText(f"Dispatch pending")
 
 	#called with no session after SvgViewport recreated
 	def reset(self, _session=None):
