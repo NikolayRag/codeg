@@ -124,7 +124,7 @@ class Ui():
 	activeDevice = None
 
 
-	def __init__(self, _data, _fallbackSize, dispatch=None):
+	def __init__(self, _data, _dispatch):
 
 
 		#init
@@ -135,7 +135,7 @@ class Ui():
 
 		self.data = _data
 
-		self.dispatch = DispatchLink(_fallbackSize, dispatch)
+		self.dispatch = _dispatch
 
 		self.appWindow = AppWindow()
 

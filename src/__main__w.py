@@ -61,9 +61,9 @@ if __name__ == '__main__':
 		'EngineArduinoGRBL': {'rate':int(Args.Dispatch.GRBLbps)},
 	}
 	cDis = DispatchManager(size=fallbackSize, definitions=deviceDefs)
+	dLink = DispatchLink(fallbackSize, cDis)
 
-
-	cUi = Ui(cGG, fallbackSize, dispatch=cDis)
+	cUi = Ui(cGG, dLink)
 	cUi.exec()
 
 
