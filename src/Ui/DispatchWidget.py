@@ -58,10 +58,10 @@ class DispatchWidget(QObject):
 
 		self.sigTracerProgress = self.tracer.sigProgress
 
-		self.slotPrepare = self.tracer.prepare
-		self.slotReset = self.tracer.reset
-		self.slotFeed = self.tracer.feed
-		self.slotFinal = self.tracer.final
+		_dispatch.sigDispatchAdded.connect(self.tracer.prepare)
+		_dispatch.sigDispatchBegin.connect(self.tracer.reset)
+		_dispatch.sigDispatchSent.connect(self.tracer.feed)
+		_dispatch.sigDispatchFinish.connect(self.tracer.final)
 
 
 		self.wBtnTraceLive = self.wRoot.findChild(QWidget, "btnTraceLive")

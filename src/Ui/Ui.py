@@ -160,13 +160,6 @@ class Ui():
 		self.appWindow.sigDispatchFire.connect(self.dispatchSend)
 		self.appWindow.sigDispatchShot.connect(self.dispatchShot)
 
-
-		self.dispatch.sigDispatchAdded.connect(self.appWindow.sigTraceQueue)
-		self.dispatch.sigDispatchBegin.connect(self.appWindow.sigTraceStart)
-		self.dispatch.sigDispatchSent.connect(self.appWindow.sigTraceFeed)
-		self.dispatch.sigDispatchFinish.connect(self.appWindow.sigTraceEnd)
-
-
 		#default device as template, overrided at actual dispatch
 		self.dispatch.getDevices()
 		self.appWindow.dispatchFill({}, Args.Dispatch.last)

@@ -178,15 +178,6 @@ class AppWindow(QObject):
 		_dispatch.sigDeviceFound.connect(lambda devA:self.dispatchFill(devA, Args.Dispatch.last, add=True))
 
 
-###
-
-		self.sigTraceQueue = self.dispatchUi.slotPrepare
-		self.sigTraceStart = self.dispatchUi.slotReset
-		self.sigTraceFeed = self.dispatchUi.slotFeed
-		self.sigTraceEnd = self.dispatchUi.slotFinal
-###
-
-
 
 	def setStyle(self, _styleFn):
 		with open(_styleFn) as fQss:
