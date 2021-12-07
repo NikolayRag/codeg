@@ -18,6 +18,8 @@ from .MarkWidget import *
 from .GeoWidget import *
 
 from .BindFilter import *
+
+from .DispatchWidget import *
 from .Tracer import *
 
 
@@ -427,6 +429,11 @@ class AppWindow(QObject):
 
 
 ### DISPATCH ###
+
+
+	def dispatchWInit(self, _dispatch):
+		return DispatchWidget(_dispatch, self.wLayTrace, self.tracer)
+
 
 
 	def dispatchFill(self, _devices, _default, add=False):

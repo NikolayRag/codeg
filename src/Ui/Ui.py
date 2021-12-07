@@ -138,6 +138,7 @@ class Ui():
 		self.dispatch = _dispatch
 
 		self.appWindow = AppWindow()
+		self.appWindow.dispatchWInit(self.dispatch)
 
 
 		self.appWindow.sigPrefScheme.connect(self.prefScheme)
