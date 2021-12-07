@@ -197,10 +197,10 @@ class AppWindow(QObject):
 
 ###
 
-		self.sigTraceQueue = self.tracer.prepare
-		self.sigTraceStart = self.tracer.reset
-		self.sigTraceFeed = self.tracer.feed
-		self.sigTraceEnd = self.tracer.final
+		self.sigTraceQueue = self.dispatchUi.slotPrepare
+		self.sigTraceStart = self.dispatchUi.slotReset
+		self.sigTraceFeed = self.dispatchUi.slotFeed
+		self.sigTraceEnd = self.dispatchUi.slotFinal
 ###
 
 
@@ -485,7 +485,7 @@ class AppWindow(QObject):
 		self.selectionDescription = self.wSvgViewport.canvasAdd(self.defSelection, z=99)
 		self.selectionDescription.show(False)
 
-		self.tracer.reset()
+		self.dispatchUi.traceReset()
 
 
 

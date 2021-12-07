@@ -21,6 +21,12 @@ class DispatchWidget(QObject):
 
 		self.sigTracerProgress = self.tracer.sigProgress
 
+		self.slotPrepare = self.tracer.prepare
+		self.slotReset = self.tracer.reset
+		self.slotFeed = self.tracer.feed
+		self.slotFinal = self.tracer.final
+
+
 		self.wBtnTraceLive = self.wRoot.findChild(QWidget, "btnTraceLive")
 		self.wBtnTraceLive.setChecked(self.args.visTracer)
 
@@ -53,3 +59,8 @@ class DispatchWidget(QObject):
 			self.args.visDispatch and self.args.visTracer,
 			self.args.visDispatch and self.args.visTracer and self.args.visTraceShapes
 		)
+
+
+
+	def traceReset(self):
+		self.tracer.reset()
