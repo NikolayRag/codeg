@@ -435,7 +435,7 @@ class AppWindow(QObject):
 
 
 	def dispatchWInit(self, _dispatch):
-		return DispatchWidget(_dispatch, self.wLayTrace, self.tracer)
+		return DispatchWidget(self.wLayTrace, _dispatch, Args.Dispatch, self.tracer)
 
 
 
