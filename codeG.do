@@ -799,7 +799,7 @@
  ui, feature 280: +0 "src\Ui\AppWindow.py" ki 21/12/05 18:52:53
 	paint with Tracer into geometry layers
 
- ui, clean 281: +0 "src\Ui\AppWindow.py" ki 21/12/05 18:53:05
++ui, clean 281: +0 "src\Ui\AppWindow.py" ki 21/12/07 23:18:45
 	make Tracer ui unweird
 
 !ui, performance 282: +0 "src\Ui\Tracer.py" ki 21/12/05 03:18:18
@@ -837,4 +837,16 @@
 
  Tracer, ux 293: +0 "src\Ui\Tracer.py" ki 21/12/05 23:48:59
 	leave Traced spots after reset viewport
+
+ Tracer, unsure 294: +0 "src\Ui\Tracer.py" ki 21/12/07 01:35:34
+	check memory leak on subsequent sessions
+
++ui, dispatch 295: +0 "src\Ui\AppWindow.py" ki 21/12/07 23:26:51
+	dedicated DisppatchLink ui
+
+ tracer, fix 296: +0 "src\Ui\Tracer.py" ki 21/12/07 20:52:32
+	fix Tracer live viewbox
+
+ tracer, fix 297: +0 "src\Ui\Tracer.py" ki 21/12/07 20:53:48
+	fix Tracer shapes viewbox
 

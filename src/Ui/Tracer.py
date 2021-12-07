@@ -110,6 +110,8 @@ class TraceShape():
 Dispatch ui and live tracer
 '''
 #  todo 273 (ux, clean) +0: rewindable trace history
+#  todo 296 (tracer, fix) +0: fix Tracer live viewbox
+#  todo 297 (tracer, fix) +0: fix Tracer shapes viewbox
 class Tracer(QObject):
 	sigProgress = Signal(float)
 
