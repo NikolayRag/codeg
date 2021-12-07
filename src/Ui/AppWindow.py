@@ -144,13 +144,9 @@ class AppWindow(QObject):
 
 		self.wBtnDispatcher = cMain.findChild(QWidget, "btnDispatcher")
 		self.wBtnDispatcher.setChecked(Args.Dispatch.visDispatch)
-		self.wFrameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
 
 #  todo 47 (module-dispatch, module-ui, ux, unsure) +0: change device list to button+list
 #  todo 49 (module-ui, ux) +0: save/restore active device between sessions
-		self.wListDevs = cMain.findChild(QComboBox, "listDevs")
-
-
 		self.wLayTrace = cMain.findChild(QWidget, "layTrace")
 		self.wTraceProg = cMain.findChild(QWidget, "traceProg")
 
