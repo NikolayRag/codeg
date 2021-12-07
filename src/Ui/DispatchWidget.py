@@ -15,6 +15,31 @@ class DispatchWidget(QObject):
 
 
 
+	def dispatchFill(self, _devices, _default, add=False):
+		oldList = {self.wListDevs.itemText(i):self.wListDevs.itemData(i) for i in range(self.wListDevs.count())}
+
+		if add:
+			_devices = set([_devices]) | set(oldList.keys())
+
+
+		self.wListDevs.blockSignals(True)
+		self.wListDevs.clear()
+		self.wListDevs.blockSignals(False)
+
+
+		if _default not in _devices:
+			self.wListDevs.addItem(_default, False)
+			self.wListDevs.setCurrentIndex(self.wListDevs.count()-1)
+
+
+		for devName in _devices:
+			self.wListDevs.addItem(devName, True)
+
+			if devName == _default:
+				self.wListDevs.setCurrentIndex(self.wListDevs.count()-1)
+
+
+
 	def devChanged(self, i):
 		_name = self.wListDevs.currentText()
 		_enabled = self.wListDevs.currentData()
@@ -62,6 +87,9 @@ class DispatchWidget(QObject):
 		_dispatch.sigDispatchBegin.connect(self.tracer.reset)
 		_dispatch.sigDispatchSent.connect(self.tracer.feed)
 		_dispatch.sigDispatchFinish.connect(self.tracer.final)
+
+		_dispatch.sigDeviceListed.connect(lambda devA:self.dispatchFill(devA, self.args.last))
+		_dispatch.sigDeviceFound.connect(lambda devA:self.dispatchFill(devA, self.args.last, add=True))
 
 
 		self.wBtnTraceLive = _wRoot.findChild(QWidget, "btnTraceLive")

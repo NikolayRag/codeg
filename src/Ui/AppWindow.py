@@ -169,14 +169,12 @@ class AppWindow(QObject):
 
 #  todo 280 (ui, feature, idea) +0: paint with Tracer into geometry layers
 		self.dispatchUi = DispatchWidget(self.wLayTrace, _dispatch, Args.Dispatch, self.wSvgViewport)
+		self.dispatchFill = self.dispatchUi.dispatchFill
 		self.wBtnDispatcher.toggled.connect(self.dispatchUi.show)
 
 		self.dispatchUi.sigTracerProgress.connect(lambda v: self.wTraceProg.setValue(100*v))
 		self.sigDevChange = self.dispatchUi.sigDevChange
 		self.sigDispatchFire = self.dispatchUi.sigDispatchFire
-
-		_dispatch.sigDeviceListed.connect(lambda devA:self.dispatchFill(devA, Args.Dispatch.last))
-		_dispatch.sigDeviceFound.connect(lambda devA:self.dispatchFill(devA, Args.Dispatch.last, add=True))
 
 
 
@@ -404,34 +402,6 @@ class AppWindow(QObject):
 			cGeo.markSet(_mark, _state)
 
 			cGeo.marksSolve(filterStep='DIRECT')
-
-
-
-### DISPATCH ###
-
-
-	def dispatchFill(self, _devices, _default, add=False):
-		oldList = {self.wListDevs.itemText(i):self.wListDevs.itemData(i) for i in range(self.wListDevs.count())}
-
-		if add:
-			_devices = set([_devices]) | set(oldList.keys())
-
-
-		self.wListDevs.blockSignals(True)
-		self.wListDevs.clear()
-		self.wListDevs.blockSignals(False)
-
-
-		if _default not in _devices:
-			self.wListDevs.addItem(_default, False)
-			self.wListDevs.setCurrentIndex(self.wListDevs.count()-1)
-
-
-		for devName in _devices:
-			self.wListDevs.addItem(devName, True)
-
-			if devName == _default:
-				self.wListDevs.setCurrentIndex(self.wListDevs.count()-1)
 
 
 
