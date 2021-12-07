@@ -77,7 +77,7 @@ class AppWindow(QObject):
 	rtPos = []
 
 
-	def __init__(self):
+	def __init__(self, _dispatch):
 		QObject.__init__(self)
 
 		self.rtSize = [None, None]
@@ -191,7 +191,8 @@ class AppWindow(QObject):
 			self.wSvgViewport,
 			[self.wLayTrace, self.wFrameDev, self.wLabStats, self.wBtnTraceLive, self.wBtnTraceShapes]
 		)
-		
+
+		self.dispatchUi = DispatchWidget(self.wLayTrace, _dispatch, Args.Dispatch, self.tracer)
 ###
 		self.tracer.sigProgress.connect(lambda v: self.wTraceProg.setValue(100*v))
 		self.wBtnDispatcher.toggled.connect(self.tracer.showTracer)
@@ -432,11 +433,6 @@ class AppWindow(QObject):
 
 
 ### DISPATCH ###
-
-
-	def dispatchWInit(self, _dispatch):
-		return DispatchWidget(self.wLayTrace, _dispatch, Args.Dispatch, self.tracer)
-
 
 
 	def dispatchFill(self, _devices, _default, add=False):
