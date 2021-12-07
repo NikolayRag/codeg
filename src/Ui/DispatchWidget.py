@@ -11,7 +11,7 @@ class DispatchWidget(QObject):
 	sigTracerProgress = Signal(float)
 
 	sigDevChange = Signal(str, object)
-	sigDispatchFire = Signal()
+	sigDispatchFire = Signal(str)
 
 
 
@@ -53,7 +53,7 @@ class DispatchWidget(QObject):
 
 		self.wBtnRescan.clicked.connect(_dispatch.getDevices)
 		self.wListDevs.currentIndexChanged.connect(self.devChanged)
-		self.wBtnDispFire.clicked.connect(self.sigDispatchFire)
+		self.wBtnDispFire.clicked.connect(lambda: self.sigDispatchFire.emit(self.wListDevs.currentText()))
 
 
 		self.sigTracerProgress = self.tracer.sigProgress
