@@ -147,8 +147,7 @@ class AppWindow(QObject):
 		self.wBtnDispatcher.setChecked(Args.Dispatch.visDispatch)
 		self.wFrameDispatcher = cMain.findChild(QWidget, "frameDispatcher")
 
-#  todo 47 (module-dispatch, module-ui, ux) +0: change device list to button+list
-#  todo 48 (module-ui) +0: update device list
+#  todo 47 (module-dispatch, module-ui, ux, unsure) +0: change device list to button+list
 #  todo 49 (module-ui, ux) +0: save/restore active device between sessions
 		self.wBtnRescan = cMain.findChild(QWidget, "btnRescan")
 		self.wListDevs = cMain.findChild(QComboBox, "listDevs")
@@ -173,7 +172,8 @@ class AppWindow(QObject):
 		self.wListDevs.currentIndexChanged.connect(lambda i: self.sigDevChange.emit(self.wListDevs.currentText(), self.wListDevs.currentData()))
 		self.wBtnPrefs.clicked.connect(self.prefsList)
 		
-#  todo 280 (ui, feature) +0: paint with Tracer into geometry layers
+
+#  todo 280 (ui, feature, idea) +0: paint with Tracer into geometry layers
 		self.dispatchUi = DispatchWidget(self.wLayTrace, _dispatch, Args.Dispatch, self.wSvgViewport)
 		self.wBtnDispatcher.toggled.connect(self.dispatchUi.show)
 		self.dispatchUi.sigTracerProgress.connect(lambda v: self.wTraceProg.setValue(100*v))

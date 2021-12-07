@@ -130,13 +130,13 @@
 =module-ui 46: +0 "" kii 21/08/03 13:39:59
 	fill connection port list
 
- module-dispatch, module-ui, ux 47: +0 "src\Ui\AppWindow.py" kii 21/11/27 03:05:20
+ module-dispatch, module-ui, ux, unsure 47: +0 "src\Ui\AppWindow.py" ki 21/12/07 23:29:27
 	change device list to button+list
 
- module-ui 48: +0 "src\Dispatch\Dispatch.py" kii 21/08/03 13:12:51
++module-ui 48: +0 "src\Ui\AppWindow.py" ki 21/12/07 23:29:03
 	update device list
 
- module-ui, ux 49: +0 "" kii 21/08/04 06:11:17
+ module-ui, ux 49: +0 "src\Ui\AppWindow.py" ki 21/12/07 23:29:04
 	save/restore active device between sessions
 
 +module-ui 50: +0 "src\Ui\AppWindow.py" kii 21/09/01 22:53:30
@@ -796,7 +796,7 @@
  viewport, fix 279: +0 "src\Ui\SvgViewport.py" kii 21/11/26 18:11:17
 	make removed SvgDescriptor safe
 
- ui, feature 280: +0 "src\Ui\AppWindow.py" ki 21/12/05 18:52:53
+ ui, feature, idea 280: +0 "src\Ui\AppWindow.py" ki 21/12/07 23:30:10
 	paint with Tracer into geometry layers
 
 +ui, clean 281: +0 "src\Ui\AppWindow.py" ki 21/12/07 23:18:45
