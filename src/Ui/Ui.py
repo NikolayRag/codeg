@@ -449,17 +449,9 @@ class Ui():
 
 
 	def dispatchChanged(self, _name, _enabled):
-		print(f"Device changed to \"{_name}\"", 'mock' if not _enabled else '')
-
-		Args.Dispatch.last = _name
-
 		self.activeDevice = _name
 		if self.activeScene:
 			self.appWindow.gridSize(self.dispatch.devicePlate(self.activeDevice))
-
-
-#  todo 257 (ux) +0: handle nonexistent device
-		self.appWindow.wBtnDispFire.setEnabled(_enabled)
 
 
 

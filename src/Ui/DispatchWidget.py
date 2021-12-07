@@ -10,9 +10,23 @@ from .Tracer import *
 class DispatchWidget(QObject):
 	sigTracerProgress = Signal(float)
 
+	sigDevChange = Signal(str, object)
 	sigDispatchFire = Signal()
 
 
+
+	def devChanged(self, i):
+		_name = self.wListDevs.currentText()
+		_enabled = self.wListDevs.currentData()
+
+		print(f"Device changed to \"{_name}\"", 'mock' if not _enabled else '')
+
+		self.args.last = _name
+
+#  todo 257 (ux) +0: handle nonexistent device
+		self.wBtnDispFire.setEnabled(_enabled)
+
+		self.sigDevChange.emit(_name, _enabled)
 
 
 
@@ -32,9 +46,11 @@ class DispatchWidget(QObject):
 
 ### setup ###
 
+		self.wListDevs = _wRoot.findChild(QComboBox, "listDevs")
 		self.wBtnDispFire = _wRoot.findChild(QWidget, "btnDispFire")
 
 
+		self.wListDevs.currentIndexChanged.connect(self.devChanged)
 		self.wBtnDispFire.clicked.connect(self.sigDispatchFire)
 
 

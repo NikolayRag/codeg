@@ -41,7 +41,7 @@ class AppWindow(QObject):
 	sigDrop = Signal(list)
 
 	sigDevScan = Signal()
-	sigDevChange = Signal(str, object)
+	sigDevChange = None
 	sigDispatchFire = None
 	sigDispatchShot = Signal(object)
 
@@ -167,7 +167,6 @@ class AppWindow(QObject):
 		self.wBtnRescan.clicked.connect(self.sigDevScan)
 		self.wBtnDispShot.clicked.connect(lambda: self.sigDispatchShot.emit(self.wMain))
 		self.wBtnMarkAdd.clicked.connect(self.sigMarkAdd)
-		self.wListDevs.currentIndexChanged.connect(lambda i: self.sigDevChange.emit(self.wListDevs.currentText(), self.wListDevs.currentData()))
 		self.wBtnPrefs.clicked.connect(self.prefsList)
 		
 
@@ -175,6 +174,7 @@ class AppWindow(QObject):
 		self.dispatchUi = DispatchWidget(self.wLayTrace, _dispatch, Args.Dispatch, self.wSvgViewport)
 		self.wBtnDispatcher.toggled.connect(self.dispatchUi.show)
 		self.dispatchUi.sigTracerProgress.connect(lambda v: self.wTraceProg.setValue(100*v))
+		self.sigDevChange = self.dispatchUi.sigDevChange
 		self.sigDispatchFire = self.dispatchUi.sigDispatchFire
 
 ###
