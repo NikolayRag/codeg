@@ -161,8 +161,8 @@ class Ui():
 		self.appWindow.sigDispatchShot.connect(self.dispatchShot)
 
 		#default device as template, overrided at actual dispatch
-		self.dispatch.getDevices()
 		self.appWindow.dispatchFill({}, Args.Dispatch.last)
+		_dispatch.getDevices()
 
 
 		self.markDefault = self.data.markNew(

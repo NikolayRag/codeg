@@ -64,10 +64,10 @@ class DispatchWidget(QObject):
 		_dispatch.sigDispatchFinish.connect(self.tracer.final)
 
 
-		self.wBtnTraceLive = self.wRoot.findChild(QWidget, "btnTraceLive")
+		self.wBtnTraceLive = _wRoot.findChild(QWidget, "btnTraceLive")
 		self.wBtnTraceLive.setChecked(self.args.visTracer)
 
-		self.wBtnTraceShapes = self.wRoot.findChild(QWidget, "btnTraceShapes")
+		self.wBtnTraceShapes = _wRoot.findChild(QWidget, "btnTraceShapes")
 		self.wBtnTraceShapes.setChecked(self.args.visTraceShapes)
 
 		self.wBtnTraceLive.toggled.connect(lambda v: self.show(live=v))
