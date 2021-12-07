@@ -10,6 +10,10 @@ from .Tracer import *
 class DispatchWidget(QObject):
 	sigTracerProgress = Signal(float)
 
+	sigDispatchFire = Signal()
+
+
+
 
 
 	def __init__(self, _wRoot, _dispatch, _args, _viewport):
@@ -27,6 +31,12 @@ class DispatchWidget(QObject):
 
 
 ### setup ###
+
+		self.wBtnDispFire = _wRoot.findChild(QWidget, "btnDispFire")
+
+
+		self.wBtnDispFire.clicked.connect(self.sigDispatchFire)
+
 
 		self.sigTracerProgress = self.tracer.sigProgress
 

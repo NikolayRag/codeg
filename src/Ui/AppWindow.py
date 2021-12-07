@@ -42,7 +42,7 @@ class AppWindow(QObject):
 
 	sigDevScan = Signal()
 	sigDevChange = Signal(str, object)
-	sigDispatchFire = Signal()
+	sigDispatchFire = None
 	sigDispatchShot = Signal(object)
 
 	sigTraceQueue = None
@@ -151,7 +151,6 @@ class AppWindow(QObject):
 #  todo 49 (module-ui, ux) +0: save/restore active device between sessions
 		self.wBtnRescan = cMain.findChild(QWidget, "btnRescan")
 		self.wListDevs = cMain.findChild(QComboBox, "listDevs")
-		self.wBtnDispFire = cMain.findChild(QWidget, "btnDispFire")
 
 
 		self.wLayTrace = cMain.findChild(QWidget, "layTrace")
@@ -167,7 +166,6 @@ class AppWindow(QObject):
 		self.wBtnLoad.clicked.connect(lambda: self.sigSceneLoad.emit(self.wMain))
 		self.wBtnRescan.clicked.connect(self.sigDevScan)
 		self.wBtnDispShot.clicked.connect(lambda: self.sigDispatchShot.emit(self.wMain))
-		self.wBtnDispFire.clicked.connect(self.sigDispatchFire)
 		self.wBtnMarkAdd.clicked.connect(self.sigMarkAdd)
 		self.wListDevs.currentIndexChanged.connect(lambda i: self.sigDevChange.emit(self.wListDevs.currentText(), self.wListDevs.currentData()))
 		self.wBtnPrefs.clicked.connect(self.prefsList)
@@ -177,6 +175,7 @@ class AppWindow(QObject):
 		self.dispatchUi = DispatchWidget(self.wLayTrace, _dispatch, Args.Dispatch, self.wSvgViewport)
 		self.wBtnDispatcher.toggled.connect(self.dispatchUi.show)
 		self.dispatchUi.sigTracerProgress.connect(lambda v: self.wTraceProg.setValue(100*v))
+		self.sigDispatchFire = self.dispatchUi.sigDispatchFire
 
 ###
 
