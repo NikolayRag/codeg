@@ -187,15 +187,15 @@ class AppWindow(QObject):
 #  todo 280 (ui, feature) +0: paint with Tracer into geometry layers
 #  todo 281 (ui, clean) +0: make Tracer ui unweird
 		self.tracer = Tracer(
-			Args.Dispatch,
 			self.wSvgViewport,
-			[self.wLayTrace, self.wFrameDev, self.wLabStats, self.wBtnTraceLive, self.wBtnTraceShapes]
+			[self.wFrameDev, self.wLabStats]
 		)
 
 		self.dispatchUi = DispatchWidget(self.wLayTrace, _dispatch, Args.Dispatch, self.tracer)
+		self.wBtnDispatcher.toggled.connect(self.dispatchUi.show)
+
 ###
 		self.tracer.sigProgress.connect(lambda v: self.wTraceProg.setValue(100*v))
-		self.wBtnDispatcher.toggled.connect(self.tracer.showTracer)
 
 		self.sigTraceQueue = self.tracer.prepare
 		self.sigTraceStart = self.tracer.reset

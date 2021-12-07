@@ -137,30 +137,27 @@ class Tracer(QObject):
 
 	dtStart = 0
 
-	args = None
 	visLive = False
 	visPaint = False
 	
 
-	def __init__(self, _args, _vp, _osd=None):
+	def __init__(self, _vp, _osd=None):
 		QObject.__init__(self)
 
 		self.laySpots = []
 		self.layShapes = []
 
-		self.args = _args
 		self.wViewport = _vp
-		self.wRoot, self.wLog, self.wStats, self.wLive, self.wShapes = _osd
+		self.wLog, self.wStats = _osd
 
 
-		self.wLive.setChecked(self.args.visTracer)
-		self.wShapes.setEnabled(self.args.visTracer)
-		self.wShapes.setChecked(self.args.visTraceShapes)
 
-		self.wLive.toggled.connect(lambda v: self.showTracer(live=v))
-		self.wShapes.toggled.connect(lambda v: self.showTracer(shapes=v))
+	def toggleVis(self, _live=None, _shapes=None):
+		if _live!=None:
+			self.visLive = _live
 
-		self.showTracer(self.args.visDispatch, live=self.args.visTracer, shapes=self.args.visTraceShapes)
+		if _shapes!=None:
+			self.visPaint = _shapes
 
 
 
@@ -169,33 +166,15 @@ class Tracer(QObject):
 
 
 
-	def showTracer(self, _vis=None, live=None, shapes=None):
 		self.wViewport.canvasUpdate(False)
 
-
-		if _vis!=None:
-			self.args.visDispatch = _vis
-
-		self.wRoot.setVisible(self.args.visDispatch)
-
-
-		if live != None:
-			self.wShapes.setEnabled(live)
-			self.args.visTracer = live
-
-		self.visLive = (self.args.visDispatch and self.args.visTracer)
 		self.layFocus and self.layFocus.show(self.visLive)
+
 		for sp in self.laySpots:
 			sp.show(self.visLive)
 
-
-		if shapes != None:
-			self.args.visTraceShapes = shapes
-
-		self.visPaint = (self.args.visDispatch and self.args.visTracer and self.args.visTraceShapes)
 		for sp in self.layShapes:
 			sp.show(self.visPaint)
-
 
 		self.wViewport.canvasUpdate(True)
 
@@ -221,12 +200,12 @@ class Tracer(QObject):
 
 
 		if not _session:
-			self.showTracer()
+			self.toggleVis()
 			return
 
 
 		self.layShapes = []	
-		self.showTracer()
+		self.toggleVis()
 
 
 		self.dtStart = datetime.now()
