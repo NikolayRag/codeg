@@ -5,6 +5,8 @@ from PySide2.QtGui import *
 
 
 class DispatchWidget(QObject):
+	sigTracerProgress = Signal(float)
+
 
 
 	def __init__(self, _wRoot, _dispatch, _args, _tracer=None):
@@ -16,6 +18,8 @@ class DispatchWidget(QObject):
 		self.tracer = _tracer
 
 ### setup ###
+
+		self.sigTracerProgress = self.tracer.sigProgress
 
 		self.wBtnTraceLive = self.wRoot.findChild(QWidget, "btnTraceLive")
 		self.wBtnTraceLive.setChecked(self.args.visTracer)

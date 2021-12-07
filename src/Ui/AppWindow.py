@@ -193,9 +193,9 @@ class AppWindow(QObject):
 
 		self.dispatchUi = DispatchWidget(self.wLayTrace, _dispatch, Args.Dispatch, self.tracer)
 		self.wBtnDispatcher.toggled.connect(self.dispatchUi.show)
+		self.dispatchUi.sigTracerProgress.connect(lambda v: self.wTraceProg.setValue(100*v))
 
 ###
-		self.tracer.sigProgress.connect(lambda v: self.wTraceProg.setValue(100*v))
 
 		self.sigTraceQueue = self.tracer.prepare
 		self.sigTraceStart = self.tracer.reset
