@@ -727,7 +727,7 @@
 +module-dispatch, ux 256: +0 "src\Ui\DispatchLink.py" kii 21/11/21 19:59:23
 	list devices nonblocking
 
- ux 257: +0 "src\Ui\Ui.py" kii 21/11/21 22:22:18
+ ux 257: +0 "src\Ui\DispatchWidget.py" ki 21/12/08 01:44:45
 	handle nonexistent device
 
  module-dispatch, error, ux 258: +0 "src\Ui\DispatchLink.py" kii 21/11/22 02:03:58
@@ -748,7 +748,7 @@
 +module-dispatch, feature 263: +0 "src\Ui\DispatchLink.py" ki 21/12/05 05:29:34
 	add dispatch queue
 
--module-ui, module-dispatch, fix 264: +0 "src\Ui\Ui.py" kii 21/11/22 23:40:08
++module-ui, module-dispatch, fix 264: +0 "src\Ui\Ui.py" ki 21/12/08 02:24:28
 	use actual box
 
 +feature, ux, module-dispatch 265: +0 "src\Ui\AppWindow.py" kii 21/11/24 04:06:22

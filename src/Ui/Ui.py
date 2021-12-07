@@ -473,8 +473,6 @@ class Ui():
 
 
 #  todo 251 (module-dispatch, feature) +0: make generation by iterator
-# -todo 264 (module-ui, module-dispatch, fix) +0: use actual box
-
 	def dispatchSend(self, _name):
 		self.dispatch.sessionStart(_name, self.activeScene.traceG())
 
