@@ -135,9 +135,10 @@ class AppWindow(QObject):
 
 
 		self.wBtnFit = cMain.findChild(QWidget, "btnFit")
+###
 		self.wBtnTraceLive = cMain.findChild(QWidget, "btnTraceLive")
 		self.wBtnTraceShapes = cMain.findChild(QWidget, "btnTraceShapes")
-
+###
 		self.wBtnCaption = cMain.findChild(QWidget, "btnCaption")
 		self.wBtnWipe = cMain.findChild(QWidget, "btnWipe")
 		self.wBtnOpen = cMain.findChild(QWidget, "btnOpen")
@@ -160,13 +161,14 @@ class AppWindow(QObject):
 
 
 		self.wLayTrace = cMain.findChild(QWidget, "layTrace")
-		self.wFrameDev = cMain.findChild(QWidget, "frameDev")
-		self.wLabStats = cMain.findChild(QWidget, "labStats")
 		self.wTraceProg = cMain.findChild(QWidget, "traceProg")
 
+###
+		self.wFrameDev = cMain.findChild(QWidget, "frameDev")
+		self.wLabStats = cMain.findChild(QWidget, "labStats")
 		fm = QFontMetrics(self.wLabStats.document().defaultFont())
 		self.wLabStats.setMaximumHeight(fm.height()*3)
-
+###
 
 		self.wBtnFit.clicked.connect(self.viewportFit)
 		self.wBtnCaption.clicked.connect(self.about)
@@ -190,6 +192,7 @@ class AppWindow(QObject):
 			[self.wLayTrace, self.wFrameDev, self.wLabStats, self.wBtnTraceLive, self.wBtnTraceShapes]
 		)
 		
+###
 		self.tracer.sigProgress.connect(lambda v: self.wTraceProg.setValue(100*v))
 		self.wBtnDispatcher.toggled.connect(self.tracer.showTracer)
 
@@ -197,7 +200,7 @@ class AppWindow(QObject):
 		self.sigTraceStart = self.tracer.reset
 		self.sigTraceFeed = self.tracer.feed
 		self.sigTraceEnd = self.tracer.final
-
+###
 
 
 
