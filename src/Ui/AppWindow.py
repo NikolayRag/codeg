@@ -20,7 +20,6 @@ from .GeoWidget import *
 from .BindFilter import *
 
 from .DispatchWidget import *
-from .Tracer import *
 
 
 
@@ -66,7 +65,7 @@ class AppWindow(QObject):
 
 	gridDescription = None
 
-	tracer = None
+	dispatchUi = None
 
 
 #  todo 212 (module-ui, clean, widget) +0: MarkWidget collection class
@@ -186,12 +185,7 @@ class AppWindow(QObject):
 		
 #  todo 280 (ui, feature) +0: paint with Tracer into geometry layers
 #  todo 281 (ui, clean) +0: make Tracer ui unweird
-		self.tracer = Tracer(
-			self.wSvgViewport,
-			[self.wFrameDev, self.wLabStats]
-		)
-
-		self.dispatchUi = DispatchWidget(self.wLayTrace, _dispatch, Args.Dispatch, self.tracer)
+		self.dispatchUi = DispatchWidget(self.wLayTrace, _dispatch, Args.Dispatch, self.wSvgViewport)
 		self.wBtnDispatcher.toggled.connect(self.dispatchUi.show)
 		self.dispatchUi.sigTracerProgress.connect(lambda v: self.wTraceProg.setValue(100*v))
 
