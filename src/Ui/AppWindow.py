@@ -184,7 +184,8 @@ class AppWindow(QObject):
 #  todo 281 (ui, clean) +0: make Tracer ui unweird
 		self.tracer = Tracer(
 			Args.Dispatch,
-			[self.wSvgViewport, self.wLayTrace, self.wFrameDev, self.wLabStats, self.wBtnTraceLive, self.wBtnTraceShapes]
+			self.wSvgViewport,
+			[self.wLayTrace, self.wFrameDev, self.wLabStats, self.wBtnTraceLive, self.wBtnTraceShapes]
 		)
 		
 		self.tracer.sigProgress.connect(lambda v: self.wTraceProg.setValue(100*v))

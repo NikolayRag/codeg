@@ -141,14 +141,15 @@ class Tracer(QObject):
 
 	
 
-	def __init__(self, _args, _osd=None):
+	def __init__(self, _args, _vp, _osd=None):
 		QObject.__init__(self)
 
 		self.laySpots = []
 		self.layShapes = []
 
 		self.args = _args
-		self.wViewport, self.wRoot, self.wLog, self.wStats, self.wLive, self.wShapes = _osd
+		self.wViewport = _vp
+		self.wRoot, self.wLog, self.wStats, self.wLive, self.wShapes = _osd
 
 
 		self.wLive.setChecked(self.args.visTracer)
