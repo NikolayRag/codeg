@@ -156,7 +156,6 @@ class Ui():
 		self.appWindow.sigPaste.connect(self.paste)
 
 #  todo 276 (ux, clean) +0: clean device rescan cycle
-		self.appWindow.sigDevScan.connect(lambda: self.dispatch.getDevices())
 		self.appWindow.sigDevChange.connect(self.dispatchChanged)
 		self.appWindow.sigDispatchFire.connect(self.dispatchSend)
 		self.appWindow.sigDispatchShot.connect(self.dispatchShot)
@@ -167,8 +166,6 @@ class Ui():
 		self.dispatch.sigDispatchSent.connect(self.appWindow.sigTraceFeed)
 		self.dispatch.sigDispatchFinish.connect(self.appWindow.sigTraceEnd)
 
-		self.dispatch.sigDeviceListed.connect(lambda devA:self.appWindow.dispatchFill(devA, Args.Dispatch.last))
-		self.dispatch.sigDeviceFound.connect(lambda devA:self.appWindow.dispatchFill(devA, Args.Dispatch.last, add=True))
 
 		#default device as template, overrided at actual dispatch
 		self.dispatch.getDevices()

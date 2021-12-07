@@ -46,10 +46,12 @@ class DispatchWidget(QObject):
 
 ### setup ###
 
+		self.wBtnRescan = _wRoot.findChild(QWidget, "btnRescan")
 		self.wListDevs = _wRoot.findChild(QComboBox, "listDevs")
 		self.wBtnDispFire = _wRoot.findChild(QWidget, "btnDispFire")
 
 
+		self.wBtnRescan.clicked.connect(_dispatch.getDevices)
 		self.wListDevs.currentIndexChanged.connect(self.devChanged)
 		self.wBtnDispFire.clicked.connect(self.sigDispatchFire)
 

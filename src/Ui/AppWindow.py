@@ -40,7 +40,6 @@ class AppWindow(QObject):
 	sigPaste = Signal()
 	sigDrop = Signal(list)
 
-	sigDevScan = Signal()
 	sigDevChange = None
 	sigDispatchFire = None
 	sigDispatchShot = Signal(object)
@@ -149,7 +148,6 @@ class AppWindow(QObject):
 
 #  todo 47 (module-dispatch, module-ui, ux, unsure) +0: change device list to button+list
 #  todo 49 (module-ui, ux) +0: save/restore active device between sessions
-		self.wBtnRescan = cMain.findChild(QWidget, "btnRescan")
 		self.wListDevs = cMain.findChild(QComboBox, "listDevs")
 
 
@@ -164,7 +162,6 @@ class AppWindow(QObject):
 		self.wBtnPaste.clicked.connect(self.sigPaste)
 		self.wBtnSave.clicked.connect(lambda: self.sigSceneSave.emit(self.wMain))
 		self.wBtnLoad.clicked.connect(lambda: self.sigSceneLoad.emit(self.wMain))
-		self.wBtnRescan.clicked.connect(self.sigDevScan)
 		self.wBtnDispShot.clicked.connect(lambda: self.sigDispatchShot.emit(self.wMain))
 		self.wBtnMarkAdd.clicked.connect(self.sigMarkAdd)
 		self.wBtnPrefs.clicked.connect(self.prefsList)
@@ -176,6 +173,10 @@ class AppWindow(QObject):
 		self.dispatchUi.sigTracerProgress.connect(lambda v: self.wTraceProg.setValue(100*v))
 		self.sigDevChange = self.dispatchUi.sigDevChange
 		self.sigDispatchFire = self.dispatchUi.sigDispatchFire
+
+		_dispatch.sigDeviceListed.connect(lambda devA:self.dispatchFill(devA, Args.Dispatch.last))
+		_dispatch.sigDeviceFound.connect(lambda devA:self.dispatchFill(devA, Args.Dispatch.last, add=True))
+
 
 ###
 
