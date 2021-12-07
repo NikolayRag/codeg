@@ -138,7 +138,8 @@ class Tracer(QObject):
 	dtStart = 0
 
 	args = None
-
+	visLive = False
+	visPaint = False
 	
 
 	def __init__(self, _args, _vp, _osd=None):
@@ -182,18 +183,18 @@ class Tracer(QObject):
 			self.wShapes.setEnabled(live)
 			self.args.visTracer = live
 
-		live = (self.args.visDispatch and self.args.visTracer)
-		self.layFocus and self.layFocus.show(live)
+		self.visLive = (self.args.visDispatch and self.args.visTracer)
+		self.layFocus and self.layFocus.show(self.visLive)
 		for sp in self.laySpots:
-			sp.show(live)
+			sp.show(self.visLive)
 
 
 		if shapes != None:
 			self.args.visTraceShapes = shapes
 
-		shapes = (self.args.visDispatch and self.args.visTracer and self.args.visTraceShapes)
+		self.visPaint = (self.args.visDispatch and self.args.visTracer and self.args.visTraceShapes)
 		for sp in self.layShapes:
-			sp.show(shapes)
+			sp.show(self.visPaint)
 
 
 		self.wViewport.canvasUpdate(True)
@@ -288,7 +289,7 @@ class Tracer(QObject):
 
 	def spot(self, _xy, _xml):
 		cSpot = self.wViewport.canvasAdd(z=102)
-		cSpot.show(self.args.visDispatch and self.args.visTracer)
+		cSpot.show(self.visLive)
 		cSpot.ghost(True)
 		cSpot.static(True)
 		cSpot.setXml(_xml)
@@ -308,9 +309,7 @@ class Tracer(QObject):
 			self.layShapes and self.layShapes[-1].draw()
 
 			cShape = TraceShape(lambda: self.wViewport.canvasAdd(z=100),
-				self.args.visDispatch and self.args.visTracer and self.args.visTraceShapes,
-				vBox
-			)
+				self.visPaint, vBox)
 			self.layShapes.append(cShape)
 
 		else:
