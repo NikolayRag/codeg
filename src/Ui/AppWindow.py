@@ -134,10 +134,6 @@ class AppWindow(QObject):
 
 
 		self.wBtnFit = cMain.findChild(QWidget, "btnFit")
-###
-		self.wBtnTraceLive = cMain.findChild(QWidget, "btnTraceLive")
-		self.wBtnTraceShapes = cMain.findChild(QWidget, "btnTraceShapes")
-###
 		self.wBtnCaption = cMain.findChild(QWidget, "btnCaption")
 		self.wBtnWipe = cMain.findChild(QWidget, "btnWipe")
 		self.wBtnOpen = cMain.findChild(QWidget, "btnOpen")
@@ -162,12 +158,6 @@ class AppWindow(QObject):
 		self.wLayTrace = cMain.findChild(QWidget, "layTrace")
 		self.wTraceProg = cMain.findChild(QWidget, "traceProg")
 
-###
-		self.wFrameDev = cMain.findChild(QWidget, "frameDev")
-		self.wLabStats = cMain.findChild(QWidget, "labStats")
-		fm = QFontMetrics(self.wLabStats.document().defaultFont())
-		self.wLabStats.setMaximumHeight(fm.height()*3)
-###
 
 		self.wBtnFit.clicked.connect(self.viewportFit)
 		self.wBtnCaption.clicked.connect(self.about)
