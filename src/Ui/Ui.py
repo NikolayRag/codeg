@@ -161,7 +161,7 @@ class Ui():
 
 
 		self.appWindow.sigDevChange.connect(self.dispatchChanged)
-		_dispatch.getDevices()
+		_dispatch.getDevices() #inited after connections made coz devices scanned in background
 
 
 		self.markDefault = self.data.markNew(
