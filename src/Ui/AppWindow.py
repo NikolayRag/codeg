@@ -44,11 +44,6 @@ class AppWindow(QObject):
 	sigDispatchFire = None
 	sigDispatchShot = Signal(object)
 
-	sigTraceQueue = None
-	sigTraceStart = None
-	sigTraceFeed = None
-	sigTraceEnd = None
-
 
 	aboutHref = "https://github.com/NikolayRag/codeg"
 
