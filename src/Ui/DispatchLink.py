@@ -144,7 +144,7 @@ class DispatchLink(QObject):
 
 
 
-	def devicePlate(self, _dev):
-		size = self.dispatcher and self.dispatcher.deviceSize(_dev)
+	def devicePlate(self, _dev=None):
+		size = _dev and self.dispatcher and self.dispatcher.deviceSize(_dev)
 
 		return size or self.fallbackPlate
