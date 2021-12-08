@@ -21,8 +21,8 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 		'wMaxi': [False],
 	},
 	'Dispatch': {
-		'width': [300, [0.,1000], float, 'Mock width'],
-		'height': [200, [0.,1000], float, 'Mock height'],
+		'width': [300],
+		'height': [200],
 		'GRBLbps': ['115200', ['9600', '115200'], str, 'GRBL bitrate'],
 		'last': ['Mockup'],
 		'visDispatch': [False],

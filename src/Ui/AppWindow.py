@@ -439,6 +439,9 @@ class AppWindow(QObject):
 		if not self.gridDescription:
 			return
 
+		Args.Dispatch.width = _size[0]
+		Args.Dispatch.height = _size[1]
+
 		self.gridDescription.size(_size)
 		self.gridDescription.place((0,-_size[1]))
 
