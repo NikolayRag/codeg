@@ -147,8 +147,8 @@ class AppWindow(QObject):
 
 #  todo 47 (module-dispatch, module-ui, ux, unsure) +0: change device list to button+list
 #  todo 49 (module-ui, ux) +0: save/restore active device between sessions
-		self.wLayTrace = cMain.findChild(QWidget, "layTrace")
-		self.wTraceProg = cMain.findChild(QWidget, "traceProg")
+		self.wFrameDispatch = cMain.findChild(QWidget, "frameDispatch")
+		self.wProgDispatch = cMain.findChild(QWidget, "progDispatch")
 
 
 		self.wBtnFit.clicked.connect(self.viewportFit)
@@ -164,14 +164,14 @@ class AppWindow(QObject):
 		
 
 #  todo 280 (ui, feature, idea) +0: paint with Tracer into geometry layers
-		self.dispatchUi = DispatchWidget(self.wLayTrace, _dispatch, Args.Dispatch, self.wSvgViewport)
+		self.dispatchUi = DispatchWidget(self.wFrameDispatch, _dispatch, Args.Dispatch, self.wSvgViewport)
 
 		self.dispatchFill = self.dispatchUi.dispatchFill
 		self.sigDevChange = self.dispatchUi.sigDevChange
 		self.sigDispatchFire = self.dispatchUi.sigDispatchFire
 
 		self.dispatchUi.sigDevChange.connect(self.gridSize)
-		self.dispatchUi.sigTracerProgress.connect(lambda v: self.wTraceProg.setValue(100*v))
+		self.dispatchUi.sigTracerProgress.connect(lambda v: self.wProgDispatch.setValue(100*v))
 
 		self.wBtnDispatcher.toggled.connect(self.dispatchUi.show)
 

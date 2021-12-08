@@ -164,7 +164,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QProgressBar" name="traceProg">
+           <widget class="QProgressBar" name="progDispatch">
             <property name="sizePolicy">
              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -307,7 +307,7 @@
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QWidget" name="layTrace" native="true">
+                   <widget class="QWidget" name="frameDispatch" native="true">
                     <layout class="QVBoxLayout" name="verticalLayout_7">
                      <property name="spacing">
                       <number>2</number>
