@@ -26,7 +26,7 @@
 #listObjects, #listObjects QWidget { background-color: rgba(0,0,0,0); }
 
 
-#layTrace { background-color: rgba(0,0,0,0); }
+#frameDispatch { background-color: rgba(0,0,0,0); }
 #frameDev, #labStats { background-color: rgba(0,0,0,32); }
 
 
