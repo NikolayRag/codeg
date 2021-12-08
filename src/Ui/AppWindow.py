@@ -405,7 +405,7 @@ class AppWindow(QObject):
 ### SCENE ###
 
 
-	def slotNewScene(self, _scene):
+	def slotNewScene(self, _scene, _size):
 		self.widgetGeo.clean()
 
 
@@ -428,6 +428,10 @@ class AppWindow(QObject):
 		self.selectionDescription.show(False)
 
 		self.dispatchUi.traceReset()
+
+
+		self.gridSize(_size)
+		self.viewportFit()
 
 
 
