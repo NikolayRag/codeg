@@ -850,3 +850,6 @@
  tracer, fix 297: +0 "src\Ui\Tracer.py" ki 21/12/07 20:53:48
 	fix Tracer shapes viewbox
 
+=device, fix 298: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/08 04:18:51
+	read echo when available nonblocking
+
