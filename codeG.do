@@ -784,7 +784,7 @@
  module-dispatch, clean 275: +0 "src\Ui\DispatchLink.py" kii 21/11/26 02:45:55
 	rescan device at stop state
 
--ux, clean 276: +0 "src\Ui\Ui.py" ki 21/12/08 03:40:55
+-ux, clean 276: +0 "src\Ui\DispatchWidget.py" ki 21/12/08 05:10:01
 	clean device rescan cycle
 
 !! 277: +0 "src\Ui\DispatchLink.py" kii 21/11/26 14:56:19
@@ -850,6 +850,9 @@
  tracer, fix 297: +0 "src\Ui\Tracer.py" ki 21/12/07 20:53:48
 	fix Tracer shapes viewbox
 
-=device, fix 298: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/08 04:18:51
-	read echo when available nonblocking
+=device, fix 298: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/09 01:52:06
+	read device nonblocking
+
+=device, fix 299: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/08 04:49:38
+	get GRBL actual plate size
 
