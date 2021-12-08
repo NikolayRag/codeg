@@ -162,8 +162,6 @@ class Ui():
 
 # -todo 276 (ux, clean) +0: clean device rescan cycle
 		self.appWindow.sigDevChange.connect(self.dispatchChanged)
-		#default device as template, overrided at actual dispatch
-		self.appWindow.dispatchFill({}, Args.Dispatch.last)
 		_dispatch.getDevices()
 
 

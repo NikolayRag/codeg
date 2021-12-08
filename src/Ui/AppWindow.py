@@ -161,12 +161,15 @@ class AppWindow(QObject):
 #  todo 280 (ui, feature, idea) +0: paint with Tracer into geometry layers
 		self.dispatchUi = DispatchWidget(self.wFrameDispatch, _dispatch, Args.Dispatch, self.wSvgViewport)
 
-		self.dispatchFill = self.dispatchUi.dispatchFill
 		self.sigDevChange = self.dispatchUi.sigDevChange
 		self.sigDispatchFire = self.dispatchUi.sigDispatchFire
 
 		self.dispatchUi.sigDevChange.connect(self.gridSize)
 		self.dispatchUi.sigTracerProgress.connect(lambda v: self.wProgDispatch.setValue(100*v))
+
+		#default device as template, overrided at actual device when found
+		self.dispatchUi.dispatchFill({}, Args.Dispatch.last)
+
 
 		self.wBtnDispatcher.toggled.connect(self.dispatchUi.show)
 
