@@ -160,7 +160,6 @@ class Ui():
 		self.appWindow.sigDispatchShot.connect(self.dispatchShot)
 
 
-# -todo 276 (ux, clean) +0: clean device rescan cycle
 		self.appWindow.sigDevChange.connect(self.dispatchChanged)
 		_dispatch.getDevices()
 

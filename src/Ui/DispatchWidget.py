@@ -76,6 +76,7 @@ class DispatchWidget(QObject):
 		self.wBtnDispFire = _wRoot.findChild(QWidget, "btnDispFire")
 
 
+# -todo 276 (ux, clean) +0: clean device rescan cycle
 		self.wBtnRescan.clicked.connect(_dispatch.getDevices)
 		self.wListDevs.currentIndexChanged.connect(self.devChanged)
 		self.wBtnDispFire.clicked.connect(lambda: self.sigDispatchFire.emit(self.wListDevs.currentText()))
