@@ -8,7 +8,7 @@ from .Tracer import *
 
 
 class DispatchWidget(QObject):
-	sigTracerProgress = Signal(float)
+	sigTracerProgress = None
 
 	sigDevChange = Signal(object)
 	sigDispatchFire = Signal(str)
@@ -62,12 +62,6 @@ class DispatchWidget(QObject):
 		self.dispatch = _dispatch
 		self.args = _args
 
-		self.wFrameDev = _wRoot.findChild(QWidget, "frameDev")
-		self.wLabStats = _wRoot.findChild(QWidget, "labStats")
-
-
-		self.tracer = Tracer(_viewport, [self.wFrameDev, self.wLabStats])
-
 
 ### setup ###
 
@@ -75,12 +69,21 @@ class DispatchWidget(QObject):
 		self.wListDevs = _wRoot.findChild(QComboBox, "listDevs")
 		self.wBtnDispFire = _wRoot.findChild(QWidget, "btnDispFire")
 
-
 # -todo 276 (ux, clean) +0: clean device rescan cycle
 		self.wBtnRescan.clicked.connect(_dispatch.getDevices)
 		self.wListDevs.currentIndexChanged.connect(self.devChanged)
 		self.wBtnDispFire.clicked.connect(lambda: self.sigDispatchFire.emit(self.wListDevs.currentText()))
 
+		_dispatch.sigDeviceListed.connect(lambda devA:self.dispatchFill(devA, self.args.last))
+		_dispatch.sigDeviceFound.connect(lambda devA:self.dispatchFill(devA, self.args.last, add=True))
+
+
+		self.wBtnTraceLive = _wRoot.findChild(QWidget, "btnTraceLive")
+		self.wBtnTraceShapes = _wRoot.findChild(QWidget, "btnTraceShapes")
+
+		self.wFrameDev = _wRoot.findChild(QWidget, "frameDev")
+		self.wLabStats = _wRoot.findChild(QWidget, "labStats")
+		self.tracer = Tracer(_viewport, [self.wFrameDev, self.wLabStats])
 
 		self.sigTracerProgress = self.tracer.sigProgress
 
@@ -89,14 +92,8 @@ class DispatchWidget(QObject):
 		_dispatch.sigDispatchSent.connect(self.tracer.feed)
 		_dispatch.sigDispatchFinish.connect(self.tracer.final)
 
-		_dispatch.sigDeviceListed.connect(lambda devA:self.dispatchFill(devA, self.args.last))
-		_dispatch.sigDeviceFound.connect(lambda devA:self.dispatchFill(devA, self.args.last, add=True))
 
-
-		self.wBtnTraceLive = _wRoot.findChild(QWidget, "btnTraceLive")
 		self.wBtnTraceLive.setChecked(self.args.visTracer)
-
-		self.wBtnTraceShapes = _wRoot.findChild(QWidget, "btnTraceShapes")
 		self.wBtnTraceShapes.setChecked(self.args.visTraceShapes)
 
 		self.wBtnTraceLive.toggled.connect(lambda v: self.show(live=v))
