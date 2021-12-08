@@ -136,7 +136,7 @@ class Ui():
 		self.data = _data
 
 		self.dispatch = _dispatch
-		self.activeDeviceSize = _dispatch.devicePlate()
+		self.dispatchChanged(_dispatch.devicePlate())
 
 		self.appWindow = AppWindow(self.dispatch)
 
