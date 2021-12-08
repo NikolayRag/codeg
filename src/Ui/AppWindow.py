@@ -168,6 +168,7 @@ class AppWindow(QObject):
 		self.dispatchFill = self.dispatchUi.dispatchFill
 		self.wBtnDispatcher.toggled.connect(self.dispatchUi.show)
 
+		self.dispatchUi.sigDevChange.connect(self.gridSize)
 		self.dispatchUi.sigTracerProgress.connect(lambda v: self.wTraceProg.setValue(100*v))
 		self.sigDevChange = self.dispatchUi.sigDevChange
 		self.sigDispatchFire = self.dispatchUi.sigDispatchFire
@@ -431,6 +432,9 @@ class AppWindow(QObject):
 
 
 	def gridSize(self, _size):
+		if not self.gridDescription:
+			return
+
 		self.gridDescription.size(_size)
 		self.gridDescription.place((0,-_size[1]))
 

@@ -10,7 +10,7 @@ from .Tracer import *
 class DispatchWidget(QObject):
 	sigTracerProgress = Signal(float)
 
-	sigDevChange = Signal(str, object)
+	sigDevChange = Signal(object)
 	sigDispatchFire = Signal(str)
 
 
@@ -51,7 +51,7 @@ class DispatchWidget(QObject):
 #  todo 257 (ux) +0: handle nonexistent device
 		self.wBtnDispFire.setEnabled(_enabled)
 
-		self.sigDevChange.emit(_name, _enabled)
+		self.sigDevChange.emit(self.dispatch.devicePlate(_name))
 
 
 

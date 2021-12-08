@@ -121,7 +121,7 @@ class Ui():
 	# runtime
 
 	activeScene = None
-	activeDevice = None
+	activeDeviceSize = None
 
 
 	def __init__(self, _data, _dispatch):
@@ -136,6 +136,7 @@ class Ui():
 		self.data = _data
 
 		self.dispatch = _dispatch
+		self.activeDeviceSize = _dispatch.devicePlate()
 
 		self.appWindow = AppWindow(self.dispatch)
 
@@ -274,8 +275,9 @@ class Ui():
 		self.activeScene = self.data.sceneGet(_name)
 		self.appWindow.slotNewScene(self.activeScene)
 
-		self.appWindow.gridSize(self.dispatch.devicePlate(self.activeDevice))
+		self.appWindow.gridSize(self.activeDeviceSize)
 		self.appWindow.viewportFit()
+
 
 
 	def sceneReset(self):
@@ -416,7 +418,7 @@ class Ui():
 
 
 		cGBlock = self.activeScene.geoAdd(fileName, [self.markDefault], 'UI')
-		cOffset = QPointF(*self.dispatch.devicePlate(self.activeDevice))
+		cOffset = QPointF(*self.activeDeviceSize)
 		cGBlock.xformSet(offset=(0,-cOffset.y()))
 		gDscr = self.appWindow.geoAddWidget(cGBlock)
 
@@ -428,7 +430,7 @@ class Ui():
 		clipboard = QGuiApplication.clipboard()
 
 		cGBlock = self.activeScene.geoAdd(clipboard.text(), [self.markDefault], 'UI', name='paste', raw=True)
-		cOffset = QPointF(*self.dispatch.devicePlate(self.activeDevice))
+		cOffset = QPointF(*self.activeDeviceSize)
 		cGBlock.xformSet(offset=(0,-cOffset.y()))
 		gDscr = self.appWindow.geoAddWidget(cGBlock)
 
@@ -439,10 +441,8 @@ class Ui():
 ### DISPATCH ###
 
 
-	def dispatchChanged(self, _name, _enabled):
-		self.activeDevice = _name
-		if self.activeScene:
-			self.appWindow.gridSize(self.dispatch.devicePlate(self.activeDevice))
+	def dispatchChanged(self, _size):
+		self.activeDeviceSize = _size
 
 
 
