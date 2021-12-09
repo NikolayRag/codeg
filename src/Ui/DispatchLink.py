@@ -72,9 +72,6 @@ class DispatchLink(QObject):
 	sigDeviceFound = Signal(str)
 	sigDeviceListed = Signal(list)
 	sigDispatchAdded = Signal(object)
-	sigDispatchBegin = Signal(object)
-	sigDispatchSent = Signal(object, object, object)
-	sigDispatchFinish = Signal(object, bool)
 
 
 	dispatcher = None
@@ -111,9 +108,6 @@ class DispatchLink(QObject):
 
 
 	def sessionFinish(self, _session, _res):
-		self.sigDispatchFinish.emit(_session, _res)
-
-
 		if self.allSessions[0] == _session:
 			self.allSessions = self.allSessions[1:]
 
@@ -133,8 +127,6 @@ class DispatchLink(QObject):
 			return self.dispatcher.deviceSend(_dev, _d)
 
 		cSession = DispatchSession(bindDev, _data)
-		cSession.sigStart.connect(lambda: self.sigDispatchBegin.emit(cSession))
-		cSession.sigFeed.connect(lambda res, echo: self.sigDispatchSent.emit(cSession, res, echo))
 		cSession.sigFinish.connect(lambda res: self.sessionFinish(cSession, res))
 
 		self.allSessions.append(cSession)
