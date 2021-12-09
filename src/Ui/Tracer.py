@@ -201,16 +201,9 @@ class Tracer(QObject):
 
 
 
-	def feed(self, _session, _res, _cmd):
-		edge = re.findall("S([\d]+)", _cmd)
-		if edge and float(edge[0])==0:
-			self.triggerDraw = 1
-			self.moveto(self.lastSpot, True)
-
-
-		coords = re.findall("X(-?[\d\.]+)Y(-?[\d\.]+)", _cmd)
-		if coords:
-			self.moveto((float(coords[0][0]), -float(coords[0][1])))
+	def split(self, _session):
+		self.triggerDraw = 1
+		self.moveto(self.lastSpot, True)
 
 
 

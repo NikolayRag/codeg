@@ -155,12 +155,23 @@ class DispatchWidget(QObject):
 
 	def traceFeed(self, _session, _res, _echo):
 		dt = datetime.now()-self.dtStart
-		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes-1}/{self.lenPoints}")
+		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
 		self.lenFeed += 1
 		self.sigProgress.emit(self.lenFeed/_session.pathLen())
 
 
-		self.tracer.feed(_session, _res, _echo)
+		edge = re.findall("S([\d]+)", _echo)
+		if edge and float(edge[0])==0:
+			self.lenShapes += 1
+			self.tracer.split(_session)
+
+
+		coords = re.findall("X(-?[\d\.]+)Y(-?[\d\.]+)", _echo)
+		if coords:
+			self.lenPoints += 1
+
+			self.tracer.moveto((float(coords[0][0]), -float(coords[0][1])))
+
 
 		if _res != True:
 			self.tracer.spot(_session, _res)
@@ -173,7 +184,9 @@ class DispatchWidget(QObject):
 		self.tracer.final(_session, _res)
 
 		self.lenPoints -= 1 #last shape is park
+		self.lenShapes -= 1
+		
 		dt = datetime.now()-self.dtStart
-		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes-3}/{self.lenPoints}")
+		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
 		self.wFrameDev.appendPlainText(f"{str(datetime.now())[:-5]}:\nDispatch {'end' if _res else 'error'}\nin {str(dt)[:-5]}\nwith {self.lenShapes-3}/{self.lenPoints} sh/pt\n")
 
