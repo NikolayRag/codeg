@@ -165,7 +165,7 @@ class AppWindow(QObject):
 		self.sigDispatchFire = self.dispatchUi.sigDispatchFire
 
 		self.dispatchUi.sigDevChange.connect(self.gridSize)
-		self.dispatchUi.sigTracerProgress.connect(lambda v: self.wProgDispatch.setValue(100*v))
+		self.dispatchUi.sigProgress.connect(lambda v: self.wProgDispatch.setValue(100*v))
 
 		#default device as template, overrided at actual device when found
 		self.dispatchUi.dispatchFill({}, Args.Dispatch.last)

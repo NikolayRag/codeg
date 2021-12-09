@@ -8,7 +8,7 @@ from .Tracer import *
 
 
 class DispatchWidget(QObject):
-	sigTracerProgress = Signal(float)
+	sigProgress = Signal(float)
 
 	sigDevChange = Signal(object)
 	sigDispatchFire = Signal(str)
@@ -150,7 +150,7 @@ class DispatchWidget(QObject):
 
 			self.wLabStats.setPlainText('')
 			self.wFrameDev.appendPlainText(f"{str(self.dtStart)[:-5]}:\nDispatch begin")
-			self.sigTracerProgress.emit(0)
+			self.sigProgress.emit(0)
 
 
 
@@ -158,7 +158,7 @@ class DispatchWidget(QObject):
 		dt = datetime.now()-self.dtStart
 		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes-1}/{self.lenPoints}")
 		self.lenFeed += 1
-		self.sigTracerProgress.emit(self.lenFeed/_session.pathLen())
+		self.sigProgress.emit(self.lenFeed/_session.pathLen())
 
 
 		self.tracer.feed(_session, _res, _echo)
