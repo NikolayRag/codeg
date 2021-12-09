@@ -113,9 +113,6 @@ Dispatch ui and live tracer
 #  todo 296 (tracer, fix) +0: fix Tracer live viewbox
 #  todo 297 (tracer, fix) +0: fix Tracer shapes viewbox
 class Tracer(QObject):
-	sigProgress = Signal(float)
-
-
 	pointTrace = 'resource\\point-trace.svg'
 	pointWarning = 'resource\\point-warning.svg'
 	pointError = 'resource\\point-error.svg'
@@ -131,12 +128,8 @@ class Tracer(QObject):
 
 	session = None
 
-	lenFeed = 0
 	lenPoints = 0
-	lenShapes = 0
 	lastSpot = (0,0)
-
-	dtStart = 0
 
 	visLive = False
 	visPaint = False
@@ -194,43 +187,22 @@ class Tracer(QObject):
 		self.laySpots = []	
 
 
+		if _session:
+			self.layShapes = []	
 
-		if not _session:
-			self.toggleVis()
-			return
+			self.session = _session
+
+			self.lastSpot = (0,0)
+			self.moveto((0,0))
+
+			self.lenPoints = 0
 
 
-		self.layShapes = []	
 		self.toggleVis()
-
-
-		self.dtStart = datetime.now()
-
-		self.wLog.appendPlainText(f"{str(self.dtStart)[:-5]}:\nDispatch begin")
-		self.wStats.setPlainText('')
-		self.sigProgress.emit(0)
-
-
-		self.session = _session
-
-		self.lastSpot = (0,0)
-		self.moveto((0,0))
-
-		self.lenFeed = 0
-		self.lenPoints = 0
-
 
 
 
 	def feed(self, _session, _res, _cmd):
-#		self.wLog.appendPlainText(_cmd)
-
-		dt = datetime.now()-self.dtStart
-		self.wStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {len(self.layShapes)-1}/{self.lenPoints}")
-		self.lenFeed += 1
-		self.sigProgress.emit(self.lenFeed/self.session.pathLen())
-
-
 		edge = re.findall("S([\d]+)", _cmd)
 		if edge and float(edge[0])==0:
 			self.triggerDraw = 1
@@ -242,27 +214,22 @@ class Tracer(QObject):
 			self.moveto((float(coords[0][0]), -float(coords[0][1])))
 
 
-		if _res != True:
-			self.wLog.appendPlainText((f"{_res or 'Warning'}:\n ") + _cmd)
 
-			cPoint = self.pointError if _res else self.pointWarning
-			self.spot(self.lastSpot, cPoint)
+	def spot(self, _session, _res):
+		cPoint = self.pointError if _res else self.pointWarning
+		self.spotto(self.lastSpot, cPoint)
 
 
 
 	def final(self, _session, _res):
 		self.moveto(self.lastSpot, True)
 
-		self.lenPoints -= 1 #last shape is park
-		dt = datetime.now()-self.dtStart
-		self.wStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {len(self.layShapes)-3}/{self.lenPoints}")
-		self.wLog.appendPlainText(f"{str(datetime.now())[:-5]}:\nDispatch {'end' if _res else 'error'}\nin {str(dt)[:-5]}\nwith {len(self.layShapes)-3}/{self.lenPoints} sh/pt\n")
 		if not _res:
-			self.spot(self.lastSpot, self.pointError)
+			self.spotto(self.lastSpot, self.pointError)
 
 
 
-	def spot(self, _xy, _xml):
+	def spotto(self, _xy, _xml):
 		cSpot = self.wViewport.canvasAdd(z=102)
 		cSpot.show(self.visLive)
 		cSpot.ghost(True)

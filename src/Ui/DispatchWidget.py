@@ -8,7 +8,7 @@ from .Tracer import *
 
 
 class DispatchWidget(QObject):
-	sigTracerProgress = None
+	sigTracerProgress = Signal(float)
 
 	sigDevChange = Signal(object)
 	sigDispatchFire = Signal(str)
@@ -57,6 +57,12 @@ class DispatchWidget(QObject):
 
 	def __init__(self, _wRoot, _dispatch, _args, _viewport):
 		QObject.__init__(self)
+
+		self.dtStart = 0
+
+		self.lenFeed = 0
+		self.lenPoints = 0
+		self.lenShapes = 0
 
 		self.wRoot = _wRoot
 		self.dispatch = _dispatch
@@ -135,11 +141,40 @@ class DispatchWidget(QObject):
 	def traceReset(self, _session=None):
 		self.tracer.reset(_session)
 
+		if _session:
+			self.dtStart = datetime.now()
+
+			self.lenFeed = 0
+			self.lenPoints = 0
+			self.lenShapes = 0
+
+			self.wLabStats.setPlainText('')
+			self.wFrameDev.appendPlainText(f"{str(self.dtStart)[:-5]}:\nDispatch begin")
+			self.sigTracerProgress.emit(0)
+
+
 
 	def traceFeed(self, _session, _res, _echo):
+		dt = datetime.now()-self.dtStart
+		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes-1}/{self.lenPoints}")
+		self.lenFeed += 1
+		self.sigTracerProgress.emit(self.lenFeed/_session.pathLen())
+
+
 		self.tracer.feed(_session, _res, _echo)
+
+		if _res != True:
+			self.tracer.spot(_session, _res)
+
+			self.wFrameDev.appendPlainText((f"{_res or 'Warning'}:\n ") + _echo)
+
 
 
 	def traceFinal(self, _session, _res):
 		self.tracer.final(_session, _res)
+
+		self.lenPoints -= 1 #last shape is park
+		dt = datetime.now()-self.dtStart
+		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes-3}/{self.lenPoints}")
+		self.wFrameDev.appendPlainText(f"{str(datetime.now())[:-5]}:\nDispatch {'end' if _res else 'error'}\nin {str(dt)[:-5]}\nwith {self.lenShapes-3}/{self.lenPoints} sh/pt\n")
 
