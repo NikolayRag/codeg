@@ -14,6 +14,8 @@ class DispatchSession(Thread, QObject):
 	sigFinish = Signal(bool)
 
 
+
+# =todo 300 (module-dispatch, device) +0: read device nonblocking from session
 	def __init__(self, _cb, _data):
 		Thread.__init__(self)
 		QObject.__init__(self)

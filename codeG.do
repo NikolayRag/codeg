@@ -856,3 +856,6 @@
 =device, fix 299: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/08 04:49:38
 	get GRBL actual plate size
 
+=module-dispatch, device 300: +0 "src\Ui\DispatchLink.py" ki 21/12/09 03:25:52
+	read device nonblocking from session
+
