@@ -55,6 +55,23 @@ class DispatchWidget(QObject):
 
 
 
+	def sessionPrepare(self, _session):
+		self.tracer.prepare(_session)
+
+
+	def sessionReset(self, _session):
+		self.tracer.reset(_session)
+
+
+	def sessionFeed(self, _session, _res, _echo):
+		self.tracer.feed(_session, _res, _echo)
+
+
+	def sessionFinal(self, _session, _res):
+		self.tracer.final(_session, _res)
+
+
+
 	def __init__(self, _wRoot, _dispatch, _args, _viewport):
 		QObject.__init__(self)
 
@@ -87,10 +104,10 @@ class DispatchWidget(QObject):
 
 		self.sigTracerProgress = self.tracer.sigProgress
 
-		_dispatch.sigDispatchAdded.connect(self.tracer.prepare)
-		_dispatch.sigDispatchBegin.connect(self.tracer.reset)
-		_dispatch.sigDispatchSent.connect(self.tracer.feed)
-		_dispatch.sigDispatchFinish.connect(self.tracer.final)
+		_dispatch.sigDispatchAdded.connect(self.sessionPrepare)
+		_dispatch.sigDispatchBegin.connect(self.sessionReset)
+		_dispatch.sigDispatchSent.connect(self.sessionFeed)
+		_dispatch.sigDispatchFinish.connect(self.sessionFinal)
 
 
 		self.wBtnTraceLive.setChecked(self.args.visTracer)
