@@ -67,6 +67,8 @@ class DispatchWidget(QObject):
 		self.wRoot = _wRoot
 		self.dispatch = _dispatch
 		self.args = _args
+		
+		self.tracer = Tracer(_viewport)
 
 
 ### setup ###
@@ -89,9 +91,6 @@ class DispatchWidget(QObject):
 
 		self.wFrameDev = _wRoot.findChild(QWidget, "frameDev")
 		self.wLabStats = _wRoot.findChild(QWidget, "labStats")
-		self.tracer = Tracer(_viewport, [self.wFrameDev, self.wLabStats])
-
-		self.sigTracerProgress = self.tracer.sigProgress
 
 		_dispatch.sigDispatchAdded.connect(self.sessionPrepare)
 

@@ -136,14 +136,13 @@ class Tracer(QObject):
 
 
 
-	def __init__(self, _vp, _osd=None):
+	def __init__(self, _vp):
 		QObject.__init__(self)
 
 		self.laySpots = []
 		self.layShapes = []
 
 		self.wViewport = _vp
-		self.wLog, self.wStats = _osd
 
 
 
