@@ -176,9 +176,6 @@ class Tracer(QObject):
 
 
 
-	def prepare(self, _session):
-		self.wLog.appendPlainText(f"Dispatch pending")
-
 	#called with no session after SvgViewport recreated
 	def reset(self, _session=None):
 		self.layFocus and self.layFocus.remove()
