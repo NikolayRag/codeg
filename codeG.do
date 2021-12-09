@@ -685,7 +685,7 @@
 +API 240: +0 "src\args.py" kii 21/11/07 07:23:15
 	make global settings singletone
 
--API, app 243: +0 "src\args.py" kii 21/11/07 05:31:41
+-api, app 243: +0 "src\Args.py" ki 21/12/09 03:29:03
 	parse command line
 
  feature 244: +0 "src\Ui\AppWindow.py" kii 21/11/08 14:11:05

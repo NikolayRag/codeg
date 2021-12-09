@@ -125,6 +125,7 @@ class DispatchWidget(QObject):
 	def sessionPrepare(self, _session):
 		self.wFrameDev.appendPlainText(f"Dispatch pending")
 
+#  todo 294 (Tracer, unsure) +0: check memory leak on subsequent sessions
 		_session.sigStart.connect(lambda: self.traceReset(_session))
 		_session.sigFeed.connect(lambda res, echo: self.traceFeed(_session, res, echo))
 		_session.sigFinish.connect(lambda res: self.traceFinal(_session, res))
