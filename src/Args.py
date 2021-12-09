@@ -164,7 +164,7 @@ class Args():
 
 
 		for blockN, blockV in filesSettings.items():
-			cBlock = getattr(self, blockN) if hasattr(self, blockN) else []
+			cBlock = getattr(self, blockN) if hasattr(self, blockN) else ArgBlock(blockN)
 
 			for fieldN, fieldV in blockV.items():
 				setattr(cBlock, fieldN, fieldV)
