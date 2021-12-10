@@ -427,7 +427,7 @@ class AppWindow(QObject):
 ### SCENE ###
 
 
-	def slotNewScene(self, _scene, _size):
+	def slotNewScene(self, _size):
 		self.widgetGeo.clean()
 
 
