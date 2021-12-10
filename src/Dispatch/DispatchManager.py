@@ -19,15 +19,19 @@ from .DispatchEngine import *
 from .Engines import *
 
 
-
+'''
+Accumulated Event, triggered by internal accumulator reaching threshold, default 0.
+Accumulator is changed with .inc(int=1) and .dec(int=1), inited with 0 by default.
+'''
 class EventAcc(Event):
 	acc = 0
+	thresh = 0
 
 
-	def __init__(self):
+	def __init__(self, _acc=0):
 		Event.__init__(self)
 
-		self.acc = 0
+		self.acc = _acc
 
 
 	def inc(self, v=1):
@@ -36,11 +40,12 @@ class EventAcc(Event):
 
 	def dec(self, v=1):
 		self.acc -= v
-		if not self.acc:
+		if self.acc == self.thresh:
 			self.set()
 
 
-	def waitAll(self, timeout=None):
+	def waitAll(self, thresh=0, timeout=None):
+		self.thresh = thresh
 		self.wait(timeout)
 
 
