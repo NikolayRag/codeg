@@ -126,7 +126,7 @@ class Tracer(QObject):
 	laySpots = None
 
 
-	session = None
+	viewBox = None
 
 	lenPoints = 0
 	lastSpot = (0,0)
@@ -168,8 +168,8 @@ class Tracer(QObject):
 
 
 
-	#called with no session after SvgViewport recreated
-	def reset(self, _session=None):
+	#called with no arg after SvgViewport recreated
+	def reset(self, _viewBox=None):
 		self.layFocus and self.layFocus.remove()
 		self.layFocus = self.wViewport.canvasAdd(z=101)
 		self.layFocus.setXml(self.pointTrace)
@@ -186,13 +186,13 @@ class Tracer(QObject):
 		self.laySpots = []	
 
 
-		if _session:
+		if _viewBox:
 			self.layShapes = []	
 
-			self.session = _session
+			self.viewBox = _viewBox
 
 			self.lastSpot = (0,0)
-			self.split(_session)
+			self.split()
 
 			self.lenPoints = 0
 
@@ -201,28 +201,28 @@ class Tracer(QObject):
 
 
 
-	def split(self, _session):
+	def split(self):
 		if self.layShapes:
 			self.layShapes[-1].draw()
 
 		self.triggerDraw = 1
 
 		cShape = TraceShape(lambda: self.wViewport.canvasAdd(z=100),
-			self.visPaint, self.session.viewBox())
+			self.visPaint, self.viewBox)
 		self.layShapes.append(cShape)
 
 		self.moveto(self.lastSpot)
 
 
 
-	def spot(self, _session, _res):
+	def spot(self, _res):
 		cPoint = self.pointError if _res else self.pointWarning
 		self.spotto(self.lastSpot, cPoint)
 
 
 
-	def final(self, _session, _res):
-		self.split(_session)
+	def final(self, _res):
+		self.split()
 
 		if not _res:
 			self.spotto(self.lastSpot, self.pointError)
@@ -246,7 +246,7 @@ class Tracer(QObject):
 		self.lenPoints += 1
 
 
-		vBox = self.session.viewBox()
+		vBox = self.viewBox
 		self.layShapes[-1].add((_xy[0]-vBox[0],_xy[1]-vBox[1]))
 
 		

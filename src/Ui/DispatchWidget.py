@@ -138,7 +138,7 @@ class DispatchWidget(QObject):
 
 
 	def traceReset(self, _session=None):
-		self.tracer.reset(_session)
+		self.tracer.reset(_session and _session.viewBox())
 
 		if _session:
 			self.dtStart = datetime.now()
@@ -155,6 +155,8 @@ class DispatchWidget(QObject):
 
 	def traceFeed(self, _session, _res, _echo):
 		dt = datetime.now()-self.dtStart
+#  todo 301 (trace) +0: show computed feed, points rate
+#  todo 302 (trace) +0: show path kpi and segments metrics
 		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
 		self.lenFeed += 1
 		self.sigProgress.emit(self.lenFeed/_session.pathLen())
@@ -163,7 +165,7 @@ class DispatchWidget(QObject):
 		edge = re.findall("S([\d]+)", _echo)
 		if edge and float(edge[0])==0:
 			self.lenShapes += 1
-			self.tracer.split(_session)
+			self.tracer.split()
 
 
 		coords = re.findall("X(-?[\d\.]+)Y(-?[\d\.]+)", _echo)
@@ -174,14 +176,14 @@ class DispatchWidget(QObject):
 
 
 		if _res != True:
-			self.tracer.spot(_session, _res)
+			self.tracer.spot(_res)
 
 			self.wFrameDev.appendPlainText((f"{_res or 'Warning'}:\n ") + _echo)
 
 
 
 	def traceFinal(self, _session, _res):
-		self.tracer.final(_session, _res)
+		self.tracer.final(_res)
 
 		self.lenPoints -= 1 #last shape is park
 		self.lenShapes -= 1
