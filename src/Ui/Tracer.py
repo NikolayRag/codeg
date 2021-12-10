@@ -215,27 +215,23 @@ class Tracer(QObject):
 
 
 
-	def spot(self, _res):
-		cPoint = self.pointError if _res else self.pointWarning
-		self.spotto(self.lastSpot, cPoint)
-
-
-
 	def final(self, _res):
 		self.split()
 
 		if not _res:
-			self.spotto(self.lastSpot, self.pointError)
+			self.spot(True)
 
 
 
-	def spotto(self, _xy, _xml):
+	def spot(self, _critical):
+		cPoint = self.pointError if _critical else self.pointWarning
+
 		cSpot = self.wViewport.canvasAdd(z=102)
 		cSpot.show(self.visLive)
 		cSpot.ghost(True)
 		cSpot.static(True)
-		cSpot.setXml(_xml)
-		cSpot.place(_xy)
+		cSpot.setXml(cPoint)
+		cSpot.place(self.lastSpot)
 
 		self.laySpots.append(cSpot)
 
