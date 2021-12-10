@@ -838,7 +838,7 @@
  tracer, ux 293: +0 "src\Ui\Tracer.py" kii 21/12/09 05:27:14
 	leave Traced spots after reset viewport
 
- tracer, unsure 294: +0 "src\Ui\Tracer.py" kii 21/12/07 01:35:34
+ Tracer, unsure 294: +0 "src\Ui\DispatchWidget.py" ki 21/12/10 17:50:16
 	check memory leak on subsequent sessions
 
 +ui, dispatch 295: +0 "src\Ui\AppWindow.py" kii 21/12/07 23:26:51
