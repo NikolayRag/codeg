@@ -78,7 +78,7 @@ class AppWindow(QObject):
 
 
 		cMain = self.wMain = QUiLoader().load(self.defUi)
-		cMain.setWindowTitle('codeg');
+
 
 #  todo 244 (feature) +0: add drop scene, svg files and tag text
 		self.tmpFilterMain = BindFilter({
@@ -165,13 +165,35 @@ class AppWindow(QObject):
 		self.sigDispatchFire = self.dispatchUi.sigDispatchFire
 
 		self.dispatchUi.sigDevChange.connect(self.gridSize)
-		self.dispatchUi.sigProgress.connect(lambda v: self.wProgDispatch.setValue(100*v))
+		self.dispatchUi.sigProgress.connect(self.setProgress)
 
 		#default device as template, overrided at actual device when found
 		self.dispatchUi.dispatchFill({}, Args.Dispatch.last)
 
 
 		self.wBtnDispatcher.toggled.connect(self.dispatchUi.show)
+
+
+		self.setProgress()
+
+
+
+	def setProgress(self, _prog=None):
+		title = 'codeg'
+
+		if _prog == None:
+			_prog = 0
+
+		elif _prog == 1:
+			title = f"{title} done"
+
+		else:
+			title = f"{int(_prog*100)}% {title}"
+
+
+		self.wMain.setWindowTitle(title)
+
+		self.wProgDispatch.setValue(100*_prog)
 
 
 
