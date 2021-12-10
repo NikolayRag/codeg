@@ -22,6 +22,7 @@ from .Engines import *
 '''
 Accumulated Event, triggered by internal accumulator reaching threshold, default 0.
 Accumulator is changed with .inc(int=1) and .dec(int=1), inited with 0 by default.
+.inc() and .dec() accept (test=bool) arg, telling to check trigger at the call, default to True.
 '''
 class EventAcc(Event):
 	acc = 0
@@ -34,13 +35,15 @@ class EventAcc(Event):
 		self.acc = _acc
 
 
-	def inc(self, v=1):
+	def inc(self, v=1, test=True):
 		self.acc += v
+		if test and self.acc == self.thresh:
+			self.set()
 
 
-	def dec(self, v=1):
+	def dec(self, v=1, test=True):
 		self.acc -= v
-		if self.acc == self.thresh:
+		if test and self.acc == self.thresh:
 			self.set()
 
 
