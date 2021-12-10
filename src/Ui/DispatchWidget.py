@@ -128,7 +128,6 @@ class DispatchWidget(QObject):
 
 
 	def sessionPrepare(self, _session):
-#  todo 294 (Tracer, unsure) +0: check memory leak on subsequent sessions
 		_session.sigStart.connect(lambda: self.traceReset(_session))
 		_session.sigFeed.connect(lambda res, echo: self.traceFeed(_session, res, echo))
 		_session.sigFinish.connect(lambda res: self.traceFinal(_session, res))
@@ -190,3 +189,5 @@ class DispatchWidget(QObject):
 		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
 		self.wFrameDev.appendPlainText(f"{str(datetime.now())[:-5]}:\nDispatch {'end' if _res else 'error'}\nin {str(dt)[:-5]}\nwith {self.lenShapes-3}/{self.lenPoints} sh/pt\n")
 
+#  todo 294 (Tracer, unsure) +0: check memory leak on subsequent sessions
+		del _session
