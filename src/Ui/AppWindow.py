@@ -215,7 +215,7 @@ class AppWindow(QObject):
 
 
 
-	#specific logic relying on events order
+	#specific logic relying on events order for (re)storing window size/pos
 	def moved(self, _e):
 		if self.rtPos[1]:
 			self.rtPos[0] = self.rtPos[1]
