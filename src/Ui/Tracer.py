@@ -192,7 +192,7 @@ class Tracer(QObject):
 			self.session = _session
 
 			self.lastSpot = (0,0)
-			self.moveto((0,0))
+			self.split(_session)
 
 			self.lenPoints = 0
 
@@ -202,8 +202,16 @@ class Tracer(QObject):
 
 
 	def split(self, _session):
+		if self.layShapes:
+			self.layShapes[-1].draw()
+
 		self.triggerDraw = 1
-		self.moveto(self.lastSpot, True)
+
+		cShape = TraceShape(lambda: self.wViewport.canvasAdd(z=100),
+			self.visPaint, self.session.viewBox())
+		self.layShapes.append(cShape)
+
+		self.moveto(self.lastSpot)
 
 
 
@@ -214,7 +222,7 @@ class Tracer(QObject):
 
 
 	def final(self, _session, _res):
-		self.moveto(self.lastSpot, True)
+		self.split(_session)
 
 		if not _res:
 			self.spotto(self.lastSpot, self.pointError)
@@ -233,23 +241,12 @@ class Tracer(QObject):
 
 
 
-	def moveto(self, _xy, _new=False):
+	def moveto(self, _xy):
 		self.lastSpot = _xy
+		self.lenPoints += 1
 
 
 		vBox = self.session.viewBox()
-
-		if not self.layShapes or _new:
-			self.layShapes and self.layShapes[-1].draw()
-
-			cShape = TraceShape(lambda: self.wViewport.canvasAdd(z=100),
-				self.visPaint, vBox)
-			self.layShapes.append(cShape)
-
-		else:
-			self.lenPoints += 1
-
-
 		self.layShapes[-1].add((_xy[0]-vBox[0],_xy[1]-vBox[1]))
 
 		
