@@ -1,4 +1,4 @@
-# =todo 260 (module-dispatch, test) +0: test GRBL 
+# =todo 260 (module-dispatch, fix) +5: adopt GRBL specification
 
 import serial
 import serial.tools.list_ports
@@ -128,7 +128,7 @@ class EngineArduinoGRBL(DispatchEngine):
 			return False
 
 
-# =todo 299 (device, fix) +0: get GRBL actual plate size
+# =todo 299 (device, fix) +0: get GRBL actual metrics
 
 		self.end()
 
