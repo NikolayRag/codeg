@@ -44,8 +44,6 @@ class DispatchWidget(QObject):
 		_name = self.wListDevs.currentText()
 		_enabled = self.wListDevs.currentData()
 
-		print(f"Device changed to \"{_name}\"", 'mock' if not _enabled else '')
-
 		self.args.last = _name
 
 #  todo 257 (ux) +0: handle nonexistent device
@@ -187,7 +185,7 @@ class DispatchWidget(QObject):
 		
 		dt = datetime.now()-self.dtStart
 		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
-		self.wFrameDev.appendPlainText(f"{str(datetime.now())[:-5]}:\nDispatch {'end' if _res else 'error'}\nin {str(dt)[:-5]}\nwith {self.lenShapes-3}/{self.lenPoints} sh/pt\n")
+		self.wFrameDev.appendPlainText(f"{str(datetime.now())[:-5]}:\nDispatch {'end' if _res else 'error'}\nin {str(dt)[:-5]}\nwith {self.lenShapes}/{self.lenPoints} sh/pt\n")
 
 #  todo 294 (Tracer, unsure) +0: check memory leak on subsequent sessions
 		del _session
