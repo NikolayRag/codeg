@@ -1,4 +1,8 @@
 class DispatchEngine():
+	errUnknown = -1
+	errHW = -2
+	
+
 	nameBase = ''
 	name = ''
 
