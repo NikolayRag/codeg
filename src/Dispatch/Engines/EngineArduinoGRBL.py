@@ -144,6 +144,19 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 # =todo 299 (device, fix) +0: get GRBL actual metrics
+		res = self.send("$$")
+		if res[0] != True:
+			return False
+
+		cX, cY = self.getPlate()
+		for cOption in res[1]:
+			if cOption[:5] == '$130=':
+				cX = float(cOption[5:])
+			if cOption[:5] == '$131=':
+				cY = float(cOption[5:])
+
+		self.size = (cX, cY)
+
 
 		self.end()
 
