@@ -19,10 +19,5 @@ class EngineMock(DispatchEngine):
 
 
 
-	def sink(self, _data):
-		return True
-
-
-
 	def test(self):
 		return True
