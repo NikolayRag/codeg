@@ -850,8 +850,8 @@
  tracer, fix 297: +0 "src\Ui\Tracer.py" kii 21/12/07 20:53:48
 	fix Tracer shapes viewbox
 
-=device, fix 298: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/10 16:27:12
-	read device nonblocking
+=device, fix 298: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/11 03:21:55
+	operate device nonblocking
 
 =device, fix 299: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/10 16:28:17
 	get GRBL actual metrics

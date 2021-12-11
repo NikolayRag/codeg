@@ -78,7 +78,7 @@ class EngineArduinoGRBL(DispatchEngine):
 		try:
 			self.port and self.port.write(str.encode(_data + '\n'))
 
-# =todo 298 (device, fix) +0: read device nonblocking
+# =todo 298 (device, fix) +0: operate device nonblocking
 			for i in range(self.privData['pokes']):
 				res = self.port and self.port.readline().decode().strip()
 				if res:
