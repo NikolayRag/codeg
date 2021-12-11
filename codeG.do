@@ -754,7 +754,7 @@
 +feature, ux, module-dispatch 265: +0 "src\Ui\AppWindow.py" kii 21/11/24 04:06:22
 	show live statistics
 
- module-dispatch, test 266: +0 "src\Dispatch\DispatchManager.py" kii 21/11/23 23:23:09
+=module-dispatch, test 266: +0 "src\Dispatch\DispatchManager.py" ki 21/12/11 21:16:08
 	handle device rescan interfere case
 
 +module-dispatch, module-ui 267: +0 "src\Ui\AppWindow.py" kii 21/11/24 00:09:59
@@ -835,7 +835,7 @@
  tracer, ui 292: +0 "src\Ui\Tracer.py" kii 21/12/05 12:54:01
 	apply styles to Tracer
 
- tracer, ux 293: +0 "src\Ui\Tracer.py" kii 21/12/09 05:27:14
+-Tracer, ux 293: +0 "src\Ui\Tracer.py" ki 21/12/11 21:00:14
 	leave Traced spots after reset viewport
 
  Tracer, unsure 294: +0 "src\Ui\DispatchWidget.py" ki 21/12/10 17:50:16
@@ -853,7 +853,7 @@
 =device, fix 298: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/11 03:21:55
 	operate device nonblocking
 
-=device, fix 299: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/10 16:28:17
+=device, fix 299: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/11 20:49:40
 	get GRBL actual metrics
 
 =module-dispatch, device 300: +0 "src\Ui\DispatchLink.py" kii 21/12/09 03:25:52
@@ -864,4 +864,7 @@
 
  trace 302: +0 "src\Ui\DispatchWidget.py" ki 21/12/10 17:41:33
 	show path kpi and segments metrics
+
+ module-dispatch, API, clean 303: +0 "src\Dispatch\DispatchEngine.py" ki 21/12/11 21:22:14
+	clean up DeviceEngine property methods
 

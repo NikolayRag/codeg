@@ -1,3 +1,4 @@
+#  todo 303 (module-dispatch, API, clean) +0: clean up DeviceEngine property methods
 class DispatchEngine():
 	errUnknown = -1
 	errHW = -2
@@ -48,7 +49,7 @@ class DispatchEngine():
 	'''
 	Actually recieve data, None to finish session.
 
-	Return True for no errors, False for critical, any other for warning
+	Return (True|errorcode, [echo]) where errorcode=0 stands for timeout
 	'''
 #  todo 270 (module-dispatch, clean) +0: add device queue control
 	def sink(self, _data=None):
