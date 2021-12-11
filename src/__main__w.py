@@ -23,7 +23,8 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 	'Dispatch': {
 		'width': [100],
 		'height': [100],
-		'GRBLbps': ['115200', ['9600', '115200'], str, 'GRBL bitrate'],
+		'GRBLbps': ['115200', ['9600', '115200'], str, 'GRBL bitrate (after restart)'],
+		'GRBLTimeout': [30, [3, 120], int, 'GRBL Timeout (after restart)'],
 		'last': ['Mockup'],
 		'visDispatch': [False],
 		'visTracer': [False],
@@ -58,7 +59,7 @@ if __name__ == '__main__':
 
 	fallbackSize = (Args.Dispatch.width, Args.Dispatch.height)
 	deviceDefs = {
-		'EngineArduinoGRBL': {'rate':int(Args.Dispatch.GRBLbps)},
+		'EngineArduinoGRBL': {'rate':int(Args.Dispatch.GRBLbps), 'timeout':int(Args.Dispatch.GRBLTimeout)},
 	}
 	cDis = DispatchManager(size=fallbackSize, definitions=deviceDefs)
 	dLink = DispatchLink(fallbackSize, cDis)

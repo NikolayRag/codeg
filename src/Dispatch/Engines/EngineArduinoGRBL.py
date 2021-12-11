@@ -23,7 +23,8 @@ class EngineArduinoGRBL(DispatchEngine):
 		cPortsA = serial.tools.list_ports.comports()
 		for portN in cPortsA:
 			cRate = _defs['rate'] if 'rate' in _defs else 115200
-			iniDefs[portN.device] = {'port':portN.device, 'rate':cRate}
+			cTimeout = _defs['timeout'] if 'timeout' in _defs else 30
+			iniDefs[portN.device] = {'port':portN.device, 'rate':cRate, 'timeout':cTimeout}
 
 
 		return iniDefs
@@ -33,17 +34,17 @@ class EngineArduinoGRBL(DispatchEngine):
 	def __init__(self, _name, privData=None):
 		privData['head'] = 'F8000'
 		privData['tail'] = ''
-		privData['pokes'] = 3
+		privData['timeoutInit'] = 4
 
 		_name = f"{self.nameBase} ({_name})"
 		DispatchEngine.__init__(self, _name, privData=privData)
 
 
 
-	def begin(self):
+	def begin(self, _timeout):
 		try:
 			self.port = serial.Serial(self.privData['port'], self.privData['rate'],
-				timeout=4,
+				timeout=_timeout,
 			    parity=serial.PARITY_NONE,
 	    		stopbits=serial.STOPBITS_ONE,
 	    		bytesize=serial.EIGHTBITS,
@@ -116,7 +117,7 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 		if not self.port:
-			if not self.begin():
+			if not self.begin(self.privData['timeout']):
 				print(f"Device \"{self.getName()}\" unavailable")
 
 				self.end()
@@ -138,7 +139,7 @@ class EngineArduinoGRBL(DispatchEngine):
 			return True
 
 
-		if not self.begin():
+		if not self.begin(self.privData['timeoutInit']):
 			return False
 
 
