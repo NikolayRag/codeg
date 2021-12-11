@@ -466,6 +466,7 @@ class AppWindow(QObject):
 		self.gridDescription.size(_size)
 		self.gridDescription.place((0,-_size[1]))
 
+#  todo 304 (refactor, module-ui, clean) +0: cleanup Viewport fit cases
 		if _refit and not self.widgetGeo.getBlocks():
 			self.viewportFit()
 

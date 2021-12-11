@@ -391,8 +391,8 @@
 +clean 139: +0 "src\GGData\Scene.py" kii 21/10/24 01:38:02
 	Clean mark to object appending
 
--module-ui, mark 140: +0 "src\Ui\MarkWidget.py" kii 21/10/04 13:14:09
-	redesign
+=module-ui, mark 140: +0 "src\Ui\MarkWidget.py" ki 21/12/12 01:03:23
+	show mark values
 
 -module-ui, mark 141: +0 "src\Ui\AppWindow.py" kii 21/10/23 01:36:55
 	update Geoitem widgets on Mark assign
@@ -867,4 +867,7 @@
 
  module-dispatch, API, clean 303: +0 "src\Dispatch\DispatchEngine.py" ki 21/12/11 21:22:14
 	clean up DeviceEngine property methods
+
+ refactor, module-ui, clean 304: +0 "src\Ui\AppWindow.py" ki 21/12/12 02:44:07
+	cleanup Viewport fit cases
 
