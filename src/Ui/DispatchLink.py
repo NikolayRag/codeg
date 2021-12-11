@@ -10,8 +10,8 @@ from PySide2.QtCore import *
 #  todo 268 (module-dispatch, feature) +0: handle concurent sessions
 class DispatchSession(Thread, QObject):
 	sigStart = Signal()
-	sigFeed = Signal(object, object)
-	sigFinish = Signal(bool)
+	sigFeed = Signal(object, tuple, str)
+	sigFinish = Signal(object, tuple)
 
 
 
@@ -37,18 +37,18 @@ class DispatchSession(Thread, QObject):
 				continue
 
 			res = self.runCb(cg)
-			self.sigFeed.emit(res, cg)
+			self.sigFeed.emit(*res, cg)
 
 #  todo 275 (module-dispatch, clean) +0: rescan device at stop state
-			if res==False:
-				self.sigFinish.emit(False)
+			if res[0]!=True:
+				self.sigFinish.emit(*res)
 
 				return
 
 
 		res = self.runCb(None)
 
-		self.sigFinish.emit(bool(res))
+		self.sigFinish.emit(*res)
 
 
 

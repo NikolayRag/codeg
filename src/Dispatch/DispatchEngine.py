@@ -52,7 +52,7 @@ class DispatchEngine():
 	'''
 #  todo 270 (module-dispatch, clean) +0: add device queue control
 	def sink(self, _data=None):
-		return True
+		return (True,None)
 
 
 

@@ -127,8 +127,8 @@ class DispatchWidget(QObject):
 
 	def sessionPrepare(self, _session):
 		_session.sigStart.connect(lambda: self.traceReset(_session))
-		_session.sigFeed.connect(lambda res, echo: self.traceFeed(_session, res, echo))
-		_session.sigFinish.connect(lambda res: self.traceFinal(_session, res))
+		_session.sigFeed.connect(lambda res, echo, feed: self.traceFeed(_session, res, echo, feed))
+		_session.sigFinish.connect(lambda res, echo: self.traceFinal(_session, res, echo))
 
 
 
@@ -148,7 +148,7 @@ class DispatchWidget(QObject):
 
 
 
-	def traceFeed(self, _session, _res, _echo):
+	def traceFeed(self, _session, _res, _echo, _feed):
 		dt = datetime.now()-self.dtStart
 #  todo 301 (trace) +0: show computed feed, points rate
 #  todo 302 (trace) +0: show path kpi and segments metrics
@@ -157,35 +157,33 @@ class DispatchWidget(QObject):
 		self.sigProgress.emit(self.lenFeed/_session.pathLen())
 
 
-		edge = re.findall("S([\d]+)", _echo)
+		edge = re.findall("S([\d]+)", _feed)
 		if edge and float(edge[0])==0:
 			self.lenShapes += 1
 			self.tracer.split()
 
 
-		coords = re.findall("X(-?[\d\.]+)Y(-?[\d\.]+)", _echo)
+		coords = re.findall("X(-?[\d\.]+)Y(-?[\d\.]+)", _feed)
 		if coords:
 			self.lenPoints += 1
 
 			self.tracer.moveto((float(coords[0][0]), -float(coords[0][1])))
 
 
-		if _res != True:
-			self.tracer.spot(_res)
+		if _res!=True:
+			self.tracer.spot(True)
 
-			self.wFrameDev.appendPlainText((f"{_res or 'Warning'}:\n ") + _echo)
+			self.wFrameDev.appendPlainText((f"{_res or 'Warning'}:\n ") + ', '.join(_echo))
 
 
 
-	def traceFinal(self, _session, _res):
-		self.tracer.final(_res)
-
+	def traceFinal(self, _session, _res, _echo):
 		self.lenPoints -= 1 #last shape is park
 		self.lenShapes -= 1
 		
 		dt = datetime.now()-self.dtStart
 		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
-		self.wFrameDev.appendPlainText(f"{str(datetime.now())[:-5]}:\nDispatch {'end' if _res else 'error'}\nin {str(dt)[:-5]}\nwith {self.lenShapes}/{self.lenPoints} sh/pt\n")
+		self.wFrameDev.appendPlainText(f"{str(datetime.now())[:-5]}:\nDispatch {'end' if _res==True else ('error '+str(_res))}\nin {str(dt)[:-5]}\nwith {self.lenShapes}/{self.lenPoints} sh/pt\n")
 
 #  todo 294 (Tracer, unsure) +0: check memory leak on subsequent sessions
 		del _session

@@ -79,16 +79,30 @@ class EngineArduinoGRBL(DispatchEngine):
 			self.port and self.port.write(str.encode(_data + '\n'))
 
 # =todo 298 (device, fix) +0: operate device nonblocking
-			for i in range(self.privData['pokes']):
+			outRes = []
+			while 1:
 				res = self.port and self.port.readline().decode().strip()
-				if res:
-					return True if res=='ok' else res
+				if res[:2]=='ok':
+					res = True
+					break
+
+				if res[:5]=='error':
+					res = int(res[5:])
+					break
+
+				if not res:
+					res = DispatchEngine.errHW
+					break
+
+				outRes.append(res)
+
+			return (res, outRes)
 
 
 		except Exception as e:
 			self.end()
 
-			return False
+			return (DispatchEngine.errHW, [])
 
 
 
@@ -107,11 +121,11 @@ class EngineArduinoGRBL(DispatchEngine):
 
 				self.end()
 
-				return False
+				return (DispatchEngine.errHW, [])
 
 			res = self.send(self.privData['head'])
-			if not res:
-				return False
+			if res[0]!=True:
+				return res
 
 
 		res = self.send(_data)
