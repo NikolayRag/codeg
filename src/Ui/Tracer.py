@@ -215,14 +215,6 @@ class Tracer(QObject):
 
 
 
-	def final(self, _res):
-		self.split()
-
-		if not _res:
-			self.spot(True)
-
-
-
 	def spot(self, _critical):
 		cPoint = self.pointError if _critical else self.pointWarning
 
