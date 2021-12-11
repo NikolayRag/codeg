@@ -135,6 +135,7 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 	def test(self):
+		#in use, assumed valid
 		if self.port:
 			return True
 
