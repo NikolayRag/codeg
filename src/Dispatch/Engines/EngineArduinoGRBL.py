@@ -143,7 +143,6 @@ class EngineArduinoGRBL(DispatchEngine):
 			return False
 
 
-# =todo 299 (device, fix) +0: get GRBL actual metrics
 		res = self.send("$$")
 		if res[0] != True:
 			return False

@@ -853,7 +853,7 @@
 =device, fix 298: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/11 03:21:55
 	operate device nonblocking
 
-=device, fix 299: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/11 20:49:40
++device, fix 299: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/12 00:51:23
 	get GRBL actual metrics
 
 =module-dispatch, device 300: +0 "src\Ui\DispatchLink.py" kii 21/12/09 03:25:52
