@@ -453,11 +453,10 @@ class AppWindow(QObject):
 
 
 		self.gridSize(_size)
-		self.viewportFit()
 
 
 
-	def gridSize(self, _size):
+	def gridSize(self, _size, _refit=True):
 		if not self.gridDescription:
 			return
 
@@ -466,6 +465,9 @@ class AppWindow(QObject):
 
 		self.gridDescription.size(_size)
 		self.gridDescription.place((0,-_size[1]))
+
+		if _refit and not self.widgetGeo.getBlocks():
+			self.viewportFit()
 
 
 
