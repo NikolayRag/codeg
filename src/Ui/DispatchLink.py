@@ -6,7 +6,7 @@ from PySide2.QtCore import *
 
 
 # =todo 290 (module-dispatch, feature) +0: dispatch end command
-# =todo 261 (module-dispatch, feature) +0: add basic dispatch session manager
+# -todo 261 (module-dispatch, feature) +1: add basic dispatch session manager
 #  todo 268 (module-dispatch, feature) +0: handle concurent sessions
 class DispatchSession(Thread, QObject):
 	sigStart = Signal()
@@ -15,7 +15,7 @@ class DispatchSession(Thread, QObject):
 
 
 
-# =todo 300 (module-dispatch, device) +0: read device nonblocking from session
+# -todo 300 (module-dispatch, device) +0: read device nonblocking from session
 	def __init__(self, _cb, _data):
 		Thread.__init__(self)
 		QObject.__init__(self)

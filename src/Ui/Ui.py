@@ -22,7 +22,7 @@
 # =todo 166 (module-ui, ux) +0: icons
 #  todo 222 (feature) +2: independent undo/preset stack for any Geo and Mark
 
-# =todo 179 (clean) -1: check names, order and var/function annotates
+# -todo 179 (clean) -1: check names, order and var/function annotates
 
 import json
 
@@ -365,7 +365,7 @@ class Ui():
 
 
 
-# =todo 182 (ux) +0: save saved project with increment
+# -todo 182 (ux) +0: save saved project with increment
 #  todo 196 (module-data, API) +0: deal with Markfilter data fields within Mark
 # -todo 198 (data, fix) +0: move save/load routines to GGData
 # =todo 203 (ux, clean) +0: scene load/save error handling

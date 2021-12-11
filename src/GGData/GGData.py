@@ -1,5 +1,5 @@
-# -todo 189 (module-data, api, decide) +1: make all indirect (by id) controls
-# =todo 90 (ux, module-ui, fix) +5: respect units - both svg and device
+#  todo 189 (module-data, API, decide) +0: make all indirect (by id) controls
+# -todo 90 (ux, module-ui, fix) +5: respect units - both svg and device
 
 #  todo 201 (geo, feature) +0: update reference geometry 
 

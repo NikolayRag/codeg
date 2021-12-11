@@ -11,7 +11,7 @@ from PySide2.QtSvg import *
 
 #  todo 237 (svg, fix, v2) +0: go OGL
 
-# =todo 239 (svg) +0: join SvgDescriptor and SvgCanvasLayer
+# -todo 239 (svg) +0: join SvgDescriptor and SvgCanvasLayer
 class SvgDescriptor():
 	canvas = None
 	recomputeCB = None

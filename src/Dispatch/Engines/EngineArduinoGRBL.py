@@ -1,4 +1,4 @@
-# =todo 260 (module-dispatch, fix) +5: adopt GRBL specification
+# -todo 260 (module-dispatch, fix) +5: adopt full GRBL specification
 
 import serial
 import serial.tools.list_ports
@@ -79,7 +79,7 @@ class EngineArduinoGRBL(DispatchEngine):
 		try:
 			self.port and self.port.write(str.encode(_data + '\n'))
 
-# =todo 298 (device, fix) +0: operate device nonblocking
+# -todo 298 (device, fix) +2: operate device nonblocking
 			outRes = []
 			while 1:
 				res = self.port and self.port.readline().decode().strip()
