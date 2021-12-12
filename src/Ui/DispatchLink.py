@@ -31,6 +31,9 @@ class DispatchSession(Thread, QObject):
 		self.runBox = [bbox[0], bbox[2], bbox[1]-bbox[0], bbox[3]-bbox[2]]
 		self.runData = _data['data']
 
+		self.resultEnd = None
+		self.resultRuntime = []
+
 
 
 	def run(self):
@@ -42,19 +45,23 @@ class DispatchSession(Thread, QObject):
 				continue
 
 			res = self.runCb(cg)
+			self.resultRuntime.append(res)
 			self.sigFeed.emit(*res, cg)
 
 #  todo 275 (module-dispatch, clean) +0: rescan device at stop state
 			if res[0]!=True:
-				self.sigFinish.emit(self.errDevice)
+				self.resultEnd = self.errDevice
 
+				self.sigFinish.emit(self.resultEnd)
 				return
 
 
 		res = self.runCb(None)
+		self.resultRuntime.append(res)
 		self.sigFeed.emit(*res, cg)
 
-		self.sigFinish.emit(self.errOk if res[0]==True else self.errDevice)
+		self.resultEnd = self.errOk if res[0]==True else self.errDevice
+		self.sigFinish.emit(self.resultEnd)
 
 
 
