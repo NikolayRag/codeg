@@ -83,16 +83,16 @@ class EngineArduinoGRBL(DispatchEngine):
 			outRes = []
 			while 1:
 				res = self.port and self.port.readline().decode().strip()
-				if res[:2]=='ok':
+				if not res: #timeout
+					res = DispatchEngine.errHW
+					break
+
+				if res=='ok':
 					res = True
 					break
 
 				if res[:5]=='error':
 					res = int(res[5:])
-					break
-
-				if not res:
-					res = DispatchEngine.errHW
 					break
 
 				outRes.append(res)
