@@ -16,10 +16,17 @@ class DispatchWidget(QObject):
 
 
 	def dispatchFill(self, _devices, _default, add=False):
-		oldList = {self.wListDevs.itemText(i):self.wListDevs.itemData(i) for i in range(self.wListDevs.count())}
+		cList = {}
 
 		if add:
-			_devices = set([_devices]) | set(oldList.keys())
+			cList = {self.wListDevs.itemText(i):self.wListDevs.itemData(i) for i in range(self.wListDevs.count())}
+			_devices = [_devices]
+
+		if _default not in cList:
+			cList[_default] = False
+
+		for dev in _devices:
+			cList[dev] = True
 
 
 		self.wListDevs.blockSignals(True)
@@ -27,15 +34,10 @@ class DispatchWidget(QObject):
 		self.wListDevs.blockSignals(False)
 
 
-		if _default not in _devices:
-			self.wListDevs.addItem(_default, False)
-			self.wListDevs.setCurrentIndex(self.wListDevs.count()-1)
+		for dName, dState in cList.items():
+			self.wListDevs.addItem(dName, dState)
 
-
-		for devName in _devices:
-			self.wListDevs.addItem(devName, True)
-
-			if devName == _default:
+			if dName == _default:
 				self.wListDevs.setCurrentIndex(self.wListDevs.count()-1)
 
 

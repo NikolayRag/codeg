@@ -171,7 +171,7 @@ class AppWindow(QObject):
 		self.dispatchUi.sigProgress.connect(self.setProgress)
 
 		#default device as template, overrided at actual device when found
-		self.dispatchUi.dispatchFill({}, Args.Dispatch.last)
+		self.dispatchUi.dispatchFill([], Args.Dispatch.last)
 
 
 		self.wBtnDispatcher.toggled.connect(self.dispatchUi.show)
