@@ -6,7 +6,7 @@ from .Widgets import *
 
 
 
-# -todo 140 (module-ui, mark) +0: redesign
+# =todo 140 (module-ui, mark) +0: show mark values
 class MarkTool(QFrame):
 	sigChangedField = Signal(str, object)
 

@@ -169,7 +169,7 @@
 +module-dispatch 60: +0 "src\Dispatch\DispatchManager.py" kii 21/11/22 17:03:37
 	show gcodes live proto
 
--module-dispatch 61: +0 "src\Dispatch\DispatchManager.py" ki 21/12/12 00:55:05
+-module-dispatch 61: +0 "src\Dispatch\DispatchManager.py" kii 21/12/12 00:55:05
 	CNC manual control
 
 !module-dispatch 62: +0 "src\Dispatch\DispatchManager.py" kii 21/11/22 17:03:25
@@ -178,7 +178,7 @@
 +module-ui, ux 63: +0 "src\Ui\Ui.py" kii 21/09/02 03:50:54
 	basic layer control, on-off
 
-+module-dispatch 64: +0 "src\Dispatch\DispatchManager.py" ki 21/12/10 16:29:33
++module-dispatch 64: +0 "src\Dispatch\DispatchManager.py" kii 21/12/10 16:29:33
 	dispatch queue
 
 !module-dispatch 65: +0 "src\Dispatch\Dispatch.py" kii 21/08/07 05:38:19
@@ -190,7 +190,7 @@
 -API 67: +1 "src\__main__w.py" kii 21/09/08 21:59:33
 	change callbacks to signals-slots
 
--module-dispatch 68: +0 "src\Dispatch\DispatchManager.py" ki 21/12/10 16:29:34
+-module-dispatch 68: +0 "src\Dispatch\DispatchManager.py" kii 21/12/10 16:29:34
 	queue control
 
  gcode 69: +0 "src\GGen\GGen.py" kii 21/08/12 04:40:26
@@ -256,7 +256,7 @@
 +ux, module-ui, fix 89: +0 "src\Ui\AppWindow.py" kii 21/11/08 14:31:39
 	place grid correctly
 
--ux, module-ui, fix 90: +5 "src\GGData\GGData.py" ki 21/12/12 00:58:37
+-ux, module-ui, fix 90: +5 "src\GGData\GGData.py" kii 21/12/12 00:58:37
 	respect units - both svg and device
 
 +viewport, API 91: +0 "src\Ui\SvgViewport.py" kii 21/10/24 05:32:07
@@ -391,7 +391,7 @@
 +clean 139: +0 "src\GGData\Scene.py" kii 21/10/24 01:38:02
 	Clean mark to object appending
 
-=module-ui, mark 140: +0 "src\Ui\MarkWidget.py" ki 21/12/12 01:03:23
+=module-ui, mark 140: +0 "src\Ui\MarkWidget.py" kii 21/12/12 01:03:23
 	show mark values
 
 -module-ui, mark 141: +0 "src\Ui\AppWindow.py" kii 21/10/23 01:36:55
@@ -460,7 +460,7 @@
 -feature, module-ui, unsure 164: -1 "src\Ui\Ui.py" kii 21/11/22 17:05:12
 	auto-apply new Mark to selection
 
--feature, dispatch 165: +1 "src\Dispatch\DispatchManager.py" ki 21/12/12 00:55:13
+-feature, dispatch 165: +1 "src\Dispatch\DispatchManager.py" kii 21/12/12 00:55:13
 	device settings definition
 
 =module-ui, ux 166: +0 "src\Ui\Ui.py" kii 21/11/22 17:01:53
@@ -502,7 +502,7 @@
 =ux, feature 178: +0 "src\Ui\Ui.py" kii 21/11/10 13:44:57
 	suggest recent at load
 
--clean 179: -1 "src\Ui\Ui.py" ki 21/12/12 00:56:35
+-clean 179: -1 "src\Ui\Ui.py" kii 21/12/12 00:56:35
 	check names, order and var/function annotates
 
 -module-ui, mark, wat 180: +0 "src\Ui\MarkWidget.py" kii 21/11/08 14:32:19
@@ -511,7 +511,7 @@
 -decide 181: +0 "src\GGData\Geoblock.py" kii 21/11/05 20:04:13
 	geometry embed method
 
--ux 182: +0 "src\Ui\Ui.py" ki 21/12/12 00:57:06
+-ux 182: +0 "src\Ui\Ui.py" kii 21/12/12 00:57:06
 	save saved project with increment
 
 -ux, module-ui 183: +1 "src\Ui\Ui.py" kii 21/10/19 20:47:46
@@ -529,7 +529,7 @@
 !module-data, API 188: +0 "src\Ui\Ui.py" kii 21/11/07 07:46:10
 	move scene load to data
 
- module-data, API, decide 189: +0 "src\GGData\GGData.py" ki 21/12/12 00:58:32
+ module-data, API, decide 189: +0 "src\GGData\GGData.py" kii 21/12/12 00:58:32
 	make all indirect (by id) controls
 
 +feature, module-ui 190: +0 "src\Ui\Ui.py" kii 21/11/22 17:01:11
@@ -622,7 +622,7 @@
 =module-ui, module-data, geo 219: +0 "src\Ui\Ui.py" kii 21/11/04 03:56:45
 	edit Geoblock transform
 
-=ux, widget 220: +0 "src\Ui\GeoWidget.py" ki 21/12/12 00:59:07
+=ux, widget 220: +0 "src\Ui\GeoWidget.py" kii 21/12/12 00:59:07
 	make Geoitems list view continuous
 
 +viewport 221: +0 "src\Ui\SvgViewport.py" kii 21/10/29 21:22:24
@@ -679,13 +679,13 @@
 +fix, viewport, svg 238: +0 "src\Ui\SvgViewport.py" kii 21/11/08 14:33:01
 	correct SvgCanvasLayer xform for scaled/offset svg
 
--svg 239: +0 "src\Ui\SvgViewport.py" ki 21/12/12 00:58:50
+-svg 239: +0 "src\Ui\SvgViewport.py" kii 21/12/12 00:58:50
 	join SvgDescriptor and SvgCanvasLayer
 
 +API 240: +0 "src\args.py" kii 21/11/07 07:23:15
 	make global settings singletone
 
--API, app 243: +0 "src\Args.py" ki 21/12/12 00:57:55
+-API, app 243: +0 "src\args.py" kii 21/12/12 00:57:55
 	parse command line
 
  feature 244: +0 "src\Ui\AppWindow.py" kii 21/11/08 14:11:05
@@ -736,10 +736,10 @@
 +fix, module-dispatch 259: +0 "src\Dispatch\engines\EngineArduinoGRBL.py" kii 21/11/28 21:55:23
 	test device errors
 
--module-dispatch, fix 260: +5 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/12 00:53:33
+-module-dispatch, fix 260: +5 "src\Dispatch\engines\EngineArduinoGRBL.py" kii 21/12/12 00:53:33
 	adopt full GRBL specification
 
--module-dispatch, feature 261: +1 "src\Ui\DispatchLink.py" ki 21/12/12 00:55:48
+-module-dispatch, feature 261: +1 "src\Ui\DispatchLink.py" kii 21/12/12 00:55:48
 	add basic dispatch session manager
 
 +feature, module-ui, module-dispatch 262: +0 "src\Ui\AppWindow.py" kii 21/11/23 00:25:46
@@ -754,7 +754,7 @@
 +feature, ux, module-dispatch 265: +0 "src\Ui\AppWindow.py" kii 21/11/24 04:06:22
 	show live statistics
 
-=module-dispatch, test 266: +0 "src\Dispatch\DispatchManager.py" ki 21/12/11 21:16:08
+=module-dispatch, test 266: +0 "src\Dispatch\DispatchManager.py" kii 21/12/11 21:16:08
 	handle device rescan interfere case
 
 +module-dispatch, module-ui 267: +0 "src\Ui\AppWindow.py" kii 21/11/24 00:09:59
@@ -817,7 +817,7 @@
  viewport, optimize 286: +0 "src\Ui\SvgViewport.py" kii 21/12/03 00:48:44
 	recompute viewport nonblocking
 
--test 287: +0 "src\Dispatch\DispatchManager.py" ki 21/12/12 00:54:32
+-test 287: +0 "src\Dispatch\DispatchManager.py" kii 21/12/12 00:54:32
 	scan devices while busy
 
 +tracer, ui 288: +0 "src\Ui\AppWindow.py" kii 21/12/05 17:19:35
@@ -835,10 +835,10 @@
  tracer, ui 292: +0 "src\Ui\Tracer.py" kii 21/12/05 12:54:01
 	apply styles to Tracer
 
--Tracer, ux 293: +0 "src\Ui\Tracer.py" ki 21/12/11 21:00:14
+-tracer, ux 293: +0 "src\Ui\Tracer.py" kii 21/12/11 21:00:14
 	leave Traced spots after reset viewport
 
- Tracer, unsure 294: +0 "src\Ui\DispatchWidget.py" ki 21/12/10 17:50:16
+ tracer, unsure 294: +0 "src\Ui\DispatchWidget.py" kii 21/12/10 17:50:16
 	check memory leak on subsequent sessions
 
 +ui, dispatch 295: +0 "src\Ui\AppWindow.py" kii 21/12/07 23:26:51
@@ -850,24 +850,27 @@
  tracer, fix 297: +0 "src\Ui\Tracer.py" kii 21/12/07 20:53:48
 	fix Tracer shapes viewbox
 
--device, fix 298: +2 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/12 00:53:40
+-device, fix 298: +2 "src\Dispatch\engines\EngineArduinoGRBL.py" kii 21/12/12 00:53:40
 	operate device nonblocking
 
-+device, fix 299: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/12 00:51:23
++device, fix 299: +0 "src\Dispatch\engines\EngineArduinoGRBL.py" kii 21/12/12 00:51:23
 	get GRBL actual metrics
 
--module-dispatch, device 300: +0 "src\Ui\DispatchLink.py" ki 21/12/12 00:55:29
+-module-dispatch, device 300: +0 "src\Ui\DispatchLink.py" kii 21/12/12 00:55:29
 	read device nonblocking from session
 
- trace 301: +0 "src\Ui\DispatchWidget.py" ki 21/12/10 17:39:44
+ trace 301: +0 "src\Ui\DispatchWidget.py" kii 21/12/10 17:39:44
 	show computed feed, points rate
 
- trace 302: +0 "src\Ui\DispatchWidget.py" ki 21/12/10 17:41:33
+ trace 302: +0 "src\Ui\DispatchWidget.py" ki 21/12/13 00:39:04
 	show path kpi and segments metrics
 
- module-dispatch, API, clean 303: +0 "src\Dispatch\DispatchEngine.py" ki 21/12/11 21:22:14
+ module-dispatch, API, clean 303: +0 "src\Dispatch\DispatchEngine.py" kii 21/12/11 21:22:14
 	clean up DeviceEngine property methods
 
- refactor, module-ui, clean 304: +0 "src\Ui\AppWindow.py" ki 21/12/12 02:44:07
+ refactor, module-ui, clean 304: +0 "src\Ui\AppWindow.py" kii 21/12/12 02:44:07
 	cleanup Viewport fit cases
+
+ trace, v2 305: +0 "src\Ui\DispatchWidget.py" kii 21/12/13 00:15:45
+	move all session related trace runtime data to session
 

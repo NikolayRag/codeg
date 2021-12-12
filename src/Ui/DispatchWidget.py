@@ -144,6 +144,7 @@ class DispatchWidget(QObject):
 
 
 	def traceReset(self, _session=None):
+#  todo 305 (trace, v2) +0: move all session related trace runtime data to session
 		self.tracer.reset(_session and _session.viewBox())
 
 		if _session:
