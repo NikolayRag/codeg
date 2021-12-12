@@ -188,7 +188,7 @@ class DispatchWidget(QObject):
 		if _res!=True:
 			self.tracer.spot(True)
 
-			self.log(f"{_res} at:\n" + ', '.join(_echo) + f"\n{_feed}")
+			self.log(f"{_res} at:\n{_feed}" + (("\n"+', '.join(_echo)) if _echo else ''))
 
 
 
