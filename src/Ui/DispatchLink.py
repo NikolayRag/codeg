@@ -9,9 +9,14 @@ from PySide2.QtCore import *
 # -todo 261 (module-dispatch, feature) +1: add basic dispatch session manager
 #  todo 268 (module-dispatch, feature) +0: handle concurent sessions
 class DispatchSession(Thread, QObject):
+	errOk = 0
+	errDevice = 1
+	errCancel = 2
+
+
 	sigStart = Signal()
 	sigFeed = Signal(object, tuple, str)
-	sigFinish = Signal(object, tuple)
+	sigFinish = Signal(int)
 
 
 
@@ -41,14 +46,15 @@ class DispatchSession(Thread, QObject):
 
 #  todo 275 (module-dispatch, clean) +0: rescan device at stop state
 			if res[0]!=True:
-				self.sigFinish.emit(*res)
+				self.sigFinish.emit(self.errDevice)
 
 				return
 
 
 		res = self.runCb(None)
+		self.sigFeed.emit(*res, cg)
 
-		self.sigFinish.emit(*res)
+		self.sigFinish.emit(self.errOk if res[0]==True else self.errDevice)
 
 
 

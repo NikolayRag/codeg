@@ -139,7 +139,7 @@ class DispatchWidget(QObject):
 	def sessionPrepare(self, _session):
 		_session.sigStart.connect(lambda: self.traceReset(_session))
 		_session.sigFeed.connect(lambda res, echo, feed: self.traceFeed(_session, res, echo, feed))
-		_session.sigFinish.connect(lambda res, echo: self.traceFinal(_session, res, echo))
+		_session.sigFinish.connect(lambda res: self.traceFinal(_session, res))
 
 
 
@@ -187,17 +187,18 @@ class DispatchWidget(QObject):
 		if _res!=True:
 			self.tracer.spot(True)
 
-			self.log(f"at:\n" + ', '.join(_echo) + f"{_feed}")
+			self.log(f"{_res} at:\n" + ', '.join(_echo) + f"\n{_feed}")
 
 
 
-	def traceFinal(self, _session, _res, _echo):
+	def traceFinal(self, _session, _res):
 		self.lenPoints -= 1 #last shape is park
 		self.lenShapes -= 1
 		
 		dt = datetime.now()-self.dtStart
 		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
-		self.log('end\n' if _res==True else f"stop\n{_res}\n")
+		msgA = {_session.errOk:'end', _session.errDevice:'error'}
+		self.log((msgA[_res] if _res in msgA else "unknown") +"\n")
 
 #  todo 294 (Tracer, unsure) +0: check memory leak on subsequent sessions
 		del _session
