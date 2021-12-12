@@ -42,14 +42,14 @@ class DispatchWidget(QObject):
 
 
 
-	def devChanged(self, i):
+	def devChanged(self, i=-1):
 		_name = self.wListDevs.currentText()
 		_enabled = self.wListDevs.currentData()
 
 		self.args.last = _name
 
 #  todo 257 (ux) +0: handle nonexistent device
-		self.wBtnDispFire.setEnabled(_enabled)
+		self.wBtnDispFire.setEnabled(_enabled and not self.session)
 
 		self.sigDevChange.emit(self.dispatch.devicePlate(_name))
 
@@ -77,6 +77,7 @@ class DispatchWidget(QObject):
 		self.dispatch = _dispatch
 		self.args = _args
 		
+		self.session = None
 		self.tracer = Tracer(_viewport)
 
 
@@ -150,6 +151,9 @@ class DispatchWidget(QObject):
 		self.tracer.reset(_session and _session.viewBox())
 
 		if _session:
+			self.session = _session
+			self.devChanged()
+
 			self.dtStart = datetime.now()
 
 			self.lenFeed = 0
@@ -204,4 +208,7 @@ class DispatchWidget(QObject):
 		self.log((msgA[_res] if _res in msgA else "unknown") +"\n")
 
 #  todo 294 (Tracer, unsure) +0: check memory leak on subsequent sessions
+		self.session = None
 		del _session
+
+		self.devChanged()
