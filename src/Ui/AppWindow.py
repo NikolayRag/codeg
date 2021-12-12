@@ -181,23 +181,17 @@ class AppWindow(QObject):
 
 
 
-	def setProgress(self, _prog=None):
+	def setProgress(self, _prog=0):
 		title = 'codeg'
-
-		if _prog == None:
-			_prog = 0
-
-		elif _prog == 1:
-			title = f"{title} done"
-
-		else:
-			title = f"{int(_prog*100)}% {title}"
-
-
-		self.wMain.setWindowTitle(title)
 
 		if _prog == 1:
 			_prog = 0
+			title = f"{title} done"
+
+		elif _prog != 0:
+			title = f"{int(_prog*100)}% {title}"
+
+		self.wMain.setWindowTitle(title)
 		self.wProgAll.setValue(100*_prog)
 
 
