@@ -9,9 +9,9 @@ from PySide2.QtCore import *
 # -todo 261 (module-dispatch, feature) +1: add basic dispatch session manager
 #  todo 268 (module-dispatch, feature) +0: handle concurent sessions
 class DispatchSession(Thread, QObject):
-	errOk = 0
-	errDevice = 1
-	errCancel = 2
+	errOk = 1
+	errDevice = 2
+	errCancel = 3
 
 
 	sigStart = Signal()
