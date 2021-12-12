@@ -53,6 +53,15 @@ class DispatchWidget(QObject):
 
 
 
+
+	def log(self, _v):
+		new_format = "%H:%M:%S"
+		now = datetime.now().strftime(new_format)
+
+		self.wFrameDev.appendPlainText(f"{now}: {_v}")
+
+
+
 	def __init__(self, _wRoot, _dispatch, _args, _viewport):
 		QObject.__init__(self)
 
@@ -145,16 +154,16 @@ class DispatchWidget(QObject):
 			self.lenShapes = 0
 
 			self.wLabStats.setPlainText('')
-			self.wFrameDev.appendPlainText(f"{str(self.dtStart)[:-5]}:\nDispatch begin")
+			self.log("begin")
 			self.wProgDispatch.setValue(0)
 			self.sigProgress.emit(0)
 
 
 
 	def traceFeed(self, _session, _res, _echo, _feed):
-		dt = datetime.now()-self.dtStart
 #  todo 301 (trace) +0: show computed feed, points rate
 #  todo 302 (trace) +0: show path kpi and segments metrics
+		dt = datetime.now()-self.dtStart
 		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
 		self.lenFeed += 1
 		prog = self.lenFeed/_session.pathLen()
@@ -178,7 +187,7 @@ class DispatchWidget(QObject):
 		if _res!=True:
 			self.tracer.spot(True)
 
-			self.wFrameDev.appendPlainText((f"{_res or 'Warning'}:\n ") + ', '.join(_echo))
+			self.log(f"at:\n" + ', '.join(_echo) + f"{_feed}")
 
 
 
@@ -188,7 +197,7 @@ class DispatchWidget(QObject):
 		
 		dt = datetime.now()-self.dtStart
 		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
-		self.wFrameDev.appendPlainText(f"{str(datetime.now())[:-5]}:\nDispatch {'end' if _res==True else ('error '+str(_res))}\nin {str(dt)[:-5]}\nwith {self.lenShapes}/{self.lenPoints} sh/pt\n")
+		self.log('end\n' if _res==True else f"stop\n{_res}\n")
 
 #  todo 294 (Tracer, unsure) +0: check memory leak on subsequent sessions
 		del _session
