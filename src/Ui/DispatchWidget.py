@@ -71,6 +71,8 @@ class DispatchWidget(QObject):
 
 ### setup ###
 
+		self.wProgDispatch = _wRoot.findChild(QWidget, "progDispatch")
+
 		self.wBtnRescan = _wRoot.findChild(QWidget, "btnRescan")
 		self.wListDevs = _wRoot.findChild(QComboBox, "listDevs")
 		self.wBtnDispFire = _wRoot.findChild(QWidget, "btnDispFire")
@@ -144,6 +146,7 @@ class DispatchWidget(QObject):
 
 			self.wLabStats.setPlainText('')
 			self.wFrameDev.appendPlainText(f"{str(self.dtStart)[:-5]}:\nDispatch begin")
+			self.wProgDispatch.setValue(0)
 			self.sigProgress.emit(0)
 
 
@@ -154,7 +157,9 @@ class DispatchWidget(QObject):
 #  todo 302 (trace) +0: show path kpi and segments metrics
 		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
 		self.lenFeed += 1
-		self.sigProgress.emit(self.lenFeed/_session.pathLen())
+		prog = self.lenFeed/_session.pathLen()
+		self.sigProgress.emit(prog)
+		self.wProgDispatch.setValue(100*prog)
 
 
 		edge = re.findall("S([\d]+)", _feed)

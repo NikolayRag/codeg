@@ -143,8 +143,11 @@ class AppWindow(QObject):
 #  todo 47 (module-dispatch, module-ui, ux, unsure) +0: change device list to button+list
 #  todo 49 (module-ui, ux) +0: save/restore active device between sessions
 		self.wFrameDispatch = cMain.findChild(QWidget, "frameDispatch")
-		self.wProgDispatch = cMain.findChild(QWidget, "progDispatch")
 
+		self.wProgAll = cMain.findChild(QWidget, "progAll")
+		self.wProgAll.setParent(self.wBtnDispatcher)
+		self.wProgAll.resize(self.wBtnDispatcher.sizeHint().width()-2, 3)
+		self.wProgAll.move(1,self.wBtnDispatcher.size().height()-3)
 
 		self.wBtnFit.clicked.connect(self.viewportFit)
 		self.wBtnCaption.clicked.connect(self.about)
@@ -193,7 +196,9 @@ class AppWindow(QObject):
 
 		self.wMain.setWindowTitle(title)
 
-		self.wProgDispatch.setValue(100*_prog)
+		if _prog == 1:
+			_prog = 0
+		self.wProgAll.setValue(100*_prog)
 
 
 
