@@ -197,8 +197,9 @@ class DispatchWidget(QObject):
 #  todo 302 (trace) +0: show path kpi and segments metrics
 		dt = datetime.now()-self.dtStart
 		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
+
 		self.lenFeed += 1
-		prog = self.lenFeed/_session.pathLen()
+		prog = self.lenFeed/(_session.pathLen()+1)
 		self.sigProgress.emit(prog)
 		self.wProgDispatch.setValue(100*prog)
 
