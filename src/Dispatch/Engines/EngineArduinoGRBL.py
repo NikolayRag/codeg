@@ -91,8 +91,8 @@ class EngineArduinoGRBL(DispatchEngine):
 					res = True
 					break
 
-				if res[:5]=='error':
-					res = int(res[5:])
+				if res[:6]=='error:':
+					res = int(res[6:])
 					break
 
 				outRes.append(res)
