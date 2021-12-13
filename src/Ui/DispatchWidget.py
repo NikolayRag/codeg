@@ -48,7 +48,6 @@ class DispatchWidget(QObject):
 
 		self.args.last = _name
 
-#  todo 257 (ux) +0: handle nonexistent device
 		self.relock()
 
 		self.sigDevChange.emit(self.dispatch.devicePlate(_name))
