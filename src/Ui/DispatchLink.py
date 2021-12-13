@@ -34,15 +34,40 @@ class DispatchSession(Thread, QObject):
 		self.resultEnd = None
 		self.resultRuntime = []
 
+		self.pauseEv = Event()
+		self.flagCancel = False
+
+
+
+	def cancel(self):
+		self.flagCancel = True
+
+		self.pauseEv.set()
+
+
+
+	def pause(self, _state):
+		if self.flagCancel:
+			return
+		
+		self.pauseEv.clear() if _state else self.pauseEv.set()
+
 
 
 	def run(self):
+		self.pause(False)
+
 		self.sigStart.emit()
 
 
 		for cg in self.runData:
 			if not cg:
 				continue
+
+			self.pauseEv.wait()
+			if self.flagCancel:
+				break
+
 
 			res = self.runCb(cg)
 			self.resultRuntime.append(res)

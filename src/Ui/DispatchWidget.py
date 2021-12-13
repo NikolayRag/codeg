@@ -60,6 +60,8 @@ class DispatchWidget(QObject):
 		_enabled = self.wListDevs.currentData()
 
 		self.wBtnDispFire.setEnabled(_enabled and not self.session)
+		self.wBtnDispPause.setEnabled(bool(self.session))
+		self.wBtnDispCancel.setEnabled(bool(self.session))
 
 
 
@@ -68,6 +70,17 @@ class DispatchWidget(QObject):
 		now = datetime.now().strftime(new_format)
 
 		self.wFrameDev.appendPlainText(f"{now}: {_v}")
+
+
+
+	def sessionCancel(self):
+		self.session and self.session.cancel()
+
+
+
+	def sessionPause(self, _state):
+		print(_state)
+		self.session and self.session.pause(_state)
 
 
 
@@ -95,10 +108,14 @@ class DispatchWidget(QObject):
 		self.wBtnRescan = _wRoot.findChild(QWidget, "btnRescan")
 		self.wListDevs = _wRoot.findChild(QComboBox, "listDevs")
 		self.wBtnDispFire = _wRoot.findChild(QWidget, "btnDispFire")
+		self.wBtnDispPause = _wRoot.findChild(QWidget, "btnDispPause")
+		self.wBtnDispCancel = _wRoot.findChild(QWidget, "btnDispCancel")
 
 # -todo 276 (ux, clean) +0: clean device rescan cycle
 		self.wBtnRescan.clicked.connect(_dispatch.getDevices)
 		self.wListDevs.currentIndexChanged.connect(self.devChanged)
+		self.wBtnDispCancel.clicked.connect(self.sessionCancel)
+		self.wBtnDispPause.toggled.connect(self.sessionPause)
 		self.wBtnDispFire.clicked.connect(lambda: self.sigDispatchFire.emit(self.wListDevs.currentText()))
 
 		_dispatch.sigDeviceListed.connect(lambda devA:self.dispatchFill(devA, self.args.last))
