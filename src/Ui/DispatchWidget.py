@@ -49,10 +49,17 @@ class DispatchWidget(QObject):
 		self.args.last = _name
 
 #  todo 257 (ux) +0: handle nonexistent device
-		self.wBtnDispFire.setEnabled(_enabled and not self.session)
+		self.relock()
 
 		self.sigDevChange.emit(self.dispatch.devicePlate(_name))
 
+
+
+
+	def relock(self):
+		_enabled = self.wListDevs.currentData()
+
+		self.wBtnDispFire.setEnabled(_enabled and not self.session)
 
 
 
@@ -152,7 +159,7 @@ class DispatchWidget(QObject):
 
 		if _session:
 			self.session = _session
-			self.devChanged()
+			self.relock()
 
 			self.dtStart = datetime.now()
 
@@ -211,4 +218,4 @@ class DispatchWidget(QObject):
 		self.session = None
 		del _session
 
-		self.devChanged()
+		self.relock()
