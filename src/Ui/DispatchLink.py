@@ -83,7 +83,7 @@ class DispatchSession(Thread, QObject):
 
 		res = self.runCb(None)
 		self.resultRuntime.append(res)
-		self.sigFeed.emit(*res, cg)
+		self.sigFeed.emit(*res, '')
 
 		self.resultEnd = self.errOk if res[0]==True else self.errDevice
 		self.sigFinish.emit(self.resultEnd)
