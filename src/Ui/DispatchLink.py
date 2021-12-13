@@ -5,8 +5,8 @@ from PySide2.QtCore import *
 
 
 
-# =todo 290 (module-dispatch, feature) +0: dispatch end command
 # -todo 261 (module-dispatch, feature) +1: add basic dispatch session manager
+# -todo 307 (device) +0: add device critical stop routine
 #  todo 268 (module-dispatch, feature) +0: handle concurent sessions
 class DispatchSession(Thread, QObject):
 	errOk = 1
