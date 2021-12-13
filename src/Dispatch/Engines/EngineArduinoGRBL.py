@@ -109,13 +109,13 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 	def sink(self, _data):
-		if _data == False: #critical disconnect
+		if _data == False: #instant disconnect
 			self.end()
 
 			return
 
 
-		if not _data:
+		if not _data: #normal end
 			if self.port:
 				res = self.send(self.privData['tail'])
 				self.end()
@@ -123,7 +123,7 @@ class EngineArduinoGRBL(DispatchEngine):
 				return res
 
 
-		if not self.port:
+		if not self.port: #normal start
 			if not self.begin(self.privData['timeout']):
 				print(f"Device \"{self.getName()}\" unavailable")
 
