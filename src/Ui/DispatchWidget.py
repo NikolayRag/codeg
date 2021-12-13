@@ -78,7 +78,6 @@ class DispatchWidget(QObject):
 
 
 	def sessionPause(self, _state):
-		print(_state)
 		self.session and self.session.pause(_state)
 
 
