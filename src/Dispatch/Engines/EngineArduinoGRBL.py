@@ -109,6 +109,12 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 	def sink(self, _data):
+		if _data == False: #critical disconnect
+			self.end()
+
+			return
+
+
 		if not _data:
 			if self.port:
 				res = self.send(self.privData['tail'])
