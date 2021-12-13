@@ -34,7 +34,7 @@ class EngineArduinoGRBL(DispatchEngine):
 # =todo 306 (fix, dispatch, GRBL) +2: fix straignt lines skipped
 	def __init__(self, _name, privData=None):
 		privData['head'] = 'F8000'
-		privData['tail'] = ''
+		privData['tail'] = 'G4 P0.01'
 		privData['timeoutInit'] = 4
 
 		_name = f"{self.nameBase} ({_name})"
