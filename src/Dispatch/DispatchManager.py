@@ -121,7 +121,7 @@ class DispatchManager():
 
 
 	def deviceSend(self, _dev, _data=None):
-		res = (DispatchEngine.errUnknown, [])
+		res = (False, [])
 
 		if _dev in self.allDevices:
 			res = self.allDevices[_dev].sink(_data)

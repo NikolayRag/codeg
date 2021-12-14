@@ -85,7 +85,7 @@ class EngineArduinoGRBL(DispatchEngine):
 			while 1:
 				res = self.port and self.port.readline().decode().strip()
 				if not res: #timeout
-					res = DispatchEngine.errHW
+					res = DispatchEngine.errPort
 					break
 
 				if res=='ok':
@@ -104,7 +104,7 @@ class EngineArduinoGRBL(DispatchEngine):
 		except Exception as e:
 			self.end()
 
-			return (DispatchEngine.errHW, [])
+			return (DispatchEngine.errPort, [])
 
 
 
@@ -129,7 +129,7 @@ class EngineArduinoGRBL(DispatchEngine):
 
 				self.end()
 
-				return (DispatchEngine.errHW, [])
+				return (DispatchEngine.errPort, [])
 
 			res = self.send(self.privData['head'])
 			if res[0]!=True:

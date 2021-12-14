@@ -4,8 +4,7 @@
 Root CNC device class
 '''
 class DispatchEngine():
-	errUnknown = -1
-	errHW = -2
+	errPort = -1
 	
 
 	nameBase = ''
