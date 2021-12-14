@@ -15,6 +15,7 @@ class DispatchWidget(QObject):
 
 
 
+#  todo 311 (dispatch, ui, clean) +0: rescan devices routine
 	def dispatchFill(self, _devices, _default, add=False):
 		cList = {}
 

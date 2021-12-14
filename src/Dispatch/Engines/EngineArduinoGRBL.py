@@ -1,4 +1,4 @@
-# -todo 260 (module-dispatch, fix) +5: adopt full GRBL specification
+# -todo 260 (module-dispatch, fix) +5: GRBL realtime control
 
 import serial
 import serial.tools.list_ports
@@ -31,7 +31,6 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 
-# =todo 306 (fix, dispatch, GRBL) +2: fix straignt lines skipped
 	def __init__(self, _name, privData=None):
 		privData['head'] = 'F8000'
 		privData['tail'] = 'G4 P0.01'
@@ -76,6 +75,7 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 
+#  todo 310 (module-dispatch, fix) +0: GRBL fill-up streaming mode
 	def send(self, _data):
 		try:
 			self.port and self.port.write(str.encode(_data + '\n'))
