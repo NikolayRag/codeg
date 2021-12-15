@@ -75,7 +75,11 @@ class DispatchWidget(QObject):
 
 	def logSession(self):
 		dt = datetime.now()-self.dtStart
-		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
+		partTime = f"{str(dt)[:-5]} passed"
+		
+#		partLeft = f"\n{int(dt.seconds / progress - dt.seconds)} sec left"
+#		partLeft = partLeft if self.lenShapes>2 else ''
+		self.wLabStats.setPlainText(f"{partTime}\nshapes: {self.lenShapes}\npoints: {self.lenPoints}")
 
 
 
