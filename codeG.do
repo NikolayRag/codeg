@@ -862,7 +862,7 @@
  trace 301: +0 "src\Ui\DispatchWidget.py" kii 21/12/10 17:39:44
 	show computed feed, points rate
 
- trace 302: +0 "src\Ui\DispatchWidget.py" ki 21/12/13 00:39:04
+ trace 302: +0 "src\Ui\DispatchWidget.py" kii 21/12/13 00:39:04
 	show path kpi and segments metrics
 
  module-dispatch, API, clean 303: +0 "src\Dispatch\DispatchEngine.py" kii 21/12/11 21:22:14
@@ -873,4 +873,10 @@
 
  trace, v2 305: +0 "src\Ui\DispatchWidget.py" kii 21/12/13 00:15:45
 	move all session related trace runtime data to session
+
+ module-dispatch, fix 310: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/15 19:54:30
+	GRBL write-ahead streaming mode
+
+ module-dispatch, v2 313: +0 "src\Ui\DispatchWidget.py" ki 21/12/15 20:58:55
+	show dispatch session stats
 

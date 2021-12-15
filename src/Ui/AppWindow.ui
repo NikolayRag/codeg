@@ -554,31 +554,6 @@
                       </widget>
                      </item>
                      <item>
-                      <widget class="QPlainTextEdit" name="labStats">
-                       <property name="maximumSize">
-                        <size>
-                         <width>140</width>
-                         <height>64</height>
-                        </size>
-                       </property>
-                       <property name="frameShadow">
-                        <enum>QFrame::Plain</enum>
-                       </property>
-                       <property name="verticalScrollBarPolicy">
-                        <enum>Qt::ScrollBarAlwaysOff</enum>
-                       </property>
-                       <property name="horizontalScrollBarPolicy">
-                        <enum>Qt::ScrollBarAlwaysOff</enum>
-                       </property>
-                       <property name="undoRedoEnabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="lineWrapMode">
-                        <enum>QPlainTextEdit::NoWrap</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
                       <widget class="QPlainTextEdit" name="frameDev">
                        <property name="maximumSize">
                         <size>
@@ -597,6 +572,31 @@
                        </property>
                        <property name="tabStopDistance">
                         <double>80.000000000000000</double>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPlainTextEdit" name="labStats">
+                       <property name="maximumSize">
+                        <size>
+                         <width>140</width>
+                         <height>54</height>
+                        </size>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Plain</enum>
+                       </property>
+                       <property name="verticalScrollBarPolicy">
+                        <enum>Qt::ScrollBarAlwaysOff</enum>
+                       </property>
+                       <property name="horizontalScrollBarPolicy">
+                        <enum>Qt::ScrollBarAlwaysOff</enum>
+                       </property>
+                       <property name="undoRedoEnabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="lineWrapMode">
+                        <enum>QPlainTextEdit::NoWrap</enum>
                        </property>
                       </widget>
                      </item>
