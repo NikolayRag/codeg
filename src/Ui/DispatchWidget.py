@@ -221,7 +221,16 @@ class DispatchWidget(QObject):
 		if _res!=True:
 			self.tracer.spot(True)
 
-			self.log(f"{_res} at:\n{_feed}" + (("\n"+', '.join(_echo)) if _echo else ''))
+			if not _res:
+				self.log('No device')
+				return
+
+			if _res == -1:
+				self.log('Port error')
+				return
+
+			echo = ("\nwith:\n" if _echo else '') +"\n".join(_echo or [])
+			self.log(f"error {_res} at:\n{_feed or 'End'}{echo}")
 
 
 
@@ -231,7 +240,7 @@ class DispatchWidget(QObject):
 		
 		dt = datetime.now()-self.dtStart
 		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
-		msgA = {_session.errOk:'end', _session.errDevice:'error'}
+		msgA = {_session.errOk:'end', _session.errDevice:'halt'}
 		self.log((msgA[_res] if _res in msgA else "unknown") +"\n")
 
 #  todo 294 (Tracer, unsure) +0: check memory leak on subsequent sessions
