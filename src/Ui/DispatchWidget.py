@@ -73,6 +73,12 @@ class DispatchWidget(QObject):
 
 
 
+	def logSession(self):
+		dt = datetime.now()-self.dtStart
+		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
+
+
+
 #  todo 308 (module-dispatch) +0: confirm pause/cancel
 	def sessionCancel(self):
 		self.wBtnDispPause.setChecked(False)
@@ -196,15 +202,6 @@ class DispatchWidget(QObject):
 	def traceFeed(self, _session, _res, _echo, _feed):
 #  todo 301 (trace) +0: show computed feed, points rate
 #  todo 302 (trace) +0: show path kpi and segments metrics
-		dt = datetime.now()-self.dtStart
-		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
-
-		self.lenFeed += 1
-		prog = self.lenFeed/(_session.pathLen()+1)
-		self.sigProgress.emit(prog)
-		self.wProgDispatch.setValue(100*prog)
-
-
 		edge = re.findall("S([\d]+)", _feed)
 		if edge and float(edge[0])==0:
 			self.lenShapes += 1
@@ -232,14 +229,20 @@ class DispatchWidget(QObject):
 			echo = ("\nwith:\n" if _echo else '') +"\n".join(_echo or [])
 			self.logDispatch(f"error {_res} at:\n{_feed or 'End'}{echo}")
 
+		self.lenFeed += 1
+		prog = self.lenFeed/(_session.pathLen()+1)
+		self.sigProgress.emit(prog)
+		self.wProgDispatch.setValue(100*prog)
+
+		self.logSession()
+
 
 
 	def traceFinal(self, _session, _res):
 		self.lenPoints -= 1 #last shape is park
 		self.lenShapes -= 1
+		self.logSession()
 		
-		dt = datetime.now()-self.dtStart
-		self.wLabStats.setPlainText(f"+{str(dt)[:-5]}\nsh/pt: {self.lenShapes}/{self.lenPoints}")
 		msgA = {_session.errOk:'end', _session.errDevice:'halt'}
 		self.logDispatch((msgA[_res] if _res in msgA else "unknown") +"\n")
 
