@@ -19,7 +19,7 @@ class DispatchSession(Thread, QObject):
 	sigFinish = Signal(int)
 
 
-	cacheCoords = (0,0)
+	_liveData = None
 
 
 
@@ -39,6 +39,9 @@ class DispatchSession(Thread, QObject):
 
 		self.pauseEv = Event()
 		self.flagCancel = False
+
+
+		self._liveData = type('', (object,), {})
 
 
 
@@ -96,11 +99,8 @@ class DispatchSession(Thread, QObject):
 
 
 
-	def liveCoords(self, _coords=None):
-		if not _coords:
-			return self.cacheCoords
-
-		self.cacheCoords = _coords
+	def liveData(self):
+		return self._liveData
 
 
 

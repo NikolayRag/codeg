@@ -191,6 +191,8 @@ class DispatchWidget(QObject):
 
 		if _session:
 			self.session = _session
+			self.session.liveData().coords = (0,0)
+
 			self.relock()
 
 			self.dtStart = datetime.now()
@@ -217,10 +219,10 @@ class DispatchWidget(QObject):
 
 		coords = re.findall("X(-?[\d\.]+)Y(-?[\d\.]+)", _feed)
 		if coords:
-			_session.liveCoords((float(coords[0][0]), -float(coords[0][1])))
+			_session.liveData().coords = (float(coords[0][0]), -float(coords[0][1]))
 			self.lenPoints += 1
 
-			self.tracer.moveto(_session.liveCoords())
+			self.tracer.moveto(_session.liveData().coords)
 
 
 		if _res!=True:
@@ -242,14 +244,14 @@ class DispatchWidget(QObject):
 		self.sigProgress.emit(prog)
 		self.wProgDispatch.setValue(100*prog)
 
-		self.logSession(_session.liveCoords())
+		self.logSession(_session.liveData().coords)
 
 
 
 	def traceFinal(self, _session, _res):
 		self.lenPoints -= 1 #last shape is park
 		self.lenShapes -= 1
-		self.logSession(_session.liveCoords())
+		self.logSession(_session.liveData().coords)
 		
 		msgA = {_session.errOk:'end', _session.errDevice:'halt'}
 		self.logDispatch((msgA[_res] if _res in msgA else "unknown") +"\n")
