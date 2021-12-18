@@ -74,15 +74,15 @@ class DispatchWidget(QObject):
 
 
 #  todo 313 (module-dispatch, v2) +0: show dispatch session stats
-	def logSession(self, _coords):
+	def logSession(self, _tStart, _coords):
 		partCoords = f"X{_coords[0]} Y{_coords[1]}"
 
-		dt = datetime.now()-self.dtStart
+		dt = datetime.now()-_tStart
 		partTime = f"{str(dt)[:-5]} passed"
 		
 #		partLeft = f"\n{int(dt.seconds / progress - dt.seconds)} sec left"
-#		partLeft = partLeft if self.lenShapes>2 else ''
-		self.wLabStats.setPlainText(f"{partCoords}\n{partTime}\nshapes: {self.lenShapes}\npoints: {self.lenPoints}")
+#		partLeft = partLeft if self.session.liveData().logShapes>2 else ''
+		self.wLabStats.setPlainText(f"{partCoords}\n{partTime}\nshapes: {self.session.liveData().logShapes}\npoints: {self.session.liveData().logPoints}")
 
 
 
@@ -101,12 +101,6 @@ class DispatchWidget(QObject):
 
 	def __init__(self, _wRoot, _dispatch, _args, _viewport):
 		QObject.__init__(self)
-
-		self.dtStart = 0
-
-		self.lenFeed = 0
-		self.lenPoints = 0
-		self.lenShapes = 0
 
 		self.wRoot = _wRoot
 		self.dispatch = _dispatch
@@ -193,14 +187,13 @@ class DispatchWidget(QObject):
 			self.session = _session
 			self.session.liveData().coords = (0,0)
 			self.session.liveData().active = False
+			self.session.liveData().logTimeStart = datetime.now()
+			self.session.liveData().logFeed = 0
+			self.session.liveData().logPoints = 0
+			self.session.liveData().logShapes = 0
+
 
 			self.relock()
-
-			self.dtStart = datetime.now()
-
-			self.lenFeed = 0
-			self.lenPoints = 0
-			self.lenShapes = 0
 
 			self.wLabStats.setPlainText('')
 			self.logDispatch("begin")
@@ -215,7 +208,7 @@ class DispatchWidget(QObject):
 		edge = re.findall("S([\d]+)", _feed)
 		if edge:
 			if not self.session.liveData().active and float(edge[0])!=0:
-				self.lenShapes += 1
+				self.session.liveData().logShapes += 1
 
 			if float(edge[0])==0:
 				self.tracer.split()
@@ -227,7 +220,7 @@ class DispatchWidget(QObject):
 		coords = re.findall("X(-?[\d\.]+)Y(-?[\d\.]+)", _feed)
 		if coords:
 			_session.liveData().coords = (float(coords[0][0]), -float(coords[0][1]))
-			self.lenPoints += 1
+			self.session.liveData().logPoints += 1
 
 			self.tracer.moveto(_session.liveData().coords)
 
@@ -246,12 +239,12 @@ class DispatchWidget(QObject):
 			echo = ("\nwith:\n" if _echo else '') +"\n".join(_echo or [])
 			self.logDispatch(f"error {_res} at:\n{_feed or 'End'}{echo}")
 
-		self.lenFeed += 1
-		prog = self.lenFeed/(_session.pathLen()+1)
+		self.session.liveData().logFeed += 1
+		prog = self.session.liveData().logFeed/(_session.pathLen()+1)
 		self.sigProgress.emit(prog)
 		self.wProgDispatch.setValue(100*prog)
 
-		self.logSession(_session.liveData().coords)
+		self.logSession(self.session.liveData().logTimeStart, _session.liveData().coords)
 
 
 
