@@ -59,9 +59,9 @@ class DispatchWidget(QObject):
 	def relock(self):
 		_enabled = self.wListDevs.currentData()
 
-		self.wBtnDispFire.setEnabled(_enabled and not self.session)
-		self.wBtnDispPause.setEnabled(bool(self.session))
-		self.wBtnDispCancel.setEnabled(bool(self.session))
+		self.wBtnDispFire.setEnabled(_enabled and not self.activeSession)
+		self.wBtnDispPause.setEnabled(bool(self.activeSession))
+		self.wBtnDispCancel.setEnabled(bool(self.activeSession))
 
 
 
@@ -90,12 +90,12 @@ class DispatchWidget(QObject):
 	def sessionCancel(self):
 		self.wBtnDispPause.setChecked(False)
 
-		self.session and self.session.cancel(True)
+		self.activeSession and self.activeSession.cancel(True)
 
 
 
 	def sessionPause(self, _state):
-		self.session and self.session.pause(_state)
+		self.activeSession and self.activeSession.pause(_state)
 
 
 
@@ -106,7 +106,7 @@ class DispatchWidget(QObject):
 		self.dispatch = _dispatch
 		self.args = _args
 		
-		self.session = None
+		self.activeSession = None
 		self.tracer = Tracer(_viewport)
 
 
@@ -184,7 +184,7 @@ class DispatchWidget(QObject):
 		self.tracer.reset(_session and _session.viewBox())
 
 		if _session:
-			self.session = _session
+			self.activeSession = _session
 			liveData = _session.liveData()
 			liveData.coords = (0,0)
 			liveData.active = False
@@ -256,7 +256,7 @@ class DispatchWidget(QObject):
 		self.logDispatch((msgA[_res] if _res in msgA else "unknown") +"\n")
 
 #  todo 294 (Tracer, unsure) +0: check memory leak on subsequent sessions
-		self.session = None
+		self.activeSession = None
 		del _session
 
 		self.relock()
