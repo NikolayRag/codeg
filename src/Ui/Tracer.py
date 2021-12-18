@@ -225,11 +225,14 @@ class Tracer(QObject):
 		cSpot.setXml(cPoint)
 		cSpot.place(self.lastSpot)
 
+		self.moveto(self.lastSpot, True)
+
+
 		self.laySpots.append(cSpot)
 
 
 
-	def moveto(self, _xy):
+	def moveto(self, _xy, _force=False):
 		self.lastSpot = _xy
 		self.lenPoints += 1
 
@@ -240,7 +243,7 @@ class Tracer(QObject):
 		
 		l = self.layShapes[-1].dataLen()
 
-		if l%self.triggerFocus == 2: #each Nth from start of shape (2nd pt)
+		if _force or (l%self.triggerFocus == 2): #each Nth from start of shape (2nd pt)
 			self.layFocus and self.layFocus.place(_xy)
 
 		if l>self.triggerDraw and len(self.layShapes)<1000:
