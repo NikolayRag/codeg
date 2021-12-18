@@ -164,6 +164,8 @@ class Tracer(QObject):
 		for sp in self.layShapes:
 			sp.show(self.visPaint)
 
+		self.visLive and self.layFocus and self.layFocus.place(self.lastSpot)
+
 		self.wViewport.canvasUpdate(True)
 
 
@@ -244,7 +246,7 @@ class Tracer(QObject):
 		l = self.layShapes[-1].dataLen()
 
 		if _force or (l%self.triggerFocus == 2): #each Nth from start of shape (2nd pt)
-			self.layFocus and self.layFocus.place(_xy)
+			self.visLive and self.layFocus and self.layFocus.place(_xy)
 
 		if l>self.triggerDraw and len(self.layShapes)<1000:
 			self.triggerDraw = l*1.01+self.lenPoints*.01
