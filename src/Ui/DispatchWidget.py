@@ -192,6 +192,7 @@ class DispatchWidget(QObject):
 		if _session:
 			self.session = _session
 			self.session.liveData().coords = (0,0)
+			self.session.liveData().active = False
 
 			self.relock()
 
@@ -212,9 +213,15 @@ class DispatchWidget(QObject):
 #  todo 301 (trace) +0: show computed feed, points rate
 #  todo 302 (trace) +0: show path kpi and segments metrics
 		edge = re.findall("S([\d]+)", _feed)
-		if edge and float(edge[0])==0:
-			self.lenShapes += 1
-			self.tracer.split()
+		if edge:
+			if not self.session.liveData().active and float(edge[0])!=0:
+				self.lenShapes += 1
+
+			if float(edge[0])==0:
+				self.tracer.split()
+
+			self.session.liveData().active = (float(edge[0])!=0)
+
 
 
 		coords = re.findall("X(-?[\d\.]+)Y(-?[\d\.]+)", _feed)
@@ -249,10 +256,6 @@ class DispatchWidget(QObject):
 
 
 	def traceFinal(self, _session, _res):
-		self.lenPoints -= 1 #last shape is park
-		self.lenShapes -= 1
-		self.logSession(_session.liveData().coords)
-		
 		msgA = {_session.errOk:'end', _session.errDevice:'halt'}
 		self.logDispatch((msgA[_res] if _res in msgA else "unknown") +"\n")
 
