@@ -75,7 +75,7 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 
-#  todo 310 (module-dispatch, fix) +0: GRBL fill-up streaming mode
+#  todo 310 (module-dispatch, fix) +0: GRBL write-ahead streaming mode
 	def send(self, _data):
 		try:
 			self.port and self.port.write(str.encode(_data + '\n'))

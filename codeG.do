@@ -859,7 +859,7 @@
 -module-dispatch, device 300: +0 "src\Ui\DispatchLink.py" kii 21/12/12 00:55:29
 	read device nonblocking from session
 
- trace 301: +0 "src\Ui\DispatchWidget.py" kii 21/12/10 17:39:44
+ trace 301: +0 "src\Ui\DispatchWidget.py" ki 21/12/19 00:03:20
 	show computed feed, points rate
 
  trace 302: +0 "src\Ui\DispatchWidget.py" kii 21/12/13 00:39:04
