@@ -73,13 +73,16 @@ class DispatchWidget(QObject):
 
 
 
-	def logSession(self):
+#  todo 313 (module-dispatch, v2) +0: show dispatch session stats
+	def logSession(self, _coords):
+		partCoords = f"X{_coords[0]} Y{_coords[1]}"
+
 		dt = datetime.now()-self.dtStart
 		partTime = f"{str(dt)[:-5]} passed"
 		
 #		partLeft = f"\n{int(dt.seconds / progress - dt.seconds)} sec left"
 #		partLeft = partLeft if self.lenShapes>2 else ''
-		self.wLabStats.setPlainText(f"{partTime}\nshapes: {self.lenShapes}\npoints: {self.lenPoints}")
+		self.wLabStats.setPlainText(f"{partCoords}\n{partTime}\nshapes: {self.lenShapes}\npoints: {self.lenPoints}")
 
 
 
@@ -214,9 +217,10 @@ class DispatchWidget(QObject):
 
 		coords = re.findall("X(-?[\d\.]+)Y(-?[\d\.]+)", _feed)
 		if coords:
+			_session.liveCoords((float(coords[0][0]), -float(coords[0][1])))
 			self.lenPoints += 1
 
-			self.tracer.moveto((float(coords[0][0]), -float(coords[0][1])))
+			self.tracer.moveto(_session.liveCoords())
 
 
 		if _res!=True:
@@ -238,14 +242,14 @@ class DispatchWidget(QObject):
 		self.sigProgress.emit(prog)
 		self.wProgDispatch.setValue(100*prog)
 
-		self.logSession()
+		self.logSession(_session.liveCoords())
 
 
 
 	def traceFinal(self, _session, _res):
 		self.lenPoints -= 1 #last shape is park
 		self.lenShapes -= 1
-		self.logSession()
+		self.logSession(_session.liveCoords())
 		
 		msgA = {_session.errOk:'end', _session.errDevice:'halt'}
 		self.logDispatch((msgA[_res] if _res in msgA else "unknown") +"\n")

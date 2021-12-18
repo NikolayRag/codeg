@@ -19,6 +19,9 @@ class DispatchSession(Thread, QObject):
 	sigFinish = Signal(int)
 
 
+	cacheCoords = (0,0)
+
+
 
 # -todo 300 (module-dispatch, device) +0: read device nonblocking from session
 	def __init__(self, _cb, _data):
@@ -90,6 +93,14 @@ class DispatchSession(Thread, QObject):
 
 		self.resultEnd = self.errOk if res[0]==True else self.errDevice
 		self.sigFinish.emit(self.resultEnd)
+
+
+
+	def liveCoords(self, _coords=None):
+		if not _coords:
+			return self.cacheCoords
+
+		self.cacheCoords = _coords
 
 
 

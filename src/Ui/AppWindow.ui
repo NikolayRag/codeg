@@ -580,7 +580,7 @@
                        <property name="maximumSize">
                         <size>
                          <width>140</width>
-                         <height>54</height>
+                         <height>72</height>
                         </size>
                        </property>
                        <property name="frameShadow">
