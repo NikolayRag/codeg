@@ -128,6 +128,8 @@ class AppWindow(QObject):
 
 
 		self.wBtnFit = cMain.findChild(QWidget, "btnFit")
+		self.wBtnDegrade = cMain.findChild(QWidget, "btnDegrade")
+		self.wBtnDegrade.setChecked(Args.Viewport.degrade)
 		self.wBtnCaption = cMain.findChild(QWidget, "btnCaption")
 		self.wBtnWipe = cMain.findChild(QWidget, "btnWipe")
 		self.wBtnOpen = cMain.findChild(QWidget, "btnOpen")
@@ -150,6 +152,7 @@ class AppWindow(QObject):
 		self.wProgAll.move(1,self.wBtnDispatcher.size().height()-3)
 
 		self.wBtnFit.clicked.connect(self.viewportFit)
+		self.wBtnDegrade.toggled.connect(self.setDegrade)
 		self.wBtnCaption.clicked.connect(self.about)
 		self.wBtnWipe.clicked.connect(self.sigSceneReset)
 		self.wBtnOpen.clicked.connect(lambda: self.sigAddFile.emit(self.wMain))
@@ -484,3 +487,10 @@ class AppWindow(QObject):
 
 		if Args.Application.scheme != pinScheme:
 			self.sigPrefScheme.emit()
+
+
+
+	def setDegrade(self, _state):
+		Args.Viewport.degrade = _state
+
+		self.sigPrefScheme.emit()

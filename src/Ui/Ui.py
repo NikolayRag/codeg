@@ -196,14 +196,31 @@ class Ui():
 
 # -todo 248 (ux, feature) +0: update default plate size
 	def prefScheme(self):
+		def degrade(_dict):
+			_dict = dict(_dict)
+			if Args.Viewport.degrade:
+				_dict['stroke-width'] = '1px'
+
+			return _dict
+
+
 		self.appWindow.setStyle(self.styleList[Args.Application.scheme])
 
 
-		self.markDefault.setData(self.styleSVG[Args.Application.scheme]['default'])
-		self.markInactive.setData(self.styleSVG[Args.Application.scheme]['inactive'])
-		self.markOff.setData(self.styleSVG[Args.Application.scheme]['off'])
-		self.markSelect.setData(self.styleSVG[Args.Application.scheme]['select'])
-		self.markHover.setData(self.styleSVG[Args.Application.scheme]['hover'])
+		cDict = degrade(self.styleSVG[Args.Application.scheme]['default'])
+		self.markDefault.setData(cDict, True)
+
+		cDict = degrade(self.styleSVG[Args.Application.scheme]['inactive'])
+		self.markInactive.setData(cDict, True)
+
+		cDict = degrade(self.styleSVG[Args.Application.scheme]['off'])
+		self.markOff.setData(cDict, True)
+
+		cDict = degrade(self.styleSVG[Args.Application.scheme]['select'])
+		self.markSelect.setData(cDict, True)
+
+		cDict = degrade(self.styleSVG[Args.Application.scheme]['hover'])
+		self.markHover.setData(cDict, True)
 
 		if self.activeScene:
 			for geoBlock in self.activeScene.geoList():
