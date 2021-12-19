@@ -440,7 +440,7 @@
                    <widget class="QWidget" name="frameDispatch" native="true">
                     <layout class="QVBoxLayout" name="verticalLayout_7">
                      <property name="spacing">
-                      <number>2</number>
+                      <number>0</number>
                      </property>
                      <property name="leftMargin">
                       <number>0</number>
@@ -580,7 +580,7 @@
                        <property name="maximumSize">
                         <size>
                          <width>140</width>
-                         <height>72</height>
+                         <height>54</height>
                         </size>
                        </property>
                        <property name="frameShadow">

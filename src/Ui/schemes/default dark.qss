@@ -27,7 +27,7 @@
 
 
 #frameDispatch { background-color: rgba(0,0,0,0); }
-#frameDev, #labStats { background-color: rgba(0,0,0,32); }
+#_frameDev, #_labStats { background-color: rgba(0,0,0,32); }
 
 
 QProgressBar {

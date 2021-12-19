@@ -75,14 +75,14 @@ class DispatchWidget(QObject):
 
 #  todo 313 (module-dispatch, v2) +0: show dispatch session stats
 	def logSession(self, _sessionLive):
-		partCoords = f"X{_sessionLive.coords[0]} Y{_sessionLive.coords[1]}"
+#		partCoords = f"X{_sessionLive.coords[0]} Y{_sessionLive.coords[1]}"
 
 		dt = datetime.now()-_sessionLive.logTimeStart
-		partTime = f"{str(dt)[:-5]} passed"
+		partTime = f"{str(dt)[:-5]}"
 		
 #		partLeft = f"\n{int(dt.seconds / progress - dt.seconds)} sec left"
 #		partLeft = partLeft if _sessionLive.logShapes>2 else ''
-		self.wLabStats.setPlainText(f"{partCoords}\n{partTime}\nshapes: {_sessionLive.logShapes}\npoints: {_sessionLive.logPoints}")
+		self.wLabStats.setPlainText(f"time: {partTime}\nshapes: {_sessionLive.logShapes}\npoints: {_sessionLive.logPoints}")
 
 
 
