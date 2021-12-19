@@ -69,6 +69,9 @@ class AppWindow(QObject):
 	rtSize = []
 	rtPos = []
 
+	isDegrade = False
+
+
 
 	def __init__(self, _dispatch):
 		QObject.__init__(self)
@@ -172,6 +175,17 @@ class AppWindow(QObject):
 
 		self.dispatchUi.sigDevChange.connect(self.gridSize)
 		self.dispatchUi.sigProgress.connect(self.setProgress)
+		
+		def toggleDegrade(_state):
+			deg = _state
+			if _state:
+				self.isDegrade = Args.Viewport.degrade
+			else:
+				deg = self.isDegrade
+
+			self.wBtnDegrade.setChecked(deg)
+			self.wBtnDegrade.setEnabled(not _state)
+		self.dispatchUi.sigLive.connect(toggleDegrade)
 
 		#default device as template, overrided at actual device when found
 		self.dispatchUi.dispatchFill([], Args.Dispatch.last)

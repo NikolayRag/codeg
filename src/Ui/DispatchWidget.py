@@ -13,6 +13,8 @@ class DispatchWidget(QObject):
 	sigDevChange = Signal(object)
 	sigDispatchFire = Signal(str)
 
+	sigLive = Signal(bool)
+
 
 
 #  todo 311 (dispatch, ui, clean) +0: rescan devices routine
@@ -202,6 +204,8 @@ class DispatchWidget(QObject):
 			self.sigProgress.emit(0)
 
 
+			self.sigLive.emit(True)
+
 
 	def traceFeed(self, _session, _res, _echo, _feed):
 		liveData = _session.liveData()
@@ -260,3 +264,5 @@ class DispatchWidget(QObject):
 		del _session
 
 		self.relock()
+
+		self.sigLive.emit(False)
