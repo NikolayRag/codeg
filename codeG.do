@@ -859,7 +859,7 @@
 -module-dispatch, device 300: +0 "src\Ui\DispatchLink.py" kii 21/12/12 00:55:29
 	read device nonblocking from session
 
- trace 301: +0 "src\Ui\DispatchWidget.py" ki 21/12/19 00:03:20
+ trace 301: +0 "src\Ui\DispatchWidget.py" ki 21/12/19 00:48:53
 	show computed feed, points rate
 
  trace 302: +0 "src\Ui\DispatchWidget.py" kii 21/12/13 00:39:04
@@ -879,4 +879,7 @@
 
  module-dispatch, v2 313: +0 "src\Ui\DispatchWidget.py" ki 21/12/15 20:58:55
 	show dispatch session stats
+
+ trace 314: +0 "src\Ui\DispatchWidget.py" ki 21/12/19 18:42:14
+	move feed detection routines to session
 

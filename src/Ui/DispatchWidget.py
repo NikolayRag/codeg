@@ -207,6 +207,8 @@ class DispatchWidget(QObject):
 			self.sigLive.emit(True)
 
 
+
+#  todo 314 (trace) +0: move feed detection routines to session
 	def traceFeed(self, _session, _res, _echo, _feed):
 		liveData = _session.liveData()
 
