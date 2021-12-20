@@ -187,10 +187,6 @@ class AppWindow(QObject):
 			self.wBtnDegrade.setEnabled(not _state)
 		self.dispatchUi.sigLive.connect(toggleDegrade)
 
-		#default device as template, overrided at actual device when found
-		self.dispatchUi.dispatchFill([], Args.Dispatch.last)
-
-
 		self.wBtnDispatcher.toggled.connect(self.dispatchUi.show)
 
 

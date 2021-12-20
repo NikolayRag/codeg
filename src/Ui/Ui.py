@@ -158,10 +158,7 @@ class Ui():
 
 		self.appWindow.sigDispatchFire.connect(self.dispatchSend)
 		self.appWindow.sigDispatchShot.connect(self.dispatchShot)
-
-
 		self.appWindow.sigDevChange.connect(self.dispatchChanged)
-		_dispatch.getDevices() #inited after connections made coz devices scanned in background
 
 
 		self.markDefault = self.data.markNew(

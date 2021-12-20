@@ -133,10 +133,6 @@ class DispatchWidget(QObject):
 		self.wBtnDispPause.toggled.connect(self.sessionPause)
 		self.wBtnDispFire.clicked.connect(lambda: self.sigDispatchFire.emit(self.wListDevs.currentText()))
 
-		_dispatch.sigDeviceListed.connect(lambda devA:self.dispatchFill(devA, self.args.last))
-		_dispatch.sigDeviceFound.connect(lambda devA:self.dispatchFill(devA, self.args.last, add=True))
-
-
 		self.wBtnTraceLive = _wRoot.findChild(QWidget, "btnTraceLive")
 		self.wBtnTraceShapes = _wRoot.findChild(QWidget, "btnTraceShapes")
 
@@ -154,6 +150,14 @@ class DispatchWidget(QObject):
 
 
 		self.show(self.args.visDispatch, live=self.args.visTracer, shapes=self.args.visTraceShapes)
+
+
+		_dispatch.sigDeviceListed.connect(lambda devA:self.dispatchFill(devA, self.args.last))
+		_dispatch.sigDeviceFound.connect(lambda devA:self.dispatchFill(devA, self.args.last, add=True))
+
+		#default device as template, overrided at actual device when found
+		self.dispatchFill([], self.args.last)
+		_dispatch.getDevices()
 
 
 
