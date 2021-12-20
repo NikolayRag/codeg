@@ -754,7 +754,7 @@
 +feature, ux, module-dispatch 265: +0 "src\Ui\AppWindow.py" kii 21/11/24 04:06:22
 	show live statistics
 
-=module-dispatch, test 266: +0 "src\Dispatch\DispatchManager.py" kii 21/12/11 21:16:08
+!module-dispatch, test 266: +0 "src\Dispatch\DispatchManager.py" ki 21/12/21 00:23:14
 	handle device rescan interfere case
 
 +module-dispatch, module-ui 267: +0 "src\Ui\AppWindow.py" kii 21/11/24 00:09:59
@@ -796,7 +796,7 @@
  viewport, fix 279: +0 "src\Ui\SvgViewport.py" kii 21/11/26 18:11:17
 	make removed SvgDescriptor safe
 
- ui, feature, idea 280: +0 "src\Ui\AppWindow.py" kii 21/12/07 23:30:10
+ ui, feature, idea 280: +0 "src\Ui\AppWindow.py" ki 21/12/21 00:15:19
 	paint with Tracer into geometry layers
 
 +ui, clean 281: +0 "src\Ui\AppWindow.py" kii 21/12/07 23:18:45
