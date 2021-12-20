@@ -55,7 +55,11 @@ class DispatchSession(Thread, QObject):
 
 
 
-	def pause(self, _state):
+	def pause(self, _state=None):
+		if _state==None:
+			return not self.pauseEv.is_set()
+
+
 		if self.flagCancel:
 			return
 		
