@@ -90,9 +90,12 @@ class DispatchWidget(QObject):
 
 #  todo 308 (module-dispatch) +0: confirm pause/cancel
 	def sessionCancel(self):
+		if not self.activeSession:
+			return
+		
 		self.wBtnDispPause.setChecked(False)
 
-		self.activeSession and self.activeSession.cancel(True)
+		self.activeSession.cancel(True)
 
 
 
