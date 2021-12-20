@@ -18,18 +18,17 @@ class DispatchWidget(QObject):
 
 
 #  todo 311 (dispatch, ui, clean) +0: rescan devices routine
-	def dispatchFill(self, _devices, _default, add=False):
-		cList = {}
+	def dispatchFill(self, _devices, _default):
+		cList = {self.wListDevs.itemText(i):self.wListDevs.itemData(i) for i in range(self.wListDevs.count())}
 
-		if add:
-			cList = {self.wListDevs.itemText(i):self.wListDevs.itemData(i) for i in range(self.wListDevs.count())}
-			_devices = [_devices]
+		if not _devices:
+			cList = {}
 
 		if _default not in cList:
 			cList[_default] = False
 
-		for dev in _devices:
-			cList[dev] = True
+		if _devices:
+			cList[_devices] = True
 
 
 		self.wListDevs.blockSignals(True)
@@ -152,11 +151,8 @@ class DispatchWidget(QObject):
 		self.show(self.args.visDispatch, live=self.args.visTracer, shapes=self.args.visTraceShapes)
 
 
-		_dispatch.sigDeviceListed.connect(lambda devA:self.dispatchFill(devA, self.args.last))
-		_dispatch.sigDeviceFound.connect(lambda devA:self.dispatchFill(devA, self.args.last, add=True))
-
-		#default device as template, overrided at actual device when found
-		self.dispatchFill([], self.args.last)
+		_dispatch.sigDeviceFound.connect(lambda devA:self.dispatchFill(devA, self.args.last))
+		self.dispatchFill(None, self.args.last)
 		_dispatch.getDevices()
 
 

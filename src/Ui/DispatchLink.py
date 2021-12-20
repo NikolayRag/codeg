@@ -126,7 +126,6 @@ Dispatch connected either inline, or as app link
 #  todo 258 (module-dispatch, error, ux) +0: handle retries
 class DispatchLink(QObject):
 	sigDeviceFound = Signal(str)
-	sigDeviceListed = Signal(list)
 	sigDispatchAdded = Signal(object)
 
 
@@ -153,7 +152,7 @@ class DispatchLink(QObject):
 
 	def getDevices(self):
 		if self.dispatcher:
-			Thread(target=lambda: self.sigDeviceListed.emit(self.dispatcher.deviceList(self.sigDeviceFound.emit))).start()
+			Thread(target=lambda: self.dispatcher.deviceList(self.sigDeviceFound.emit)).start()
 
 
 
