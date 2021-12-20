@@ -455,6 +455,31 @@
                       <number>0</number>
                      </property>
                      <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_6">
+                       <item>
+                        <widget class="QToolButton" name="btnRescan">
+                         <property name="text">
+                          <string>re</string>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>resource/icon-pack.svg</normaloff>resource/icon-pack.svg</iconset>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QComboBox" name="listDevs">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
                       <widget class="QWidget" name="frameDispatcher" native="true">
                        <layout class="QGridLayout" name="gridLayout_3">
                         <property name="leftMargin">
@@ -472,62 +497,32 @@
                         <property name="spacing">
                          <number>2</number>
                         </property>
-                        <item row="2" column="4">
-                         <widget class="QToolButton" name="btnDispPause">
-                          <property name="text">
-                           <string>p</string>
-                          </property>
-                          <property name="checkable">
-                           <bool>true</bool>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="1" column="1">
-                         <widget class="QToolButton" name="btnRescan">
-                          <property name="text">
-                           <string>re</string>
-                          </property>
-                          <property name="icon">
-                           <iconset>
-                            <normaloff>resource/icon-pack.svg</normaloff>resource/icon-pack.svg</iconset>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="1" colspan="2">
-                         <spacer name="horizontalSpacer_5">
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                          <property name="sizeHint" stdset="0">
+                        <item row="3" column="0">
+                         <widget class="QPlainTextEdit" name="labStats">
+                          <property name="maximumSize">
                            <size>
-                            <width>40</width>
-                            <height>20</height>
+                            <width>140</width>
+                            <height>54</height>
                            </size>
                           </property>
-                         </spacer>
-                        </item>
-                        <item row="2" column="5">
-                         <widget class="QToolButton" name="btnDispFire">
-                          <property name="text">
-                           <string/>
+                          <property name="frameShadow">
+                           <enum>QFrame::Plain</enum>
                           </property>
-                          <property name="icon">
-                           <iconset>
-                            <normaloff>resource/icon-deliver.svg</normaloff>resource/icon-deliver.svg</iconset>
+                          <property name="verticalScrollBarPolicy">
+                           <enum>Qt::ScrollBarAlwaysOff</enum>
                           </property>
-                         </widget>
-                        </item>
-                        <item row="1" column="2" colspan="4">
-                         <widget class="QComboBox" name="listDevs">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
+                          <property name="horizontalScrollBarPolicy">
+                           <enum>Qt::ScrollBarAlwaysOff</enum>
+                          </property>
+                          <property name="undoRedoEnabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="lineWrapMode">
+                           <enum>QPlainTextEdit::NoWrap</enum>
                           </property>
                          </widget>
                         </item>
-                        <item row="3" column="1" colspan="5">
+                        <item row="1" column="0" colspan="2">
                          <widget class="QProgressBar" name="progDispatch">
                           <property name="sizePolicy">
                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
@@ -543,12 +538,53 @@
                           </property>
                          </widget>
                         </item>
-                        <item row="2" column="3">
-                         <widget class="QToolButton" name="btnDispCancel">
-                          <property name="text">
-                           <string>x</string>
-                          </property>
-                         </widget>
+                        <item row="2" column="0">
+                         <layout class="QHBoxLayout" name="horizontalLayout_7">
+                          <item>
+                           <widget class="QToolButton" name="btnDispCancel">
+                            <property name="text">
+                             <string>x</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <spacer name="horizontalSpacer_5">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>40</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </spacer>
+                          </item>
+                          <item>
+                           <widget class="QToolButton" name="btnDispPause">
+                            <property name="text">
+                             <string>p</string>
+                            </property>
+                            <property name="checkable">
+                             <bool>true</bool>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QToolButton" name="btnDispFire">
+                            <property name="text">
+                             <string/>
+                            </property>
+                            <property name="icon">
+                             <iconset>
+                              <normaloff>resource/icon-deliver.svg</normaloff>resource/icon-deliver.svg</iconset>
+                            </property>
+                            <property name="checkable">
+                             <bool>true</bool>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
                         </item>
                        </layout>
                       </widget>
@@ -572,31 +608,6 @@
                        </property>
                        <property name="tabStopDistance">
                         <double>80.000000000000000</double>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QPlainTextEdit" name="labStats">
-                       <property name="maximumSize">
-                        <size>
-                         <width>140</width>
-                         <height>54</height>
-                        </size>
-                       </property>
-                       <property name="frameShadow">
-                        <enum>QFrame::Plain</enum>
-                       </property>
-                       <property name="verticalScrollBarPolicy">
-                        <enum>Qt::ScrollBarAlwaysOff</enum>
-                       </property>
-                       <property name="horizontalScrollBarPolicy">
-                        <enum>Qt::ScrollBarAlwaysOff</enum>
-                       </property>
-                       <property name="undoRedoEnabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="lineWrapMode">
-                        <enum>QPlainTextEdit::NoWrap</enum>
                        </property>
                       </widget>
                      </item>
