@@ -5,7 +5,7 @@ Root CNC device class
 '''
 class DispatchEngine():
 	errPort = -1
-	
+
 
 	nameBase = ''
 	name = ''
@@ -16,10 +16,21 @@ class DispatchEngine():
 	privData = None
 
 
+	_lastError = None	
+
+
 
 	def __init__(self, _name, privData=None):
 		self.nameBase = _name
 		self.privData = privData
+
+
+
+	def lastError(self, _code=False):
+		if _code != False:
+			self._lastError = _code
+
+		return self._lastError
 
 
 
