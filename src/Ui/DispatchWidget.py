@@ -88,7 +88,8 @@ class DispatchWidget(QObject):
 
 
 
-#  todo 308 (module-dispatch) +0: confirm pause/cancel
+# =todo 308 (module-dispatch) +0: confirm stop
+# =todo 315 (notice) +0: force soft stop dispatch only when paused
 	def sessionCancel(self):
 		if not self.activeSession:
 			return

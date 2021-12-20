@@ -874,6 +874,9 @@
  trace, v2 305: +0 "src\Ui\DispatchWidget.py" kii 21/12/13 00:15:45
 	move all session related trace runtime data to session
 
+=module-dispatch 308: +0 "src\Ui\DispatchWidget.py" ki 21/12/20 18:00:35
+	confirm stop
+
  module-dispatch, fix 310: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/15 19:54:30
 	GRBL write-ahead streaming mode
 
@@ -882,4 +885,7 @@
 
  trace 314: +0 "src\Ui\DispatchWidget.py" ki 21/12/19 18:42:14
 	move feed detection routines to session
+
+=notice 315: +0 "src\Ui\DispatchWidget.py" ki 21/12/20 18:00:00
+	force soft stop dispatch only when paused
 
