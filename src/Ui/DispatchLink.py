@@ -45,10 +45,10 @@ class DispatchSession(Thread, QObject):
 
 
 
-	def cancel(self, _critical=False):
+	def cancel(self, _instant=False):
 		self.flagCancel = True
 
-		if _critical:
+		if _instant:
 			self.runCb(False)
 
 		self.pauseEv.set()
