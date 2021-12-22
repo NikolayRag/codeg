@@ -739,8 +739,8 @@
 -module-dispatch, fix 260: +5 "src\Dispatch\engines\EngineArduinoGRBL.py" kii 21/12/12 00:53:33
 	adopt full GRBL specification
 
--module-dispatch, feature 261: +1 "src\Ui\DispatchLink.py" kii 21/12/12 00:55:48
-	add basic dispatch session manager
+-module-dispatch, feature 261: +1 "src\Ui\DispatchSession.py" ki 21/12/23 00:33:15
+	add basic dispatch session management
 
 +feature, module-ui, module-dispatch 262: +0 "src\Ui\AppWindow.py" kii 21/11/23 00:25:46
 	add functional cut feedback
@@ -760,7 +760,7 @@
 +module-dispatch, module-ui 267: +0 "src\Ui\AppWindow.py" kii 21/11/24 00:09:59
 	instant update 
 
- module-dispatch, feature 268: +0 "src\Ui\DispatchLink.py" kii 21/11/27 03:41:18
+!module-dispatch, feature 268: +0 "" ki 21/12/23 00:33:38
 	handle concurent sessions
 
 +module-ui, clean, fix 269: +1 "src\Ui\Tracer.py" kii 21/12/03 00:30:37
@@ -874,6 +874,9 @@
  trace, v2 305: +0 "src\Ui\DispatchWidget.py" kii 21/12/13 00:15:45
 	move all session related trace runtime data to session
 
+=device 307: +0 "src\Ui\DispatchSession.py" ki 21/12/23 00:34:57
+	add device start/stop control routines
+
 =module-dispatch 308: +0 "src\Ui\DispatchWidget.py" ki 21/12/20 18:00:35
 	confirm stop
 
@@ -888,4 +891,10 @@
 
 =notice 315: +0 "src\Ui\DispatchWidget.py" ki 21/12/20 18:00:00
 	force soft stop dispatch only when paused
+
+=module-dispatch 316: +0 "src\GGData\Scene.py" ki 21/12/23 00:15:38
+	move gcode head/tail to Dispatch
+
+=device, dispatch 317: +0 "src\Ui\DispatchLink.py" ki 21/12/23 01:53:56
+	recover failed device
 

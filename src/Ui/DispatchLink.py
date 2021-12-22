@@ -59,6 +59,7 @@ class DispatchLink(QObject):
 
 
 
+# =todo 317 (device, dispatch) +0: recover failed device option
 	def sessionStart(self, _dev, _data):
 		if not self.dispatcher:
 			print ('No dispatcher')
