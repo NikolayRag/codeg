@@ -63,6 +63,7 @@ class DispatchWidget(QObject):
 		self.wBtnDispFire.setEnabled(_enabled and not self.activeSession)
 		self.wBtnDispPause.setEnabled(bool(self.activeSession))
 		self.wBtnDispCancel.setEnabled(bool(self.activeSession))
+		self.wBtnDispStop.setEnabled(bool(self.activeSession and self.activeSession.pause()))
 
 
 
@@ -89,19 +90,21 @@ class DispatchWidget(QObject):
 
 # =todo 308 (module-dispatch) +0: confirm stop
 # =todo 315 (notice) +0: force soft stop dispatch only when paused
-	def sessionCancel(self):
+	def sessionCancel(self, _instant=False):
 		if not self.activeSession:
 			return
 		
 		self.wBtnDispPause.setChecked(False)
 
-		self.activeSession.cancel(True)
+		self.activeSession.cancel(_instant)
 
 
 
 	def sessionPause(self, _state):
 		self.activeSession and self.activeSession.pause(_state)
 
+		self.relock()
+		
 
 
 	def __init__(self, _wRoot, _dispatch, _args, _viewport):
@@ -124,13 +127,15 @@ class DispatchWidget(QObject):
 		self.wBtnDispFire = _wRoot.findChild(QWidget, "btnDispFire")
 		self.wBtnDispPause = _wRoot.findChild(QWidget, "btnDispPause")
 		self.wBtnDispCancel = _wRoot.findChild(QWidget, "btnDispCancel")
+		self.wBtnDispStop = _wRoot.findChild(QWidget, "btnDispStop")
 
 # -todo 276 (ux, clean) +0: clean device rescan cycle
 		self.wBtnRescan.clicked.connect(_dispatch.getDevices)
 		self.wListDevs.currentIndexChanged.connect(self.devChanged)
-		self.wBtnDispCancel.clicked.connect(self.sessionCancel)
+		self.wBtnDispCancel.clicked.connect(lambda: self.sessionCancel(True))
 		self.wBtnDispPause.toggled.connect(self.sessionPause)
 		self.wBtnDispFire.clicked.connect(lambda: self.sigDispatchFire.emit(self.wListDevs.currentText()))
+		self.wBtnDispStop.clicked.connect(lambda: self.sessionCancel(False))
 
 		self.wBtnTraceLive = _wRoot.findChild(QWidget, "btnTraceLive")
 		self.wBtnTraceShapes = _wRoot.findChild(QWidget, "btnTraceShapes")

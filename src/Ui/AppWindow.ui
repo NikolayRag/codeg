@@ -581,6 +581,13 @@
                             </property>
                            </widget>
                           </item>
+                          <item>
+                           <widget class="QToolButton" name="btnDispStop">
+                            <property name="text">
+                             <string>st</string>
+                            </property>
+                           </widget>
+                          </item>
                          </layout>
                         </item>
                        </layout>
