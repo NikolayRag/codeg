@@ -477,6 +477,17 @@
                          </property>
                         </widget>
                        </item>
+                       <item>
+                        <widget class="QToolButton" name="btnDispFire">
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>resource/icon-deliver.svg</normaloff>resource/icon-deliver.svg</iconset>
+                         </property>
+                        </widget>
+                       </item>
                       </layout>
                      </item>
                      <item>
@@ -497,11 +508,11 @@
                         <property name="spacing">
                          <number>2</number>
                         </property>
-                        <item row="3" column="0">
+                        <item row="4" column="0">
                          <widget class="QPlainTextEdit" name="labStats">
                           <property name="maximumSize">
                            <size>
-                            <width>140</width>
+                            <width>150</width>
                             <height>54</height>
                            </size>
                           </property>
@@ -522,7 +533,7 @@
                           </property>
                          </widget>
                         </item>
-                        <item row="1" column="0" colspan="2">
+                        <item row="2" column="0" colspan="2">
                          <widget class="QProgressBar" name="progDispatch">
                           <property name="sizePolicy">
                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
@@ -538,7 +549,7 @@
                           </property>
                          </widget>
                         </item>
-                        <item row="2" column="0">
+                        <item row="3" column="0">
                          <layout class="QHBoxLayout" name="horizontalLayout_7">
                           <item>
                            <widget class="QToolButton" name="btnDispCancel">
@@ -570,20 +581,6 @@
                             </property>
                            </widget>
                           </item>
-                          <item>
-                           <widget class="QToolButton" name="btnDispFire">
-                            <property name="text">
-                             <string/>
-                            </property>
-                            <property name="icon">
-                             <iconset>
-                              <normaloff>resource/icon-deliver.svg</normaloff>resource/icon-deliver.svg</iconset>
-                            </property>
-                            <property name="checkable">
-                             <bool>true</bool>
-                            </property>
-                           </widget>
-                          </item>
                          </layout>
                         </item>
                        </layout>
@@ -593,7 +590,7 @@
                       <widget class="QPlainTextEdit" name="frameDev">
                        <property name="maximumSize">
                         <size>
-                         <width>140</width>
+                         <width>150</width>
                          <height>96</height>
                         </size>
                        </property>
