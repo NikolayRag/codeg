@@ -7,10 +7,6 @@
 # -todo 165 (feature, dispatch) +1: device settings definition
 
 
-'''
-Dispatch Engines creation fabric and manager
-'''
-
 from threading import *
 
 
@@ -53,6 +49,9 @@ class EventAcc(Event):
 
 
 
+'''
+Dispatch Engines creation fabric and manager.
+'''
 class DispatchManager():
 
 	allEngines = {}

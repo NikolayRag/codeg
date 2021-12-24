@@ -4,9 +4,13 @@ from threading import *
 from PySide2.QtCore import *
 
 
-
 # -todo 261 (module-dispatch, feature) +1: add basic dispatch session management
 # =todo 307 (device) +0: add device start/stop control routines
+
+'''
+Dispatch session is g-data sending daemon.
+It doesn't deal with Dispatcher or Device, and only use provided sink callback.
+'''
 class DispatchSession(Thread, QObject):
 	errOk = 1
 	errDevice = 2

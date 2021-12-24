@@ -103,7 +103,7 @@ class DispatchWidget(QObject):
 		self.activeSession and self.activeSession.pause(_state)
 
 		self.relock()
-		
+
 
 
 	def __init__(self, _wRoot, _dispatch, _args, _viewport):

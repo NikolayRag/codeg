@@ -1,5 +1,5 @@
 '''
-Root CNC device class
+CNC device base class
 '''
 class DispatchEngine():
 	errPort = -1
