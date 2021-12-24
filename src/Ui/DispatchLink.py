@@ -68,7 +68,7 @@ class DispatchLink(QObject):
 		def bindDev(_d):
 			return self.dispatcher.deviceSend(_dev, _d)
 
-		cSession = DispatchSession(bindDev, _data)
+		cSession = DispatchSession(bindDev, _data, gIn=['G90','M4 S0'], gOut=['M5','G0 X0Y0'])
 		cSession.sigFinish.connect(lambda res: self.sessionFinish(cSession, res))
 
 		self.allSessions.append(cSession)

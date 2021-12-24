@@ -32,7 +32,7 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 	def __init__(self, _name, privData=None):
-		privData['head'] = 'F8000'
+		privData['head'] = ''
 		privData['tail'] = 'G4 P0.01'
 		privData['timeoutInit'] = 4
 

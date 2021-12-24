@@ -173,7 +173,7 @@ class Scene():
 
 # =todo 316 (module-dispatch) +0: move gcode head/tail to Dispatch
 	def traceG(self, _x=0, _y=0):
-		data = ['G90 M4', 'S0']
+		data = []
 
 		bbox = None
 		for cObj in self.geoList():
@@ -187,8 +187,6 @@ class Scene():
 			if bbox[2]>cBox[2]: bbox[2]=cBox[2]
 			if bbox[3]<cBox[3]: bbox[3]=cBox[3]
 
-
-		data += ['M5', 'G0', 'X0Y0']
 
 		return {
 			'meta': bbox or (0,1,0,1),

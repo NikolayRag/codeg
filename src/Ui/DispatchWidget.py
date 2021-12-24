@@ -258,7 +258,7 @@ class DispatchWidget(QObject):
 			self.logDispatch(f"error {_res} at:\n{_feed or 'End'}{echo}")
 
 		liveData.logFeed += 1
-		prog = liveData.logFeed/(_session.pathLen()+1)
+		prog = liveData.logFeed/_session.pathLen()
 		self.sigProgress.emit(prog)
 		self.wProgDispatch.setValue(100*prog)
 

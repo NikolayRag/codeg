@@ -18,12 +18,16 @@ class DispatchSession(Thread, QObject):
 	sigFinish = Signal(int)
 
 
+	gIn = []
+	gOut = []
+
+
 	_liveData = None
 
 
 
 # -todo 300 (module-dispatch, device) +0: read device nonblocking from session
-	def __init__(self, _cb, _data):
+	def __init__(self, _cb, _data, gIn=[], gOut=[]):
 		Thread.__init__(self)
 		QObject.__init__(self)
 
@@ -32,6 +36,8 @@ class DispatchSession(Thread, QObject):
 		bbox = _data['meta']
 		self.runBox = [bbox[0], bbox[2], bbox[1]-bbox[0], bbox[3]-bbox[2]]
 		self.runData = _data['data']
+		self.gIn = gIn
+		self.gOut = gOut
 
 		self.resultEnd = None
 		self.resultRuntime = []
@@ -96,7 +102,9 @@ class DispatchSession(Thread, QObject):
 		self.sigStart.emit()
 
 
-		runState = self.runBlock(self.runData, True)
+		runState = self.runBlock(self.gIn, False)
+		runState = runState and self.runBlock(self.runData, True)
+		runState = runState and self.runBlock(self.gOut, False)
 
 
 		if runState:
