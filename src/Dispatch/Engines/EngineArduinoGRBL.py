@@ -32,8 +32,6 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 	def __init__(self, _name, privData=None):
-		privData['head'] = ''
-		privData['tail'] = 'G4 P0.01'
 		privData['timeoutInit'] = 4
 
 		_name = f"{self.nameBase} ({_name})"
@@ -123,10 +121,9 @@ class EngineArduinoGRBL(DispatchEngine):
 
 		if not _data: #normal end
 			if self.port:
-				res = self.send(self.privData['tail'])
 				self.end()
 
-				return res
+			return (True, [])
 
 
 		if not self.port: #normal start
@@ -136,10 +133,6 @@ class EngineArduinoGRBL(DispatchEngine):
 				self.end()
 
 				return (DispatchEngine.errPort, [])
-
-			res = self.send(self.privData['head'])
-			if res[0]!=True:
-				return res
 
 
 		res = self.send(_data)
