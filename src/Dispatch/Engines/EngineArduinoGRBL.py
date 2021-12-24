@@ -100,6 +100,10 @@ class EngineArduinoGRBL(DispatchEngine):
 
 				outRes.append(res)
 
+
+			if res != True:
+				self.end()
+
 			return (res, outRes)
 
 
