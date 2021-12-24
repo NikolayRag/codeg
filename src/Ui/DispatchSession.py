@@ -110,7 +110,6 @@ class DispatchSession(Thread, QObject):
 		if runState:
 			res = self.runCb(None)
 			self.resultRuntime.append(res)
-#  todo 275 (module-dispatch, clean) +0: rescan device at stop state
 
 			self.resultEnd = self.errOk if res[0]==True else self.errDevice
 

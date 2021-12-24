@@ -736,8 +736,8 @@
 +fix, module-dispatch 259: +0 "src\Dispatch\engines\EngineArduinoGRBL.py" kii 21/11/28 21:55:23
 	test device errors
 
--module-dispatch, fix 260: +5 "src\Dispatch\engines\EngineArduinoGRBL.py" kii 21/12/12 00:53:33
-	adopt full GRBL specification
+-module-dispatch, fix 260: +5 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/25 02:36:36
+	GRBL realtime control
 
 -module-dispatch, feature 261: +1 "src\Ui\DispatchSession.py" ki 21/12/23 00:33:15
 	add basic dispatch session management
@@ -835,10 +835,10 @@
  tracer, ui 292: +0 "src\Ui\Tracer.py" kii 21/12/05 12:54:01
 	apply styles to Tracer
 
--tracer, ux 293: +0 "src\Ui\Tracer.py" kii 21/12/11 21:00:14
+-Tracer, ux 293: +0 "src\Ui\Tracer.py" ki 21/12/25 02:37:05
 	leave Traced spots after reset viewport
 
- tracer, unsure 294: +0 "src\Ui\DispatchWidget.py" kii 21/12/10 17:50:16
+ tracer, unsure 294: +0 "src\Ui\DispatchWidget.py" ki 21/12/25 02:36:11
 	check memory leak on subsequent sessions
 
 +ui, dispatch 295: +0 "src\Ui\AppWindow.py" kii 21/12/07 23:26:51
@@ -895,6 +895,6 @@
 =module-dispatch 316: +0 "src\GGData\Scene.py" ki 21/12/23 00:15:38
 	move gcode head/tail to Dispatch
 
-=device, dispatch 317: +0 "src\Ui\DispatchLink.py" ki 21/12/23 01:53:56
-	recover failed device
+=device, dispatch 317: +0 "src\Ui\DispatchLink.py" ki 21/12/25 02:35:32
+	recover failed device option
 

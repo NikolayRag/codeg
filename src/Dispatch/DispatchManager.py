@@ -119,6 +119,8 @@ class DispatchManager():
 
 
 
+#  todo 275 (module-dispatch, clean) +0: rescan device at stop state
+
 	def deviceSend(self, _dev, _data=None):
 		res = (False, [])
 

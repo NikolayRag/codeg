@@ -89,7 +89,6 @@ class DispatchWidget(QObject):
 
 
 # =todo 308 (module-dispatch) +0: confirm stop
-# =todo 315 (notice) +0: force soft stop dispatch only when paused
 	def sessionCancel(self, _instant=False):
 		if not self.activeSession:
 			return
@@ -270,7 +269,7 @@ class DispatchWidget(QObject):
 		msgA = {_session.errOk:'end', _session.errDevice:'halt'}
 		self.logDispatch((msgA[_res] if _res in msgA else "unknown") +"\n")
 
-#  todo 294 (Tracer, unsure) +0: check memory leak on subsequent sessions
+#  todo 294 (tracer, unsure) +0: check memory leak on subsequent sessions
 		self.activeSession = None
 		del _session
 

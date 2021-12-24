@@ -1,5 +1,3 @@
-#  todo 303 (module-dispatch, API, clean) +0: clean up DeviceEngine property methods
-
 '''
 Root CNC device class
 '''
