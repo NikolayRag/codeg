@@ -66,38 +66,47 @@ class DispatchSession(Thread, QObject):
 
 
 
+	def runBlock(self, _gBlock, _runtime):
+		for cg in _gBlock:
+			if _runtime:
+				self.pauseEv.wait()
+				if self.flagCancel:
+					self.resultEnd = self.errCancel
+					break
+
+
+			res = self.runCb(cg)
+			self.resultRuntime.append(res)
+
+			if _runtime: self.sigFeed.emit(*res, cg)
+
+
+			if res[0]!=True:
+				self.resultEnd = self.errDevice
+				return
+
+
+		return True
+
+
+
 	def run(self):
 		self.pause(False)
 
 		self.sigStart.emit()
 
 
-		for cg in self.runData:
-			if not cg:
-				continue
-
-			self.pauseEv.wait()
-			if self.flagCancel:
-				break
+		runState = self.runBlock(self.runData, True)
 
 
-			res = self.runCb(cg)
+		if runState:
+			res = self.runCb(None)
 			self.resultRuntime.append(res)
-			self.sigFeed.emit(*res, cg)
-
 #  todo 275 (module-dispatch, clean) +0: rescan device at stop state
-			if res[0]!=True:
-				self.resultEnd = self.errDevice
 
-				self.sigFinish.emit(self.resultEnd)
-				return
+			self.resultEnd = self.errOk if res[0]==True else self.errDevice
 
 
-		res = self.runCb(None)
-		self.resultRuntime.append(res)
-		self.sigFeed.emit(*res, '')
-
-		self.resultEnd = self.errOk if res[0]==True else self.errDevice
 		self.sigFinish.emit(self.resultEnd)
 
 
