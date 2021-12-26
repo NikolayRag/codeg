@@ -3,9 +3,16 @@
 Install & Requirements
 ======================
 
+*No engraver setup routines
+-
+
+
+
 
 Operation
 =========
+
+
 
 
 Scene
@@ -20,13 +27,16 @@ Scene
 
 
 
+
 Geometry
 --------
 
 
 
+
 Marks
 -----
+
 
 
 
@@ -38,25 +48,37 @@ Viewport
 -
 
 
+Issues:
+*SVG pixel-size jitter
+-
+
+
+
 
 Dispatch
 --------
 
-*Device scan
-*Session queue
+*Device life cycle
+*Device scan/rescan
+*Dispatch controls
+	disconnect
+	start-pause/unpause-stop
+	begin/end parking behavior
+	none/normal/error reinit
+*Alert react tbd
+*Session queue tbd
+*Manual control tbd
 -
+
+
 
 
 Tracer
 ------
-
-*Dispatch controls
 *Stats
-*Echo
-*Painting
-*Focus
+*Focus and Painting
+	scene-unbound
 -
-
 
 Issues:
 *Having Tracer switched Live/Shapes on can result in speed jitter at high speed,
