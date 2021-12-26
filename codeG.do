@@ -61,7 +61,7 @@
 !module-ui, file 21: +0 "" kii 21/07/31 03:32:28
 	dup
 
-=module-dispatch, ux 22: +1 "src\Dispatch\DispatchManager.py" kii 21/11/26 04:06:12
++module-dispatch, ux 22: +1 "src\Dispatch\DispatchManager.py" ki 21/12/25 15:29:59
 	make dispatch interruptable and terminatable
 
 -module-ui, ux 23: +0 "src\Ui\Ui.py" kii 21/11/22 15:16:12
@@ -169,7 +169,7 @@
 +module-dispatch 60: +0 "src\Dispatch\DispatchManager.py" kii 21/11/22 17:03:37
 	show gcodes live proto
 
--module-dispatch 61: +0 "src\Dispatch\DispatchManager.py" kii 21/12/12 00:55:05
+-module-dispatch 61: +0 "src\Dispatch\DispatchManager.py" ki 21/12/25 15:30:00
 	CNC manual control
 
 !module-dispatch 62: +0 "src\Dispatch\DispatchManager.py" kii 21/11/22 17:03:25
@@ -634,7 +634,7 @@
 !feature 223: +1 "src\Ui\Ui.py" kii 21/10/30 00:47:33
 	
 
- ux, widget, fix 224: +0 "src\Ui\GeoWidget.py" kii 21/10/30 04:08:39
+!ux, widget, fix 224: +0 "src\Ui\GeoWidget.py" ki 21/12/25 15:32:13
 	GeoWidget badly layout review
 
  ux 225: +0 "src\Ui\Ui.py" kii 21/10/31 01:52:29
@@ -739,7 +739,7 @@
 -module-dispatch, fix 260: +5 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/25 02:36:36
 	GRBL realtime control
 
--module-dispatch, feature 261: +1 "src\Ui\DispatchSession.py" ki 21/12/23 00:33:15
++module-dispatch, feature 261: +1 "src\Ui\DispatchSession.py" ki 21/12/25 15:30:39
 	add basic dispatch session management
 
 +feature, module-ui, module-dispatch 262: +0 "src\Ui\AppWindow.py" kii 21/11/23 00:25:46
@@ -874,7 +874,7 @@
  trace, v2 305: +0 "src\Ui\DispatchWidget.py" kii 21/12/13 00:15:45
 	move all session related trace runtime data to session
 
-=device 307: +0 "src\Ui\DispatchSession.py" ki 21/12/23 00:34:57
++device 307: +0 "src\Ui\DispatchSession.py" ki 21/12/25 15:30:27
 	add device start/stop control routines
 
 =module-dispatch 308: +0 "src\Ui\DispatchWidget.py" ki 21/12/20 18:00:35
@@ -897,4 +897,13 @@
 
 =device, dispatch 317: +0 "src\Ui\DispatchLink.py" ki 21/12/25 02:35:32
 	recover failed device option
+
+=ux, widget, geo 318: +5 "src\Ui\GeoWidget.py" ki 21/12/25 16:28:02
+	scale control
+
+=ux, widget, geo 319: +0 "src\Ui\GeoWidget.py" ki 21/12/25 16:28:32
+	rotate control
+
+ device 320: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/25 16:32:18
+	device x/y scale factor
 
