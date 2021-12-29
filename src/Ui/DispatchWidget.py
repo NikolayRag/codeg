@@ -140,6 +140,7 @@ class DispatchWidget(QObject):
 		self.wBtnTraceShapes = _wRoot.findChild(QWidget, "btnTraceShapes")
 
 		self.wFrameDev = _wRoot.findChild(QWidget, "frameDev")
+		self.wFrameDev.setVisible(False)
 		self.wLabStats = _wRoot.findChild(QWidget, "labStats")
 
 		_dispatch.sigDispatchAdded.connect(self.sessionPrepare)
