@@ -80,11 +80,14 @@ class DispatchWidget(QObject):
 #		partCoords = f"X{_sessionLive.coords[0]} Y{_sessionLive.coords[1]}"
 
 		dt = datetime.now()-_sessionLive.logTimeStart
+
+		now = _sessionLive.logTimeStart.strftime("%H:%M:%S")
+
 		partTime = f"{str(dt)[:-5]}"
 		
 #		partLeft = f"\n{int(dt.seconds / progress - dt.seconds)} sec left"
 #		partLeft = partLeft if _sessionLive.logShapes>2 else ''
-		self.wLabStats.setPlainText(f"time: {partTime}\nshapes: {_sessionLive.logShapes}\npoints: {_sessionLive.logPoints}")
+		self.wLabStats.setPlainText(f"start: {now}\ntime: {partTime}\nshapes: {_sessionLive.logShapes}\npoints: {_sessionLive.logPoints}")
 
 
 
