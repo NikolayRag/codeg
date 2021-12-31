@@ -286,7 +286,8 @@ class DispatchWidget(QObject):
 
 	def traceFinal(self, _session, _res):
 		msgA = {_session.errOk:'end', _session.errDevice:'halt'}
-		self.logDispatch((msgA[_res] if _res in msgA else "unknown") +"\n")
+		endMsg = msgA[_res] if _res in msgA else f"unknown ({_res})"
+		self.logDispatch(f"{endMsg}\n")
 
 #  todo 294 (tracer, unsure) +0: check memory leak on subsequent sessions
 		self.activeSession = None
