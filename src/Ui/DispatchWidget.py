@@ -164,9 +164,8 @@ class DispatchWidget(QObject):
 
 
 		self.wBtnTraceLive.setChecked(self.args.visTracer)
-		self.wBtnTraceShapes.setChecked(self.args.visTraceShapes)
-
 		self.wBtnTraceLive.toggled.connect(lambda v: self.show(live=v))
+		self.wBtnTraceShapes.setChecked(self.args.visTraceShapes)
 		self.wBtnTraceShapes.toggled.connect(lambda v: self.show(shapes=v))
 
 
