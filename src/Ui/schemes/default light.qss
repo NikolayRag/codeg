@@ -29,6 +29,9 @@
 #frameDispatch { background-color: rgba(0,0,0,0); }
 #_frameDev, #_labStats { background-color: rgba(0,0,0,32); }
 
+#btnDevState-warning { background-color: #f43; }
+#labRecover-warning { color: #b31; }
+
 
 QProgressBar {
 	text-align: center;

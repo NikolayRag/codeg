@@ -118,6 +118,16 @@ class DispatchWidget(QObject):
 		self.args.visDevState = _vis
 
 
+	def devStateBlockState(self, state):
+		self.wBtnDevState.setObjectName('btnDevState' if state else 'btnDevState-warning')
+		self.wBtnDevState.setStyleSheet(self.wBtnDevState.styleSheet())
+
+		self.wLabRecover.setObjectName('labRecover' if state else 'labRecover-warning')
+		self.wLabRecover.setStyleSheet(self.wBtnDevState.styleSheet())
+		self.wLabRecover.setText('Normal state' if state else 'Error')
+			
+
+
 	def __init__(self, _wRoot, _dispatch, _args, _viewport):
 		QObject.__init__(self)
 
@@ -151,7 +161,10 @@ class DispatchWidget(QObject):
 		self.wBtnTraceLive = _wRoot.findChild(QWidget, "btnTraceLive")
 		self.wBtnTraceShapes = _wRoot.findChild(QWidget, "btnTraceShapes")
 
+
 		self.wFrameRecover = _wRoot.findChild(QWidget, "frameRecover")
+		self.wLabRecover = _wRoot.findChild(QWidget, "labRecover")
+
 		self.wFrameDevice = _wRoot.findChild(QWidget, "frameDevice")
 		self.wBtnDevState = _wRoot.findChild(QWidget, "btnDevState")
 		self.wBtnDevState.setChecked(self.args.visDevState)
@@ -293,6 +306,10 @@ class DispatchWidget(QObject):
 		self.logDispatch(f"{endMsg}\n")
 
 		self.logSession(_session.liveData(), endMsg)
+
+		self.devStateBlockState(_res!=_session.errDevice)
+
+
 #  todo 294 (tracer, unsure) +0: check memory leak on subsequent sessions
 		self.activeSession = None
 		del _session
