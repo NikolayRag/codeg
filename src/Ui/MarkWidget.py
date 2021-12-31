@@ -22,6 +22,10 @@ class MarkTool(QFrame):
 
 		self.data = _data
 
+#  todo 323 (ui, clean) +0: make all styles name-based
+#		.setObjectName('...-warning' if __ else '...')
+#		.setStyleSheet(.styleSheet())
+
 		self.setStyleSheet("background-color: rgba(0,0,0,0);")
 
 		wBg = QFrame(self)

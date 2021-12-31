@@ -6,6 +6,7 @@ from PySide2.QtGui import *
 from .Tracer import *
 
 
+#  todo 322 (dispatch, ui, v2) +0: rework dispatch/device/session widget entirely
 
 class DispatchWidget(QObject):
 	sigProgress = Signal(float)
@@ -96,7 +97,7 @@ class DispatchWidget(QObject):
 
 
 
-# =todo 308 (module-dispatch) +0: confirm stop
+# -todo 308 (module-dispatch) +5: confirm stop
 	def sessionCancel(self, _instant=False):
 		if not self.activeSession:
 			return
@@ -118,6 +119,8 @@ class DispatchWidget(QObject):
 		self.args.visDevState = _vis
 
 
+# -todo 324 (dispatch, fix) +0: switch device widget with device
+# -todo 325 (dispatch, clean) +0: display verbose device state
 	def devStateBlockState(self, state):
 		self.wBtnDevState.setObjectName('btnDevState' if state else 'btnDevState-warning')
 		self.wBtnDevState.setStyleSheet(self.wBtnDevState.styleSheet())

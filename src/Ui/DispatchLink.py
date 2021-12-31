@@ -68,6 +68,7 @@ class DispatchLink(QObject):
 		def bindDev(_d):
 			return self.dispatcher.deviceSend(_dev, _d)
 
+#  todo 321 (dispatch, v2) +0: connect to remote dispatcher
 		cSession = DispatchSession(bindDev, _data, gIn=['G90', 'F8000', 'M4 S0'], gOut=['M5', 'G0 X0Y0', 'G4 P0.01'])
 		cSession.sigFinish.connect(lambda res: self.sessionFinish(cSession, res))
 

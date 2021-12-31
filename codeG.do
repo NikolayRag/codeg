@@ -877,7 +877,7 @@
 +device 307: +0 "src\Ui\DispatchSession.py" ki 21/12/25 15:30:27
 	add device start/stop control routines
 
-=module-dispatch 308: +0 "src\Ui\DispatchWidget.py" ki 21/12/20 18:00:35
+-module-dispatch 308: +5 "src\Ui\DispatchWidget.py" ki 21/12/31 20:54:18
 	confirm stop
 
  module-dispatch, fix 310: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/15 19:54:30
@@ -906,4 +906,19 @@
 
  device 320: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/25 16:32:18
 	device x/y scale factor
+
+ dispatch, v2 321: +0 "src\Ui\DispatchLink.py" ki 21/12/30 01:48:00
+	connect to remote dispatcher
+
+ dispatch, ui, v2 322: +0 "src\Ui\DispatchWidget.py" ki 21/12/31 20:55:16
+	rework dispatch/device/session widget entirely
+
+ ui, clean 323: +0 "src\Ui\DispatchWidget.py" ki 21/12/31 19:35:29
+	make all styles name-based
+
+-dispatch, fix 324: +0 "src\Ui\DispatchWidget.py" ki 21/12/31 20:54:48
+	switch device widget with device
+
+-dispatch, clean 325: +0 "src\Ui\DispatchWidget.py" ki 21/12/31 20:54:40
+	display verbose device state
 
