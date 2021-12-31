@@ -65,6 +65,8 @@ class DispatchWidget(QObject):
 		self.wBtnDispCancel.setEnabled(bool(self.activeSession))
 		self.wBtnDispStop.setEnabled(bool(self.activeSession and self.activeSession.pause()))
 
+		self.wFrameRecover.setEnabled(_enabled and not self.activeSession)
+
 
 
 	def logDispatch(self, _v):
@@ -109,6 +111,10 @@ class DispatchWidget(QObject):
 
 
 
+	def devStateBlockVis(self, _vis):
+		self.args.visDevState = _vis
+
+
 	def __init__(self, _wRoot, _dispatch, _args, _viewport):
 		QObject.__init__(self)
 
@@ -142,6 +148,14 @@ class DispatchWidget(QObject):
 		self.wBtnTraceLive = _wRoot.findChild(QWidget, "btnTraceLive")
 		self.wBtnTraceShapes = _wRoot.findChild(QWidget, "btnTraceShapes")
 
+		self.wFrameRecover = _wRoot.findChild(QWidget, "frameRecover")
+		self.wFrameDevice = _wRoot.findChild(QWidget, "frameDevice")
+		self.wBtnDevState = _wRoot.findChild(QWidget, "btnDevState")
+		self.wBtnDevState.setChecked(self.args.visDevState)
+		self.devStateBlockVis(self.args.visDevState)
+		self.wBtnDevState.toggled.connect(self.devStateBlockVis)
+
+
 		self.wFrameDev = _wRoot.findChild(QWidget, "frameDev")
 		self.wFrameDev.setVisible(False)
 		self.wLabStats = _wRoot.findChild(QWidget, "labStats")
@@ -162,6 +176,8 @@ class DispatchWidget(QObject):
 		_dispatch.sigDeviceFound.connect(lambda devA:self.dispatchFill(devA, self.args.last))
 		self.dispatchFill(None, self.args.last)
 		_dispatch.getDevices()
+
+		self.relock()
 
 
 

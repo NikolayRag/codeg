@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>473</width>
-    <height>282</height>
+    <height>297</height>
    </rect>
   </property>
   <property name="acceptDrops">
@@ -348,7 +348,7 @@
                           <x>0</x>
                           <y>0</y>
                           <width>56</width>
-                          <height>178</height>
+                          <height>193</height>
                          </rect>
                         </property>
                         <property name="autoFillBackground">
@@ -446,7 +446,7 @@
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_7">
                      <property name="spacing">
-                      <number>6</number>
+                      <number>8</number>
                      </property>
                      <property name="leftMargin">
                       <number>0</number>
@@ -512,73 +512,116 @@
                          </layout>
                         </item>
                         <item>
-                         <widget class="QFrame" name="frameRecover">
-                          <property name="frameShape">
-                           <enum>QFrame::StyledPanel</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Raised</enum>
-                          </property>
-                          <layout class="QGridLayout" name="gridLayout_3">
-                           <property name="leftMargin">
-                            <number>4</number>
-                           </property>
-                           <property name="rightMargin">
-                            <number>4</number>
-                           </property>
-                           <property name="horizontalSpacing">
+                         <widget class="QFrame" name="frameDevice">
+                          <layout class="QVBoxLayout" name="verticalLayout_9">
+                           <property name="spacing">
                             <number>2</number>
                            </property>
-                           <property name="verticalSpacing">
-                            <number>4</number>
+                           <property name="leftMargin">
+                            <number>0</number>
                            </property>
-                           <item row="1" column="1">
-                            <widget class="QComboBox" name="listRecoverOpions">
-                             <property name="sizePolicy">
-                              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-                               <horstretch>0</horstretch>
-                               <verstretch>0</verstretch>
-                              </sizepolicy>
+                           <property name="topMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="rightMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="bottomMargin">
+                            <number>0</number>
+                           </property>
+                           <item>
+                            <widget class="QPushButton" name="btnDevState">
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>10</height>
+                              </size>
                              </property>
-                             <item>
-                              <property name="text">
-                               <string>reset only</string>
-                              </property>
-                             </item>
-                             <item>
-                              <property name="text">
-                               <string>homing</string>
-                              </property>
-                             </item>
-                             <item>
-                              <property name="text">
-                               <string>move</string>
-                              </property>
-                             </item>
-                            </widget>
-                           </item>
-                           <item row="1" column="3">
-                            <widget class="QToolButton" name="btnRecoverRun">
                              <property name="text">
-                              <string>do</string>
+                              <string>---</string>
+                             </property>
+                             <property name="checkable">
+                              <bool>true</bool>
+                             </property>
+                             <property name="checked">
+                              <bool>true</bool>
                              </property>
                             </widget>
                            </item>
-                           <item row="1" column="2">
-                            <widget class="QLineEdit" name="lineRecoverCoords">
-                             <property name="sizePolicy">
-                              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-                               <horstretch>0</horstretch>
-                               <verstretch>0</verstretch>
-                              </sizepolicy>
+                           <item>
+                            <widget class="QFrame" name="frameRecover">
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
-                            </widget>
-                           </item>
-                           <item row="0" column="1" colspan="3">
-                            <widget class="QLabel" name="labRecover">
-                             <property name="text">
-                              <string>Normal state</string>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
                              </property>
+                             <layout class="QGridLayout" name="gridLayout_3">
+                              <property name="leftMargin">
+                               <number>4</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>4</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>4</number>
+                              </property>
+                              <property name="horizontalSpacing">
+                               <number>2</number>
+                              </property>
+                              <property name="verticalSpacing">
+                               <number>4</number>
+                              </property>
+                              <item row="2" column="1">
+                               <widget class="QComboBox" name="listRecoverOpions">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <item>
+                                 <property name="text">
+                                  <string>reset only</string>
+                                 </property>
+                                </item>
+                                <item>
+                                 <property name="text">
+                                  <string>homing</string>
+                                 </property>
+                                </item>
+                                <item>
+                                 <property name="text">
+                                  <string>move</string>
+                                 </property>
+                                </item>
+                               </widget>
+                              </item>
+                              <item row="2" column="3">
+                               <widget class="QToolButton" name="btnRecoverRun">
+                                <property name="text">
+                                 <string>do</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item row="2" column="2">
+                               <widget class="QLineEdit" name="lineRecoverCoords">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                               </widget>
+                              </item>
+                              <item row="1" column="1" colspan="3">
+                               <widget class="QLabel" name="labRecover">
+                                <property name="text">
+                                 <string>Normal state</string>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
                             </widget>
                            </item>
                           </layout>
@@ -591,7 +634,7 @@
                       <widget class="QWidget" name="frameDispatcher" native="true">
                        <layout class="QVBoxLayout" name="verticalLayout_8">
                         <property name="spacing">
-                         <number>4</number>
+                         <number>2</number>
                         </property>
                         <property name="sizeConstraint">
                          <enum>QLayout::SetMinAndMaxSize</enum>
@@ -676,7 +719,7 @@
                           <property name="maximumSize">
                            <size>
                             <width>16777215</width>
-                            <height>68</height>
+                            <height>85</height>
                            </size>
                           </property>
                           <property name="frameShadow">
@@ -895,5 +938,22 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>btnDevState</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>frameRecover</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>336</x>
+     <y>99</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>319</x>
+     <y>109</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
