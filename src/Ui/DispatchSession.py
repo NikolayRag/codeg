@@ -104,6 +104,7 @@ class DispatchSession(Thread, QObject):
 		self.sigStart.emit()
 
 
+		self.resultEnd = self.errOk
 		runState = self.runBlock(self.gIn, False)
 		runState = runState and self.runBlock(self.runData, True)
 		runState = runState and self.runBlock(self.gOut, False)
@@ -113,7 +114,8 @@ class DispatchSession(Thread, QObject):
 			res = self.runCb(None)
 			self.resultRuntime.append(res)
 
-			self.resultEnd = self.errOk if res[0]==True else self.errDevice
+			if res[0] != True:
+				self.resultEnd = self.errDevice
 
 
 		self.sigFinish.emit(self.resultEnd)
