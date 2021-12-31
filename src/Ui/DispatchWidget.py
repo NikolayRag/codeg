@@ -78,7 +78,7 @@ class DispatchWidget(QObject):
 
 
 #  todo 313 (module-dispatch, v2) +0: show dispatch session stats
-	def logSession(self, _sessionLive):
+	def logSession(self, _sessionLive, _endMsg=''):
 #		partCoords = f"X{_sessionLive.coords[0]} Y{_sessionLive.coords[1]}"
 
 		dt = datetime.now()-_sessionLive.logTimeStart
@@ -86,10 +86,13 @@ class DispatchWidget(QObject):
 		now = _sessionLive.logTimeStart.strftime("%H:%M:%S")
 
 		partTime = f"{str(dt)[:-5]}"
-		
+
+		if _endMsg != '':
+			_endMsg = f'finish: {_endMsg}'
+
 #		partLeft = f"\n{int(dt.seconds / progress - dt.seconds)} sec left"
 #		partLeft = partLeft if _sessionLive.logShapes>2 else ''
-		self.wLabStats.setPlainText(f"start: {now}\ntime: {partTime}\nshapes: {_sessionLive.logShapes}\npoints: {_sessionLive.logPoints}")
+		self.wLabStats.setPlainText(f"start: {now}\ntime: {partTime}\nshapes: {_sessionLive.logShapes}\npoints: {_sessionLive.logPoints}\n{_endMsg}")
 
 
 
@@ -289,6 +292,7 @@ class DispatchWidget(QObject):
 		endMsg = msgA[_res] if _res in msgA else f"unknown ({_res})"
 		self.logDispatch(f"{endMsg}\n")
 
+		self.logSession(_session.liveData(), endMsg)
 #  todo 294 (tracer, unsure) +0: check memory leak on subsequent sessions
 		self.activeSession = None
 		del _session
