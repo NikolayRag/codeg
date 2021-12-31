@@ -29,6 +29,7 @@
 #frameDispatch { background-color: rgba(0,0,0,0); }
 #_frameDev, #_labStats { background-color: rgba(0,0,0,32); }
 
+#frameRecover, #frameRecover * { background-color: #333; }
 #btnDevState-warning { background-color: #d31; }
 #labRecover-warning { color: #d74; }
 

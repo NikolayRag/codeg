@@ -515,7 +515,7 @@
                          <widget class="QFrame" name="frameDevice">
                           <layout class="QVBoxLayout" name="verticalLayout_9">
                            <property name="spacing">
-                            <number>2</number>
+                            <number>0</number>
                            </property>
                            <property name="leftMargin">
                             <number>0</number>
@@ -558,9 +558,6 @@
                              </property>
                              <layout class="QGridLayout" name="gridLayout_3">
                               <property name="leftMargin">
-                               <number>4</number>
-                              </property>
-                              <property name="topMargin">
                                <number>4</number>
                               </property>
                               <property name="rightMargin">
