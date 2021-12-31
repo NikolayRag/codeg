@@ -285,7 +285,7 @@ class DispatchWidget(QObject):
 
 
 	def traceFinal(self, _session, _res):
-		msgA = {_session.errOk:'end', _session.errDevice:'halt'}
+		msgA = {_session.errOk:'correct', _session.errDevice:'halt', _session.errCancel:'canceled'}
 		endMsg = msgA[_res] if _res in msgA else f"unknown ({_res})"
 		self.logDispatch(f"{endMsg}\n")
 
