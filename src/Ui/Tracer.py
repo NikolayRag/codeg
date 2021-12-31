@@ -9,9 +9,6 @@ at late event when there's lot of painted feed present already.
 #  todo 292 (tracer, ui) +0: apply styles to Tracer
 
 
-import re
-from datetime import datetime
-
 from PySide2.QtCore import *
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *

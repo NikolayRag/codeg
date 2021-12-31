@@ -3,7 +3,9 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 
 
-from .Tracer import *
+import re
+from datetime import datetime
+
 
 
 #  todo 322 (dispatch, ui, v2) +0: rework dispatch/device/session widget entirely
@@ -131,7 +133,7 @@ class DispatchWidget(QObject):
 			
 
 
-	def __init__(self, _wRoot, _dispatch, _args, _viewport):
+	def __init__(self, _wRoot, _dispatch, _args, _tracer):
 		QObject.__init__(self)
 
 		self.wRoot = _wRoot
@@ -139,7 +141,7 @@ class DispatchWidget(QObject):
 		self.args = _args
 		
 		self.activeSession = None
-		self.tracer = Tracer(_viewport)
+		self.tracer = _tracer
 
 
 ### setup ###

@@ -20,6 +20,7 @@ from .GeoWidget import *
 from .BindFilter import *
 
 from .DispatchWidget import *
+from .Tracer import *
 
 
 
@@ -168,7 +169,8 @@ class AppWindow(QObject):
 		
 
 #  todo 280 (ui, feature, idea) +0: paint with Tracer into geometry layers
-		self.dispatchUi = DispatchWidget(self.wFrameDispatch, _dispatch, Args.Dispatch, self.wSvgViewport)
+		cTracer = Tracer(self.wSvgViewport)
+		self.dispatchUi = DispatchWidget(self.wFrameDispatch, _dispatch, Args.Dispatch, cTracer)
 
 		self.sigDevChange = self.dispatchUi.sigDevChange
 		self.sigDispatchFire = self.dispatchUi.sigDispatchFire
