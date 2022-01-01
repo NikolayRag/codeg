@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>473</width>
-    <height>297</height>
+    <height>320</height>
    </rect>
   </property>
   <property name="acceptDrops">
@@ -348,7 +348,7 @@
                           <x>0</x>
                           <y>0</y>
                           <width>56</width>
-                          <height>193</height>
+                          <height>216</height>
                          </rect>
                         </property>
                         <property name="autoFillBackground">
@@ -569,29 +569,11 @@
                               <property name="verticalSpacing">
                                <number>4</number>
                               </property>
-                              <item row="1" column="0">
-                               <widget class="QComboBox" name="listRecoverOpions">
-                                <property name="sizePolicy">
-                                 <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-                                  <horstretch>0</horstretch>
-                                  <verstretch>0</verstretch>
-                                 </sizepolicy>
+                              <item row="0" column="0">
+                               <widget class="QLabel" name="labRecover">
+                                <property name="text">
+                                 <string>Init</string>
                                 </property>
-                                <item>
-                                 <property name="text">
-                                  <string>reset only</string>
-                                 </property>
-                                </item>
-                                <item>
-                                 <property name="text">
-                                  <string>homing</string>
-                                 </property>
-                                </item>
-                                <item>
-                                 <property name="text">
-                                  <string>move</string>
-                                 </property>
-                                </item>
                                </widget>
                               </item>
                               <item row="1" column="2">
@@ -609,13 +591,55 @@
                                   <verstretch>0</verstretch>
                                  </sizepolicy>
                                 </property>
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>50</width>
+                                  <height>0</height>
+                                 </size>
+                                </property>
                                </widget>
                               </item>
-                              <item row="0" column="0" colspan="3">
-                               <widget class="QLabel" name="labRecover">
-                                <property name="text">
-                                 <string>Init</string>
-                                </property>
+                              <item row="1" column="0">
+                               <widget class="QWidget" name="widget_3" native="true">
+                                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                                 <property name="leftMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="topMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="rightMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="bottomMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <item>
+                                  <widget class="QComboBox" name="listRecoverOpions">
+                                   <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                                     <horstretch>0</horstretch>
+                                     <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                   </property>
+                                   <item>
+                                    <property name="text">
+                                     <string>reset only</string>
+                                    </property>
+                                   </item>
+                                   <item>
+                                    <property name="text">
+                                     <string>homing</string>
+                                    </property>
+                                   </item>
+                                   <item>
+                                    <property name="text">
+                                     <string>offset</string>
+                                    </property>
+                                   </item>
+                                  </widget>
+                                 </item>
+                                </layout>
                                </widget>
                               </item>
                              </layout>

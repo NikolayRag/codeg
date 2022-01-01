@@ -134,7 +134,7 @@ class DispatchWidget(QObject):
 
 		self.wLabRecover.setObjectName('labRecover' if state else 'labRecover-warning')
 		self.wLabRecover.setStyleSheet(self.wBtnDevState.styleSheet())
-		msgErr = 'Connection error' if _devRes[0]<0 else f'Error {_devRes[0]}'
+		msgErr = 'Connection dropped' if _devRes[0]<0 else f'Error {_devRes[0]}'
 		self.wLabRecover.setText('Normal state' if state else msgErr)
 			
 
