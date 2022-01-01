@@ -1,3 +1,6 @@
+# =todo 326 (device) +0: catch alert at init/test
+# -todo 298 (device, fix) +2: operate device nonblocking
+
 # -todo 260 (module-dispatch, fix) +5: GRBL realtime control
 #  todo 320 (device) +0: device x/y scale factor
 import serial
@@ -77,7 +80,6 @@ class EngineArduinoGRBL(DispatchEngine):
 		try:
 			self.port and self.port.write(str.encode(_data + '\n'))
 
-# -todo 298 (device, fix) +2: operate device nonblocking
 			outRes = []
 			while 1:
 				res = self.port and self.port.readline().decode().strip()

@@ -2,6 +2,7 @@
 CNC device base class
 '''
 class DispatchEngine():
+# -todo 328 (device, error, fix) +1: rework device errors and states
 	errPort = -1
 
 

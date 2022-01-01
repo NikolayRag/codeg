@@ -77,6 +77,7 @@ class DispatchSession(Thread, QObject):
 	def runBlock(self, _gBlock, _runtime):
 		for cg in _gBlock:
 			if _runtime:
+# =todo 330 (dispatch, device) +0: pause device using pause/unpause commands
 				self.pauseEv.wait()
 				if self.flagCancel:
 					self.resultEnd = self.errCancel

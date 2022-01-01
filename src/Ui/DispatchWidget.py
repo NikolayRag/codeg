@@ -8,6 +8,7 @@ from datetime import datetime
 
 
 
+# =todo 317 (device, dispatch) +0: recover failed device option
 #  todo 322 (dispatch, ui, v2) +0: rework dispatch/device/session widget entirely
 
 class DispatchWidget(QObject):
@@ -20,7 +21,7 @@ class DispatchWidget(QObject):
 
 
 
-#  todo 311 (dispatch, ui, clean) +0: rescan devices routine
+# -todo 276 (ux, clean) +0: clean device rescan cycle
 	def dispatchFill(self, _devices, _default):
 		cList = {self.wListDevs.itemText(i):self.wListDevs.itemData(i) for i in range(self.wListDevs.count())}
 
@@ -83,7 +84,7 @@ class DispatchWidget(QObject):
 
 
 
-#  todo 313 (module-dispatch, v2) +0: show dispatch session stats
+#  todo 313 (module-dispatch, v2) +0: review dispatch session stats
 	def logSession(self, _sessionLive, _endMsg=''):
 #		partCoords = f"X{_sessionLive.coords[0]} Y{_sessionLive.coords[1]}"
 
@@ -124,7 +125,7 @@ class DispatchWidget(QObject):
 		self.args.visDevState = _vis
 
 
-# -todo 324 (dispatch, fix) +0: switch device widget with device
+
 # -todo 325 (dispatch, clean) +0: display verbose device state
 	def devStateBlockState(self, state, _devRes):
 		self.wBtnDevState.setObjectName('btnDevState' if state else 'btnDevState-warning')
@@ -159,7 +160,7 @@ class DispatchWidget(QObject):
 		self.wBtnDispCancel = _wRoot.findChild(QWidget, "btnDispCancel")
 		self.wBtnDispStop = _wRoot.findChild(QWidget, "btnDispStop")
 
-# -todo 276 (ux, clean) +0: clean device rescan cycle
+
 		self.wBtnRescan.clicked.connect(_dispatch.getDevices)
 		self.wListDevs.currentIndexChanged.connect(self.devChanged)
 		self.wBtnDispCancel.clicked.connect(lambda: self.sessionCancel(True))
@@ -173,6 +174,7 @@ class DispatchWidget(QObject):
 
 		self.wFrameRecover = _wRoot.findChild(QWidget, "frameRecover")
 		self.wLabRecover = _wRoot.findChild(QWidget, "labRecover")
+		self.wListRecoverOpions = _wRoot.findChild(QWidget, "listRecoverOpions")
 
 		self.wFrameDevice = _wRoot.findChild(QWidget, "frameDevice")
 		self.wBtnDevState = _wRoot.findChild(QWidget, "btnDevState")
@@ -319,7 +321,7 @@ class DispatchWidget(QObject):
 		self.devStateBlockState(_res!=_session.errDevice, _session.resultRuntime[-1])
 
 
-#  todo 294 (tracer, unsure) +0: check memory leak on subsequent sessions
+#  todo 294 (tracer, clean) +0: check memory leak on subsequent sessions
 		self.activeSession = None
 		del _session
 

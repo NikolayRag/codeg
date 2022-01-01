@@ -8,7 +8,8 @@ from .DispatchSession import *
 Interface for separate Dispatch
 Dispatch connected either inline, or as app link
 '''
-#  todo 18 (API, module-dispatch, v2) +0: standalone dispatcher over *cloud*
+
+#  todo 18 (API, module-dispatch, v2) +0: remote dispatcher
 #  todo 258 (module-dispatch, error, ux) +0: handle retries
 class DispatchLink(QObject):
 	sigDeviceFound = Signal(str)
@@ -59,7 +60,6 @@ class DispatchLink(QObject):
 
 
 
-# =todo 317 (device, dispatch) +0: recover failed device option
 	def sessionStart(self, _dev, _data):
 		if not self.dispatcher:
 			print ('No dispatcher')
@@ -68,7 +68,6 @@ class DispatchLink(QObject):
 		def bindDev(_d):
 			return self.dispatcher.deviceSend(_dev, _d)
 
-#  todo 321 (dispatch, v2) +0: connect to remote dispatcher
 		cSession = DispatchSession(bindDev, _data,
 			gIn=['G90', 'F8000', 'M4 S0'],
 			gOut=['M5', 'G0 X0Y0', 'G4 P0.01']

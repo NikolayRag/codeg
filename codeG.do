@@ -49,8 +49,8 @@
 =spec, module-dispatch 17: +0 "" kii 21/08/10 05:55:57
 	send to serial-usb (arduino)
 
- API, module-dispatch, v2 18: +0 "src\Ui\DispatchLink.py" kii 21/12/05 04:55:41
-	standalone dispatcher over *cloud*
+ API, module-dispatch, v2 18: +0 "src\Ui\DispatchLink.py" ki 22/01/01 18:49:01
+	remote dispatcher
 
 !spec, module-dispatch 19: +0 "src\GGData\GGData.py" kii 21/11/15 01:00:55
 	send to codegg
@@ -169,7 +169,7 @@
 +module-dispatch 60: +0 "src\Dispatch\DispatchManager.py" kii 21/11/22 17:03:37
 	show gcodes live proto
 
--module-dispatch 61: +0 "src\Dispatch\DispatchManager.py" ki 21/12/25 15:30:00
+-module-dispatch 61: +0 "src\Dispatch\DispatchManager.py" ki 22/01/01 18:51:25
 	CNC manual control
 
 !module-dispatch 62: +0 "src\Dispatch\DispatchManager.py" kii 21/11/22 17:03:25
@@ -736,7 +736,7 @@
 +fix, module-dispatch 259: +0 "src\Dispatch\engines\EngineArduinoGRBL.py" kii 21/11/28 21:55:23
 	test device errors
 
--module-dispatch, fix 260: +5 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/25 02:36:36
+-module-dispatch, fix 260: +5 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/01 17:04:07
 	GRBL realtime control
 
 +module-dispatch, feature 261: +1 "src\Ui\DispatchSession.py" ki 21/12/25 15:30:39
@@ -781,8 +781,8 @@
 -ux, fix 274: +1 "src\Ui\Tracer.py" kii 21/12/04 00:41:26
 	make Tracer paint nonblocking
 
- module-dispatch, clean 275: +0 "src\Ui\DispatchLink.py" kii 21/11/26 02:45:55
-	rescan device at stop state
+ module-dispatch, clean, ux 275: +0 "src\Dispatch\DispatchManager.py" ki 22/01/01 18:50:08
+	maintain device availability
 
 -ux, clean 276: +0 "src\Ui\DispatchWidget.py" kii 21/12/08 05:10:01
 	clean device rescan cycle
@@ -817,7 +817,7 @@
  viewport, optimize 286: +0 "src\Ui\SvgViewport.py" kii 21/12/03 00:48:44
 	recompute viewport nonblocking
 
--test 287: +0 "src\Dispatch\DispatchManager.py" kii 21/12/12 00:54:32
+!test 287: +0 "src\Dispatch\DispatchManager.py" ki 22/01/01 18:51:24
 	scan devices while busy
 
 +tracer, ui 288: +0 "src\Ui\AppWindow.py" kii 21/12/05 17:19:35
@@ -838,7 +838,7 @@
 -Tracer, ux 293: +0 "src\Ui\Tracer.py" ki 21/12/25 02:37:05
 	leave Traced spots after reset viewport
 
- tracer, unsure 294: +0 "src\Ui\DispatchWidget.py" ki 21/12/25 02:36:11
+ tracer, clean 294: +0 "src\Ui\DispatchWidget.py" ki 22/01/01 18:47:42
 	check memory leak on subsequent sessions
 
 +ui, dispatch 295: +0 "src\Ui\AppWindow.py" kii 21/12/07 23:26:51
@@ -850,7 +850,7 @@
  tracer, fix 297: +0 "src\Ui\Tracer.py" kii 21/12/07 20:53:48
 	fix Tracer shapes viewbox
 
--device, fix 298: +2 "src\Dispatch\engines\EngineArduinoGRBL.py" kii 21/12/12 00:53:40
+-device, fix 298: +2 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/01 17:04:01
 	operate device nonblocking
 
 +device, fix 299: +0 "src\Dispatch\engines\EngineArduinoGRBL.py" kii 21/12/12 00:51:23
@@ -880,11 +880,14 @@
 -module-dispatch 308: +5 "src\Ui\DispatchWidget.py" ki 21/12/31 20:54:18
 	confirm stop
 
- module-dispatch, fix 310: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/15 19:54:30
+ module-dispatch, fix 310: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/01 17:03:59
 	GRBL write-ahead streaming mode
 
- module-dispatch, v2 313: +0 "src\Ui\DispatchWidget.py" ki 21/12/15 20:58:55
-	show dispatch session stats
+!dispatch, ui, clean 311: +0 "src\Ui\DispatchWidget.py" ki 22/01/01 18:47:10
+	review rescan devices routine
+
+ module-dispatch, v2 313: +0 "src\Ui\DispatchWidget.py" ki 22/01/01 18:46:18
+	review dispatch session stats
 
  trace 314: +0 "src\Ui\DispatchWidget.py" ki 21/12/19 18:42:14
 	move feed detection routines to session
@@ -907,18 +910,33 @@
  device 320: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 21/12/25 16:32:18
 	device x/y scale factor
 
- dispatch, v2 321: +0 "src\Ui\DispatchLink.py" ki 21/12/30 01:48:00
+!dispatch, v2 321: +0 "src\Ui\DispatchLink.py" ki 22/01/01 18:48:50
 	connect to remote dispatcher
 
- dispatch, ui, v2 322: +0 "src\Ui\DispatchWidget.py" ki 21/12/31 20:55:16
+ dispatch, ui, v2 322: +0 "src\Ui\DispatchWidget.py" ki 22/01/01 18:54:13
 	rework dispatch/device/session widget entirely
 
  ui, clean 323: +0 "src\Ui\DispatchWidget.py" ki 21/12/31 19:35:29
 	make all styles name-based
 
--dispatch, fix 324: +0 "src\Ui\DispatchWidget.py" ki 21/12/31 20:54:48
++dispatch, fix 324: +0 "src\Ui\DispatchWidget.py" ki 22/01/01 18:45:01
 	switch device widget with device
 
--dispatch, clean 325: +0 "src\Ui\DispatchWidget.py" ki 21/12/31 20:54:40
+-dispatch, clean 325: +0 "src\Ui\DispatchWidget.py" ki 22/01/01 18:45:02
 	display verbose device state
+
+=device 326: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/01 18:52:05
+	catch alert at init/test
+
+!device, fix 327: +1 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/01 17:03:51
+	check alert state at init
+
+-device, error, fix 328: +1 "src\Dispatch\DispatchEngine.py" ki 22/01/01 18:02:44
+	rework device errors and states
+
+ module-dispatch, clean 329: +0 "src\Dispatch\DispatchManager.py" ki 22/01/01 18:50:51
+	move device error handling to Device entirely
+
+=dispatch, device 330: +0 "src\Ui\DispatchSession.py" ki 22/01/01 18:58:34
+	pause device using pause/unpause commands
 
