@@ -89,6 +89,6 @@ class DispatchLink(QObject):
 
 
 	def deviceState(self, _dev):
-		if nor self.dispatcher:
+		if not self.dispatcher:
 			return (False, [])
 		return self.dispatcher.deviceLastState(_dev)
