@@ -55,6 +55,9 @@ class DispatchWidget(QObject):
 
 		self.relock()
 
+		cState = self.dispatch.deviceState(_name)
+		self.devStateBlockState(cState[0]==True or cState[0]==False, cState)
+
 		self.sigDevChange.emit(self.dispatch.devicePlate(_name))
 
 
@@ -123,13 +126,14 @@ class DispatchWidget(QObject):
 
 # -todo 324 (dispatch, fix) +0: switch device widget with device
 # -todo 325 (dispatch, clean) +0: display verbose device state
-	def devStateBlockState(self, state):
+	def devStateBlockState(self, state, _devRes):
 		self.wBtnDevState.setObjectName('btnDevState' if state else 'btnDevState-warning')
 		self.wBtnDevState.setStyleSheet(self.wBtnDevState.styleSheet())
 
 		self.wLabRecover.setObjectName('labRecover' if state else 'labRecover-warning')
 		self.wLabRecover.setStyleSheet(self.wBtnDevState.styleSheet())
-		self.wLabRecover.setText('Normal state' if state else 'Error')
+		msgErr = 'Connection error' if _devRes[0]<0 else f'Error {_devRes[0]}'
+		self.wLabRecover.setText('Normal state' if state else msgErr)
 			
 
 
@@ -312,7 +316,7 @@ class DispatchWidget(QObject):
 
 		self.logSession(_session.liveData(), endMsg)
 
-		self.devStateBlockState(_res!=_session.errDevice)
+		self.devStateBlockState(_res!=_session.errDevice, _session.resultRuntime[-1])
 
 
 #  todo 294 (tracer, unsure) +0: check memory leak on subsequent sessions
