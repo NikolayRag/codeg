@@ -123,6 +123,8 @@ class DispatchManager():
 		res = (False, [])
 
 		if _dev in self.allDevices:
+			self.allDevices[_dev].lastError(res)
+
 			res = self.allDevices[_dev].sink(_data)
 
 			if res != True:
