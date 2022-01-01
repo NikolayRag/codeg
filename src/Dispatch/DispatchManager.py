@@ -135,6 +135,6 @@ class DispatchManager():
 
 	def deviceState(self, _dev):
 		if _dev not in self.allDevices:
-			return False
+			return (False, [])
 
 		return self.allDevices[_dev].lastError()

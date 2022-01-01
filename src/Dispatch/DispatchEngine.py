@@ -14,7 +14,7 @@ class DispatchEngine():
 	privData = None
 
 
-	_lastError = None	
+	_lastError = (True, [])
 
 
 

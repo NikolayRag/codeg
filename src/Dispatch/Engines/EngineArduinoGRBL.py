@@ -40,8 +40,6 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 	def begin(self, _timeout):
-		self.lastError(None)
-
 		try:
 			self.port = serial.Serial(self.privData['port'], self.privData['rate'],
 				timeout=_timeout,
