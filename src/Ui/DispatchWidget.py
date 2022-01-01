@@ -139,6 +139,13 @@ class DispatchWidget(QObject):
 			
 
 
+	def devRecoverOption(self, _i):
+		self.args.devRecoverOption = _i
+
+		self.wListRecoverCoords.setVisible(_i==2)
+
+
+
 	def __init__(self, _wRoot, _dispatch, _args, _tracer):
 		QObject.__init__(self)
 
@@ -175,13 +182,19 @@ class DispatchWidget(QObject):
 
 		self.wFrameRecover = _wRoot.findChild(QWidget, "frameRecover")
 		self.wLabRecover = _wRoot.findChild(QWidget, "labRecover")
+		self.wListRecoverCoords = _wRoot.findChild(QWidget, "lineRecoverCoords")
 		self.wListRecoverOpions = _wRoot.findChild(QWidget, "listRecoverOpions")
+		self.wListRecoverOpions.setCurrentIndex(self.args.devRecoverOption)
+		self.devRecoverOption(self.args.devRecoverOption)
+		self.wListRecoverOpions.currentIndexChanged.connect(self.devRecoverOption)
 
 		self.wFrameDevice = _wRoot.findChild(QWidget, "frameDevice")
 		self.wBtnDevState = _wRoot.findChild(QWidget, "btnDevState")
 		self.wBtnDevState.setChecked(self.args.visDevState)
 		self.devStateBlockVis(self.args.visDevState)
 		self.wBtnDevState.toggled.connect(self.devStateBlockVis)
+
+		self.wBtnRecoverRun = _wRoot.findChild(QWidget, "btnRecoverRun")
 
 
 		self.wFrameDev = _wRoot.findChild(QWidget, "frameDev")

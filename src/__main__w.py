@@ -30,6 +30,7 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 		'visTracer': [False],
 		'visTraceShapes': [False],
 		'visDevState': [False],
+		'devRecoverOption': [0],
 	},
 	'Viewport': {
 		'degrade': [False],
