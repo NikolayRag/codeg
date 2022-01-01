@@ -850,7 +850,7 @@
  tracer, fix 297: +0 "src\Ui\Tracer.py" kii 21/12/07 20:53:48
 	fix Tracer shapes viewbox
 
--device, fix 298: +2 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/01 17:04:01
+-device, fix 298: +2 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/01 20:03:09
 	operate device nonblocking
 
 +device, fix 299: +0 "src\Dispatch\engines\EngineArduinoGRBL.py" kii 21/12/12 00:51:23
@@ -925,7 +925,7 @@
 -dispatch, clean 325: +0 "src\Ui\DispatchWidget.py" ki 22/01/01 18:45:02
 	display verbose device state
 
-=device 326: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/01 18:52:05
++device 326: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/01 20:03:06
 	catch alert at init/test
 
 !device, fix 327: +1 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/01 17:03:51

@@ -1,4 +1,3 @@
-# =todo 326 (device) +0: catch alert at init/test
 # -todo 298 (device, fix) +2: operate device nonblocking
 
 # -todo 260 (module-dispatch, fix) +5: GRBL realtime control
