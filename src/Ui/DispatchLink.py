@@ -85,3 +85,10 @@ class DispatchLink(QObject):
 		size = _dev and self.dispatcher and self.dispatcher.deviceSize(_dev)
 
 		return size or self.fallbackPlate
+
+
+
+	def deviceState(self, _dev):
+		if nor self.dispatcher:
+			return (False, [])
+		return self.dispatcher.deviceLastState(_dev)

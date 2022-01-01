@@ -133,7 +133,7 @@ class DispatchManager():
 
 
 
-	def deviceState(self, _dev):
+	def deviceLastState(self, _dev):
 		if _dev not in self.allDevices:
 			return (False, [])
 
