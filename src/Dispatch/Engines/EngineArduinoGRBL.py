@@ -72,7 +72,6 @@ class EngineArduinoGRBL(DispatchEngine):
 		self.port = None
 
 
-
 #  todo 310 (module-dispatch, fix) +0: GRBL write-ahead streaming mode
 	def send(self, _data):
 		try:

@@ -1,6 +1,4 @@
 # -todo 287 (test) +0: scan devices while busy
-
-
 # -todo 61 (module-dispatch) +0: CNC manual control
 # -todo 68 (module-dispatch) +0: queue control
 # -todo 165 (feature, dispatch) +1: device settings definition
