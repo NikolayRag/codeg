@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>473</width>
+    <width>555</width>
     <height>320</height>
    </rect>
   </property>
@@ -82,25 +82,21 @@
           <item>
            <widget class="QToolButton" name="btnLoad">
             <property name="text">
-             <string>L</string>
+             <string>Load</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QToolButton" name="btnSave">
             <property name="text">
-             <string>S</string>
+             <string>Save</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="btnOpen">
             <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>resource/icon-add-image.svg</normaloff>resource/icon-add-image.svg</iconset>
+             <string>add geo</string>
             </property>
             <property name="iconSize">
              <size>
@@ -113,7 +109,7 @@
           <item>
            <widget class="QToolButton" name="btnPaste">
             <property name="text">
-             <string>^V</string>
+             <string>paste geo</string>
             </property>
            </widget>
           </item>
@@ -126,11 +122,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>resource/icon-pack.svg</normaloff>resource/icon-pack.svg</iconset>
+             <string>get G</string>
             </property>
             <property name="iconSize">
              <size>
@@ -143,11 +135,7 @@
           <item>
            <widget class="QToolButton" name="btnDispatcher">
             <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>resource/icon-proccess.svg</normaloff>resource/icon-proccess.svg</iconset>
+             <string>dispatch</string>
             </property>
             <property name="iconSize">
              <size>
@@ -312,7 +300,7 @@
                         </sizepolicy>
                        </property>
                        <property name="text">
-                        <string>+</string>
+                        <string>add mark</string>
                        </property>
                       </widget>
                      </item>
@@ -348,7 +336,7 @@
                           <x>0</x>
                           <y>0</y>
                           <width>56</width>
-                          <height>216</height>
+                          <height>228</height>
                          </rect>
                         </property>
                         <property name="autoFillBackground">
@@ -480,11 +468,7 @@
                           <item>
                            <widget class="QToolButton" name="btnRescan">
                             <property name="text">
-                             <string>re</string>
-                            </property>
-                            <property name="icon">
-                             <iconset>
-                              <normaloff>resource/icon-pack.svg</normaloff>resource/icon-pack.svg</iconset>
+                             <string>scan</string>
                             </property>
                            </widget>
                           </item>
@@ -501,11 +485,7 @@
                           <item>
                            <widget class="QToolButton" name="btnDispFire">
                             <property name="text">
-                             <string/>
-                            </property>
-                            <property name="icon">
-                             <iconset>
-                              <normaloff>resource/icon-deliver.svg</normaloff>resource/icon-deliver.svg</iconset>
+                             <string>run</string>
                             </property>
                            </widget>
                           </item>
@@ -556,7 +536,7 @@
                              <property name="frameShadow">
                               <enum>QFrame::Raised</enum>
                              </property>
-                             <layout class="QGridLayout" name="gridLayout_3">
+                             <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0">
                               <property name="leftMargin">
                                <number>4</number>
                               </property>
@@ -569,36 +549,6 @@
                               <property name="verticalSpacing">
                                <number>4</number>
                               </property>
-                              <item row="0" column="0">
-                               <widget class="QLabel" name="labRecover">
-                                <property name="text">
-                                 <string>Init</string>
-                                </property>
-                               </widget>
-                              </item>
-                              <item row="1" column="2">
-                               <widget class="QToolButton" name="btnRecoverRun">
-                                <property name="text">
-                                 <string>do</string>
-                                </property>
-                               </widget>
-                              </item>
-                              <item row="1" column="1">
-                               <widget class="QLineEdit" name="lineRecoverCoords">
-                                <property name="sizePolicy">
-                                 <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-                                  <horstretch>0</horstretch>
-                                  <verstretch>0</verstretch>
-                                 </sizepolicy>
-                                </property>
-                                <property name="minimumSize">
-                                 <size>
-                                  <width>50</width>
-                                  <height>0</height>
-                                 </size>
-                                </property>
-                               </widget>
-                              </item>
                               <item row="1" column="0">
                                <widget class="QWidget" name="widget_3" native="true">
                                 <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -624,19 +574,98 @@
                                    </property>
                                    <item>
                                     <property name="text">
-                                     <string>reset only</string>
+                                     <string>reset</string>
                                     </property>
                                    </item>
                                    <item>
                                     <property name="text">
-                                     <string>homing</string>
+                                     <string>home</string>
                                     </property>
                                    </item>
                                    <item>
                                     <property name="text">
-                                     <string>offset</string>
+                                     <string>guide</string>
                                     </property>
                                    </item>
+                                  </widget>
+                                 </item>
+                                </layout>
+                               </widget>
+                              </item>
+                              <item row="0" column="0">
+                               <widget class="QLabel" name="labRecover">
+                                <property name="text">
+                                 <string>Init</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item row="1" column="2">
+                               <widget class="QToolButton" name="btnRecoverRun">
+                                <property name="text">
+                                 <string>do</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item row="1" column="1">
+                               <widget class="QWidget" name="lineRecoverCoords" native="true">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <pointsize>6</pointsize>
+                                 </font>
+                                </property>
+                                <layout class="QHBoxLayout" name="horizontalLayout_8">
+                                 <property name="spacing">
+                                  <number>2</number>
+                                 </property>
+                                 <property name="leftMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="topMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="rightMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="bottomMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <item>
+                                  <widget class="QLineEdit" name="lineCoordsDeg">
+                                   <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                                     <horstretch>0</horstretch>
+                                     <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="label">
+                                   <property name="maximumSize">
+                                    <size>
+                                     <width>8</width>
+                                     <height>16777215</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>°</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="lineEdit">
+                                   <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                                     <horstretch>0</horstretch>
+                                     <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                   </property>
                                   </widget>
                                  </item>
                                 </layout>
@@ -693,7 +722,7 @@
                           <item>
                            <widget class="QToolButton" name="btnDispCancel">
                             <property name="text">
-                             <string>x</string>
+                             <string>KILL</string>
                             </property>
                            </widget>
                           </item>
@@ -713,7 +742,7 @@
                           <item>
                            <widget class="QToolButton" name="btnDispPause">
                             <property name="text">
-                             <string>p</string>
+                             <string>pause</string>
                             </property>
                             <property name="checkable">
                              <bool>true</bool>
@@ -723,7 +752,7 @@
                           <item>
                            <widget class="QToolButton" name="btnDispStop">
                             <property name="text">
-                             <string>st</string>
+                             <string>stop</string>
                             </property>
                            </widget>
                           </item>
@@ -809,11 +838,7 @@
                        <item>
                         <widget class="QToolButton" name="btnTraceShapes">
                          <property name="text">
-                          <string>sh</string>
-                         </property>
-                         <property name="icon">
-                          <iconset>
-                           <normaloff>resource/icon-add-image.svg</normaloff>resource/icon-add-image.svg</iconset>
+                          <string>trace</string>
                          </property>
                          <property name="checkable">
                           <bool>true</bool>
@@ -823,11 +848,7 @@
                        <item>
                         <widget class="QToolButton" name="btnTraceLive">
                          <property name="text">
-                          <string/>
-                         </property>
-                         <property name="icon">
-                          <iconset>
-                           <normaloff>resource/icon-focuspoint.svg</normaloff>resource/icon-focuspoint.svg</iconset>
+                          <string>follow</string>
                          </property>
                          <property name="checkable">
                           <bool>true</bool>
@@ -914,7 +935,7 @@
                   <item>
                    <widget class="QToolButton" name="btnDegrade">
                     <property name="text">
-                     <string>deg</string>
+                     <string>degrade</string>
                     </property>
                     <property name="checkable">
                      <bool>true</bool>
