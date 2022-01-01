@@ -52,10 +52,14 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 			echo = self.port.readline().decode()
-			if echo:
-				echo = self.port.readline().decode()
-				if echo[:5]=='Grbl ':
-					return True
+			if not echo:
+				return
+
+			echo = self.port.readline().decode()
+			if echo[:5]!='Grbl ':
+				return
+
+
 
 
 		except Exception as e:
