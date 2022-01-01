@@ -117,7 +117,7 @@ class DispatchManager():
 #  todo 275 (module-dispatch, clean, ux) +0: maintain device availability
 
 	def deviceSend(self, _dev, _data=None):
-		res = (False, [])
+		res = (None, [])
 
 #  todo 329 (module-dispatch, clean) +0: move device error handling to Device entirely
 		if _dev in self.allDevices:
@@ -135,6 +135,6 @@ class DispatchManager():
 
 	def deviceLastState(self, _dev):
 		if _dev not in self.allDevices:
-			return (False, [])
+			return (None, [])
 
 		return self.allDevices[_dev].lastError()

@@ -163,6 +163,10 @@ class EngineArduinoGRBL(DispatchEngine):
 		self.size = (cX, cY)
 
 
+		res = self.send("G91 X0Y0")
+		self.lastError(res)
+
+
 		self.end()
 
 		return True

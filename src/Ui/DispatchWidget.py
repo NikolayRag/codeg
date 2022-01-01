@@ -57,7 +57,8 @@ class DispatchWidget(QObject):
 		self.relock()
 
 		cState = self.dispatch.deviceState(_name)
-		self.devStateBlockState(cState[0]==True or cState[0]==False, cState)
+		if cState[0] != None:
+			self.devStateBlockState(cState[0]==True, cState)
 
 		self.sigDevChange.emit(self.dispatch.devicePlate(_name))
 
