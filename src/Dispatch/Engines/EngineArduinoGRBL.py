@@ -60,6 +60,10 @@ class EngineArduinoGRBL(DispatchEngine):
 				return
 
 
+			res = self.send('$X')
+			if res[0] != True:
+				return
+
 
 			return True
 
