@@ -1,3 +1,4 @@
+# =todo 331 (device, fix) +5: catch perma-alert state
 # -todo 298 (device, fix) +2: operate device nonblocking
 
 # -todo 260 (module-dispatch, fix) +5: GRBL realtime control
