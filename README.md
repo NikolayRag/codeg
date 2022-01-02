@@ -60,24 +60,22 @@ Dispatch
 
 *Device life cycle
 *Device scan/rescan
-*Dispatch controls
-	disconnect
-	start-pause/unpause-stop
-	begin/end parking behavior
-	none/normal/error reinit
-*Alert react tbd
+*Device reinit
+	reset/home/guide
+*Jog tbd
 *Session queue tbd
-*Manual control tbd
 -
 
 
 
 
-Tracer
+Dispatch/Session
 ------
-*Stats
-*Focus and Painting
-	scene-unbound
+*controls
+	disconnect
+	start-pause/unpause-stop
+*Stats log
+*Tracer Focus and Painting
 -
 
 Issues:
