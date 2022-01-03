@@ -139,7 +139,7 @@ class DispatchWidget(QObject):
 			
 
 
-	def devRecoverOption(self, _i):
+	def devRecoverSelect(self, _i):
 		self.args.devRecoverOption = _i
 
 
@@ -184,7 +184,7 @@ class DispatchWidget(QObject):
 		self.wListRecoverCoords = _wRoot.findChild(QWidget, "lineRecoverCoords")
 		self.wListRecoverOpions = _wRoot.findChild(QWidget, "listRecoverOpions")
 		self.wListRecoverOpions.setCurrentIndex(self.args.devRecoverOption)
-		self.wListRecoverOpions.currentIndexChanged.connect(self.devRecoverOption)
+		self.wListRecoverOpions.currentIndexChanged.connect(self.devRecoverSelect)
 
 		self.wFrameDevice = _wRoot.findChild(QWidget, "frameDevice")
 		self.wBtnDevState = _wRoot.findChild(QWidget, "btnDevState")
