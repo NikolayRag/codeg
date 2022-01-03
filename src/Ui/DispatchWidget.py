@@ -142,7 +142,6 @@ class DispatchWidget(QObject):
 	def devRecoverOption(self, _i):
 		self.args.devRecoverOption = _i
 
-		self.wListRecoverCoords.setVisible(_i==2)
 
 
 
@@ -185,7 +184,6 @@ class DispatchWidget(QObject):
 		self.wListRecoverCoords = _wRoot.findChild(QWidget, "lineRecoverCoords")
 		self.wListRecoverOpions = _wRoot.findChild(QWidget, "listRecoverOpions")
 		self.wListRecoverOpions.setCurrentIndex(self.args.devRecoverOption)
-		self.devRecoverOption(self.args.devRecoverOption)
 		self.wListRecoverOpions.currentIndexChanged.connect(self.devRecoverOption)
 
 		self.wFrameDevice = _wRoot.findChild(QWidget, "frameDevice")
