@@ -605,7 +605,7 @@
                                   </property>
                                   <property name="maximumSize">
                                    <size>
-                                    <width>70</width>
+                                    <width>75</width>
                                     <height>16777215</height>
                                    </size>
                                   </property>
@@ -675,12 +675,20 @@
                                      <number>0</number>
                                     </property>
                                     <item>
-                                     <widget class="QLineEdit" name="lineCoordsDeg">
+                                     <widget class="QLineEdit" name="lineRecDeg">
                                       <property name="sizePolicy">
                                        <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                                         <horstretch>0</horstretch>
                                         <verstretch>0</verstretch>
                                        </sizepolicy>
+                                      </property>
+                                      <property name="font">
+                                       <font>
+                                        <pointsize>6</pointsize>
+                                       </font>
+                                      </property>
+                                      <property name="text">
+                                       <string>0</string>
                                       </property>
                                      </widget>
                                     </item>
@@ -698,12 +706,33 @@
                                      </widget>
                                     </item>
                                     <item>
-                                     <widget class="QLineEdit" name="lineCoordAmt">
+                                     <widget class="QLineEdit" name="lineRecAmt">
                                       <property name="sizePolicy">
                                        <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                                         <horstretch>0</horstretch>
                                         <verstretch>0</verstretch>
                                        </sizepolicy>
+                                      </property>
+                                      <property name="font">
+                                       <font>
+                                        <pointsize>6</pointsize>
+                                       </font>
+                                      </property>
+                                      <property name="text">
+                                       <string>0</string>
+                                      </property>
+                                     </widget>
+                                    </item>
+                                    <item>
+                                     <widget class="QLabel" name="label_2">
+                                      <property name="maximumSize">
+                                       <size>
+                                        <width>8</width>
+                                        <height>16777215</height>
+                                       </size>
+                                      </property>
+                                      <property name="text">
+                                       <string>⤒</string>
                                       </property>
                                      </widget>
                                     </item>
