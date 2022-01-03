@@ -179,6 +179,7 @@ class DispatchWidget(QObject):
 		self.wBtnTraceShapes = _wRoot.findChild(QWidget, "btnTraceShapes")
 
 
+# -todo 332 (device, recover, feature) +0: add homing at start option
 		self.wFrameRecover = _wRoot.findChild(QWidget, "frameRecover")
 		self.wLabRecover = _wRoot.findChild(QWidget, "labRecover")
 		self.wListRecoverCoords = _wRoot.findChild(QWidget, "lineRecoverCoords")
