@@ -60,7 +60,7 @@ class DispatchLink(QObject):
 
 
 
-	def sessionStart(self, _dev, _data):
+	def sessionStart(self, _dev, _meta, _data, silent=False):
 		if not self.dispatcher:
 			print ('No dispatcher')
 			return
@@ -68,7 +68,7 @@ class DispatchLink(QObject):
 		def bindDev(_d):
 			return self.dispatcher.deviceSend(_dev, _d)
 
-		cSession = DispatchSession(bindDev, _data,
+		cSession = DispatchSession(bindDev, _meta, _data,
 			gIn=['G90', 'F8000', 'M4 S0'],
 			gOut=['M5', 'G0 X0Y0', 'G4 P0.01']
 		)

@@ -482,7 +482,8 @@ class Ui():
 
 #  todo 251 (module-dispatch, feature) +0: make generation by iterator
 	def dispatchSend(self, _name):
-		self.dispatch.sessionStart(_name, self.activeScene.traceG())
+		sceneGen = self.activeScene.traceG()
+		self.dispatch.sessionStart(_name, sceneGen['meta'], sceneGen['data'])
 
 
 
