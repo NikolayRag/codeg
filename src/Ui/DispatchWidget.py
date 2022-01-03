@@ -144,6 +144,19 @@ class DispatchWidget(QObject):
 
 
 
+	def recoverRun(self):
+		cOption = self.wListRecoverOpions.currentIndex()
+
+		if cOption == 0:
+			print('reset')
+
+		if cOption == 1:
+			print('home')
+
+		if cOption == 2:
+			print('move', self.wRecDeg.text(), self.wRecAmt.text())
+
+
 
 	def __init__(self, _wRoot, _dispatch, _args, _tracer):
 		QObject.__init__(self)
@@ -193,7 +206,13 @@ class DispatchWidget(QObject):
 		self.devStateBlockVis(self.args.visDevState)
 		self.wBtnDevState.toggled.connect(self.devStateBlockVis)
 
+		self.wRecDeg = _wRoot.findChild(QWidget, "lineRecDeg")
+		self.wRecDeg.setValidator(QDoubleValidator())
+		self.wRecAmt = _wRoot.findChild(QWidget, "lineRecAmt")
+		self.wRecAmt.setValidator(QDoubleValidator())
+
 		self.wBtnRecoverRun = _wRoot.findChild(QWidget, "btnRecoverRun")
+		self.wBtnRecoverRun.clicked.connect(self.recoverRun)
 
 
 		self.wFrameDev = _wRoot.findChild(QWidget, "frameDev")
