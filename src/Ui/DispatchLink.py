@@ -72,9 +72,10 @@ class DispatchLink(QObject):
 			gIn=['G90', 'F8000', 'M4 S0'],
 			gOut=['M5', 'G0 X0Y0', 'G4 P0.01']
 		)
+		self.allSessions.append(cSession)
+
 		cSession.sigFinish.connect(lambda res: self.sessionFinish(cSession, res))
 
-		self.allSessions.append(cSession)
 		self.sigDispatchAdded.emit(cSession)
 		if len(self.allSessions)==1:
 			self.sessionIgnite()
