@@ -475,7 +475,7 @@
                           <item>
                            <widget class="QComboBox" name="listDevs">
                             <property name="sizePolicy">
-                             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                             <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
                               <horstretch>0</horstretch>
                               <verstretch>0</verstretch>
                              </sizepolicy>
@@ -570,7 +570,7 @@
                                    <item>
                                     <widget class="QComboBox" name="listRecoverOpions">
                                      <property name="sizePolicy">
-                                      <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                                      <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                                        <horstretch>0</horstretch>
                                        <verstretch>0</verstretch>
                                       </sizepolicy>
@@ -610,7 +610,7 @@
                                    </size>
                                   </property>
                                   <property name="currentIndex">
-                                   <number>1</number>
+                                   <number>0</number>
                                   </property>
                                   <widget class="QWidget" name="page">
                                    <layout class="QHBoxLayout" name="horizontalLayout_9">
@@ -644,6 +644,9 @@
                                     </property>
                                     <item>
                                      <widget class="QCheckBox" name="radioAutoHome">
+                                      <property name="enabled">
+                                       <bool>false</bool>
+                                      </property>
                                       <property name="text">
                                        <string>auto</string>
                                       </property>
@@ -674,7 +677,7 @@
                                     <item>
                                      <widget class="QLineEdit" name="lineCoordsDeg">
                                       <property name="sizePolicy">
-                                       <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                                       <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                                         <horstretch>0</horstretch>
                                         <verstretch>0</verstretch>
                                        </sizepolicy>
@@ -697,7 +700,7 @@
                                     <item>
                                      <widget class="QLineEdit" name="lineCoordAmt">
                                       <property name="sizePolicy">
-                                       <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                                       <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                                         <horstretch>0</horstretch>
                                         <verstretch>0</verstretch>
                                        </sizepolicy>
