@@ -70,7 +70,7 @@ class DispatchLink(QObject):
 
 		cSession = DispatchSession(bindDev, _meta, _data,
 			gIn=['G90', 'F8000', 'M4 S0'],
-			gOut=['M5', 'G0 X0Y0', 'G4 P0.01']
+			gOut=['M5', 'G0 X0Y0']
 		)
 		self.allSessions.append(cSession)
 

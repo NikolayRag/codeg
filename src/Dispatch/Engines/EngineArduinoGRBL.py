@@ -73,6 +73,8 @@ class EngineArduinoGRBL(DispatchEngine):
 
 	def end(self):
 		try:
+			res = self.send('G4 P0.01')
+
 			self.port and self.port.close()
 
 		except Exception as e:
