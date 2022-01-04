@@ -20,6 +20,7 @@ class DispatchLink(QObject):
 	fallbackPlate = None
 
 
+	#  todo 335 (dispatch, device) +0: move g-in/out to config
 	gIn = ['G90', 'F8000', 'M4 S0']
 	gOut = ['M5', 'G0 X0Y0']
 

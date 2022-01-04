@@ -8,8 +8,7 @@ from datetime import datetime
 import math
 
 
-
-# =todo 317 (device, dispatch) +0: recover failed device option
+#  todo 336 (dispatch, device, feature) +0: make manual live CNC guide
 #  todo 322 (dispatch, ui, v2) +0: rework dispatch/device/session widget entirely
 
 class DispatchWidget(QObject):
@@ -361,6 +360,7 @@ class DispatchWidget(QObject):
 		self.devStateBlockState(_res!=_session.errDevice, _session.resultRuntime[-1])
 
 
+#  todo 333 (device, fix) +0: fix lost coords predict with jog
 		cDeg = 0
 		cAmt = 0
 		if _res!=_session.errOk and _res!=_session.errCancel:
