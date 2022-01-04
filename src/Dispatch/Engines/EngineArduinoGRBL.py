@@ -105,15 +105,10 @@ class EngineArduinoGRBL(DispatchEngine):
 				outRes.append(res)
 
 
-			if res != True:
-				self.end()
-
 			return (res, outRes)
 
 
 		except Exception as e:
-			self.end()
-
 			return (DispatchEngine.errPort, [])
 
 
@@ -144,6 +139,9 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 		res = self.send(_data)
+		if res[0] != True:
+			self.end()
+
 		return res
 
 
@@ -160,6 +158,7 @@ class EngineArduinoGRBL(DispatchEngine):
 
 		res = self.send("$$")
 		if res[0] != True:
+			self.end()
 			return False
 
 		cX, cY = self.getPlate()
