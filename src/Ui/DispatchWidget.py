@@ -5,6 +5,7 @@ from PySide2.QtGui import *
 
 import re
 from datetime import datetime
+import math
 
 
 
@@ -147,14 +148,21 @@ class DispatchWidget(QObject):
 	def recoverRun(self):
 		cOption = self.wListRecoverOpions.currentIndex()
 
+		cCmd = []
+		
 		if cOption == 0:
-			print('reset')
+			cCmd = ['$X']
 
 		if cOption == 1:
-			print('home')
+			cCmd = ['$H']
 
 		if cOption == 2:
-			print('move', self.wRecDeg.text(), self.wRecAmt.text())
+			cDeg = math.radians(float(self.wRecDeg.text()))
+			cAmt = float(self.wRecAmt.text())
+			cCmd = ['G90 X%.16f Y%.16f' % (math.cos(cDeg)*cAmt, -1*math.sin(cDeg)*cAmt)]
+
+		self.dispatch.sessionStart(self.wListDevs.currentText(), (0,1,0,1), cCmd, gIn=[''], gOut=[''], silent=True)
+		
 
 
 
@@ -351,6 +359,22 @@ class DispatchWidget(QObject):
 		self.logSession(_session.liveData(), endMsg)
 
 		self.devStateBlockState(_res!=_session.errDevice, _session.resultRuntime[-1])
+
+
+		cDeg = 0
+		cAmt = 0
+		if _res!=_session.errOk and _res!=_session.errCancel:
+			lastCoords = _session.liveData().coords
+			lastCoords = (-lastCoords[1], lastCoords[0]) #coordsystem transform back
+
+			cDeg = math.degrees(math.atan2(*lastCoords))
+			cAmt = -math.hypot(*lastCoords)
+
+		self.wRecDeg.setText('%.8f' % cDeg)
+		self.wRecDeg.setCursorPosition(0)
+		self.wRecAmt.setText('%.8f' % cAmt)
+		self.wRecAmt.setCursorPosition(0)
+
 
 
 #  todo 294 (tracer, clean) +0: check memory leak on subsequent sessions
