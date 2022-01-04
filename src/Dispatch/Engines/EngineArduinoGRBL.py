@@ -73,8 +73,6 @@ class EngineArduinoGRBL(DispatchEngine):
 
 	def end(self):
 		try:
-			res = self.send('G4 P0.01')
-
 			self.port and self.port.close()
 
 		except Exception as e:
@@ -129,6 +127,8 @@ class EngineArduinoGRBL(DispatchEngine):
 
 		if not _data: #normal end
 			if self.port:
+				self.send('G4 P0.01')
+				
 				self.end()
 
 			return (True, [])
