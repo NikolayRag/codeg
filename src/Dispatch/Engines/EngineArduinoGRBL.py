@@ -76,7 +76,7 @@ class EngineArduinoGRBL(DispatchEngine):
 			self.port and self.port.close()
 
 		except Exception as e:
-			None
+			self.lastError((DispatchEngine.errPort, []))
 
 
 		self.port = None
