@@ -1,15 +1,25 @@
 # CNC GCode layout and dispatch workshop
 
+Purpose
+=======
+
+Layouter and CNC dispatcher
+
+
+
+
 Install & Requirements
 ======================
 
 *No engraver setup routines
+*Specific config
+	GRBL 2D engraver
 -
 
 
 
 
-Operation
+Layouting
 =========
 
 
@@ -56,14 +66,21 @@ Issues:
 
 
 Dispatch
+========
+
+*duty cycle
+*session queue tbd
+-
+
+
+
+Dispatch/Device
 --------
 
-*Device life cycle
-*Device scan/rescan
-*Device reinit
+*scan/rescan
+*recover
 	reset/home/guide
-*Jog tbd
-*Session queue tbd
+*Jog guide tbd
 -
 
 
@@ -71,6 +88,7 @@ Dispatch
 
 Dispatch/Session
 ------
+
 *controls
 	disconnect
 	start-pause/unpause-stop
@@ -78,7 +96,9 @@ Dispatch/Session
 *Tracer Focus and Painting
 -
 
+
 Issues:
+*Device routines are far from being correct for any abnormal device behavior.
 *Having Tracer switched Live/Shapes on can result in speed jitter at high speed,
 which can be incompatible with specific cut requirements.
 -
