@@ -29,13 +29,13 @@ class DispatchSession(Thread, QObject):
 
 
 # -todo 300 (module-dispatch, device) +0: read device nonblocking from session
-	def __init__(self, _cb, _meta, _data, gIn=[], gOut=[]):
+	def __init__(self, _cb, _bbox, _data, gIn=[], gOut=[]):
 		Thread.__init__(self)
 		QObject.__init__(self)
 
 
 		self.runCb = _cb
-		self.runBox = [_meta[0], _meta[2], _meta[1]-_meta[0], _meta[3]-_meta[2]]
+		self.runBox = [_bbox[0], _bbox[2], _bbox[1]-_bbox[0], _bbox[3]-_bbox[2]]
 		self.runData = _data
 		self.gIn = gIn
 		self.gOut = gOut
