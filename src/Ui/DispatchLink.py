@@ -75,8 +75,9 @@ class DispatchLink(QObject):
 		self.allSessions.append(cSession)
 
 		cSession.sigFinish.connect(lambda res: self.sessionFinish(cSession, res))
+		if not silent:
+			self.sigDispatchAdded.emit(cSession)
 
-		self.sigDispatchAdded.emit(cSession)
 		if len(self.allSessions)==1:
 			self.sessionIgnite()
 
