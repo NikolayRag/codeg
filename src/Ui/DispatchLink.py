@@ -64,7 +64,7 @@ class DispatchLink(QObject):
 
 
 
-	def sessionStart(self, _dev, _meta, _data, gIn=None, gOut=None, silent=False):
+	def sessionStart(self, _dev, _meta, _data, gIn=None, gOut=None, live=False):
 		if not self.dispatcher:
 			print ('No dispatcher')
 			return
@@ -76,7 +76,7 @@ class DispatchLink(QObject):
 		self.allSessions.append(cSession)
 
 		cSession.sigFinish.connect(lambda res: self.sessionFinish(cSession, res))
-		if not silent:
+		if not live:
 			self.sigDispatchAdded.emit(cSession)
 
 		if len(self.allSessions)==1:

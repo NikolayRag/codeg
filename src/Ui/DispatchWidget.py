@@ -160,7 +160,7 @@ class DispatchWidget(QObject):
 			cAmt = float(self.wRecAmt.text())
 			cCmd = ['G90 X%.16f Y%.16f' % (math.cos(cDeg)*cAmt, -1*math.sin(cDeg)*cAmt)]
 
-		self.dispatch.sessionStart(self.wListDevs.currentText(), (0,1,0,1), cCmd, gIn=[''], gOut=[''], silent=True)
+		self.dispatch.sessionStart(self.wListDevs.currentText(), (0,1,0,1), cCmd, gIn=[''], gOut=[''], live=True)
 		
 
 
