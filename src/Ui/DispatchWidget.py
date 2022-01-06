@@ -145,22 +145,32 @@ class DispatchWidget(QObject):
 
 
 	def recoverRun(self):
+		self.wBtnDispFire.setEnabled(False)
+
+		cSession = self.dispatch.sessionStart(self.wListDevs.currentText(), (0,1,0,1), [], gIn=[''], gOut=[''], live=True)
+		cSession.sigFinish.connect(lambda res: self.wBtnDispFire.setEnabled(True))
+
+
 		cOption = self.wListRecoverOpions.currentIndex()
 
-		cCmd = []
-		
 		if cOption == 0:
-			cCmd = ['$X']
+			cSession.add(['$X'])
+			cSession.final()
 
 		if cOption == 1:
-			cCmd = ['$H']
+			cSession.add(['$H'])
+			cSession.final()
 
 		if cOption == 2:
 			cDeg = math.radians(float(self.wRecDeg.text()))
 			cAmt = float(self.wRecAmt.text())
-			cCmd = ['G90 X%.16f Y%.16f' % (math.cos(cDeg)*cAmt, -1*math.sin(cDeg)*cAmt)]
+			cSession.add([
+				'G90 X%.16f Y%.16f' % (math.cos(cDeg)*cAmt, -1*math.sin(cDeg)*cAmt)
+			])
+			cSession.final()
 
-		self.dispatch.sessionStart(self.wListDevs.currentText(), (0,1,0,1), cCmd, gIn=[''], gOut=[''], live=True)
+
+		cSession.start()
 		
 
 

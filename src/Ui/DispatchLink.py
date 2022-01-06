@@ -72,17 +72,18 @@ class DispatchLink(QObject):
 		def bindDev(_d):
 			return self.dispatcher.deviceSend(_dev, _d)
 
-		cSession = DispatchSession(bindDev, _meta, _data, gIn=gIn or self.gIn, gOut=gOut or self.gOut)
-		self.allSessions.append(cSession)
+		cSession = DispatchSession(bindDev, _meta, _data, gIn=gIn or self.gIn, gOut=gOut or self.gOut, live=live)
+
+		if live:
+			return cSession
+
 
 		cSession.sigFinish.connect(lambda res: self.sessionFinish(cSession, res))
-		if not live:
-			self.sigDispatchAdded.emit(cSession)
+		self.sigDispatchAdded.emit(cSession)
 
+		self.allSessions.append(cSession)
 		if len(self.allSessions)==1:
 			self.sessionIgnite()
-
-		return cSession
 
 
 
