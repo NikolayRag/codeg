@@ -150,6 +150,9 @@ class DispatchWidget(QObject):
 			self.sigInteract.emit(False, [])
 
 			if self.recoverSession:
+				if force:
+					self.recoverSession.cancel(True)
+
 				self.recoverSession.final()
 
 				self.recoverSession = None
@@ -270,7 +273,7 @@ class DispatchWidget(QObject):
 
 		self.wBtnRecoverStop = _wRoot.findChild(QWidget, "btnRecoverStop")
 		self.wBtnRecoverStop.setVisible(False)
-		self.wBtnRecoverStop.clicked.connect(self.recoverStop)
+		self.wBtnRecoverStop.clicked.connect(lambda: self.recoverStop(self.args.devRecoverCut))
 
 
 		self.wFrameDev = _wRoot.findChild(QWidget, "frameDev")
