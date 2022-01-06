@@ -86,7 +86,7 @@ class AppWindow(QObject):
 
 #  todo 244 (feature) +0: add drop scene, svg files and tag text
 		self.tmpFilterMain = BindFilter({
-			QEvent.Close: lambda event: self.sigPreexit.emit(event) or True,
+			QEvent.Close: self.tryExit,
 			QEvent.Move: self.moved,
 			QEvent.Resize: self.resized,
 			QEvent.WindowStateChange: self.maximized,
@@ -193,6 +193,13 @@ class AppWindow(QObject):
 
 
 		self.setProgress()
+
+
+
+	def tryExit(self, event):
+		self.sigPreexit.emit(event)
+
+		return True
 
 
 
