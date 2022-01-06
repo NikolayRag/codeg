@@ -145,10 +145,15 @@ class DispatchWidget(QObject):
 
 
 	def recoverRun(self):
+		def recoverEnd():
+			self.wBtnDispFire.setEnabled(True)
+			self.wBtnRecoverRun.setEnabled(True)
+		
 		self.wBtnDispFire.setEnabled(False)
+		self.wBtnRecoverRun.setEnabled(False)
 
 		cSession = self.dispatch.sessionStart(self.wListDevs.currentText(), (0,1,0,1), [], gIn=[''], gOut=[''], live=True)
-		cSession.sigFinish.connect(lambda res: self.wBtnDispFire.setEnabled(True))
+		cSession.sigFinish.connect(lambda res: recoverEnd())
 
 
 		cOption = self.wListRecoverOpions.currentIndex()
