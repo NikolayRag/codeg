@@ -118,7 +118,7 @@ class EngineArduinoGRBL(DispatchEngine):
 		if _data == False: #instant disconnect
 			self.end()
 
-			return
+			return (DispatchEngine.errPort, [])
 
 
 		if not _data: #normal end
