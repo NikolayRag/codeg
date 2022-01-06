@@ -174,7 +174,9 @@ class DispatchWidget(QObject):
 
 #  todo 342 (guide, fix) +0: catch device errors while Guide
 	def recoverRun(self):
-		def recoverEnd():
+		def recoverEnd(_session, res):
+			self.devStateBlockState(res==1, f'Error while recover: {_session.resultRuntime[-1][0]}')
+
 			self.wBtnDispFire.setEnabled(True)
 			self.wBtnRecoverRun.setVisible(True)
 			self.wBtnRecoverRun.setEnabled(True)
@@ -189,7 +191,7 @@ class DispatchWidget(QObject):
 		cSession = self.recoverSession = (
 			self.dispatch.sessionStart(self.wListDevs.currentText(), (0,1,0,1), [''], gIn=[''], gOut=[''], live=True)
 		)
-		cSession.sigFinish.connect(lambda res: recoverEnd())
+		cSession.sigFinish.connect(lambda res: recoverEnd(cSession, res))
 
 
 		cOption = self.wListRecoverOpions.currentIndex()
