@@ -182,6 +182,7 @@ class AppWindow(QObject):
 		self.dispatchUi.sigDevChange.connect(self.gridSize)
 		self.dispatchUi.sigProgress.connect(self.setProgress)
 		
+#  todo 340 (ui, ux, viewport, device) +0: show presumable device position
 		def toggleIntract(_state, _args):
 			self.guideCB = _state
 		self.dispatchUi.sigInteract.connect(toggleIntract)
@@ -357,6 +358,7 @@ class AppWindow(QObject):
 
 
 
+#  todo 341 (ui, ux, viewport, device) +0: complete Guide OSC
 	def viewportGuide(self, _point, _origin, _step):
 		self.guideDescriptionIn.place((_origin.x(),_origin.y()))
 		self.guideDescriptionOut.place((_point.x(),_point.y()))

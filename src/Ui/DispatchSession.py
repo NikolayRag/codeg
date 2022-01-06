@@ -28,6 +28,7 @@ class DispatchSession(Thread, QObject):
 
 
 
+# =todo 337 (module-dispatch, session) +0: add continuous session
 # -todo 300 (module-dispatch, device) +0: read device nonblocking from session
 	def __init__(self, _cb, _bbox, _data=[], gIn=[], gOut=[], live=False):
 		Thread.__init__(self)
@@ -57,6 +58,7 @@ class DispatchSession(Thread, QObject):
 
 
 
+#  todo 343 (clean) +0: join cancel() anf final()
 	def cancel(self, _instant=False):
 		self.flagCancel = True
 

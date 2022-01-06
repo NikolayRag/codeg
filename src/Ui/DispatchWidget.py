@@ -8,7 +8,7 @@ from datetime import datetime
 import math
 
 
-#  todo 336 (dispatch, device, feature) +0: make manual live CNC guide
+# =todo 336 (dispatch, device, feature) +0: make manual live CNC guide
 #  todo 322 (dispatch, ui, v2) +0: rework dispatch/device/session widget entirely
 
 class DispatchWidget(QObject):
@@ -67,6 +67,7 @@ class DispatchWidget(QObject):
 
 
 
+#  todo 338 (module-dispatch, clean) +0: make dispatch ui modes
 	def relock(self):
 		_enabled = self.wListDevs.currentData()
 
@@ -171,6 +172,8 @@ class DispatchWidget(QObject):
 			self.recoverGuideCoords = _offset
 
 
+
+#  todo 342 (guide, fix) +0: catch device errors while Guide
 	def recoverRun(self):
 		def recoverEnd():
 			self.wBtnDispFire.setEnabled(True)
@@ -199,6 +202,7 @@ class DispatchWidget(QObject):
 			cSession.final()
 
 		if cOption == 2:
+#  todo 346 (device, guide, fix) +0: init Guide speed
 			self.recoverSession.add(['$X'])
 
 			self.wBtnRecoverRun.setVisible(False)
@@ -206,6 +210,9 @@ class DispatchWidget(QObject):
 
 			cDeg = math.radians(float(self.wRecDeg.text()))
 			cAmt = float(self.wRecAmt.text())
+
+#  todo 333 (device, fix) +0: fix lost coords predict with jog
+#			self.recoverGuideCoords = (math.cos(cDeg)*cAmt, -1*math.sin(cDeg)*cAmt)
 			self.recoverGuideCoords = (0,0)
 			self.sigInteract.emit(self.recoverInteract, self.recoverGuideCoords)
 
@@ -240,6 +247,7 @@ class DispatchWidget(QObject):
 
 		self.wBtnRescan.clicked.connect(_dispatch.getDevices)
 		self.wListDevs.currentIndexChanged.connect(self.devChanged)
+# =todo 344 (guide) +0: move force stop from Session to Device control
 		self.wBtnDispCancel.clicked.connect(lambda: self.sessionCancel(True))
 		self.wBtnDispPause.toggled.connect(self.sessionPause)
 		self.wBtnDispFire.clicked.connect(lambda: self.sigDispatchFire.emit(self.wListDevs.currentText()))
@@ -267,6 +275,7 @@ class DispatchWidget(QObject):
 		self.wRecDeg.setValidator(QDoubleValidator())
 		self.wRecAmt = _wRoot.findChild(QWidget, "lineRecAmt")
 		self.wRecAmt.setValidator(QDoubleValidator())
+#  todo 347 (device, ui, ux) +0: recover by vaues
 		self.wPageGuide = _wRoot.findChild(QWidget, "pageGuide")
 		self.wPageGuide.hide() #hidden for now
 
@@ -416,7 +425,6 @@ class DispatchWidget(QObject):
 		self.devStateBlockState(_res!=_session.errDevice, _session.resultRuntime[-1])
 
 
-#  todo 333 (device, fix) +0: fix lost coords predict with jog
 		cDeg = 0
 		cAmt = 0
 		if _res!=_session.errOk and _res!=_session.errCancel:
