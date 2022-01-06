@@ -747,6 +747,13 @@
                                   </property>
                                  </widget>
                                 </item>
+                                <item>
+                                 <widget class="QToolButton" name="btnRecoverStop">
+                                  <property name="text">
+                                   <string>end</string>
+                                  </property>
+                                 </widget>
+                                </item>
                                </layout>
                               </item>
                              </layout>

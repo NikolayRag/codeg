@@ -144,15 +144,25 @@ class DispatchWidget(QObject):
 
 
 
+	def recoverStop(self):
+			self.recoverSession.final()
+
+
+
 	def recoverRun(self):
 		def recoverEnd():
 			self.wBtnDispFire.setEnabled(True)
+			self.wBtnRecoverRun.setVisible(True)
 			self.wBtnRecoverRun.setEnabled(True)
+			self.wBtnRecoverStop.setVisible(False)
+
 		
 		self.wBtnDispFire.setEnabled(False)
 		self.wBtnRecoverRun.setEnabled(False)
 
-		cSession = self.dispatch.sessionStart(self.wListDevs.currentText(), (0,1,0,1), [], gIn=[''], gOut=[''], live=True)
+		cSession = self.recoverSession = (
+			self.dispatch.sessionStart(self.wListDevs.currentText(), (0,1,0,1), [], gIn=[''], gOut=[''], live=True)
+		)
 		cSession.sigFinish.connect(lambda res: recoverEnd())
 
 
@@ -167,6 +177,9 @@ class DispatchWidget(QObject):
 			cSession.final()
 
 		if cOption == 2:
+			self.wBtnRecoverRun.setVisible(False)
+			self.wBtnRecoverStop.setVisible(True)
+
 			cDeg = math.radians(float(self.wRecDeg.text()))
 			cAmt = float(self.wRecAmt.text())
 			cSession.add([
@@ -235,6 +248,10 @@ class DispatchWidget(QObject):
 
 		self.wBtnRecoverRun = _wRoot.findChild(QWidget, "btnRecoverRun")
 		self.wBtnRecoverRun.clicked.connect(self.recoverRun)
+
+		self.wBtnRecoverStop = _wRoot.findChild(QWidget, "btnRecoverStop")
+		self.wBtnRecoverStop.setVisible(False)
+		self.wBtnRecoverStop.clicked.connect(self.recoverStop)
 
 
 		self.wFrameDev = _wRoot.findChild(QWidget, "frameDev")
