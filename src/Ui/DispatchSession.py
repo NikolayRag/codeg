@@ -28,15 +28,19 @@ class DispatchSession(Thread, QObject):
 
 
 
+# =todo 337 (module-dispatch, session) +0: add continuous session
 # -todo 300 (module-dispatch, device) +0: read device nonblocking from session
-	def __init__(self, _cb, _meta, _data, gIn=[], gOut=[]):
+	def __init__(self, _cb, _bbox, _data=[], gIn=[], gOut=[], live=False):
 		Thread.__init__(self)
 		QObject.__init__(self)
 
 
 		self.runCb = _cb
-		self.runBox = [_meta[0], _meta[2], _meta[1]-_meta[0], _meta[3]-_meta[2]]
-		self.runData = _data
+		self.runBox = [_bbox[0], _bbox[2], _bbox[1]-_bbox[0], _bbox[3]-_bbox[2]]
+		self.runDataQ = [_data]
+		self.dataLen = len(_data)
+
+
 		self.gIn = gIn
 		self.gOut = gOut
 
@@ -46,11 +50,15 @@ class DispatchSession(Thread, QObject):
 		self.pauseEv = Event()
 		self.flagCancel = False
 
+		self.isLive = live
+		self.nodataEv = Event()
+
 
 		self._liveData = type('', (object,), {})
 
 
 
+#  todo 343 (clean) +0: join cancel() anf final()
 	def cancel(self, _instant=False):
 		self.flagCancel = True
 
@@ -106,7 +114,20 @@ class DispatchSession(Thread, QObject):
 
 		self.resultEnd = self.errOk
 		runState = self.runBlock(self.gIn, False)
-		runState = runState and self.runBlock(self.runData, True)
+
+		while runState:
+			if not self.runDataQ:
+				if self.isLive:
+					self.nodataEv.wait()
+				
+				if not self.isLive:
+					break
+
+			self.nodataEv.clear()
+
+
+			runState = self.runBlock(self.runDataQ.pop(0), True)
+
 		runState = runState and self.runBlock(self.gOut, False)
 
 
@@ -122,6 +143,21 @@ class DispatchSession(Thread, QObject):
 
 
 
+	def add(self, _data):
+		self.runDataQ.append(_data)
+		self.dataLen += len(_data)
+
+		self.nodataEv.set()
+
+
+
+	def final(self):
+		self.isLive = False
+
+		self.nodataEv.set()
+
+
+
 	def liveData(self):
 		return self._liveData
 
@@ -133,4 +169,4 @@ class DispatchSession(Thread, QObject):
 
 
 	def pathLen(self):
-		return len(self.runData)
+		return self.dataLen

@@ -654,7 +654,7 @@
                                     </item>
                                    </layout>
                                   </widget>
-                                  <widget class="QWidget" name="page_3">
+                                  <widget class="QWidget" name="pageGuide">
                                    <layout class="QHBoxLayout" name="horizontalLayout_8">
                                     <property name="spacing">
                                      <number>2</number>
@@ -744,6 +744,13 @@
                                  <widget class="QToolButton" name="btnRecoverRun">
                                   <property name="text">
                                    <string>do</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QToolButton" name="btnRecoverStop">
+                                  <property name="text">
+                                   <string>end</string>
                                   </property>
                                  </widget>
                                 </item>

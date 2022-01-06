@@ -32,6 +32,7 @@
 #frameRecover, #frameRecover * { background-color: #ccc; }
 #btnDevState-warning { background-color: #f43; }
 #labRecover-warning { color: #b31; }
+#btnRecoverStop { background-color: #0ff; }
 
 
 QProgressBar {

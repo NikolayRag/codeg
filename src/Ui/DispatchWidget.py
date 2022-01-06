@@ -8,7 +8,7 @@ from datetime import datetime
 import math
 
 
-#  todo 336 (dispatch, device, feature) +0: make manual live CNC guide
+# =todo 336 (dispatch, device, feature) +0: make manual live CNC guide
 #  todo 322 (dispatch, ui, v2) +0: rework dispatch/device/session widget entirely
 
 class DispatchWidget(QObject):
@@ -18,7 +18,9 @@ class DispatchWidget(QObject):
 	sigDispatchFire = Signal(str)
 
 	sigLive = Signal(bool)
+	sigInteract = Signal(object, list)
 
+	recoverSession = None
 
 
 # -todo 276 (ux, clean) +0: clean device rescan cycle
@@ -65,6 +67,7 @@ class DispatchWidget(QObject):
 
 
 
+#  todo 338 (module-dispatch, clean) +0: make dispatch ui modes
 	def relock(self):
 		_enabled = self.wListDevs.currentData()
 
@@ -144,23 +147,77 @@ class DispatchWidget(QObject):
 
 
 
+	def recoverStop(self, force=False):
+			self.sigInteract.emit(False, [])
+
+			if self.recoverSession:
+				if force:
+					self.recoverSession.cancel(True)
+
+				self.recoverSession.final()
+
+				self.recoverSession = None
+
+
+
+	def recoverInteract(self, _offset, _live):
+		_offset = (
+			self.recoverGuideCoords[0] +_offset.x(),
+			self.recoverGuideCoords[1] +_offset.y()
+		)
+
+		if not _live:
+			self.recoverSession.add([f'G90 X{_offset[0]}Y{-_offset[1]}'])
+
+			self.recoverGuideCoords = _offset
+
+
+
+#  todo 342 (guide, fix) +0: catch device errors while Guide
 	def recoverRun(self):
+		def recoverEnd():
+			self.wBtnDispFire.setEnabled(True)
+			self.wBtnRecoverRun.setVisible(True)
+			self.wBtnRecoverRun.setEnabled(True)
+			self.wBtnRecoverStop.setVisible(False)
+
+		
+		self.wBtnDispFire.setEnabled(False)
+		self.wBtnRecoverRun.setEnabled(False)
+
+		cSession = self.recoverSession = (
+			self.dispatch.sessionStart(self.wListDevs.currentText(), (0,1,0,1), [''], gIn=[''], gOut=[''], live=True)
+		)
+		cSession.sigFinish.connect(lambda res: recoverEnd())
+
+
 		cOption = self.wListRecoverOpions.currentIndex()
 
-		cCmd = []
-		
 		if cOption == 0:
-			cCmd = ['$X']
+			cSession.add(['$X'])
+			cSession.final()
 
 		if cOption == 1:
-			cCmd = ['$H']
+			cSession.add(['$H'])
+			cSession.final()
 
 		if cOption == 2:
+#  todo 346 (device, guide, fix) +0: init Guide speed
+			self.recoverSession.add(['$X'])
+
+			self.wBtnRecoverRun.setVisible(False)
+			self.wBtnRecoverStop.setVisible(True)
+
 			cDeg = math.radians(float(self.wRecDeg.text()))
 			cAmt = float(self.wRecAmt.text())
-			cCmd = ['G90 X%.16f Y%.16f' % (math.cos(cDeg)*cAmt, -1*math.sin(cDeg)*cAmt)]
 
-		self.dispatch.sessionStart(self.wListDevs.currentText(), (0,1,0,1), cCmd, gIn=[''], gOut=[''], silent=True)
+#  todo 333 (device, fix) +0: fix lost coords predict with jog
+#			self.recoverGuideCoords = (math.cos(cDeg)*cAmt, -1*math.sin(cDeg)*cAmt)
+			self.recoverGuideCoords = (0,0)
+			self.sigInteract.emit(self.recoverInteract, self.recoverGuideCoords)
+
+
+		cSession.start()
 		
 
 
@@ -190,6 +247,7 @@ class DispatchWidget(QObject):
 
 		self.wBtnRescan.clicked.connect(_dispatch.getDevices)
 		self.wListDevs.currentIndexChanged.connect(self.devChanged)
+# =todo 344 (guide) +0: move force stop from Session to Device control
 		self.wBtnDispCancel.clicked.connect(lambda: self.sessionCancel(True))
 		self.wBtnDispPause.toggled.connect(self.sessionPause)
 		self.wBtnDispFire.clicked.connect(lambda: self.sigDispatchFire.emit(self.wListDevs.currentText()))
@@ -217,9 +275,16 @@ class DispatchWidget(QObject):
 		self.wRecDeg.setValidator(QDoubleValidator())
 		self.wRecAmt = _wRoot.findChild(QWidget, "lineRecAmt")
 		self.wRecAmt.setValidator(QDoubleValidator())
+#  todo 347 (device, ui, ux) +0: recover by vaues
+		self.wPageGuide = _wRoot.findChild(QWidget, "pageGuide")
+		self.wPageGuide.hide() #hidden for now
 
 		self.wBtnRecoverRun = _wRoot.findChild(QWidget, "btnRecoverRun")
 		self.wBtnRecoverRun.clicked.connect(self.recoverRun)
+
+		self.wBtnRecoverStop = _wRoot.findChild(QWidget, "btnRecoverStop")
+		self.wBtnRecoverStop.setVisible(False)
+		self.wBtnRecoverStop.clicked.connect(lambda: self.recoverStop(self.args.devRecoverCut))
 
 
 		self.wFrameDev = _wRoot.findChild(QWidget, "frameDev")
@@ -360,7 +425,6 @@ class DispatchWidget(QObject):
 		self.devStateBlockState(_res!=_session.errDevice, _session.resultRuntime[-1])
 
 
-#  todo 333 (device, fix) +0: fix lost coords predict with jog
 		cDeg = 0
 		cAmt = 0
 		if _res!=_session.errOk and _res!=_session.errCancel:

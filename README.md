@@ -80,8 +80,8 @@ Dispatch/Device
 
 *scan/rescan
 *recover
-	reset/home/guide
-*Jog guide tbd
+	reset/home
+	guide
 -
 
 

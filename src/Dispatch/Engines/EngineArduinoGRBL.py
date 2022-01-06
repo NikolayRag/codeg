@@ -113,6 +113,7 @@ class EngineArduinoGRBL(DispatchEngine):
 
 
 
+#  todo 345 (device) +0: split device disconnect functions
 	def sink(self, _data):
 		if _data == False: #instant disconnect
 			self.end()

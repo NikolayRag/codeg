@@ -940,3 +940,24 @@
 =dispatch, device 330: +0 "src\Ui\DispatchSession.py" ki 22/01/01 18:58:34
 	pause device using pause/unpause commands
 
+ ui, ux, viewport, device 340: +0 "src\Ui\AppWindow.py" ki 22/01/07 00:08:25
+	show presumable device position
+
+ ui, ux, viewport, device 341: +0 "src\Ui\AppWindow.py" ki 22/01/07 00:09:17
+	complete Guide OSC
+
+ guide, fix 342: +0 "src\Ui\DispatchWidget.py" ki 22/01/07 00:14:29
+	catch device errors while Guide
+
+ clean 343: +0 "src\Ui\DispatchSession.py" ki 22/01/07 00:19:36
+	join cancel() anf final()
+
+=guide 344: +0 "src\Ui\DispatchWidget.py" ki 22/01/07 00:24:27
+	move force stop from Session to Device control
+
+ device 345: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/07 00:28:49
+	split device disconnect functions
+
+ device, guide, fix 346: +0 "src\Ui\DispatchWidget.py" ki 22/01/07 00:34:01
+	init Guide speed
+
