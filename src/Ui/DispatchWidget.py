@@ -276,8 +276,8 @@ class DispatchWidget(QObject):
 		self.wRecAmt = _wRoot.findChild(QWidget, "lineRecAmt")
 		self.wRecAmt.setValidator(QDoubleValidator())
 #  todo 347 (device, ui, ux) +0: recover by vaues
-		self.wPageGuide = _wRoot.findChild(QWidget, "pageGuide")
-		self.wPageGuide.hide() #hidden for now
+		self.wStackedRecoverOps = _wRoot.findChild(QWidget, "stackedRecoverOps")
+		self.wStackedRecoverOps.hide() #hidden for now
 
 		self.wBtnRecoverRun = _wRoot.findChild(QWidget, "btnRecoverRun")
 		self.wBtnRecoverRun.clicked.connect(self.recoverRun)

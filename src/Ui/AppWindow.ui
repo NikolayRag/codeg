@@ -596,7 +596,7 @@
                                  </widget>
                                 </item>
                                 <item>
-                                 <widget class="QStackedWidget" name="stackedWidget">
+                                 <widget class="QStackedWidget" name="stackedRecoverOps">
                                   <property name="sizePolicy">
                                    <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                                     <horstretch>0</horstretch>
@@ -1085,7 +1085,7 @@
   <connection>
    <sender>listRecoverOpions</sender>
    <signal>currentIndexChanged(int)</signal>
-   <receiver>stackedWidget</receiver>
+   <receiver>stackedRecoverOps</receiver>
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel">
