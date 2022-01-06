@@ -182,6 +182,8 @@ class DispatchWidget(QObject):
 			self.wBtnRecoverStop.setVisible(False)
 
 		
+		self.devStateBlockState(True)
+
 		self.wBtnDispFire.setEnabled(False)
 		self.wBtnRecoverRun.setEnabled(False)
 
