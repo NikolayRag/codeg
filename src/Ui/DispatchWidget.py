@@ -60,7 +60,8 @@ class DispatchWidget(QObject):
 
 		cState = self.dispatch.deviceState(_name)
 		if cState[0] != None:
-			self.devStateBlockState(cState[0]==True, cState)
+			msgErr = 'Connection dropped' if cState[0]<0 else f'Error {cState[0]}'
+			self.devStateBlockState(cState[0]==True, msgErr)
 
 		self.sigDevChange.emit(self.dispatch.devicePlate(_name))
 
@@ -131,14 +132,13 @@ class DispatchWidget(QObject):
 
 
 # -todo 325 (dispatch, clean) +0: display verbose device state
-	def devStateBlockState(self, state, _devRes=[0]):
+	def devStateBlockState(self, state, _msgErr=''):
 		self.wBtnDevState.setObjectName('btnDevState' if state else 'btnDevState-warning')
 		self.wBtnDevState.setStyleSheet(self.wBtnDevState.styleSheet())
 
 		self.wLabRecover.setObjectName('labRecover' if state else 'labRecover-warning')
 		self.wLabRecover.setStyleSheet(self.wBtnDevState.styleSheet())
-		msgErr = 'Connection dropped' if _devRes[0]<0 else f'Error {_devRes[0]}'
-		self.wLabRecover.setText('Normal state' if state else msgErr)
+		self.wLabRecover.setText('Normal state' if state else _msgErr)
 			
 
 
@@ -423,7 +423,8 @@ class DispatchWidget(QObject):
 
 		self.logSession(_session.liveData(), endMsg)
 
-		self.devStateBlockState(_res!=_session.errDevice, _session.resultRuntime[-1])
+		msgErr = 'Connection dropped' if _session.resultRuntime[-1][0]<0 else f'Error {_session.resultRuntime[-1][0]}'
+		self.devStateBlockState(_res!=_session.errDevice, msgErr)
 
 
 		cDeg = 0
