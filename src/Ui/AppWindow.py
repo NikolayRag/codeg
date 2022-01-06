@@ -370,10 +370,10 @@ class AppWindow(QObject):
 			_step = SvgViewport.intLive
 
 
-		if _step==SvgViewport.intLive or _step==SvgViewport.intEnd:
+		if _step==SvgViewport.intEnd:
 			self.guideCB(_point -_origin, _step!=SvgViewport.intEnd)
 
-		if _step == SvgViewport.intEnd:
+		if _step == SvgViewport.intEnd or _step == SvgViewport.intCancel:
 			self.guideDescriptionIn.show(False)
 			self.guideDescriptionOut.show(False)
 

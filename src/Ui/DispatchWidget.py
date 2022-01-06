@@ -166,10 +166,9 @@ class DispatchWidget(QObject):
 			self.recoverGuideCoords[1] +_offset.y()
 		)
 
-		if not _live:
-			self.recoverSession.add([f'G90 X{_offset[0]}Y{-_offset[1]}'])
+		self.recoverSession.add([f'G90 X{_offset[0]}Y{-_offset[1]}'])
 
-			self.recoverGuideCoords = _offset
+		self.recoverGuideCoords = _offset
 
 
 
