@@ -50,6 +50,7 @@ class AppWindow(QObject):
 
 	defSelection = 'resource\\select.svg'
 	defGrid = 'resource\\grid.svg' #1-unit size
+	defGuide = 'resource\\guide.svg'
 	defUi = './Ui/AppWindow.ui'
 
 
@@ -61,6 +62,9 @@ class AppWindow(QObject):
 	gridDescription = None
 
 	dispatchUi = None
+	guideDescriptionIn = None
+	guideDescriptionOut = None
+	guideCB = None
 
 
 #  todo 212 (module-ui, clean, widget) +0: MarkWidget collection class
@@ -178,6 +182,10 @@ class AppWindow(QObject):
 		self.dispatchUi.sigDevChange.connect(self.gridSize)
 		self.dispatchUi.sigProgress.connect(self.setProgress)
 		
+		def toggleIntract(_state, _args):
+			self.guideCB = _state
+		self.dispatchUi.sigInteract.connect(toggleIntract)
+
 		def toggleDegrade(_state):
 			deg = _state
 			if _state:
@@ -346,7 +354,32 @@ class AppWindow(QObject):
 
 
 
+	def viewportGuide(self, _point, _origin, _step):
+		self.guideDescriptionIn.place((_origin.x(),_origin.y()))
+		self.guideDescriptionOut.place((_point.x(),_point.y()))
+
+		if _step == SvgViewport.intStart:
+			self.guideDescriptionIn.show(True)
+			self.guideDescriptionOut.show(True)
+
+			_step = SvgViewport.intLive
+
+
+		if _step==SvgViewport.intLive or _step==SvgViewport.intEnd:
+			self.guideCB(_point -_origin, _step!=SvgViewport.intEnd)
+
+		if _step == SvgViewport.intEnd:
+			self.guideDescriptionIn.show(False)
+			self.guideDescriptionOut.show(False)
+
+
+
 	def viewportInteract(self, _step, _point, _origin, _mod, _spot=True):
+		if self.guideCB:
+			self.viewportGuide(_point, _origin, _step)
+			return
+
+
 		if _mod == Qt.NoModifier:
 			self.viewportMouseSelect(_point, _origin, _step, _spot)
 
@@ -469,6 +502,11 @@ class AppWindow(QObject):
 
 		self.selectionDescription = self.wSvgViewport.canvasAdd(self.defSelection, z=99)
 		self.selectionDescription.show(False)
+
+		self.guideDescriptionIn = self.wSvgViewport.canvasAdd(self.defGuide, z=99)
+		self.guideDescriptionIn.show(False)
+		self.guideDescriptionOut = self.wSvgViewport.canvasAdd(self.defGuide, z=99)
+		self.guideDescriptionOut.show(False)
 
 		self.dispatchUi.traceReset()
 

@@ -18,7 +18,9 @@ class DispatchWidget(QObject):
 	sigDispatchFire = Signal(str)
 
 	sigLive = Signal(bool)
+	sigInteract = Signal(object, list)
 
+	recoverSession = None
 
 
 # -todo 276 (ux, clean) +0: clean device rescan cycle
@@ -144,9 +146,26 @@ class DispatchWidget(QObject):
 
 
 
-	def recoverStop(self):
-			self.recoverSession.final()
+	def recoverStop(self, force=False):
+			self.sigInteract.emit(False, [])
 
+			if self.recoverSession:
+				self.recoverSession.final()
+
+				self.recoverSession = None
+
+
+
+	def recoverInteract(self, _offset, _live):
+		_offset = (
+			self.recoverGuideCoords[0] +_offset.x(),
+			self.recoverGuideCoords[1] +_offset.y()
+		)
+
+		if not _live:
+			self.recoverSession.add([f'G90 X{_offset[0]}Y{-_offset[1]}'])
+
+			self.recoverGuideCoords = _offset
 
 
 	def recoverRun(self):
@@ -161,7 +180,7 @@ class DispatchWidget(QObject):
 		self.wBtnRecoverRun.setEnabled(False)
 
 		cSession = self.recoverSession = (
-			self.dispatch.sessionStart(self.wListDevs.currentText(), (0,1,0,1), [], gIn=[''], gOut=[''], live=True)
+			self.dispatch.sessionStart(self.wListDevs.currentText(), (0,1,0,1), [''], gIn=[''], gOut=[''], live=True)
 		)
 		cSession.sigFinish.connect(lambda res: recoverEnd())
 
@@ -177,15 +196,15 @@ class DispatchWidget(QObject):
 			cSession.final()
 
 		if cOption == 2:
+			self.recoverSession.add(['$X'])
+
 			self.wBtnRecoverRun.setVisible(False)
 			self.wBtnRecoverStop.setVisible(True)
 
 			cDeg = math.radians(float(self.wRecDeg.text()))
 			cAmt = float(self.wRecAmt.text())
-			cSession.add([
-				'G90 X%.16f Y%.16f' % (math.cos(cDeg)*cAmt, -1*math.sin(cDeg)*cAmt)
-			])
-			cSession.final()
+			self.recoverGuideCoords = (0,0)
+			self.sigInteract.emit(self.recoverInteract, self.recoverGuideCoords)
 
 
 		cSession.start()
