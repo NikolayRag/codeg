@@ -207,6 +207,9 @@ class AppWindow(QObject):
 	def tryExit(self, event):
 		self.sigPreexit.emit(event)
 
+		if event.isAccepted():
+			self.dispatchUi.recoverStop()
+
 		return True
 
 
