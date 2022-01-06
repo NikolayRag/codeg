@@ -654,7 +654,7 @@
                                     </item>
                                    </layout>
                                   </widget>
-                                  <widget class="QWidget" name="page_3">
+                                  <widget class="QWidget" name="pageGuide">
                                    <layout class="QHBoxLayout" name="horizontalLayout_8">
                                     <property name="spacing">
                                      <number>2</number>

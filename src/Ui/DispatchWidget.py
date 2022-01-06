@@ -267,6 +267,8 @@ class DispatchWidget(QObject):
 		self.wRecDeg.setValidator(QDoubleValidator())
 		self.wRecAmt = _wRoot.findChild(QWidget, "lineRecAmt")
 		self.wRecAmt.setValidator(QDoubleValidator())
+		self.wPageGuide = _wRoot.findChild(QWidget, "pageGuide")
+		self.wPageGuide.hide() #hidden for now
 
 		self.wBtnRecoverRun = _wRoot.findChild(QWidget, "btnRecoverRun")
 		self.wBtnRecoverRun.clicked.connect(self.recoverRun)
