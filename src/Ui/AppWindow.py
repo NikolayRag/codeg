@@ -62,8 +62,7 @@ class AppWindow(QObject):
 	gridDescription = None
 
 	dispatchUi = None
-	guideDescriptionIn = None
-	guideDescriptionOut = None
+	guideDescription = None
 	guideCB = None
 
 
@@ -360,12 +359,10 @@ class AppWindow(QObject):
 
 #  todo 341 (ui, ux, viewport, device) +0: complete Guide OSC
 	def viewportGuide(self, _point, _origin, _step):
-		self.guideDescriptionIn.place((_origin.x(),_origin.y()))
-		self.guideDescriptionOut.place((_point.x(),_point.y()))
+		self.guideDescription.fit(_origin, _point, sort=False)
 
 		if _step == SvgViewport.intStart:
-			self.guideDescriptionIn.show(True)
-			self.guideDescriptionOut.show(True)
+			self.guideDescription.show(True)
 
 			_step = SvgViewport.intLive
 
@@ -374,8 +371,7 @@ class AppWindow(QObject):
 			self.guideCB(_point -_origin, _step!=SvgViewport.intEnd)
 
 		if _step == SvgViewport.intEnd or _step == SvgViewport.intCancel:
-			self.guideDescriptionIn.show(False)
-			self.guideDescriptionOut.show(False)
+			self.guideDescription.show(False)
 
 
 
@@ -508,10 +504,8 @@ class AppWindow(QObject):
 		self.selectionDescription = self.wSvgViewport.canvasAdd(self.defSelection, z=99)
 		self.selectionDescription.show(False)
 
-		self.guideDescriptionIn = self.wSvgViewport.canvasAdd(self.defGuide, z=99)
-		self.guideDescriptionIn.show(False)
-		self.guideDescriptionOut = self.wSvgViewport.canvasAdd(self.defGuide, z=99)
-		self.guideDescriptionOut.show(False)
+		self.guideDescription = self.wSvgViewport.canvasAdd(self.defGuide, z=99)
+		self.guideDescription.show(False)
 
 		self.dispatchUi.traceReset()
 
