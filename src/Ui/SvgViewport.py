@@ -56,9 +56,12 @@ class SvgDescriptor():
 
 
 
-	def fit(self, _p1, _p2):
-		xmm = sorted((_p1.x(), _p2.x()))
-		ymm = sorted((_p1.y(), _p2.y()))
+	def fit(self, _p1, _p2, sort=True):
+		xmm = (_p1.x(), _p2.x())
+		ymm = (_p1.y(), _p2.y())
+		if sort:
+			xmm = sorted(xmm)
+			ymm = sorted(ymm)
 		self.place((xmm[0],ymm[0]))
 		self.size((xmm[1]-xmm[0],ymm[1]-ymm[0]))
 
