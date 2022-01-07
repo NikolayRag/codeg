@@ -60,8 +60,8 @@ class DispatchWidget(QObject):
 
 		cState = self.dispatch.deviceState(_name)
 		if cState[0] != None:
-			msgErr = 'Connection dropped' if cState[0]<0 else f'Error {cState[0]}'
-			self.devStateBlockState(cState[0]==True, msgErr)
+			errMsg = 'Connection dropped' if cState[0]<0 else 'Device error'
+			self.devStateBlockState(cState[0]==True, errMsg, cState[0]>0 and cState[0])
 
 		self.sigDevChange.emit(self.dispatch.devicePlate(_name))
 
@@ -132,13 +132,13 @@ class DispatchWidget(QObject):
 
 
 # -todo 325 (dispatch, clean) +0: display verbose device state
-	def devStateBlockState(self, state, _msgErr=''):
+	def devStateBlockState(self, state, _errMsg='', code=0):
 		self.wBtnDevState.setObjectName('btnDevState' if state else 'btnDevState-warning')
 		self.wBtnDevState.setStyleSheet(self.wBtnDevState.styleSheet())
 
 		self.wLabRecover.setObjectName('labRecover' if state else 'labRecover-warning')
 		self.wLabRecover.setStyleSheet(self.wBtnDevState.styleSheet())
-		self.wLabRecover.setText('Normal state' if state else _msgErr)
+		self.wLabRecover.setText('Normal state' if state else _errMsg)
 			
 
 
@@ -176,7 +176,9 @@ class DispatchWidget(QObject):
 #  todo 342 (guide, fix) +0: catch device errors while Guide
 	def recoverRun(self):
 		def recoverEnd(_session, res):
-			self.devStateBlockState(res==1, f'Error while recover: {_session.resultRuntime[-1][0]}')
+			errCode = _session.resultRuntime[-1][0]
+			errMsg = 'Connection dropped' if errCode<0 else 'Device error'
+			self.devStateBlockState(res!=_session.errDevice, errMsg, errCode>0 and errCode)
 
 			self.wBtnDispFire.setEnabled(True)
 			self.wBtnRecoverRun.setVisible(True)
@@ -426,8 +428,9 @@ class DispatchWidget(QObject):
 
 		self.logSession(_session.liveData(), endMsg)
 
-		msgErr = 'Connection dropped' if _session.resultRuntime[-1][0]<0 else f'Error {_session.resultRuntime[-1][0]}'
-		self.devStateBlockState(_res!=_session.errDevice, msgErr)
+		errCode = _session.resultRuntime[-1][0]
+		errMsg = 'Connection dropped' if errCode<0 else 'Error'
+		self.devStateBlockState(_res!=_session.errDevice, errMsg, errCode>0 and errCode)
 
 
 		cDeg = 0
