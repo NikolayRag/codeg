@@ -380,9 +380,9 @@ class AppWindow(QObject):
 
 
 	def viewportInteract(self, _step, _point, _origin, _mod, _spot=True):
-		if self.guideCB:
-			self.viewportGuide(_point, _origin, _step)
-			return
+		if _mod == Qt.ControlModifier:
+			if self.guideCB:
+				self.viewportGuide(_point, _origin, _step)
 
 
 		if _mod == Qt.NoModifier:
