@@ -218,7 +218,7 @@ class DispatchWidget(QObject):
 		)
 
 		if not _live:
-			self.recoverSession.add([f'G90 X{_offset[0]}Y{-_offset[1]}'])
+			self.recoverSession.add(['G90 X%.8f Y%.8f' % (_offset[0], -_offset[1])])
 
 			self.recoverGuideCoords = _offset
 
