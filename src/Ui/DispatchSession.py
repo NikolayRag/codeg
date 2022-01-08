@@ -60,6 +60,9 @@ class DispatchSession(Thread, QObject):
 
 #  todo 343 (clean) +0: join cancel() anf final()
 	def cancel(self, _instant=False):
+		self.final()
+
+
 		self.flagCancel = True
 
 		if _instant:
