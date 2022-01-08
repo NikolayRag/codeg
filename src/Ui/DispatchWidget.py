@@ -198,14 +198,16 @@ class DispatchWidget(QObject):
 
 
 	def recoverStop(self, force=False):
+		if not self.recoverSession:
+			return
 
-			if self.recoverSession:
-				if force:
-					self.recoverSession.cancel(True)
 
-				self.recoverSession.final()
+		if force:
+			self.recoverSession.cancel(True)
 
-				self.recoverSession = None
+		self.recoverSession.final()
+
+		self.recoverSession = None
 
 
 
