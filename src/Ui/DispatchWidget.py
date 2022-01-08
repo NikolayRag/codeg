@@ -236,7 +236,7 @@ class DispatchWidget(QObject):
 			self.wBtnRecoverStop.setVisible(False)
 
 		
-		self.devStateBlockState(True)
+		self.devStateBlockState(False, 'Guide (Ctrl+drag)')
 
 		self.wBtnDispFire.setEnabled(False)
 		self.wBtnRecoverRun.setEnabled(False)
