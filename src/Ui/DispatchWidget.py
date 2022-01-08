@@ -198,7 +198,6 @@ class DispatchWidget(QObject):
 
 
 	def recoverStop(self, force=False):
-			self.sigInteract.emit(False, [])
 
 			if self.recoverSession:
 				if force:
@@ -226,6 +225,8 @@ class DispatchWidget(QObject):
 #  todo 342 (guide, fix) +0: catch device errors while Guide
 	def recoverRun(self):
 		def recoverEnd(_session, res):
+			self.sigInteract.emit(False, [])
+
 			errCode = _session.resultRuntime[-1][0]
 			errMsg = 'Connection dropped' if errCode<0 else 'Device error'
 			self.devStateBlockState(res!=_session.errDevice, errMsg, errCode>0 and errCode)
