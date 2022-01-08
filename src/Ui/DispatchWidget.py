@@ -241,28 +241,31 @@ class DispatchWidget(QObject):
 			del _session
 
 		
-		self.devStateBlockState(False, 'Guide (Ctrl+drag)')
-
-		self.wBtnDispFire.setEnabled(False)
-		self.wBtnRecoverRun.setEnabled(False)
-
 		cSession = self.recoverSession = (
 			self.dispatch.sessionStart(self.wListDevs.currentText(), (0,1,0,1), [''], gIn=[''], gOut=[''], live=True)
 		)
 		cSession.sigFinish.connect(lambda res: recoverEnd(cSession, res))
 
 
+
+		cMsg = ''
 		cOption = self.wListRecoverOpions.currentIndex()
 
 		if cOption == 0:
+			cMsg = 'Reset..'
+
 			cSession.add(['$X'])
 			cSession.final()
 
 		if cOption == 1:
+			cMsg = 'Home..'
+
 			cSession.add(['$H'])
 			cSession.final()
 
 		if cOption == 2:
+			cMsg = 'Guide (Ctrl+drag)'
+
 #  todo 346 (device, guide, fix) +0: init Guide speed
 			self.recoverSession.add(['$X'])
 
@@ -279,6 +282,16 @@ class DispatchWidget(QObject):
 
 
 		cSession.start()
+
+		self.devStateBlockState(False, cMsg)
+		#  todo 349 (clean, kludge) +0: replace by message types
+		self.wBtnDevState.setObjectName('btnDevState')
+		self.wBtnDevState.setStyleSheet(self.wBtnDevState.styleSheet())
+		self.wLabRecover.setObjectName('labRecover')
+		self.wLabRecover.setStyleSheet(self.wBtnDevState.styleSheet())
+
+		self.wBtnDispFire.setEnabled(False)
+		self.wBtnRecoverRun.setEnabled(False)
 		
 
 
