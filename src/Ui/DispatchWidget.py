@@ -235,6 +235,8 @@ class DispatchWidget(QObject):
 			self.wBtnRecoverRun.setEnabled(True)
 			self.wBtnRecoverStop.setVisible(False)
 
+			del _session
+
 		
 		self.devStateBlockState(False, 'Guide (Ctrl+drag)')
 
