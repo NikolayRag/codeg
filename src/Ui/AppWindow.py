@@ -209,6 +209,7 @@ class AppWindow(QObject):
 
 		if event.isAccepted():
 			self.dispatchUi.recoverStop()
+			self.dispatchUi.sessionCancel()
 
 		return True
 
