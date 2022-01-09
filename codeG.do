@@ -850,13 +850,13 @@
  tracer, fix 297: +0 "src\Ui\Tracer.py" kii 21/12/07 20:53:48
 	fix Tracer shapes viewbox
 
--device, fix 298: +2 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/01 20:03:09
+-device, fix 298: +2 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/08 19:19:40
 	operate device nonblocking
 
 +device, fix 299: +0 "src\Dispatch\engines\EngineArduinoGRBL.py" kii 21/12/12 00:51:23
 	get GRBL actual metrics
 
--module-dispatch, device 300: +0 "src\Ui\DispatchLink.py" kii 21/12/12 00:55:29
+-module-dispatch, device 300: +0 "src\Ui\DispatchSession.py" ki 22/01/08 19:20:04
 	read device nonblocking from session
 
  trace 301: +0 "src\Ui\DispatchWidget.py" ki 21/12/19 00:48:53
@@ -913,7 +913,7 @@
 !dispatch, v2 321: +0 "src\Ui\DispatchLink.py" ki 22/01/01 18:48:50
 	connect to remote dispatcher
 
- dispatch, ui, v2 322: +0 "src\Ui\DispatchWidget.py" ki 22/01/01 18:54:13
+ dispatch, ui, v2 322: +0 "src\Ui\DispatchWidget.py" ki 22/01/07 22:52:21
 	rework dispatch/device/session widget entirely
 
  ui, clean 323: +0 "src\Ui\DispatchWidget.py" ki 21/12/31 19:35:29
@@ -937,8 +937,17 @@
  module-dispatch, clean 329: +0 "src\Dispatch\DispatchManager.py" ki 22/01/01 18:50:51
 	move device error handling to Device entirely
 
-=dispatch, device 330: +0 "src\Ui\DispatchSession.py" ki 22/01/01 18:58:34
++dispatch, device 330: +0 "src\Ui\DispatchSession.py" ki 22/01/09 03:49:43
 	pause device using pause/unpause commands
+
+!device, fix 331: +5 "" ki 22/01/08 19:19:38
+	handle perma-alert state while homing enabled
+
++dispatch, device, feature 336: +0 "src\Ui\DispatchWidget.py" ki 22/01/07 22:52:20
+	make manual live CNC guide
+
++module-dispatch, session 337: +0 "src\Ui\DispatchSession.py" ki 22/01/08 19:20:03
+	add continuous session
 
  ui, ux, viewport, device 340: +0 "src\Ui\AppWindow.py" ki 22/01/07 00:08:25
 	show presumable device position
@@ -949,15 +958,27 @@
  guide, fix 342: +0 "src\Ui\DispatchWidget.py" ki 22/01/07 00:14:29
 	catch device errors while Guide
 
- clean 343: +0 "src\Ui\DispatchSession.py" ki 22/01/07 00:19:36
+!clean 343: +0 "src\Ui\DispatchSession.py" ki 22/01/08 19:33:49
 	join cancel() anf final()
 
 =guide 344: +0 "src\Ui\DispatchWidget.py" ki 22/01/07 00:24:27
 	move force stop from Session to Device control
 
- device 345: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/07 00:28:49
+ device 345: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/07 01:13:28
 	split device disconnect functions
 
- device, guide, fix 346: +0 "src\Ui\DispatchWidget.py" ki 22/01/07 00:34:01
+ device, guide, fix 346: +0 "src\Ui\DispatchWidget.py" ki 22/01/08 18:15:13
 	init Guide speed
+
+ device, ui, ux 347: +0 "src\Ui\DispatchWidget.py" ki 22/01/07 01:07:33
+	recover by vaues
+
+ dispatch, device, clean 348: +0 "src\Ui\DispatchWidget.py" ki 22/01/08 17:52:54
+	move device error messages to device result object
+
+ clean, kludge 349: +0 "src\Ui\DispatchWidget.py" ki 22/01/08 19:18:40
+	replace by message types
+
+-ux, dispatch 350: +0 "src\Ui\AppWindow.py" ki 22/01/09 04:00:22
+	query exit while dispatch case
 

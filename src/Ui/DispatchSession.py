@@ -30,7 +30,6 @@ class DispatchSession(Thread, QObject):
 
 
 
-# =todo 337 (module-dispatch, session) +0: add continuous session
 # -todo 300 (module-dispatch, device) +0: read device nonblocking from session
 	def __init__(self, _cb, _bbox, _data=[], gIn=[], gOut=[], gPause=[], gResume=[], live=False):
 		Thread.__init__(self)
@@ -62,7 +61,6 @@ class DispatchSession(Thread, QObject):
 
 
 
-#  todo 343 (clean) +0: join cancel() anf final()
 	def cancel(self, _instant=False):
 		self.final()
 
@@ -91,7 +89,6 @@ class DispatchSession(Thread, QObject):
 	def runBlock(self, _gBlock, _runtime):
 		for cg in _gBlock:
 			if _runtime:
-# =todo 330 (dispatch, device) +0: pause device using pause/unpause commands
 				cPaused = not self.pauseEv.is_set()
 
 				if cPaused:

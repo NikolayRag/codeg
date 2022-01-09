@@ -10,11 +10,11 @@ import math
 from .BindFilter import *
 
 
-
-# =todo 336 (dispatch, device, feature) +0: make manual live CNC guide
+# =todo 351 (ux, dispatch) +0: add feed and spindle(laser) rate
 #  todo 322 (dispatch, ui, v2) +0: rework dispatch/device/session widget entirely
 
 class DispatchWidget(QObject):
+#  todo 348 (dispatch, device, clean) +0: move device error messages to device result object
 	GRBLErrors = {
 		1: "G-code words consist of a letter and a value. Letter was not found.",
 		2: "Numeric value format is not valid or missing an expected value.",
@@ -321,7 +321,7 @@ class DispatchWidget(QObject):
 
 		self.wBtnRescan.clicked.connect(_dispatch.getDevices)
 		self.wListDevs.currentIndexChanged.connect(self.devChanged)
-# =todo 344 (guide) +0: move force stop from Session to Device control
+# =todo 344 (guide) +0: move disconnect control from Session to Device
 		self.wBtnDispCancel.clicked.connect(lambda: self.sessionCancel(True))
 		self.wBtnDispPause.toggled.connect(self.sessionPause)
 		self.wBtnDispFire.clicked.connect(lambda: self.sigDispatchFire.emit(self.wListDevs.currentText()))

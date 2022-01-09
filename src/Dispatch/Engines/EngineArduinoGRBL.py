@@ -1,4 +1,3 @@
-# =todo 331 (device, fix) +5: handle perma-alert state while homing enabled
 # -todo 298 (device, fix) +2: operate device nonblocking
 
 # -todo 260 (module-dispatch, fix) +5: GRBL realtime control

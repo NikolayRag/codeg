@@ -204,6 +204,7 @@ class AppWindow(QObject):
 
 
 
+# -todo 350 (ux, dispatch) +0: query exit while dispatch case
 	def tryExit(self, event):
 		self.sigPreexit.emit(event)
 
