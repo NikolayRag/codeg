@@ -22,6 +22,8 @@ class DispatchSession(Thread, QObject):
 
 	gIn = []
 	gOut = []
+	gPause = []
+	gResume = []
 
 
 	_liveData = None
@@ -30,7 +32,7 @@ class DispatchSession(Thread, QObject):
 
 # =todo 337 (module-dispatch, session) +0: add continuous session
 # -todo 300 (module-dispatch, device) +0: read device nonblocking from session
-	def __init__(self, _cb, _bbox, _data=[], gIn=[], gOut=[], live=False):
+	def __init__(self, _cb, _bbox, _data=[], gIn=[], gOut=[], gPause=[], gResume=[], live=False):
 		Thread.__init__(self)
 		QObject.__init__(self)
 
@@ -43,6 +45,8 @@ class DispatchSession(Thread, QObject):
 
 		self.gIn = gIn
 		self.gOut = gOut
+		self.gPause = gPause
+		self.gResume = gResume
 
 		self.resultEnd = None
 		self.resultRuntime = []
@@ -88,7 +92,21 @@ class DispatchSession(Thread, QObject):
 		for cg in _gBlock:
 			if _runtime:
 # =todo 330 (dispatch, device) +0: pause device using pause/unpause commands
+				cPaused = not self.pauseEv.is_set()
+
+				if cPaused:
+					for cmd in self.gPause:
+						res = self.runCb(cmd)
+						self.resultRuntime.append(res)
+
 				self.pauseEv.wait()
+
+				if cPaused:
+					for cmd in self.gResume:
+						res = self.runCb(cmd)
+						self.resultRuntime.append(res)
+
+
 				if self.flagCancel:
 					self.resultEnd = self.errCancel
 					break
