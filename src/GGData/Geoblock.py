@@ -162,20 +162,21 @@ class Geoblock():
 
 # -todo 104 (module-data, decide) +0: move to filter
 #  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
-	def trace(self, _x=0, _y=0):
+	def trace(self, _x=0, _y=0, feed=10000, power=1000):
 		def shapePreHook(_shape):
 			refItem = _shape.data()
 			if not refItem.dataGet('visible', True):
 				return False
 
-			return 'G0'
+			return ['S0','G0']
 
 
 		def shapeInHook(_shape, _point):
 			refItem = _shape.data()
-			cycle = refItem.dataGet('Laser Cycle', 100)
+			cPower = int(refItem.dataGet('Power rate', 100))
+			cFeed = int(refItem.dataGet('Feed rate', 100))
 
-			return( [f"S{int(cycle)}", "G1"] )
+			return( [f'S{power*cPower*.01}', f'F{feed*cFeed*.01}', 'G1'] )
 
 
 		self.svgeo.set(shapeIn=shapeInHook, shapePre=shapePreHook, shapeOut = 'S0')

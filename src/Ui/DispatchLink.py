@@ -21,7 +21,7 @@ class DispatchLink(QObject):
 
 
 	#  todo 335 (dispatch, device) +0: move g-in/out to config
-	gIn = ['G90', 'F8000', 'M4 S0']
+	gIn = ['G90', 'M4']
 	gOut = ['M5', 'G0 X0Y0']
 	gPause = ['M5']
 	gResume = ['M4']

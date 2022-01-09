@@ -37,7 +37,8 @@ from Args import *
 class Ui():
 	defaultMarkData = {
 		'Mark Color': '#777', #dummy
-		'Laser Cycle': 100.
+		'Power rate': 100.,
+		'Feed rate': 100.
 	}
 	defaultMarkColorField = 'Mark Color'
 
