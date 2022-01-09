@@ -12,6 +12,28 @@ from .BindFilter import *
 
 # =todo 351 (ux, dispatch) +0: add feed and spindle(laser) rate
 #  todo 322 (dispatch, ui, v2) +0: rework dispatch/device/session widget entirely
+'''
+Dispatch-related scope:
+
+DispatchWidget
+	DispatchLink
+	tbd DeviceWidget
+		tbd DispatchGuide
+	tbd DispatchTaskWidget
+	Tracer
+		TraceShape
+
+
+DispatchLink
+ 	DispatchManager connection
+	DispatchSession fabric
+
+
+DispatchManager
+	DispatchEngine device class, ...
+
+'''
+
 
 class DispatchWidget(QObject):
 #  todo 348 (dispatch, device, clean) +0: move device error messages to device result object
