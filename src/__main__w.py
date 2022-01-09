@@ -32,6 +32,8 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 		'visDevState': [False],
 		'devRecoverOption': [0],
 		'devRecoverCut': [False, [True, False], bool, 'Instant finish Guide'],
+		'cutFeed': [10000, [10,25000], int, 'Maximum Feed rate'],
+		'cutPower': [1000, [1,2500], int, 'Maximum spindle/laser Power'],
 	},
 	'Viewport': {
 		'degrade': [False],

@@ -473,7 +473,7 @@ class Ui():
 		fileName = cDialog.selectedFiles()[0]
 
 		with open(fileName, 'w') as f:
-			f.write("\n".join(self.activeScene.traceG()['data']))
+			f.write("\n".join(self.activeScene.traceG(feed=Args.Dispatch.cutFeed, power=Args.Dispatch.cutPower)['data']))
 
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
@@ -483,7 +483,7 @@ class Ui():
 
 #  todo 251 (module-dispatch, feature) +0: make generation by iterator
 	def dispatchSend(self, _name):
-		sceneGen = self.activeScene.traceG()
+		sceneGen = self.activeScene.traceG(feed=Args.Dispatch.cutFeed, power=Args.Dispatch.cutPower)
 		self.dispatch.sessionStart(_name, sceneGen['meta'], sceneGen['data'])
 
 
