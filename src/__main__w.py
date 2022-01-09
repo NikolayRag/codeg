@@ -33,6 +33,7 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 		'devRecoverOption': [0],
 		'devRecoverCut': [False, [True, False], bool, 'Instant finish Guide'],
 		'cutFeed': [10000, [10,25000], int, 'Maximum Feed rate'],
+		'cutMode': ['Dynamic (M4)', ['Dynamic (M4)', 'Static (M3)'], str, 'Cutter mode'],
 		'cutPower': [1000, [1,2500], int, 'Maximum spindle/laser Power'],
 	},
 	'Viewport': {

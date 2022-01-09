@@ -21,10 +21,12 @@ class DispatchLink(QObject):
 
 
 	#  todo 335 (dispatch, device) +0: move g-in/out to config
-	gIn = ['G90', 'M4']
+	gMode = {False: ['M3'], True: ['M4']}
+
+	gIn = ['G90']
 	gOut = ['M5', 'G0 X0Y0']
 	gPause = ['M5']
-	gResume = ['M4']
+	gResume = []
 
 	#runtime
 
@@ -66,7 +68,7 @@ class DispatchLink(QObject):
 
 
 
-	def sessionStart(self, _dev, _meta, _data, gIn=None, gOut=None, live=False):
+	def sessionStart(self, _dev, _meta, _data, gIn=None, gOut=None, live=False, mode=True):
 		if not self.dispatcher:
 			print ('No dispatcher')
 			return
@@ -74,7 +76,13 @@ class DispatchLink(QObject):
 		def bindDev(_d):
 			return self.dispatcher.deviceSend(_dev, _d)
 
-		cSession = DispatchSession(bindDev, _meta, _data, gIn=gIn or self.gIn, gOut=gOut or self.gOut, gPause=self.gPause, gResume=self.gResume, live=live)
+		cSession = DispatchSession(bindDev, _meta, _data,
+			gIn=gIn or (self.gIn+self.gMode[mode]),
+			gOut=gOut or self.gOut,
+			gPause=self.gPause,
+			gResume=self.gResume+[mode],
+			live=live
+		)
 
 		if live:
 			return cSession

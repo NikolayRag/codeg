@@ -484,7 +484,7 @@ class Ui():
 #  todo 251 (module-dispatch, feature) +0: make generation by iterator
 	def dispatchSend(self, _name):
 		sceneGen = self.activeScene.traceG(feed=Args.Dispatch.cutFeed, power=Args.Dispatch.cutPower)
-		self.dispatch.sessionStart(_name, sceneGen['meta'], sceneGen['data'])
+		self.dispatch.sessionStart(_name, sceneGen['meta'], sceneGen['data'], mode=(Args.Dispatch.cutMode=='Dynamic (M4)'))
 
 
 
