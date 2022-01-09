@@ -80,7 +80,7 @@ class DispatchLink(QObject):
 			gIn=gIn or (self.gIn+self.gMode[mode]),
 			gOut=gOut or self.gOut,
 			gPause=self.gPause,
-			gResume=self.gResume+[mode],
+			gResume=self.gResume+self.gMode[mode],
 			live=live
 		)
 
