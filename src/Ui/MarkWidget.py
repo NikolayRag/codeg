@@ -82,7 +82,7 @@ class MarkTool(QFrame):
 
 
 
-# -todo 180 (module-ui, mark, wat) +0: allow to assign only with selected geo
+# =todo 180 (module-ui, mark, wat) +0: allow to assign only when geo selected
 class MarkWidget(QFrame):
 	lButton = None
 	lTrigger = None

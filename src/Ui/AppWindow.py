@@ -149,8 +149,6 @@ class AppWindow(QObject):
 		self.wBtnDispatcher = cMain.findChild(QWidget, "btnDispatcher")
 		self.wBtnDispatcher.setChecked(Args.Dispatch.visDispatch)
 
-#  todo 47 (module-dispatch, module-ui, ux, unsure) +0: change device list to button+list
-#  todo 49 (module-ui, ux) +0: save/restore active device between sessions
 		self.wFrameDispatch = cMain.findChild(QWidget, "frameDispatch")
 
 		self.wProgAll = cMain.findChild(QWidget, "progAll")

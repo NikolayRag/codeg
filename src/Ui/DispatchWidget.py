@@ -10,7 +10,6 @@ import math
 from .BindFilter import *
 
 
-# =todo 351 (ux, dispatch) +0: add feed and spindle(laser) rate
 #  todo 322 (dispatch, ui, v2) +0: rework dispatch/device/session widget entirely
 '''
 Dispatch-related scope:
@@ -297,7 +296,7 @@ class DispatchWidget(QObject):
 			cDeg = math.radians(float(self.wRecDeg.text()))
 			cAmt = float(self.wRecAmt.text())
 
-#  todo 333 (device, fix) +0: fix lost coords predict with jog
+#  todo 333 (device, fix) +0: fix lost coords predict with Guide
 #			self.recoverGuideCoords = (math.cos(cDeg)*cAmt, -1*math.sin(cDeg)*cAmt)
 			self.recoverGuideCoords = (0,0)
 			self.sigInteract.emit(self.recoverInteract, self.recoverGuideCoords)
@@ -377,7 +376,7 @@ class DispatchWidget(QObject):
 		self.wRecDeg.setValidator(QDoubleValidator())
 		self.wRecAmt = _wRoot.findChild(QWidget, "lineRecAmt")
 		self.wRecAmt.setValidator(QDoubleValidator())
-#  todo 347 (device, ui, ux) +0: recover by vaues
+#  todo 347 (device, ui, ux) +0: recover by values
 		self.wStackedRecoverOps = _wRoot.findChild(QWidget, "stackedRecoverOps")
 		self.wStackedRecoverOps.hide() #hidden for now
 

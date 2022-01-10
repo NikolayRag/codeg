@@ -1,6 +1,6 @@
 # -todo 298 (device, fix) +2: operate device nonblocking
 
-# -todo 260 (module-dispatch, fix) +5: GRBL realtime control
+# -todo 260 (module-dispatch, v2) +1: GRBL realtime control
 #  todo 320 (device) +0: device x/y scale factor
 import serial
 import serial.tools.list_ports

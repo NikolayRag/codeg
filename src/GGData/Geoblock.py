@@ -160,8 +160,7 @@ class Geoblock():
 
 
 
-# -todo 104 (module-data, decide) +0: move to filter
-#  todo 66 (module-ui, module-dispatch) +0: show dispatch progress
+# -todo 104 (module-data, unsure) +0: move to filter
 	def trace(self, _x=0, _y=0, feed=10000, power=1000):
 		def shapePreHook(_shape):
 			refItem = _shape.data()
@@ -307,7 +306,7 @@ class Geoitem():
 
 
 
-#  todo 133 (mark, optimize, decide) -1: Need to cache data?
+#  todo 133 (mark, optimize, unsure) -1: Need to cache data?
 	def marksSolve(self, filterStep=None, force=False):
 		self.dataApplied = dict(self.dataOwn)
 

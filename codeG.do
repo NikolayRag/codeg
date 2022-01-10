@@ -961,8 +961,8 @@
 !clean 343: +0 "src\Ui\DispatchSession.py" ki 22/01/08 19:33:49
 	join cancel() anf final()
 
-=guide 344: +0 "src\Ui\DispatchWidget.py" ki 22/01/07 00:24:27
-	move force stop from Session to Device control
+=guide 344: +0 "src\Ui\DispatchWidget.py" ki 22/01/09 04:42:16
+	move disconnect control from Session to Device
 
  device 345: +0 "src\Dispatch\Engines\EngineArduinoGRBL.py" ki 22/01/07 01:13:28
 	split device disconnect functions
@@ -981,4 +981,7 @@
 
 -ux, dispatch 350: +0 "src\Ui\AppWindow.py" ki 22/01/09 04:00:22
 	query exit while dispatch case
+
+=ux, dispatch 351: +0 "src\Ui\DispatchWidget.py" ki 22/01/09 04:03:58
+	add feed and spindle(laser) rate
 

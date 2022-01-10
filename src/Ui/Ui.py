@@ -35,6 +35,7 @@ from Args import *
 
 
 class Ui():
+	# =todo 352 (mark) +0: make verbose mark fields definition
 	defaultMarkData = {
 		'Mark Color': '#777', #dummy
 		'Power rate': 100.,
@@ -343,7 +344,7 @@ class Ui():
 
 
 		for geoData in projData['geoBlock']:
-#  todo 217 (module-data, ux) +0: detect missing geometry file
+# =todo 217 (module-data, ux) +0: detect missing geometry file
 			cGBlock = self.activeScene.geoAdd(geoData['source'], [self.markDefault], name=('name' in geoData and geoData['name']))
 			cGBlock.xformSet(geoData['xform'])
 
