@@ -187,8 +187,8 @@ class Geoblock():
 		]
 
 		out = []
-		for g in self.svgeo.generate( xform=xform ):
-			out.append(g)
+		for sh, gA in self.svgeo.generate( xform=xform ):
+			out += gA
 
 
 		return out
