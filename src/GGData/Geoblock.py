@@ -188,7 +188,9 @@ class Geoblock():
 
 		out = []
 		for sh, gA in self.svgeo.generate( xform=xform ):
-			out += gA
+			passes = int( sh.data().dataGet('Passes', 1) ) if sh else 1
+			for i in range(passes):
+				out += gA
 
 
 		return out

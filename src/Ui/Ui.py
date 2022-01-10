@@ -38,7 +38,8 @@ class Ui():
 	defaultMarkData = {
 		'Mark Color': '#777', #dummy
 		'Power rate': 100.,
-		'Feed rate': 100.
+		'Feed rate': 100.,
+		'Passes': 1
 	}
 	defaultMarkColorField = 'Mark Color'
 
