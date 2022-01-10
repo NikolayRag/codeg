@@ -17,14 +17,9 @@ class GGen():
     smoothness = 0.02
     precision = 4
 
-    feedRate = 0
-    park = False
-
-    preamble = []
     shapePre = ''
     shapeIn = ''
     shapeOut = ''
-    postamble = []
 
 
     templateG = 'X{x}Y{y}'
@@ -101,40 +96,22 @@ class GGen():
 
 
 
-    def setDevice(self,
-        feedRate = None,
-        park = None,
-    ):
-        if feedRate != None: self.feedRate = feedRate
-        if park != None: self.park = park
-
-
-
     def set(self,
         xform = None,
         smoothness = None,
         precision = None,
 
-        preamble = None,
         shapePre = None,
         shapeIn = None,
         shapeOut = None,
-        postamble = None,
     ):
         if xform != None: self.xform = xform
         if smoothness != None: self.smoothness = smoothness
         if precision != None: self.precision = precision
 
-        if preamble != None: self.preamble = preamble
         if shapePre != None: self.shapePre = shapePre
         if shapeIn != None: self.shapeIn = shapeIn
         if shapeOut != None: self.shapeOut = shapeOut
-        if postamble != None: self.postamble = postamble
-
-        if not isinstance(self.preamble, list):
-            self.preamble = [self.preamble]
-        if not isinstance(self.postamble, list):
-            self.postamble = [self.postamble]
 
 
     
@@ -143,25 +120,11 @@ class GGen():
         smoothness = None,
         precision = None,
     ):
-        self.set(xform=xform, smoothness=smoothness, precision=precision)
-
-
-        for el in self.buildHead():
-            yield el
-
-
-        matrixAcc = []
-        prevDep = 0
         for cShape in self._tree:
-            cXform = cShape.transformation_matrix(self.xform)
-            pointsA = self.shapeGen(cShape, cXform)
+            cXform = cShape.transformation_matrix(xform or self.xform)
+            pointsA = self.shapeGen(cShape, cXform, smoothness or self.smoothness)
 
-            for el in self.shapeDecorate(cShape, pointsA):
-                yield el
-
-
-        for el in self.buildTail():
-            yield el
+            yield cShape, self.shapeDecorate(cShape, pointsA, precision=precision or self.precision)
 
 
 
@@ -171,8 +134,9 @@ class GGen():
         precision = None,
     ):
         gFlat = []
-        for g in self.generate(xform=xform, smoothness=smoothness, precision=precision):
-            gFlat += g
+        for s, gA in self.generate(xform=xform, smoothness=smoothness, precision=precision):
+            for g in gA:
+                gFlat += g
 
         return "\n".join(gFlat)
 
@@ -181,11 +145,11 @@ class GGen():
 ###private###
 
 
-    def shapeGen(self, _shape, _xform):
+    def shapeGen(self, _shape, _xform, _smoothness):
         gShapesA = []
 
         cGShape = []
-        p = _shape.divide(self.smoothness, _xform)
+        p = _shape.divide(_smoothness, _xform)
         for x,y,start in p:
             if start:
                 cGShape = []
@@ -198,7 +162,7 @@ class GGen():
 
 
 
-    def shapeDecorate(self, _shape, _pointsA, _outCode=None):
+    def shapeDecorate(self, _shape, _pointsA, _outCode=None, precision=None):
         if not _outCode: _outCode = []
 
 
@@ -208,19 +172,19 @@ class GGen():
         for cShape in _pointsA:
             if len(cShape):
                 injectIn = self.buildInline(self.shapeIn, _shape, cShape[0])
-                injectOut = self.buildInline(self.shapeOut, _shape, [_pointsA, cI])
+                injectOut = self.buildInline(self.shapeOut, _shape, cShape)
 
                 for g in injectPre:
                     if g == False:
                         return _outCode
                     _outCode.append(g)
 
-                _outCode += self.buildMove(cShape[0])
+                _outCode += self.buildMove(cShape[0], precision)
 
                 for g in injectIn:
                     _outCode.append(g)
 
-                _outCode += self.buildMove(cShape[1:])
+                _outCode += self.buildMove(cShape[1:], precision)
 
                 for g in injectOut:
                     _outCode.append(g)
@@ -246,34 +210,8 @@ class GGen():
 
 
 
-    def buildMove(self, _coords):
+    def buildMove(self, _coords, prec=None):
         if not isinstance(_coords[0], tuple):
             _coords = (_coords,)
 
-        p = self.precision
-        return [self.templateG.format(x=round(x,p), y=round(y,p)) for x,y in _coords]
-
-
-
-    def buildHead(self):
-        out = [] +self.preamble
-
-        if self.feedRate:
-            out.append( f'F{self.feedRate}' )
-
-        return out
-
-
-
-    def buildTail(self):
-        out = []
-
-        if self.park:
-            out.append( self.buildMove((0,0)) )
-
-        out += self.postamble
-
-        return out
-
-
-
+        return [self.templateG.format(x=round(x,prec), y=round(y,prec)) for x,y in _coords]
