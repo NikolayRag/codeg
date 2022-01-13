@@ -12,10 +12,12 @@ class ArgBlock():
 	_saveCB = None
 
 
-#	def __setitem__(self, _name):
-	def __init__(self, _name):
+	def __init__(self, _name, _data=[]):
 		self._name = _name
 		self._data = {}
+
+		for n, d in _data:
+			self._setData(n, d)
 
 
 	def _setCB(self, _cb):
