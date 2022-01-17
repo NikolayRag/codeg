@@ -208,7 +208,7 @@ class Geoitem():
 	dirtyGeo = False
 	dirtyData = False
 	dirtyBind = False
-	dirtyRuntime = False
+	dirtySolve = False
 
 
 	def __init__(self, _ggobj, _name='', _data={}):
@@ -222,7 +222,7 @@ class Geoitem():
 		self.dirtyGeo = False
 		self.dirtyData = False
 		self.dirtyBind = False
-		self.dirtyRuntime = False
+		self.dirtySolve = False
 
 
 
@@ -270,7 +270,7 @@ class Geoitem():
 
 
 
-	#Non-Scene Marks should not make dirty
+	#Non-Scene Marks should not set dirty
 	def markSet(self, _mark, _on, dirty=True):
 		if _on:
 			if _mark in self.marks:
@@ -285,7 +285,7 @@ class Geoitem():
 			self.marks.remove(_mark)
 
 
-		self.dirtyRuntime = True
+		self.dirtySolve = True
 		if dirty:
 			self.dirtyBind = True
 
@@ -312,13 +312,13 @@ class Geoitem():
 
 
 		for cMark in markSortedA:
-			filterData = cMark.applyFilter(self, (self.dirtyRuntime or force) and filterStep)
+			filterData = cMark.applyFilter(self, (self.dirtySolve or force) and filterStep)
 
 			for cData in filterData:
 				dataApplied[cData] = filterData[cData]
 
 
-		self.dirtyRuntime = False
+		self.dirtySolve = False
 
 		return dataApplied
 
