@@ -161,24 +161,8 @@ class Geoblock():
 
 
 # -todo 104 (module-data, unsure) +0: move to filter
-	def trace(self, _x=0, _y=0, feed=10000, power=1000):
-		def shapePreHook(_shape):
-			refItem = _shape.data()
-			if not refItem.dataGet('visible', True):
-				return False
-
-			return ['S0','G0']
-
-
-		def shapeInHook(_shape, _point):
-			refItem = _shape.data()
-			cPower = int(refItem.dataGet('Power rate', 100))
-			cFeed = int(refItem.dataGet('Feed rate', 100))
-
-			return( [f'S{power*cPower*.01}', f'F{feed*cFeed*.01}', 'G1'] )
-
-
-		self.svgeo.set(shapeIn=shapeInHook, shapePre=shapePreHook, shapeOut = 'S0')
+	def trace(self, _x=0, _y=0, shapePre='', shapeIn='', shapeOut=''):
+		self.svgeo.set(shapePre=shapePre, shapeIn=shapeIn, shapeOut=shapeOut)
 
 		xform=[
 			[self.matrix[0][0], 0, self.matrix[0][2]+_x],

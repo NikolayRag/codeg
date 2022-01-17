@@ -457,6 +457,38 @@ class Ui():
 
 
 
+	def genGcode(self):
+		def shapePreHook(_shape):
+			refItem = _shape.data()
+			if not refItem.dataGet('visible', True):
+				return False
+
+			return ['S0','G0']
+
+
+		def shapeInHook(_shape, _point):
+			refItem = _shape.data()
+
+			cPower = int(refItem.dataGet('Power rate', 100))
+			cPower *= Args.Dispatch.cutPower*.01
+
+			cFeed = int(refItem.dataGet('Feed rate', 100))
+			cFeed *= Args.Dispatch.cutFeed*.01
+
+			return( [f'S{cPower}', f'F{cFeed}', 'G1'] )
+
+
+		shapeOutHook = 'S0'
+
+
+		return self.activeScene.traceG(
+			shapePre = shapePreHook,
+			shapeIn = shapeInHook,
+			shapeOut = shapeOutHook
+		)
+
+
+
 # -todo 119 (refactor, module-ui, module-data) +0: clean for dispatch
 # todo 88 (fix, gcode, unsure) +0: use dispatch both for file save
 	def dispatchShot(self, _parent):
@@ -475,7 +507,7 @@ class Ui():
 		fileName = cDialog.selectedFiles()[0]
 
 		with open(fileName, 'w') as f:
-			f.write("\n".join(self.activeScene.traceG(feed=Args.Dispatch.cutFeed, power=Args.Dispatch.cutPower)['data']))
+			f.write("\n".join(self.genGcode()['data']))
 
 
 		if cRecentA.count(fileName): cRecentA.remove(fileName)
@@ -485,7 +517,7 @@ class Ui():
 
 #  todo 251 (module-dispatch, feature) +0: make generation by iterator
 	def dispatchSend(self, _name):
-		sceneGen = self.activeScene.traceG(feed=Args.Dispatch.cutFeed, power=Args.Dispatch.cutPower)
+		sceneGen = self.genGcode()
 		self.dispatch.sessionStart(_name, sceneGen['meta'], sceneGen['data'], mode=(Args.Dispatch.cutMode=='Dynamic (M4)'))
 
 
