@@ -204,7 +204,6 @@ class Geoitem():
 	marks = []
 
 	dataOwn = {}
-	dataApplied = {}
 
 	dirtyGeo = False
 	dirtyData = False
@@ -217,7 +216,6 @@ class Geoitem():
 		self.name = _name
 
 		self.dataOwn = dict(_data)
-		self.dataApplied = dict(self.dataOwn)
 
 		self.marks = []
 
@@ -308,7 +306,7 @@ class Geoitem():
 
 #  todo 133 (mark, optimize, unsure) -1: Need to cache data?
 	def marksSolve(self, filterStep=None, force=False):
-		self.dataApplied = dict(self.dataOwn)
+		dataApplied = dict(self.dataOwn)
 
 		markSortedA = sorted(self.marks, key=lambda m: m.priority)
 
@@ -317,10 +315,12 @@ class Geoitem():
 			filterData = cMark.applyFilter(self, (self.dirtyRuntime or force) and filterStep)
 
 			for cData in filterData:
-				self.dataApplied[cData] = filterData[cData]
+				dataApplied[cData] = filterData[cData]
 
 
 		self.dirtyRuntime = False
+
+		return dataApplied
 
 
 
@@ -328,15 +328,15 @@ class Geoitem():
 
 
 	def dataGet(self, _field=None, _default=None):
-		self.marksSolve()
+		markData = self.marksSolve()
 
 
 		if not _field:
-			return dict(self.dataApplied)
+			return markData
 
 
-		if _field in self.dataApplied:
-			return self.dataApplied[_field]
+		if _field in markData:
+			return markData[_field]
 
 
 		return _default
