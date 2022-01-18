@@ -161,7 +161,7 @@ class Geoblock():
 
 
 # -todo 104 (module-data, unsure) +0: move to filter
-	def trace(self, _x=0, _y=0, shapePre='', shapeIn='', shapeOut=''):
+	def trace(self, _x=0, _y=0, shapePre='', shapeIn='', shapeOut='', passes=1):
 		self.svgeo.set(shapePre=shapePre, shapeIn=shapeIn, shapeOut=shapeOut)
 
 		xform=[
@@ -171,8 +171,11 @@ class Geoblock():
 
 		out = []
 		for sh, gA in self.svgeo.generate( xform=xform ):
-			passes = int( sh.data().dataGet('Passes', 1) ) if sh else 1
-			for i in range(passes):
+			cPasses = passes
+			if callable(cPasses) and sh:
+				cPasses = cPasses(sh)
+
+			for i in range(cPasses):
 				out += gA
 
 

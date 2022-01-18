@@ -481,10 +481,15 @@ class Ui():
 		shapeOutHook = 'S0'
 
 
+		def passesHook(_shape):
+			return _shape.data().dataGet('Passes', 1)
+
+
 		return self.activeScene.traceG(
 			shapePre = shapePreHook,
 			shapeIn = shapeInHook,
-			shapeOut = shapeOutHook
+			shapeOut = shapeOutHook,
+			passes = passesHook
 		)
 
 

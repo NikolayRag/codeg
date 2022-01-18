@@ -171,12 +171,12 @@ class Scene():
 
 
 
-	def traceG(self, _x=0, _y=0, shapePre='', shapeIn='', shapeOut=''):
+	def traceG(self, _x=0, _y=0, shapePre='', shapeIn='', shapeOut='', passes=1):
 		data = []
 
 		bbox = None
 		for cObj in self.geoList():
-			data += cObj.trace(_x, _y, shapePre=shapePre, shapeIn=shapeIn, shapeOut=shapeOut)
+			data += cObj.trace(_x, _y, shapePre=shapePre, shapeIn=shapeIn, shapeOut=shapeOut, passes=passes)
 
 			cBox = cObj.bbox()
 			bbox = bbox or cBox
