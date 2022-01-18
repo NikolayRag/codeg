@@ -469,10 +469,10 @@ class Ui():
 		def shapeInHook(_shape, _point):
 			refItem = _shape.data()
 
-			cPower = int(refItem.dataGet('Power rate', 100))
+			cPower = float(refItem.dataGet('Power rate', 100))
 			cPower *= Args.Dispatch.cutPower*.01
 
-			cFeed = int(refItem.dataGet('Feed rate', 100))
+			cFeed = float(refItem.dataGet('Feed rate', 100))
 			cFeed *= Args.Dispatch.cutFeed*.01
 
 			return( [f'S{cPower}', f'F{cFeed}', 'G1'] )
