@@ -481,10 +481,10 @@ class Ui():
 			refItem = _shape.data()
 
 			cPower = float(refItem.dataGet('cncPower', 100))
-			cPower *= Args.Dispatch.cutPower*.01
+			cPower *= Args.Scene.cutPower*.01
 
 			cFeed = float(refItem.dataGet('cncFeed', 100))
-			cFeed *= Args.Dispatch.cutFeed*.01
+			cFeed *= Args.Scene.cutFeed*.01
 
 			return( [f'S{cPower}', f'F{cFeed}', 'G1'] )
 
@@ -534,7 +534,7 @@ class Ui():
 #  todo 251 (module-dispatch, feature) +0: make generation by iterator
 	def dispatchSend(self, _name):
 		sceneGen = self.genGcode()
-		self.dispatch.sessionStart(_name, sceneGen['meta'], sceneGen['data'], mode=(Args.Dispatch.cutMode=='Dynamic (M4)'))
+		self.dispatch.sessionStart(_name, sceneGen['meta'], sceneGen['data'], mode=(Args.Scene.cutMode=='Dynamic (M4)'))
 
 
 
