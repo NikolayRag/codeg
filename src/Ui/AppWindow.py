@@ -87,7 +87,7 @@ class AppWindow(QObject):
 		cMain = self.wMain = QUiLoader().load(self.defUi)
 
 
-#  todo 244 (feature) +0: add drop scene, svg files and tag text
+#  todo 244 (feature) +0: add drop scene, svg file and code
 		self.tmpFilterMain = BindFilter({
 			QEvent.Close: self.tryExit,
 			QEvent.Move: self.moved,
@@ -441,7 +441,7 @@ class AppWindow(QObject):
 ### MARKS ###
 
 
-#  todo 153 (module-ui, mark) +0: manage mark fields list
+# =todo 153 (module-ui, mark) +0: manage mark fields list
 #  todo 145 (module-ui, widgets) +0: make Marks arrangable with priority change (DragList)
 	def markAddWidget(self, _mark, fields={}, colorName='', openState=False):
 		if _mark in self.allWidgetsMarks:

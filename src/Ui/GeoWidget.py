@@ -5,6 +5,7 @@ from PySide2.QtUiTools import *
 
 from .BindFilter import *
 
+# -todo 360 (feature, ux, v2) +0: Unsolo (normal) mode
 # =todo 220 (ux, widget) +0: make Geoitems list view continuous
 # =todo 318 (ux, widget, geo) +5: scale control
 # =todo 319 (ux, widget, geo) +0: rotate control

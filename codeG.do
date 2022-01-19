@@ -337,7 +337,7 @@
 !refactor, module-ui, module-data 118: +0 "src\Ui\Ui.py" kii 21/10/23 03:36:50
 	clean for minor import
 
--refactor, module-ui, module-data 119: +0 "src\Ui\Ui.py" kii 21/11/15 02:17:52
+-refactor, module-ui, module-data 119: +0 "src\Ui\Ui.py" kii 22/01/17 05:25:03
 	clean for dispatch
 
 +refactor, module-ui, module-data, fix 120: +0 "src\Ui\Ui.py" kii 21/10/09 20:33:56
@@ -427,7 +427,7 @@
 !module-ui, mark 152: +0 "src\Ui\AppWindow.py" kii 21/11/10 13:47:39
 	make select by mark
 
- module-ui, mark 153: +0 "src\Ui\AppWindow.py" kii 21/11/10 15:25:28
+=module-ui, mark 153: +0 "src\Ui\AppWindow.py" ki 22/01/19 03:45:53
 	manage mark fields list
 
 +module-data, scene 155: +0 "src\GGData\GGData.py" kii 21/10/14 15:09:14
@@ -622,7 +622,7 @@
 =module-ui, module-data, geo 219: +0 "src\Ui\Ui.py" kii 21/11/04 03:56:45
 	edit Geoblock transform
 
-=ux, widget 220: +0 "src\Ui\GeoWidget.py" kii 21/12/12 00:59:07
+=ux, widget 220: +0 "src\Ui\GeoWidget.py" ki 22/01/19 22:53:53
 	make Geoitems list view continuous
 
 +viewport 221: +0 "src\Ui\SvgViewport.py" kii 21/10/29 21:22:24
@@ -688,8 +688,8 @@
 -API, app 243: +0 "src\args.py" kii 21/12/12 00:57:55
 	parse command line
 
- feature 244: +0 "src\Ui\AppWindow.py" kii 21/11/08 14:11:05
-	add drop scene, svg files and tag text
+ feature 244: +0 "src\Ui\AppWindow.py" ki 22/01/20 00:50:32
+	add drop scene, svg file and code
 
 !feature 245: +0 "src\Ui\AppWindow.py" kii 21/11/08 14:11:32
 	drop svg
@@ -835,7 +835,7 @@
  tracer, ui 292: +0 "src\Ui\Tracer.py" kii 21/12/05 12:54:01
 	apply styles to Tracer
 
--Tracer, ux 293: +0 "src\Ui\Tracer.py" ki 22/01/13 12:27:38
+-Tracer, ux 293: +0 "src\Ui\Tracer.py" ki 22/01/19 22:52:47
 	leave Traced spots after reset viewport
 
  tracer, clean 294: +0 "src\Ui\DispatchWidget.py" kii 22/01/01 18:47:42
@@ -984,4 +984,34 @@
 
 =ux, dispatch 351: +0 "src\Ui\DispatchWidget.py" kii 22/01/09 04:03:58
 	add feed and spindle(laser) rate
+
+=mark 352: +0 "src\Ui\Ui.py" kii 22/01/18 13:59:18
+	make verbose mark fields definition
+
+!mark, decide 355: +0 "" kii 22/01/18 13:59:16
+	concidered false
+
++fix 356: +3 "src\GGData\Geoblock.py" kii 22/01/18 16:26:09
+	move data field request out
+
+=gcode, clean 357: +0 "src\GGData\Scene.py" kii 22/01/18 17:37:04
+	move out to Ui.genGcode()
+
+ decide, api 359: +0 "src\Ui\Ui.py" ki 22/01/19 22:47:31
+	Concider data fields list to be explicit
+
+-feature, ux, v2 360: +0 "src\Ui\GeoWidget.py" ki 22/01/19 22:55:03
+	Unsolo (normal) mode
+
+=data 361: +0 "src\Ui\Ui.py" ki 22/01/20 00:53:23
+	save/load cutting prefs with scene
+
++data, v2 362: +0 "src\__main__w.py" ki 22/01/20 01:34:01
+	switch current cut settings to scene scope
+
+=data 363: +0 "src\Ui\Ui.py" ki 22/01/20 01:09:21
+	update scene prefs from defaults
+
+-data, v2 364: +0 "src\__main__w.py" ki 22/01/20 01:38:31
+	store and edit Scene prefs outside app prefs
 

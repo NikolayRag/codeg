@@ -290,6 +290,7 @@ class Ui():
 					return True
 
 
+# =todo 363 (data) +0: update scene prefs from defaults
 
 	def sceneCreate(self, _name=''):
 		self.activeScene = self.data.sceneGet(_name)
@@ -397,6 +398,7 @@ class Ui():
 #  todo 196 (module-data, API) +0: deal with Markfilter data fields within Mark
 # -todo 198 (data, fix) +0: move save/load routines to GGData
 # =todo 203 (ux, clean) +0: scene load/save error handling
+# =todo 361 (data) +0: save/load cutting prefs with scene
 	def sceneSave(self, _parent):
 		cRecentA = Args.Ui.recentProject
 
@@ -410,6 +412,7 @@ class Ui():
 			return
 
 
+#  todo 359 (decide, api) +0: Concider data fields list to be explicit
 		saveData = self.activeScene.packScene()
 
 		fileName = cDialog.selectedFiles()[0]

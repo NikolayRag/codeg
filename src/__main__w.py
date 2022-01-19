@@ -33,6 +33,7 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 		'devRecoverOption': [0],
 		'devRecoverCut': [False, [True, False], bool, 'Instant finish Guide'],
 	},
+# -todo 364 (data, v2) +0: store and edit Scene prefs outside app prefs
 	'Scene': {
 		'cutFeed': [10000, [10,25000], int, 'Current Feed rate'],
 		'cutMode': ['Dynamic (M4)', ['Dynamic (M4)', 'Static (M3)'], str, 'Current cutter mode'],
