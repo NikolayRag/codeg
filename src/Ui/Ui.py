@@ -597,9 +597,14 @@ class Ui():
 		self.activeScene.markAppend(cMark)
 
 
-		self.appWindow.markAddWidget(cMark, True, colorName=self.defaultMarkColorField)
+		self.appWindow.markAddWidget(cMark,
+			colorName=self.defaultMarkColorField,
+			openState=True
+		)
 
 
 
 	def markAdd(self, _mark):
-		self.appWindow.markAddWidget(_mark, colorName=self.defaultMarkColorField)
+		self.appWindow.markAddWidget(_mark,
+			colorName=self.defaultMarkColorField
+		)
