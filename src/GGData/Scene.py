@@ -48,7 +48,7 @@ class Scene():
 
 
 
-	def packScene(self):
+	def packScene(self, fieldsGeo=[], fieldsMark=[]):
 		out = {
 			'name': self.name
 		}
@@ -57,7 +57,7 @@ class Scene():
 		markBlock = {}
 		mId = 0
 		for cMark in self.allMarks:
-			markBlock[mId] = cMark.packMark()
+			markBlock[mId] = cMark.packMark(fieldsMark)
 			mId += 1
 
 		out['markBlock'] = markBlock
@@ -66,7 +66,7 @@ class Scene():
 		geoBlock = []
 		
 		for cGeo in self.allGeo:
-			geoBlock.append( cGeo.packGeo(self.allMarks) )
+			geoBlock.append( cGeo.packGeo(self.allMarks, fieldsGeo) )
 
 		out['geoBlock'] = geoBlock
 
@@ -170,7 +170,7 @@ class Scene():
 		return list(self.allGeo)
 
 
-
+# =todo 357 (gcode, clean) +0: move out to Ui.genGcode()
 	def traceG(self, _x=0, _y=0, shapePre='', shapeIn='', shapeOut='', passes=1):
 		data = []
 

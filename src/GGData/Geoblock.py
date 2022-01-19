@@ -141,7 +141,7 @@ class Geoblock():
 
 
 
-	def packGeo(self, _markLimit):
+	def packGeo(self, _markLimit, _fields):
 		out = {
 			'xform': self.matrix,
 			'source': self.source,
@@ -152,7 +152,7 @@ class Geoblock():
 		geoA = []
 
 		for cObj in self.allItems:
-			geoA.append( cObj.packItem(_markLimit) )
+			geoA.append( cObj.packItem(_markLimit, _fields) )
 
 		out['items'] = geoA
 
@@ -234,10 +234,14 @@ class Geoitem():
 
 
 
-	def packItem(self, _markLimit=[]):
+	def packItem(self, _markLimit=[], _fields=[]):
+		cData = dict(self.dataOwn)
+		if _fields:
+			cData = {n:v for n,v in self.dataOwn.items() if n in _fields}
+
 		out = {
 			'name': self.name,
-			'data': self.dataOwn
+			'data': cData
 		}
 
 

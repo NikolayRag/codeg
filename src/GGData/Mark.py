@@ -33,11 +33,15 @@ class Mark():
 
 
 
-	def packMark(self):
+	def packMark(self, _fields=[]):
+		cData = dict(self.data)
+		if _fields:
+			cData = {n:v for n,v in self.data.items() if n in _fields}
+
 		out = {
 			'priority': self.priority,
 			'filter': self.gfilter and self.gfilter.__name__,
-			'data': dict(self.data)
+			'data': cData
 		}
 
 
