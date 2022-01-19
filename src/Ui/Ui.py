@@ -37,12 +37,12 @@ from Args import *
 class Ui():
 	# =todo 352 (mark) +0: make verbose mark fields definition
 	defaultMarkData = {
-		'Mark Color': '#777', #dummy
-		'Power rate': 100.,
-		'Feed rate': 100.,
-		'Passes': 1
+		'__color': '#777', #dummy
+		'cncPower': 100.,
+		'cncFeed': 100.,
+		'cncPasses': 1
 	}
-	defaultMarkColorField = 'Mark Color'
+	defaultMarkColorField = '__color'
 
 
 	styleList = {
@@ -474,10 +474,10 @@ class Ui():
 		def shapeInHook(_shape, _point):
 			refItem = _shape.data()
 
-			cPower = float(refItem.dataGet('Power rate', 100))
+			cPower = float(refItem.dataGet('cncPower', 100))
 			cPower *= Args.Dispatch.cutPower*.01
 
-			cFeed = float(refItem.dataGet('Feed rate', 100))
+			cFeed = float(refItem.dataGet('cncFeed', 100))
 			cFeed *= Args.Dispatch.cutFeed*.01
 
 			return( [f'S{cPower}', f'F{cFeed}', 'G1'] )
@@ -487,7 +487,7 @@ class Ui():
 
 
 		def passesHook(_shape):
-			return _shape.data().dataGet('Passes', 1)
+			return _shape.data().dataGet('cncPasses', 1)
 
 
 		return self.activeScene.traceG(
