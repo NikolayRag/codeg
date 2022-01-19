@@ -16,10 +16,11 @@ class MarkTool(QFrame):
 	lBgColor = None
 
 
-	def __init__(self, _data):
+	def __init__(self, _fields, _data):
 		QFrame.__init__(self)
 
 
+		self.fields = _fields
 		self.data = _data
 
 #  todo 323 (ui, clean) +0: make all styles name-based
@@ -64,7 +65,7 @@ class MarkTool(QFrame):
 
 			dType = type(cVal)
 			if dType == str:
-				if (len(cVal) in [4,7]) and (cVal[0] == '#'):
+				if (len(cVal) in [4,7]) and (cVal[0] == '#'): #color
 					fieldWidget = ColorPicker.ColorPicker(cVal)
 					applyConnect(fieldWidget.sigChangedColor,cName)
 
@@ -98,7 +99,7 @@ class MarkWidget(QFrame):
 
 
 
-	def __init__(self, _contLay, _mark, colorFieldName=''):
+	def __init__(self, _contLay, _mark, fields={}, colorFieldName=''):
 		QFrame.__init__(self)
 
 		
@@ -133,7 +134,7 @@ class MarkWidget(QFrame):
 		self.wFrameHighlight.hide()
 
 
-		self.wFrameTool = MarkTool(self.mark.getData())
+		self.wFrameTool = MarkTool(fields, self.mark.getData())
 		self.wFrameTool.hide()
 
 		_contLay.addWidget(self.wFrameTool)

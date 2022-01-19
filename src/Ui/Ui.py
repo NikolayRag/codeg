@@ -42,6 +42,12 @@ class Ui():
 		'cncFeed': 100.,
 		'cncPasses': 1
 	}
+	defaultMarkFields = {
+		'__color':	{'name':'', 'type':str},
+		'cncPower': {'name':'Power, %', 'range':[0.1,100], 'type':float, 'bound':False},
+		'cncFeed': {'name':'Feed, %', 'range':[0.1,100], 'type':float, 'bound':False},
+		'cncPasses': {'name':'Passes', 'range':[1,10], 'type':int, 'bound':False},
+	}
 	defaultMarkColorField = '__color'
 
 
@@ -598,6 +604,7 @@ class Ui():
 
 
 		self.appWindow.markAddWidget(cMark,
+			fields=self.defaultMarkFields,
 			colorName=self.defaultMarkColorField,
 			openState=True
 		)
@@ -606,5 +613,6 @@ class Ui():
 
 	def markAdd(self, _mark):
 		self.appWindow.markAddWidget(_mark,
+			fields=self.defaultMarkFields,
 			colorName=self.defaultMarkColorField
 		)
