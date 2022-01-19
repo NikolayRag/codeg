@@ -336,8 +336,13 @@ class Ui():
 
 		marksA = {}
 		for cMarkId in projData['markBlock']:
-			markData = projData['markBlock'][cMarkId]
-			cMark = marksA[int(cMarkId)] = self.data.markNew(data=markData['data'], filterName=markData['filter'], filterData={}, priority=markData['priority'])
+			cMarkBlock = projData['markBlock'][cMarkId]
+
+			cData = dict(self.defaultMarkData)
+			for fName, fVal in cMarkBlock['data'].items():
+				cData[fName] = fVal
+
+			cMark = marksA[int(cMarkId)] = self.data.markNew(data=cData, filterName=cMarkBlock['filter'], filterData={}, priority=cMarkBlock['priority'])
 
 			self.activeScene.markAppend(cMark)
 			self.markAdd(cMark)
