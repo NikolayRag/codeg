@@ -59,11 +59,11 @@ class MarkTool(QFrame):
 			_signal.connect(lambda _val: self.sigChangedField.emit(_name, _val))
 
 
-		for cName in self.data:
+		for cName, cField in self.fields.items():
 			cVal = self.data[cName]
 			fieldWidget = QLabel(f"{cVal}")
 
-			dType = type(cVal)
+			dType = cField['type']
 			if dType == str:
 				if (len(cVal) in [4,7]) and (cVal[0] == '#'): #color
 					fieldWidget = ColorPicker.ColorPicker(cVal)
@@ -77,7 +77,7 @@ class MarkTool(QFrame):
 
 
 
-			fieldName = QLabel(f"{cName}")
+			fieldName = QLabel(f"{cField['name']}")
 			self.lLayout.addRow(fieldName, fieldWidget)
 
 
