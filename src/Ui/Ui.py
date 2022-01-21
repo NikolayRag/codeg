@@ -44,9 +44,9 @@ class Ui():
 	}
 	defaultMarkFields = {
 		'__color':	{'name':'', 'type':str},
-		'cncPower': {'name':'Power, %', 'range':[0.1,100], 'type':float, 'bound':False},
-		'cncFeed': {'name':'Feed, %', 'range':[0.1,100], 'type':float, 'bound':False},
-		'cncPasses': {'name':'Passes', 'range':[1,10], 'type':int, 'bound':False},
+		'cncPower': {'name':'Power %', 'range':[0.1,100], 'type':float, 'bound':False},
+		'cncFeed': {'name':'Feed %', 'range':[0.1,100], 'type':float, 'bound':False},
+		'cncPasses': {'name':'Passes', 'range':[1,100], 'type':int, 'bound':False},
 	}
 	defaultMarkColorField = '__color'
 
