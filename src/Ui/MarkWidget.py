@@ -70,11 +70,12 @@ class MarkTool(QFrame):
 					applyConnect(fieldWidget.sigChangedColor,cName)
 
 			if dType == float or dType == int:
-					fieldWidget = QSlider(Qt.Horizontal)
+					fieldWidget = QDoubleSpinBox()
+					fieldWidget.setMinimumWidth(60)
+					fieldWidget.setDecimals(0 if dType==int else 2)
+					fieldWidget.setRange(cField['range'][0], cField['range'][1])
 					fieldWidget.setValue(cVal)
-					fieldWidget.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Preferred)
 					applyConnect(fieldWidget.valueChanged,cName)
-
 
 
 			fieldName = QLabel(f"{cField['name']}")
