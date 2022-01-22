@@ -37,7 +37,7 @@ from Args import *
 class Ui():
 	# =todo 352 (mark) +0: make verbose mark fields definition
 	defaultMarkColorField = '__color'
-	defaultMarkDataFields = {
+	defaultMarkFields = {
 		defaultMarkColorField:	{'name':'', 'type':str},
 		'cncPower': {'value':100., 'name':'Power %', 'range':[0.1,100], 'type':float, 'bound':False},
 		'cncFeed': {'value':100., 'name':'Feed %', 'range':[0.1,100], 'type':float, 'bound':False},
@@ -600,7 +600,7 @@ class Ui():
 	def markCreate(self, _fields=[]):
 		cData = self.markInitialFields()
 		for fName in _fields:
-			cData[fName] = self.defaultMarkDataFields[fName]['value']
+			cData[fName] = self.defaultMarkFields[fName]['value']
 
 		cMark = self.data.markNew( data=cData )
 		self.activeScene.markAppend(cMark)
@@ -611,7 +611,7 @@ class Ui():
 
 
 	def markAdd(self, _mark, _fieldNames, openState=False):
-		fieldsDef = {cName:self.defaultMarkDataFields[cName] for cName in _fieldNames}
+		fieldsDef = {cName:self.defaultMarkFields[cName] for cName in _fieldNames}
 		
 		self.appWindow.markAddWidget(_mark,
 			fields=fieldsDef,
