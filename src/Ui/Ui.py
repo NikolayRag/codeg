@@ -36,19 +36,13 @@ from Args import *
 
 class Ui():
 	# =todo 352 (mark) +0: make verbose mark fields definition
-	defaultMarkData = {
-		'__color': '#777', #dummy
-		'cncPower': 100.,
-		'cncFeed': 100.,
-		'cncPasses': 1
-	}
-	defaultMarkFields = {
-		'__color':	{'name':'', 'type':str},
-		'cncPower': {'name':'Power %', 'range':[0.1,100], 'type':float, 'bound':False},
-		'cncFeed': {'name':'Feed %', 'range':[0.1,100], 'type':float, 'bound':False},
-		'cncPasses': {'name':'Passes', 'range':[1,100], 'type':int, 'bound':False},
-	}
 	defaultMarkColorField = '__color'
+	defaultMarkDataFields = {
+		defaultMarkColorField:	{'name':'', 'type':str},
+		'cncPower': {'value':100., 'name':'Power %', 'range':[0.1,100], 'type':float, 'bound':False},
+		'cncFeed': {'value':100., 'name':'Feed %', 'range':[0.1,100], 'type':float, 'bound':False},
+		'cncPasses': {'value':1, 'name':'Passes', 'range':[1,100], 'type':int, 'bound':False},
+	}
 
 
 	styleList = {
@@ -345,14 +339,14 @@ class Ui():
 		for cMarkId in projData['markBlock']:
 			cMarkBlock = projData['markBlock'][cMarkId]
 
-			cData = dict(self.defaultMarkData)
+			cData = self.markInitialFields()
 			for fName, fVal in cMarkBlock['data'].items():
 				cData[fName] = fVal
 
 			cMark = marksA[int(cMarkId)] = self.data.markNew(data=cData, filterName=cMarkBlock['filter'], filterData={}, priority=cMarkBlock['priority'])
 
 			self.activeScene.markAppend(cMark)
-			self.markAdd(cMark)
+			self.markAdd(cMark, cData.keys())
 
 
 		for geoData in projData['geoBlock']:
@@ -592,30 +586,35 @@ class Ui():
 ### MARKS ###
 
 # -todo 164 (feature, module-ui, unsure) -1: auto-apply new Mark to selection
-	def markCreate(self):
+	def markInitialFields(self):
 		randomColor = QColor.fromHsvF(
 			Counter.next('hue',.3)%1.,
 			Counter.next('sat',.45)%1. *.5+.5,
 			Counter.next('val',.15)%1. *.5+.5
 		)
 
-		cData = dict(self.defaultMarkData)
-		cData[self.defaultMarkColorField] = randomColor.name()
+		return {self.defaultMarkColorField: randomColor.name()}
+
+
+
+	def markCreate(self, _fields=[]):
+		cData = self.markInitialFields()
+		for fName in _fields:
+			cData[fName] = self.defaultMarkDataFields[fName]['value']
 
 		cMark = self.data.markNew( data=cData )
 		self.activeScene.markAppend(cMark)
 
 
-		self.appWindow.markAddWidget(cMark,
-			fields=self.defaultMarkFields,
-			colorName=self.defaultMarkColorField,
-			openState=True
-		)
+		self.markAdd(cMark, cData.keys(), openState=True)
 
 
 
-	def markAdd(self, _mark):
+	def markAdd(self, _mark, _fieldNames, openState=False):
+		fieldsDef = {cName:self.defaultMarkDataFields[cName] for cName in _fieldNames}
+		
 		self.appWindow.markAddWidget(_mark,
-			fields=self.defaultMarkFields,
-			colorName=self.defaultMarkColorField
+			fields=fieldsDef,
+			colorName=self.defaultMarkColorField,
+			openState=openState
 		)
