@@ -31,7 +31,7 @@ class AppWindow(QObject):
 	sigGeoSelect = Signal(object, bool)
 	sigGeoHover = Signal(object, bool)
 	sigGeoDataSet = Signal(object, list)
-	sigMarkAdd = Signal()
+	sigMarkAdd = Signal(int)
 	sigGeoActivate = Signal(object, bool)
 
 	sigSceneReset = Signal()
@@ -119,7 +119,7 @@ class AppWindow(QObject):
 
 		self.wFrameMark = cMain.findChild(QLayout, "frameMark")
 		self.wMarks = cMain.findChild(QLayout, "wMarks")
-		self.wBtnMarkAdd = cMain.findChild(QToolButton, "btnMarkAdd")
+		self.wBoxMarkAdd = cMain.findChild(QComboBox, "boxMarkAdd")
 
 
 		holderViewport = cMain.findChild(QWidget, "wViewport")
@@ -165,7 +165,7 @@ class AppWindow(QObject):
 		self.wBtnSave.clicked.connect(lambda: self.sigSceneSave.emit(self.wMain))
 		self.wBtnLoad.clicked.connect(lambda: self.sigSceneLoad.emit(self.wMain))
 		self.wBtnDispShot.clicked.connect(lambda: self.sigDispatchShot.emit(self.wMain))
-		self.wBtnMarkAdd.clicked.connect(self.sigMarkAdd)
+		self.wBoxMarkAdd.activated.connect(self.sigMarkAdd)
 		self.wBtnPrefs.clicked.connect(self.prefsList)
 		
 
