@@ -597,13 +597,9 @@ class Ui():
 
 
 
-	def markCreate(self, _set=0):
-		if not _set:
-			return
-
+	def markCreate(self, _field):
 		cData = self.markInitialFields()
-		fName = list(self.defaultMarkFields.keys())[_set]
-		cData[fName] = self.defaultMarkFields[fName]['value']
+		cData[_field] = self.defaultMarkFields[_field]['value']
 
 		cMark = self.data.markNew( data=cData )
 		self.activeScene.markAppend(cMark)

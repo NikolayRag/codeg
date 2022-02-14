@@ -31,7 +31,7 @@ class AppWindow(QObject):
 	sigGeoSelect = Signal(object, bool)
 	sigGeoHover = Signal(object, bool)
 	sigGeoDataSet = Signal(object, list)
-	sigMarkAdd = Signal(int)
+	sigMarkAdd = Signal(str)
 	sigGeoActivate = Signal(object, bool)
 
 	sigSceneReset = Signal()
@@ -119,7 +119,10 @@ class AppWindow(QObject):
 
 		self.wFrameMark = cMain.findChild(QLayout, "frameMark")
 		self.wMarks = cMain.findChild(QLayout, "wMarks")
-		self.wBoxMarkAdd = cMain.findChild(QComboBox, "boxMarkAdd")
+
+		self.wBtnMarkAdd = cMain.findChild(QToolButton, "btnMarkAdd")
+		cMenu = QMenu(self.wBtnMarkAdd)
+		self.wBtnMarkAdd.setMenu(cMenu)
 
 
 		holderViewport = cMain.findChild(QWidget, "wViewport")
@@ -165,8 +168,12 @@ class AppWindow(QObject):
 		self.wBtnSave.clicked.connect(lambda: self.sigSceneSave.emit(self.wMain))
 		self.wBtnLoad.clicked.connect(lambda: self.sigSceneLoad.emit(self.wMain))
 		self.wBtnDispShot.clicked.connect(lambda: self.sigDispatchShot.emit(self.wMain))
-		self.wBoxMarkAdd.activated.connect(self.sigMarkAdd)
 		self.wBtnPrefs.clicked.connect(self.prefsList)
+
+		cMenu = self.wBtnMarkAdd.menu()
+		cMenu.addAction('Power', lambda: self.sigMarkAdd.emit('cncPower'))
+		cMenu.addAction('Feed', lambda: self.sigMarkAdd.emit('cncFeed'))
+		cMenu.addAction('Passes', lambda: self.sigMarkAdd.emit('cncPasses'))
 		
 
 #  todo 280 (ui, feature, idea) +0: paint with Tracer into geometry layers
