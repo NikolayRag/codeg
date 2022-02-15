@@ -339,14 +339,13 @@ class Ui():
 		for cMarkId in projData['markBlock']:
 			cMarkBlock = projData['markBlock'][cMarkId]
 
-			cData = self.markInitData()
-			for fName, fVal in cMarkBlock['data'].items():
-				cData[fName] = fVal
-
-			cMark = marksA[int(cMarkId)] = self.data.markNew(data=cData, filterName=cMarkBlock['filter'], filterData={}, priority=cMarkBlock['priority'])
-
-			self.activeScene.markAppend(cMark)
-			self.markAdd(cMark)
+			marksA[int(cMarkId)] = self.markCreate( cMarkBlock['data'].keys(),
+				_data=cMarkBlock['data'],
+				filterName=cMarkBlock['filter'],
+				filterData={},
+				priority=cMarkBlock['priority'],
+				openState=False
+			)
 
 
 		for geoData in projData['geoBlock']:
@@ -601,8 +600,7 @@ class Ui():
 		cData = self.markInitData()
 
 		for cField in _fields:
-			dField = _data if cField in _data else self.defaultMarkFields
-			cData[cField] = dField[cField]['value']
+			cData[cField] = _data[cField] if cField in _data else self.defaultMarkFields[cField]['value']
 
 
 		cMark = self.data.markNew( data=cData, filterName=filterName, filterData=filterData, priority=priority )
