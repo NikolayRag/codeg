@@ -339,7 +339,7 @@ class Ui():
 		for cMarkId in projData['markBlock']:
 			cMarkBlock = projData['markBlock'][cMarkId]
 
-			cData = self.markInitialFields()
+			cData = self.markInitData()
 			for fName, fVal in cMarkBlock['data'].items():
 				cData[fName] = fVal
 
@@ -586,7 +586,7 @@ class Ui():
 ### MARKS ###
 
 # -todo 164 (feature, module-ui, unsure) -1: auto-apply new Mark to selection
-	def markInitialFields(self):
+	def markInitData(self):
 		randomColor = QColor.fromHsvF(
 			Counter.next('hue',.3)%1.,
 			Counter.next('sat',.45)%1. *.5+.5,
@@ -597,8 +597,8 @@ class Ui():
 
 
 
-		cData = self.markInitialFields()
 	def markCreate(self, _fields):
+		cData = self.markInitData()
 		for cField in _fields:
 			cData[cField] = self.defaultMarkFields[cField]['value']
 
