@@ -116,7 +116,6 @@ class AppWindow(QObject):
 		self.widgetGeo.sigSelected.connect(self.geoWidgetSelected)
 		self.widgetGeo.sigActivate.connect(lambda block, state: self.sigGeoActivate.emit(block, state))
 
-
 		self.wFrameMark = cMain.findChild(QLayout, "frameMark")
 		self.wMarks = cMain.findChild(QLayout, "wMarks")
 

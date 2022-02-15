@@ -628,7 +628,7 @@ class Ui():
 			_fieldNames = _mark.getData().keys()
 
 		fieldsDef = {cName:self.defaultMarkFields[cName] for cName in _fieldNames}
-		
+
 		self.appWindow.markAddWidget(_mark,
 			fields=fieldsDef,
 			colorName=self.defaultMarkColorField,
