@@ -597,9 +597,10 @@ class Ui():
 
 
 
-	def markCreate(self, _field):
 		cData = self.markInitialFields()
-		cData[_field] = self.defaultMarkFields[_field]['value']
+	def markCreate(self, _fields):
+		for cField in _fields:
+			cData[cField] = self.defaultMarkFields[cField]['value']
 
 		cMark = self.data.markNew( data=cData )
 		self.activeScene.markAppend(cMark)

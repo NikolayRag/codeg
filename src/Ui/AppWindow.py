@@ -31,7 +31,7 @@ class AppWindow(QObject):
 	sigGeoSelect = Signal(object, bool)
 	sigGeoHover = Signal(object, bool)
 	sigGeoDataSet = Signal(object, list)
-	sigMarkAdd = Signal(str)
+	sigMarkAdd = Signal(list)
 	sigGeoActivate = Signal(object, bool)
 
 	sigSceneReset = Signal()
@@ -171,9 +171,9 @@ class AppWindow(QObject):
 		self.wBtnPrefs.clicked.connect(self.prefsList)
 
 		cMenu = self.wBtnMarkAdd.menu()
-		cMenu.addAction('Power', lambda: self.sigMarkAdd.emit('cncPower'))
-		cMenu.addAction('Feed', lambda: self.sigMarkAdd.emit('cncFeed'))
-		cMenu.addAction('Passes', lambda: self.sigMarkAdd.emit('cncPasses'))
+		cMenu.addAction('Power', lambda: self.sigMarkAdd.emit(['cncPower']))
+		cMenu.addAction('Feed', lambda: self.sigMarkAdd.emit(['cncFeed']))
+		cMenu.addAction('Passes', lambda: self.sigMarkAdd.emit(['cncPasses']))
 		
 
 #  todo 280 (ui, feature, idea) +0: paint with Tracer into geometry layers
