@@ -997,7 +997,7 @@
 =gcode, clean 357: +0 "src\GGData\Scene.py" kii 22/01/18 17:37:04
 	move out to Ui.genGcode()
 
- decide, API 359: +0 "src\Ui\Ui.py" kii 22/01/19 22:47:31
+ idea, API 359: +0 "src\Ui\Ui.py" ki 22/02/15 20:04:08
 	Concider data fields list to be explicit
 
 -feature, ux, v2 360: +0 "src\Ui\GeoWidget.py" kii 22/01/19 22:55:03

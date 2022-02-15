@@ -415,7 +415,7 @@ class Ui():
 			return
 
 
-#  todo 359 (decide, api) +0: Concider data fields list to be explicit
+#  todo 359 (idea, API) +0: Concider data fields list to be explicit
 		saveData = self.activeScene.packScene()
 
 		fileName = cDialog.selectedFiles()[0]
