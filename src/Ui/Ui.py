@@ -44,6 +44,12 @@ class Ui():
 		'cncPasses': {'value':1, 'name':'Passes', 'range':[1,100], 'type':int, 'bound':False},
 	}
 
+	defaultMarks = {
+		'Power': ['cncPower'],
+		'Feed': ['cncFeed'],
+		'Passes': ['cncPasses'],
+	}
+
 
 	styleList = {
 		'dark':'./Ui/schemes/default dark.qss',
@@ -141,7 +147,7 @@ class Ui():
 		self.dispatch = _dispatch
 		self.dispatchChanged(_dispatch.devicePlate())
 
-		self.appWindow = AppWindow(self.dispatch)
+		self.appWindow = AppWindow(self.dispatch, initMarks=self.defaultMarks)
 
 
 		self.appWindow.sigPrefScheme.connect(self.prefScheme)

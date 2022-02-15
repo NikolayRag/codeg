@@ -77,7 +77,7 @@ class AppWindow(QObject):
 
 
 
-	def __init__(self, _dispatch):
+	def __init__(self, _dispatch, initMarks={}):
 		QObject.__init__(self)
 
 		self.rtSize = [None, None]
@@ -170,10 +170,14 @@ class AppWindow(QObject):
 		self.wBtnDispShot.clicked.connect(lambda: self.sigDispatchShot.emit(self.wMain))
 		self.wBtnPrefs.clicked.connect(self.prefsList)
 
+
 		cMenu = self.wBtnMarkAdd.menu()
-		cMenu.addAction('Power', lambda: self.sigMarkAdd.emit(['cncPower']))
-		cMenu.addAction('Feed', lambda: self.sigMarkAdd.emit(['cncFeed']))
-		cMenu.addAction('Passes', lambda: self.sigMarkAdd.emit(['cncPasses']))
+
+		def mAdd(mName, mFields):
+			cMenu.addAction(mName, lambda: self.sigMarkAdd.emit(mFields))
+
+		for mName, mFields in initMarks.items():
+			mAdd(mName, mFields)
 		
 
 #  todo 280 (ui, feature, idea) +0: paint with Tracer into geometry layers
