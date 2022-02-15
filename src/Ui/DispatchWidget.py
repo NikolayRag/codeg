@@ -196,6 +196,7 @@ class DispatchWidget(QObject):
 
 
 # -todo 325 (dispatch, clean) +0: display verbose device state
+# =todo 369 (dispatch, ux) +0: update state at start
 	def devStateBlockState(self, state, _errMsg='', code=0):
 		self.wBtnDevState.setObjectName('btnDevState' if state else 'btnDevState-warning')
 		self.wBtnDevState.setStyleSheet(self.wBtnDevState.styleSheet())

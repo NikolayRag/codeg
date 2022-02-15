@@ -35,9 +35,13 @@ from Args import *
 
 
 class Ui():
-	# =todo 352 (mark) +0: make verbose mark fields definition
 	defaultMarkColorField = '__color'
 	defaultMarkFields = {
+#  todo 365 (ui) +0: add mark fields for more data types
+#		'testBool': {'name':'test bool', 'type':bool},
+#		'testStr': {'name':'test str', 'type':str},
+#		'testList': {'name':'test list', 'range':['dfg','ghj','jkl'], 'type':str, 'bound':True},
+#		'testFree': {'name':'test list', 'range':['dfg','ghj','jkl'], 'type':str, 'bound':False},
 		defaultMarkColorField:	{'name':'', 'type':str},
 		'cncPower': {'value':100., 'name':'Power %', 'range':[0.1,100], 'type':float, 'bound':False},
 		'cncFeed': {'value':100., 'name':'Feed %', 'range':[0.1,100], 'type':float, 'bound':False},
