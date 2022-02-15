@@ -616,21 +616,13 @@ class Ui():
 		cMark = self.data.markNew( data=cData, filterName=filterName, filterData=filterData, priority=priority )
 		self.activeScene.markAppend(cMark)
 
-		self.markAdd(cMark, openState=openState)
 
-
-		return cMark
-
-
-
-	def markAdd(self, _mark, _fieldNames=[], openState=False):
-		if not _fieldNames:
-			_fieldNames = _mark.getData().keys()
-
-		fieldsDef = {cName:self.defaultMarkFields[cName] for cName in _fieldNames}
-
-		self.appWindow.markAddWidget(_mark,
+		fieldsDef = {cName:self.defaultMarkFields[cName] for cName in cData}
+		self.appWindow.markAddWidget(cMark,
 			fields=fieldsDef,
 			colorName=self.defaultMarkColorField,
 			openState=openState
 		)
+
+
+		return cMark
