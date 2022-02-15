@@ -346,7 +346,7 @@ class Ui():
 			cMark = marksA[int(cMarkId)] = self.data.markNew(data=cData, filterName=cMarkBlock['filter'], filterData={}, priority=cMarkBlock['priority'])
 
 			self.activeScene.markAppend(cMark)
-			self.markAdd(cMark, cData.keys())
+			self.markAdd(cMark)
 
 
 		for geoData in projData['geoBlock']:
@@ -606,11 +606,14 @@ class Ui():
 		self.activeScene.markAppend(cMark)
 
 
-		self.markAdd(cMark, cData.keys(), openState=True)
+		self.markAdd(cMark, openState=True)
 
 
 
-	def markAdd(self, _mark, _fieldNames, openState=False):
+	def markAdd(self, _mark, _fieldNames=[], openState=False):
+		if not _fieldNames:
+			_fieldNames = _mark.getData().keys()
+
 		fieldsDef = {cName:self.defaultMarkFields[cName] for cName in _fieldNames}
 		
 		self.appWindow.markAddWidget(_mark,
