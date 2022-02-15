@@ -597,16 +597,21 @@ class Ui():
 
 
 
-	def markCreate(self, _fields):
+	def markCreate(self, _fields, _data={}, filterName=None, filterData={}, priority=None, openState=True):
 		cData = self.markInitData()
-		for cField in _fields:
-			cData[cField] = self.defaultMarkFields[cField]['value']
 
-		cMark = self.data.markNew( data=cData )
+		for cField in _fields:
+			dField = _data if cField in _data else self.defaultMarkFields
+			cData[cField] = dField[cField]['value']
+
+
+		cMark = self.data.markNew( data=cData, filterName=filterName, filterData=filterData, priority=priority )
 		self.activeScene.markAppend(cMark)
 
+		self.markAdd(cMark, openState=openState)
 
-		self.markAdd(cMark, openState=True)
+
+		return cMark
 
 
 
