@@ -202,7 +202,7 @@ class MarkWidget(QFrame):
 
 
 
-	#any
+	#Close active onr
 	def toolUnpop():
 		if MarkWidget.activeMB:
 			MarkWidget.activeMB.lButton.setChecked(False)
