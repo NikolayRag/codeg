@@ -32,8 +32,7 @@ Scene
 *New
 *Load
 *Save
-*Import
-*Paste
+*Import/Drag/Paste
 -
 
 
@@ -42,6 +41,8 @@ Scene
 Geometry
 --------
 
+*Solo/Unsolo tbd
+-
 
 
 
@@ -56,6 +57,7 @@ Viewport
 
 *Pan/zoom
 *Select
+*Control mode tbd
 -
 
 
@@ -65,6 +67,7 @@ Issues:
 
 
 
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Dispatch
 ========
