@@ -7,7 +7,7 @@ from .Widgets import *
 
 
 # =todo 140 (module-ui, mark) +0: show mark values
-class MarkTool(QFrame):
+class MarkControl(QFrame):
 	sigChangedField = Signal(str, object)
 
 
@@ -135,7 +135,7 @@ class MarkWidget(QFrame):
 		self.wFrameHighlight.hide()
 
 
-		self.wFrameTool = MarkTool(fields, self.mark.getData())
+		self.wFrameTool = MarkControl(fields, self.mark.getData())
 		self.wFrameTool.hide()
 
 		_contLay.addWidget(self.wFrameTool)
