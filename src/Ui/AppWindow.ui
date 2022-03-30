@@ -257,7 +257,7 @@
                  <widget class="QWidget" name="widgetToolbar" native="true">
                   <property name="maximumSize">
                    <size>
-                    <width>160</width>
+                    <width>200</width>
                     <height>16777215</height>
                    </size>
                   </property>
@@ -300,7 +300,7 @@
                         </sizepolicy>
                        </property>
                        <property name="text">
-                        <string>+ Mark</string>
+                        <string>New Mark</string>
                        </property>
                        <property name="popupMode">
                         <enum>QToolButton::InstantPopup</enum>
@@ -317,7 +317,7 @@
                        </property>
                        <property name="minimumSize">
                         <size>
-                         <width>56</width>
+                         <width>100</width>
                          <height>0</height>
                         </size>
                        </property>
@@ -325,7 +325,7 @@
                         <enum>QFrame::NoFrame</enum>
                        </property>
                        <property name="verticalScrollBarPolicy">
-                        <enum>Qt::ScrollBarAlwaysOff</enum>
+                        <enum>Qt::ScrollBarAlwaysOn</enum>
                        </property>
                        <property name="horizontalScrollBarPolicy">
                         <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -338,7 +338,7 @@
                          <rect>
                           <x>0</x>
                           <y>0</y>
-                          <width>56</width>
+                          <width>88</width>
                           <height>268</height>
                          </rect>
                         </property>
