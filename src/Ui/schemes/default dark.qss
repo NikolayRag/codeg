@@ -62,3 +62,9 @@ QScrollBar::add-page, QScrollBar::sub-page {
 	width:0;
 	height:0;
 }
+
+
+QCheckBox {
+	border:1px solid #666;
+	border-radius: 4px;
+}
