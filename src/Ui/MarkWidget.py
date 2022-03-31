@@ -23,22 +23,6 @@ class MarkControl(QFrame):
 		self.data = _data
 
 #  todo 323 (ui, clean) +0: make all styles name-based
-#		.setObjectName('...-warning' if __ else '...')
-#		.setStyleSheet(.styleSheet())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		self.fillFrame(self)
 	def fillFrame(self, _parent):
