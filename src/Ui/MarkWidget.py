@@ -3,6 +3,7 @@ from PySide2.QtGui import *
 from PySide2.QtCore import *
 
 from .Widgets import *
+from .BindFilter import *
 
 
 
@@ -62,6 +63,12 @@ class MarkControl(QFrame):
 
 			if dType == float or dType == int:
 					fieldWidget = QDoubleSpinBox()
+					fieldWidget.fltWheel = BindFilter({
+						QEvent.Wheel: lambda e: None if fieldWidget.hasFocus() else (e.ignore() or True)
+					})
+					fieldWidget.installEventFilter(fieldWidget.fltWheel) #suppress focus by wheel
+					fieldWidget.setFocusPolicy(Qt.StrongFocus)
+
 					fieldWidget.setDecimals(0 if dType==int else 2)
 					fieldWidget.setRange(cField['range'][0], cField['range'][1])
 					fieldWidget.setValue(cVal)
