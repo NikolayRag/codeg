@@ -88,6 +88,7 @@ class MarkWidget(QFrame):
 		self.colorFieldName = colorFieldName
 
 
+		self.setContentsMargins(4,4,4,4)
 
 		self.wFrameHighlight = QFrame(self)
 		self.wFrameHighlight.hide()
