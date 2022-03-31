@@ -12,7 +12,6 @@ class MarkControl(QFrame):
 
 
 	data = {}
-	lLayout = None
 	lBgColor = None
 
 
@@ -35,11 +34,7 @@ class MarkControl(QFrame):
 		self.lBgColor = QFrame(wBg)
 
 
-		self.lLayout = QFormLayout(self)
-		self.lLayout.setSpacing(12)
-		self.lLayout.setContentsMargins(16,16,24,24)
 
-		self.fillFrame()
 
 
 		wBg.resize(self.sizeHint()-QSize(4,4))
@@ -54,9 +49,15 @@ class MarkControl(QFrame):
 
 
 
-	def fillFrame(self):
+		self.fillFrame(self)
+	def fillFrame(self, _parent):
 		def applyConnect(_signal, _name): #not working inline, switch to QSignalMapper mb
 			_signal.connect(lambda _val: self.sigChangedField.emit(_name, _val))
+
+
+		lLayout = QFormLayout(_parent)
+		lLayout.setSpacing(4)
+		lLayout.setContentsMargins(0,0,0,0)
 
 
 		for cName, cField in self.fields.items():
@@ -79,7 +80,7 @@ class MarkControl(QFrame):
 
 
 			fieldName = QLabel(f"{cField['name']}")
-			self.lLayout.addRow(fieldName, fieldWidget)
+			lLayout.addRow(fieldName, fieldWidget)
 
 
 
