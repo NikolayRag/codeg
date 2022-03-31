@@ -177,7 +177,6 @@ class MarkWidget(QFrame):
 
 		MarkWidget.activeMB = self
 
-		self.lButton.setChecked(True)
 		self.wFrameHighlight.show()
 		self.wFrameTool.show()
 
@@ -186,7 +185,6 @@ class MarkWidget(QFrame):
 	#Close active onr
 	def toolUnpop():
 		if MarkWidget.activeMB:
-			MarkWidget.activeMB.lButton.setChecked(False)
 			MarkWidget.activeMB.wFrameHighlight.hide()
 			MarkWidget.activeMB.wFrameTool.hide()
 
