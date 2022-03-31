@@ -129,7 +129,7 @@ class MarkWidget(QFrame):
 		self.wFrameTool = MarkControl(fields, self.mark.getData())
 		self.wFrameTool.hide()
 
-		_contLay.addWidget(self.wFrameTool)
+		cLayout.addWidget(self.wFrameTool)
 
 
 		cColor = self.mark.getData(self.colorFieldName)
