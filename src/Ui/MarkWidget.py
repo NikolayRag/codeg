@@ -89,6 +89,8 @@ class MarkWidget(QFrame):
 
 
 
+		self.wFrameHighlight = QFrame(self)
+		self.wFrameHighlight.hide()
 
 
 		cLayout = QVBoxLayout(self)
@@ -106,10 +108,6 @@ class MarkWidget(QFrame):
 		self.lTrigger.setMaximumWidth(16)
 		lBreef.addWidget(self.lTrigger)
 
-		self.wFrameHighlight = QFrame(self.lButton)
-		self.wFrameHighlight.resize(24,24)
-		self.wFrameHighlight.setStyleSheet(f"border: 2px solid #eee; border-radius:2px;")
-		self.wFrameHighlight.hide()
 
 		self.lButton = QToolButton()
 		self.lButton.setFixedHeight(18)
@@ -168,6 +166,8 @@ class MarkWidget(QFrame):
 #??		self.lButton.setPalette(QColor.fromRgb(color[0],color[1],color[2]))
 		self.lButton.setStyleSheet(f"background-color: {_color};border-radius:4px;")
 
+		cColor = QColor(_color).getRgb()[:-1]
+		self.wFrameHighlight.setStyleSheet(f"background-color: rgba{cColor+(.25,)};border-radius:4px;")
 
 
 
@@ -179,6 +179,8 @@ class MarkWidget(QFrame):
 
 		self.wFrameHighlight.show()
 		self.wFrameTool.show()
+
+		self.wFrameHighlight.resize(self.sizeHint()+QSize(8,0))
 
 
 
