@@ -72,7 +72,6 @@ class MarkControl(QFrame):
 
 			if dType == float or dType == int:
 					fieldWidget = QDoubleSpinBox()
-					fieldWidget.setMinimumWidth(60)
 					fieldWidget.setDecimals(0 if dType==int else 2)
 					fieldWidget.setRange(cField['range'][0], cField['range'][1])
 					fieldWidget.setValue(cVal)
