@@ -12,7 +12,6 @@ class MarkControl(QFrame):
 
 
 	data = {}
-	lBgColor = None
 
 
 	def __init__(self, _fields, _data):
@@ -26,26 +25,17 @@ class MarkControl(QFrame):
 #		.setObjectName('...-warning' if __ else '...')
 #		.setStyleSheet(.styleSheet())
 
-		self.setStyleSheet("background-color: rgba(0,0,0,0);")
-
-		wBg = QFrame(self)
-		wBg.setStyleSheet(f"border: 2px solid rgba(128,128,128,.5); border-radius: 5px; background-color: rgba(16,16,16,.9);")
-
-		self.lBgColor = QFrame(wBg)
 
 
 
 
 
-		wBg.resize(self.sizeHint()-QSize(4,4))
-		self.lBgColor.resize(self.sizeHint()-QSize(4,4))
 
 
 
-	def setBackground(self, _color):
-		cColor = tuple(QColor(_color).getRgb()[:-1]) +(.1,)
 
-		self.lBgColor.setStyleSheet(f"background-color: rgba{cColor};")
+
+
 
 
 
@@ -186,7 +176,6 @@ class MarkWidget(QFrame):
 #??		self.lButton.setPalette(QColor.fromRgb(color[0],color[1],color[2]))
 		self.lButton.setStyleSheet(f"background-color: {_color};border-radius:4px;")
 
-		self.wFrameTool.setBackground(_color)
 
 
 
