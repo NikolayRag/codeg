@@ -89,7 +89,6 @@ class MarkWidget(QFrame):
 	activeMB = None
 
 
-
 	def __init__(self, _contLay, _mark, fields={}, colorFieldName=''):
 		QFrame.__init__(self)
 
@@ -98,31 +97,33 @@ class MarkWidget(QFrame):
 		self.colorFieldName = colorFieldName
 
 
-		cLayout = QHBoxLayout(self)
-		cLayout.setSpacing(0)
+
+
+
+		cLayout = QVBoxLayout(self)
 		cLayout.setContentsMargins(0,0,0,0)
+
+		wBreef = QWidget()
+		lBreef = QHBoxLayout(wBreef)
+		lBreef.setSpacing(4)
+		lBreef.setContentsMargins(0,0,0,0)
+		cLayout.addWidget(wBreef)
+
 
 
 		self.lTrigger = QCheckBox()
 		self.lTrigger.setMaximumWidth(16)
-		self.lTrigger.setStyleSheet(f"border:1px solid #777")
-		cLayout.addWidget(self.lTrigger)
-
-		sp1 = QSpacerItem(0,0, QSizePolicy.Expanding, QSizePolicy.Fixed)
-		cLayout.addItem(sp1)
-
-
-		self.lButton = QPushButton()
-		self.lButton.setCheckable(True)
-		self.lButton.setFixedWidth(24)
-		self.lButton.setFixedHeight(24)
-		cLayout.addWidget(self.lButton)
-
+		lBreef.addWidget(self.lTrigger)
 
 		self.wFrameHighlight = QFrame(self.lButton)
 		self.wFrameHighlight.resize(24,24)
 		self.wFrameHighlight.setStyleSheet(f"border: 2px solid #eee; border-radius:2px;")
 		self.wFrameHighlight.hide()
+
+		self.lButton = QToolButton()
+		self.lButton.setFixedHeight(18)
+		self.lButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Ignored)
+		lBreef.addWidget(self.lButton)
 
 
 		self.wFrameTool = MarkControl(fields, self.mark.getData())
