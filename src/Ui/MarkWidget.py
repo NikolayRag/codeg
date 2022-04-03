@@ -115,6 +115,7 @@ class MarkWidget(QFrame):
 
 
 		self.lButton = QToolButton()
+		self.lButton.setText(self.mark.label())
 		self.lButton.setFixedHeight(18)
 		self.lButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Ignored)
 		lBreef.addWidget(self.lButton)

@@ -31,7 +31,7 @@ class AppWindow(QObject):
 	sigGeoSelect = Signal(object, bool)
 	sigGeoHover = Signal(object, bool)
 	sigGeoDataSet = Signal(object, list)
-	sigMarkAdd = Signal(list)
+	sigMarkAdd = Signal(str, list)
 	sigGeoActivate = Signal(object, bool)
 
 	sigSceneReset = Signal()
@@ -173,7 +173,7 @@ class AppWindow(QObject):
 		cMenu = self.wBtnMarkAdd.menu()
 
 		def mAdd(mName, mFields):
-			cMenu.addAction(mName, lambda: self.sigMarkAdd.emit(mFields))
+			cMenu.addAction(mName, lambda: self.sigMarkAdd.emit(mName, mFields))
 
 		for mName, mFields in initMarks.items():
 			mAdd(mName, mFields)

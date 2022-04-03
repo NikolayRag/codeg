@@ -349,12 +349,13 @@ class Ui():
 		for cMarkId in projData['markBlock']:
 			cMarkBlock = projData['markBlock'][cMarkId]
 
-			marksA[int(cMarkId)] = self.markCreate( cMarkBlock['data'].keys(),
+			marksA[int(cMarkId)] = self.markCreate('', cMarkBlock['data'].keys(),
 				_data=cMarkBlock['data'],
 				filterName=cMarkBlock['filter'],
 				filterData={},
 				priority=cMarkBlock['priority'],
-				openState=False
+				openState=False, 
+				autoName=False
 			)
 
 
@@ -606,14 +607,17 @@ class Ui():
 
 
 
-	def markCreate(self, _fields, _data={}, filterName=None, filterData={}, priority=None, openState=True):
+	def markCreate(self, _name, _fields, _data={}, filterName=None, filterData={}, priority=None, openState=True, autoName=True):
 		cData = self.markInitData()
 
 		for cField in _fields:
 			cData[cField] = _data[cField] if cField in _data else self.defaultMarkFields[cField]['value']
 
 
-		cMark = self.data.markNew( data=cData, filterName=filterName, filterData=filterData, priority=priority )
+		nMarks = len( self.activeScene.markList() )
+		markSuffix = f" {nMarks+1}" if (autoName and nMarks) else ''
+
+		cMark = self.data.markNew( data=cData, filterName=filterName, filterData=filterData, priority=priority, name=_name+markSuffix )
 		self.activeScene.markAppend(cMark)
 
 
