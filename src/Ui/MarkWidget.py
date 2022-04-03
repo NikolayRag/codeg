@@ -36,6 +36,10 @@ class MarkControl(QFrame):
 
 
 		for cName, cField in self.fields.items():
+			if not cField['name']:
+				continue
+
+
 			cVal = self.data[cName]
 			fieldWidget = QLabel(f"{cVal}")
 
