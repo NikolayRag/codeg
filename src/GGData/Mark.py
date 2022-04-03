@@ -49,6 +49,7 @@ class Mark():
 			cData = {n:v for n,v in self.data.items() if n in _fields}
 
 		out = {
+			'name': self.name,
 			'priority': self.priority,
 			'filter': self.gfilter and self.gfilter.__name__,
 			'data': cData

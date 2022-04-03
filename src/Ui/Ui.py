@@ -349,7 +349,7 @@ class Ui():
 		for cMarkId in projData['markBlock']:
 			cMarkBlock = projData['markBlock'][cMarkId]
 
-			marksA[int(cMarkId)] = self.markCreate('', cMarkBlock['data'].keys(),
+			marksA[int(cMarkId)] = self.markCreate(cMarkBlock['name'], cMarkBlock['data'].keys(),
 				_data=cMarkBlock['data'],
 				filterName=cMarkBlock['filter'],
 				filterData={},
