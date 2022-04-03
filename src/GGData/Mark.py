@@ -10,16 +10,26 @@ class Mark():
 	data = {}
 	gfilter = None
 	priority = 0
+	name = ''
 
 
-
-	def __init__(self, _data, _priority=0, _filter=None):
+	def __init__(self, _data, _priority=0, _filter=None, _name=''):
 		self.dirtyFlag = False
 
 		self.data = dict(_data)
 		self.gfilter = _filter
 
 		self.priority = _priority
+
+		self.name = _name
+
+
+
+	def label(self, _newName=None):
+		if _newName:
+			self.name = _newName
+
+		return self.name
 
 
 
