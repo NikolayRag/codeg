@@ -615,9 +615,9 @@ class Ui():
 
 
 		nMarks = len( self.activeScene.markList() )
-		markSuffix = f" {nMarks+1}" if (autoName and nMarks) else ''
+		uName = f" | {nMarks+1}" if (autoName and nMarks) else ''
 
-		cMark = self.data.markNew( data=cData, filterName=filterName, filterData=filterData, priority=priority, name=_name+markSuffix )
+		cMark = self.data.markNew( data=cData, filterName=filterName, filterData=filterData, priority=priority, name=_name+uName )
 		self.activeScene.markAppend(cMark)
 
 
