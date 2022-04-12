@@ -46,8 +46,21 @@ class MarkControl(QFrame):
 			dType = cField['type']
 			if dType == str:
 				if (len(cVal) in [4,7]) and (cVal[0] == '#'): #color
-					fieldWidget = ColorPicker.ColorPicker(cVal)
-					applyConnect(fieldWidget.sigChangedColor,cName)
+					fieldWidget = QWidget()
+
+					layField = QHBoxLayout()
+					layField.setSpacing(0)
+					layField.setContentsMargins(0,0,0,0)
+					fieldWidget.setLayout(layField)
+
+					wFiller = QSpacerItem(0,0, QSizePolicy.Expanding, QSizePolicy.Fixed)
+					layField.addItem(wFiller)
+
+					fieldWidgetCP = ColorPicker.ColorPicker(cVal)
+					fieldWidgetCP.setMaximumWidth(16)
+					fieldWidgetCP.setMaximumHeight(18)
+					applyConnect(fieldWidgetCP.sigChangedColor,cName)
+					layField.addWidget(fieldWidgetCP)
 
 			if dType == float or dType == int:
 					fieldWidget = QDoubleSpinBox()
