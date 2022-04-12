@@ -257,7 +257,7 @@
                  <widget class="QWidget" name="widgetToolbar" native="true">
                   <property name="maximumSize">
                    <size>
-                    <width>200</width>
+                    <width>230</width>
                     <height>16777215</height>
                    </size>
                   </property>
@@ -317,7 +317,7 @@
                        </property>
                        <property name="minimumSize">
                         <size>
-                         <width>100</width>
+                         <width>120</width>
                          <height>0</height>
                         </size>
                        </property>
@@ -333,17 +333,14 @@
                        <property name="widgetResizable">
                         <bool>true</bool>
                        </property>
-                       <widget class="QWidget" name="widget">
+                       <widget class="QWidget" name="wScrollMarks">
                         <property name="geometry">
                          <rect>
                           <x>0</x>
                           <y>0</y>
-                          <width>88</width>
+                          <width>108</width>
                           <height>268</height>
                          </rect>
-                        </property>
-                        <property name="autoFillBackground">
-                         <bool>true</bool>
                         </property>
                         <layout class="QVBoxLayout" name="verticalLayout_5">
                          <property name="spacing">
