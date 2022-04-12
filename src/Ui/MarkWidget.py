@@ -128,6 +128,7 @@ class MarkWidget(QFrame):
 
 
 		wBreef = QWidget()
+		wBreef.setFixedHeight(18)
 		lBreef = QHBoxLayout(wBreef)
 		lBreef.setSpacing(4)
 		lBreef.setContentsMargins(0,0,0,0)
@@ -142,7 +143,6 @@ class MarkWidget(QFrame):
 
 		self.lButton = QToolButton()
 		self.lButton.setText(self.mark.label())
-		self.lButton.setFixedHeight(18)
 		self.lButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Ignored)
 		lBreef.addWidget(self.lButton)
 
@@ -201,9 +201,9 @@ class MarkWidget(QFrame):
 
 	def setColor(self, _color):
 #??		self.lButton.setPalette(QColor.fromRgb(color[0],color[1],color[2]))
-		self.lButton.setStyleSheet(f"background-color: {_color};border-radius:4px;")
-
 		cColor = QColor(_color).getRgb()[:-1]
+
+		self.lButton.setStyleSheet(f"background-color: rgba{cColor+(.5,)};border-radius:4px;")
 		self.wFrameHighlight.setStyleSheet(f"background-color: rgba{cColor+(.25,)};border-radius:4px;")
 
 
@@ -219,7 +219,7 @@ class MarkWidget(QFrame):
 		self.wTbar.show()
 		self.wCpick.show()
 
-		self.wFrameHighlight.resize(self.sizeHint()+QSize(8,0))
+		self.wFrameHighlight.resize(self.sizeHint()+QSize(32,0))
 
 
 
