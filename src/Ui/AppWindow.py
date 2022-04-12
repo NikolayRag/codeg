@@ -116,7 +116,6 @@ class AppWindow(QObject):
 		self.widgetGeo.sigSelected.connect(self.geoWidgetSelected)
 		self.widgetGeo.sigActivate.connect(lambda block, state: self.sigGeoActivate.emit(block, state))
 
-		self.wFrameMark = cMain.findChild(QLayout, "frameMark")
 		self.wMarks = cMain.findChild(QLayout, "wMarks")
 
 		self.wBtnMarkAdd = cMain.findChild(QToolButton, "btnMarkAdd")
@@ -459,7 +458,7 @@ class AppWindow(QObject):
 			return
 
 
-		btnMark = MarkWidget(self.wFrameMark, _mark, fields=fields, colorFieldName=colorName)
+		btnMark = MarkWidget(_mark, fields=fields, colorFieldName=colorName)
 		self.allWidgetsMarks[_mark] = btnMark
 
 
@@ -494,10 +493,6 @@ class AppWindow(QObject):
 
 	def slotNewScene(self, _size):
 		self.widgetGeo.clean()
-
-
-		while markTool := self.wFrameMark.takeAt(0):
-			markTool.widget().setParent(None)
 
 
 		while wMark := self.wMarks.takeAt(0):
