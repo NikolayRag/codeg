@@ -90,6 +90,7 @@ class MarkWidget(QFrame):
 		
 		self.mark = _mark
 		self.colorFieldName = colorFieldName
+		cColor = _mark.getData(colorFieldName)
 
 
 		self.setContentsMargins(4,4,4,4)
@@ -100,6 +101,31 @@ class MarkWidget(QFrame):
 
 		cLayout = QVBoxLayout(self)
 		cLayout.setContentsMargins(0,0,0,0)
+
+
+		self.wTbar = QWidget()
+		self.wTbar.setFixedHeight(18)
+		self.wTbar.hide()
+
+		lTbar = QHBoxLayout(self.wTbar)
+		lTbar.setSpacing(4)
+		lTbar.setContentsMargins(0,0,0,0)
+		cLayout.addWidget(self.wTbar)
+
+		wSelby = QToolButton()
+		wSelby.setMaximumWidth(16)
+		wSelby.setText('<')
+		lTbar.addWidget(wSelby)
+
+		wFiller = QSpacerItem(0,0, QSizePolicy.Expanding, QSizePolicy.Fixed)
+		lTbar.addItem(wFiller)
+
+		wKill = QToolButton()
+		wKill.setMaximumWidth(14)
+		wKill.setMaximumHeight(14)
+		wKill.setText('X')
+		lTbar.addWidget(wKill)
+
 
 		wBreef = QWidget()
 		lBreef = QHBoxLayout(wBreef)
@@ -120,6 +146,12 @@ class MarkWidget(QFrame):
 		self.lButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Ignored)
 		lBreef.addWidget(self.lButton)
 
+		self.wCpick = ColorPicker.ColorPicker(cColor)
+		self.wCpick.hide()
+		self.wCpick.setMaximumWidth(14)
+		self.wCpick.sigChangedColor.connect(self.setColor)
+		lBreef.addWidget(self.wCpick)
+
 
 		self.wFrameTool = MarkControl(fields, self.mark.getData())
 		self.wFrameTool.hide()
@@ -127,7 +159,6 @@ class MarkWidget(QFrame):
 		cLayout.addWidget(self.wFrameTool)
 
 
-		cColor = self.mark.getData(self.colorFieldName)
 		self.setColor(cColor)
 
 		self.lButton.clicked.connect(self.toolPop)
@@ -185,6 +216,8 @@ class MarkWidget(QFrame):
 
 		self.wFrameHighlight.show()
 		self.wFrameTool.show()
+		self.wTbar.show()
+		self.wCpick.show()
 
 		self.wFrameHighlight.resize(self.sizeHint()+QSize(8,0))
 
@@ -195,5 +228,7 @@ class MarkWidget(QFrame):
 		if MarkWidget.activeMB:
 			MarkWidget.activeMB.wFrameHighlight.hide()
 			MarkWidget.activeMB.wFrameTool.hide()
+			MarkWidget.activeMB.wTbar.hide()
+			MarkWidget.activeMB.wCpick.hide()
 
 		MarkWidget.activeMB = None
