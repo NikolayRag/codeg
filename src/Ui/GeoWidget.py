@@ -200,8 +200,7 @@ class GeoWidgetItems(QWidget):
 		self.itemRef = {}
 
 
-		loadUi = QUiLoader().load(self.defUi)
-		self.setLayout(loadUi.layout())
+		QUiLoader().load(self.defUi, self)
 
 
 		self.wListItems = self.findChild(QTableWidget, "listItems")
