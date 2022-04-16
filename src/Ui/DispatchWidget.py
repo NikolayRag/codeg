@@ -202,7 +202,7 @@ class DispatchWidget(QObject):
 		self.wBtnDevState.setStyleSheet(self.wBtnDevState.styleSheet())
 
 		self.wLabRecover.setObjectName('labRecover' if state else 'labRecover-warning')
-		self.wLabRecover.setStyleSheet(self.wBtnDevState.styleSheet())
+		self.wLabRecover.setStyleSheet(self.wLabRecover.styleSheet())
 
 		if code!=True and (code in self.GRBLErrors):
 			errVerb = f'<span>{self.GRBLErrors[code]}<br><br>GRBL {code}</span>'
@@ -310,7 +310,7 @@ class DispatchWidget(QObject):
 		self.wBtnDevState.setObjectName('btnDevState')
 		self.wBtnDevState.setStyleSheet(self.wBtnDevState.styleSheet())
 		self.wLabRecover.setObjectName('labRecover')
-		self.wLabRecover.setStyleSheet(self.wBtnDevState.styleSheet())
+		self.wLabRecover.setStyleSheet(self.wLabRecover.styleSheet())
 
 		self.wBtnDispFire.setEnabled(False)
 		self.wBtnRecoverRun.setEnabled(False)
