@@ -83,7 +83,7 @@ class MarkControl(QFrame):
 
 
 # =todo 180 (module-ui, mark, wat) +0: allow to assign only when geo selected
-class MarkWidget(QFrame):
+class MarkWidget(QWidget):
 	lButton = None
 	wAssign = None
 
@@ -98,7 +98,7 @@ class MarkWidget(QFrame):
 
 
 	def __init__(self, _contLay, _mark, fields={}, colorFieldName=''):
-		QFrame.__init__(self)
+		QWidget.__init__(self)
 
 		
 		self.mark = _mark
