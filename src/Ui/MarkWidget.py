@@ -97,7 +97,7 @@ class MarkWidget(QWidget):
 	activeMB = None
 
 
-	def __init__(self, _contLay, _mark, fields={}, colorFieldName=''):
+	def __init__(self, _mark, fields={}, colorFieldName=''):
 		QWidget.__init__(self)
 
 		
