@@ -85,7 +85,7 @@ class MarkControl(QFrame):
 # =todo 180 (module-ui, mark, wat) +0: allow to assign only when geo selected
 class MarkWidget(QFrame):
 	lButton = None
-	lTrigger = None
+	wAssign = None
 
 	sigChanged = Signal(object, str, object)
 	sigTrigger = Signal(object, bool)
@@ -149,10 +149,10 @@ class MarkWidget(QFrame):
 
 
 
-		self.lTrigger = QCheckBox()
-		self.lTrigger.setMaximumWidth(16)
-		lBreef.addWidget(self.lTrigger)
 
+		self.wAssign = QCheckBox()
+		self.wAssign.setMaximumWidth(16)
+		lBreef.addWidget(self.wAssign)
 
 		self.lButton = QToolButton()
 		self.lButton.setText(self.mark.label())
@@ -175,29 +175,29 @@ class MarkWidget(QFrame):
 		self.setColor(cColor)
 
 		self.lButton.clicked.connect(self.toolPop)
-		self.lTrigger.stateChanged.connect(self.markTrigger)
+		self.wAssign.stateChanged.connect(self.outAssign)
 		self.wFrameTool.sigChangedField.connect(self.markChanged)
 
 
 
 	#partially have priority
-	def setTrigger(self, _on=None, tri=None):
+	def setAssign(self, _on=None, tri=None):
 		cState = Qt.Checked if _on else Qt.Unchecked
 
 		if tri:
 			cState = Qt.PartiallyChecked
 
 
-		self.lTrigger.blockSignals(True)
-		self.lTrigger.setCheckState(cState)
-		self.lTrigger.blockSignals(False)
+		self.wAssign.blockSignals(True)
+		self.wAssign.setCheckState(cState)
+		self.wAssign.blockSignals(False)
 
 
 
-	def markTrigger(self, _state):
+	def outAssign(self, _state):
 		self.sigTrigger.emit(self.mark, _state==Qt.Checked)
 
-		self.lTrigger.setTristate(False)
+		self.wAssign.setTristate(False)
 
 
 
