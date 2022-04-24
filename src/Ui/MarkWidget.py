@@ -23,10 +23,21 @@ class MarkWidget(QWidget):
 
 
 #  todo 323 (ui, clean) +0: make all styles name-based
+	def fieldChanged(self, _name, _val):
+		if self.colorFieldName and _name==self.colorFieldName:
+			self.setColor(_val)
+
+
+		self.mark.setData({_name:_val})
+
+		self.sigChanged.emit(self.mark, _name, _val)
+
+
+
 
 	def fillFrame(self, _parent, _fields, _data):
 		def applyConnect(_signal, _name): #not working inline, switch to QSignalMapper mb
-			_signal.connect(lambda _val: self.markChanged(_name, _val))
+			_signal.connect(lambda _val: self.fieldChanged(_name, _val))
 
 
 		lParent = QFormLayout(_parent)
@@ -182,17 +193,6 @@ class MarkWidget(QWidget):
 		self.sigTrigger.emit(self.mark, _state==Qt.Checked)
 
 		self.wAssign.setTristate(False)
-
-
-
-	def markChanged(self, _name, _val):
-		if self.colorFieldName and _name==self.colorFieldName:
-			self.setColor(_val)
-
-
-		self.mark.setData({_name:_val})
-
-		self.sigChanged.emit(self.mark, _name, _val)
 
 
 
