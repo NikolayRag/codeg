@@ -8,39 +8,38 @@ from .BindFilter import *
 
 
 # =todo 140 (module-ui, mark) +0: show mark values
-class MarkControl(QFrame):
-	sigChangedField = Signal(str, object)
+class MarkWidget(QWidget):
+	lButton = None
+	wAssign = None
+
+	sigChanged = Signal(object, str, object)
+	sigTrigger = Signal(object, bool)
 
 
-	data = {}
+	colorFieldName = ''
 
+	mark = None
+	activeMB = None
 
-	def __init__(self, _fields, _data):
-		QFrame.__init__(self)
-
-
-		self.fields = _fields
-		self.data = _data
 
 #  todo 323 (ui, clean) +0: make all styles name-based
 
-		self.fillFrame(self)
-	def fillFrame(self, _parent):
+	def fillFrame(self, _parent, _fields, _data):
 		def applyConnect(_signal, _name): #not working inline, switch to QSignalMapper mb
-			_signal.connect(lambda _val: self.sigChangedField.emit(_name, _val))
+			_signal.connect(lambda _val: self.markChanged(_name, _val))
 
 
-		lLayout = QFormLayout(_parent)
-		lLayout.setSpacing(4)
-		lLayout.setContentsMargins(0,0,0,0)
+		lParent = QFormLayout(_parent)
+		lParent.setSpacing(4)
+		lParent.setContentsMargins(0,0,0,0)
 
 
-		for cName, cField in self.fields.items():
+		for cName, cField in _fields.items():
 			if not cField['name']:
 				continue
 
 
-			cVal = self.data[cName]
+			cVal = _data[cName]
 			fieldWidget = QLabel(f"{cVal}")
 
 			dType = cField['type']
@@ -77,25 +76,10 @@ class MarkControl(QFrame):
 
 
 			fieldName = QLabel(f"{cField['name']}")
-			lLayout.addRow(fieldName, fieldWidget)
-
-
+			lParent.addRow(fieldName, fieldWidget)
 
 
 # =todo 180 (module-ui, mark, wat) +0: allow to assign only when geo selected
-class MarkWidget(QWidget):
-	lButton = None
-	wAssign = None
-
-	sigChanged = Signal(object, str, object)
-	sigTrigger = Signal(object, bool)
-
-
-	colorFieldName = ''
-
-	mark = None
-	activeMB = None
-
 
 	def __init__(self, _mark, fields={}, colorFieldName=''):
 		QWidget.__init__(self)
@@ -166,7 +150,8 @@ class MarkWidget(QWidget):
 		lBreef.addWidget(self.wCpick)
 
 
-		self.wFrameTool = MarkControl(fields, self.mark.getData())
+		self.wFrameTool = QFrame()
+		self.fillFrame(self.wFrameTool, fields, self.mark.getData())
 		self.wFrameTool.hide()
 
 		cLayout.addWidget(self.wFrameTool)
@@ -176,7 +161,6 @@ class MarkWidget(QWidget):
 
 		self.lButton.clicked.connect(self.toolPop)
 		self.wAssign.stateChanged.connect(self.outAssign)
-		self.wFrameTool.sigChangedField.connect(self.markChanged)
 
 
 
