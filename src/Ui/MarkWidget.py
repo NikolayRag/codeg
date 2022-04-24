@@ -23,6 +23,14 @@ class MarkWidget(QWidget):
 
 
 #  todo 323 (ui, clean) +0: make all styles name-based
+
+	def outAssign(self, _state):
+		self.sigTrigger.emit(self.mark, _state==Qt.Checked)
+
+		self.wAssign.setTristate(False)
+
+
+
 	def fieldChanged(self, _name, _val):
 		if self.colorFieldName and _name==self.colorFieldName:
 			self.setColor(_val)
@@ -143,8 +151,6 @@ class MarkWidget(QWidget):
 		cLayout.addWidget(wBreef)
 
 
-
-
 		self.wAssign = QCheckBox()
 		self.wAssign.setMaximumWidth(16)
 		lBreef.addWidget(self.wAssign)
@@ -164,7 +170,6 @@ class MarkWidget(QWidget):
 		self.wFrameTool = QFrame()
 		self.fillFrame(self.wFrameTool, fields, self.mark.getData())
 		self.wFrameTool.hide()
-
 		cLayout.addWidget(self.wFrameTool)
 
 
@@ -175,7 +180,7 @@ class MarkWidget(QWidget):
 
 
 
-	#partially have priority
+	#partially state have priority
 	def setAssign(self, _on=None, tri=None):
 		cState = Qt.Checked if _on else Qt.Unchecked
 
@@ -186,13 +191,6 @@ class MarkWidget(QWidget):
 		self.wAssign.blockSignals(True)
 		self.wAssign.setCheckState(cState)
 		self.wAssign.blockSignals(False)
-
-
-
-	def outAssign(self, _state):
-		self.sigTrigger.emit(self.mark, _state==Qt.Checked)
-
-		self.wAssign.setTristate(False)
 
 
 
