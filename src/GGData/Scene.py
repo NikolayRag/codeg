@@ -132,6 +132,19 @@ class Scene():
 
 
 
+	def markGetGeo(self, _markA, _geoblock):
+		if not isinstance(_markA, list):
+			_markA = [_markA]
+
+		outGeoA = []
+		for cMark in _markA:
+			outGeoA += [g for g in _geoblock.getGeo() if cMark in g.markList()]
+
+
+		return outGeoA
+
+
+
 	def markRemove(self, _mark):
 		if _mark not in self.allMarks:
 			return
