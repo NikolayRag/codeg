@@ -34,6 +34,8 @@ class AppWindow(QObject):
 	sigMarkAdd = Signal(str, list)
 	sigGeoActivate = Signal(object, bool)
 
+	sigMarkSelect = Signal(object, object)
+
 	sigSceneReset = Signal()
 	sigSceneSave = Signal(object)
 	sigSceneLoad = Signal(object)
@@ -447,6 +449,11 @@ class AppWindow(QObject):
 
 
 
+	def geoSelect(self, _geoA):
+		self.widgetGeo.selectGeo(_geoA)
+
+
+
 ### MARKS ###
 
 
@@ -466,6 +473,7 @@ class AppWindow(QObject):
 
 		btnMark.sigChanged.connect(self.markChanged)
 		btnMark.sigTrigger.connect(self.markAssign)
+		btnMark.sigSelect.connect(self.markSelectBy)
 
 		if openState:
 			btnMark.toolPop()
@@ -485,6 +493,13 @@ class AppWindow(QObject):
 			cGeo.markSet(_mark, _state)
 
 			cGeo.marksSolve(filterStep='DIRECT')
+
+
+
+	def markSelectBy(self, _mark):
+		cGeo = [gBlock for gBlock in self.widgetGeo.getBlocks()]
+		if cGeo:
+			self.sigMarkSelect.emit(_mark, cGeo[0])
 
 
 

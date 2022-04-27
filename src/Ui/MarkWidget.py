@@ -14,6 +14,7 @@ class MarkWidget(QWidget):
 
 	sigChanged = Signal(object, str, object)
 	sigTrigger = Signal(object, bool)
+	sigSelect = Signal(object)
 
 
 	colorFieldName = ''
@@ -177,6 +178,7 @@ class MarkWidget(QWidget):
 
 		self.lButton.clicked.connect(self.toolPop)
 		self.wAssign.stateChanged.connect(self.outAssign)
+		wSelby.clicked.connect(lambda: self.sigSelect.emit(self.mark))
 
 
 

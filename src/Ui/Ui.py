@@ -163,6 +163,8 @@ class Ui():
 		self.appWindow.sigMarkAdd.connect(self.markCreate)
 		self.appWindow.sigGeoActivate.connect(self.geoActivate)
 
+		self.appWindow.sigMarkSelect.connect(self.markSelectBy)
+
 		self.appWindow.sigSceneReset.connect(self.sceneReset)
 		self.appWindow.sigSceneSave.connect(self.sceneSave)
 		self.appWindow.sigSceneLoad.connect(self.sceneLoad)
@@ -630,3 +632,10 @@ class Ui():
 
 
 		return cMark
+
+
+
+	def markSelectBy(self, _geo, _mark):
+		cGeoA = self.activeScene.markGetGeo(_geo, _mark)
+
+		self.appWindow.geoSelect(cGeoA)
