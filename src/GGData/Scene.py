@@ -138,7 +138,7 @@ class Scene():
 
 		outGeoA = []
 		for cMark in _markA:
-			outGeoA += [g for g in _geoblock.getGeo() if cMark in g.markList()]
+			outGeoA += [g for g in _geoblock.getGeo() if g.markAssigned(cMark)]
 
 
 		return outGeoA
