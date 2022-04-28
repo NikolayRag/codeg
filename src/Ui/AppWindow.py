@@ -35,6 +35,7 @@ class AppWindow(QObject):
 	sigGeoActivate = Signal(object, bool)
 
 	sigMarkSelect = Signal(object, object)
+	sigMarkKill = Signal(object)
 
 	sigSceneReset = Signal()
 	sigSceneSave = Signal(object)
@@ -474,6 +475,7 @@ class AppWindow(QObject):
 		btnMark.sigChanged.connect(self.markChanged)
 		btnMark.sigTrigger.connect(self.markAssign)
 		btnMark.sigSelect.connect(self.markSelectBy)
+		btnMark.sigKill.connect(lambda cMark: self.markKill(cMark, btnMark))
 
 		if openState:
 			btnMark.toolPop()
@@ -500,6 +502,13 @@ class AppWindow(QObject):
 		cGeo = [gBlock for gBlock in self.widgetGeo.getBlocks()]
 		if cGeo:
 			self.sigMarkSelect.emit(_mark, cGeo[0])
+
+
+
+	def markKill(self, _mark, _wMark):
+		self.sigMarkKill.emit(_mark)
+
+		_wMark.setParent(None)
 
 
 

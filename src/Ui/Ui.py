@@ -164,6 +164,7 @@ class Ui():
 		self.appWindow.sigGeoActivate.connect(self.geoActivate)
 
 		self.appWindow.sigMarkSelect.connect(self.markSelectBy)
+		self.appWindow.sigMarkKill.connect(self.markKill)
 
 		self.appWindow.sigSceneReset.connect(self.sceneReset)
 		self.appWindow.sigSceneSave.connect(self.sceneSave)
@@ -639,3 +640,8 @@ class Ui():
 		cGeoA = self.activeScene.markGetGeo(_mark, _geo)
 
 		self.appWindow.geoSelect(cGeoA)
+
+
+
+	def markKill(self, _mark):
+		cGeoA = self.activeScene.markRemove(_mark)
