@@ -635,7 +635,7 @@ class Ui():
 
 
 
-	def markSelectBy(self, _geo, _mark):
-		cGeoA = self.activeScene.markGetGeo(_geo, _mark)
+	def markSelectBy(self, _mark, _geo):
+		cGeoA = self.activeScene.markGetGeo(_mark, _geo)
 
 		self.appWindow.geoSelect(cGeoA)
