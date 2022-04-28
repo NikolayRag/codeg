@@ -150,6 +150,12 @@ class Scene():
 			return
 
 
+		for cGeo in self.allGeo:
+			for gI in cGeo.getGeo():
+				if gI.markAssigned(_mark):
+					gI.markSet(_mark, False)
+
+
 		self.allMarks.remove( _mark )
 
 
