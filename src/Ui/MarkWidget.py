@@ -6,8 +6,9 @@ from .Widgets import *
 from .BindFilter import *
 
 
+# =todo 395 (marks, ui) +0: make MarksTabWidget
 
-# =todo 140 (module-ui, mark) +0: show mark values
+# =todo 180 (module-ui, mark) +0: allow to assign only when geo selected
 class MarkWidget(QWidget):
 	lButton = None
 	wAssign = None
@@ -24,7 +25,6 @@ class MarkWidget(QWidget):
 	activeMB = None
 
 
-#  todo 323 (ui, clean) +0: make all styles name-based
 
 	def outAssign(self, _state):
 		self.sigTrigger.emit(self.mark, _state==Qt.Checked)
@@ -46,6 +46,7 @@ class MarkWidget(QWidget):
 
 
 	def fillFrame(self, _parent, _fields, _data):
+		#  todo 396 (code, issue) +0: review connecting signals in MarkWidget
 		def applyConnect(_signal, _name): #not working inline, switch to QSignalMapper mb
 			_signal.connect(lambda _val: self.fieldChanged(_name, _val))
 
@@ -100,7 +101,6 @@ class MarkWidget(QWidget):
 			lParent.addRow(fieldName, fieldWidget)
 
 
-# =todo 180 (module-ui, mark, wat) +0: allow to assign only when geo selected
 
 	def __init__(self, _mark, fields={}, colorFieldName=''):
 		QWidget.__init__(self)
@@ -111,6 +111,7 @@ class MarkWidget(QWidget):
 		cColor = _mark.getData(colorFieldName)
 
 
+#  todo 378 (module-ui, mark) +0: use MarkWidget.ui
 		self.setContentsMargins(4,4,4,4)
 
 		self.wFrameHighlight = QFrame(self)
@@ -208,6 +209,7 @@ class MarkWidget(QWidget):
 
 
 
+#  todo 376 (mark, ui, ux) +0: pin mark widget
 	def toolPop(self):
 		MarkWidget.toolUnpop()
 

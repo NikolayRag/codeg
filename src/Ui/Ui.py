@@ -14,8 +14,6 @@
 # =todo 169 (module-ui, ux, mark) +0: del mark
 # -todo 170 (module-ui, ux, mark) +0: reorder mark
 # =todo 171 (module-ui, ux, mark) +0: select by mark
-# =todo 172 (module-ui, ux, mark) +0: unselect mark/close mark box
-# -todo 173 (module-ui, ux, mark) +0: hover mark show toolbox
 
 #  todo 208 (viewport) +0: viewport controls
 
@@ -209,6 +207,7 @@ class Ui():
 
 # -todo 248 (ux, feature) +0: update default plate size
 	def prefScheme(self):
+#  todo 393 (clean) +0: make degrade function more general
 		def degrade(_dict):
 			_dict = dict(_dict)
 			if Args.Viewport.degrade:
@@ -297,6 +296,7 @@ class Ui():
 					return True
 
 
+# =todo 361 (data) +0: save/load cutting prefs with scene
 # =todo 363 (data) +0: update scene prefs from defaults
 
 	def sceneCreate(self, _name=''):
@@ -405,7 +405,6 @@ class Ui():
 #  todo 196 (module-data, API) +0: deal with Markfilter data fields within Mark
 # -todo 198 (data, fix) +0: move save/load routines to GGData
 # =todo 203 (ux, clean) +0: scene load/save error handling
-# =todo 361 (data) +0: save/load cutting prefs with scene
 	def sceneSave(self, _parent):
 		cRecentA = Args.Ui.recentProject
 
@@ -617,6 +616,7 @@ class Ui():
 			cData[cField] = _data[cField] if cField in _data else self.defaultMarkFields[cField]['value']
 
 
+#  todo 377 (data, ux) +0: beautify mark naming
 		nMarks = len( self.activeScene.markList() )
 		uName = f" | {nMarks+1}" if (autoName and nMarks) else ''
 

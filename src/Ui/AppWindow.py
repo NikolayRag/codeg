@@ -489,6 +489,7 @@ class AppWindow(QObject):
 
 
 	def markAssign(self, _mark, _state):
+#  todo 382 (mark, api) +0: move mark assignment to Scene
 		cGeoList = self.widgetGeo.currentSelection()
 
 		for cGeo in cGeoList:
@@ -505,6 +506,7 @@ class AppWindow(QObject):
 
 
 
+# =todo 384 (ui, ux) +0: confirm killing Mark
 	def markKill(self, _mark, _wMark):
 		self.sigMarkKill.emit(_mark)
 

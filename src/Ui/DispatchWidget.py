@@ -524,6 +524,7 @@ class DispatchWidget(QObject):
 
 		self.logSession(_session.liveData(), endMsg)
 
+#  todo 386 (ux, dispatch) +0: make dispatch errors classified
 		errCode = _session.resultRuntime[-1][0]
 		errMsg = 'Connection dropped' if (errCode and errCode<0) else 'Error'
 		self.devStateBlockState(_res!=_session.errDevice, errMsg, errCode>0 and errCode)

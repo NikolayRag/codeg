@@ -10,6 +10,7 @@ Function is called at given event,
 
 When used, assign it to non-volatile variable, not to be GC'd
 '''
+# -todo 373 (clean) +0: store instance at class scope to prevent filter from GC
 
 
 
@@ -37,7 +38,7 @@ class BindFilter(QObject):
 			else:
 				return False
 
-
+#  todo 375 (issue) +0: consider passing affected object to provided function
 		fn = self.eventTypes[cType]
 
 		return bool(fn(_e))

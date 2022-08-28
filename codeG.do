@@ -391,7 +391,7 @@
 +clean 139: +0 "src\GGData\Scene.py" kii 21/10/24 01:38:02
 	Clean mark to object appending
 
-=module-ui, mark 140: +0 "src\Ui\MarkWidget.py" kii 21/12/12 01:03:23
++module-ui, mark 140: +0 "src\Ui\MarkWidget.py" kii 22/02/24 01:25:20
 	show mark values
 
 -module-ui, mark 141: +0 "src\Ui\AppWindow.py" kii 21/10/23 01:36:55
@@ -481,10 +481,10 @@
 =module-ui, ux, mark 171: +0 "src\Ui\Ui.py" kii 21/10/18 18:42:40
 	select by mark
 
-=module-ui, ux, mark 172: +0 "src\Ui\Ui.py" kii 21/10/18 18:42:47
+!module-ui, ux, mark 172: +0 "src\Ui\Ui.py" kii 22/04/04 06:58:04
 	unselect mark/close mark box
 
--module-ui, ux, mark 173: +0 "src\Ui\Ui.py" kii 21/10/18 18:42:55
+!module-ui, ux, mark 173: +0 "src\Ui\Ui.py" kii 22/04/04 06:57:27
 	hover mark show toolbox
 
 +module-ui, module-data, geo 174: +0 "src\Ui\Ui.py" kii 21/10/29 21:07:36
@@ -505,7 +505,7 @@
 -clean 179: -1 "src\Ui\Ui.py" kii 21/12/12 00:56:35
 	check names, order and var/function annotates
 
-=module-ui, mark, wat 180: +0 "src\Ui\MarkWidget.py" kii 22/01/13 12:25:13
+=module-ui, mark 180: +0 "src\Ui\MarkWidget.py" ki 22/04/20 17:48:48
 	allow to assign only when geo selected
 
 -decide 181: +0 "src\GGData\Geoblock.py" kii 21/11/05 20:04:13
@@ -916,8 +916,8 @@
  dispatch, ui, v2 322: +0 "src\Ui\DispatchWidget.py" kii 22/01/07 22:52:21
 	rework dispatch/device/session widget entirely
 
- ui, clean 323: +0 "src\Ui\DispatchWidget.py" kii 21/12/31 19:35:29
-	make all styles name-based
+!ui, clean 323: +0 "src\Ui\MarkWidget.py" kii 22/04/01 02:52:15
+	make styles name-based
 
 +dispatch, fix 324: +0 "src\Ui\DispatchWidget.py" kii 22/01/01 18:45:01
 	switch device widget with device
@@ -997,7 +997,7 @@
 =gcode, clean 357: +0 "src\GGData\Scene.py" kii 22/01/18 17:37:04
 	move out to Ui.genGcode()
 
- idea, API 359: +0 "src\Ui\Ui.py" ki 22/02/15 20:04:08
+ idea, API 359: +0 "src\Ui\Ui.py" kii 22/02/15 20:04:08
 	Concider data fields list to be explicit
 
 -feature, ux, v2 360: +0 "src\Ui\GeoWidget.py" kii 22/01/19 22:55:03
@@ -1009,7 +1009,7 @@
 +data, v2 362: +0 "src\__main__w.py" kii 22/01/20 01:34:01
 	switch current cut settings to scene scope
 
-=data 363: +0 "src\Ui\Ui.py" kii 22/01/20 01:09:21
+=data 363: +0 "src\Ui\Ui.py" kii 22/03/17 03:06:16
 	update scene prefs from defaults
 
 -data, v2 364: +0 "src\__main__w.py" kii 22/01/28 00:00:35
@@ -1021,9 +1021,54 @@
 +ui, ux 366: +0 "src\Ui\Ui.py" kii 22/01/23 03:10:52
 	create different marks each one for required field
 
-+clean 367: +1 "src\Ui\Ui.py" ki 22/02/15 19:36:25
++clean 367: +1 "src\Ui\Ui.py" kii 22/02/15 19:36:25
 	make field referencing more general
 
 =dispatch, ux 369: +0 "src\Ui\DispatchWidget.py" kii 22/01/28 00:17:52
 	update state at start
+
++module-ui, mark 371: +0 "src\Ui\MarkWidget.py" kii 22/04/04 07:01:02
+	add brief info over MarkWidget's at panel
+
++mark, save 372: +0 "src\Ui\Ui.py" kii 22/04/04 06:56:54
+	save/load mark name
+
+-clean 373: +0 "src\Ui\BindFilter.py" kii 22/03/26 17:17:52
+	store instance at class scope to prevent filter from GC
+
+!clean 374: +0 "src\Ui\BindFilter.py" kii 22/03/26 17:18:16
+	
+
+ issue 375: +0 "src\Ui\BindFilter.py" kii 22/03/26 17:21:27
+	consider passing affected object to provided function
+
+ mark, ui, ux 376: +0 "src\Ui\MarkWidget.py" kii 22/03/28 17:53:11
+	pin mark widget
+
+ data, ux 377: +0 "src\Ui\Ui.py" kii 22/04/04 06:59:32
+	beautify mark naming
+
+ module-ui, mark 378: +0 "src\Ui\MarkWidget.py" ki 22/04/20 17:58:47
+	use MarkWidget.ui
+
+!module-ui, mark 379: +0 "src\Ui\MarkWidget.py" kii 22/04/13 23:46:10
+	
+
+ mark, api 382: +0 "src\Ui\AppWindow.py" ki 22/04/24 05:17:53
+	move mark assignment to Scene
+
+=ui, ux 384: +0 "src\Ui\AppWindow.py" ki 22/04/27 23:26:39
+	confirm killing Mark
+
+ ux, dispatch 386: +0 "src\Ui\DispatchWidget.py" ki 22/05/04 15:52:45
+	make dispatch errors classified
+
+ clean 393: +0 "src\Ui\Ui.py" ki 22/08/28 22:12:14
+	make degrade function more general
+
+=marks, ui 395: +0 "src\Ui\MarkWidget.py" ki 22/08/23 05:16:47
+	make MarksTabWidget
+
+ code, issue 396: +0 "src\Ui\MarkWidget.py" ki 22/08/23 04:56:12
+	review connecting signals in MarkWidget
 
