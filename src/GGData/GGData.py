@@ -75,8 +75,8 @@ class GGData():
 			if filterName not in self.allFilters:
 				print('Warning: filter', filterName, 'is unknown')
 
-				newclass = type(filterName, (Markfilter,), {})
-				self.allFilters[filterName] = newclass
+				dummyFilter = type(filterName, (Markfilter,), {})
+				self.allFilters[filterName] = dummyFilter
 
 
 			filterProc = self.allFilters[filterName](filterData)

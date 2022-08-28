@@ -20,19 +20,19 @@ class PrefsWidget():
 		wLayPrefs = self.prefsUi.findChild(QLayout, "layPrefs")
 
 
-		for arg in _blocks:
+		for cArg in _blocks:
 			wForm = QFormLayout()
 
 
 			blockDict = {}
 
-			for prefN, prefV in arg._getData().items():
+			for prefN, prefV in cArg._getData().items():
 				if not prefV:
 					continue
 
 
-				cVal = getattr(arg, prefN)
-				cData = arg._getData()[prefN][0]
+				cVal = getattr(cArg, prefN)
+				cData = cArg._getData()[prefN][0]
 
 
 				fieldVal = fieldW = None
@@ -88,12 +88,12 @@ class PrefsWidget():
 
 
 			if blockDict:
-				wGroup = QGroupBox(arg._getName())
+				wGroup = QGroupBox(cArg._getName())
 				wGroup.setLayout(wForm)
 				wLayPrefs.addWidget(wGroup)
 
 
-			self.links[arg] = blockDict
+			self.links[cArg] = blockDict
 
 
 

@@ -79,7 +79,7 @@ class MarkWidget(QWidget):
 					fieldWidgetCP = ColorPicker.ColorPicker(cVal)
 					fieldWidgetCP.setMaximumWidth(16)
 					fieldWidgetCP.setMaximumHeight(18)
-					applyConnect(fieldWidgetCP.sigChangedColor,cName)
+					applyConnect(fieldWidgetCP.sigChangedColor, cName)
 					layField.addWidget(fieldWidgetCP)
 
 			if dType == float or dType == int:
@@ -93,7 +93,7 @@ class MarkWidget(QWidget):
 					fieldWidget.setDecimals(0 if dType==int else 2)
 					fieldWidget.setRange(cField['range'][0], cField['range'][1])
 					fieldWidget.setValue(cVal)
-					applyConnect(fieldWidget.valueChanged,cName)
+					applyConnect(fieldWidget.valueChanged, cName)
 
 
 			fieldName = QLabel(f"{cField['name']}")
@@ -176,6 +176,7 @@ class MarkWidget(QWidget):
 
 
 		self.setColor(cColor)
+
 
 		self.lButton.clicked.connect(self.toolPop)
 		self.wAssign.stateChanged.connect(self.outAssign)
