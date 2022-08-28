@@ -224,7 +224,6 @@ class MarkWidget(QWidget):
 		self.wFrameHighlight.resize(self.sizeHint()+QSize(32,0))
 
 
-
 	#Close active onr
 	def toolUnpop():
 		if MarkWidget.activeMB:

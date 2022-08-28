@@ -108,6 +108,7 @@ class AppWindow(QObject):
 		wFrameGeoWid = cMain.findChild(QLayout, "frameGeo")
 		self.widgetGeo = GeoWidget(wFrameGeoBlocks, wFrameGeoWid)
 
+		#cleanup
 		listObjects = cMain.findChild(QSplitter, "listObjects")
 		listObjects.setStretchFactor(1, 1)
 
