@@ -40,7 +40,7 @@ class Ui():
 #		'testStr': {'name':'test str', 'type':str},
 #		'testList': {'name':'test list', 'range':['dfg','ghj','jkl'], 'type':str, 'bound':True},
 #		'testFree': {'name':'test list', 'range':['dfg','ghj','jkl'], 'type':str, 'bound':False},
-		defaultMarkColorField:	{'name':'', 'type':str},
+		defaultMarkColorField:	{'name':'Color', 'type':str},
 		'cncPower': {'value':100., 'name':'Power %', 'range':[0.1,100], 'type':float, 'bound':False},
 		'cncFeed': {'value':100., 'name':'Feed %', 'range':[0.1,100], 'type':float, 'bound':False},
 		'cncPasses': {'value':1, 'name':'Passes', 'range':[1,100], 'type':int, 'bound':False},

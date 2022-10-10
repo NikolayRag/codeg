@@ -9,49 +9,17 @@ from .BindFilter import *
 # =todo 395 (marks, ui) +0: make MarksTabWidget
 
 # =todo 180 (module-ui, mark) +0: allow to assign only when geo selected
-class MarkWidget(QWidget):
-	lButton = None
-	wAssign = None
-
-	sigChanged = Signal(object, str, object)
-	sigTrigger = Signal(object, bool)
-	sigSelect = Signal(object)
-	sigKill = Signal(object)
-
-
-	colorFieldName = ''
-
-	mark = None
-	activeMB = None
+class MarkWidgetPanel(QWidget):
+	sigFieldChanged = Signal(str, object)
 
 
 
-	def outAssign(self, _state):
-		self.sigTrigger.emit(self.mark, _state==Qt.Checked)
-
-		self.wAssign.setTristate(False)
-
-
-
-	def fieldChanged(self, _name, _val):
-		if self.colorFieldName and _name==self.colorFieldName:
-			self.setColor(_val)
-
-
-		self.mark.setData({_name:_val})
-
-		self.sigChanged.emit(self.mark, _name, _val)
-
-
-
-
-	def fillFrame(self, _parent, _fields, _data):
-		#  todo 396 (code, issue) +0: review connecting signals in MarkWidget
+	def formPanel(self, _fields, _data):
 		def applyConnect(_signal, _name): #not working inline, switch to QSignalMapper mb
-			_signal.connect(lambda _val: self.fieldChanged(_name, _val))
+			_signal.connect(lambda _val: self.sigFieldChanged.emit(_name, _val))
 
 
-		lParent = QFormLayout(_parent)
+		lParent = QFormLayout(self)
 		lParent.setSpacing(4)
 		lParent.setContentsMargins(0,0,0,0)
 
@@ -99,6 +67,47 @@ class MarkWidget(QWidget):
 
 			fieldName = QLabel(f"{cField['name']}")
 			lParent.addRow(fieldName, fieldWidget)
+
+
+
+	def __init__(self, _fields, _data):
+		QWidget.__init__(self)
+
+		self.formPanel(_fields, _data)
+
+
+
+
+
+
+class MarkWidget(QWidget):
+	lButton = None
+	wAssign = None
+
+	sigChanged = Signal(object, str, object)
+	sigTrigger = Signal(object, bool)
+	sigSelect = Signal(object)
+	sigKill = Signal(object)
+
+
+	colorFieldName = ''
+
+	mark = None
+	activeMB = None
+	def outAssign(self, _state):
+		self.sigTrigger.emit(self.mark, _state==Qt.Checked)
+
+		self.wAssign.setTristate(False)
+
+
+
+	def panelTouched(self, _name, _val):
+		if self.colorFieldName and _name==self.colorFieldName:
+			self.setColor(_val)
+
+		self.mark.setData({_name:_val})
+
+		self.sigChanged.emit(self.mark, _name, _val)
 
 
 
@@ -163,15 +172,9 @@ class MarkWidget(QWidget):
 		self.lButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Ignored)
 		lBreef.addWidget(self.lButton)
 
-		self.wCpick = ColorPicker.ColorPicker(cColor)
-		self.wCpick.hide()
-		self.wCpick.setMaximumWidth(14)
-		self.wCpick.sigChangedColor.connect(self.setColor)
-		lBreef.addWidget(self.wCpick)
+		self.wFrameTool = MarkWidgetPanel(fields, self.mark.getData())
+		self.wFrameTool.sigFieldChanged.connect(self.panelTouched)
 
-
-		self.wFrameTool = QFrame()
-		self.fillFrame(self.wFrameTool, fields, self.mark.getData())
 		self.wFrameTool.hide()
 		cLayout.addWidget(self.wFrameTool)
 
@@ -219,7 +222,6 @@ class MarkWidget(QWidget):
 		self.wFrameHighlight.show()
 		self.wFrameTool.show()
 		self.wTbar.show()
-		self.wCpick.show()
 
 		self.wFrameHighlight.resize(self.sizeHint()+QSize(32,0))
 
@@ -230,6 +232,5 @@ class MarkWidget(QWidget):
 			MarkWidget.activeMB.wFrameHighlight.hide()
 			MarkWidget.activeMB.wFrameTool.hide()
 			MarkWidget.activeMB.wTbar.hide()
-			MarkWidget.activeMB.wCpick.hide()
 
 		MarkWidget.activeMB = None
