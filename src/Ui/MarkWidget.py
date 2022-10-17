@@ -126,7 +126,7 @@ class MarkWidget(QWidget):
 		self.wFrameHighlight = QFrame(self)
 		self.wFrameHighlight.hide()
 		self.tmpHlScale = BindFilter({
-			QEvent.Type.Resize: lambda event: self.wFrameHighlight.resize(event.size()) })
+			QEvent.Type.Resize: lambda _e: self.wFrameHighlight.resize(_e.size()) })
 		self.installEventFilter(self.tmpHlScale)
 
 
