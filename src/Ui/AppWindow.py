@@ -133,7 +133,7 @@ class AppWindow(QObject):
 
 
 		self.tmpFilterViewResize = BindFilter({
-			QEvent.Type.Resize: lambda event: self.wSvgViewport.resize(event.size()) })
+			QEvent.Type.Resize: lambda _e: self.wSvgViewport.resize(_e.size()) })
 		holderViewport.installEventFilter(self.tmpFilterViewResize)
 
 		self.wSvgViewport.sigInteract.connect(self.viewportInteract)
