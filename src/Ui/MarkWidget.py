@@ -125,6 +125,9 @@ class MarkWidget(QWidget):
 
 		self.wFrameHighlight = QFrame(self)
 		self.wFrameHighlight.hide()
+		self.tmpHlScale = BindFilter({
+			QEvent.Type.Resize: lambda event: self.wFrameHighlight.resize(event.size()) })
+		self.installEventFilter(self.tmpHlScale)
 
 
 		cLayout = QVBoxLayout(self)
@@ -223,7 +226,6 @@ class MarkWidget(QWidget):
 		self.wFrameTool.show()
 		self.wTbar.show()
 
-		self.wFrameHighlight.resize(self.sizeHint()+QSize(32,0))
 
 
 	#Close active onr
