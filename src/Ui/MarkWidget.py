@@ -158,22 +158,23 @@ class MarkWidget(QWidget):
 		lTbar.addWidget(wKill)
 
 
-		wBreef = QWidget()
-		wBreef.setFixedHeight(18)
-		lBreef = QHBoxLayout(wBreef)
-		lBreef.setSpacing(4)
-		lBreef.setContentsMargins(0,0,0,0)
-		cLayout.addWidget(wBreef)
+
+		wHeader = QWidget()
+		wHeader.setFixedHeight(18)
+		lHeader = QHBoxLayout(wHeader)
+		lHeader.setSpacing(4)
+		lHeader.setContentsMargins(0,0,0,0)
+		cLayout.addWidget(wHeader)
 
 
 		self.wAssign = QCheckBox()
 		self.wAssign.setMaximumWidth(16)
-		lBreef.addWidget(self.wAssign)
+		lHeader.addWidget(self.wAssign)
 
 		self.lButton = QToolButton()
 		self.lButton.setText(self.mark.label())
 		self.lButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Ignored)
-		lBreef.addWidget(self.lButton)
+		lHeader.addWidget(self.lButton)
 
 		self.wFrameTool = MarkWidgetPanel(fields, self.mark.getData())
 		self.wFrameTool.sigFieldChanged.connect(self.panelTouched)
