@@ -20,7 +20,7 @@ class MarkWidgetPanel(QWidget):
 
 
 		lParent = QFormLayout(self)
-		lParent.setSpacing(4)
+		lParent.setHorizontalSpacing(12)
 		lParent.setContentsMargins(0,0,0,0)
 
 
@@ -72,6 +72,8 @@ class MarkWidgetPanel(QWidget):
 
 	def __init__(self, _fields, _data):
 		QWidget.__init__(self)
+
+		self.setContentsMargins(0,12,0,4)
 
 		self.formPanel(_fields, _data)
 
@@ -160,7 +162,7 @@ class MarkWidget(QWidget):
 
 
 		wHeader = QWidget()
-		wHeader.setFixedHeight(18)
+		wHeader.setFixedHeight(22)
 		lHeader = QHBoxLayout(wHeader)
 		lHeader.setSpacing(4)
 		lHeader.setContentsMargins(0,0,0,0)
@@ -212,7 +214,7 @@ class MarkWidget(QWidget):
 		cColor = QColor(_color).getRgb()[:-1]
 
 		self.lButton.setStyleSheet(f"background-color: rgba{cColor+(.5,)};border-radius:4px;")
-		self.wFrameHighlight.setStyleSheet(f"background-color: rgba{cColor+(.25,)};border-radius:4px;")
+		self.wFrameHighlight.setStyleSheet(f"background-color: rgba{cColor+(.2,)};border-radius:4px;")
 
 
 
