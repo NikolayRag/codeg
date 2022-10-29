@@ -112,30 +112,7 @@ class MarkWidget(QWidget):
 		self.sigChanged.emit(self.mark, _name, _val)
 
 
-
-	def __init__(self, _mark, fields={}, colorFieldName=''):
-		QWidget.__init__(self)
-
-		
-		self.mark = _mark
-		self.colorFieldName = colorFieldName
-		cColor = _mark.getData(colorFieldName)
-
-
-#  todo 378 (module-ui, mark) +0: use MarkWidget.ui
-		self.setContentsMargins(4,4,4,4)
-
-		self.wFrameHighlight = QFrame(self)
-		self.wFrameHighlight.hide()
-		self.tmpHlScale = BindFilter({
-			QEvent.Type.Resize: lambda _e: self.wFrameHighlight.resize(_e.size()) })
-		self.installEventFilter(self.tmpHlScale)
-
-
-		cLayout = QVBoxLayout(self)
-		cLayout.setContentsMargins(0,0,0,0)
-
-
+	def makeHeader(self, _lParent):
 		self.wTbar = QWidget()
 		self.wTbar.setFixedHeight(18)
 		self.wTbar.hide()
@@ -159,6 +136,8 @@ class MarkWidget(QWidget):
 		wKill.setText('X')
 		lTbar.addWidget(wKill)
 
+		wSelby.clicked.connect(lambda: self.sigSelect.emit(self.mark))
+		wKill.clicked.connect(lambda: self.sigKill.emit(self.mark))
 
 
 		wHeader = QWidget()
@@ -166,8 +145,6 @@ class MarkWidget(QWidget):
 		lHeader = QHBoxLayout(wHeader)
 		lHeader.setSpacing(4)
 		lHeader.setContentsMargins(0,0,0,0)
-		cLayout.addWidget(wHeader)
-
 
 		self.wAssign = QCheckBox()
 		self.wAssign.setMaximumWidth(16)
@@ -177,6 +154,38 @@ class MarkWidget(QWidget):
 		self.lButton.setText(self.mark.label())
 		self.lButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Ignored)
 		lHeader.addWidget(self.lButton)
+
+
+		_lParent.addWidget(wHeader)
+
+		_lParent.addWidget(self.wTbar)
+
+
+
+
+	def __init__(self, _mark, fields={}, colorFieldName=''):
+		QWidget.__init__(self)
+
+		
+		self.mark = _mark
+		self.colorFieldName = colorFieldName
+		cColor = _mark.getData(colorFieldName)
+
+
+		self.setContentsMargins(4,4,4,4)
+
+		self.wFrameHighlight = QFrame(self)
+		self.wFrameHighlight.hide()
+		self.tmpHlScale = BindFilter({
+			QEvent.Type.Resize: lambda _e: self.wFrameHighlight.resize(_e.size()) })
+		self.installEventFilter(self.tmpHlScale)
+
+
+		cLayout = QVBoxLayout(self)
+		cLayout.setContentsMargins(0,0,0,0)
+
+
+		self.makeHeader(cLayout)
 
 		self.wFrameTool = MarkWidgetPanel(fields, self.mark.getData())
 		self.wFrameTool.sigFieldChanged.connect(self.panelTouched)
@@ -190,8 +199,6 @@ class MarkWidget(QWidget):
 
 		self.lButton.clicked.connect(self.toolPop)
 		self.wAssign.stateChanged.connect(self.outAssign)
-		wSelby.clicked.connect(lambda: self.sigSelect.emit(self.mark))
-		wKill.clicked.connect(lambda: self.sigKill.emit(self.mark))
 
 
 
