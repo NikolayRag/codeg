@@ -72,23 +72,20 @@ class Args():
 
 
 
-	def _parseCmdline(self, _defs):
-		cParser = argparse.ArgumentParser(description= 'codeg')
+	def _parseCmdline(self, _args):
+		cParser = argparse.ArgumentParser()
 
-		cParser.add_argument('-v', default=False, action='store_true')
-#		cParser.add_argument('inStr', type=str, default='pwned', nargs=(None if 0 else '?'), help='Mandatory string input')
-
-		for block in Args._args:
-			for argn,argv in vars(block).items():
-				cParser.add_argument(f"-{argn}", default=argv, help=argparse.SUPPRESS)
-
+		for cVar in _args._getData():
+			cParser.add_argument(f"-{cVar}", default=getattr(_args, cVar), type=type(cVar))
 		
-		cArgs = cParser.parse_args()
-
-		if cArgs:
-			return vars(cArgs)
+		try:
+			cArgs = cParser.parse_args()
+		except:
+			return
 		
 
+		for cVar in _args._getData():
+			setattr(_args, cVar, getattr(cArgs, cVar))
 
 	def __init__(self, _field, _iniFile=None):
 		self._fillFields(_field)
