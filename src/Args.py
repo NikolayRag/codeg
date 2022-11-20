@@ -115,6 +115,9 @@ class Args():
 		saveData = {}
 
 		for cBlock in Args._args:
+			if not cBlock._saveCB:
+				continue
+
 			cFieldsA = {}
 			for cField in cBlock._getData():
 				cFieldsA[cField] = getattr(cBlock, cField)
