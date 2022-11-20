@@ -87,21 +87,23 @@ class Args():
 		for cVar in _args._getData():
 			setattr(_args, cVar, getattr(cArgs, cVar))
 
-	def __init__(self, _field, _iniFile=None):
+
+
+	def __init__(self, _field, iniFile=None, cmdlineBlock=None):
 		self._fillFields(_field)
 
 
-		if _iniFile:
-			self._iniFile = os.path.join(os.path.expanduser('~'), ".%s/%s.ini" % (_iniFile,_iniFile))
+# -todo 243 (API, app) +0: parse command line
+		if iniFile:
+			self._iniFile = os.path.join(os.path.expanduser('~'), ".%s/%s.ini" % (iniFile,iniFile))
 			self._load()
 
 
-# -todo 243 (API, app) +0: parse command line
-#		self._parseCmdline(_prefs)
-
-
 		for cBlock in Args._args:
-			cBlock._setCB(self._save)
+			if cBlock._getName() == cmdlineBlock: #prevent cmdline for storing
+				self._parseCmdline(cBlock)
+			else:
+				cBlock._setCB(self._save)
 
 
 

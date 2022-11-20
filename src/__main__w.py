@@ -56,13 +56,16 @@ AppPrefs = { #Blockname: {property:[default, range, type, description],..}
 		'recentProject': [[]],
 		'recentLoaded': [[]],
 		'recentSaved': [[]],
-	}
+	},
+	'cmdline': {
+		'file': [''],
+	},
 }
 
 
 
 if __name__ == '__main__':
-	Args(AppPrefs, AppName)
+	Args(AppPrefs, AppName, 'cmdline')
 
 
 	cGG = GGData()
