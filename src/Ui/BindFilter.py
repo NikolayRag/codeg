@@ -18,13 +18,27 @@ from PySide2.QtCore import *
 
 
 class BindFilter(QObject):
+	bindA = {}
 	eventTypes = {}
 
 
-	def __init__(self, _etypes):
+	def __init__(self, _etypes, _bindTo=None):
 		QObject.__init__(self)
 
 		self.eventTypes = dict(_etypes)
+
+		if _bindTo:
+			BindFilter.bindA[self] = _bindTo
+			_bindTo.installEventFilter(self)
+
+
+
+	def remove(self):
+		if self not in BindFilter.bindA:
+			return
+		
+		BindFilter.bindA[self].removeEventFilter(self)
+		del BindFilter.bindA[self]
 
 
 
