@@ -210,9 +210,9 @@ class GeoWidgetItems(QWidget):
 		self.wListItems.itemSelectionChanged.connect(self.itemSelected)
 		self.wListItems.cellEntered.connect(self.itemHover)
 
-		self.tmpFilter = BindFilter({
+		self.wListItems.tmpFilter = BindFilter({
 			QEvent.Type.Leave: lambda e: self.itemHover() })
-		self.wListItems.installEventFilter(self.tmpFilter)
+		self.wListItems.installEventFilter(self.wListItems.tmpFilter)
 
 		self.wListItems.cellClicked.connect(self.itemClicked)
 

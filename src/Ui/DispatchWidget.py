@@ -357,10 +357,10 @@ class DispatchWidget(QObject):
 		self.wFrameRecover = _wRoot.findChild(QWidget, "frameRecover")
 		self.wLabRecover = _wRoot.findChild(QWidget, "labRecover")
 		self.wLabRecoverVerb = _wRoot.findChild(QWidget, "labRecoverVerb")
-		self.tmpFilterMain = BindFilter({
-			QEvent.Enter: lambda e: QToolTip.showText(self.wLabRecoverVerb.mapToGlobal(e.pos()), self.wLabRecoverVerb.toolTip(), self.wLabRecoverVerb)
-		})
-		self.wLabRecoverVerb.installEventFilter(self.tmpFilterMain)
+		BindFilter(
+			{QEvent.Enter: lambda e: QToolTip.showText(self.wLabRecoverVerb.mapToGlobal(e.pos()), self.wLabRecoverVerb.toolTip(), self.wLabRecoverVerb)},
+			self.wLabRecoverVerb
+		)
 		self.wLabRecoverVerb.setVisible(False)
 		self.wListRecoverCoords = _wRoot.findChild(QWidget, "lineRecoverCoords")
 		self.wListRecoverOpions = _wRoot.findChild(QWidget, "listRecoverOpions")

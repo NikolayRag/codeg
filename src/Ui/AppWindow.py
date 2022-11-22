@@ -91,15 +91,16 @@ class AppWindow(QObject):
 
 
 #  todo 244 (feature) +0: add drop scene, svg file and code
-		self.tmpFilterMain = BindFilter({
-			QEvent.Close: self.tryExit,
-			QEvent.Move: self.moved,
-			QEvent.Resize: self.resized,
-			QEvent.WindowStateChange: self.maximized,
-			QEvent.DragEnter: lambda e: e.acceptProposedAction(),
-			QEvent.Drop: lambda e: e.mimeData().hasUrls() and self.sigDrop.emit(e.mimeData().urls()),
-		 })
-		cMain.installEventFilter(self.tmpFilterMain)
+		BindFilter({
+				QEvent.Close: self.tryExit,
+				QEvent.Move: self.moved,
+				QEvent.Resize: self.resized,
+				QEvent.WindowStateChange: self.maximized,
+				QEvent.DragEnter: lambda e: e.acceptProposedAction(),
+				QEvent.Drop: lambda e: e.mimeData().hasUrls() and self.sigDrop.emit(e.mimeData().urls()),
+		 	},
+		 	cMain
+		 )
 
 		
 		#widgets time
@@ -132,10 +133,11 @@ class AppWindow(QObject):
 		self.wSvgViewport.lower() 
 
 
-		self.tmpFilterViewResize = BindFilter({
-			QEvent.Type.Resize: lambda _e: self.wSvgViewport.resize(_e.size()) })
-		holderViewport.installEventFilter(self.tmpFilterViewResize)
-
+		#wSvgViewport is free floating over, so it resized manually
+		BindFilter(
+			{QEvent.Type.Resize: lambda _e: self.wSvgViewport.resize(_e.size())},
+			holderViewport
+		)
 		self.wSvgViewport.sigInteract.connect(self.viewportInteract)
 
 
