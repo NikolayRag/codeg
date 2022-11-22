@@ -1,11 +1,43 @@
+'''
+App settings singletone.
+
+Args defines blocks of directly accessible properties, defined at init.
+Properties are defined by blocks
+
+
+Definition is:
+
+	prefs = {
+		'Blockname': {
+			'Property': [value, ...],
+			..
+		},
+		..
+	}
+	Args(prefs, iniFile='AppName', cmdlineBlock='')
+
+
+Commandline arguments are defined within cmdlineBlock block,
+ and override defaults and .ini file if specified.
+
+Then property is read and assigned directly, saved to .ini file as assigned:
+
+	tmp = Args.Blockname.Property
+	Args.Blockname.Property = newValue
+
+Access to Property subsequental data by:
+
+	Args.Blockname._getData()
+
+
+'''
+
+
 import argparse, os, json
 import logging
 
 
-'''
-Deal with app settings.
-Loads previously saved and put commandline arguments over.
-'''
+
 class ArgBlock():
 	_name = None
 	_data = {}
@@ -49,7 +81,7 @@ class ArgBlock():
 
 
 
-
+#all local variables begin with _ to avoid interfere with block names
 class Args():
 	_iniFile = None
 
