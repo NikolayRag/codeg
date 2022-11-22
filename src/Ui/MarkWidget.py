@@ -53,10 +53,11 @@ class MarkWidgetPanel(QWidget):
 
 			if dType == float or dType == int:
 					fieldWidget = QDoubleSpinBox()
+					#suppress focus by wheel
 					fieldWidget.fltWheel = BindFilter({
 						QEvent.Wheel: lambda e: None if fieldWidget.hasFocus() else (e.ignore() or True)
 					})
-					fieldWidget.installEventFilter(fieldWidget.fltWheel) #suppress focus by wheel
+					fieldWidget.installEventFilter(fieldWidget.fltWheel)
 					fieldWidget.setFocusPolicy(Qt.StrongFocus)
 
 					fieldWidget.setDecimals(0 if dType==int else 2)
