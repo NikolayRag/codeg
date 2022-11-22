@@ -11,7 +11,7 @@ from Args import *
 
 
 AppName = 'codeg'
-AppPrefs = { #Blockname: {property:[default, range, type, description],..}
+AppPrefs = { #Blockname: {property:[default, range, type, description],..},..
 	'Application': {
 		'initFit': [0.85],
 		'scheme': ['dark', ['dark','light'], str, 'Style scheme'],
@@ -81,5 +81,6 @@ if __name__ == '__main__':
 	cUi = Ui(cGG, dLink)
 	cUi.exec()
 
+# =todo 402 (issue, ux) +0: exit lag ~15sec at no-device config
 
 	logging.warning('Exiting')

@@ -235,7 +235,7 @@
 !module-data, ux 82: +0 "src\GGData\Geoblock.py" kii 21/11/03 05:27:21
 	parse groups
 
- ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" kii 21/11/01 19:48:46
+ ux, module-ui, fix 83: +0 "src\Ui\SvgViewport.py" Ki 22/10/17 05:08:13
 	fit at init dont work due to obsolete size 
 
  module-data 84: +0 "src\GGData\Scene.py" kii 21/10/29 17:32:58
@@ -505,7 +505,7 @@
 -clean 179: -1 "src\Ui\Ui.py" kii 21/12/12 00:56:35
 	check names, order and var/function annotates
 
-=module-ui, mark 180: +0 "src\Ui\MarkWidget.py" ki 22/04/20 17:48:48
+=module-ui, mark 180: +0 "src\Ui\MarkWidget.py" Ki 22/10/02 21:15:43
 	allow to assign only when geo selected
 
 -decide 181: +0 "src\GGData\Geoblock.py" kii 21/11/05 20:04:13
@@ -529,7 +529,7 @@
 !module-data, API 188: +0 "src\Ui\Ui.py" kii 21/11/07 07:46:10
 	move scene load to data
 
- module-data, API, decide 189: +0 "src\GGData\GGData.py" kii 21/12/12 00:58:32
+ module-data, API, decide 189: +0 "src\GGData\GGData.py" Ki 22/10/30 09:12:04
 	make all indirect (by id) controls
 
 +feature, module-ui 190: +0 "src\Ui\Ui.py" kii 21/11/22 17:01:11
@@ -685,7 +685,7 @@
 +API 240: +0 "src\args.py" kii 21/11/07 07:23:15
 	make global settings singletone
 
--API, app 243: +0 "src\args.py" kii 21/12/12 00:57:55
++API, app 243: +0 "src\Args.py" Ki 22/11/20 05:25:06
 	parse command line
 
  feature 244: +0 "src\Ui\AppWindow.py" kii 22/01/20 00:50:32
@@ -1033,7 +1033,7 @@
 +mark, save 372: +0 "src\Ui\Ui.py" kii 22/04/04 06:56:54
 	save/load mark name
 
--clean 373: +0 "src\Ui\BindFilter.py" kii 22/03/26 17:17:52
++clean 373: +0 "src\Ui\BindFilter.py" Ki 22/11/22 05:22:31
 	store instance at class scope to prevent filter from GC
 
 !clean 374: +0 "src\Ui\BindFilter.py" kii 22/03/26 17:18:16
@@ -1066,9 +1066,27 @@
  clean 393: +0 "src\Ui\Ui.py" ki 22/08/28 22:12:14
 	make degrade function more general
 
-=marks, ui 395: +0 "src\Ui\MarkWidget.py" ki 22/08/23 05:16:47
+=marks, ui 395: +0 "src\Ui\MarkWidget.py" Ki 22/10/17 03:22:17
 	make MarksTabWidget
 
- code, issue 396: +0 "src\Ui\MarkWidget.py" ki 22/08/23 04:56:12
-	review connecting signals in MarkWidget
++code, issue 396: +0 "src\Ui\MarkWidget.py" Ki 22/10/02 21:18:17
+	review connecting signals in MarkWidgetPanel
+
++marks, ui 397: +0 "src\Ui\MarkWidget.py" Ki 22/10/17 03:22:17
+	make MarkWidgetPanel
+
+ code, cfg 398: +0 "src\Ui\Ui.py" Ki 22/10/02 21:27:52
+	split app-wide data
+
+-code, clean 399: +0 "src\Ui\Ui.py" Ki 22/10/02 21:29:23
+	find better place for hooks
+
+=issue, ux 402: +0 "src\__main__w.py" Ki 22/11/06 05:28:40
+	exit lag ~15sec at no-device config
+
+ issue, ux, widget 403: +0 "src\Ui\MarkWidget.py" Ki 22/10/29 19:01:49
+	make MarkWidget stylesheets robust
+
+ code, clean 404: +0 "src\Ui\AppWindow.py" Ki 22/10/17 05:07:56
+	make wSvgViewport ordinary nested widget
 

@@ -10,7 +10,6 @@ Function is called at given event,
 
 When used, assign it to non-volatile variable, not to be GC'd
 '''
-# -todo 373 (clean) +0: store instance at class scope to prevent filter from GC
 
 
 

@@ -125,7 +125,6 @@ class Args():
 		self._fillFields(_field)
 
 
-# -todo 243 (API, app) +0: parse command line
 		if iniFile:
 			self._iniFile = os.path.join(os.path.expanduser('~'), ".%s/%s.ini" % (iniFile,iniFile))
 			self._load()

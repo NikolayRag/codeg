@@ -133,6 +133,7 @@ class AppWindow(QObject):
 		self.wSvgViewport.lower() 
 
 
+#  todo 404 (code, clean) +0: make wSvgViewport ordinary nested widget
 		#wSvgViewport is free floating over, so it resized manually
 		BindFilter(
 			{QEvent.Type.Resize: lambda _e: self.wSvgViewport.resize(_e.size())},

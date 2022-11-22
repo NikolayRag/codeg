@@ -33,6 +33,7 @@ from Args import *
 
 
 class Ui():
+#  todo 398 (code, cfg) +0: split app-wide data
 	defaultMarkColorField = '__color'
 	defaultMarkFields = {
 #  todo 365 (ui) +0: add mark fields for more data types
@@ -477,6 +478,7 @@ class Ui():
 
 
 
+# -todo 399 (code, clean) +0: find better place for hooks
 	def genGcode(self):
 		def shapePreHook(_shape):
 			refItem = _shape.data()
