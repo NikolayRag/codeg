@@ -265,7 +265,7 @@ class AppWindow(QObject):
 
 	#specific logic relying on events order for (re)storing window size/pos
 	def moved(self, _e):
-		if self.rtPos[1]:
+		if self.rtPos[1] != None:
 			self.rtPos[0] = self.rtPos[1]
 			self.rtPos[1] = self.wMain.pos()
 		else:
@@ -273,7 +273,7 @@ class AppWindow(QObject):
 
 
 	def resized(self, _e):
-		if self.rtSize[1]:
+		if self.rtSize[1] != None:
 			self.rtSize[0] = self.rtSize[1]
 			self.rtSize[1] = self.wMain.size()
 		else:
